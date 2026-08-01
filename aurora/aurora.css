@@ -3253,3 +3253,90 @@ p a:not(.btn):hover,li a:not(.btn):hover{
 .foot{position:relative}
 .foot::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,#2f8fd0 0 33%,#ffc300 33% 66%,#8b0000 66% 100%)}
+
+/* ==========================================================================
+   2026-08-01 · Seal & coat-of-arms signature decor + purposeful glass UI
+   ========================================================================== */
+
+/* Quick-access bar becomes frosted glass over the hero photograph */
+.qpanel{background:linear-gradient(150deg,rgba(13,48,104,.74),rgba(8,32,73,.7) 58%,rgba(5,19,47,.8));
+  -webkit-backdrop-filter:blur(14px) saturate(1.35);backdrop-filter:blur(14px) saturate(1.35)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .qpanel{background:linear-gradient(150deg,#0d3068 0%,#082049 58%,#05132f 100%)}
+}
+
+/* Hero ghost buttons: frosted glass so the photo glows through */
+.hero .btn-ghost,.phead .btn-ghost{background:rgba(255,255,255,.09);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-color:rgba(255,255,255,.38)}
+
+/* Embassy seal signature floating in the hero corner (desktop) */
+@media(min-width:1000px){
+  .phead > .container{position:relative}
+  .hero .container::after,.phead > .container::after{content:"";position:absolute;
+    right:clamp(28px,5vw,84px);bottom:10px;width:126px;height:126px;
+    background:url('assets/img/embassy-seal.png') center/contain no-repeat;opacity:.45;
+    filter:drop-shadow(0 6px 18px rgba(3,8,20,.5));pointer-events:none;
+    animation:sealFloat 7s ease-in-out infinite}
+}
+@keyframes sealFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* Footer: grand faint seal watermark behind the columns */
+.foot{overflow:hidden}
+.foot > .container{position:relative;z-index:1}
+.foot::after{content:"";position:absolute;right:-70px;bottom:-90px;width:360px;height:360px;
+  background:url('assets/img/embassy-seal.png') center/contain no-repeat;opacity:.05;
+  pointer-events:none}
+
+/* Official line becomes a glass badge capsule */
+.gov-foot{max-width:760px;margin-left:auto;margin-right:auto;padding:9px 18px;
+  border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  background:rgba(255,255,255,.04);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+
+/* Coat-of-arms leopard: faint guardian in section corners on legal pages */
+.legal-grid{position:relative}
+.legal-grid::after{content:"";position:absolute;right:-30px;bottom:-30px;width:220px;height:220px;
+  background:url('assets/img/leopard.svg') center/contain no-repeat;opacity:.05;pointer-events:none}
+
+@media(prefers-reduced-motion:reduce){
+  .hero .container::after,.phead > .container::after{animation:none}
+}
+
+/* ==========================================================================
+   2026-08-01 · Brilliance polish: richer, more luminous color throughout
+   ========================================================================== */
+
+/* Photographs gain jewel richness (background layers only, never text) */
+.hero-slide,.hero-bg,.amb-bg{filter:saturate(1.12) contrast(1.05) brightness(1.02)}
+
+/* Gold turns from brass to sunlight */
+.btn-gold{background:linear-gradient(180deg,#ffe083,#ffcf29 48%,#ffc300);
+  border-color:#d9a400;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 6px 18px -8px rgba(214,163,20,.7)}
+.btn-gold:hover{filter:brightness(1.06) saturate(1.08)}
+
+/* Quick-access icons glow warmer */
+.qtile-ic{color:#ffd85e;border-color:rgba(255,210,77,.35)}
+.qtile:hover .qtile-ic{background:linear-gradient(160deg,#ffd94f,#e3a91f);color:#081a3f}
+
+/* Rules and progress carry more light */
+.rule{background:linear-gradient(90deg,transparent,#e9b400 22%,#ffd54d 50%,#22cdff 78%,transparent)}
+.rule.left{background:linear-gradient(90deg,#d99e00,#ffd54d 35%,#22cdff 78%,transparent)}
+.scroll-prog{background:linear-gradient(90deg,#d99e00,#ffce1f 40%,#ffe083 66%,#00c8ff)}
+
+/* Card hover ring: brighter jewel edge */
+@media (hover:hover) and (pointer:fine){
+  .card-hover:hover{box-shadow:0 14px 34px -18px rgba(10,27,61,.35),
+    0 0 0 1.5px rgba(255,201,13,.55)}
+}
+
+/* Selection sparkles */
+::selection{background:rgba(255,208,45,.42);color:#1a1503}
+
+/* Tricolor accents: truer, more vivid national colors */
+.hero h1::after,.phead h1::after,.amb-hero h1::after,.foot::before{
+  background:linear-gradient(90deg,#1f9de0 0 33%,#ffd020 33% 66%,#d61526 66% 100%)}
+
+/* Eyebrow ticks + section eyebrows keep contrast but gain glow */
+.sec-head .eyebrow::before{background:linear-gradient(90deg,#ffce1f,#00c8ff)}
