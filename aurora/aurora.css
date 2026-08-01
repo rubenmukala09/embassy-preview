@@ -3012,3 +3012,99 @@ p{ text-align:left }
 a:focus-visible{ outline-color:var(--edge) }
 /* left-anchored rule variant keeps its fade-out but ends in sky */
 .rule.left{ background:linear-gradient(90deg, var(--gold-deep), var(--gold) 35%, var(--edge) 78%, transparent) }
+
+/* ==========================================================================
+   2026-08-01 · "ALIVE" wave — premium motion, reactions & living accents
+   Append-only layer. Every animation is guarded for reduced motion.
+   ========================================================================== */
+
+/* -- 1 · Pointer-reactive card glow (JS sets --mx/--my, adds .is-lit) ------ */
+.card-hover.is-lit{
+  background-image:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),
+    rgba(255,205,60,.10), rgba(0,192,252,.05) 46%, transparent 72%);
+}
+.card-hover{
+  transition:transform .34s cubic-bezier(.22,.9,.32,1.15), box-shadow .34s ease,
+             border-color .34s ease;
+}
+.card-hover:hover{transform:translateY(-3px)}
+.card-hover:active{transform:translateY(-1px) scale(.995);transition-duration:.09s}
+
+/* -- 2 · Button shine sweep + tactile press + ink ripple ------------------- */
+.btn{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.btn::before{
+  content:"";position:absolute;top:-2px;bottom:-2px;left:-85%;width:55%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.34),transparent);
+  transform:skewX(-18deg);pointer-events:none;opacity:0;
+}
+.btn:hover::before{animation:btnShine .65s ease forwards}
+@keyframes btnShine{from{left:-85%;opacity:1}to{left:135%;opacity:1}}
+.btn:active{transform:translateY(0) scale(.964);transition-duration:.08s}
+.btn .ink{
+  position:absolute;border-radius:50%;pointer-events:none;transform:scale(0);
+  background:radial-gradient(circle,rgba(255,255,255,.5),rgba(255,255,255,0) 65%);
+  animation:btnInk .55s ease-out forwards;
+}
+@keyframes btnInk{to{transform:scale(2.7);opacity:0}}
+
+/* -- 3 · Living rules: slow gold→sky shimmer ------------------------------- */
+.rule,.rule.left{background-size:230% 100%;animation:ruleBreathe 7s ease-in-out infinite}
+@keyframes ruleBreathe{0%,100%{background-position:0% 0}50%{background-position:78% 0}}
+
+/* -- 4 · Section eyebrow: live accent tick --------------------------------- */
+.sec-head .eyebrow::before{
+  content:"";display:inline-block;width:16px;height:2px;margin:0 9px 3px 0;
+  vertical-align:middle;border-radius:2px;
+  background:linear-gradient(90deg,var(--gold),var(--edge,#00c0fc));
+  animation:tickPulse 3.2s ease-in-out infinite;
+}
+@keyframes tickPulse{0%,100%{opacity:.55;transform:scaleX(.7)}50%{opacity:1;transform:scaleX(1)}}
+
+/* -- 5 · Nav links: gold→sky underline grows from the left ----------------- */
+.nav a{
+  background-image:linear-gradient(90deg,var(--gold),var(--edge,#00c0fc));
+  background-repeat:no-repeat;background-size:0% 2px;
+  background-position:13px calc(100% - 4px);
+  transition:background-size .28s cubic-bezier(.3,.7,.3,1),background-color .16s,color .16s;
+}
+.nav a:hover,.nav a:focus-visible{background-size:calc(100% - 26px) 2px}
+.nav a[aria-current],.nav a.active{background-size:calc(100% - 26px) 2px}
+
+/* -- 6 · Gallery photographs react ----------------------------------------- */
+.amb-item:hover img{transform:scale(1.06);filter:saturate(1.14) brightness(1.03)}
+.amb-item::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 0 0 rgba(255,195,0,0);transition:box-shadow .3s ease;
+}
+.amb-item:hover::after{box-shadow:inset 0 0 0 2px rgba(255,195,0,.65), inset 0 -40px 40px -30px rgba(0,192,252,.28)}
+
+/* -- 7 · Reveal polish: softer travel with a whisper of scale --------------- */
+.reveal{transform:translateY(18px) scale(.985);
+  transition:opacity .7s cubic-bezier(.2,.65,.25,1),transform .7s cubic-bezier(.2,.65,.25,1)}
+.reveal.in{transform:none}
+
+/* -- 8 · Quick-access tiles: icon lifts, tile presses ----------------------- */
+.qtile :is(i,svg){transition:transform .25s cubic-bezier(.3,.9,.35,1.4)}
+.qtile:hover :is(i,svg){transform:translateY(-2px) scale(1.14)}
+.qtile:active{transform:scale(.955);transition:transform .09s}
+
+/* -- 9 · Ceremonial seal: near-imperceptible slow rotation ------------------ */
+.cta-premium .seal-bg{animation:sealTurn 120s linear infinite}
+@keyframes sealTurn{to{transform:translateY(-50%) rotate(360deg)}}
+.quote-band .seal-bg{animation:sealTurnFlat 140s linear infinite}
+@keyframes sealTurnFlat{to{transform:rotate(360deg)}}
+
+/* -- 10 · Inline link reaction: underline thickens to gradient -------------- */
+p a:not(.btn):hover,li a:not(.btn):hover{
+  text-decoration-thickness:2.5px;text-decoration-color:var(--edge,#00c0fc);
+}
+
+/* -- Reduced motion: the layer falls silent --------------------------------- */
+@media(prefers-reduced-motion:reduce){
+  .rule,.rule.left,.sec-head .eyebrow::before,
+  .cta-premium .seal-bg,.quote-band .seal-bg{animation:none}
+  .btn::before,.btn .ink{display:none}
+  .card-hover,.card-hover:hover,.qtile :is(i,svg),.qtile:hover :is(i,svg){transform:none;transition:none}
+  .reveal{transform:none;transition:none}
+  .amb-item:hover img{transform:none}
+}

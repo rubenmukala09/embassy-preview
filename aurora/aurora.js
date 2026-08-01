@@ -3265,3 +3265,43 @@
     })(cards[i]);
   }
 })();
+
+/* ==========================================================================
+   2026-08-01 · "ALIVE" wave — pointer-reactive glow + button ink ripple
+   ========================================================================== */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+
+  /* Pointer-reactive glow on interactive cards (mouse/pen only) */
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType === "touch") return;
+    var card = e.target.closest && e.target.closest(".card-hover");
+    if (!card) return;
+    var r = card.getBoundingClientRect();
+    card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+    card.style.setProperty("--my", (e.clientY - r.top) + "px");
+    if (!card.classList.contains("is-lit")) card.classList.add("is-lit");
+  }, { passive: true });
+  document.addEventListener("pointerout", function (e) {
+    var card = e.target.closest && e.target.closest(".card-hover");
+    if (card && !(e.relatedTarget && card.contains(e.relatedTarget))) {
+      card.classList.remove("is-lit");
+    }
+  }, { passive: true });
+
+  /* Ink ripple on buttons */
+  document.addEventListener("pointerdown", function (e) {
+    var btn = e.target.closest && e.target.closest(".btn");
+    if (!btn) return;
+    var r = btn.getBoundingClientRect();
+    var d = Math.max(r.width, r.height);
+    var ink = document.createElement("span");
+    ink.className = "ink";
+    ink.style.width = ink.style.height = d + "px";
+    ink.style.left = (e.clientX - r.left - d / 2) + "px";
+    ink.style.top = (e.clientY - r.top - d / 2) + "px";
+    btn.appendChild(ink);
+    setTimeout(function () { if (ink.parentNode) ink.parentNode.removeChild(ink); }, 600);
+  }, { passive: true });
+})();
