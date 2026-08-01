@@ -3164,3 +3164,92 @@ p a:not(.btn):hover,li a:not(.btn):hover{
   .hero .eyebrow,.phead .eyebrow,.hero h1,.phead h1,.hero p.lead,
   .hero .container > p,.phead p,.hero .cta,.hero .meta,.phead .crumbs{animation:none}
 }
+
+/* ==========================================================================
+   2026-08-01 · Ambience hero brought in line with every other hero page:
+   same left scrim, left-hugging text, full-viewport fit, staggered entrance.
+   ========================================================================== */
+@media(min-width:761px){
+  .amb-hero{min-height:calc(100svh - 136px);align-items:center}
+  .amb-hero .amb-bg{background-position:68% center}
+  .amb-hero::before{background:linear-gradient(97deg,
+    rgba(6,13,30,.82) 0%, rgba(7,17,38,.66) 24%, rgba(8,20,44,.34) 46%,
+    rgba(8,20,44,.08) 62%, transparent 78%)}
+  .amb-hero .container.amb-inner{margin-left:0;max-width:none;
+    padding-left:clamp(28px,4vw,64px);padding-right:0;padding-bottom:0}
+  .amb-hero h1{text-shadow:0 2px 18px rgba(4,10,24,.55)}
+  .amb-hero p{text-shadow:0 1px 12px rgba(4,10,24,.5)}
+}
+@media(max-width:760px){
+  .amb-hero{align-items:flex-end}
+  .amb-hero .amb-bg{background-position:center 18%}
+  .amb-hero::before{background:linear-gradient(180deg,
+    rgba(6,13,30,.26) 0%, rgba(6,13,30,.4) 32%, rgba(7,16,36,.9) 58%,
+    rgba(6,13,30,.97) 100%)}
+}
+.amb-hero .eyebrow{animation:riseIn .55s var(--ease-out-quint) backwards}
+.amb-hero h1{animation:riseIn .6s var(--ease-out-quint) .08s backwards}
+.amb-hero p{animation:riseIn .6s var(--ease-out-quint) .16s backwards}
+@media(prefers-reduced-motion:reduce){
+  .amb-hero .eyebrow,.amb-hero h1,.amb-hero p{animation:none}
+}
+
+/* ==========================================================================
+   2026-08-01 · Premium accent finish
+   ========================================================================== */
+/* Gold CTA gains a jewel edge on hover (desktop pointers only) */
+@media (hover:hover) and (pointer:fine){
+  .btn-gold:hover{box-shadow:0 6px 22px -8px rgba(255,195,0,.55),0 0 0 1px rgba(0,192,252,.25)}
+  .site-head .brand:hover .crest{transform:rotate(-3deg) scale(1.04)}
+}
+.site-head .brand .crest{transition:transform .25s var(--ease-out-quint,ease-out)}
+/* Footer links warm to gold, tipped sky */
+.site-foot a:hover{color:var(--gold);text-decoration-color:var(--edge,#00c0fc)}
+/* Language toggle + search icon react */
+.topbar .lang:hover,.search-toggle:hover{color:var(--gold)}
+/* Table rows breathe on hover */
+@media (hover:hover) and (pointer:fine){
+  .card table tr:hover td{background:rgba(255,195,0,.05)}
+}
+/* Active nav item carries the gradient underline at rest (set in Alive wave) */
+
+/* ==========================================================================
+   2026-08-01 · Header-stack fix + Congolese flag decor
+   ========================================================================== */
+
+/* FIX: topbar had a hard 25px height; wrapped rows spilled over the gov
+   banner on narrow screens. Let it grow instead. */
+.topbar > .container{height:auto;min-height:25px;row-gap:3px;
+  padding-top:3px;padding-bottom:3px}
+.gov-banner{position:relative;z-index:6}
+.gov-banner > .container{flex-wrap:wrap;row-gap:2px}
+.gov-banner .gov-text{flex:1 1 auto;min-width:0}
+@media(max-width:560px){
+  .topbar > .container{padding-top:5px;padding-bottom:5px}
+  .gov-banner .gov-text{font-size:11px;line-height:1.35}
+}
+
+/* FIX: footer hover accent targeted a class that doesn't exist */
+.foot a:hover{color:var(--gold);text-decoration-color:var(--edge,#00c0fc)}
+
+/* DRC flag chip in the official banner (sky field, gold-edged red band, star) */
+.gov-flag{position:relative;flex:0 0 auto;width:21px;height:14px;border-radius:2px;
+  overflow:hidden;background:#0f7fd8;box-shadow:0 0 0 1px rgba(10,27,61,.18)}
+.gov-flag::before{content:"";position:absolute;left:-30%;top:-30%;width:160%;height:160%;
+  background:linear-gradient(115deg,transparent 43%,#f7d618 43%,#f7d618 47%,
+    #ce1021 47%,#ce1021 61%,#f7d618 61%,#f7d618 65%,transparent 65%)}
+.gov-flag::after{content:"\2605";position:absolute;top:-3.5px;left:1.5px;
+  font-size:8px;line-height:1;color:#f7d618}
+
+/* Tricolor signature bar beneath every hero heading (echoes the ambience page) */
+.hero h1::after,.phead h1::after{content:"";display:block;height:5px;width:120px;
+  margin-top:16px;border-radius:3px;
+  background:linear-gradient(90deg,#2f8fd0 0 33%,#ffc300 33% 66%,#8b0000 66% 100%)}
+.amb-hero h1::after{content:"";display:block;height:5px;width:120px;margin-top:16px;
+  border-radius:3px;
+  background:linear-gradient(90deg,#2f8fd0 0 33%,#ffc300 33% 66%,#8b0000 66% 100%)}
+
+/* Tricolor thread across the top of the footer */
+.foot{position:relative}
+.foot::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#2f8fd0 0 33%,#ffc300 33% 66%,#8b0000 66% 100%)}
