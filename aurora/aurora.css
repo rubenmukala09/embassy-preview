@@ -3340,3 +3340,37 @@ p a:not(.btn):hover,li a:not(.btn):hover{
 
 /* Eyebrow ticks + section eyebrows keep contrast but gain glow */
 .sec-head .eyebrow::before{background:linear-gradient(90deg,#ffce1f,#00c8ff)}
+
+/* ==========================================================================
+   2026-08-01 · Accurate DRC flag (2006): sky-blue field #007FFF, red diagonal
+   band #CE1021 fimbriated in yellow #F7D618, gold star at the hoist.
+   All flag motifs corrected from generic tricolor bars to the true design.
+   ========================================================================== */
+
+/* Banner chip: official field blue */
+.gov-flag{background:#007fff}
+.gov-flag::before{background:linear-gradient(115deg,transparent 43%,#f7d618 43%,
+  #f7d618 47%,#ce1021 47%,#ce1021 61%,#f7d618 61%,#f7d618 65%,transparent 65%)}
+
+/* Signature bars under hero headings: miniature true flag (diagonal band) */
+.hero h1::after,.phead h1::after,.amb-hero h1::after{height:14px;width:120px;
+  border-radius:2.5px;position:relative;overflow:hidden;
+  background:linear-gradient(115deg,#007fff 0 38%,#f7d618 38% 43%,
+    #ce1021 43% 58%,#f7d618 58% 63%,#007fff 63% 100%);
+  box-shadow:0 1px 6px rgba(3,8,20,.35)}
+
+/* Ambience hero's own bar matches */
+.amb-flag{height:14px;width:120px;border-radius:2.5px;
+  background:linear-gradient(115deg,#007fff 0 38%,#f7d618 38% 43%,
+    #ce1021 43% 58%,#f7d618 58% 63%,#007fff 63% 100%);
+  box-shadow:0 1px 6px rgba(3,8,20,.35)}
+
+/* Footer thread: the diagonal band sweeps across the full width */
+.foot::before{height:4px;
+  background:linear-gradient(100deg,#007fff 0 30%,#f7d618 30% 36%,
+    #ce1021 36% 56%,#f7d618 56% 62%,#007fff 62% 100%)}
+
+/* Bottom hero stripe on interior pages: same correction */
+.phead::after{height:5px;
+  background:linear-gradient(100deg,#007fff 0 30%,#f7d618 30% 36%,
+    #ce1021 36% 56%,#f7d618 56% 62%,#007fff 62% 100%)}
