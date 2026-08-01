@@ -83,7 +83,7 @@
       '<div class="mobile-menu" role="dialog" aria-label="Menu"><button class="mm-close" aria-label="Close">×</button>' +
         links +
         '<a href="portal.html" class="mm-cta">Request an appointment →</a>' +
-        '<a class="mm-logo" href="/embassy-preview/" aria-label="Embassy of the DRC - home">' +
+        '<a class="mm-logo" href="/" aria-label="Embassy of the DRC - home">' +
           '<svg class="crest" aria-hidden="true"><use href="#crest"/></svg>' +
           '<span><b>EMBASSY OF THE DRC</b><small>Washington, D.C.</small></span>' +
         '</a></div>',
@@ -1378,7 +1378,7 @@
       if (!items.length) return; // nothing published -> stay hidden
       const cards = items
         .map((p) =>
-          '<a class="res-card" href="/embassy-preview/p/' + encodeURIComponent(p.slug) + '">' +
+          '<a class="res-card" href="/p/' + encodeURIComponent(p.slug) + '">' +
           '<b>' + esc(p.title) + "</b>" +
           (p.excerpt ? "<span>" + esc(p.excerpt) + "</span>" : "") +
           '<i class="res-arrow">&rarr;</i></a>',
@@ -3304,4 +3304,17 @@
     btn.appendChild(ink);
     setTimeout(function () { if (ink.parentNode) ink.parentNode.removeChild(ink); }, 600);
   }, { passive: true });
+})();
+
+/* CRAFT pass: pause ambient loop animations while offscreen (perf) */
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  var loops = document.querySelectorAll(".rule, .sec-head .eyebrow, .seal-bg");
+  if (!loops.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      en.target.classList.toggle("anim-idle", !en.isIntersecting);
+    });
+  }, { rootMargin: "80px 0px" });
+  loops.forEach(function (el) { io.observe(el); });
 })();

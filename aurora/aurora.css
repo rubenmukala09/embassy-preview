@@ -3108,3 +3108,59 @@ p a:not(.btn):hover,li a:not(.btn):hover{
   .reveal{transform:none;transition:none}
   .amb-item:hover img{transform:none}
 }
+
+/* ==========================================================================
+   2026-08-01 · CRAFT pass — skill-guided refinement of the Alive wave
+   (Emil Kowalski framework + web-interface-guidelines + impeccable)
+   Later rules win: this layer re-tunes what the Alive wave introduced.
+   ========================================================================== */
+
+:root{
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --ease-in-out-strong:cubic-bezier(.77,0,.175,1);
+}
+
+/* -- A · Kill overshoot, tighten durations (no bounce; ≤220ms on hover) ---- */
+.card-hover{transition:transform .2s var(--ease-out-quint),box-shadow .2s ease,border-color .2s ease}
+.qtile :is(i,svg){transition:transform .18s var(--ease-out-quint)}
+.btn{transition:transform .16s var(--ease-out-quint),box-shadow .2s ease,background-color .16s ease,color .16s ease}
+
+/* -- B · Hover effects only for real pointers (no sticky touch hover) ------ */
+@media not ((hover:hover) and (pointer:fine)){
+  .card-hover:hover{transform:none}
+  .qtile:hover :is(i,svg){transform:none}
+  .amb-item:hover img{transform:none;filter:none}
+  .btn:hover::before{animation:none}
+  .btn:hover{transform:none;box-shadow:none}
+}
+
+/* -- C · Tactile layer for touch: instant, physical ------------------------ */
+.btn,.qtile,.nav a,.qcard,.card-hover{touch-action:manipulation}
+
+/* -- D · Asymmetric gallery zoom: graceful in, snappy out ------------------ */
+.amb-item img{transition:transform .3s var(--ease-out-quint),filter .25s ease}
+.amb-item:hover img{transition:transform .9s var(--ease-out-quint),filter .4s ease}
+
+/* -- E · Hero content entrance: staggered rise with a blur bridge ---------- */
+@keyframes riseIn{
+  from{opacity:0;transform:translateY(14px);filter:blur(5px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+.hero .eyebrow,.phead .eyebrow{animation:riseIn .55s var(--ease-out-quint) backwards}
+.hero h1,.phead h1{animation:riseIn .6s var(--ease-out-quint) .08s backwards}
+.hero p.lead,.hero .container > p,.phead p{animation:riseIn .6s var(--ease-out-quint) .16s backwards}
+.hero .cta,.hero .meta,.phead .crumbs{animation:riseIn .6s var(--ease-out-quint) .24s backwards}
+.phead .crumbs{animation-delay:0s}
+
+/* -- F · Focus visible as a layered ring (survives overflow clipping) ------ */
+.btn:focus-visible{outline:none;box-shadow:0 0 0 2px #fff,0 0 0 4.5px var(--edge,#00c0fc)}
+.qtile:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--edge,#00c0fc)}
+
+/* -- G · Ambient loops pause when offscreen (JS toggles .anim-idle) -------- */
+.anim-idle,.anim-idle::before,.anim-idle::after{animation-play-state:paused!important}
+
+/* -- Reduced motion ---------------------------------------------------------- */
+@media(prefers-reduced-motion:reduce){
+  .hero .eyebrow,.phead .eyebrow,.hero h1,.phead h1,.hero p.lead,
+  .hero .container > p,.phead p,.hero .cta,.hero .meta,.phead .crumbs{animation:none}
+}
