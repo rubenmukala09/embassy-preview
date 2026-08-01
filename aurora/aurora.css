@@ -3383,3 +3383,24 @@ p a:not(.btn):hover,li a:not(.btn):hover{
   -webkit-backdrop-filter:none;backdrop-filter:none}
 .qtile-ic{color:var(--gold-soft);border-color:rgba(255,210,77,.2)}
 .qtile:hover .qtile-ic{background:linear-gradient(160deg,var(--gold),#b8892f);color:#0a1f4d}
+
+/* ==========================================================================
+   2026-08-01 · Graphic refinement: starred flag signatures + tablet topbar
+   ========================================================================== */
+
+/* The hero flag signature gains its gold star at the hoist + a soft gloss */
+.hero h1::after,.phead h1::after,.amb-hero h1::after{
+  content:"\2605";color:#f7d618;font-size:9px;line-height:15px;
+  text-align:left;padding-left:7px;font-family:var(--sans,sans-serif);
+  text-shadow:0 0 2px rgba(0,0,0,.25);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.22),transparent 45%),
+    linear-gradient(115deg,#007fff 0 38%,#f7d618 38% 43%,
+      #ce1021 43% 58%,#f7d618 58% 63%,#007fff 63% 100%)}
+
+/* Tablet topbar: tighter, calmer rows */
+@media(min-width:561px) and (max-width:1000px){
+  .topbar{font-size:12px}
+  .topbar > .container{row-gap:1px;padding-top:2px;padding-bottom:2px}
+  .topbar .ti{gap:14px}
+}
