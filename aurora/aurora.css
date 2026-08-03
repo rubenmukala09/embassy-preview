@@ -4025,3 +4025,166 @@ main .geo-map > :first-child::before{
   main .widgets .widget::after,
   main .section .grid > .card::after{transition:none}
 }
+
+/*
+   Final design-QA correction.
+   These CTA panels also carry the generic .card class, whose higher-specificity
+   paper surface otherwise masks the intended dark diplomatic artwork.
+*/
+main .section .card.below-cta{
+  background-color:#001a38;
+  background-image:
+    radial-gradient(circle at 18% 25%,rgba(247,214,24,.9) 0 2px,transparent 3px),
+    radial-gradient(circle at 52% 18%,rgba(0,192,252,.75) 0 2px,transparent 3px),
+    radial-gradient(circle at 74% 65%,rgba(247,214,24,.6) 0 2px,transparent 3px),
+    linear-gradient(25deg,transparent 0 41%,rgba(247,214,24,.13) 41.2% 41.5%,transparent 41.8%),
+    linear-gradient(154deg,transparent 0 63%,rgba(0,192,252,.12) 63.2% 63.5%,transparent 63.8%),
+    linear-gradient(100deg,rgba(0,22,50,.99) 0%,rgba(0,29,61,.94) 52%,rgba(0,29,61,.68) 100%),
+    url('/embassy-preview/img/image/embassy-widget-accent-2026.png');
+  background-position:center,center,center,center,center,center,center right;
+  background-size:auto,auto,auto,auto,auto,auto,cover;
+  border-color:rgba(255,226,122,.36);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.12) inset,
+    0 34px 72px -40px rgba(0,18,43,.9),
+    0 0 0 1px rgba(0,127,255,.08);
+}
+main .section .card.below-cta::before{
+  z-index:1;
+  inset:0;
+  width:auto;
+  height:auto;
+  background:
+    linear-gradient(90deg,rgba(0,22,50,.08),rgba(0,22,50,.16) 58%,rgba(0,22,50,.32)),
+    linear-gradient(90deg,#007fff 0 34%,#f7d618 34% 41%,#ce1021 41% 59%,#f7d618 59% 66%,#007fff 66% 100%) top/100% 3px no-repeat;
+  pointer-events:none;
+}
+main .section .card.below-cta.geo-map::after{
+  z-index:0;
+  opacity:.3;
+  filter:drop-shadow(0 20px 42px rgba(0,0,0,.38));
+}
+@media(max-width:760px){
+  main .section .card.below-cta.geo-map::after{opacity:.18}
+}
+@media(max-width:520px){
+  main .section .card.below-cta.geo-map::after{opacity:.12}
+}
+
+/* Contact locator: Washington street rings joined to a Kinshasa route. */
+main .contact-grid .map{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:300px;
+  background:
+    radial-gradient(circle at 22% 72%,rgba(247,214,24,.95) 0 3px,rgba(247,214,24,.2) 4px 10px,transparent 11px),
+    radial-gradient(circle at 76% 31%,rgba(0,127,255,.95) 0 3px,rgba(0,127,255,.18) 4px 11px,transparent 12px),
+    repeating-radial-gradient(circle at 76% 31%,transparent 0 24px,rgba(0,42,82,.08) 25px 26px,transparent 27px 43px),
+    linear-gradient(32deg,transparent 0 46%,rgba(196,162,89,.2) 46.2% 46.5%,transparent 46.7%),
+    linear-gradient(148deg,transparent 0 55%,rgba(0,127,255,.12) 55.2% 55.5%,transparent 55.7%),
+    linear-gradient(145deg,#e9eef5,#dbe5f0);
+}
+main .contact-grid .map::before{
+  content:"KINSHASA  ·  DIPLOMATIC ROUTE  ·  WASHINGTON, D.C.";
+  position:absolute;
+  z-index:1;
+  left:22px;
+  right:22px;
+  bottom:20px;
+  padding-top:10px;
+  border-top:1px solid rgba(0,42,82,.14);
+  color:rgba(0,42,82,.72);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-align:center;
+}
+main .contact-grid .map::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:22%;
+  top:34%;
+  width:56%;
+  height:30%;
+  border-top:1px solid rgba(196,162,89,.72);
+  border-radius:50%;
+  transform:rotate(-18deg);
+  box-shadow:0 -8px 24px -15px rgba(0,42,82,.8);
+}
+main .contact-grid .map > *{position:relative;z-index:2}
+main .contact-grid .map svg{
+  filter:drop-shadow(0 7px 12px rgba(0,42,82,.18));
+}
+
+/* Desktop appointment rail: a quiet four-node consular journey in the open field. */
+@media(min-width:821px){
+  main .booking-aside{overflow:hidden}
+  main .booking-aside::before{
+    content:"01  SERVICE\A 02  APPLICANT\A 03  TIME\A 04  REASON";
+    z-index:1;
+    inset:auto 30px 62px;
+    height:250px;
+    padding:8px 0 0 34px;
+    white-space:pre;
+    color:rgba(255,255,255,.66);
+    font-size:9px;
+    font-weight:800;
+    line-height:6.8;
+    letter-spacing:.15em;
+    background:
+      radial-gradient(circle at 12px 22px,#f7d618 0 3px,rgba(247,214,24,.22) 4px 8px,transparent 9px),
+      radial-gradient(circle at 12px 86px,#00c0fc 0 3px,rgba(0,192,252,.2) 4px 8px,transparent 9px),
+      radial-gradient(circle at 12px 151px,#f7d618 0 3px,rgba(247,214,24,.22) 4px 8px,transparent 9px),
+      radial-gradient(circle at 12px 216px,#fff 0 3px,rgba(255,255,255,.18) 4px 8px,transparent 9px),
+      linear-gradient(180deg,rgba(247,214,24,.65),rgba(0,192,252,.55) 48%,rgba(255,255,255,.4)) 11px 22px/1px 194px no-repeat;
+    pointer-events:none;
+  }
+}
+
+/* Mobile QA correction: keep the six-service rail useful without covering content. */
+@media(max-width:640px){
+  .qa-band,
+  .qa-band.qa-hiding{
+    position:relative;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    z-index:10;
+    margin:0;
+    padding:0;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    will-change:auto;
+  }
+  .qa-band > .container{padding:0 14px;max-width:100%}
+  .qpanel{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    margin:0;
+    border-radius:0 0 12px 12px;
+    box-shadow:0 16px 34px -26px rgba(6,13,30,.7);
+    padding-bottom:0;
+  }
+  .qtile{min-height:62px;padding:8px 4px}
+  .qtile-t{font-size:9px}
+  body{padding-bottom:0}
+  .asst-launch{
+    right:12px;
+    bottom:calc(12px + env(safe-area-inset-bottom));
+    width:48px;
+    height:48px;
+    padding:7px;
+    justify-content:center;
+    border-radius:50%;
+  }
+  .asst-launch .asst-lt{display:none}
+  .to-top{
+    left:12px;
+    right:auto;
+    bottom:calc(12px + env(safe-area-inset-bottom));
+  }
+  main .contact-grid .map{min-height:245px}
+  main .contact-grid .map::before{font-size:8px;letter-spacing:.08em}
+}
