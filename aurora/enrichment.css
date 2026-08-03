@@ -137,3 +137,225 @@ main .editorial-note{margin:16px 0 0;color:#68758a;font-size:11px;letter-spacing
   main .drc-gallery>a{min-height:200px}
 }
 @media(prefers-reduced-motion:reduce){main .drc-feature-media img{transition:none}}
+
+/* ==========================================================
+   DIPLOMATIC BADGE & MICRO-DECOR LAYER
+   Compact identifiers for below-fold editorial and service UI.
+   ========================================================== */
+
+/* Section insignia: a restrained bilateral marker above centered headings. */
+main .section .sec-head.center{position:relative}
+main .section .sec-head.center::before{
+  content:"DRC  ·  USA";
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:24px;
+  margin:0 auto 12px;
+  padding:4px 10px 4px 25px;
+  border:1px solid rgba(0,42,82,.12);
+  border-radius:999px;
+  color:#38516f;
+  background:
+    radial-gradient(circle at 12px 50%,#f7d618 0 2px,rgba(247,214,24,.2) 3px 6px,transparent 7px),
+    linear-gradient(180deg,#fff,#f5f8fc);
+  box-shadow:0 8px 22px -18px rgba(0,29,61,.7),inset 0 1px rgba(255,255,255,.9);
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.18em;
+  line-height:1;
+}
+main .section .sec-head.center::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:12px;
+  left:50%;
+  width:clamp(190px,36vw,360px);
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(0,127,255,.16) 28%,transparent 28% 72%,rgba(196,162,89,.18) 72%,transparent);
+}
+
+/* Existing chips receive a more tactile official-document finish. */
+main .badge,
+main .tag,
+main .chip{
+  border:1px solid rgba(0,42,82,.1);
+  box-shadow:0 8px 20px -18px rgba(0,29,61,.65),inset 0 1px rgba(255,255,255,.65);
+  font-weight:800;
+}
+main .badge::before,
+main .tag::before{
+  content:"";
+  width:5px;
+  height:5px;
+  flex:none;
+  border-radius:50%;
+  background:currentColor;
+  box-shadow:0 0 0 3px color-mix(in srgb,currentColor 12%,transparent);
+}
+
+/* Numbered folio markers distinguish card systems without adding heavy icons. */
+main .section .grid>.card.pad:not(.below-cta)::before{
+  position:absolute;
+  z-index:4;
+  top:13px;
+  right:13px;
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:22px;
+  border:1px solid rgba(0,42,82,.12);
+  border-radius:999px;
+  color:#36516f;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 18px -14px rgba(0,29,61,.7);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.09em;
+}
+main .section .grid>.card.pad:nth-child(1)::before{content:"01"}
+main .section .grid>.card.pad:nth-child(2)::before{content:"02"}
+main .section .grid>.card.pad:nth-child(3)::before{content:"03"}
+main .section .grid>.card.pad:nth-child(4)::before{content:"04"}
+main .section .grid>.card.pad:nth-child(5)::before{content:"05"}
+main .section .grid>.card.pad:nth-child(6)::before{content:"06"}
+main .section .grid>.card.pad:nth-child(7)::before{content:"07"}
+main .section .grid>.card.pad:nth-child(8)::before{content:"08"}
+
+/* Circular service icons gain a small gold verification node. */
+main .section .qbadge{position:relative;isolation:isolate}
+main .section .qbadge::after{
+  content:"";
+  position:absolute;
+  top:-2px;
+  right:-2px;
+  width:9px;
+  height:9px;
+  border:2px solid #fff;
+  border-radius:50%;
+  background:#f7d618;
+  box-shadow:0 0 0 1px rgba(0,42,82,.18),0 3px 8px rgba(0,29,61,.22);
+}
+
+/* Live tools advertise their function while preserving generous whitespace. */
+main .widget .w-head{display:flex;align-items:center;gap:8px}
+main .widget .w-head::after{
+  content:"DIGITAL";
+  margin-left:auto;
+  padding:4px 7px;
+  border:1px solid rgba(0,127,255,.14);
+  border-radius:999px;
+  color:#15508a;
+  background:#eaf4ff;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.13em;
+  line-height:1;
+}
+main .widget .clock::after{
+  content:"";
+  width:5px;
+  height:5px;
+  margin-left:7px;
+  border-radius:50%;
+  background:#31a46c;
+  box-shadow:0 0 0 3px rgba(49,164,108,.1);
+}
+
+/* Service tiles use a small route glyph as a consistent finishing detail. */
+main .section .tile b{display:flex;align-items:center;gap:7px}
+main .section .tile b::before{
+  content:"";
+  width:12px;
+  height:6px;
+  flex:none;
+  border-top:1px solid rgba(0,127,255,.55);
+  border-right:1px solid rgba(196,162,89,.72);
+  transform:skewX(-28deg);
+}
+
+/* News, notices and official information get content-aware micro badges. */
+main .ncard .date{display:flex;align-items:center;gap:7px}
+main .ncard .date::before{
+  content:"NEWS";
+  padding:4px 6px;
+  border-radius:999px;
+  color:#fff;
+  background:linear-gradient(135deg,#003566,#007fff);
+  box-shadow:0 7px 16px -12px rgba(0,42,82,.8);
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+main .apply-card h3,
+main .info-card h4{display:flex;align-items:center;gap:8px}
+main .apply-card h3::after,
+main .info-card h4::after{
+  content:"EMBASSY";
+  margin-left:auto;
+  padding:4px 7px;
+  border:1px solid currentColor;
+  border-radius:999px;
+  opacity:.72;
+  font-family:var(--sans);
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.12em;
+  line-height:1;
+}
+
+/* Galleries read like numbered editorial plates. */
+main .gallery>a span{display:flex;align-items:center;gap:9px}
+main .gallery>a span::before{
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:20px;
+  flex:none;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:999px;
+  color:#fff;
+  background:rgba(0,22,50,.52);
+  backdrop-filter:blur(8px);
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+main .gallery>a:nth-child(1) span::before{content:"01"}
+main .gallery>a:nth-child(2) span::before{content:"02"}
+main .gallery>a:nth-child(3) span::before{content:"03"}
+main .gallery>a:nth-child(4) span::before{content:"04"}
+main .gallery>a:nth-child(5) span::before{content:"05"}
+main .gallery>a:nth-child(6) span::before{content:"06"}
+main .gallery>a:nth-child(7) span::before{content:"07"}
+main .gallery>a:nth-child(8) span::before{content:"08"}
+
+/* DRC priority sectors receive a clearly named institutional badge. */
+main .drc-page #invest .card h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+main .drc-page #invest .card h3::after{
+  content:"PRIORITY";
+  padding:4px 7px;
+  border:1px solid rgba(0,127,255,.14);
+  border-radius:999px;
+  color:#15508a;
+  background:rgba(234,244,255,.9);
+  font-family:var(--sans);
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.11em;
+  line-height:1;
+}
+
+@media(max-width:640px){
+  main .section .sec-head.center::before{margin-bottom:9px}
+  main .section .sec-head.center::after{width:210px}
+  main .section .grid>.card.pad:not(.below-cta)::before{top:10px;right:10px;width:30px;height:20px}
+  main .widget .w-head::after{font-size:6px;padding:3px 6px}
+  main .gallery>a span::before{width:22px;height:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  main .badge,main .tag,main .chip,main .section .qbadge::after{transition:none}
+}
