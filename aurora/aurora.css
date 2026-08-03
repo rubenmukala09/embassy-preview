@@ -3864,4 +3864,164 @@ main .cta-premium .acts{display:grid;grid-template-columns:1fr 1fr;min-width:310
   main .section .field textarea,
   main .section .card-hover{transition:none}
 }
+/* ==========================================================================
+   2026-08-03 · Geographic vector spectrum
+   Below-fold only. CSS-native shapes; no hero or footer selectors.
+   DRC outline reuses the site's existing boundary geometry.
+   Paris outline derived from https://geo.api.gouv.fr/communes/75056
+   ========================================================================== */
 
+:root{
+  --geo-africa:polygon(47% 0%,58% 2%,67% 8%,74% 14%,84% 18%,90% 25%,98% 27%,92% 35%,84% 37%,79% 45%,75% 54%,70% 63%,64% 76%,58% 88%,51% 100%,44% 88%,39% 77%,35% 63%,29% 55%,18% 51%,7% 42%,0% 32%,9% 23%,22% 21%,31% 12%,39% 3%);
+  --geo-drc:polygon(98.2% 90.6%,97.9% 84.3%,100% 83.5%,96.3% 80.2%,93.2% 74.8%,91.6% 64.4%,90.1% 62.9%,88.7% 56.3%,90% 53.8%,90.8% 39.5%,97.7% 26.6%,88.6% 26.2%,85.7% 22.1%,86.8% 19.7%,85.2% 7.9%,90.3% 4.8%,91.8% 5.8%,92.2% 0%,88.2% 0%,84.1% 5.3%,80.1% 6.1%,78.9% 8.9%,75.7% 7.2%,71.4% 8%,69.7% 10.4%,63.9% 10.8%,63.6% 12.5%,52.5% 11.7%,52.8% 18.2%,51% 20.2%,51.4% 26.7%,50.3% 32.2%,43.9% 32.2%,44.3% 34.1%,41.6% 34.1%,38.1% 33%,36% 28.5%,33.1% 29.2%,27.9% 28%,21.8% 39.9%,6.3% 39.9%,0.7% 38.7%,0% 40.3%,1.3% 40.9%,2.4% 44.7%,5.7% 45.2%,7.5% 47.3%,10.3% 47.3%,12.6% 44.8%,20.1% 52.5%,20% 57%,22.2% 62.2%,28.7% 69.3%,30.1% 81%,32.7% 87.3%,33.5% 94.3%,38.4% 98.8%,46.1% 95%,53.8% 93.4%,56.1% 97.1%,58.5% 96.5%,64.4% 99.2%,66.5% 98.1%,70.9% 100%,80% 99.9%,83.2% 95.4%,85.5% 94.8%,92.3% 96.5%);
+  --geo-paris:polygon(52% .8%,65.3% 0%,69.7% 4.5%,71.6% 21.3%,75.4% 25.5%,77.1% 34.5%,78.2% 62.1%,76.2% 79.3%,80.6% 77.2%,80.5% 67.1%,96.7% 69.1%,100% 76.5%,97.1% 96.6%,86.8% 97.6%,72.5% 84.4%,56.6% 100%,43.8% 99%,22.3% 81%,17.8% 86.4%,17.9% 78.7%,12.6% 78.3%,11.5% 65.9%,0% 56.5%,2.6% 39.6%,8.7% 29.9%,12.5% 32.6%,13.9% 25.3%,22.7% 27.4%,25% 18.1%,39.2% 1.6%);
+}
+
+/* Shared vector surface: a cartographic foil behind real content. */
+main .geo-map,
+main .widgets .widget,
+main .section .grid > .card{
+  isolation:isolate;
+}
+main .geo-map::after,
+main .widgets .widget::after,
+main .section .grid > .card::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:auto;
+  right:-8%;
+  bottom:-15%;
+  width:46%;
+  height:auto;
+  aspect-ratio:1;
+  pointer-events:none;
+  opacity:.16;
+  background:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0 1px,transparent 1px 9px),
+    linear-gradient(145deg,rgba(247,214,24,.95),rgba(0,127,255,.72) 54%,rgba(206,16,33,.75));
+  filter:drop-shadow(0 10px 24px rgba(0,18,43,.22));
+  transform:rotate(-5deg);
+  transform-origin:center;
+  transition:opacity .25s ease,transform .45s cubic-bezier(.2,.75,.2,1);
+}
+
+/* Explicit CTA/sidebar geography. */
+main .geo-africa::after{clip-path:var(--geo-africa)}
+main .geo-drc::after{clip-path:var(--geo-drc)}
+main .geo-paris::after{clip-path:var(--geo-paris)}
+
+/* Repeating widget geography: Africa → DRC → Paris → Africa. */
+main .widgets .widget:nth-child(4n+1)::after{clip-path:var(--geo-africa)}
+main .widgets .widget:nth-child(4n+2)::after{clip-path:var(--geo-drc)}
+main .widgets .widget:nth-child(4n+3)::after{clip-path:var(--geo-paris)}
+main .widgets .widget:nth-child(4n+4)::after{clip-path:var(--geo-africa)}
+
+/* Interior service-card geography follows a varied, repeatable rhythm. */
+main .section .grid > .card:nth-child(3n+1)::after{clip-path:var(--geo-africa)}
+main .section .grid > .card:nth-child(3n+2)::after{clip-path:var(--geo-drc)}
+main .section .grid > .card:nth-child(3n+3)::after{clip-path:var(--geo-paris)}
+main .section .grid > .card::after{
+  right:-9%;
+  bottom:-22%;
+  width:44%;
+  opacity:.055;
+  background:
+    repeating-linear-gradient(135deg,rgba(0,42,82,.08) 0 1px,transparent 1px 8px),
+    linear-gradient(145deg,#8d6c2e,#007fff 58%,#ce1021);
+}
+
+/* Widget connection spectrum: diplomatic routes rendered as light and nodes. */
+main .widget::before{
+  inset:0;
+  width:auto;
+  height:auto;
+  border-radius:0;
+  opacity:1;
+  background:
+    radial-gradient(circle at 19% 24%,rgba(247,214,24,.75) 0 2px,transparent 2.8px),
+    radial-gradient(circle at 67% 38%,rgba(0,127,255,.58) 0 2px,transparent 2.8px),
+    radial-gradient(circle at 83% 74%,rgba(206,16,33,.4) 0 2px,transparent 2.8px),
+    linear-gradient(29deg,transparent 0 37%,rgba(196,162,89,.12) 37.3% 37.7%,transparent 38%),
+    linear-gradient(153deg,transparent 0 57%,rgba(0,127,255,.09) 57.3% 57.7%,transparent 58%),
+    radial-gradient(circle at 78% 18%,rgba(247,214,24,.13),transparent 27%);
+}
+
+/* CTA routes: layered nodes and diagonal spectra over the existing flag art. */
+main .cta-premium,
+main .below-cta{
+  background-image:
+    radial-gradient(circle at 18% 25%,rgba(247,214,24,.9) 0 2px,transparent 3px),
+    radial-gradient(circle at 52% 18%,rgba(0,192,252,.75) 0 2px,transparent 3px),
+    radial-gradient(circle at 74% 65%,rgba(247,214,24,.6) 0 2px,transparent 3px),
+    linear-gradient(25deg,transparent 0 41%,rgba(247,214,24,.13) 41.2% 41.5%,transparent 41.8%),
+    linear-gradient(154deg,transparent 0 63%,rgba(0,192,252,.12) 63.2% 63.5%,transparent 63.8%),
+    linear-gradient(100deg,rgba(0,22,50,.97) 0%,rgba(0,29,61,.88) 48%,rgba(0,29,61,.5) 100%),
+    url('/embassy-preview/img/image/embassy-widget-accent-2026.png');
+}
+main .cta-premium.geo-map::after,
+main .below-cta.geo-map::after{
+  right:clamp(20px,5vw,72px);
+  bottom:-24%;
+  width:clamp(210px,30vw,390px);
+  opacity:.22;
+  background:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.1) 0 1px,transparent 1px 10px),
+    linear-gradient(145deg,rgba(247,214,24,.92),rgba(0,192,252,.5) 62%,rgba(206,16,33,.56));
+  filter:drop-shadow(0 16px 36px rgba(0,0,0,.32));
+}
+main .cta-premium .row2,
+main .below-cta > *{position:relative;z-index:2}
+
+/* The appointment sidebar carries Africa as a quieter institutional watermark. */
+main .booking-aside.geo-map > *{position:relative;z-index:2}
+main .booking-aside.geo-map::after{
+  right:-16%;
+  bottom:-9%;
+  width:78%;
+  opacity:.14;
+  background:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.1) 0 1px,transparent 1px 11px),
+    linear-gradient(145deg,#f7d618,#00c0fc 58%,#ce1021);
+}
+
+/* Fine coordinate ticks make the system feel designed, never stock. */
+main .geo-map{
+  --tick:rgba(255,226,122,.34);
+}
+main .geo-map > :first-child::before{
+  content:"";
+  display:inline-block;
+  width:18px;
+  height:1px;
+  margin:0 9px 4px 0;
+  background:linear-gradient(90deg,var(--tick),transparent);
+  box-shadow:7px -4px 0 -0.25px var(--tick),12px 4px 0 -0.25px var(--tick);
+}
+
+/* Motion is subtle and restricted to real pointer devices. */
+@media (hover:hover) and (pointer:fine){
+  main .geo-map:hover::after,
+  main .widgets .widget:hover::after,
+  main .section .grid > .card:hover::after{
+    opacity:.24;
+    transform:rotate(-2deg) scale(1.035);
+  }
+  main .section .grid > .card:hover::after{opacity:.09}
+}
+@media(max-width:760px){
+  main .geo-map::after{width:58%;opacity:.13}
+  main .cta-premium.geo-map::after,
+  main .below-cta.geo-map::after{right:-8%;width:260px;opacity:.15}
+  main .booking-aside.geo-map::after{width:62%;opacity:.1}
+}
+@media(max-width:520px){
+  main .section .grid > .card::after{opacity:.04}
+  main .cta-premium.geo-map::after,
+  main .below-cta.geo-map::after{opacity:.1}
+}
+@media(prefers-reduced-motion:reduce){
+  main .geo-map::after,
+  main .widgets .widget::after,
+  main .section .grid > .card::after{transition:none}
+}
