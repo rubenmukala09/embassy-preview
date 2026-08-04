@@ -1087,6 +1087,54 @@
     })();
 })();
 
+/* Embassy workload planner: an accessible, time-aware capacity comparison.
+   Values are clearly presented as planning estimates, not a live queue. */
+(function () {
+  var periods = Array.prototype.slice.call(document.querySelectorAll(".capacity-period"));
+  var summary = document.getElementById("capacitySummary");
+  var label = document.getElementById("capacityLabel");
+  var value = document.getElementById("capacityValue");
+  var bar = document.getElementById("capacityBar");
+  var track = document.getElementById("capacityTrack");
+  if (!periods.length || !summary || !label || !value || !bar || !track) return;
+
+  var maximum = 75;
+  function tier(load) {
+    if (load <= 15) return "green";
+    if (load <= 29) return "blue";
+    if (load <= 49) return "yellow";
+    return "red";
+  }
+  function selectPeriod(button) {
+    var load = Math.max(0, Math.min(maximum, parseInt(button.getAttribute("data-load"), 10) || 0));
+    var period = button.getAttribute("data-period") || "Selected";
+    var color = tier(load);
+    periods.forEach(function (item) {
+      var active = item === button;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    summary.className = "capacity-summary is-" + color;
+    label.textContent = period + " workload";
+    value.textContent = load + " / " + maximum;
+    bar.style.width = ((load / maximum) * 100).toFixed(2) + "%";
+    track.setAttribute("aria-valuenow", String(load));
+    track.setAttribute("aria-valuetext", period + ": " + load + " of " + maximum + " projected visitors");
+  }
+
+  periods.forEach(function (button) {
+    button.addEventListener("click", function () { selectPeriod(button); });
+  });
+
+  var dcHour = parseInt(new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    hour: "2-digit",
+    hour12: false
+  }).format(new Date()), 10);
+  var initialIndex = dcHour < 12 ? 0 : (dcHour < 16 ? 1 : 2);
+  selectPeriod(periods[initialIndex] || periods[0]);
+})();
+
 /* ---- Media centre lightbox player (self-contained) -------------------- */
 (function () {
   "use strict";

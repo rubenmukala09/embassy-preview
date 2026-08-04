@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1785618722" />
-<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785818400" />
+<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785822000" />
 
 <script type="application/ld+json">
 {"<?php $__contextArgs = [];\nif (context()->has($__contextArgs[0])) :\nif (isset($value)) { $__contextPrevious[] = $value; }\n$value = context()->get($__contextArgs[0]); ?>":"https://schema.org","@type":"GovernmentOrganization","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","alternateName":"Embassy of the DR Congo","url":"http://127.0.0.1:8050","logo":"http://127.0.0.1:8050/aurora/assets/img/embassy-seal.png","image":"http://127.0.0.1:8050/aurora/assets/img/hero/ambassador-podium-flags-2026.webp","email":"ambassade@ambardcusa.org","telephone":"+1 (202) 234-7690","address":{"@type":"PostalAddress","streetAddress":"1100 Connecticut Avenue NW, Suite 725","addressLocality":"Washington","addressRegion":"DC","postalCode":"20036","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"parentOrganization":"Government of the Democratic Republic of the Congo"}
@@ -149,9 +149,11 @@
 </div></section>
 
 <!-- HEAD OF STATE (tap the portrait to flip) -->
-<section class="section tight bg-cream"><div class="container">
+<section class="section tight bg-cream home-presidential-section"><div class="container">
   <div class="hos">
     <div class="hos-photo">
+      <div class="presidential-stars home-presidential-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="presidential-flag-chip" aria-hidden="true"><i></i><b>Kinshasa · Presidency</b></span>
       <div class="hos-flip">
         <div class="hos-face hos-front"><img src="/embassy-preview/img/image/president-portrait.jpg?v=1783598939" alt="His Excellency Félix-Antoine Tshisekedi Tshilombo, President of the Democratic Republic of the Congo" /><svg class="hos-seal" aria-hidden="true" style="display:none"><use href="#crest"/></svg></div>
         <div class="hos-face hos-back"><svg class="hos-seal" aria-hidden="true"><use href="#crest"/></svg></div>
@@ -170,7 +172,7 @@
 <!-- AMBASSADOR PROFILE (leadership) -->
 <section class="section" id="ambassador"><div class="container">
   <div class="split media-left amb-feature">
-    <div class="media"><div class="amb-portrait"><img width="1920" height="1080" src="/embassy-preview/img/image/ambassador_new_clothes_01.png" alt="Her Excellency Yvette Kapinga Ngandu, Ambassador of the Democratic Republic of the Congo" loading="lazy" /></div></div>
+    <div class="media ambassador-diplomatic-stage"><div class="amb-portrait"><img width="1920" height="1080" src="/embassy-preview/img/image/ambassador_new_clothes_01.png" alt="Her Excellency Yvette Kapinga Ngandu, Ambassador of the Democratic Republic of the Congo" loading="lazy" /></div></div>
     <div>
       <p class="eyebrow">Our Ambassador</p><div class="rule left"></div>
       <span class="amb-first"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 8.7l5.9-.9z"/></svg> Over 25 years in international diplomacy</span>
@@ -196,10 +198,20 @@
       <div class="widget-route" aria-hidden="true"><span>KIN</span><i></i><b>+6H</b><i></i><span>WDC</span></div>
       <small>The DRC is GMT+1, about 6 hours ahead of D.C.</small>
     </div>
-    <div class="widget status-w widget-status" title="Based on Washington, D.C. local time">
-      <div class="w-head"><span class="widget-code" aria-hidden="true">OPS</span> Mission status</div>
-      <div class="status-main"><span class="status-dot" id="embassyStatus"></span><div><b id="statusText">Checking…</b><span>Office Mon–Thu 9 AM–4 PM, Fri 9 AM–1 PM · Consular drop-off 10 AM–1 PM</span></div></div>
-      <div class="office-meter" aria-hidden="true"><span>MON</span><i></i><span>THU</span><i></i><span>FRI</span></div>
+    <div class="widget status-w widget-status widget-capacity" title="Office status and illustrative appointment-load planning guide">
+      <div class="w-head"><span class="widget-code" aria-hidden="true">OPS</span> Mission status &amp; workload</div>
+      <div class="status-main"><span class="status-dot" id="embassyStatus"></span><div><b id="statusText">Checking…</b><span>Track expected booking pressure here. Maximum daily handling: 75 visitors.</span></div></div>
+      <div class="capacity-summary is-red" id="capacitySummary" aria-live="polite">
+        <div><span id="capacityLabel">Morning workload</span><strong id="capacityValue">62 / 75</strong></div>
+        <div class="capacity-track" role="progressbar" aria-label="Projected appointment workload" aria-valuemin="0" aria-valuemax="75" aria-valuenow="62" id="capacityTrack"><i id="capacityBar" style="width:82.67%"></i></div>
+      </div>
+      <div class="capacity-periods" aria-label="Choose a time period to review projected appointment load">
+        <button type="button" class="capacity-period is-active" data-period="Morning" data-load="62" aria-pressed="true"><span>Morning</span><b>62</b><small>High</small></button>
+        <button type="button" class="capacity-period" data-period="Afternoon" data-load="42" aria-pressed="false"><span>Afternoon</span><b>42</b><small>Busy</small></button>
+        <button type="button" class="capacity-period" data-period="Evening" data-load="18" aria-pressed="false"><span>Evening</span><b>18</b><small>Light</small></button>
+      </div>
+      <div class="capacity-legend" aria-label="Workload color guide"><span class="green">0–15</span><span class="blue">16–29</span><span class="yellow">30–49</span><span class="red">50–75</span></div>
+      <small class="capacity-note">Planning estimate · select a period to compare demand.</small>
     </div>
     <div class="widget widget-currency">
       <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Currency</div>
@@ -219,6 +231,15 @@
       </select>
       <div class="fee-out" id="feeOut"></div>
       <div class="service-flow" aria-hidden="true"><span>SELECT</span><i></i><span>VERIFY</span><i></i><span>APPLY</span></div>
+    </div>
+    <div class="widget widget-africa-map">
+      <div class="w-head"><span class="widget-code" aria-hidden="true">AFR</span> Africa &amp; the DRC</div>
+      <div class="africa-map-stage">
+        <img src="/embassy-preview/aurora/assets/maps/africa-political.svg" alt="Political map of Africa highlighting the central position of the Democratic Republic of the Congo" loading="lazy" />
+        <span class="africa-drc-marker"><i></i><b>DRC</b><small>Central Africa</small></span>
+      </div>
+      <div class="africa-map-copy"><b>The DRC at the heart of Africa</b><span>Connect Kinshasa, the continent and the Embassy's Washington mission.</span></div>
+      <a class="widget-action" href="dr-congo.html#map">Explore the country map <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </div></section>
@@ -423,9 +444,9 @@
   <header class="kinshasa-intro">
     <div>
       <p class="eyebrow">Discover the Democratic Republic of the Congo</p>
-      <h2>One unforgettable capital.<br><em>Infinite energy.</em></h2>
+      <h2>One unforgettable capital.<br><em>Beautiful culture. Infinite energy.</em></h2>
     </div>
-    <p>Kinshasa is a city of music, art, enterprise and unmistakable warmth—an essential first chapter for every journey into the DRC.</p>
+    <p>Kinshasa brings beautiful culture, music, art, enterprise and unmistakable warmth together—an essential first chapter for every journey into the DRC.</p>
   </header>
 
   <article class="kinshasa-stage" tabindex="0" aria-label="Interactive panoramic view of Kinshasa">
@@ -546,7 +567,7 @@
   <div class="bar"><span>© 2026 Embassy of the Democratic Republic of the Congo, Washington, D.C.</span><span class="ft-legal"><a href="terms.html">Terms &amp; Conditions</a> · <a href="privacy.html">Privacy Policy</a> · <a href="cookies.html">Cookie Policy</a> · <a href="accessibility.html">Accessibility</a> · <a href="disclaimer.html">Legal Disclaimer</a></span></div>
 </div></footer>
 
-<script src="/embassy-preview/aurora/aurora.js?v=1785816900" defer></script>
+<script src="/embassy-preview/aurora/aurora.js?v=1785822000" defer></script>
 </body>
 </html>
 
