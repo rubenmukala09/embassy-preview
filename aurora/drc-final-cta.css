@@ -1,0 +1,328 @@
+/* Premium closing invitation for the DR Congo page. */
+body main .drc-final-cta {
+  padding-block: clamp(62px, 7vw, 96px);
+  background:
+    radial-gradient(circle at 8% 12%, rgba(47, 143, 208, .13), transparent 28%),
+    linear-gradient(180deg, #f7fafc, #eef5fa);
+}
+
+body main .drc-cta-shell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(390px, .88fr);
+  min-height: 470px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #061a34, #082b51 72%, #061f3e);
+  box-shadow: 0 38px 82px -52px rgba(2, 21, 43, .92), inset 0 1px rgba(255, 255, 255, .08);
+}
+
+body main .drc-cta-shell::before {
+  content: "";
+  position: absolute;
+  z-index: 8;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, #2f8fd0 0 36%, #f7d618 36% 64%, #ce1021 64% 100%);
+}
+
+body main .drc-cta-shell::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -74px;
+  bottom: -82px;
+  width: 300px;
+  height: 300px;
+  opacity: .045;
+  background: url('/embassy-preview/aurora/assets/img/embassy-seal.png') center / contain no-repeat;
+  pointer-events: none;
+}
+
+body main .drc-cta-city {
+  position: relative;
+  min-height: 470px;
+  overflow: hidden;
+  background: #061a34;
+}
+
+body main .drc-cta-city::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 23px 0 0 23px;
+  pointer-events: none;
+}
+
+body main .drc-cta-city::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0 58%, rgba(6, 26, 52, .28) 75%, #061a34 100%),
+    linear-gradient(180deg, transparent 52%, rgba(3, 14, 29, .62) 100%);
+  pointer-events: none;
+}
+
+body main .drc-cta-city img {
+  width: 100%;
+  height: 100%;
+  min-height: 470px;
+  object-fit: cover;
+  object-position: 46% center;
+  filter: saturate(.94) contrast(1.03);
+  transition: transform .7s cubic-bezier(.2, .7, .2, 1), filter .35s ease;
+}
+
+body main .drc-cta-city > span {
+  position: absolute;
+  z-index: 3;
+  left: 22px;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 7px;
+  color: #fff !important;
+  background: rgba(4, 20, 41, .64);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+body main .drc-cta-city > span::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f7d618;
+  box-shadow: 0 0 0 4px rgba(247, 214, 24, .14);
+}
+
+body main .drc-cta-copy {
+  position: relative;
+  z-index: 3;
+  align-self: center;
+  padding: clamp(42px, 5vw, 68px);
+}
+
+body main .drc-cta-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: #ffe36d !important;
+  font-size: 8.5px;
+  letter-spacing: .2em;
+}
+
+body main .drc-cta-copy .eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f7d618;
+  box-shadow: 0 0 0 5px rgba(247, 214, 24, .13);
+}
+
+body main .drc-cta-copy h2 {
+  max-width: 520px;
+  margin: 16px 0 17px;
+  color: #fff !important;
+  font-size: clamp(42px, 4.35vw, 62px);
+  line-height: .98;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+body main .drc-cta-copy h2::after {
+  content: "";
+  display: block;
+  width: 86px;
+  height: 3px;
+  margin-top: 19px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #2f8fd0 0 42%, #f7d618 42% 70%, #ce1021 70%);
+}
+
+body main .drc-cta-copy > p:not(.eyebrow) {
+  max-width: 540px;
+  margin: 0;
+  color: #cbd9e8 !important;
+  font-size: 12.5px;
+  line-height: 1.68;
+}
+
+body main .drc-cta-pathways {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 22px;
+}
+
+body main .drc-cta-pathways > span {
+  min-width: 0;
+  padding: 11px 10px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 8px;
+  color: #fff !important;
+  background: rgba(255, 255, 255, .055);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .06);
+}
+
+body main .drc-cta-pathways b,
+body main .drc-cta-pathways small {
+  display: block;
+}
+
+body main .drc-cta-pathways b {
+  color: #fff !important;
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+body main .drc-cta-pathways small {
+  margin-top: 4px;
+  overflow: hidden;
+  color: #aebfd2 !important;
+  font-size: 7.5px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+}
+
+body main .drc-cta-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 22px;
+}
+
+body main .drc-cta-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 47px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+body main .drc-cta-actions .btn-gold {
+  color: #071a34 !important;
+  box-shadow: 0 15px 30px -19px rgba(247, 214, 24, .82), inset 0 1px rgba(255, 255, 255, .48);
+}
+
+body main .drc-cta-actions .btn-ghost {
+  border-color: rgba(88, 174, 232, .58);
+  color: #fff !important;
+  background: linear-gradient(135deg, rgba(47, 143, 208, .28), rgba(255, 255, 255, .08));
+  box-shadow: inset 0 1px rgba(255, 255, 255, .08);
+}
+
+body main .drc-cta-actions .btn-ghost:hover {
+  border-color: rgba(105, 194, 246, .82);
+  color: #fff !important;
+  background: linear-gradient(135deg, rgba(47, 143, 208, .42), rgba(255, 255, 255, .12));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body main .drc-cta-shell:hover .drc-cta-city img {
+    transform: scale(1.025);
+    filter: saturate(1.02) contrast(1.05);
+  }
+}
+
+@media (max-width: 980px) {
+  body main .drc-cta-shell {
+    grid-template-columns: 1fr;
+  }
+
+  body main .drc-cta-city,
+  body main .drc-cta-city img {
+    min-height: 340px;
+  }
+
+  body main .drc-cta-city::before {
+    border-radius: 23px 23px 0 0;
+  }
+
+  body main .drc-cta-city::after {
+    background: linear-gradient(180deg, transparent 50%, #061a34 100%);
+  }
+
+  body main .drc-cta-copy {
+    padding: 38px clamp(24px, 6vw, 54px) 44px;
+  }
+}
+
+@media (max-width: 560px) {
+  body main .drc-final-cta {
+    padding-block: 52px;
+  }
+
+  body main .drc-cta-shell {
+    border-radius: 16px;
+  }
+
+  body main .drc-cta-city,
+  body main .drc-cta-city img {
+    min-height: 260px;
+  }
+
+  body main .drc-cta-city::before {
+    border-radius: 15px 15px 0 0;
+  }
+
+  body main .drc-cta-city > span {
+    left: 14px;
+    bottom: 14px;
+    padding: 7px 9px;
+    font-size: 7px;
+  }
+
+  body main .drc-cta-copy {
+    padding: 30px 20px 34px;
+  }
+
+  body main .drc-cta-copy h2 {
+    font-size: clamp(36px, 12vw, 48px);
+  }
+
+  body main .drc-cta-pathways {
+    grid-template-columns: 1fr;
+  }
+
+  body main .drc-cta-pathways > span {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    align-items: center;
+    gap: 8px;
+  }
+
+  body main .drc-cta-pathways small {
+    margin-top: 0;
+  }
+
+  body main .drc-cta-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body main .drc-cta-city img {
+    transition: none;
+    transform: none !important;
+  }
+}
