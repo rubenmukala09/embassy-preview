@@ -260,3 +260,24 @@ main .bilateral-stage .quote-cta span {
     animation: none !important;
   }
 }
+
+/* The contact locator is a fixed cartographic mark, never an interactive object. */
+main .embassy-contact-panel.geo-drc::after,
+main .embassy-contact-panel.geo-drc:hover::after,
+main .embassy-contact-panel.geo-drc:focus-within::after,
+main .embassy-contact-panel.geo-drc:active::after {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  pointer-events: none !important;
+  will-change: auto !important;
+}
+
+@media (max-width: 760px) {
+  main .embassy-contact-panel.geo-drc::after,
+  main .embassy-contact-panel.geo-drc:hover::after,
+  main .embassy-contact-panel.geo-drc:focus-within::after,
+  main .embassy-contact-panel.geo-drc:active::after {
+    transform: translateX(-50%) !important;
+  }
+}
