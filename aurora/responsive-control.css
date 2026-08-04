@@ -215,6 +215,357 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   Final on-dark contrast contract
+   Covers every current navy, deep-blue, photographic-overlay, and glass card.
+   The rules intentionally sit in the final shared stylesheet so later page
+   typography cannot turn labels black on dark widgets.
+   -------------------------------------------------------------------------- */
+
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .partnership-timeline .tl-item:first-child,
+  .partnership-timeline .tl-item:last-child,
+  .kinshasa-stage,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card,
+  .widget-capacity,
+  .qpanel,
+  .aside,
+  .result-card .rc-head,
+  .mp-stage.is-audio,
+  .hos-back,
+  .drc-feature-media,
+  .drc-page .invest-sectors,
+  .drc-leadership,
+  .leader-profile,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card,
+  .drc-editorial-glass,
+  .atlas-shot,
+  .partnership-seal
+) {
+  --vs-on-dark-primary: #ffffff;
+  --vs-on-dark-secondary: #d5e2f0;
+  --vs-on-dark-muted: #b9cadc;
+  --vs-on-dark-accent: #ffe36d;
+  color: var(--vs-on-dark-primary) !important;
+}
+
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .partnership-timeline .tl-item:first-child,
+  .partnership-timeline .tl-item:last-child,
+  .kinshasa-stage,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card,
+  .widget-capacity,
+  .qpanel,
+  .aside,
+  .result-card .rc-head,
+  .mp-stage.is-audio,
+  .hos-back,
+  .drc-feature-media,
+  .drc-page .invest-sectors,
+  .drc-leadership,
+  .leader-profile,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card,
+  .drc-editorial-glass,
+  .atlas-shot,
+  .partnership-seal
+) :is(h1, h2, h3, h4, h5, h6, strong, b, .title, .value, .ft) {
+  color: var(--vs-on-dark-primary) !important;
+  text-shadow: none;
+}
+
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .partnership-timeline .tl-item:first-child,
+  .partnership-timeline .tl-item:last-child,
+  .kinshasa-stage,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card,
+  .widget-capacity,
+  .qpanel,
+  .aside,
+  .result-card .rc-head,
+  .mp-stage.is-audio,
+  .hos-back,
+  .drc-feature-media,
+  .drc-page .invest-sectors,
+  .drc-leadership,
+  .leader-profile,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card,
+  .drc-editorial-glass,
+  .atlas-shot,
+  .partnership-seal
+) :is(p, li, dt, dd, label, legend, small, span, .lead, .muted, .sub, .note, .meta, .hint, .blurb, .description) {
+  color: var(--vs-on-dark-secondary) !important;
+}
+
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .kinshasa-story,
+  .widget-capacity,
+  .drc-leadership,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card
+) :is(.eyebrow, .kicker, .overline, .tagline) {
+  color: var(--vs-on-dark-accent) !important;
+}
+
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card,
+  .widget-capacity,
+  .qpanel,
+  .drc-leadership,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card
+) a:not(.btn):not(.em-act) {
+  color: var(--vs-on-dark-primary) !important;
+  text-decoration-color: rgba(255, 227, 109, .6);
+}
+
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card,
+  .widget-capacity,
+  .qpanel,
+  .drc-leadership,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card
+) a:not(.btn):not(.em-act):hover {
+  color: var(--vs-on-dark-accent) !important;
+}
+
+/* Pale and gold controls inside dark cards keep the inverse dark label. */
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .kinshasa-story,
+  .widget-capacity,
+  .qpanel,
+  .drc-leadership,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card
+) :is(.btn-gold, .em-act, .badge-gold, .qtile.active, .qtile[aria-current="location"], .surface-light),
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-visual,
+  .kinshasa-story,
+  .widget-capacity,
+  .qpanel,
+  .drc-leadership,
+  .identity-flag,
+  .invest-contact,
+  .tourism-hero,
+  .gorilla-experience,
+  .drc-cta-shell,
+  .drc-editorial-interlude,
+  .drc-editorial-card
+) :is(.btn-gold, .em-act, .badge-gold, .qtile.active, .qtile[aria-current="location"], .surface-light) * {
+  color: var(--vs-navy-950) !important;
+}
+
+/* White form controls must not inherit the surrounding card's light text. */
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .widget-capacity,
+  .qpanel,
+  .drc-leadership,
+  .invest-contact,
+  .drc-cta-shell,
+  .drc-editorial-interlude
+) :is(input, select, textarea, option) {
+  color: var(--vs-ink) !important;
+}
+
+body main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .widget-capacity,
+  .qpanel,
+  .drc-leadership,
+  .invest-contact,
+  .drc-cta-shell,
+  .drc-editorial-interlude
+) :is(input, textarea)::placeholder {
+  color: #6b7d91 !important;
+  opacity: 1;
+}
+
+body .foot :is(h2, h3, h4, h5, h6, strong, b, .ft),
+body .foot :is(a, .fl) {
+  color: #ffffff !important;
+}
+
+body .foot :is(p, span, small, .blurb, .ft-sub) {
+  color: #c8d5e7 !important;
+}
+
+body .foot :is(input, select, textarea, option) {
+  color: var(--vs-ink) !important;
+}
+
+body main .drc-image-action b {
+  color: var(--vs-navy-950) !important;
+}
+
+body main :is(.atlas-shot, .drc-editorial-glass) small,
+body main .widget-capacity .widget-ico {
+  color: var(--vs-on-dark-accent, #ffe36d) !important;
+}
+
+/* --------------------------------------------------------------------------
    Opt-in Visual Control Studio · appears only when ?design=1 is present.
    -------------------------------------------------------------------------- */
 
