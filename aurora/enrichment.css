@@ -459,3 +459,380 @@ main .emergency .em-act:focus-visible{
   }
   main .emergency .em-act,main .emergency a.em-act{width:100%;min-width:0;margin-left:0}
 }
+
+/* ===========================================================================
+   Embassy page · fixed national map and horizontal bilateral story
+   ========================================================================== */
+
+/* The DRC outline is deliberately upright, stationary and anchored at left. */
+main .section .card.embassy-contact-panel{
+  min-height:360px;
+  padding:54px 58px 54px clamp(390px,41vw,510px)!important;
+  background-position:center right;
+}
+main .section .card.embassy-contact-panel.geo-drc::after,
+main .section .card.embassy-contact-panel.geo-drc:hover::after{
+  left:clamp(58px,8vw,118px);
+  right:auto;
+  bottom:50%;
+  width:clamp(228px,25vw,318px);
+  opacity:.38;
+  transform:translateY(50%)!important;
+  transform-origin:center!important;
+  transition:none!important;
+  filter:drop-shadow(0 20px 42px rgba(0,0,0,.42));
+}
+main .embassy-contact-panel::before{
+  background:
+    linear-gradient(90deg,rgba(0,18,43,.02),rgba(0,18,43,.2) 48%,rgba(0,18,43,.52)),
+    linear-gradient(90deg,#007fff 0 34%,#f7d618 34% 41%,#ce1021 41% 59%,#f7d618 59% 66%,#007fff 66% 100%) top/100% 3px no-repeat!important;
+}
+main .embassy-contact-copy{
+  position:relative;
+  z-index:3;
+  padding-left:clamp(28px,4vw,54px);
+  border-left:1px solid rgba(255,226,122,.28);
+}
+main .embassy-contact-copy h2{font-size:30px;margin-top:13px}
+main .embassy-contact-copy .lead{max-width:540px;margin:12px 0 0}
+main .embassy-contact-copy .row{justify-content:flex-start;margin-top:24px}
+main .embassy-map-caption{
+  position:absolute!important;
+  z-index:3!important;
+  left:clamp(32px,5vw,72px);
+  bottom:30px;
+  display:grid;
+  grid-template-columns:auto auto;
+  align-items:end;
+  gap:1px 10px;
+  color:#fff;
+  text-align:left;
+}
+main .embassy-map-caption span{
+  grid-row:1/3;
+  display:grid;
+  place-items:center;
+  width:48px;
+  height:48px;
+  border:1px solid rgba(247,214,24,.58);
+  border-radius:50%;
+  color:var(--gold-soft);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.14em;
+  background:rgba(0,17,40,.62);
+  box-shadow:0 0 0 5px rgba(0,127,255,.08);
+}
+main .embassy-map-caption b{font-family:var(--serif);font-size:16px}
+main .embassy-map-caption small{color:rgba(255,255,255,.66);font-size:9px;letter-spacing:.08em}
+
+main .embassy-history{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 2%,rgba(0,127,255,.08),transparent 31%),
+    linear-gradient(180deg,#f5f1e7,#fbfaf6 74%);
+}
+main .embassy-history::before,
+main .embassy-history::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+}
+main .embassy-history::before{
+  left:-90px;
+  bottom:-145px;
+  width:340px;
+  aspect-ratio:1;
+  clip-path:var(--geo-drc);
+  background:repeating-linear-gradient(135deg,rgba(0,127,255,.08) 0 1px,transparent 1px 10px);
+  opacity:.45;
+}
+main .embassy-history::after{
+  right:-80px;
+  top:60px;
+  width:270px;
+  height:270px;
+  border:1px solid rgba(0,42,82,.07);
+  border-radius:50%;
+  box-shadow:0 0 0 34px rgba(0,42,82,.025),0 0 0 68px rgba(0,127,255,.018);
+}
+
+main .partnership-visual{
+  position:relative;
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:minmax(220px,1fr) minmax(300px,1.55fr) minmax(220px,1fr);
+  align-items:center;
+  gap:28px;
+  min-height:176px;
+  margin:0 0 38px;
+  padding:30px 36px;
+  overflow:hidden;
+  border:1px solid rgba(196,162,89,.34);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 18% 50%,rgba(0,127,255,.13),transparent 25%),
+    radial-gradient(circle at 82% 50%,rgba(206,16,33,.1),transparent 25%),
+    linear-gradient(135deg,#061833,#0a2852 54%,#071a38);
+  box-shadow:0 28px 60px -42px rgba(0,18,43,.8),inset 0 1px 0 rgba(255,255,255,.05);
+}
+main .partnership-visual::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:4%;
+  top:-52%;
+  width:240px;
+  aspect-ratio:1;
+  clip-path:var(--geo-drc);
+  background:linear-gradient(145deg,rgba(0,192,252,.3),rgba(247,214,24,.12),rgba(206,16,33,.22));
+  opacity:.34;
+}
+main .partnership-visual::after{
+  content:"KINSHASA  ·  WASHINGTON, D.C.";
+  position:absolute;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  color:rgba(255,255,255,.3);
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.34em;
+  white-space:nowrap;
+}
+main .nation-marker{display:flex;align-items:center;gap:14px;color:#fff;min-width:0}
+main .nation-marker>span:last-child,
+main .nation-marker>span:first-child:not(.diplomatic-flag){display:flex;flex-direction:column;gap:3px;min-width:0}
+main .nation-marker small{color:rgba(255,255,255,.62);font-size:9px;line-height:1.35;text-transform:uppercase;letter-spacing:.09em}
+main .nation-marker b{font-family:var(--serif);font-size:18px;white-space:nowrap}
+main .nation-usa{justify-content:flex-end;text-align:right}
+main .diplomatic-flag{
+  position:relative;
+  flex:none;
+  display:block;
+  width:76px;
+  height:48px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.46);
+  border-radius:3px;
+  box-shadow:0 10px 22px rgba(0,0,0,.28),0 0 0 5px rgba(255,255,255,.035);
+}
+main .flag-drc{
+  background:linear-gradient(145deg,#007fff 0 38%,#f7d618 38% 42%,#ce1021 42% 58%,#f7d618 58% 62%,#007fff 62% 100%);
+}
+main .flag-drc::before{
+  content:"★";
+  position:absolute;
+  left:8px;
+  top:3px;
+  color:#f7d618;
+  font-size:18px;
+  line-height:1;
+}
+main .flag-usa{
+  background:repeating-linear-gradient(to bottom,#b22234 0 3.7px,#fff 3.7px 7.4px);
+}
+main .flag-usa::before{
+  content:"★ ★ ★\A★ ★ ★\A★ ★ ★";
+  white-space:pre;
+  position:absolute;
+  left:0;
+  top:0;
+  width:32px;
+  height:26px;
+  padding:2px 3px;
+  background:#3c3b6e;
+  color:#fff;
+  font-size:5px;
+  line-height:6px;
+  letter-spacing:1px;
+  text-align:center;
+}
+main .diplomatic-route{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  height:74px;
+  padding:0 22px;
+}
+main .diplomatic-route::before,
+main .diplomatic-route::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:50%;
+}
+main .diplomatic-route::before{height:1px;background:linear-gradient(90deg,#00c0fc,#f7d618 48%,#ce1021)}
+main .diplomatic-route::after{height:18px;border-top:1px dashed rgba(255,255,255,.22);border-radius:50%}
+main .diplomatic-route i{
+  position:relative;
+  z-index:2;
+  width:8px;
+  height:8px;
+  border:2px solid #f7d618;
+  border-radius:50%;
+  background:#09224a;
+  box-shadow:0 0 0 5px rgba(247,214,24,.1);
+}
+main .route-year,
+main .route-status{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  text-transform:uppercase;
+}
+main .route-year{top:-1px;color:var(--gold-soft);font-family:var(--serif);font-size:21px;font-weight:700}
+main .route-status{bottom:-3px;color:rgba(255,255,255,.58);font-size:8px;font-weight:700;letter-spacing:.18em}
+main .partnership-seal{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  width:62px;
+  height:62px;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(247,214,24,.62);
+  border-radius:50%;
+  background:#071b3b;
+  color:#fff;
+  box-shadow:0 0 0 7px rgba(0,127,255,.1),0 10px 26px rgba(0,0,0,.38);
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.05em;
+}
+main .partnership-seal i{color:var(--gold-soft);font-family:var(--serif);font-size:13px;font-style:normal}
+
+main .timeline-scroll{
+  position:relative;
+  z-index:2;
+  overflow-x:auto;
+  padding:12px 2px 20px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(0,42,82,.25) transparent;
+}
+main .timeline-scroll:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+main .partnership-timeline{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(6,minmax(176px,1fr));
+  gap:12px;
+  min-width:1080px;
+  padding:46px 0 0;
+  margin:0;
+  list-style:none;
+}
+main .partnership-timeline::before{
+  content:"";
+  position:absolute;
+  left:2%;
+  right:2%;
+  top:19px;
+  bottom:auto;
+  width:auto;
+  height:2px;
+  background:linear-gradient(90deg,#007fff 0%,#f7d618 48%,#ce1021 78%,#002a52 100%);
+  box-shadow:0 0 0 5px rgba(0,127,255,.035);
+}
+main .partnership-timeline .tl-item{
+  position:relative;
+  min-height:224px;
+  padding:25px 20px 22px;
+  overflow:visible;
+  border:1px solid rgba(0,42,82,.11);
+  border-radius:13px;
+  background:rgba(255,255,255,.78);
+  box-shadow:0 18px 36px -32px rgba(0,18,43,.75),inset 0 1px 0 #fff;
+}
+main .partnership-timeline .tl-item::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-35px;
+  width:14px;
+  height:14px;
+  transform:translateX(-50%);
+  border:3px solid #f7d618;
+  border-radius:50%;
+  background:#082049;
+  box-shadow:0 0 0 5px #f5f1e7;
+}
+main .partnership-timeline .tl-item::after{
+  content:attr(data-step);
+  position:absolute;
+  right:14px;
+  top:10px;
+  color:rgba(0,42,82,.08);
+  font-family:var(--serif);
+  font-size:38px;
+  font-weight:900;
+  line-height:1;
+}
+main .partnership-timeline .tl-item:nth-child(even){transform:translateY(12px);background:rgba(255,253,247,.94)}
+main .partnership-timeline .tl-item:first-child,
+main .partnership-timeline .tl-item:last-child{
+  border-color:rgba(0,42,82,.65);
+  background:linear-gradient(150deg,#0b2b58,#06172f);
+}
+main .partnership-timeline .tl-item:first-child .yr,
+main .partnership-timeline .tl-item:last-child .yr{color:var(--gold-soft)}
+main .partnership-timeline .tl-item:first-child h4,
+main .partnership-timeline .tl-item:last-child h4{color:#fff}
+main .partnership-timeline .tl-item:first-child p,
+main .partnership-timeline .tl-item:last-child p{color:rgba(255,255,255,.7)}
+main .partnership-timeline .tl-item:first-child::after,
+main .partnership-timeline .tl-item:last-child::after{color:rgba(255,255,255,.07)}
+main .partnership-timeline .yr{position:relative;z-index:2;font-size:20px}
+main .partnership-timeline h4{position:relative;z-index:2;margin:8px 0 8px;line-height:1.35}
+main .partnership-timeline p{position:relative;z-index:2;line-height:1.62}
+
+@media(max-width:980px){
+  main .section .card.embassy-contact-panel{padding-left:340px!important}
+  main .section .card.embassy-contact-panel.geo-drc::after,
+  main .section .card.embassy-contact-panel.geo-drc:hover::after{left:52px;width:230px}
+  main .partnership-visual{grid-template-columns:1fr 1.1fr 1fr;gap:14px;padding-inline:22px}
+  main .diplomatic-flag{width:64px;height:41px}
+  main .nation-marker small{font-size:8px}
+  main .nation-marker b{font-size:15px}
+}
+@media(max-width:760px){
+  main .section .card.embassy-contact-panel{min-height:0;padding:270px 24px 30px!important}
+  main .section .card.embassy-contact-panel.geo-drc::after,
+  main .section .card.embassy-contact-panel.geo-drc:hover::after{
+    left:50%;
+    right:auto;
+    top:28px;
+    bottom:auto;
+    width:220px;
+    opacity:.34;
+    transform:translateX(-50%)!important;
+  }
+  main .embassy-map-caption{left:24px;top:204px;bottom:auto}
+  main .embassy-contact-copy{padding:26px 0 0;border-left:0;border-top:1px solid rgba(255,226,122,.25)}
+  main .embassy-contact-copy .row{display:flex;flex-wrap:wrap}
+  main .partnership-visual{grid-template-columns:1fr 1fr;min-height:214px;padding:26px 18px 48px}
+  main .diplomatic-route{position:absolute;left:25%;right:25%;bottom:34px;height:42px}
+  main .partnership-seal{top:auto;bottom:25px}
+  main .route-year{top:-12px}
+  main .route-status{display:none}
+  main .partnership-visual::after{bottom:7px;font-size:7px;letter-spacing:.2em}
+  main .nation-marker{align-self:start;flex-direction:column;text-align:center}
+  main .nation-usa{flex-direction:column-reverse}
+  main .nation-marker b{white-space:normal}
+}
+@media(max-width:480px){
+  main .diplomatic-flag{width:58px;height:37px}
+  main .partnership-visual{gap:8px}
+  main .partnership-visual::after{letter-spacing:.1em}
+  main .partnership-timeline{grid-template-columns:repeat(6,176px)}
+}
+@media(prefers-reduced-motion:reduce){
+  main .partnership-timeline .tl-item{transform:none}
+}

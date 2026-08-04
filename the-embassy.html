@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1785618722" />
-<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785776400" />
+<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785782400" />
 
 <script type="application/ld+json">
 {"<?php $__contextArgs = [];\nif (context()->has($__contextArgs[0])) :\nif (isset($value)) { $__contextPrevious[] = $value; }\n$value = context()->get($__contextArgs[0]); ?>":"https://schema.org","@type":"GovernmentOrganization","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","alternateName":"Embassy of the DR Congo","url":"http://127.0.0.1:8050","logo":"http://127.0.0.1:8050/aurora/assets/img/embassy-seal.png","image":"http://127.0.0.1:8050/aurora/assets/img/hero/ambassador-podium-flags-2026.webp","email":"ambassade@ambardcusa.org","telephone":"+1 (202) 234-7690","address":{"@type":"PostalAddress","streetAddress":"1100 Connecticut Avenue NW, Suite 725","addressLocality":"Washington","addressRegion":"DC","postalCode":"20036","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"parentOrganization":"Government of the Democratic Republic of the Congo"}
@@ -247,11 +247,14 @@
 
 <!-- CONTACT CTA -->
 <section class="section"><div class="container">
-  <div class="card pad center below-cta geo-map geo-drc" style="padding:46px">
-    <p class="eyebrow">Get in touch</p><div class="rule"></div>
-    <h2 style="font-size:28px;margin-top:13px">Reach the Embassy</h2>
-    <p class="lead" style="max-width:520px;margin:12px auto 0">For diplomatic, consular or general inquiries, our team is here to assist you. We look forward to hearing from you.</p>
-    <div class="row" style="justify-content:center;margin-top:24px"><a class="btn btn-navy" href="contact.html">Contact us →</a><a class="btn btn-outline" href="consular-services.html">Consular services</a></div>
+  <div class="card pad below-cta geo-map geo-drc embassy-contact-panel">
+    <div class="embassy-map-caption" aria-hidden="true"><span>DRC</span><b>Kinshasa</b><small>01°17′ S · 15°18′ E</small></div>
+    <div class="embassy-contact-copy">
+      <p class="eyebrow">Get in touch</p><div class="rule left"></div>
+      <h2>Reach the Embassy</h2>
+      <p class="lead">For diplomatic, consular or general inquiries, our team is here to assist you. We look forward to hearing from you.</p>
+      <div class="row"><a class="btn btn-navy" href="contact.html">Contact us →</a><a class="btn btn-outline" href="consular-services.html">Consular services</a></div>
+    </div>
   </div>
 </div></section>
 
@@ -261,15 +264,33 @@
 </div></section>
 
 <!-- OUR HISTORY -->
-<section class="section bg-cream"><div class="container">
+<section class="section bg-cream embassy-history"><div class="container">
   <div class="sec-head center"><p class="eyebrow">Our history</p><div class="rule"></div><h2>Six decades of partnership</h2><p>From independence to the present day, the relationship between the Democratic Republic of the Congo and the United States has grown through milestones of shared history and cooperation.</p></div>
-  <div class="timeline" style="max-width:760px;margin:0 auto">
-    <div class="tl-item"><div class="yr">1960</div><h4>Independence &amp; first relations</h4><p>The Democratic Republic of the Congo gains its independence, and diplomatic relations with the United States are established the same year.</p></div>
-    <div class="tl-item"><div class="yr">1971–1997</div><h4>An era of nation-building</h4><p>Decades of consolidation and engagement shape the country's institutions and its place on the African and world stage.</p></div>
-    <div class="tl-item"><div class="yr">1997</div><h4>A national transition</h4><p>A period of transition opens a new chapter in the nation's political and diplomatic life.</p></div>
-    <div class="tl-item"><div class="yr">2006</div><h4>First democratic elections</h4><p>The DRC holds its first multiparty democratic elections, a landmark step in the nation's democratic journey.</p></div>
-    <div class="tl-item"><div class="yr">2019</div><h4>Peaceful transfer of power</h4><p>The country marks its first peaceful, democratic transfer of power between heads of state.</p></div>
-    <div class="tl-item"><div class="yr">Today</div><h4>A present-day partnership</h4><p>The Embassy continues to deepen diplomatic, economic and cultural ties between the Congolese and American peoples.</p></div>
+  <div class="partnership-visual" aria-label="Diplomatic partnership between the Democratic Republic of the Congo and the United States">
+    <div class="nation-marker nation-drc">
+      <span class="diplomatic-flag flag-drc" role="img" aria-label="Flag of the Democratic Republic of the Congo"></span>
+      <span><small>Democratic Republic of the Congo</small><b>Kinshasa</b></span>
+    </div>
+    <div class="diplomatic-route" aria-hidden="true">
+      <span class="route-year">1960</span>
+      <i></i><i></i><i></i>
+      <span class="route-status">Diplomatic relations · active</span>
+    </div>
+    <div class="nation-marker nation-usa">
+      <span><small>United States of America</small><b>Washington, D.C.</b></span>
+      <span class="diplomatic-flag flag-usa" role="img" aria-label="Flag of the United States of America"></span>
+    </div>
+    <div class="partnership-seal" aria-hidden="true"><span>DRC</span><i>×</i><span>USA</span></div>
+  </div>
+  <div class="timeline-scroll" tabindex="0" aria-label="Horizontal timeline of DRC and United States relations">
+    <ol class="timeline partnership-timeline">
+      <li class="tl-item" data-step="01"><div class="yr">1960</div><h4>Independence &amp; first relations</h4><p>The DRC gains its independence, and diplomatic relations with the United States are established the same year.</p></li>
+      <li class="tl-item" data-step="02"><div class="yr">1971–1997</div><h4>An era of nation-building</h4><p>Decades of consolidation and engagement shape the country's institutions and its place on the African and world stage.</p></li>
+      <li class="tl-item" data-step="03"><div class="yr">1997</div><h4>A national transition</h4><p>A period of transition opens a new chapter in the nation's political and diplomatic life.</p></li>
+      <li class="tl-item" data-step="04"><div class="yr">2006</div><h4>First democratic elections</h4><p>The DRC holds its first multiparty democratic elections, a landmark step in the nation's democratic journey.</p></li>
+      <li class="tl-item" data-step="05"><div class="yr">2019</div><h4>Peaceful transfer of power</h4><p>The country marks its first peaceful, democratic transfer of power between heads of state.</p></li>
+      <li class="tl-item" data-step="06"><div class="yr">Today</div><h4>A partnership in action</h4><p>The Embassy continues to deepen diplomatic, economic and cultural ties between the Congolese and American peoples.</p></li>
+    </ol>
   </div>
 </div></section>
 
