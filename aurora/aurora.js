@@ -3318,3 +3318,34 @@
   }, { rootMargin: "80px 0px" });
   loops.forEach(function (el) { io.observe(el); });
 })();
+
+/* Visit Kinshasa: accessible destination hotspot stories. */
+(function () {
+  var spots = Array.prototype.slice.call(document.querySelectorAll(".kinshasa-hotspot"));
+  if (!spots.length) return;
+
+  function closeAll(except) {
+    spots.forEach(function (spot) {
+      if (spot === except) return;
+      spot.classList.remove("is-active");
+      spot.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  spots.forEach(function (spot) {
+    spot.addEventListener("click", function (event) {
+      event.stopPropagation();
+      var opening = !spot.classList.contains("is-active");
+      closeAll(spot);
+      spot.classList.toggle("is-active", opening);
+      spot.setAttribute("aria-expanded", opening ? "true" : "false");
+    });
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!(event.target.closest && event.target.closest(".kinshasa-hotspot"))) closeAll();
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeAll();
+  });
+})();

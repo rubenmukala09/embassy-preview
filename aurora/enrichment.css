@@ -2211,6 +2211,98 @@ main #tools .service-flow span{justify-content:center;flex:1}
   main #tools .widget{min-height:0;padding:22px}
 }
 
+/* ===========================================================================
+   Global dark-surface contrast guard · prevents brand text rules from leaking
+   ========================================================================== */
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+){color:#fff}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+) :is(h1,h2,h3,h4,h5,h6){color:#fff!important}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+) :is(p,li,small,.lead,.muted,.sub,.note,.em-sub){
+  color:#c8d5e7!important;
+}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .kinshasa-story
+) .eyebrow{color:#ffe680!important}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+) a:not(.btn):not(.em-act){color:#fff!important}
+
+main :is(.dark-surface,.cta-premium,.below-cta,.info-card,.booking-aside,.contact-grid .info,.quote-band) a:not(.btn):not(.em-act):hover{
+  color:#ffe680!important;
+}
+main :is(.dark-surface,.booking-aside,.contact-grid .info) :is(label,.field label){color:#edf4fc!important}
+main :is(.dark-surface,.booking-aside) :is(input,select,textarea,option){color:#102945!important}
+main :is(.dark-surface,.booking-aside) :is(input,textarea)::placeholder{color:#71839a!important}
+
+/* Preserve dark lettering on intentionally light controls inside dark panels. */
+main :is(.dark-surface,.cta-premium,.below-cta,.info-card,.booking-aside,.emergency) :is(.btn-gold,.em-act),
+main .emergency .em-act :is(span,strong){color:#291f08!important}
+main :is(.dark-surface,.cta-premium,.below-cta,.booking-aside,.quote-band,.kinshasa-story) :is(.btn-ghost,.btn-outline){color:#fff!important}
+
+/* Component-specific secondary rows that use spans rather than paragraphs. */
+main .contact-grid .info .li span,
+main .info-card .hr span,
+main .booking-aside .bk-info :is(p,li),
+main .experience-rail :is(b,small),
+main .hotspot-card>span{color:#c8d5e7!important}
+main .contact-grid .info .li svg,
+main .info-card h4 svg{color:#ffe680}
+
 /* ==========================================================================
    Sitewide decorative, structural and interaction accents · below fold only
    ========================================================================== */
@@ -3123,4 +3215,255 @@ main .bilateral-quote :is(a,button):focus-visible{
 }
 @media(prefers-reduced-motion:reduce){
   main .section *,main .bilateral-quote *{scroll-behavior:auto!important}
+}
+
+/* ===========================================================================
+   Visit Kinshasa · immersive destination marketing stage
+   ========================================================================== */
+
+main .kinshasa-promo{background:linear-gradient(180deg,#f4f0e6,#faf8f2)}
+main .kinshasa-promo > .container{max-width:1380px}
+main .kinshasa-stage{
+  position:relative;
+  isolation:isolate;
+  height:clamp(650px,67vw,780px);
+  min-height:650px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:18px;
+  background:#071b35;
+  box-shadow:0 34px 72px -42px rgba(7,27,53,.8),0 0 0 1px rgba(11,31,56,.08);
+}
+main .kinshasa-stage > img{
+  position:absolute;
+  z-index:0;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transform:scale(1.002);
+  filter:saturate(1.04) contrast(1.025);
+  transition:transform 1.1s cubic-bezier(.2,.75,.2,1),filter .5s ease;
+}
+main .kinshasa-stage:hover > img,
+main .kinshasa-stage:focus-within > img{transform:scale(1.025);filter:saturate(1.08) contrast(1.035)}
+main .kinshasa-overlay{
+  position:absolute;
+  z-index:1;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(3,14,31,.72) 0%,rgba(3,14,31,.28) 43%,rgba(3,14,31,.05) 72%),
+    linear-gradient(180deg,rgba(3,14,31,.2),transparent 30%,rgba(3,14,31,.12) 55%,rgba(3,14,31,.9) 100%),
+    linear-gradient(90deg,#007fff 0 34%,#f7d618 34% 41%,#ce1021 41% 59%,#f7d618 59% 66%,#007fff 66% 100%) top/100% 4px no-repeat;
+}
+main .destination-mark{
+  position:absolute;
+  z-index:5;
+  left:30px;
+  top:30px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:36px;
+  padding:7px 12px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:5px;
+  color:#fff;
+  background:rgba(4,18,40,.62);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  box-shadow:0 12px 26px -18px rgba(0,0,0,.65);
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:8px;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+main .destination-mark span{color:#ffe66a;font-weight:900}
+main .destination-mark b{font-weight:700;color:rgba(255,255,255,.72)}
+
+main .kinshasa-story{
+  position:absolute;
+  z-index:5;
+  left:clamp(24px,5vw,72px);
+  bottom:132px;
+  width:min(630px,calc(100% - 48px));
+  padding:31px 34px 32px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;
+  color:#fff;
+  background:linear-gradient(135deg,rgba(4,18,40,.86),rgba(7,35,70,.7));
+  -webkit-backdrop-filter:blur(13px) saturate(1.05);
+  backdrop-filter:blur(13px) saturate(1.05);
+  box-shadow:0 30px 56px -38px rgba(0,0,0,.84),inset 0 1px 0 rgba(255,255,255,.08);
+}
+main .kinshasa-story .eyebrow{color:#ffe66a}
+main .kinshasa-story h2{
+  max-width:560px;
+  margin:9px 0 13px;
+  color:#fff;
+  font-size:clamp(31px,4vw,51px);
+  line-height:1.06;
+  letter-spacing:-.035em;
+  text-wrap:balance;
+  text-shadow:0 3px 22px rgba(0,0,0,.28);
+}
+main .kinshasa-story > p:not(.eyebrow){max-width:565px;color:rgba(255,255,255,.78);font-size:14px;line-height:1.68}
+main .kinshasa-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+main .kinshasa-actions .btn{min-height:44px}
+main .kinshasa-actions .btn-ghost{border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.07)}
+
+main .experience-rail{
+  position:absolute;
+  z-index:5;
+  left:20px;
+  right:20px;
+  bottom:20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.17);
+  border-radius:9px;
+  background:rgba(4,18,40,.73);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  box-shadow:0 22px 46px -34px rgba(0,0,0,.8);
+}
+main .experience-rail > span{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  grid-template-rows:auto auto;
+  align-items:center;
+  column-gap:10px;
+  min-height:76px;
+  padding:14px 18px;
+  color:#fff;
+}
+main .experience-rail > span + span{border-left:1px solid rgba(255,255,255,.11)}
+main .experience-rail i{
+  grid-row:1/3;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#00c0fc;
+  box-shadow:0 0 0 4px rgba(0,192,252,.1);
+}
+main .experience-rail > span:nth-child(2) i{background:#f7d618;box-shadow:0 0 0 4px rgba(247,214,24,.1)}
+main .experience-rail > span:nth-child(3) i{background:#70c99b;box-shadow:0 0 0 4px rgba(112,201,155,.1)}
+main .experience-rail > span:nth-child(4) i{background:#ce1021;box-shadow:0 0 0 4px rgba(206,16,33,.1)}
+main .experience-rail b{font-size:11px;letter-spacing:.03em}
+main .experience-rail small{color:rgba(255,255,255,.58);font-size:8px;letter-spacing:.06em;text-transform:uppercase}
+
+main .kinshasa-hotspot{
+  position:absolute;
+  z-index:7;
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  color:inherit;
+  background:transparent;
+  cursor:pointer;
+}
+main .hotspot-monument{left:50.1%;top:33%}
+main .hotspot-skyline{left:77%;top:30%}
+main .hotspot-boulevard{left:82%;top:57%}
+main .hotspot-pulse{
+  position:relative;
+  display:block;
+  width:11px;
+  height:11px;
+  border:2px solid #fff;
+  border-radius:50%;
+  background:#f7d618;
+  box-shadow:0 0 0 7px rgba(247,214,24,.16),0 0 24px rgba(247,214,24,.72);
+}
+main .hotspot-pulse::after{
+  content:"";
+  position:absolute;
+  inset:-9px;
+  border:1px solid rgba(255,255,255,.54);
+  border-radius:50%;
+  animation:kinshasaPulse 2.4s ease-out infinite;
+}
+main .hotspot-card{
+  position:absolute;
+  left:50%;
+  bottom:34px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  width:218px;
+  padding:13px 14px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:7px;
+  color:#fff;
+  background:rgba(4,18,40,.88);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  box-shadow:0 18px 36px -24px rgba(0,0,0,.8);
+  text-align:left;
+  opacity:0;
+  pointer-events:none;
+  transform:translate(-50%,8px) scale(.97);
+  transition:opacity .2s ease,transform .22s cubic-bezier(.2,.8,.2,1);
+}
+main .hotspot-card::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-6px;
+  width:10px;
+  height:10px;
+  border-right:1px solid rgba(255,255,255,.2);
+  border-bottom:1px solid rgba(255,255,255,.2);
+  background:rgba(4,18,40,.88);
+  transform:translateX(-50%) rotate(45deg);
+}
+main .hotspot-card small{color:#ffe66a;font-size:7px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+main .hotspot-card b{font-size:12px;line-height:1.25}
+main .hotspot-card > span{color:rgba(255,255,255,.68);font-size:10px;line-height:1.4}
+main .kinshasa-hotspot:hover .hotspot-card,
+main .kinshasa-hotspot:focus-visible .hotspot-card,
+main .kinshasa-hotspot.is-active .hotspot-card{opacity:1;transform:translate(-50%,0) scale(1)}
+main .kinshasa-hotspot:focus-visible{outline:2px solid #fff;outline-offset:5px}
+
+@keyframes kinshasaPulse{
+  0%{opacity:.75;transform:scale(.65)}
+  75%,100%{opacity:0;transform:scale(1.35)}
+}
+
+@media(max-width:900px){
+  main .kinshasa-stage{height:760px;min-height:760px}
+  main .kinshasa-story{left:24px;bottom:170px;width:calc(100% - 48px)}
+  main .experience-rail{grid-template-columns:repeat(2,1fr)}
+  main .experience-rail > span{min-height:62px}
+  main .experience-rail > span:nth-child(3){border-left:0;border-top:1px solid rgba(255,255,255,.11)}
+  main .experience-rail > span:nth-child(4){border-top:1px solid rgba(255,255,255,.11)}
+}
+@media(max-width:620px){
+  main .kinshasa-promo > .container{padding-inline:12px}
+  main .kinshasa-stage{height:880px;min-height:880px;border-radius:13px}
+  main .kinshasa-stage > img{object-position:58% center}
+  main .destination-mark{left:16px;top:18px;right:16px;justify-content:space-between}
+  main .kinshasa-story{left:14px;bottom:180px;width:calc(100% - 28px);padding:24px 22px}
+  main .kinshasa-story h2{font-size:34px}
+  main .kinshasa-story > p:not(.eyebrow){font-size:13px}
+  main .kinshasa-actions{display:grid;grid-template-columns:1fr}
+  main .kinshasa-actions .btn{width:100%}
+  main .experience-rail{left:14px;right:14px;bottom:14px}
+  main .experience-rail > span{padding:11px 12px}
+  main .hotspot-monument{left:50%;top:24%}
+  main .hotspot-skyline{left:79%;top:21%}
+  main .hotspot-boulevard{left:76%;top:39%}
+  main .hotspot-card{width:178px}
+}
+@media(prefers-reduced-motion:reduce){
+  main .kinshasa-stage > img,main .hotspot-card{transition:none!important;transform:none!important}
+  main .hotspot-pulse::after{animation:none!important}
 }

@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1785618722" />
-<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785807600" />
+<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785811200" />
 
 <script type="application/ld+json">
 {"<?php $__contextArgs = [];\nif (context()->has($__contextArgs[0])) :\nif (isset($value)) { $__contextPrevious[] = $value; }\n$value = context()->get($__contextArgs[0]); ?>":"https://schema.org","@type":"GovernmentOrganization","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","alternateName":"Embassy of the DR Congo","url":"http://127.0.0.1:8050","logo":"http://127.0.0.1:8050/aurora/assets/img/embassy-seal.png","image":"http://127.0.0.1:8050/aurora/assets/img/hero/ambassador-podium-flags-2026.webp","email":"ambassade@ambardcusa.org","telephone":"+1 (202) 234-7690","address":{"@type":"PostalAddress","streetAddress":"1100 Connecticut Avenue NW, Suite 725","addressLocality":"Washington","addressRegion":"DC","postalCode":"20036","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"parentOrganization":"Government of the Democratic Republic of the Congo"}
@@ -419,22 +419,42 @@
 </div></section>
 
 <!-- DISCOVER DR CONGO -->
-<section class="section bg-cream"><div class="container">
-  <div class="split">
-    <div class="media drc-feature-media"><img width="1920" height="1080" loading="lazy" decoding="async" src="/embassy-preview/aurora/assets/img/generated/drc-kinshasa.webp" alt="Kinshasa city skyline illuminated at sunset"/></div>
-    <div>
-      <p class="eyebrow">Discover DR Congo</p><div class="rule left"></div>
-      <h2 style="font-size:28px;margin-top:12px">A land of opportunity &amp; heritage</h2>
-      <p class="lead mt16">From breathtaking landscapes to rich culture, the DRC offers extraordinary opportunities for investment, tourism and cultural exchange.</p>
-      <div class="tiles mt24">
-        <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14"/></svg></div><div><b>About DR Congo</b><span>Geography, history &amp; people.</span></div></div>
-        <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 3 3 5-5"/></svg></div><div><b>Invest in DRC</b><span>Priority industries &amp; trade.</span></div></div>
-        <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><div><b>Tourism</b><span>Destinations &amp; travel tips.</span></div></div>
-        <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div><b>Culture</b><span>Arts, music &amp; heritage.</span></div></div>
+<section class="section bg-cream kinshasa-promo" id="visit-kinshasa"><div class="container">
+  <article class="kinshasa-stage">
+    <img width="1920" height="1080" loading="lazy" decoding="async" src="/embassy-preview/aurora/assets/img/generated/drc-kinshasa.webp" alt="Panoramic view across the Kinshasa skyline illuminated at sunset"/>
+    <div class="kinshasa-overlay" aria-hidden="true"></div>
+    <div class="destination-mark"><span>Destination DRC</span><b>Kinshasa · 04°19′S</b></div>
+
+    <button class="kinshasa-hotspot hotspot-monument" type="button" aria-expanded="false">
+      <span class="hotspot-pulse" aria-hidden="true"></span>
+      <span class="hotspot-card"><small>Landmark</small><b>Monument de l'Échangeur</b><span>A defining point in Kinshasa's urban panorama.</span></span>
+    </button>
+    <button class="kinshasa-hotspot hotspot-skyline" type="button" aria-expanded="false">
+      <span class="hotspot-pulse" aria-hidden="true"></span>
+      <span class="hotspot-card"><small>City experience</small><b>Kinshasa skyline</b><span>A capital shaped by enterprise, creativity and movement.</span></span>
+    </button>
+    <button class="kinshasa-hotspot hotspot-boulevard" type="button" aria-expanded="false">
+      <span class="hotspot-pulse" aria-hidden="true"></span>
+      <span class="hotspot-card"><small>Urban energy</small><b>Boulevards of Kinshasa</b><span>Explore the rhythm connecting culture, commerce and community.</span></span>
+    </button>
+
+    <div class="kinshasa-story">
+      <p class="eyebrow">Visit the capital</p>
+      <h2>Kinshasa moves at the rhythm of tomorrow.</h2>
+      <p>Discover a vibrant river city where Congolese music, contemporary art, cuisine and entrepreneurship meet. Begin your journey in the cultural and economic heart of the Democratic Republic of the Congo.</p>
+      <div class="kinshasa-actions">
+        <a class="btn btn-gold" href="dr-congo.html#tourism">Explore the destination →</a>
+        <a class="btn btn-ghost" href="consular-services.html#visa">Plan your visa</a>
       </div>
-      <div class="mt24"><a class="btn btn-navy" href="dr-congo.html">Discover DR Congo →</a></div>
     </div>
-  </div>
+
+    <div class="experience-rail" aria-label="Kinshasa visitor highlights">
+      <span><i></i><b>Culture</b><small>Music · art · fashion</small></span>
+      <span><i></i><b>River city</b><small>Congo River horizons</small></span>
+      <span><i></i><b>Enterprise</b><small>Business · innovation</small></span>
+      <span><i></i><b>Hospitality</b><small>Cuisine · community</small></span>
+    </div>
+  </article>
 </div></section>
 
 <!-- PREMIUM CTA -->
@@ -510,7 +530,7 @@
   <div class="bar"><span>© 2026 Embassy of the Democratic Republic of the Congo, Washington, D.C.</span><span class="ft-legal"><a href="terms.html">Terms &amp; Conditions</a> · <a href="privacy.html">Privacy Policy</a> · <a href="cookies.html">Cookie Policy</a> · <a href="accessibility.html">Accessibility</a> · <a href="disclaimer.html">Legal Disclaimer</a></span></div>
 </div></footer>
 
-<script src="/embassy-preview/aurora/aurora.js?v=1785617919" defer></script>
+<script src="/embassy-preview/aurora/aurora.js?v=1785811200" defer></script>
 </body>
 </html>
 
