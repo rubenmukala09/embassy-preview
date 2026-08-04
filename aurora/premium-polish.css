@@ -1133,6 +1133,76 @@ body main .kinshasa-actions .btn {
   }
 }
 
+/* ========================================================================== 
+   2026-08-04 · collision-free bilingual desktop header
+   ========================================================================== */
+@media (min-width: 1401px) {
+  .gov-banner > .container,
+  .gov-panel > .container,
+  .topbar > .container,
+  .site-head > .container,
+  html.is-stuck .site-head > .container,
+  .announce > .container {
+    max-width: 1600px;
+  }
+
+  .site-head > .container,
+  html.is-stuck .site-head > .container {
+    grid-template-columns: minmax(240px, 292px) max-content max-content;
+    justify-content: space-between;
+    column-gap: clamp(10px, 1vw, 18px);
+  }
+
+  .site-head .brand {
+    min-width: 0;
+    max-width: 292px;
+  }
+
+  .site-head .mainnav {
+    flex: none;
+    width: max-content;
+    max-width: none;
+    overflow: visible;
+    justify-self: center;
+  }
+
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group > a {
+    flex: 0 0 auto;
+    min-width: max-content;
+    padding-inline: clamp(5px, .42vw, 9px);
+  }
+
+  .site-head .head-cta {
+    flex: 0 0 auto;
+    justify-self: end;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 1401px) and (max-width: 1500px) {
+  .site-head > .container,
+  html.is-stuck .site-head > .container {
+    grid-template-columns: minmax(230px, 258px) max-content max-content;
+  }
+
+  .site-head .brand {
+    max-width: 258px;
+  }
+
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group > a {
+    padding-inline: 5px;
+    font-size: 10.25px;
+  }
+
+  html[lang="fr"] .site-head .mainnav > a,
+  html[lang="fr"] .site-head .mainnav > .nav-group > a {
+    padding-inline: 4px;
+    font-size: 9.75px;
+  }
+}
+
 /* 2026-08-04 · operational header controls */
 .mobile-menu .mm-search {
   display: flex;
