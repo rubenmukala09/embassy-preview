@@ -4188,3 +4188,42 @@ main .contact-grid .map svg{
   main .contact-grid .map{min-height:245px}
   main .contact-grid .map::before{font-size:8px;letter-spacing:.08em}
 }
+
+/* Compact royal treatment for the footer's official diplomatic notice. */
+.foot .gov-foot{
+  width:fit-content;
+  max-width:min(620px,calc(100% - 32px));
+  gap:7px;
+  margin:14px auto 0;
+  padding:6px 14px;
+  border:1px solid rgba(241,202,83,.25);
+  border-radius:999px;
+  color:#c9d4e7;
+  background:linear-gradient(135deg,rgba(13,43,81,.78),rgba(4,25,54,.94));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 10px 28px -22px rgba(0,0,0,.9);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  font-size:9.5px;
+  font-weight:550;
+  line-height:1.45;
+  letter-spacing:.015em;
+}
+.foot .gov-foot .gov-seal{
+  width:15px;
+  height:15px;
+  opacity:.96;
+  filter:drop-shadow(0 0 5px rgba(241,202,83,.2));
+}
+.foot .gov-foot span{white-space:nowrap}
+@media(max-width:700px){
+  .foot .gov-foot{
+    max-width:calc(100% - 24px);
+    gap:6px;
+    padding:6px 11px;
+    border-radius:14px;
+    font-size:9.25px;
+    line-height:1.4;
+  }
+  .foot .gov-foot span{white-space:normal;text-wrap:balance}
+  .foot .gov-foot .gov-seal{width:14px;height:14px}
+}
