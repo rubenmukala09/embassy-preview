@@ -2052,6 +2052,165 @@ main .presidential-section .hos:focus-within{border-color:rgba(247,214,24,.46);b
   main .presidential-principles span{transition:none}
 }
 
+/* ===========================================================================
+   Citizen tools quiet pass · fewer lines, clearer information hierarchy
+   ========================================================================== */
+main #tools .widgets{
+  gap:18px;
+  align-items:stretch;
+}
+main #tools .widgets::before{display:none}
+main #tools .widget,
+main #tools .widget-time,
+main #tools .widget-status,
+main #tools .widget-currency,
+main #tools .widget-fee{
+  min-height:268px;
+  padding:25px;
+  overflow:hidden;
+  border:1px solid rgba(9,43,79,.105);
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 18px 42px -35px rgba(5,31,61,.46);
+}
+main #tools .widget::before,
+main #tools .widget::after{display:none!important}
+main #tools .widget .w-head{
+  min-height:30px;
+  margin:0 0 22px;
+  padding:0;
+  border:0;
+  color:#173454;
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+}
+main #tools .widget .w-head::before{display:none}
+main #tools .widget .w-head::after{
+  padding:4px 7px;
+  border:0;
+  border-radius:99px;
+  color:#607287;
+  background:#f2f5f8;
+  font-size:6px;
+  letter-spacing:.09em;
+}
+main #tools .widget-status .w-head::after{color:#357052;background:#edf7f1}
+main #tools .widget .w-head>svg{
+  width:25px;
+  height:25px;
+  padding:5px;
+  border-radius:8px;
+  color:#1269ad;
+  background:#eef6fc;
+}
+main #tools .widget-code{
+  display:inline-flex;
+  width:auto;
+  height:auto;
+  padding:4px 6px;
+  border:0;
+  border-radius:5px;
+  color:#357052;
+  background:#edf7f1;
+  font-size:7px;
+}
+
+main #tools .widget-route,
+main #tools .office-meter,
+main #tools .currency-telemetry,
+main #tools .service-flow{
+  margin-top:18px;
+  padding:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+}
+main #tools .widget-route,
+main #tools .service-flow{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:7px;
+}
+main #tools .widget-route i,
+main #tools .service-flow i{display:none}
+main #tools .widget-route span,
+main #tools .widget-route b,
+main #tools .service-flow span{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:5px 8px;
+  border:0;
+  border-radius:99px;
+  color:#53677e;
+  background:#f3f6f9;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+main #tools .widget-route b{color:#785f13;background:#fff8dc}
+main #tools .service-flow span:not(:first-child)::before{content:"›";margin-right:7px;color:#9aabbb}
+
+main #tools .status-main{
+  padding:16px;
+  border:0;
+  border-radius:10px;
+  background:#f5faf7;
+  box-shadow:none;
+}
+main #tools .office-meter{
+  display:grid;
+  grid-template-columns:auto 1fr auto 1fr auto;
+  align-items:center;
+  gap:8px;
+  color:#708195;
+}
+main #tools .office-meter i{
+  height:3px;
+  border-radius:3px;
+  background:rgba(46,158,107,.38);
+  box-shadow:none;
+}
+main #tools .office-meter i:last-of-type{background:rgba(217,170,25,.38)}
+
+main #tools .currency-telemetry{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:end;
+  gap:10px;
+  color:#718196;
+}
+main #tools .currency-telemetry>div{
+  height:34px;
+  gap:6px;
+  border:0;
+  opacity:.58;
+}
+main #tools .currency-telemetry i{
+  width:6px;
+  border-radius:3px;
+  box-shadow:none;
+}
+main #tools .service-flow{justify-content:space-between}
+main #tools .service-flow span{justify-content:center;flex:1}
+
+@media(hover:hover) and (pointer:fine){
+  main #tools .widget:hover{
+    transform:translateY(-2px);
+    border-color:rgba(18,105,173,.17);
+    box-shadow:0 24px 46px -35px rgba(5,31,61,.55);
+  }
+  main #tools .widget:hover .w-head>svg{transform:none;filter:none}
+  main #tools .widget:hover .currency-telemetry i:nth-child(odd){transform:none}
+}
+@media(max-width:620px){
+  main #tools .widget{min-height:0;padding:22px}
+}
+
 /* ==========================================================================
    Sitewide decorative, structural and interaction accents · below fold only
    ========================================================================== */
