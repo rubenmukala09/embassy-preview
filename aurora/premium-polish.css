@@ -401,3 +401,202 @@ form :is(input, select, textarea):disabled {
   .btn,
   .ncard img { transition: none !important; transform: none !important; }
 }
+
+/* ========================================================================== 
+   2026-08-04 · compact bilingual diplomatic header
+   ========================================================================== */
+.gov-banner > .container{
+  min-block-size:28px;
+  block-size:28px;
+  padding-block:0;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+.gov-banner .gov-flag{inline-size:19px;block-size:12px}
+.gov-banner .gov-seal{inline-size:15px;block-size:15px}
+.gov-banner .gov-text{
+  min-inline-size:0;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  font-size:11px;
+  line-height:1;
+}
+.gov-banner .gov-how{
+  flex:0 0 auto;
+  min-block-size:26px;
+  padding:2px 0 2px 10px;
+  white-space:nowrap;
+  font-size:10.5px;
+  line-height:1;
+}
+.gov-banner .gov-how svg{inline-size:13px;block-size:13px}
+
+.topbar > .container{
+  min-block-size:27px;
+  block-size:27px;
+  padding-block:0;
+  gap:14px;
+  flex-wrap:nowrap;
+}
+.topbar{font-size:11px;line-height:1}
+.topbar .ti{min-inline-size:0;flex-wrap:nowrap;gap:18px}
+.topbar .ti span{min-inline-size:0;gap:5px;white-space:nowrap}
+.topbar .ti span a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .ti span:first-child{max-inline-size:min(43vw,520px)}
+.topbar svg{inline-size:12px;block-size:12px}
+.topbar .lang{min-block-size:23px;padding:2px 8px;border-radius:5px;white-space:nowrap;font-size:10.5px}
+
+.site-head > .container,
+html.is-stuck .site-head > .container{
+  display:grid;
+  grid-template-columns:minmax(292px,315px) minmax(0,1fr) auto;
+  align-items:center;
+  min-block-size:64px;
+  block-size:64px;
+  gap:12px;
+}
+.site-head .brand{
+  display:grid;
+  grid-template-columns:68px minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  min-inline-size:0;
+  inline-size:100%;
+}
+.site-head .brand .crest,
+html.is-stuck .site-head .brand .crest{
+  inline-size:68px;
+  block-size:68px;
+  max-inline-size:none;
+  max-block-size:none;
+  position:relative;
+  z-index:2;
+  filter:drop-shadow(0 5px 10px rgba(4,29,57,.16));
+}
+.site-head .brand > span{
+  min-inline-size:0;
+  overflow:hidden;
+  padding-left:10px;
+  margin-left:0;
+  border-left:1px solid rgba(184,145,33,.25);
+}
+.site-head .brand b{
+  display:block;
+  overflow:hidden;
+  color:#061d39;
+  font-size:17px;
+  line-height:1.05;
+  letter-spacing:-.01em;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.site-head .brand-full,
+.site-head .brand > span > span:last-child{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.site-head .brand-full{margin-top:3px;font-size:8px;line-height:1.1;letter-spacing:.1em}
+.site-head .brand > span > span:last-child{margin-top:3px;font-size:8px;line-height:1;letter-spacing:.14em}
+.site-head .mainnav{
+  min-inline-size:0;
+  inline-size:100%;
+  justify-content:center;
+  gap:0;
+}
+.site-head .mainnav > a,
+.site-head .mainnav > .nav-group > a{
+  flex:0 1 auto;
+  min-inline-size:0;
+  padding:7px clamp(5px,.5vw,9px);
+  font-size:clamp(10.5px,.72vw,12px);
+  line-height:1.1;
+  white-space:nowrap;
+}
+html[lang="fr"] .site-head .mainnav > a,
+html[lang="fr"] .site-head .mainnav > .nav-group > a{
+  padding-inline:clamp(4px,.4vw,7px);
+  font-size:clamp(10px,.68vw,11.5px);
+}
+.site-head .head-cta{min-inline-size:0;gap:6px}
+.site-head .head-cta .icon-btn{inline-size:36px;block-size:36px}
+.site-head .head-cta .btn-sm{max-inline-size:190px;padding:7px 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}
+html[lang="fr"] .site-head .head-cta .btn-sm{max-inline-size:174px;font-size:10.5px}
+
+.announce > .container{
+  min-block-size:30px;
+  block-size:30px;
+  padding-block:0;
+  gap:12px;
+}
+.announce .tag{min-block-size:23px;padding:3px 10px;font-size:9.5px;line-height:1}
+.announce .ticker,
+.announce .scrolling,
+.announce .scrolling a{min-inline-size:0}
+.announce .scrolling a{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11.5px;line-height:1.1}
+.announce .ann-emergency{align-self:stretch;min-block-size:30px;padding:0 14px;border-radius:0;font-size:10.5px;white-space:nowrap}
+
+@media(max-width:1500px){
+  .site-head > .container,
+  html.is-stuck .site-head > .container{grid-template-columns:minmax(244px,270px) minmax(0,1fr) auto;gap:8px}
+  .site-head .brand{grid-template-columns:62px minmax(0,1fr);gap:8px}
+  .site-head .brand .crest,
+  html.is-stuck .site-head .brand .crest{inline-size:64px;block-size:64px}
+  .site-head .brand-full{display:none}
+  .site-head .brand b{font-size:15.5px}
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group > a{padding-inline:5px;font-size:10.5px}
+  .site-head .head-cta .btn-sm{max-inline-size:164px;padding-inline:10px;font-size:10px}
+}
+
+@media(max-width:1400px){
+  .site-head > .container,
+  html.is-stuck .site-head > .container{display:flex;min-block-size:62px;block-size:62px;gap:10px}
+  .site-head .brand{display:grid;grid-template-columns:62px minmax(0,1fr);inline-size:auto;max-inline-size:min(68vw,320px);margin-right:auto}
+  .site-head .mainnav{flex:0 0 auto;inline-size:auto}
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group{display:none}
+  .site-head .nav-toggle{display:grid;place-items:center;inline-size:40px;block-size:40px;padding:0}
+  .site-head .head-cta .btn{display:none}
+}
+
+@media(max-width:760px){
+  .gov-banner > .container{min-block-size:27px;block-size:27px;padding-inline:12px;gap:6px}
+  .gov-banner .gov-seal{display:none}
+  .gov-banner .gov-text{font-size:9.5px}
+  .gov-banner .gov-how{font-size:9.5px;padding-left:6px}
+  .topbar > .container{min-block-size:28px;block-size:28px;padding:0 12px;gap:8px}
+  .topbar .ti{gap:10px}
+  .topbar .ti span:first-child{display:none}
+  .topbar .ti span{font-size:10px}
+  .topbar .ti span:nth-child(3){max-inline-size:34vw}
+  .topbar .lang{min-block-size:22px;padding-inline:6px;font-size:9.5px}
+  .site-head > .container,
+  html.is-stuck .site-head > .container{min-block-size:58px;block-size:58px;padding-inline:12px}
+  .site-head .brand{grid-template-columns:54px minmax(0,1fr);max-inline-size:min(65vw,290px)}
+  .site-head .brand .crest,
+  html.is-stuck .site-head .brand .crest{inline-size:58px;block-size:58px}
+  .site-head .brand > span{padding-left:8px}
+  .site-head .brand b{font-size:14.5px}
+  .site-head .brand > span > span:last-child{font-size:7.5px}
+  .site-head .head-cta .icon-btn{inline-size:38px;block-size:38px}
+  .site-head .nav-toggle{inline-size:40px;block-size:40px}
+  .announce > .container{min-block-size:29px;block-size:29px;padding:0 12px;gap:7px}
+  .announce .tag{min-block-size:21px;padding:3px 7px;font-size:8px}
+  .announce .scrolling a{font-size:10px}
+  .announce .ann-emergency{display:none}
+}
+
+@media(max-width:520px){
+  .gov-banner .gov-text{display:block}
+  .gov-banner .gov-how{max-inline-size:42%;overflow:hidden;text-overflow:ellipsis}
+  .topbar .ti span:nth-child(3){display:none}
+  .site-head .brand{grid-template-columns:50px minmax(0,1fr);max-inline-size:62vw}
+  .site-head .brand .crest,
+  html.is-stuck .site-head .brand .crest{inline-size:54px;block-size:54px}
+  .site-head .brand b{font-size:13px}
+  .site-head .brand > span > span:last-child{display:none}
+  .site-head .head-cta .icon-btn{display:none}
+}
