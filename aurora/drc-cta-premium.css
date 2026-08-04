@@ -1,0 +1,380 @@
+/* Final DRC gateway — cinematic image, diplomatic glass, explicit pathways. */
+main .drc-final-cta {
+  padding-block: clamp(64px, 8vw, 100px);
+  background:
+    radial-gradient(circle at 8% 22%, rgba(0, 192, 252, .07), transparent 26%),
+    radial-gradient(circle at 91% 78%, rgba(247, 214, 24, .08), transparent 24%),
+    #fff;
+}
+
+main .drc-final-cta .drc-cta-shell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(0, .97fr);
+  min-height: 500px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 218, 78, .34);
+  border-radius: 28px;
+  background: #051a38;
+  box-shadow:
+    0 44px 92px -54px rgba(0, 13, 35, .88),
+    0 0 0 6px rgba(5, 37, 73, .035),
+    inset 0 1px rgba(255, 255, 255, .1);
+}
+
+main .drc-final-cta .drc-cta-shell::before {
+  content: "";
+  position: absolute;
+  z-index: 8;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, #00bdf5 0 35%, #f7d618 35% 42%, #ce1021 42% 58%, #f7d618 58% 65%, #087fe4 65%);
+  pointer-events: none;
+}
+
+main .drc-final-cta .drc-cta-shell::after {
+  content: "DRC";
+  position: absolute;
+  z-index: 0;
+  right: -22px;
+  bottom: -48px;
+  color: rgba(255, 255, 255, .026) !important;
+  font: 900 clamp(110px, 14vw, 190px)/.75 var(--sans, system-ui);
+  letter-spacing: -.08em;
+  pointer-events: none;
+}
+
+main .drc-final-cta .drc-cta-city {
+  position: relative;
+  z-index: 1;
+  min-height: 500px;
+  overflow: hidden;
+  background: #0b315c;
+}
+
+main .drc-final-cta .drc-cta-city::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(1, 14, 34, .02) 42%, rgba(4, 24, 51, .38) 72%, #051a38 100%),
+    linear-gradient(180deg, rgba(2, 13, 31, .04) 48%, rgba(2, 14, 32, .72) 100%);
+  pointer-events: none;
+}
+
+main .drc-final-cta .drc-cta-city::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 192, 252, .7), rgba(247, 214, 24, .78), transparent 72%);
+  pointer-events: none;
+}
+
+main .drc-final-cta .drc-cta-city img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform: none !important;
+  filter: saturate(1.03) contrast(1.02);
+}
+
+main .drc-final-cta .drc-cta-place {
+  position: absolute;
+  z-index: 5;
+  left: 26px;
+  bottom: 26px;
+  display: grid;
+  min-width: 210px;
+  padding: 15px 18px 14px;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(5, 31, 64, .72), rgba(5, 25, 53, .48));
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 18px 45px -26px rgba(0, 0, 0, .9), inset 0 1px rgba(255, 255, 255, .12);
+}
+
+main .drc-final-cta .drc-cta-place::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  bottom: 15px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(#00c0fc 0 34%, #f7d618 34% 48%, #ce1021 48% 82%, #f7d618 82%);
+}
+
+main .drc-final-cta .drc-cta-place small {
+  color: #9fd6f1 !important;
+  font-size: 7px;
+  font-weight: 850;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+main .drc-final-cta .drc-cta-place strong {
+  margin-top: 4px;
+  color: #fff !important;
+  font: 800 24px/1.05 var(--serif);
+}
+
+main .drc-final-cta .drc-cta-place span {
+  margin-top: 5px;
+  color: rgba(231, 241, 250, .78) !important;
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+main .drc-final-cta .drc-cta-photo-note {
+  position: absolute;
+  z-index: 5;
+  left: 27px;
+  top: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, .86) !important;
+  font-size: 7px;
+  font-weight: 850;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+main .drc-final-cta .drc-cta-photo-note::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border: 2px solid rgba(255, 255, 255, .7);
+  border-radius: 50%;
+  background: #f7d618;
+  box-shadow: 0 0 0 4px rgba(247, 214, 24, .12);
+}
+
+main .drc-final-cta .drc-cta-copy {
+  position: relative;
+  z-index: 3;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(34px, 4.4vw, 60px);
+  background:
+    radial-gradient(circle at 95% 10%, rgba(0, 192, 252, .11), transparent 26%),
+    radial-gradient(circle at 16% 92%, rgba(247, 214, 24, .07), transparent 24%),
+    linear-gradient(145deg, rgba(8, 37, 72, .84), rgba(4, 23, 50, .97));
+}
+
+main .drc-final-cta .drc-cta-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -112px;
+  top: 42px;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(0, 192, 252, .1);
+  border-radius: 50%;
+  box-shadow: 0 0 0 42px rgba(0, 192, 252, .025), 0 0 0 84px rgba(247, 214, 24, .018);
+  pointer-events: none;
+}
+
+main .drc-final-cta .drc-cta-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+main .drc-final-cta .drc-cta-topline .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: #ffe36d !important;
+}
+
+main .drc-final-cta .drc-cta-topline .eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f7d618;
+  box-shadow: 0 0 0 5px rgba(247, 214, 24, .1);
+}
+
+main .drc-final-cta .drc-cta-topline > span {
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  color: #b8cee1 !important;
+  background: rgba(255, 255, 255, .045);
+  font-size: 6.5px;
+  font-weight: 850;
+  letter-spacing: .14em;
+}
+
+main .drc-final-cta .drc-cta-copy h2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 .18em;
+  margin: 0 0 16px;
+  color: #fff !important;
+  font-size: clamp(38px, 4.2vw, 56px);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+
+main .drc-final-cta .drc-cta-copy h2 span,
+main .drc-final-cta .drc-cta-copy h2 em {
+  color: inherit !important;
+  font-style: normal;
+}
+
+main .drc-final-cta .drc-cta-copy h2 em { color: #ffe36d !important; }
+
+main .drc-final-cta .drc-cta-copy > p:not(.eyebrow) {
+  max-width: 590px;
+  margin: 0;
+  color: #c6d6e6 !important;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+main .drc-final-cta .drc-cta-paths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 24px;
+}
+
+main .drc-final-cta .drc-cta-paths a {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 9px;
+  min-height: 70px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 11px;
+  color: #fff !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .025));
+  text-decoration: none !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .06);
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+main .drc-final-cta .drc-cta-paths a:hover,
+main .drc-final-cta .drc-cta-paths a:focus-visible {
+  border-color: rgba(255, 227, 109, .56);
+  background: rgba(255, 255, 255, .1);
+  box-shadow: 0 12px 28px -20px rgba(0, 0, 0, .8), inset 0 1px rgba(255, 255, 255, .1);
+}
+
+main .drc-final-cta .drc-cta-paths a:focus-visible {
+  outline: 2px solid #ffe36d;
+  outline-offset: 3px;
+}
+
+main .drc-final-cta .drc-cta-paths a > span {
+  color: #ffe36d !important;
+  font-size: 7px;
+  font-weight: 900;
+}
+
+main .drc-final-cta .drc-cta-paths b {
+  display: grid;
+  gap: 4px;
+  color: #fff !important;
+  font-size: 11px;
+  line-height: 1.05;
+}
+
+main .drc-final-cta .drc-cta-paths small {
+  color: #9eb5ca !important;
+  font-size: 6.3px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+main .drc-final-cta .drc-cta-paths i {
+  color: #ffe36d !important;
+  font-size: 12px;
+  font-style: normal;
+}
+
+main .drc-final-cta .drc-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+main .drc-final-cta .drc-cta-actions .btn {
+  min-height: 46px;
+  padding-inline: 20px;
+  border-radius: 9px;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .065em;
+}
+
+main .drc-final-cta .drc-cta-actions .btn span { color: inherit !important; }
+
+main .drc-final-cta .drc-cta-actions .btn-gold {
+  color: #071b35 !important;
+  background: linear-gradient(180deg, #ffe77a, #f4c338);
+  box-shadow: 0 16px 30px -18px rgba(247, 214, 24, .82), inset 0 1px rgba(255, 255, 255, .7);
+}
+
+main .drc-final-cta .drc-cta-actions .btn-ghost {
+  border-color: rgba(255, 255, 255, .32);
+  color: #fff !important;
+  background: rgba(255, 255, 255, .075);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+main .drc-final-cta .drc-cta-actions .btn-ghost:hover {
+  border-color: rgba(255, 227, 109, .62);
+  background: rgba(255, 255, 255, .12);
+}
+
+@media (max-width: 980px) {
+  main .drc-final-cta .drc-cta-shell { grid-template-columns: 1fr; min-height: 0; }
+  main .drc-final-cta .drc-cta-city,
+  main .drc-final-cta .drc-cta-city img { min-height: 340px; height: 340px; }
+  main .drc-final-cta .drc-cta-city::before { background: linear-gradient(180deg, transparent 48%, #051a38 100%); }
+  main .drc-final-cta .drc-cta-copy { padding: 36px clamp(24px, 6vw, 52px) 42px; }
+}
+
+@media (max-width: 620px) {
+  main .drc-final-cta .drc-cta-shell { border-radius: 20px; }
+  main .drc-final-cta .drc-cta-city,
+  main .drc-final-cta .drc-cta-city img { min-height: 285px; height: 285px; }
+  main .drc-final-cta .drc-cta-place { left: 18px; bottom: 18px; min-width: 188px; padding: 12px 15px; }
+  main .drc-final-cta .drc-cta-photo-note { left: 20px; top: 20px; }
+  main .drc-final-cta .drc-cta-copy { padding: 30px 20px 34px; }
+  main .drc-final-cta .drc-cta-copy h2 { font-size: clamp(34px, 11vw, 48px); }
+  main .drc-final-cta .drc-cta-paths { grid-template-columns: 1fr; }
+  main .drc-final-cta .drc-cta-paths a { min-height: 58px; }
+  main .drc-final-cta .drc-cta-actions { display: grid; grid-template-columns: 1fr; }
+  main .drc-final-cta .drc-cta-actions .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main .drc-final-cta .drc-cta-paths a { transition: none !important; }
+}
