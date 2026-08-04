@@ -1304,6 +1304,231 @@ main .bilateral-stage .quote-cta{
   main .stage-kicker{margin:0 0 2px}
 }
 
+/* ===========================================================================
+   Embassy glass system · translucent depth, specular light and interaction
+   ========================================================================== */
+main .bilateral-copy,
+main .bilateral-stage,
+main .embassy-contact-copy,
+main .embassy-history .partnership-visual,
+main .partnership-timeline .tl-item,
+main #divisions .card,
+main .embassy-values .tile,
+main .embassy-about .stat{
+  -webkit-backdrop-filter:blur(16px) saturate(1.22);
+  backdrop-filter:blur(16px) saturate(1.22);
+  transform:translateZ(0);
+  transition:transform .34s cubic-bezier(.2,.75,.2,1),border-color .28s ease,box-shadow .34s ease,background-position .7s cubic-bezier(.2,.75,.2,1);
+}
+
+/* Bilateral CTA uses two independent panes so the flags stay visible. */
+main .bilateral-quote-inner::before{
+  opacity:.42;
+  border-color:rgba(255,255,255,.08);
+  background:linear-gradient(115deg,rgba(255,255,255,.035),rgba(5,20,46,.18));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 34px 80px -52px rgba(0,0,0,.86);
+}
+main .bilateral-copy{
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.17);
+  border-radius:18px 42px 18px 18px;
+  background:
+    linear-gradient(112deg,transparent 0 34%,rgba(255,255,255,.13) 47%,transparent 59%) 155% 0/240% 100% no-repeat,
+    linear-gradient(135deg,rgba(10,36,76,.66),rgba(3,17,40,.78));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 1px 0 0 rgba(255,255,255,.04),0 26px 52px -38px rgba(0,0,0,.9);
+}
+main .bilateral-copy::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:18px;
+  bottom:18px;
+  width:2px;
+  border-radius:4px;
+  background:linear-gradient(transparent,#00c0fc 24%,#f7d618 52%,#ce1021 78%,transparent);
+  box-shadow:0 0 16px rgba(0,192,252,.28);
+}
+main .bilateral-stage{
+  overflow:hidden;
+  border:1px solid rgba(255,226,122,.2);
+  border-radius:40px 18px 18px 40px;
+  background:
+    linear-gradient(118deg,transparent 0 36%,rgba(255,255,255,.12) 48%,transparent 60%) 155% 0/240% 100% no-repeat,
+    radial-gradient(circle at 50% 43%,rgba(247,214,24,.08),transparent 38%),
+    linear-gradient(135deg,rgba(5,24,54,.32),rgba(12,42,82,.52));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 28px 56px -40px rgba(0,0,0,.88);
+}
+main .bilateral-stage::before,
+main .bilateral-stage::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:50%;
+  pointer-events:none;
+}
+main .bilateral-stage::before{right:-42px;top:-50px;width:150px;height:150px;box-shadow:0 0 0 18px rgba(255,255,255,.018)}
+main .bilateral-stage::after{left:-22px;bottom:-34px;width:92px;height:92px;border-color:rgba(0,192,252,.22)}
+main .stage-kicker,
+main .bilateral-stage .capital-link{
+  border-color:rgba(255,255,255,.22);
+  background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.055));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 12px 26px -22px rgba(0,0,0,.9);
+}
+main .bilateral-stage .quote-cta{
+  border-color:rgba(255,236,153,.78);
+  background:linear-gradient(135deg,rgba(255,236,153,.94),rgba(247,214,24,.78));
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+
+/* Contact/map panel gets a distinct floating information pane. */
+main .embassy-contact-copy{
+  padding:34px 34px 34px clamp(32px,4vw,54px);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.15);
+  border-left-color:rgba(255,226,122,.4);
+  border-radius:18px;
+  background:
+    linear-gradient(112deg,transparent 0 37%,rgba(255,255,255,.12) 49%,transparent 61%) 155% 0/240% 100% no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.105),rgba(255,255,255,.035));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 24px 46px -34px rgba(0,0,0,.84);
+}
+main .embassy-map-caption{
+  padding:10px 13px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(4,19,43,.42));
+  -webkit-backdrop-filter:blur(12px) saturate(1.2);
+  backdrop-filter:blur(12px) saturate(1.2);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 14px 30px -22px rgba(0,0,0,.8);
+}
+
+/* Partnership header and milestone cards read as connected glass folios. */
+main .embassy-history .partnership-visual{
+  border-color:rgba(255,226,122,.36);
+  background:
+    linear-gradient(112deg,transparent 0 36%,rgba(255,255,255,.11) 48%,transparent 60%) 155% 0/240% 100% no-repeat,
+    radial-gradient(circle at 18% 50%,rgba(0,127,255,.16),transparent 25%),
+    radial-gradient(circle at 82% 50%,rgba(206,16,33,.12),transparent 25%),
+    linear-gradient(135deg,rgba(6,24,51,.93),rgba(10,40,82,.88) 54%,rgba(7,26,56,.92));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 30px 62px -42px rgba(0,18,43,.84);
+}
+main .partnership-timeline .tl-item{
+  border-color:rgba(255,255,255,.78);
+  background:
+    linear-gradient(112deg,transparent 0 34%,rgba(255,255,255,.62) 47%,transparent 59%) 155% 0/240% 100% no-repeat,
+    linear-gradient(145deg,rgba(255,255,255,.74),rgba(255,255,255,.45));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 18px 38px -30px rgba(0,18,43,.62);
+}
+main .partnership-timeline .tl-item:first-child,
+main .partnership-timeline .tl-item:last-child{
+  border-color:rgba(255,226,122,.26);
+  background:
+    linear-gradient(112deg,transparent 0 34%,rgba(255,255,255,.12) 47%,transparent 59%) 155% 0/240% 100% no-repeat,
+    linear-gradient(150deg,rgba(13,48,94,.88),rgba(4,20,43,.94));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 20px 42px -31px rgba(0,18,43,.88);
+}
+
+/* Light-page glass cards preserve institutional clarity and contrast. */
+main #divisions .card{
+  border-color:rgba(255,255,255,.86);
+  background:
+    linear-gradient(112deg,transparent 0 35%,rgba(255,255,255,.76) 48%,transparent 60%) 155% 0/240% 100% no-repeat,
+    linear-gradient(145deg,rgba(255,255,255,.76),rgba(244,249,255,.5));
+  box-shadow:inset 0 1px 0 #fff,0 20px 42px -34px rgba(0,42,82,.56),0 0 0 1px rgba(0,127,255,.035);
+}
+main .embassy-values{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 8% 22%,rgba(0,192,252,.08),transparent 24%),
+    radial-gradient(circle at 93% 78%,rgba(247,214,24,.1),transparent 28%),
+    linear-gradient(180deg,#fff,#f5f8fc);
+}
+main .embassy-values .tile{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.82);
+  background:
+    linear-gradient(112deg,transparent 0 35%,rgba(255,255,255,.78) 48%,transparent 60%) 155% 0/240% 100% no-repeat,
+    linear-gradient(145deg,rgba(255,255,255,.7),rgba(239,247,255,.48));
+  box-shadow:inset 0 1px 0 #fff,0 18px 38px -32px rgba(0,42,82,.45);
+}
+main .embassy-values .tile::after{
+  content:"";
+  position:absolute;
+  right:-24px;
+  bottom:-28px;
+  width:80px;
+  height:80px;
+  border:1px solid rgba(0,127,255,.12);
+  border-radius:50%;
+  box-shadow:0 0 0 13px rgba(0,127,255,.025);
+  pointer-events:none;
+}
+main .embassy-about .stats{gap:12px}
+main .embassy-about .stat{
+  position:relative;
+  overflow:hidden;
+  padding:16px 10px;
+  border:1px solid rgba(255,255,255,.82);
+  border-radius:13px;
+  background:
+    linear-gradient(115deg,transparent 0 36%,rgba(255,255,255,.72) 48%,transparent 60%) 155% 0/240% 100% no-repeat,
+    linear-gradient(145deg,rgba(255,255,255,.72),rgba(240,247,253,.46));
+  box-shadow:inset 0 1px 0 #fff,0 16px 34px -30px rgba(0,42,82,.46);
+}
+
+@media(hover:hover) and (pointer:fine){
+  main .bilateral-copy:hover,
+  main .bilateral-stage:hover,
+  main .embassy-contact-copy:hover,
+  main .embassy-history .partnership-visual:hover,
+  main #divisions .card:hover,
+  main .embassy-values .tile:hover,
+  main .embassy-about .stat:hover{
+    transform:translateY(-5px) translateZ(0);
+    border-color:rgba(255,226,122,.48);
+    background-position:-45% 0,0 0;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 30px 58px -38px rgba(0,18,43,.72);
+  }
+  main .partnership-timeline .tl-item:hover{
+    transform:translateY(-5px) translateZ(0);
+    border-color:rgba(0,127,255,.28);
+    background-position:-45% 0,0 0;
+    box-shadow:inset 0 1px 0 #fff,0 28px 48px -34px rgba(0,42,82,.66);
+  }
+  main .partnership-timeline .tl-item:nth-child(even):hover{transform:translateY(7px) translateZ(0)}
+  main .bilateral-stage .quote-cta:hover{transform:translateY(-3px) scale(1.015)}
+}
+main .bilateral-stage:focus-within,
+main .embassy-contact-copy:focus-within,
+main #divisions .card:focus-within,
+main .embassy-values .tile:focus-within{
+  border-color:rgba(247,214,24,.66);
+  box-shadow:0 0 0 3px rgba(247,214,24,.1),0 26px 52px -36px rgba(0,18,43,.72);
+}
+
+@media(max-width:760px){
+  main .bilateral-copy,
+  main .bilateral-stage,
+  main .embassy-contact-copy{border-radius:16px}
+  main .embassy-contact-copy{padding:28px 0 0;border-left:0;border-right:0;border-bottom:0;background:rgba(255,255,255,.055)}
+  main .embassy-map-caption{padding:8px 10px}
+  main .partnership-timeline .tl-item{backdrop-filter:blur(10px)}
+}
+@media(prefers-reduced-motion:reduce){
+  main .bilateral-copy,
+  main .bilateral-stage,
+  main .embassy-contact-copy,
+  main .embassy-history .partnership-visual,
+  main .partnership-timeline .tl-item,
+  main #divisions .card,
+  main .embassy-values .tile,
+  main .embassy-about .stat{transition:none}
+}
+
 /* ==========================================================================
    Sitewide decorative, structural and interaction accents · below fold only
    ========================================================================== */
