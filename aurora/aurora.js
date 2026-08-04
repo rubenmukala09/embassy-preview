@@ -434,10 +434,17 @@
         // scope to the button's own box (footer uses .news, not a form/section)
         const box = btn.closest(".news, form, .card, .panel, .pb, section") || btn.parentElement || scope;
         const email = box.querySelector('input[type="email"], input');
-        if (!email || !email.value.trim()) {
+        const invalidEmail = !email || !email.value.trim() ||
+          (typeof email.checkValidity === "function" && !email.checkValidity());
+        if (invalidEmail) {
           if (email) {
             email.style.borderColor = "var(--bad)";
-            email.addEventListener("input", () => (email.style.borderColor = ""), { once: true });
+            email.setAttribute("aria-invalid", "true");
+            if (typeof email.reportValidity === "function") email.reportValidity();
+            email.addEventListener("input", () => {
+              email.style.borderColor = "";
+              email.removeAttribute("aria-invalid");
+            }, { once: true });
           }
           return;
         }
@@ -2045,6 +2052,10 @@
     "DR Congo": "RDC",
     "Stay informed": "Restez informé",
     "Subscribe for embassy news and announcements.": "Abonnez-vous aux actualités et annonces de l’Ambassade.",
+    "Receive Embassy news, service updates and upcoming event notices.": "Recevez les actualités de l’Ambassade, les mises à jour des services et les annonces d’événements.",
+    "Email address": "Adresse e-mail",
+    "Occasional updates. Unsubscribe at any time.": "Des nouvelles occasionnelles. Désabonnez-vous à tout moment.",
+    "View news & announcements": "Voir les actualités et annonces",
     "Subscribe": "S’abonner",
     "Preview site for the Embassy of the Democratic Republic of the Congo · Washington, D.C.": "Site d’aperçu de l’Ambassade de la République démocratique du Congo · Washington, D.C.",
     "© 2026 Embassy of the Democratic Republic of the Congo, Washington, D.C.": "© 2026 Ambassade de la République démocratique du Congo, Washington, D.C.",
