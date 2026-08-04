@@ -191,3 +191,72 @@ main .partnership-timeline .tl-item {
   main .bilateral-stage .quote-cta,
   main .bilateral-stage .quote-cta:hover { transform: none; transition: none; }
 }
+
+/* ========================================================================== 
+   2026-08-04 · living presidential constellation and clearer partnership CTA
+   ========================================================================== */
+@keyframes embassyPresidentialOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes embassyPresidentialTwinkle {
+  0%, 100% { opacity: .62; transform: translateX(-50%) scale(.82); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+}
+
+@keyframes embassyPresidentialStripe {
+  0%, 100% { filter: brightness(.9); box-shadow: 0 1px 14px rgba(0, 192, 252, .18); }
+  50% { filter: brightness(1.16); box-shadow: 0 1px 22px rgba(247, 214, 24, .32); }
+}
+
+main .presidential-section .presidential-stars {
+  animation: embassyPresidentialOrbit 24s linear infinite !important;
+  will-change: transform;
+}
+
+main .presidential-section .presidential-stars i::before {
+  animation: embassyPresidentialTwinkle 3.4s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+main .presidential-section .presidential-stars i:nth-child(3n + 1)::before { animation-delay: -1.1s; }
+main .presidential-section .presidential-stars i:nth-child(3n + 2)::before { animation-delay: -2.2s; }
+
+main .presidential-section .hos-photo:hover .presidential-stars {
+  animation-duration: 15s !important;
+  filter: brightness(1.12);
+}
+
+main .presidential-section .hos::after {
+  animation: embassyPresidentialStripe 5.2s ease-in-out infinite !important;
+}
+
+/* Remove the small photographic label requested by the client. */
+main .ambassador-profile::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Keep the history action visually separate from the bilateral flag pattern. */
+main .bilateral-stage .quote-cta,
+main .bilateral-stage .quote-cta:hover {
+  border: 2px solid #ffe36c;
+  color: #06284f !important;
+  background: linear-gradient(180deg, #ffffff, #f3f7fb 82%);
+  box-shadow: 0 16px 34px -18px rgba(0, 8, 28, .88), 0 0 0 4px rgba(255, 227, 108, .08), inset 0 1px 0 #fff;
+  text-shadow: none;
+}
+
+main .bilateral-stage .quote-cta span {
+  color: #ce2030 !important;
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main .presidential-section .presidential-stars,
+  main .presidential-section .presidential-stars i::before,
+  main .presidential-section .hos::after {
+    animation: none !important;
+  }
+}
