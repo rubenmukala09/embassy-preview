@@ -3959,5 +3959,161 @@ main .hotspot-pulse{width:15px;height:15px;border-width:3px}
 }
 @media(prefers-reduced-motion:reduce){
   main :is(.btn,.qtile,.dl-item,.ncard,.amb-item,.gallery-strip>a,a.card-hover,.acc-q,.kinshasa-hotspot)::before,
-  main :is(.btn,.qtile,.dl-item,.ncard,.amb-item,.gallery-strip>a,a.card-hover,.acc-q,.kinshasa-hotspot){transition:none!important}
+main :is(.btn,.qtile,.dl-item,.ncard,.amb-item,.gallery-strip>a,a.card-hover,.acc-q,.kinshasa-hotspot){transition:none!important}
+}
+
+/* ===========================================================================
+   Real cartography system · sourced geographic vectors and street maps
+   Map credits: aurora/assets/maps/CREDITS.md
+   ========================================================================== */
+main .geo-africa,
+main .widgets .widget:nth-child(4n+1),
+main .widgets .widget:nth-child(4n+4),
+main .section .grid > .card:nth-child(3n+1){
+  --geo-real-map:url("assets/maps/africa-political.svg");
+  --geo-real-ratio:1;
+}
+main .geo-drc,
+main .widgets .widget:nth-child(4n+2),
+main .section .grid > .card:nth-child(3n+2){
+  --geo-real-map:url("assets/maps/drc-administrative.svg");
+  --geo-real-ratio:1.05;
+}
+main .geo-paris,
+main .widgets .widget:nth-child(4n+3),
+main .section .grid > .card:nth-child(3n+3){
+  --geo-real-map:url("assets/maps/paris-arrondissements.svg");
+  --geo-real-ratio:1.862;
+}
+
+/* Explicit geographic classes always outrank the repeating card rhythm. */
+main .geo-africa{--geo-real-map:url("assets/maps/africa-political.svg")!important;--geo-real-ratio:1!important}
+main .geo-drc{--geo-real-map:url("assets/maps/drc-administrative.svg")!important;--geo-real-ratio:1.05!important}
+main .geo-paris{--geo-real-map:url("assets/maps/paris-arrondissements.svg")!important;--geo-real-ratio:1.862!important}
+
+main :is(.geo-map,.widgets .widget,.section .grid > .card)::after{
+  clip-path:none!important;
+  aspect-ratio:var(--geo-real-ratio,1)!important;
+  background:var(--geo-real-map) center/contain no-repeat!important;
+  transform:none!important;
+  transform-origin:center!important;
+  transition:opacity .25s ease!important;
+}
+
+/* Pale surfaces use the map as quiet printed cartography. */
+main .widgets .widget::after,
+main .section .grid > .card:not(.below-cta)::after{
+  right:-6%;
+  bottom:-12%;
+  width:48%;
+  opacity:.075!important;
+  mix-blend-mode:multiply;
+  filter:grayscale(.35) saturate(.72) contrast(1.12) drop-shadow(0 10px 22px rgba(7,27,53,.14))!important;
+}
+
+/* Navy panels retain the real boundary detail in a luminous diplomatic tint. */
+main .geo-map::after,
+main .cta-premium.geo-map::after,
+main .section .card.below-cta.geo-map::after,
+main .booking-aside.geo-map::after{
+  opacity:.2!important;
+  mix-blend-mode:screen;
+  filter:grayscale(.2) saturate(.8) brightness(1.18) contrast(1.08) drop-shadow(0 16px 30px rgba(0,0,0,.28))!important;
+}
+main .cta-premium.geo-map::after,
+main .section .card.below-cta.geo-map::after{
+  right:clamp(24px,5vw,76px);
+  bottom:9%;
+  width:clamp(240px,29vw,410px);
+}
+main .booking-aside.geo-map::after{right:-12%;bottom:4%;width:76%}
+
+@media(hover:hover) and (pointer:fine){
+  main :is(.geo-map,.widgets .widget,.section .grid > .card):hover::after{transform:none!important}
+  main .widgets .widget:hover::after,
+  main .section .grid > .card:not(.below-cta):hover::after{opacity:.105!important}
+  main .geo-map:hover::after{opacity:.24!important}
+}
+
+/* Actual Embassy location replaces the former pin-only placeholders. */
+main .real-location-map{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:300px;
+  background:#dfe7ef!important;
+  box-shadow:inset 0 0 0 1px rgba(7,42,82,.1);
+}
+main .contact-grid .map.real-location-map::before,
+main .real-location-map::before{
+  content:"LIVE STREET MAP  ·  WASHINGTON, D.C.";
+  position:absolute;
+  z-index:4;
+  left:14px;
+  right:auto;
+  top:14px;
+  bottom:auto;
+  width:auto;
+  padding:7px 9px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:4px;
+  color:#fff;
+  background:rgba(4,24,49,.86);
+  box-shadow:0 12px 24px -16px rgba(0,0,0,.72);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  font:800 7px/1.2 var(--sans);
+  letter-spacing:.13em;
+  text-align:left;
+}
+main .contact-grid .map.real-location-map::after,
+main .real-location-map::after{display:none!important}
+main .contact-grid .map.real-location-map > iframe,
+main .real-location-map > iframe{
+  position:absolute;
+  z-index:1;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  filter:saturate(.74) contrast(1.04);
+}
+main .map-location-card{
+  position:absolute!important;
+  z-index:5!important;
+  left:14px;
+  bottom:16px;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  width:min(260px,calc(100% - 28px));
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:7px;
+  color:#fff!important;
+  background:rgba(4,24,49,.9);
+  box-shadow:0 18px 34px -22px rgba(0,0,0,.9);
+  -webkit-backdrop-filter:blur(12px) saturate(1.08);
+  backdrop-filter:blur(12px) saturate(1.08);
+  text-decoration:none;
+}
+main .map-location-card span{color:#ffe680;font-size:7px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+main .map-location-card strong{color:#fff;font-family:var(--serif);font-size:16px;line-height:1.2}
+main .map-location-card small{color:#c8d5e7;font-size:9px;line-height:1.45}
+main .map-location-card:focus-visible{outline:3px solid #007fff;outline-offset:3px}
+
+@media(max-width:760px){
+  main .geo-map::after{width:55%;opacity:.16!important}
+  main .cta-premium.geo-map::after,
+  main .section .card.below-cta.geo-map::after{right:-2%;bottom:13%;width:250px}
+  main .real-location-map{min-height:330px}
+}
+@media(max-width:520px){
+  main .widgets .widget::after,
+  main .section .grid > .card:not(.below-cta)::after{opacity:.055!important}
+  main .real-location-map::before{left:10px;top:10px}
+  main .map-location-card{left:10px;bottom:12px;width:calc(100% - 20px)}
+}
+@media(prefers-reduced-motion:reduce){
+  main :is(.geo-map,.widgets .widget,.section .grid > .card)::after{transition:none!important}
 }
