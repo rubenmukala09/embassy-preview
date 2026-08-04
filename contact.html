@@ -44,6 +44,11 @@ main .contact-grid .hours .office-location-card{
 main .contact-grid .hours .office-location-card strong{font-size:15px}
 main .contact-grid .hours .office-location-card small{font-size:8.75px}
 @media(max-width:1000px){main .contact-grid .hours .office-location-card{margin-top:24px}}
+.department-card{scroll-margin-top:130px;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.department-card:target{border-color:rgba(214,177,54,.7);box-shadow:0 0 0 3px rgba(242,204,69,.15),0 22px 44px -34px rgba(2,28,57,.7);transform:translateY(-2px)}
+.department-card .li a{color:var(--navy-600);font-weight:700;text-decoration:none}
+.department-card .li a:hover{text-decoration:underline;text-underline-offset:3px}
+.department-card .li a:focus-visible{outline:3px solid #007fff;outline-offset:3px;border-radius:2px}
 </style>
 
 <script type="application/ld+json">
@@ -212,29 +217,29 @@ main .contact-grid .hours .office-location-card small{font-size:8.75px}
 </div></section>
 
 <!-- DEPARTMENTS -->
-<section class="section"><div class="container">
+<section class="section" id="department-contacts"><div class="container">
   <div class="sec-head center"><p class="eyebrow">Departments</p><div class="rule"></div><h2>Reach the right office</h2><p>Direct your inquiry to the department that can help you fastest.</p></div>
   <div class="grid cols-3">
-    <div class="card pad">
+    <div class="card pad department-card" id="consular-affairs">
       <span class="badge badge-navy">Consular</span>
       <h3 style="font-size:18px;margin:12px 0 8px">Consular Affairs</h3>
       <p class="muted" style="font-size:13.5px">Passports, visas, legalization and services for citizens abroad.</p>
-      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:14px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>consular@ambardcusa.org</span></div>
-      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:8px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span>+1 (202) 234-7691</span></div>
+      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:14px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span><a href="mailto:consular@ambardcusa.org">consular@ambardcusa.org</a></span></div>
+      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:8px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span><a href="tel:+12022347691">+1 (202) 234-7691</a></span></div>
     </div>
-    <div class="card pad">
+    <div class="card pad department-card" id="economic-trade">
       <span class="badge badge-navy">Trade</span>
       <h3 style="font-size:18px;margin:12px 0 8px">Economic &amp; Trade</h3>
       <p class="muted" style="font-size:13.5px">Investment, bilateral commerce and partnership opportunities with the DRC.</p>
-      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:14px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>trade@ambardcusa.org</span></div>
-      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:8px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span>+1 (202) 234-7692</span></div>
+      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:14px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span><a href="mailto:trade@ambardcusa.org">trade@ambardcusa.org</a></span></div>
+      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:8px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span><a href="tel:+12022347692">+1 (202) 234-7692</a></span></div>
     </div>
-    <div class="card pad">
+    <div class="card pad department-card" id="press-communication">
       <span class="badge badge-navy">Press</span>
       <h3 style="font-size:18px;margin:12px 0 8px">Press &amp; Communication</h3>
       <p class="muted" style="font-size:13.5px">Media inquiries, official statements and embassy announcements.</p>
-      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:14px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>press@ambardcusa.org</span></div>
-      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:8px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span>+1 (202) 234-7693</span></div>
+      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:14px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span><a href="mailto:press@ambardcusa.org">press@ambardcusa.org</a></span></div>
+      <div class="li" style="display:flex;gap:9px;align-items:center;margin-top:8px;font-size:13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span><a href="tel:+12022347693">+1 (202) 234-7693</a></span></div>
     </div>
   </div>
 </div></section>
