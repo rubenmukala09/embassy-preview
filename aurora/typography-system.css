@@ -1,0 +1,244 @@
+/*
+ * Embassy typography system
+ * One regulated scale for every public page, derived from the compact
+ * homepage hero and its below-the-fold editorial rhythm.
+ */
+
+:root {
+  --type-page-title: clamp(32px, calc(1.6vw + 18px), 39px);
+  --type-section-title: clamp(28px, calc(1.2vw + 15px), 34px);
+  --type-feature-title: clamp(32px, calc(1.8vw + 17px), 42px);
+  --type-card-title: clamp(18px, calc(.48vw + 15px), 22px);
+  --type-body: 15px;
+  --type-lead: clamp(15px, calc(.3vw + 13px), 17px);
+  --type-small: 12.5px;
+  --type-label: 9.5px;
+  --type-control: 12px;
+  --type-reading-measure: 68ch;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--sans, "Public Sans", system-ui, sans-serif);
+  font-size: var(--type-body);
+  line-height: 1.68;
+}
+
+body main :is(h1, h2, h3, h4) {
+  font-family: var(--serif, "Merriweather", Georgia, serif);
+  font-kerning: normal;
+  text-wrap: balance;
+}
+
+body main :is(p, li, dd) {
+  font-size: var(--type-body);
+  line-height: 1.68;
+  text-wrap: pretty;
+}
+
+body main p { max-inline-size: var(--type-reading-measure); }
+
+/* Page heroes: every page now uses the exact compact homepage title tier. */
+body main :is(.hero, .phead, .amb-hero) h1 {
+  max-inline-size: 22ch;
+  font-size: var(--type-page-title) !important;
+  font-weight: 700;
+  line-height: 1.08 !important;
+  letter-spacing: -.026em !important;
+  overflow-wrap: anywhere;
+}
+
+body main :is(.hero, .phead, .amb-hero) :is(p.lead, p:not(.eyebrow):not(.crumbs)) {
+  font-size: var(--type-lead) !important;
+  line-height: 1.66 !important;
+}
+
+body main :is(.hero, .phead, .amb-hero) .eyebrow,
+body main .section .eyebrow,
+body main .consular-journey .eyebrow {
+  font-family: var(--sans, "Public Sans", system-ui, sans-serif);
+  font-size: var(--type-label) !important;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: .16em !important;
+}
+
+/* Below the fold: one section-heading tier on every page. */
+body main > section:not(.hero):not(.phead):not(.amb-hero) h2,
+body main .section h2,
+body main .consular-journey h2 {
+  font-size: var(--type-section-title) !important;
+  line-height: 1.13 !important;
+  letter-spacing: -.026em !important;
+}
+
+body main .sec-head {
+  max-inline-size: 760px;
+}
+
+body main .sec-head h2 {
+  max-inline-size: 22ch;
+  margin-inline: auto;
+}
+
+body main .sec-head:not(.center) h2 { margin-inline-start: 0; }
+
+body main .sec-head > p:not(.eyebrow),
+body main .section .lead,
+body main .consular-journey .lead {
+  max-inline-size: 64ch;
+  font-size: var(--type-lead) !important;
+  line-height: 1.7 !important;
+}
+
+/* Art-directed feature panels keep one shared display tier, never a new scale. */
+body main :is(
+  .tourism-hero,
+  .kinshasa-promo,
+  .kinshasa-story,
+  .leader-copy,
+  .identity-copy,
+  .culture-copy,
+  .drc-cta-copy,
+  .cta-premium,
+  .below-cta,
+  .bilateral-stage,
+  .consular-access-copy
+) :is(h2, h3) {
+  font-size: var(--type-feature-title) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.032em !important;
+}
+
+/* Cards, widgets and operational surfaces use one compact content tier. */
+body main :is(
+  .card,
+  .widget,
+  .panel,
+  .qpanel,
+  .journey-card,
+  .sector-card,
+  .ncard,
+  .acc-item,
+  .dl-item,
+  .qtile,
+  .info-card,
+  .booking-aside,
+  .travel-panel,
+  .service-card
+) :is(h2, h3) {
+  font-size: var(--type-card-title) !important;
+  line-height: 1.24 !important;
+  letter-spacing: -.018em !important;
+}
+
+body main :is(
+  .card,
+  .widget,
+  .panel,
+  .qpanel,
+  .journey-card,
+  .sector-card,
+  .ncard,
+  .acc-item,
+  .dl-item,
+  .qtile,
+  .info-card,
+  .booking-aside,
+  .travel-panel,
+  .service-card
+) :is(p, li, dd) {
+  font-size: var(--type-small) !important;
+  line-height: 1.66 !important;
+}
+
+body main :is(h4, .date, .meta, .note, .hint, small) {
+  font-size: var(--type-small);
+}
+
+body main :is(
+  .badge,
+  .pill,
+  .status,
+  .journey-phase,
+  .sector-number,
+  .heritage-index,
+  .read,
+  .more
+) {
+  font-family: var(--sans, "Public Sans", system-ui, sans-serif);
+  font-size: var(--type-label) !important;
+  line-height: 1.4;
+  letter-spacing: .08em;
+}
+
+/* Controls read consistently and remain detectable in English or French. */
+body main :is(.btn, button, [role="button"]),
+body main :is(input, select, textarea) {
+  font-family: var(--sans, "Public Sans", system-ui, sans-serif);
+  font-size: var(--type-control) !important;
+}
+
+body main :is(.btn, button, [role="button"]) {
+  min-block-size: 44px;
+  line-height: 1.25 !important;
+  letter-spacing: .015em;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+body main :is(label, legend, .field-label) {
+  font-family: var(--sans, "Public Sans", system-ui, sans-serif);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+body main :is(input, select, textarea) {
+  line-height: 1.45;
+}
+
+html[lang="fr"] body main :is(h1, h2, h3, h4, .btn, button, [role="button"]) {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --type-page-title: clamp(28px, 4vw, 38px);
+    --type-section-title: clamp(27px, 3.3vw, 33px);
+    --type-feature-title: clamp(30px, 4.2vw, 39px);
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --type-page-title: clamp(23px, 7.5vw, 29px);
+    --type-section-title: clamp(24px, 7vw, 29px);
+    --type-feature-title: clamp(27px, 8vw, 34px);
+    --type-card-title: clamp(18px, 5vw, 21px);
+    --type-body: 14.5px;
+    --type-lead: 14px;
+    --type-small: 12px;
+    --type-control: 11.5px;
+  }
+
+  body main :is(.hero, .phead, .amb-hero) h1 {
+    max-inline-size: 20ch;
+  }
+
+  body main .sec-head h2 { max-inline-size: 19ch; }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --type-page-title: clamp(22px, 7.2vw, 26px);
+    --type-section-title: clamp(23px, 7vw, 27px);
+    --type-feature-title: clamp(25px, 8vw, 31px);
+  }
+}
+
