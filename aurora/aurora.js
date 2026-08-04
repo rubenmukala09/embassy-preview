@@ -3349,3 +3349,24 @@
     if (event.key === "Escape") closeAll();
   });
 })();
+
+/* Visit Kinshasa: restrained pointer parallax keeps the panorama immersive. */
+(function () {
+  var stage = document.querySelector(".kinshasa-stage");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!stage || reduce) return;
+
+  stage.addEventListener("pointermove", function (event) {
+    if (event.pointerType === "touch") return;
+    var bounds = stage.getBoundingClientRect();
+    var x = ((event.clientX - bounds.left) / bounds.width - .5) * -16;
+    var y = ((event.clientY - bounds.top) / bounds.height - .5) * -10;
+    stage.style.setProperty("--kin-x", x.toFixed(2) + "px");
+    stage.style.setProperty("--kin-y", y.toFixed(2) + "px");
+  }, { passive: true });
+
+  stage.addEventListener("pointerleave", function () {
+    stage.style.setProperty("--kin-x", "0px");
+    stage.style.setProperty("--kin-y", "0px");
+  }, { passive: true });
+})();
