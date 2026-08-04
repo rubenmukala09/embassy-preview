@@ -121,6 +121,7 @@
     const menu = el(
       '<div class="mobile-menu" id="embassy-mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden><button class="mm-close" aria-label="Close menu">×</button>' +
         links +
+        '<button class="mm-search" type="button" aria-label="Search the embassy">Search the embassy</button>' +
         '<a href="/embassy-preview/portal.html" class="mm-cta">Appointment guidance →</a>' +
         '<a class="mm-logo" href="/embassy-preview/" aria-label="Embassy of the DRC - home">' +
           '<svg class="crest" aria-hidden="true"><use href="#crest"/></svg>' +
@@ -138,6 +139,7 @@
       menu.classList.add("open");
       scrim.classList.add("open");
       toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Close menu");
       document.body.classList.add("menu-open");
       focusables()[0]?.focus();
     };
@@ -145,6 +147,7 @@
       menu.classList.remove("open");
       scrim.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
       document.body.classList.remove("menu-open");
       menu.setAttribute("inert", "");
       window.setTimeout(() => { menu.hidden = true; }, 220);
@@ -153,6 +156,10 @@
     toggle.addEventListener("click", open);
     scrim.addEventListener("click", close);
     $(".mm-close", menu).addEventListener("click", close);
+    $(".mm-search", menu).addEventListener("click", () => {
+      close();
+      window.setTimeout(() => $(".search-toggle")?.click(), 240);
+    });
     $$(".mobile-menu a").forEach((a) => a.addEventListener("click", close));
     menu.addEventListener("keydown", (e) => {
       if (e.key === "Escape") { e.preventDefault(); close(); return; }
@@ -1665,7 +1672,6 @@
    news ticker and pop-ups) via a MutationObserver. --------------------------- */
 (function () {
   "use strict";
-  if (!window.EMBASSY_TRANSLATIONS_APPROVED) return;
 
   // English (exact rendered text, whitespace-collapsed) -> Francais.
   var FR = {
@@ -3332,6 +3338,8 @@
     pill.appendChild(caret);
     pill.setAttribute("role", "button");
     pill.tabIndex = 0;
+    pill.removeAttribute("aria-disabled");
+    pill.style.removeProperty("cursor");
     pill.setAttribute("aria-haspopup", "true");
     pill.setAttribute("aria-expanded", "false");
     pill.setAttribute("aria-label", "Language / Langue");
