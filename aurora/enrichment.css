@@ -1143,3 +1143,402 @@ main .partnership-timeline p{position:relative;z-index:2;line-height:1.62}
 @media(prefers-reduced-motion:reduce){
   main .partnership-timeline .tl-item{transform:none}
 }
+
+/* Rearranged bilateral manifesto: editorial message left, collision stage right. */
+main .bilateral-quote{min-height:540px}
+main .collision-drc{
+  left:31%;
+  width:48%;
+  opacity:.56;
+}
+main .collision-usa{
+  right:-7%;
+  width:43%;
+  opacity:.58;
+}
+main .collision-orbit,
+main .collision-core{
+  left:74%;
+  top:46%;
+}
+main .flag-collision::before{left:74%}
+main .flag-collision::after{left:43%;right:4%}
+main .bilateral-quote-inner{
+  display:grid;
+  grid-template-columns:minmax(0,1.16fr) minmax(310px,.84fr);
+  align-items:center;
+  gap:clamp(48px,7vw,100px);
+  min-height:540px;
+  padding:62px 40px;
+  text-align:left;
+}
+main .bilateral-quote-inner::before{
+  left:40px;
+  top:52px;
+  bottom:52px;
+  width:calc(57% - 20px);
+  transform:none;
+  border-radius:20px 44px 20px 20px;
+  background:
+    linear-gradient(110deg,rgba(4,17,40,.9),rgba(7,28,61,.76)),
+    repeating-linear-gradient(135deg,transparent 0 15px,rgba(255,255,255,.025) 16px 17px);
+}
+main .bilateral-copy{
+  position:relative;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  max-width:650px;
+  padding:24px 8px 24px 30px;
+}
+main .bilateral-copy::before{
+  content:"DRC  /  USA";
+  position:absolute;
+  left:30px;
+  top:-10px;
+  color:rgba(255,255,255,.25);
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.28em;
+}
+main .bilateral-copy .quote-mark{
+  margin:0 0 18px;
+  transform:translateX(-4px);
+}
+main .bilateral-copy>p{
+  max-width:620px;
+  margin:0;
+  color:#fff;
+  font-family:var(--serif);
+  font-size:clamp(24px,2.1vw,31px);
+  line-height:1.46;
+  text-wrap:balance;
+  text-shadow:0 2px 16px rgba(0,0,0,.3);
+}
+main .bilateral-copy .quote-signature{
+  display:block;
+  margin-top:26px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.13);
+  width:min(100%,480px);
+}
+main .bilateral-stage{
+  position:relative;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  gap:14px;
+  min-height:410px;
+  padding:22px 0 16px;
+  text-align:center;
+}
+main .stage-kicker{
+  margin-bottom:auto;
+  padding:7px 12px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:99px;
+  color:rgba(255,255,255,.76);
+  background:rgba(4,17,40,.46);
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+}
+main .bilateral-stage .capital-link{
+  padding:9px 13px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:99px;
+  background:rgba(3,15,35,.68);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+main .bilateral-stage .quote-cta{
+  justify-self:auto;
+  min-width:190px;
+}
+
+@media(max-width:900px){
+  main .bilateral-quote-inner{
+    grid-template-columns:minmax(0,1.12fr) minmax(245px,.88fr);
+    gap:30px;
+    padding-inline:26px;
+  }
+  main .bilateral-quote-inner::before{left:26px;width:calc(59% - 12px)}
+  main .bilateral-copy{padding-left:20px}
+  main .bilateral-copy::before{left:20px}
+  main .collision-orbit,
+  main .collision-core{left:72%}
+  main .flag-collision::before{left:72%}
+}
+@media(max-width:760px){
+  main .bilateral-quote{min-height:0}
+  main .collision-drc{left:-30%;width:86%;opacity:.34}
+  main .collision-usa{right:-30%;width:86%;opacity:.34}
+  main .collision-orbit,
+  main .collision-core{left:50%;top:22%}
+  main .flag-collision::before{left:50%}
+  main .flag-collision::after{left:8%;right:8%;top:22%}
+  main .bilateral-quote-inner{
+    display:flex;
+    min-height:0;
+    padding:124px 24px 48px;
+    text-align:center;
+  }
+  main .bilateral-quote-inner::before{
+    left:14px;
+    top:98px;
+    bottom:24px;
+    width:calc(100% - 28px);
+    border-radius:22px;
+  }
+  main .bilateral-copy{align-items:center;padding:28px 4px 0}
+  main .bilateral-copy::before{display:none}
+  main .bilateral-copy .quote-mark{transform:none}
+  main .bilateral-copy .quote-signature{text-align:center}
+  main .bilateral-stage{min-height:0;width:100%;padding:16px 0 0;gap:12px}
+  main .stage-kicker{margin:0 0 2px}
+}
+
+/* ==========================================================================
+   Sitewide decorative, structural and interaction accents · below fold only
+   ========================================================================== */
+
+/* A quiet cartographic rail makes every content chapter feel intentional. */
+main > .section{
+  position:relative;
+  isolation:isolate;
+  box-shadow:inset 0 1px 0 rgba(0,42,82,.055);
+}
+main > .section > .container{position:relative}
+main > .section:not(.tight) > .container::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:0;
+  top:10px;
+  width:2px;
+  height:52px;
+  background:linear-gradient(180deg,#007fff 0 33%,#f7d618 33% 49%,#ce1021 49% 66%,rgba(0,42,82,.08) 66% 100%);
+  box-shadow:0 0 18px rgba(0,127,255,.13);
+}
+main > .section:not(.tight) > .container::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:-13px;
+  top:3px;
+  width:28px;
+  height:66px;
+  border:1px solid rgba(0,42,82,.055);
+  border-radius:50%;
+  opacity:.8;
+}
+
+/* Section changes receive a fine bilateral spectrum instead of a hard seam. */
+main > .section + .section{
+  border-top:1px solid transparent;
+  border-image:linear-gradient(90deg,transparent 2%,rgba(0,127,255,.15) 24%,rgba(247,214,24,.2) 50%,rgba(206,16,33,.11) 76%,transparent 98%) 1;
+}
+main .section .sec-head,
+main .section .split > div:not(.media){position:relative}
+main .section .sec-head h2,
+main .section .split h2{
+  text-shadow:0 12px 30px rgba(0,42,82,.055);
+}
+
+/* Ambient depth follows interactive intent, including keyboard focus. */
+main .section .card:not(.below-cta),
+main .section .tile,
+main .widget,
+main .panel,
+main .dl-item,
+main .ncard{
+  transition:transform .24s cubic-bezier(.2,.75,.2,1),box-shadow .28s ease,border-color .24s ease,filter .28s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  main .section .card:not(.below-cta):hover,
+  main .section .tile:hover,
+  main .widget:hover,
+  main .panel:hover,
+  main .dl-item:hover,
+  main .ncard:hover{
+    border-color:rgba(0,127,255,.2);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.96) inset,
+      0 22px 48px -34px rgba(0,29,61,.55),
+      0 0 0 1px rgba(247,214,24,.055),
+      0 0 34px rgba(0,127,255,.055);
+  }
+  main .section .tile:hover .ic,
+  main .section .card:hover .qbadge,
+  main .widget:hover .w-head > svg{
+    transform:translateY(-2px) scale(1.045);
+    filter:drop-shadow(0 7px 9px rgba(0,42,82,.18));
+  }
+}
+main .section .card:focus-within,
+main .section .tile:focus-within,
+main .widget:focus-within,
+main .panel:focus-within{
+  border-color:rgba(0,127,255,.3);
+  box-shadow:0 0 0 3px rgba(0,127,255,.07),0 24px 48px -38px rgba(0,29,61,.62);
+}
+main .section .tile .ic,
+main .section .qbadge,
+main .widget .w-head > svg{transition:transform .24s cubic-bezier(.2,.75,.2,1),filter .24s ease}
+
+/* Buttons gain an ambient halo and clear press feedback. */
+main .btn:not(:disabled),
+main .quote-cta:not(:disabled),
+main .em-act:not(:disabled){will-change:transform}
+@media(hover:hover) and (pointer:fine){
+  main .btn-gold:hover,
+  main .quote-cta:hover{
+    filter:brightness(1.035) saturate(1.05) drop-shadow(0 0 12px rgba(247,214,24,.26));
+  }
+  main .btn-navy:hover{
+    filter:drop-shadow(0 0 13px rgba(0,127,255,.18));
+  }
+}
+main .btn:not(:disabled):active,
+main .quote-cta:not(:disabled):active,
+main .em-act:not(:disabled):active{transform:translateY(1px) scale(.975)}
+
+/* Form controls read as one composed object when the user enters them. */
+main .field{
+  position:relative;
+  transition:transform .2s ease,filter .24s ease;
+}
+main .field:focus-within{
+  z-index:3;
+  transform:translateY(-1px);
+  filter:drop-shadow(0 10px 18px rgba(0,42,82,.07));
+}
+main .field input,
+main .field select,
+main .field textarea{
+  transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease;
+}
+main .field input:focus,
+main .field select:focus,
+main .field textarea:focus{
+  border-color:rgba(0,127,255,.58);
+  background-color:#fff;
+  box-shadow:0 0 0 4px rgba(0,127,255,.075),inset 0 1px 2px rgba(0,29,61,.035);
+}
+
+/* Accordions and download rows provide a precise, useful movement cue. */
+main .acc-item,
+main .dl-item{position:relative}
+main .acc-item::before,
+main .dl-item::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:18%;
+  bottom:18%;
+  width:2px;
+  border-radius:3px;
+  background:linear-gradient(#007fff,#f7d618,#ce1021);
+  transform:scaleY(0);
+  transform-origin:center;
+  transition:transform .24s ease;
+}
+main .acc-item:hover::before,
+main .acc-item.open::before,
+main .dl-item:hover::before,
+main .dl-item:focus-within::before{transform:scaleY(1)}
+main .acc-item .pm{transition:transform .24s cubic-bezier(.2,.8,.2,1),background-color .2s ease,box-shadow .2s ease}
+main .acc-item.open .pm{box-shadow:0 0 0 5px rgba(247,214,24,.08),0 7px 15px -10px rgba(0,42,82,.5)}
+
+/* Completion is celebrated with a short diplomatic spectrum burst. */
+main .form-success{
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+  border-color:rgba(46,158,107,.34);
+  background:
+    linear-gradient(90deg,#007fff 0 35%,#f7d618 35% 43%,#ce1021 43% 57%,#f7d618 57% 65%,#007fff 65%) top/100% 3px no-repeat,
+    linear-gradient(145deg,#f3fff8,#e7f5ed);
+  box-shadow:0 20px 42px -32px rgba(33,108,70,.58),inset 0 1px 0 rgba(255,255,255,.9);
+  animation:successArrive .48s cubic-bezier(.18,.9,.25,1.2) both;
+}
+main .form-success::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-24px;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 8% 36%,#007fff 0 2px,transparent 3px),
+    radial-gradient(circle at 18% 8%,#f7d618 0 2px,transparent 3px),
+    radial-gradient(circle at 34% 0,#ce1021 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 67% 3%,#00c0fc 0 2px,transparent 3px),
+    radial-gradient(circle at 82% 12%,#f7d618 0 2px,transparent 3px),
+    radial-gradient(circle at 95% 40%,#ce1021 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 74% 94%,#007fff 0 2px,transparent 3px),
+    radial-gradient(circle at 24% 92%,#f7d618 0 1.5px,transparent 2.5px);
+  opacity:0;
+  animation:successSpectrum 1.15s .1s ease-out both;
+}
+main .form-success svg{
+  padding:4px;
+  overflow:visible;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 5px rgba(46,158,107,.1),0 9px 18px -12px rgba(33,108,70,.7);
+  animation:successSeal .58s .08s cubic-bezier(.18,.9,.28,1.35) both;
+}
+body > .toast{
+  overflow:hidden;
+  box-shadow:0 22px 48px -26px rgba(0,18,43,.88),0 0 0 1px rgba(247,214,24,.08);
+}
+body > .toast::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:2px;
+  background:linear-gradient(90deg,#007fff,#f7d618 45%,#ce1021 75%,#007fff);
+  transform:scaleX(0);
+  transform-origin:left;
+}
+body > .toast.show::after{animation:toastProgress 3.4s linear forwards}
+body > .toast.show svg{animation:successSeal .5s cubic-bezier(.18,.9,.28,1.35) both}
+
+@keyframes successArrive{
+  from{opacity:0;transform:translateY(12px) scale(.985)}
+  to{opacity:1;transform:none}
+}
+@keyframes successSeal{
+  0%{opacity:0;transform:scale(.35) rotate(-16deg)}
+  70%{opacity:1;transform:scale(1.12) rotate(3deg)}
+  100%{opacity:1;transform:none}
+}
+@keyframes successSpectrum{
+  0%{opacity:0;transform:scale(.72)}
+  24%{opacity:1}
+  100%{opacity:0;transform:scale(1.12) translateY(-7px)}
+}
+@keyframes toastProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+@media(max-width:760px){
+  main > .section:not(.tight) > .container::before,
+  main > .section:not(.tight) > .container::after{display:none}
+  main .section .card:not(.below-cta),main .section .tile,main .widget,main .panel,main .dl-item,main .ncard{will-change:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  main .section .card:not(.below-cta),main .section .tile,main .widget,main .panel,main .dl-item,main .ncard,
+  main .section .tile .ic,main .section .qbadge,main .widget .w-head > svg,main .field,main .acc-item::before,main .dl-item::before,
+  main .form-success,main .form-success::after,main .form-success svg,body > .toast.show::after,body > .toast.show svg{
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+  }
+}
