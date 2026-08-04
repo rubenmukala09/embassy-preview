@@ -359,3 +359,103 @@ main .drc-page #invest .card h3::after{
 @media(prefers-reduced-motion:reduce){
   main .badge,main .tag,main .chip,main .section .qbadge::after{transition:none}
 }
+
+/* ==========================================================
+   CTA MAP CORRECTION & DISTINCT EMPTY-CARD ARTWORK
+   ========================================================== */
+
+/* The consular CTA keeps only its flag surface and upright DRC map. */
+main .cta-premium .seal-bg{display:none!important;animation:none!important}
+main .cta-premium.geo-drc::after,
+main .cta-premium.geo-drc:hover::after{
+  right:clamp(38px,7vw,112px);
+  bottom:50%;
+  width:clamp(220px,29vw,360px);
+  opacity:.2;
+  transform:translateY(50%)!important;
+  transform-origin:center!important;
+  transition:none!important;
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.28));
+}
+
+/* Four purposefully different embedded motifs for otherwise plain cards. */
+main:not(.drc-page) .section .grid>.card.pad:not(.below-cta):nth-child(4n+1){
+  background:
+    repeating-radial-gradient(circle at 92% 94%,transparent 0 14px,rgba(0,42,82,.055) 15px 16px,transparent 17px 25px),
+    radial-gradient(circle at 92% 94%,rgba(247,214,24,.34) 0 3px,transparent 4px),
+    linear-gradient(145deg,#fff,#f7f9fc);
+}
+main:not(.drc-page) .section .grid>.card.pad:not(.below-cta):nth-child(4n+2){
+  background:
+    radial-gradient(circle at 68% 78%,rgba(0,127,255,.3) 0 2px,transparent 3px),
+    radial-gradient(circle at 88% 30%,rgba(196,162,89,.4) 0 2px,transparent 3px),
+    linear-gradient(31deg,transparent 0 66%,rgba(0,127,255,.09) 66.3% 66.7%,transparent 67%),
+    linear-gradient(146deg,#fff,#f5f9fd);
+}
+main:not(.drc-page) .section .grid>.card.pad:not(.below-cta):nth-child(4n+3){
+  background:
+    linear-gradient(to top,rgba(0,127,255,.11) 0 44%,transparent 44%) calc(100% - 24px) calc(100% - 20px)/6px 62px no-repeat,
+    linear-gradient(to top,rgba(196,162,89,.16) 0 68%,transparent 68%) calc(100% - 36px) calc(100% - 20px)/6px 62px no-repeat,
+    linear-gradient(to top,rgba(206,16,33,.09) 0 31%,transparent 31%) calc(100% - 48px) calc(100% - 20px)/6px 62px no-repeat,
+    linear-gradient(145deg,#fff,#f8fafc);
+}
+main:not(.drc-page) .section .grid>.card.pad:not(.below-cta):nth-child(4n+4){
+  background:
+    linear-gradient(90deg,transparent 0 76%,rgba(0,42,82,.055) 76.3% 76.7%,transparent 77%),
+    repeating-linear-gradient(0deg,transparent 0 16px,rgba(0,127,255,.045) 17px 18px),
+    radial-gradient(circle at 88% 22%,rgba(247,214,24,.22),transparent 24%),
+    linear-gradient(145deg,#fff,#f7f9fc);
+}
+
+/* Emergency number is now the strongest object on the red assistance card. */
+main .emergency{border:1px solid rgba(255,210,203,.3)}
+main .emergency .em-act,
+main .emergency a.em-act{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:3px;
+  min-width:228px;
+  margin-left:auto;
+  padding:12px 18px;
+  border:2px solid rgba(91,0,0,.14);
+  border-radius:10px!important;
+  color:#570000!important;
+  background:#fff!important;
+  box-shadow:0 12px 26px -15px rgba(40,0,0,.72),inset 0 1px rgba(255,255,255,.95);
+  text-decoration:none!important;
+  white-space:normal;
+}
+main .emergency .em-act span{
+  color:#8c2828;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.14em;
+  line-height:1.1;
+  text-transform:uppercase;
+}
+main .emergency .em-act strong{
+  color:#570000;
+  font-family:var(--sans);
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:.015em;
+  line-height:1.2;
+}
+main .emergency .em-act:hover,
+main .emergency .em-act:focus-visible{
+  color:#3f0000!important;
+  background:#fff7e1!important;
+  border-color:#f7d618;
+}
+
+@media(max-width:760px){
+  main .cta-premium.geo-drc::after,
+  main .cta-premium.geo-drc:hover::after{
+    right:-54px;
+    bottom:42%;
+    width:250px;
+    opacity:.12;
+  }
+  main .emergency .em-act,main .emergency a.em-act{width:100%;min-width:0;margin-left:0}
+}
