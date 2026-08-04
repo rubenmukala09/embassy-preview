@@ -4320,3 +4320,156 @@ main .cta-premium.geo-drc:hover::after{transform:none!important}
   main .kinshasa-stage > img{transform:none!important}
   main #capacityBar,main .capacity-period{transition:none!important}
 }
+
+/* ==========================================================================
+   HOMEPAGE RESTRAINT PASS — original portraits, compact tools, quiet stories
+   ========================================================================== */
+
+/* Return the homepage portraits to their original presentation. */
+main .home-president-original .hos{max-width:880px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none}
+main .home-president-original .hos-photo{width:240px;height:240px}
+/* Keep every tool useful while restoring the original compact footprint. */
+main #tools .widgets{gap:14px}
+main #tools .widget,
+main #tools .widget-time,
+main #tools .widget-status,
+main #tools .widget-currency,
+main #tools .widget-fee,
+main #tools .widget-africa-map{
+  grid-column:span 1;
+  min-height:248px;
+  padding:18px;
+  border-radius:11px;
+}
+main #tools .widget .w-head{min-height:27px;margin-bottom:10px;padding-bottom:8px;font-size:9px}
+main #tools .widget .w-head>svg{width:22px;height:22px;padding:4px}
+main #tools .widget>small{font-size:8px;line-height:1.45}
+main #tools .widget-capacity{
+  color:#173454;
+  background:
+    radial-gradient(circle at 88% 15%,rgba(46,158,107,.12),transparent 26%),
+    linear-gradient(145deg,#fff,#f3faf6);
+}
+main #tools .widget-capacity .w-head{color:#173454}
+main #tools .widget-capacity .status-main{
+  min-height:60px;
+  margin:0;
+  padding:9px;
+  border-color:rgba(46,158,107,.16)!important;
+  background:rgba(255,255,255,.76)!important;
+}
+main #tools .widget-capacity .status-main b{color:#153652!important;font-size:11px}
+main #tools .widget-capacity .status-main span{color:#566c80!important;font-size:8.5px;line-height:1.35}
+main #tools .capacity-summary{display:grid;grid-template-columns:1fr;gap:6px;margin:8px 0 7px}
+main #tools .capacity-summary>div:first-child{flex-direction:row;align-items:baseline;justify-content:space-between;gap:8px}
+main #tools .capacity-summary span{color:#536a80!important;font-size:7px}
+main #tools .capacity-summary strong{color:#153652!important;font-size:16px}
+main #tools .capacity-track{width:100%;height:6px;background:rgba(8,42,78,.1)}
+main #tools .capacity-periods{gap:4px;margin-top:7px}
+main #tools .capacity-period{
+  min-height:45px;
+  padding:6px;
+  border-color:rgba(8,42,78,.1);
+  border-radius:6px;
+  color:#52697e;
+  background:rgba(255,255,255,.76);
+}
+main #tools .capacity-period span,
+main #tools .capacity-period small{color:#65798c!important;font-size:6px}
+main #tools .capacity-period b{margin:2px 0;color:#153652!important;font-size:15px}
+main #tools .capacity-period:hover{border-color:rgba(0,127,255,.34);background:#fff}
+main #tools .capacity-period.is-active{border-color:rgba(0,127,255,.46);background:#f0f7fd;box-shadow:0 8px 18px -15px rgba(0,90,170,.65)}
+main #tools .capacity-legend{gap:4px 8px;margin-top:7px;color:#61758a;font-size:6px}
+main #tools .capacity-legend span::before{width:5px;height:5px}
+main #tools .capacity-note{margin-top:6px;color:#718398!important;font-size:6.5px}
+main #tools .africa-map-stage{height:92px}
+main #tools .widget-africa-map{grid-template-columns:1fr;grid-template-rows:auto auto auto auto;gap:7px}
+main #tools .widget-africa-map .w-head,
+main #tools .widget-africa-map .africa-map-stage,
+main #tools .widget-africa-map .africa-map-copy,
+main #tools .widget-africa-map .widget-action{grid-column:1;grid-row:auto}
+main #tools .africa-map-stage::before{left:8px;top:7px;font-size:5.5px}
+main #tools .africa-map-copy{gap:3px}
+main #tools .africa-map-copy b{font-size:15px}
+main #tools .africa-map-copy span{font-size:8.5px;line-height:1.4}
+main #tools .widget-africa-map .widget-action{font-size:7px}
+
+/* A subtle DRC palette separates registration from the surrounding cream. */
+main .register-card{
+  border-color:rgba(0,99,181,.2);
+  background:
+    linear-gradient(135deg,rgba(0,127,255,.075),transparent 34%),
+    linear-gradient(315deg,rgba(206,16,33,.045),transparent 31%),
+    linear-gradient(180deg,#fffdf4,#f7fafc);
+  box-shadow:inset 0 3px 0 rgba(247,214,24,.65),0 18px 42px -36px rgba(8,42,78,.5);
+}
+main .register-card h3{color:#0c3158}
+main .register-card .muted{color:#53697e}
+main .register-card .field input,
+main .register-card .field select{background:rgba(255,255,255,.88)}
+
+/* Announcement formats become visually distinct without becoming larger. */
+main .announcement-formats{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:14px}
+main .announcement-formats span{display:inline-flex;align-items:center;gap:6px;padding:5px 8px;border:1px solid rgba(8,42,78,.09);border-radius:99px;color:#4f6479;background:rgba(255,255,255,.68);font-size:7px;font-weight:850;letter-spacing:.09em;text-transform:uppercase}
+main .announcement-formats span::before{content:"";width:6px;height:6px;border-radius:2px;background:#ce1021}
+main .announcement-formats .format-audio::before{border-radius:50%;background:#2e9e6b}
+main .announcement-formats .format-document::before{background:#007fff}
+main .announcement-formats .format-notice::before{background:#d6a814}
+main #media .media-grid{grid-template-columns:minmax(0,1.35fr) minmax(290px,.9fr);gap:16px}
+main #media .media-feature{min-height:336px;border-radius:8px}
+main #media .media-feature::before{content:"OFFICIAL ANNOUNCEMENT";position:absolute;z-index:3;right:14px;top:14px;padding:5px 7px;border:1px solid rgba(255,255,255,.24);border-radius:4px;color:#fff;background:rgba(5,27,54,.58);font-size:6px;font-weight:900;letter-spacing:.12em;backdrop-filter:blur(8px)}
+main #media .media-play{width:56px;height:56px}
+main #media .media-cap{padding:18px 16px 15px}
+main #media .media-cap b{font-size:18px}
+main #media .media-list{gap:8px}
+main #media .media-item{min-height:72px;padding:10px 11px;border-radius:7px;box-shadow:0 10px 24px -24px rgba(6,28,54,.72)}
+main #media .media-item[data-media="audio"]{border-left:3px solid #2e9e6b}
+main #media .media-item[data-media="video"]{border-left:3px solid #ce1021}
+main #media .media-item[data-media="doc"]{border-left:3px solid #007fff}
+main #media .media-item[data-media="notice"]{border-left:3px solid #d6a814}
+main #media .mi-ic{width:36px;height:36px;border-radius:7px}
+main #media .mi-ic svg{width:17px;height:17px}
+main #media .mi-body b{font-size:12.5px}
+main #media .mi-meta{font-size:10px}
+main #media .media-badge{padding:3px 6px;font-size:7px}
+
+/* Let the Kinshasa photograph lead; copy and rail now sit more quietly. */
+main .kinshasa-intro h2{max-width:680px;font-size:clamp(29px,3.45vw,45px);line-height:1.05}
+main .kinshasa-intro>p{font-size:13px;line-height:1.62}
+main .kinshasa-overlay{
+  background:
+    linear-gradient(90deg,rgba(3,14,31,.48) 0%,rgba(3,14,31,.15) 43%,rgba(3,14,31,.015) 76%),
+    linear-gradient(180deg,rgba(3,14,31,.12),transparent 38%,rgba(3,14,31,.06) 58%,rgba(3,14,31,.68) 100%),
+    linear-gradient(90deg,#007fff 0 34%,#f7d618 34% 41%,#ce1021 41% 59%,#f7d618 59% 66%,#007fff 66% 100%) top/100% 3px no-repeat;
+}
+main .kinshasa-story{
+  left:clamp(24px,3.5vw,42px);
+  bottom:92px;
+  width:min(430px,calc(100% - 48px));
+  padding:22px 24px;
+  background:linear-gradient(135deg,rgba(4,18,40,.67),rgba(7,35,70,.48));
+  backdrop-filter:blur(9px) saturate(1.04);
+}
+main .kinshasa-story h3{font-size:clamp(27px,3.1vw,39px)}
+main .kinshasa-story p{font-size:12px;line-height:1.55}
+main .kinshasa-actions{margin-top:15px}
+main .kinshasa-actions .btn{min-height:39px;padding:9px 13px;font-size:9px}
+main .kinshasa-stage .experience-rail{left:14px;right:14px;bottom:14px;min-height:0;padding:0;background:rgba(4,18,40,.58);backdrop-filter:blur(8px)}
+main .kinshasa-stage .experience-rail>span{min-height:58px;padding:9px 12px}
+main .kinshasa-stage .experience-rail b{font-size:9px}
+main .kinshasa-stage .experience-rail small{font-size:6.5px}
+
+@media(min-width:1101px){main #tools .widgets{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:1100px){
+  main #tools .widgets{grid-template-columns:repeat(2,minmax(0,1fr))}
+  main #tools .widget{min-height:235px}
+  main #media .media-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  main .home-president-original .hos-photo{width:218px;height:218px}
+  main #tools .widgets{grid-template-columns:1fr}
+  main #tools .widget{min-height:0}
+  main .kinshasa-intro h2{font-size:31px}
+  main .kinshasa-story{left:18px;bottom:142px;width:calc(100% - 36px);padding:19px}
+  main .kinshasa-stage .experience-rail{left:10px;right:10px;bottom:10px}
+}
