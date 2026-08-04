@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1785618722" />
-<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785782400" />
+<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785786000" />
 
 <script type="application/ld+json">
 {"<?php $__contextArgs = [];\nif (context()->has($__contextArgs[0])) :\nif (isset($value)) { $__contextPrevious[] = $value; }\n$value = context()->get($__contextArgs[0]); ?>":"https://schema.org","@type":"GovernmentOrganization","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","alternateName":"Embassy of the DR Congo","url":"http://127.0.0.1:8050","logo":"http://127.0.0.1:8050/aurora/assets/img/embassy-seal.png","image":"http://127.0.0.1:8050/aurora/assets/img/hero/ambassador-podium-flags-2026.webp","email":"ambassade@ambardcusa.org","telephone":"+1 (202) 234-7690","address":{"@type":"PostalAddress","streetAddress":"1100 Connecticut Avenue NW, Suite 725","addressLocality":"Washington","addressRegion":"DC","postalCode":"20036","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"parentOrganization":"Government of the Democratic Republic of the Congo"}
@@ -238,12 +238,25 @@
   </div>
 </div></section>
 
-<!-- MANIFESTO / QUOTE BAND -->
-<section style="background:linear-gradient(110deg,var(--navy),var(--navy-600));color:#fff"><div class="container" style="padding:64px 40px;text-align:center">
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--gold-soft)" stroke-width="2" style="margin:0 auto"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-  <p style="font-family:var(--serif);font-size:27px;color:#fff;line-height:1.4;max-width:780px;margin:22px auto 0">“The friendship between the Democratic Republic of the Congo and the United States is built on shared aspirations, for peace, for opportunity, and for a future our peoples shape together.”</p>
-  <p class="eyebrow on-navy" style="margin-top:22px">Embassy of the DRC · Washington, D.C.</p>
-</div></section>
+<!-- BILATERAL MANIFESTO / FLAG CTA -->
+<section class="bilateral-quote">
+  <div class="flag-collision" aria-hidden="true">
+    <i class="collision-flag collision-drc"></i>
+    <i class="collision-flag collision-usa"></i>
+    <span class="collision-orbit orbit-one"></span>
+    <span class="collision-orbit orbit-two"></span>
+    <span class="collision-core"><b>DRC</b><em>×</em><b>USA</b></span>
+  </div>
+  <div class="container bilateral-quote-inner">
+    <span class="quote-mark" aria-hidden="true">“</span>
+    <p>“The friendship between the Democratic Republic of the Congo and the United States is built on shared aspirations, for peace, for opportunity, and for a future our peoples shape together.”</p>
+    <div class="bilateral-quote-meta">
+      <span class="quote-signature">Embassy of the DRC · Washington, D.C.</span>
+      <span class="capital-link" aria-label="Kinshasa and Washington diplomatic connection"><i></i>Kinshasa <b>↔</b> Washington</span>
+      <a class="quote-cta" href="#partnership-history">Explore six decades <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
 
 <!-- CONTACT CTA -->
 <section class="section"><div class="container">
@@ -264,7 +277,7 @@
 </div></section>
 
 <!-- OUR HISTORY -->
-<section class="section bg-cream embassy-history"><div class="container">
+<section class="section bg-cream embassy-history" id="partnership-history"><div class="container">
   <div class="sec-head center"><p class="eyebrow">Our history</p><div class="rule"></div><h2>Six decades of partnership</h2><p>From independence to the present day, the relationship between the Democratic Republic of the Congo and the United States has grown through milestones of shared history and cooperation.</p></div>
   <div class="partnership-visual" aria-label="Diplomatic partnership between the Democratic Republic of the Congo and the United States">
     <div class="nation-marker nation-drc">
