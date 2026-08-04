@@ -47,7 +47,7 @@
     '<svg class="ns-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
   $$(".mainnav > a").forEach((a) => {
     const href = (a.getAttribute("href") || "").split("#")[0];
-    const cfg = SUBNAV[href];
+    const cfg = SUBNAV[href.split("/").pop()];
     if (!cfg) return;
     const group = el('<span class="nav-group"></span>');
     a.parentNode.insertBefore(group, a);
@@ -60,8 +60,10 @@
           '<div class="ns-label">' + cfg.label + "</div>" +
           cfg.items
             .map(
-              ([t, h, d]) =>
-                `<a href="${h}" role="menuitem"><b>${t}${arrowSvg}</b><span>${d}</span></a>`,
+              ([t, h, d]) => {
+                const destination = h.startsWith("/") ? h : "/embassy-preview/" + h;
+                return `<a href="${destination}" role="menuitem"><b>${t}${arrowSvg}</b><span>${d}</span></a>`;
+              },
             )
             .join("") +
           "</div>",
@@ -73,16 +75,16 @@
   const nav = $(".mainnav");
   if (nav) {
     const toggle = el(
-      '<button class="nav-toggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>',
+      '<button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="embassy-mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>',
     );
     nav.appendChild(toggle);
     const links = $$(".mainnav > a, .nav-group > a")
       .map((a) => `<a href="${a.getAttribute("href")}">${a.firstChild.textContent.trim()}</a>`)
       .join("");
     const menu = el(
-      '<div class="mobile-menu" role="dialog" aria-label="Menu"><button class="mm-close" aria-label="Close">×</button>' +
+      '<div class="mobile-menu" id="embassy-mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden><button class="mm-close" aria-label="Close menu">×</button>' +
         links +
-        '<a href="portal.html" class="mm-cta">Request an appointment →</a>' +
+        '<a href="/embassy-preview/portal.html" class="mm-cta">Appointment guidance →</a>' +
         '<a class="mm-logo" href="/embassy-preview/" aria-label="Embassy of the DRC - home">' +
           '<svg class="crest" aria-hidden="true"><use href="#crest"/></svg>' +
           '<span><b>EMBASSY OF THE DRC</b><small>Washington, D.C.</small></span>' +
@@ -90,18 +92,41 @@
     );
     const scrim = el('<div class="scrim"></div>');
     document.body.append(scrim, menu);
+    let lastFocus = null;
+    const focusables = () => $$("a[href], button:not([disabled])", menu);
     const open = () => {
+      lastFocus = document.activeElement;
+      menu.hidden = false;
+      menu.removeAttribute("inert");
       menu.classList.add("open");
       scrim.classList.add("open");
+      toggle.setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+      focusables()[0]?.focus();
     };
     const close = () => {
       menu.classList.remove("open");
       scrim.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+      menu.setAttribute("inert", "");
+      window.setTimeout(() => { menu.hidden = true; }, 220);
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     };
     toggle.addEventListener("click", open);
     scrim.addEventListener("click", close);
     $(".mm-close", menu).addEventListener("click", close);
     $$(".mobile-menu a").forEach((a) => a.addEventListener("click", close));
+    menu.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { e.preventDefault(); close(); return; }
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
   }
 
   /* ---- 2b. Docked quick-access bar: hide while scrolling, reveal when idle -- */
@@ -195,7 +220,8 @@
         const target = document.getElementById(hash.slice(1));
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
           history.replaceState(null, "", hash);
         }
       }
@@ -259,7 +285,7 @@
   /* ---- 6. Toast --------------------------------------------------------- */
   function toast(msg) {
     const t = el(
-      '<div class="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>' +
+      '<div class="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>' +
         msg +
         "</span></div>",
     );
@@ -278,19 +304,49 @@
   }
   function validate(scope) {
     let ok = true;
+    let firstInvalid = null;
     fieldsIn(scope).forEach((f) => {
       if (f.hasAttribute("data-optional")) return; // optional fields never block
+      const errorId = (f.id || f.name || "field") + "-error";
+      const existing = scope.querySelector("#" + CSS.escape(errorId));
       if (!f.value.trim()) {
         f.style.borderColor = "var(--bad)";
+        f.setAttribute("aria-invalid", "true");
+        f.setAttribute("aria-describedby", errorId);
+        if (!existing) {
+          const error = el('<span class="field-error" id="' + errorId + '">Please complete this field.</span>');
+          f.insertAdjacentElement("afterend", error);
+        }
+        if (!firstInvalid) firstInvalid = f;
         ok = false;
         f.addEventListener(
           "input",
-          () => (f.style.borderColor = ""),
+          () => {
+            f.style.borderColor = "";
+            f.removeAttribute("aria-invalid");
+            f.removeAttribute("aria-describedby");
+            scope.querySelector("#" + CSS.escape(errorId))?.remove();
+          },
           { once: true },
         );
+      } else if (existing) {
+        existing.remove();
+        f.removeAttribute("aria-invalid");
+        f.removeAttribute("aria-describedby");
       }
     });
+    if (firstInvalid) firstInvalid.focus();
     return ok;
+  }
+
+  function previewNotice(scope, heading, message) {
+    scope.querySelector(".form-success, .service-notice")?.remove();
+    const notice = el(
+      '<div class="service-notice" role="status" aria-live="polite"><div><b>' + heading +
+      '</b><br>' + message + ' <a href="mailto:info@ambadrcusa.org">Contact the Embassy</a>.</div></div>',
+    );
+    scope.appendChild(notice);
+    notice.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
   }
   $$("button").forEach((btn) => {
     const label = btn.textContent.trim().toLowerCase();
@@ -326,7 +382,7 @@
         }
         postIntake("/intake/newsletter", { email: email.value.trim() })
           .then((d) => { email.value = ""; toast(d.message || "You're subscribed to Embassy updates."); })
-          .catch(() => { email.value = ""; toast("You're subscribed to Embassy updates. (Offline preview.)"); });
+          .catch(() => previewNotice(box, "Online subscription is not active in this preview.", "Your address was not submitted."));
         return;
       }
       // booking / appointment
@@ -361,16 +417,10 @@
           submitEvent(intakeEl, btn);
           return;
         }
-        const success = el(
-          '<div class="form-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div><b>Thank you, your request was received.</b><br/>This is a demo: no data is stored. The Embassy would respond within 2 business days.</div></div>',
-        );
         const form = btn.closest("form, .card, .pb") || scope;
-        form.appendChild(success);
-        success.scrollIntoView({ behavior: "smooth", block: "center" });
-        btn.disabled = true;
-        btn.style.opacity = ".55";
+        previewNotice(form, "Online submission is not active in this preview.", "Nothing was sent or stored.");
       } else {
-        toast("Done, this is a demo action.");
+        toast("This preview action is not connected to an Embassy service.");
       }
     });
   });
@@ -434,7 +484,7 @@
       name: v("rg-name"), email: v("rg-email"), phone: v("rg-phone"), type: v("rg-type"), location: v("rg-loc"),
     })
       .then((d) => show(d.reference, d.message || "We'll send alerts to your email."))
-      .catch(() => show(null, "We'll send alerts to your email. (Offline preview.)"));
+      .catch(() => previewNotice(scope, "Registration is not active in this preview.", "Nothing was sent or stored."));
   }
 
   /* Attorney joins the Embassy's legal-partner network -> an Inquiry the staff review. */
@@ -456,7 +506,7 @@
       jurisdiction: v("lp-jur"), practice: v("lp-practice"), bar_number: v("lp-bar"), message: v("lp-msg"),
     })
       .then((d) => show(d.reference, d.message || "Our team will review it and be in touch."))
-      .catch(() => show(null, "Our team will review it and be in touch. (Offline preview.)"));
+      .catch(() => previewNotice(scope, "Online applications are not active in this preview.", "Nothing was sent or stored."));
   }
 
   /* Public RSVP for an Embassy event -> an Inquiry the events desk handles. */
@@ -477,7 +527,7 @@
       name: v("ev-name"), email: v("ev-email"), event: v("ev-event"), guests: v("ev-guests"), note: v("ev-note"),
     })
       .then((d) => show(d.reference, d.message || "A confirmation has been sent to your email."))
-      .catch(() => show(null, "A confirmation has been sent to your email. (Offline preview.)"));
+      .catch(() => previewNotice(scope, "Online event registration is not active in this preview.", "No reservation was created."));
   }
 
   function renderBooking(scope) {
@@ -523,12 +573,13 @@
     if (scope.querySelector("#b-minor")?.checked) payload.minor = 1;
     postIntake("/intake/appointment", payload)
       .then((d) => render(d.reference, d.message || "The Consular Section will confirm your slot by email."))
-      .catch(() => render("APT-2026-" + (1000 + Math.floor(Math.random() * 9000)), "(Offline preview, not submitted to the embassy.)"));
+      .catch(() => previewNotice(scope, "Online appointment requests are not active in this preview.", "No appointment or reference was created."));
   }
 
   /* Submit a public form to the embassy intake API; resolves to {reference,message}. */
   function postIntake(endpoint, payload) {
     const base = window.EMBASSY_API || "";
+    if (!base) return Promise.reject(new Error("Preview service is not configured"));
     return fetch(base + endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -552,7 +603,7 @@
     };
     postIntake("/intake/inquiry", { name: v("c-name"), email: v("c-email"), subject: v("c-subject"), body: v("c-message") })
       .then((d) => show(d.reference, d.message || "The relevant department will respond during office hours."))
-      .catch(() => show(null, "The relevant department will respond during office hours. (Offline preview.)"));
+      .catch(() => previewNotice(scope, "Online messages are not active in this preview.", "Your message was not sent or stored."));
   }
 
   /* Suggestion box → an Inquiry ("Website suggestion") the staff dashboard triages. */
@@ -572,7 +623,7 @@
     };
     postIntake("/intake/inquiry", { name: v("s-name"), email: v("s-email"), subject: "Website suggestion", body: v("s-suggestion"), category: "general" })
       .then((d) => show(d.reference, d.message || "The Embassy team will review your suggestion."))
-      .catch(() => show(null, "The Embassy team will review your suggestion. (Offline preview.)"));
+      .catch(() => previewNotice(scope, "Online suggestions are not active in this preview.", "Your suggestion was not sent or stored."));
   }
 
   /* ---- 8. Filter chips (news / lists) ---------------------------------- */
@@ -615,21 +666,13 @@
     );
   });
 
-  /* ---- 10. Language toggle (EN/FR, lightweight) ------------------------ */
+  /* ---- 10. Language status --------------------------------------------- */
   const lang = $(".topbar .lang");
   if (lang) {
-    lang.style.cursor = "pointer";
-    let fr = false;
-    lang.addEventListener("click", () => {
-      fr = !fr;
-      lang.innerHTML = "🌐 " + (fr ? "FR ▾" : "EN ▾");
-      document.documentElement.lang = fr ? "fr" : "en";
-      $$("[data-fr]").forEach((n) => {
-        if (!n.dataset.en) n.dataset.en = n.textContent;
-        n.textContent = fr ? n.dataset.fr : n.dataset.en;
-      });
-      toast(fr ? "Affichage en français (démo)." : "Showing English.");
-    });
+    lang.textContent = "🌐 EN · FR in preparation";
+    lang.setAttribute("aria-label", "English version. French translation is in preparation.");
+    lang.setAttribute("aria-disabled", "true");
+    lang.style.cursor = "default";
   }
 
   /* ---- 11. Dashboard sidebar active + row actions --------------------- */
@@ -669,20 +712,8 @@
       slides[si].classList.remove("active");
       si = (si + 1) % slides.length;
       slides[si].classList.add("active");
-    }, 6000);
+    }, 9000);
   }
-
-
-  /* ---- 15. Reading progress bar --------------------------------------- */
-  const prog = el('<div class="scroll-prog"></div>');
-  document.body.appendChild(prog);
-  const updateProg = () => {
-    const h = document.documentElement;
-    const max = h.scrollHeight - h.clientHeight;
-    prog.style.width = max > 0 ? (h.scrollTop / max) * 100 + "%" : "0%";
-  };
-  window.addEventListener("scroll", updateProg, { passive: true });
-  updateProg();
 
 
   /* ---- 16. Widgets: live clocks, open status, currency, fee estimator - */
@@ -766,12 +797,11 @@
       { t: "Tenant-Lieu (travel document)", tf: "Tenant-Lieu (document de voyage)", d: "Emergency one-way laissez-passer", df: "Laissez-passer d'urgence, aller simple", u: "consular-services.html#tenant-lieu", k: "laissez passer emergency travel document laissez-passer document de voyage urgence aller simple" },
       { t: "Document legalization", tf: "Légalisation de documents", d: "Authenticate and certify documents", df: "Authentifier et certifier des documents", u: "consular-services.html#legalization", k: "legalize notarize authenticate certify legalisation legaliser authentifier certifier notarier procuration" },
       { t: "Consular fees", tf: "Frais consulaires", d: "Service costs and how to pay", df: "Coût des services et modes de paiement", u: "consular-services.html#fees", k: "fee cost price payment frais tarif cout prix paiement payer" },
-      { t: "Request an appointment", tf: "Demander un rendez-vous", d: "Request a consular appointment", df: "Demander un rendez-vous consulaire", u: "portal.html", k: "appointment booking schedule reserve request rendez-vous rendezvous reservation reserver planifier horaire" },
-      { t: "Digital Services", tf: "Services numériques", d: "Online consular services and the digital platform", df: "Services consulaires en ligne et plateforme numérique", u: "digital-services.html", k: "digital services online platform numerique en ligne plateforme" },
-      { t: "My account", tf: "Mon compte", d: "Sign in to your citizen account", df: "Connectez-vous à votre compte citoyen", u: "/embassy-preview/account", k: "account login citizen portal compte connexion citoyen espace se connecter" },
-      { t: "Pay a consular fee", tf: "Payer des frais consulaires", d: "Pay a consular fee or event ticket online", df: "Payer des frais consulaires ou un billet en ligne", u: "/embassy-preview/pay", k: "pay payment fee online card payer paiement frais carte en ligne" },
-      { t: "Secure messages", tf: "Messages sécurisés", d: "Message the Consular Section about your case", df: "Écrire à la section consulaire au sujet de votre dossier", u: "/messages", k: "message messages secure case dossier ecrire correspondance courrier" },
-      { t: "Register with the Embassy", tf: "S'inscrire auprès de l'ambassade", d: "Receive alerts and let us reach you in an emergency", df: "Recevez des alertes et permettez-nous de vous joindre en cas d'urgence", u: "index.html#register", k: "register alerts enrol enroll diaspora inscription inscrire enregistrer alertes" },
+      { t: "Appointment guidance", tf: "Informations sur les rendez-vous", d: "Verify the current appointment procedure", df: "Vérifier la procédure actuelle de rendez-vous", u: "portal.html", k: "appointment booking schedule request rendez-vous rendezvous horaire" },
+      { t: "Digital Services", tf: "Services numériques", d: "Verified service information and contact pathways", df: "Informations vérifiées et moyens de contact", u: "digital-services.html", k: "digital services online platform numerique en ligne plateforme" },
+      { t: "Account support", tf: "Assistance au compte", d: "Contact the Embassy for account assistance", df: "Contacter l'ambassade pour une assistance au compte", u: "digital-services.html#account-support", k: "account login citizen portal compte connexion citoyen espace se connecter" },
+      { t: "Payment guidance", tf: "Informations sur les paiements", d: "Review the current approved payment method", df: "Consulter le mode de paiement actuellement approuvé", u: "consular-services.html#fees", k: "pay payment fee payer paiement frais" },
+      { t: "Department contacts", tf: "Contacts des services", d: "Contact Consular, Economic or Press teams", df: "Contacter les services consulaires, économiques ou de presse", u: "contact.html#department-contacts", k: "message contact consular press trade dossier ecrire correspondance courrier" },
       { t: "Travel advisory", tf: "Conseils aux voyageurs", d: "Current entry requirements and safety guidance", df: "Conditions d'entrée et conseils de sécurité actuels", u: "index.html#advisory", k: "advisory safety security guidance conseils securite voyage avertissement" },
       { t: "Media centre", tf: "Médiathèque", d: "Video, audio, press releases and notices", df: "Vidéo, audio, communiqués et avis", u: "index.html#media", k: "video audio media press announcement watch listen medias presse communique regarder ecouter" },
       { t: "News & Events", tf: "Actualités et événements", d: "Latest embassy news, press and events", df: "Dernières actualités, presse et événements de l'ambassade", u: "news-events.html", k: "news press events calendar actualites nouvelles presse evenements agenda" },
@@ -784,7 +814,7 @@
       { t: "Culture & heritage", tf: "Culture et patrimoine", d: "Music, art and Congolese traditions", df: "Musique, art et traditions congolaises", u: "dr-congo.html#culture", k: "culture heritage music art patrimoine musique traditions" },
       { t: "Contact the Embassy", tf: "Contacter l'ambassade", d: "Address, phone, email and map", df: "Adresse, téléphone, courriel et plan", u: "contact.html", k: "contact address phone email map directions adresse telephone courriel plan itineraire coordonnees" },
       { t: "Opening hours", tf: "Heures d'ouverture", d: "Embassy and consular hours and holidays", df: "Heures de l'ambassade et du consulat, jours fériés", u: "contact.html", k: "hours opening times holidays closed horaires heures ouverture jours feries ferme" },
-      { t: "24/7 emergency line", tf: "Ligne d'urgence 24/7", d: "Consular emergency assistance", df: "Assistance consulaire d'urgence", u: "tel:+12022347690", k: "emergency urgent lost stolen arrest help urgence urgent perdu vole arrestation aide assistance" },
+      { t: "Embassy telephone", tf: "Téléphone de l'ambassade", d: "Call the Embassy during published service hours", df: "Appeler l'ambassade pendant les heures de service publiées", u: "tel:+12022347690", k: "phone call embassy telephone appeler ambassade" },
       { t: "Lost or stolen passport", tf: "Passeport perdu ou volé", d: "What to do, police report and travel document", df: "Que faire, déclaration de police et document de voyage", u: "consular-services.html#tenant-lieu", k: "lost stolen passport police report replace perdu vole passeport declaration police remplacer" },
       { t: "Civil registration", tf: "État civil", d: "Birth, marriage and death records for the diaspora", df: "Actes de naissance, mariage et décès pour la diaspora", u: "consular-services.html", k: "civil birth marriage death certificate registration etat civil naissance mariage deces acte diaspora" },
       { t: "Yellow fever and health", tf: "Fièvre jaune et santé", d: "Vaccination requirement for travel to the DRC", df: "Vaccination obligatoire pour voyager en RDC", u: "consular-services.html#visa", k: "yellow fever vaccination health certificate fievre jaune vaccin sante carnet" },
@@ -862,7 +892,7 @@
       return w ? e.replace(new RegExp("(" + w + ")", "ig"), "<mark>$1</mark>") : e;
     };
     const ov = el(
-      '<div class="search-overlay"><div class="search-panel">' +
+      '<div class="search-overlay" role="dialog" aria-modal="true" aria-label="Search the embassy"><div class="search-panel">' +
         '<div class="search-box">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
           '<input type="search" placeholder="Search the embassy: passports, visas, hours…" aria-label="Search" autocomplete="off"/>' +
@@ -890,10 +920,11 @@
       if (!q.trim()) { results.innerHTML = '<div class="sr-hint">' + s.hint + '</div>'; current = []; return; }
       current = find(q);
       if (!current.length) { results.innerHTML = '<div class="sr-empty">' + s.empty(esc(q.trim())) + '</div>'; return; }
-      results.innerHTML = current.map((it) => '<a class="sr-item" href="' + it.u + '"><span class="sr-t">' + hl(T(it), q) + '</span><span class="sr-d">' + esc(D(it)) + "</span></a>").join("");
+      const destination = (u) => /^(https?:|tel:|mailto:|\/)/i.test(u) ? u : "/embassy-preview/" + u;
+      results.innerHTML = current.map((it) => '<a class="sr-item" href="' + destination(it.u) + '"><span class="sr-t">' + hl(T(it), q) + '</span><span class="sr-d">' + esc(D(it)) + "</span></a>").join("");
     };
-    const openS = () => { input.placeholder = STR().ph; ov.classList.add("open"); render(""); setTimeout(() => input.focus(), 60); };
-    const closeS = () => ov.classList.remove("open");
+    const openS = () => { input.placeholder = STR().ph; ov.classList.add("open"); document.body.classList.add("menu-open"); render(""); setTimeout(() => input.focus(), 60); };
+    const closeS = () => { ov.classList.remove("open"); document.body.classList.remove("menu-open"); searchToggle.focus(); };
     searchToggle.addEventListener("click", openS);
     ov.addEventListener("click", (e) => { if (e.target === ov) closeS(); });
     ov.querySelector(".sb-close").addEventListener("click", closeS);
@@ -912,8 +943,16 @@
         }
       }, 450);
     });
-    input.addEventListener("keydown", (e) => { if (e.key === "Enter" && current[0]) window.location.href = current[0].u; });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeS(); });
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter" && current[0]) window.location.href = /^(https?:|tel:|mailto:|\/)/i.test(current[0].u) ? current[0].u : "/embassy-preview/" + current[0].u; });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && ov.classList.contains("open")) closeS();
+      if (e.key !== "Tab" || !ov.classList.contains("open")) return;
+      const focusable = $$("input, button, a[href]", ov);
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
   }
 
   /* ---- 12. Back to top ------------------------------------------------- */
@@ -922,7 +961,7 @@
   );
   document.body.appendChild(top);
   top.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" }),
+    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }),
   );
   window.addEventListener(
     "scroll",
@@ -932,6 +971,9 @@
 
   /* ---- 19. AI reception assistant ("Ask the Embassy") ------------------ */
   (function assistant() {
+    // The advisory assistant is activated only with an approved service API.
+    // Static previews must not present unverified operational guidance as live advice.
+    if (!window.EMBASSY_API) return;
     // ---- language + accent-insensitive matching (self-contained) ----
     const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
@@ -953,8 +995,8 @@
       { k: ["tenant","laissez","laissez-passer","travel document","document de voyage"], a: "A <b>Tenant-Lieu</b> (laissez-passer) is a one-way travel document for citizens who cannot obtain a passport in time. <a href='consular-services.html#tenant-lieu'>Tenant-Lieu &rarr;</a>", af: "Le <b>Tenant-Lieu</b> (laissez-passer) est un document de voyage aller simple pour les citoyens qui ne peuvent obtenir un passeport à temps. <a href='consular-services.html#tenant-lieu'>Tenant-Lieu &rarr;</a>" },
       { k: ["civil","birth","marriage","married","death","certificate","acte","etat civil","naissance","mariage","deces","registration"], a: "We register <b>births, marriages and deaths</b> for the diaspora and issue certified records. Bring originals and valid ID. <a href='consular-services.html'>Civil affairs &rarr;</a>", af: "Nous enregistrons les <b>naissances, mariages et décès</b> de la diaspora et délivrons des actes certifiés. Apportez les originaux et une pièce d'identité. <a href='consular-services.html'>Affaires civiles &rarr;</a>" },
       { k: ["address","adresse","where","located","location","map","carte","direction","parking","itineraire","ou"], a: "Embassy of the DRC, <b>1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036</b> (Dupont Circle area; paid parking and Metro nearby). <a href='contact.html'>Map &amp; directions &rarr;</a>", af: "Ambassade de la RDC, <b>1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036</b> (quartier de Dupont Circle ; parking payant et métro à proximité). <a href='contact.html'>Plan et itinéraire &rarr;</a>" },
-      { k: ["phone","call","email","courriel","contact","reach","telephone","numero","joindre"], a: "Tel <a href='tel:+12022347690'>+1 (202) 234-7690</a> &middot; <a href='mailto:ambassade@ambardcusa.org'>ambassade@ambardcusa.org</a>. <a href='contact.html'>All contact details &rarr;</a>", af: "Tél <a href='tel:+12022347690'>+1 (202) 234-7690</a> &middot; <a href='mailto:ambassade@ambardcusa.org'>ambassade@ambardcusa.org</a>. <a href='contact.html'>Toutes les coordonnées &rarr;</a>" },
-      { k: ["emergency","urgent","urgence","arrest","arrestation","hospital","hopital","accident","detained","death abroad"], a: "For a <b>consular emergency</b> affecting a DR Congolese citizen (arrest, hospitalization, death, serious distress), our line is staffed <b>24/7</b>: <a href='tel:+12022347690'>+1 (202) 234-7690</a>.", af: "Pour une <b>urgence consulaire</b> concernant un citoyen congolais (arrestation, hospitalisation, décès, détresse grave), notre ligne est ouverte <b>24h/24</b> : <a href='tel:+12022347690'>+1 (202) 234-7690</a>." },
+      { k: ["phone","call","email","courriel","contact","reach","telephone","numero","joindre"], a: "Tel <a href='tel:+12022347690'>+1 (202) 234-7690</a> &middot; <a href='mailto:info@ambadrcusa.org'>info@ambadrcusa.org</a>. <a href='contact.html'>All contact details &rarr;</a>", af: "Tél <a href='tel:+12022347690'>+1 (202) 234-7690</a> &middot; <a href='mailto:info@ambadrcusa.org'>info@ambadrcusa.org</a>. <a href='contact.html'>Toutes les coordonnées &rarr;</a>" },
+      { k: ["emergency","urgent","urgence","arrest","arrestation","hospital","hopital","accident","detained","death abroad"], a: "For urgent guidance affecting a DR Congolese citizen, call the Embassy at <a href='tel:+12022347690'>+1 (202) 234-7690</a>. If there is immediate danger in the United States, call 911 first.", af: "Pour une aide urgente concernant un citoyen congolais, appelez l'Ambassade au <a href='tel:+12022347690'>+1 (202) 234-7690</a>. En cas de danger immédiat aux États-Unis, appelez d'abord le 911." },
       { k: ["advisory","safe","safety","security","securite","conseil","danger"], a: "Check the current <b>travel advisory</b> and entry requirements before travelling to the DRC, and register your trip so we can reach you in an emergency. <a href='index.html#advisory'>Travel advisory &rarr;</a>", af: "Consultez les <b>conseils aux voyageurs</b> et les conditions d'entrée avant de partir en RDC, et enregistrez votre voyage pour que nous puissions vous joindre en cas d'urgence. <a href='index.html#advisory'>Conseils aux voyageurs &rarr;</a>" },
       { k: ["register","registration","diaspora","enrol","enroll","alert","inscription","inscrire","enregistrer","alertes","carte consulaire"], a: "Register with the Embassy, <b>free of charge</b>, to receive alerts and so we can assist you in an emergency. <a href='index.html#register'>Register with the Embassy &rarr;</a>", af: "Inscrivez-vous auprès de l'Ambassade, <b>gratuitement</b>, pour recevoir des alertes et être assisté en cas d'urgence. <a href='index.html#register'>S'inscrire &rarr;</a>" },
       { k: ["invest","investment","investir","investissement","business","trade","commerce","economy","economie","sector","secteur","mining","mines"], a: "The DRC welcomes investment across priority sectors: mining, energy, agriculture, infrastructure and tourism. <a href='dr-congo.html#invest'>Invest in the DRC &rarr;</a>", af: "La RDC accueille les investissements dans des secteurs prioritaires : mines, énergie, agriculture, infrastructures et tourisme. <a href='dr-congo.html#invest'>Investir en RDC &rarr;</a>" },
@@ -1009,14 +1051,14 @@
     // Localized interface copy.
     const STR = () => (isFR() ? {
       sub: "Bilingue · réponse immédiate",
-      launch: "Assistant bilingue · 24/7",
+      launch: "Assistant bilingue · Aperçu",
       ph: "Posez une question : passeports, visas, horaires…",
       foot: 'Assistance automatisée. Pour parler à un agent, appelez <a href="tel:+12022347690">+1 (202) 234-7690</a>.',
       greet: "Bonjour et bienvenue à l'Ambassade de la RDC. Je peux vous renseigner sur les passeports, visas, rendez-vous, horaires et bien plus. Comment puis-je vous aider ?",
       chips: ["Renouveler mon passeport", "Prendre rendez-vous", "Visas et frais", "Heures d'ouverture", "S'inscrire aux alertes", "Urgence"],
     } : {
       sub: "Bilingual · replies instantly",
-      launch: "Bilingual assistant · 24/7",
+      launch: "Bilingual assistant · Preview",
       ph: "Ask about passports, visas, hours…",
       foot: 'Automated guidance. For a person, call <a href="tel:+12022347690">+1 (202) 234-7690</a>.',
       greet: "Bonjour, and welcome to the Embassy of the DRC. I can help with passports, visas, appointments, hours and much more. How may I assist you today?",
@@ -1027,7 +1069,7 @@
     const launcher = el(
       '<button class="asst-launch" aria-label="Ask the Embassy" aria-expanded="false">' +
         '<span class="asst-av">' + AV + '<i class="asst-on"></i></span>' +
-        '<span class="asst-lt"><b>Ask the Embassy</b><small class="asst-ls">Bilingual assistant &middot; 24/7</small></span>' +
+        '<span class="asst-lt"><b>Ask the Embassy</b><small class="asst-ls">Bilingual assistant &middot; Preview</small></span>' +
       '</button>',
     );
     const panel = el(
@@ -1166,7 +1208,7 @@
   const mk = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstChild; };
 
   const modal = mk(`
-    <div class="mplayer" role="dialog" aria-label="Media player" hidden>
+    <div class="mplayer" role="dialog" aria-modal="true" aria-label="Media player" hidden>
       <div class="mp-scrim"></div>
       <div class="mp-box">
         <button class="mp-x" aria-label="Close">&times;</button>
@@ -1187,7 +1229,7 @@
   const q = (s) => modal.querySelector(s);
   const stage = q(".mp-stage"), playBtn = q(".mp-play"), icPlay = q(".ic-play"), icPause = q(".ic-pause");
   const fill = q(".mp-fill"), timeEl = q(".mp-time"), badge = q(".mp-badge");
-  let timer = null, t = 0, total = 240, playing = false;
+  let timer = null, t = 0, total = 240, playing = false, lastTrigger = null;
 
   const toSec = (s) => { const m = (s || "").match(/(\d+):(\d{2})/); return m ? +m[1] * 60 + +m[2] : 240; };
   const fmt = (n) => Math.floor(n / 60) + ":" + String(Math.floor(n % 60)).padStart(2, "0");
@@ -1203,6 +1245,7 @@
 
   const clearEmbed = () => { const e = stage.querySelector(".mp-embed"); if (e) e.remove(); };
   const open = (trg) => {
+    lastTrigger = trg;
     const type = trg.dataset.media;
     const yt = trg.dataset.yt;
     q(".mp-title").textContent = trg.dataset.title || "";
@@ -1231,13 +1274,22 @@
       stage.style.backgroundImage = type === "audio" ? "" : (trg.dataset.src ? `url('${trg.dataset.src}')` : "");
     }
     modal.hidden = false;
-    requestAnimationFrame(() => modal.classList.add("open"));
+    document.body.classList.add("menu-open");
+    requestAnimationFrame(() => { modal.classList.add("open"); q(".mp-x").focus(); });
   };
-  const close = () => { stop(); clearEmbed(); modal.classList.remove("open"); setTimeout(() => (modal.hidden = true), 220); };
+  const close = () => { stop(); clearEmbed(); modal.classList.remove("open"); document.body.classList.remove("menu-open"); setTimeout(() => { modal.hidden = true; lastTrigger?.focus(); }, 220); };
   triggers.forEach((tr) => tr.addEventListener("click", () => open(tr)));
   q(".mp-x").addEventListener("click", close);
   q(".mp-scrim").addEventListener("click", close);
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) close(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) close();
+    if (e.key !== "Tab" || modal.hidden) return;
+    const focusable = Array.from(modal.querySelectorAll("button, iframe, a[href]"));
+    if (!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 })();
 
 /* ---- Official banner: "Here's how you know" toggle -------------------- */
@@ -1260,12 +1312,16 @@
   if (!cards.length) return;
   const mk = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstChild; };
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const modal = mk('<div class="reader" role="dialog" aria-label="Article" hidden><div class="rd-scrim"></div><article class="rd-box"><button class="rd-x" aria-label="Close">&times;</button><span class="rd-date"></span><h2 class="rd-title"></h2><div class="rd-body"></div><p class="rd-note">Demonstration article. Full official releases are published in the Embassy <a href="news-events.html">Newsroom</a>.</p></article></div>');
+  const modal = mk('<div class="reader" role="dialog" aria-modal="true" aria-label="Article" hidden><div class="rd-scrim"></div><article class="rd-box"><button class="rd-x" aria-label="Close">&times;</button><span class="rd-date"></span><h2 class="rd-title"></h2><div class="rd-body"></div><p class="rd-note">Preview article. Verify releases and statements through the Embassy newsroom and official website.</p></article></div>');
   document.body.appendChild(modal);
-  const close = () => { modal.classList.remove("open"); setTimeout(() => (modal.hidden = true), 200); };
+  let lastCard = null;
+  const close = () => { modal.classList.remove("open"); document.body.classList.remove("menu-open"); setTimeout(() => { modal.hidden = true; lastCard?.focus(); }, 200); };
   modal.querySelector(".rd-x").addEventListener("click", close);
   modal.querySelector(".rd-scrim").addEventListener("click", close);
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) close(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) close();
+    if (e.key === "Tab" && !modal.hidden) { e.preventDefault(); modal.querySelector(".rd-x").focus(); }
+  });
   cards.forEach((card) => {
     card.addEventListener("click", (e) => {
       e.preventDefault();
@@ -1276,7 +1332,9 @@
       modal.querySelector(".rd-date").textContent = date;
       modal.querySelector(".rd-body").innerHTML = "<p>" + esc(body) + "</p>";
       modal.hidden = false;
-      requestAnimationFrame(() => modal.classList.add("open"));
+      lastCard = card;
+      document.body.classList.add("menu-open");
+      requestAnimationFrame(() => { modal.classList.add("open"); modal.querySelector(".rd-x").focus(); });
     });
   });
 })();
@@ -1296,9 +1354,9 @@
   };
   const RANK = { critical: 3, caution: 2, success: 1, info: 0 };
   const FALLBACK = [
-    { severity: "caution", title: "There are no online bookings until further notice", body: "Visa applications are received in person at the Embassy, Monday to Friday, 10:00–13:00.", link: "consular-services.html#visa" },
-    { severity: "info", title: "The Washington Agreements: a new era of peace, sovereignty and prosperity for the DRC", body: "The DRC signed a peace agreement, a regional economic framework and a strategic partnership with the United States.", link: "news-events.html" },
-    { severity: "success", title: "The DRC and the United States extend visa reciprocity", body: "Visa reciprocity now covers travel for tourism, study and business.", link: "consular-services.html#visa" },
+    { type: "notice", severity: "caution", title: "Verify current consular instructions before visiting", body: "Appointment, payment and document procedures may change. Confirm the latest guidance with the Embassy.", link: "/embassy-preview/consular-services.html" },
+    { type: "news", severity: "info", title: "Discover the Democratic Republic of the Congo", body: "Explore culture, destinations, economic potential and opportunities for partnership.", link: "/embassy-preview/dr-congo.html" },
+    { type: "notice", severity: "info", title: "Contact the appropriate Embassy department", body: "Find verified pathways for Consular Affairs, Economic and Trade, and Press and Communication inquiries.", link: "/embassy-preview/contact.html#department-contacts" },
   ];
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const sev = (s) => SEV[s] || SEV.info;
@@ -1333,27 +1391,40 @@
     markSeen();
     const stack = document.createElement("div");
     stack.className = "news-stack";
-    items.slice(0, 3).forEach((it, i) => {
+    items.slice(0, 1).forEach((it, i) => {
       const s = sev(it.severity);
-      const pop = document.createElement("a");
+      const pop = document.createElement("article");
       pop.className = "news-pop";
-      pop.href = safeLink(it.link);
       pop.style.setProperty("--nc", s.c);
       pop.style.setProperty("--ncd", s.cd);
       pop.style.animationDelay = (i * 0.16 + 0.5) + "s";
       pop.innerHTML =
-        '<span class="np-head"><span class="np-dot"></span><span class="np-tag">' + esc(s.label) + "</span></span>" +
         '<button class="np-x" type="button" aria-label="Dismiss">&times;</button>' +
-        '<b class="np-title">' + esc(it.title) + "</b>" +
-        '<span class="np-cta">Read more &rarr;</span>';
+        '<a class="np-link" href="' + safeLink(it.link) + '">' +
+          '<span class="np-head"><span class="np-dot"></span><span class="np-tag">' + esc(s.label) + "</span></span>" +
+          '<b class="np-title">' + esc(it.title) + "</b>" +
+          '<span class="np-cta">Read more &rarr;</span>' +
+        '</a>';
       const dismiss = () => { pop.classList.add("out"); setTimeout(() => pop.remove(), 220); };
       pop.querySelector(".np-x").addEventListener("click", (e) => {
-        e.preventDefault(); e.stopPropagation(); dismiss();
+        e.preventDefault(); dismiss();
       });
-      // auto-dismiss so they never linger; pause while hovered
-      let timer = setTimeout(dismiss, 9000 + i * 1200);
-      pop.addEventListener("mouseenter", () => clearTimeout(timer));
-      pop.addEventListener("mouseleave", () => { timer = setTimeout(dismiss, 3500); });
+      // Informational previews may dismiss after a generous reading interval.
+      // Timers pause for both mouse and keyboard readers and never remove focus.
+      let timer = null;
+      const startTimer = () => {
+        if (/emergency|urgent/i.test(String(it.severity || ""))) return;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          if (!pop.contains(document.activeElement)) dismiss();
+        }, 14000 + i * 1200);
+      };
+      const stopTimer = () => clearTimeout(timer);
+      pop.addEventListener("mouseenter", stopTimer);
+      pop.addEventListener("mouseleave", startTimer);
+      pop.addEventListener("focusin", stopTimer);
+      pop.addEventListener("focusout", startTimer);
+      startTimer();
       stack.appendChild(pop);
     });
     document.body.appendChild(stack);
@@ -1374,10 +1445,11 @@
     if (!items.length) return;
     if (flags.news_pulse !== false) pulseTag(items[0]);           // admin toggles
     if (flags.news_ticker !== false) fillTicker(items);
-    if (flags.announcement_popups !== false) popups(items);
+    if (flags.announcement_popups !== false && window.EMBASSY_API) popups(items);
   }
 
-  fetch((window.EMBASSY_API || "") + "/announcements/live", { headers: { Accept: "application/json" } })
+  if (!window.EMBASSY_API) { render(FALLBACK, {}); return; }
+  fetch(window.EMBASSY_API + "/announcements/live", { headers: { Accept: "application/json" } })
     .then((r) => (r.ok ? r.json() : Promise.reject(r)))
     .then((d) => render(d.items || d, d.flags))
     .catch(() => render(FALLBACK, {}));
@@ -1407,7 +1479,11 @@
       '<p class="lm-best">Quietest day to visit: <b>' + esc(best.label || "") + "</b></p>";
   }
 
-  fetch((window.EMBASSY_API || "") + "/embassy/load", { headers: { Accept: "application/json" } })
+  if (!window.EMBASSY_API) {
+    mounts.forEach((m) => { m.innerHTML = '<p class="lm-off">Planning estimate only. Live visitor levels are not connected in this preview.</p>'; });
+    return;
+  }
+  fetch(window.EMBASSY_API + "/embassy/load", { headers: { Accept: "application/json" } })
     .then((r) => (r.ok ? r.json() : Promise.reject(r)))
     .then((d) => mounts.forEach((m) => paint(m, d)))
     .catch(() => mounts.forEach((m) => { m.innerHTML = '<p class="lm-off">Live wait times are unavailable right now.</p>'; }));
@@ -1470,6 +1546,7 @@
   "use strict";
   const mount = document.getElementById("resources-widget");
   if (!mount) return;
+  if (!window.EMBASSY_API) return;
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   fetch((window.EMBASSY_API || "") + "/content/pages", { headers: { Accept: "application/json" } })
     .then((r) => (r.ok ? r.json() : Promise.reject(r)))
@@ -1502,11 +1579,12 @@
    news ticker and pop-ups) via a MutationObserver. --------------------------- */
 (function () {
   "use strict";
+  if (!window.EMBASSY_TRANSLATIONS_APPROVED) return;
 
   // English (exact rendered text, whitespace-collapsed) -> Francais.
   var FR = {
     // -- Official banner / brand --
-    "An official website of the Embassy of the Democratic Republic of the Congo": "Un site officiel de l’Ambassade de la République démocratique du Congo",
+    "Embassy website preview — services and information under review": "Aperçu du site de l’Ambassade — services et informations en cours de vérification",
     "Here’s how you know": "Voici comment le savoir",
     "Here's how you know": "Voici comment le savoir",
     "Official source": "Source officielle",
@@ -1623,7 +1701,7 @@
 
     // -- Shared chrome: skip link, emergency, government panel, footer --
     "Skip to main content": "Passer au contenu principal",
-    "24/7 Emergency": "Urgence 24/7",
+    "Call the Embassy": "Appeler l’Ambassade",
     "Office hours: Mon–Thu 9:00–16:00 · Fri 9:00–13:00 · Sat–Sun & holidays closed": "Heures d’ouverture : lun.–jeu. 9:00–16:00 · ven. 9:00–13:00 · sam.–dim. et jours fériés fermé",
     "This connection is encrypted (HTTPS). Look for the padlock in your browser before submitting personal information.": "Cette connexion est chiffrée (HTTPS). Repérez le cadenas dans votre navigateur avant de transmettre des informations personnelles.",
     "Published by the Embassy of the DR Congo in Washington, D.C. Official correspondence uses the": "Publié par l’Ambassade de la RD Congo à Washington, D.C. La correspondance officielle utilise le domaine",
@@ -1834,7 +1912,7 @@
     "Submit a consular request online and the Consular Section will follow up by email. Applications are received in person, Monday to Friday, 10:00–13:00, or by mail.": "Soumettez une demande consulaire en ligne et la Section consulaire vous répondra par courriel. Les demandes sont reçues en personne, du lundi au vendredi de 10h00 à 13h00, ou par courrier.",
     "View services": "Voir les services",
     "Emergency consular assistance": "Assistance consulaire d’urgence",
-    "For DR Congolese citizens facing an emergency abroad, available 24/7.": "Pour les citoyens congolais confrontés à une urgence à l’étranger, disponible 24h/24 et 7j/7.",
+    "Call the Embassy for urgent guidance. If there is immediate danger in the United States, call 911 first.": "Appelez l’Ambassade pour une aide urgente. En cas de danger immédiat aux États-Unis, appelez d’abord le 911.",
     "Call +1 (202) 234-7690": "Appeler le +1 (202) 234-7690",
 
     // -- Helpful information --
@@ -1865,7 +1943,7 @@
     "Consular Affairs": "Affaires consulaires",
     "Economic & Trade": "Économie & commerce",
     "Press & Communication": "Presse & communication",
-    "Emergency (24/7)": "Urgence (24/7)",
+    "Embassy telephone": "Téléphone de l’Ambassade",
     "Main line": "Ligne principale",
 
     // -- Footer --
@@ -1876,7 +1954,7 @@
     "Stay informed": "Restez informé",
     "Subscribe for embassy news and announcements.": "Abonnez-vous aux actualités et annonces de l’Ambassade.",
     "Subscribe": "S’abonner",
-    "An official website of the Embassy of the Democratic Republic of the Congo · Washington, D.C. · Official languages: Français & English": "Un site officiel de l’Ambassade de la République démocratique du Congo · Washington, D.C. · Langues officielles : Français & Anglais",
+    "Preview site for the Embassy of the Democratic Republic of the Congo · Washington, D.C.": "Site d’aperçu de l’Ambassade de la République démocratique du Congo · Washington, D.C.",
     "© 2026 Embassy of the Democratic Republic of the Congo, Washington, D.C.": "© 2026 Ambassade de la République démocratique du Congo, Washington, D.C.",
     "Terms & Conditions": "Conditions générales",
     "Cookie Policy": "Politique des cookies",
@@ -2155,7 +2233,7 @@
     "Yellow fever vaccination certificate": "Certificat de vaccination contre la fièvre jaune",
     "Yes. Mail-in applications are accepted for most services. Include your completed form, all required documents, the applicable fee by money order, and a prepaid, self-addressed return envelope with tracking. We recommend using a trackable courier service for your records.": "Oui. Les demandes par courrier sont acceptées pour la plupart des services. Joignez votre formulaire rempli, tous les documents requis, les frais applicables par mandat (money order) et une enveloppe de retour prépayée, libellée à votre adresse et avec suivi. Nous vous recommandons d’utiliser un service de messagerie avec suivi pour vos archives.",
     "Your completed application form and any reference number": "Votre formulaire de demande rempli et tout numéro de référence",
-    "24/7 emergency consular line:": "Ligne consulaire d’urgence 24h/24 et 7j/7 :",
+    "Embassy telephone:": "Téléphone de l’Ambassade :",
     "Address": "Adresse",
     "Answers to the most common questions received by the Embassy of the DRC in Washington, D.C.": "Réponses aux questions les plus fréquemment reçues par l’Ambassade de la RDC à Washington, D.C.",
     "Before you contact us": "Avant de nous contacter",
@@ -2279,7 +2357,7 @@
     "A modern mission": "Une mission moderne",
     "Serving citizens the modern way": "Servir les citoyens autrement",
     "The Embassy is bringing its services online so you spend less time waiting and more time living. Some are available today; others are rolling out as part of our digital modernization.": "L’Ambassade met ses services en ligne pour que vous passiez moins de temps à attendre et plus de temps à vivre. Certains sont déjà disponibles ; d’autres arrivent progressivement dans le cadre de notre modernisation numérique.",
-    "24/7 AI assistant": "Assistant IA 24h/24",
+    "Digital service preview": "Aperçu des services numériques",
     "Reach the Embassy at any hour. An AI assistant answers questions and books appointments by phone or chat, with no waiting on hold.": "Contactez l’Ambassade à toute heure. Un assistant IA répond à vos questions et prend vos rendez-vous par téléphone ou par messagerie, sans attente.",
     "Live wait times": "Temps d’attente en direct",
     "Live now": "En direct",
@@ -2488,7 +2566,7 @@
     "Ask about legal help": "Renseignez-vous sur l’aide juridique",
     "Always open": "Toujours ouvert",
     "An assistant that never sleeps": "Un assistant qui ne dort jamais",
-    "Phone lines get busy and offices close. A 24/7 AI assistant answers common questions, checks requirements, and books appointments by name, then hands the request to a consular officer.": "Les lignes téléphoniques sont occupées et les bureaux ferment. Un assistant IA disponible 24h/24 répond aux questions courantes, vérifie les conditions et prend les rendez-vous au nom du demandeur, puis transmet la demande à un agent consulaire.",
+    "Use verified service pages and contact pathways for guidance. Online assistant functions remain disabled until formal approval.": "Utilisez les pages de service vérifiées et les moyens de contact publiés. Les fonctions d’assistance en ligne restent désactivées jusqu’à leur approbation officielle.",
     "Answers, any time": "Des réponses, à tout moment",
     "Requirements, fees, hours and status, day or night.": "Conditions, frais, horaires et statut, jour et nuit.",
     "Books for you": "Réserve pour vous",
@@ -3288,7 +3366,8 @@
   function start() {
     var spots = targets();
     if (!spots.length) return;
-    fetch("/hero-photos", { headers: { Accept: "application/json" } })
+    if (!window.EMBASSY_API) return;
+    fetch(window.EMBASSY_API + "/hero-photos", { headers: { Accept: "application/json" } })
       .then(function (r) { return r.ok ? r.json() : []; })
       .then(function (photos) {
         if (!Array.isArray(photos) || !photos.length) return; // keep existing bg
