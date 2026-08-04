@@ -1058,3 +1058,167 @@ body.vs-design-mode [data-vs-selected="true"] { outline: 1px dashed rgba(40, 184
   .vs-inspector { box-shadow: -30px 0 90px rgba(0, 0, 0, .55); }
   body.vs-inspector-open .vs-launcher { inset-inline-end: 14px; inset-block-end: 14px; }
 }
+
+/* --------------------------------------------------------------------------
+   Diplomatic accent layer · quieter depth, legible iconography, clear action.
+   The short tricolour markers create identity without adding decorative noise.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --vs-card-border: rgba(6, 40, 77, .13);
+  --vs-card-shadow: 0 12px 34px rgba(3, 26, 51, .075), 0 2px 6px rgba(3, 26, 51, .045);
+  --vs-card-shadow-active: 0 18px 44px rgba(3, 26, 51, .12), 0 3px 8px rgba(3, 26, 51, .06);
+}
+
+main .section :is(.card, .widget, .tile, .ncard, .journey-card, .sector-card, .acc-item) {
+  border-color: var(--vs-card-border);
+  box-shadow: var(--vs-card-shadow);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+main .section .grid.cards > .service-directory-card {
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, .98), rgba(250, 248, 241, .64));
+}
+
+main .section .grid.cards > .service-directory-card::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0 auto auto 24px;
+  inline-size: 46px;
+  block-size: 3px;
+  border-radius: 0 0 999px 999px;
+  background: var(--card-accent, var(--vs-blue-600));
+  box-shadow: 16px 0 0 var(--vs-gold-500), 30px 0 0 var(--vs-red-600);
+  pointer-events: none;
+}
+
+main .section .grid.cards > .service-directory-card:nth-child(3n + 2) { --card-accent: var(--vs-gold-500); }
+main .section .grid.cards > .service-directory-card:nth-child(3n + 3) { --card-accent: var(--vs-red-600); }
+
+main .section :is(.card, .widget, .tile, .ncard, .journey-card, .sector-card, .acc-item):focus-within {
+  border-color: rgba(244, 210, 31, .66);
+  box-shadow: var(--vs-focus), var(--vs-card-shadow-active);
+}
+
+.service-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-block-end: 19px;
+}
+
+.service-card-icon,
+main .section .tile .ic,
+main .section .qbadge {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  inline-size: 46px;
+  block-size: 46px;
+  color: var(--vs-gold-300);
+  background: linear-gradient(145deg, var(--vs-navy-800), var(--vs-navy-950));
+  border: 1px solid rgba(255, 229, 108, .28);
+  border-radius: 13px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .12), 0 10px 22px rgba(3, 26, 51, .15);
+}
+
+.service-card-icon svg,
+main .section .tile .ic svg,
+main .section .qbadge svg {
+  inline-size: 22px;
+  block-size: 22px;
+  color: inherit;
+  opacity: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+main .qa-band .qtile-ic {
+  inline-size: 36px;
+  block-size: 36px;
+  color: var(--vs-gold-300);
+  background: rgba(255, 255, 255, .075);
+  border: 1px solid rgba(255, 229, 108, .34);
+  border-radius: 11px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .1);
+}
+
+main .qa-band .qtile-ic svg {
+  inline-size: 18px;
+  block-size: 18px;
+  opacity: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+main .widget .w-head > svg {
+  box-sizing: border-box;
+  inline-size: 34px;
+  block-size: 34px;
+  padding: 8px;
+  color: var(--vs-gold-300);
+  background: rgba(6, 40, 77, .94);
+  border: 1px solid rgba(255, 229, 108, .3);
+  border-radius: 10px;
+  box-shadow: 0 7px 17px rgba(3, 26, 51, .13);
+}
+
+.icon-btn {
+  inline-size: 42px;
+  block-size: 42px;
+  color: var(--vs-navy-900);
+  background: linear-gradient(145deg, #fff, #f8f5e9);
+  border-color: rgba(6, 40, 77, .18);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(3, 26, 51, .09);
+}
+
+.icon-btn svg {
+  inline-size: 19px;
+  block-size: 19px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  main .section :is(.card:has(a, .btn, button), .tile, .ncard:has(a, .btn, button), .journey-card:has(a, .btn, button), .sector-card:has(a, .btn, button), .acc-item):hover {
+    border-color: rgba(8, 127, 199, .24);
+    box-shadow: var(--vs-card-shadow-active);
+    transform: translateY(-2px);
+  }
+
+  main .qa-band .qtile:hover .qtile-ic,
+  main .qa-band .qtile.active .qtile-ic {
+    color: var(--vs-navy-950);
+    background: linear-gradient(145deg, var(--vs-gold-300), var(--vs-gold-500));
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(244, 210, 31, .2);
+    transform: none;
+  }
+
+  .icon-btn:hover {
+    color: var(--vs-navy-950);
+    background: linear-gradient(145deg, var(--vs-gold-300), var(--vs-gold-500));
+    border-color: rgba(6, 40, 77, .18);
+    box-shadow: 0 9px 22px rgba(3, 26, 51, .14);
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 560px) {
+  main .section .grid.cards > .service-directory-card::before { inset-inline-start: 18px; }
+  .service-card-head { margin-block-end: 16px; }
+  .service-card-icon,
+  main .section .tile .ic,
+  main .section .qbadge { inline-size: 42px; block-size: 42px; border-radius: 12px; }
+  main .qa-band .qtile-ic { inline-size: 34px; block-size: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main .section :is(.card, .widget, .tile, .ncard, .journey-card, .sector-card, .acc-item),
+  .icon-btn { transform: none !important; }
+}
