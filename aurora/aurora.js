@@ -1350,19 +1350,43 @@
   const box = document.createElement("div");
   box.className = "lbox";
   box.innerHTML = '<button class="lb-x" type="button" aria-label="Close">&times;</button><img alt=""><div class="lb-cap"></div>';
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-hidden", "true");
   document.body.appendChild(box);
   const img = box.querySelector("img"), cap = box.querySelector(".lb-cap");
-  const close = () => box.classList.remove("open");
+  let lastTrigger = null;
+  const close = () => {
+    box.classList.remove("open");
+    box.setAttribute("aria-hidden", "true");
+    if (lastTrigger) lastTrigger.focus();
+  };
+  const open = (it) => {
+    lastTrigger = it;
+    img.src = it.getAttribute("data-zoom");
+    img.alt = it.getAttribute("data-cap") || "Embassy gallery photograph";
+    cap.textContent = it.getAttribute("data-cap") || "";
+    box.classList.add("open");
+    box.setAttribute("aria-hidden", "false");
+    box.querySelector(".lb-x").focus();
+  };
   box.addEventListener("click", (e) => { if (e.target === box || e.target.classList.contains("lb-x")) close(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
-  items.forEach((it) =>
+  items.forEach((it) => {
+    it.setAttribute("tabindex", "0");
+    it.setAttribute("role", "button");
+    it.setAttribute("aria-label", "View larger photo: " + (it.getAttribute("data-cap") || "Embassy gallery"));
     it.addEventListener("click", (e) => {
       e.preventDefault();
-      img.src = it.getAttribute("data-zoom");
-      cap.textContent = it.getAttribute("data-cap") || "";
-      box.classList.add("open");
-    }),
-  );
+      open(it);
+    });
+    it.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        open(it);
+      }
+    });
+  });
 })();
 
 /* ---- Resources menu: custom pages built in the admin ------------------ */
