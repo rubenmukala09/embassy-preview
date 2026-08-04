@@ -26,6 +26,25 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1785618722" />
 <link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785831000" />
+<style>
+main .section.bg-cream.presidential-section{
+  background:
+    linear-gradient(90deg,rgba(2,15,34,.72) 0%,rgba(2,21,47,.58) 46%,rgba(1,13,31,.68) 100%),
+    url('/embassy-preview/aurora/assets/img/generated/presidential-drc-flag-silk-2026.webp') center/cover no-repeat!important;
+}
+main .section.bg-cream.presidential-section::before{content:none!important;display:none!important}
+main .presidential-section .hos{
+  border-color:rgba(255,224,106,.3)!important;
+  background:linear-gradient(135deg,rgba(5,36,72,.72),rgba(9,42,78,.54))!important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.12);
+  backdrop-filter:blur(18px) saturate(1.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 36px 76px -48px rgba(0,0,0,.94)!important;
+}
+@media(max-width:760px){
+  main .section.bg-cream.presidential-section{background-position:44% center!important}
+  main .presidential-section .hos{background:linear-gradient(145deg,rgba(4,30,62,.84),rgba(7,38,72,.72))!important}
+}
+</style>
 
 <script type="application/ld+json">
 {"<?php $__contextArgs = [];\nif (context()->has($__contextArgs[0])) :\nif (isset($value)) { $__contextPrevious[] = $value; }\n$value = context()->get($__contextArgs[0]); ?>":"https://schema.org","@type":"GovernmentOrganization","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","alternateName":"Embassy of the DR Congo","url":"http://127.0.0.1:8050","logo":"http://127.0.0.1:8050/aurora/assets/img/embassy-seal.png","image":"http://127.0.0.1:8050/aurora/assets/img/hero/ambassador-podium-flags-2026.webp","email":"ambassade@ambardcusa.org","telephone":"+1 (202) 234-7690","address":{"@type":"PostalAddress","streetAddress":"1100 Connecticut Avenue NW, Suite 725","addressLocality":"Washington","addressRegion":"DC","postalCode":"20036","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"parentOrganization":"Government of the Democratic Republic of the Congo"}
