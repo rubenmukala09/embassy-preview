@@ -123,7 +123,7 @@
   /* ---- 2c. Scroll-spy: light the docked-nav item for the section in view --- */
   (function () {
     const tiles = $$(".qa-band .qtile");
-    if (!tiles.length || !("IntersectionObserver" in window)) return;
+    if (!tiles.length) return;
     const pairs = [];
     tiles.forEach((tile) => {
       const href = tile.getAttribute("href") || "";
@@ -132,18 +132,41 @@
       if (sec) pairs.push({ tile, sec });
     });
     if (!pairs.length) return;                     // this page's shortcuts aren't on-page sections
-    const light = (tile) => tiles.forEach((t) => t.classList.toggle("active", t === tile));
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          const p = pairs.find((x) => x.sec === e.target);
-          if (p) light(p.tile);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" },         // "active" once the section reaches mid-screen
-    );
-    pairs.forEach((p) => io.observe(p.sec));
+    const light = (tile) => tiles.forEach((t) => {
+      const active = t === tile;
+      t.classList.toggle("active", active);
+      if (active) t.setAttribute("aria-current", "location");
+      else t.removeAttribute("aria-current");
+    });
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const guide = Math.min(window.innerHeight * .46, 430);
+      let current = null;
+
+      // Select the last service whose start has crossed the reading guide.
+      // Unlike the previous narrow observer band, this cannot skip a section.
+      pairs.forEach((pair) => {
+        if (pair.sec.getBoundingClientRect().top <= guide) current = pair;
+      });
+
+      // Before the first service reaches the guide, preview it only when visible.
+      if (!current) {
+        current = pairs.find((pair) => pair.sec.getBoundingClientRect().top < window.innerHeight * .82) || null;
+      }
+      light(current ? current.tile : null);
+    };
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+
+    pairs.forEach((pair) => pair.tile.addEventListener("click", () => light(pair.tile)));
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate, { passive: true });
+    window.addEventListener("hashchange", requestUpdate);
+    update();
   })();
 
   /* ---- 2d. Slim scroll-progress line at the top of the page --------------- */

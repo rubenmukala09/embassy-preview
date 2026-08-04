@@ -4473,3 +4473,59 @@ main .kinshasa-stage .experience-rail small{font-size:6.5px}
   main .kinshasa-story{left:18px;bottom:142px;width:calc(100% - 36px);padding:19px}
   main .kinshasa-stage .experience-rail{left:10px;right:10px;bottom:10px}
 }
+
+/* ==========================================================================
+   EMBASSY PRESIDENTIAL FIELD + RELIABLE CONSULAR LOCATION INDICATOR
+   ========================================================================== */
+
+/* Static DRC flag vector, entering from the right and dissolving to the left. */
+main .section.bg-cream.presidential-section::before{
+  left:auto;
+  right:-72px;
+  top:50%;
+  width:min(700px,55vw);
+  height:360px;
+  aspect-ratio:auto;
+  opacity:.16;
+  clip-path:polygon(7% 9%,26% 4%,47% 10%,68% 4%,100% 10%,96% 88%,77% 83%,57% 90%,35% 84%,4% 91%);
+  transform:translateY(-50%) rotate(-3deg)!important;
+  background:
+    linear-gradient(145deg,#007fff 0 39%,#f7d618 39% 45%,#ce1021 45% 64%,#f7d618 64% 70%,#007fff 70% 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 28%,#000 74%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 28%,#000 74%);
+  filter:drop-shadow(-18px 24px 48px rgba(0,0,0,.22));
+  animation:none!important;
+}
+main .presidential-section .hos::before{content:none;display:none}
+
+/* The active shortcut remains unmistakable, including Application Status. */
+main .qa-band .qtile.active,
+main .qa-band .qtile[aria-current="location"]{
+  background:linear-gradient(180deg,rgba(255,210,77,.17),rgba(255,195,0,.045));
+  box-shadow:inset 0 -2px 0 rgba(255,210,77,.2);
+}
+main .qa-band .qtile.active .qtile-t,
+main .qa-band .qtile[aria-current="location"] .qtile-t{color:#fff0b8}
+main .qa-band .qtile.active::after,
+main .qa-band .qtile[aria-current="location"]::after{
+  content:"";
+  display:block;
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:0;
+  width:32px;
+  height:4px;
+  border-radius:0 0 5px 5px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,#b8892f,#ffd94f 46%,#fff0b8);
+  box-shadow:0 2px 12px rgba(255,210,77,.88);
+}
+
+@media(max-width:760px){
+  main .section.bg-cream.presidential-section::before{right:-155px;width:520px;height:300px;opacity:.12}
+}
+@media(prefers-reduced-motion:reduce){
+  main .qa-band .qtile.active::after,
+  main .qa-band .qtile[aria-current="location"]::after{animation:none!important}
+}
