@@ -40,9 +40,28 @@ main .presidential-section .hos{
   backdrop-filter:blur(18px) saturate(1.12);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 36px 76px -48px rgba(0,0,0,.94)!important;
 }
+main .bilateral-stage .unity-emblem{
+  display:grid;
+  place-items:center;
+  width:min(248px,100%);
+  padding:12px;
+  border:1px solid rgba(255,226,122,.22);
+  border-radius:18px;
+  background:radial-gradient(circle,rgba(255,255,255,.1),rgba(4,24,52,.18) 68%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 42px -32px rgba(0,0,0,.9);
+}
+main .bilateral-stage .unity-emblem img{
+  display:block;
+  width:min(210px,100%);
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 14px 18px rgba(0,0,0,.38));
+}
 @media(max-width:760px){
   main .section.bg-cream.presidential-section{background-position:44% center!important}
   main .presidential-section .hos{background:linear-gradient(145deg,rgba(4,30,62,.84),rgba(7,38,72,.72))!important}
+  main .bilateral-stage .unity-emblem{width:min(220px,72vw)}
+  main .bilateral-stage .unity-emblem img{width:min(185px,100%)}
 }
 </style>
 
@@ -280,11 +299,8 @@ main .presidential-section .hos{
     </div>
     <div class="bilateral-stage">
       <span class="stage-kicker">Bilateral partnership · Since 1960</span>
-      <div class="unity-statement">
-        <span>Diplomatic promise</span>
-        <strong>Two nations.<br />One shared future.</strong>
-        <p>Peace, people and opportunity—advanced together.</p>
-        <div aria-label="Partnership priorities"><i>Peace</i><i>People</i><i>Progress</i></div>
+      <div class="unity-emblem">
+        <img width="720" height="760" loading="lazy" src="/embassy-preview/aurora/assets/img/generated/us-great-seal-diplomatic-2026.webp" alt="Great Seal of the United States" />
       </div>
       <span class="capital-link" aria-label="Kinshasa and Washington diplomatic connection"><i></i>Kinshasa <b>↔</b> Washington</span>
       <a class="quote-cta" href="#partnership-history">Explore six decades <span aria-hidden="true">→</span></a>
