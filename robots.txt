@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Preview build: indexing will be enabled only after Embassy approval,
+# content verification, and migration to the official production domain.

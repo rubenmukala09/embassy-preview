@@ -13,6 +13,43 @@
     return t.content.firstChild;
   };
 
+  const syncPageActivity = () => document.documentElement.classList.toggle("page-hidden", document.hidden);
+  document.addEventListener("visibilitychange", syncPageActivity);
+  syncPageActivity();
+
+  /* Keep operational notices readable. A single notice is static; multiple
+     notices move only when an explicit pause control is present. */
+  function configureAnnouncementTicker(scroller) {
+    scroller = scroller || $(".announce .scrolling");
+    if (!scroller) return;
+    const announce = scroller.closest(".announce");
+    const ticker = scroller.closest(".ticker");
+    if (!announce || !ticker) return;
+    const readableLinks = $$("a:not([aria-hidden='true'])", scroller);
+    const active = readableLinks.length > 1;
+    announce.classList.toggle("is-ticker-active", active);
+    if (!active) {
+      announce.classList.remove("ticker-paused");
+      const oldControl = $(".ticker-toggle", announce);
+      if (oldControl) oldControl.remove();
+      if (readableLinks[0]) readableLinks[0].title = readableLinks[0].textContent.trim();
+      return;
+    }
+    let control = $(".ticker-toggle", announce);
+    if (!control) {
+      control = el('<button class="ticker-toggle" type="button" aria-pressed="false" aria-label="Pause embassy notices" title="Pause embassy notices"><span aria-hidden="true">Ⅱ</span></button>');
+      ticker.insertAdjacentElement("afterend", control);
+      control.addEventListener("click", () => {
+        const paused = announce.classList.toggle("ticker-paused");
+        control.setAttribute("aria-pressed", String(paused));
+        control.setAttribute("aria-label", paused ? "Play embassy notices" : "Pause embassy notices");
+        control.title = paused ? "Play embassy notices" : "Pause embassy notices";
+        control.querySelector("span").textContent = paused ? "▶" : "Ⅱ";
+      });
+    }
+  }
+  window.configureAnnouncementTicker = configureAnnouncementTicker;
+
   /* ---- 1. Primary-nav dropdowns (injected from config) ----------------- */
   const SUBNAV = {
     "the-embassy.html": {
@@ -198,14 +235,21 @@
   (function () {
     const bar = el('<div class="scroll-prog" aria-hidden="true"></div>');
     document.body.appendChild(bar);
+    let frame = 0;
     const update = () => {
+      frame = 0;
       const h = document.documentElement.scrollHeight - window.innerHeight;
       bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ")";
     };
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update, { passive: true });
+    const requestUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate, { passive: true });
     update();
   })();
+
+  configureAnnouncementTicker();
 
   /* ---- 3. Smooth in-page scrolling ------------------------------------- */
   $$('a[href*="#"]').forEach((a) => {
@@ -309,14 +353,20 @@
       if (f.hasAttribute("data-optional")) return; // optional fields never block
       const errorId = (f.id || f.name || "field") + "-error";
       const existing = scope.querySelector("#" + CSS.escape(errorId));
-      if (!f.value.trim()) {
+      const value = String(f.value || "").trim();
+      const missing = !value;
+      const typeInvalid = !missing && typeof f.checkValidity === "function" && !f.checkValidity();
+      if (missing || typeInvalid) {
         f.style.borderColor = "var(--bad)";
         f.setAttribute("aria-invalid", "true");
-        f.setAttribute("aria-describedby", errorId);
+        const describedBy = (f.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+        if (!describedBy.includes(errorId)) describedBy.push(errorId);
+        f.setAttribute("aria-describedby", describedBy.join(" "));
+        const message = missing ? "Please complete this field." : (f.validationMessage || "Please enter a valid value.");
         if (!existing) {
-          const error = el('<span class="field-error" id="' + errorId + '">Please complete this field.</span>');
+          const error = el('<span class="field-error" id="' + errorId + '">' + message + '</span>');
           f.insertAdjacentElement("afterend", error);
-        }
+        } else existing.textContent = message;
         if (!firstInvalid) firstInvalid = f;
         ok = false;
         f.addEventListener(
@@ -324,7 +374,9 @@
           () => {
             f.style.borderColor = "";
             f.removeAttribute("aria-invalid");
-            f.removeAttribute("aria-describedby");
+            const remaining = (f.getAttribute("aria-describedby") || "").split(/\s+/).filter((id) => id && id !== errorId);
+            if (remaining.length) f.setAttribute("aria-describedby", remaining.join(" "));
+            else f.removeAttribute("aria-describedby");
             scope.querySelector("#" + CSS.escape(errorId))?.remove();
           },
           { once: true },
@@ -332,7 +384,9 @@
       } else if (existing) {
         existing.remove();
         f.removeAttribute("aria-invalid");
-        f.removeAttribute("aria-describedby");
+        const remaining = (f.getAttribute("aria-describedby") || "").split(/\s+/).filter((id) => id && id !== errorId);
+        if (remaining.length) f.setAttribute("aria-describedby", remaining.join(" "));
+        else f.removeAttribute("aria-describedby");
       }
     });
     if (firstInvalid) firstInvalid.focus();
@@ -706,13 +760,25 @@
 
   /* ---- 14. Hero slideshow (Ken Burns crossfade) ----------------------- */
   const slides = $$(".hero-slide");
-  if (slides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (slides.length > 1) {
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let si = 0;
-    setInterval(() => {
+    let slideTimer = 0;
+    const advanceSlide = () => {
       slides[si].classList.remove("active");
       si = (si + 1) % slides.length;
       slides[si].classList.add("active");
-    }, 9000);
+    };
+    const syncSlideshow = () => {
+      clearInterval(slideTimer);
+      slideTimer = 0;
+      if (!motionPreference.matches && !document.hidden) {
+        slideTimer = setInterval(advanceSlide, 9000);
+      }
+    };
+    document.addEventListener("visibilitychange", syncSlideshow);
+    if (motionPreference.addEventListener) motionPreference.addEventListener("change", syncSlideshow);
+    syncSlideshow();
   }
 
 
@@ -731,7 +797,15 @@
         } catch (e) {}
       });
     tickClocks();
-    setInterval(tickClocks, 20000);
+    let clockTimer = setInterval(tickClocks, 60000);
+    document.addEventListener("visibilitychange", () => {
+      clearInterval(clockTimer);
+      clockTimer = 0;
+      if (!document.hidden) {
+        tickClocks();
+        clockTimer = setInterval(tickClocks, 60000);
+      }
+    });
   }
   const statusDot = $("#embassyStatus");
   if (statusDot) {
@@ -892,7 +966,7 @@
       return w ? e.replace(new RegExp("(" + w + ")", "ig"), "<mark>$1</mark>") : e;
     };
     const ov = el(
-      '<div class="search-overlay" role="dialog" aria-modal="true" aria-label="Search the embassy"><div class="search-panel">' +
+      '<div class="search-overlay" role="dialog" aria-modal="true" aria-label="Search the embassy" hidden><div class="search-panel">' +
         '<div class="search-box">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
           '<input type="search" placeholder="Search the embassy: passports, visas, hours…" aria-label="Search" autocomplete="off"/>' +
@@ -923,8 +997,8 @@
       const destination = (u) => /^(https?:|tel:|mailto:|\/)/i.test(u) ? u : "/embassy-preview/" + u;
       results.innerHTML = current.map((it) => '<a class="sr-item" href="' + destination(it.u) + '"><span class="sr-t">' + hl(T(it), q) + '</span><span class="sr-d">' + esc(D(it)) + "</span></a>").join("");
     };
-    const openS = () => { input.placeholder = STR().ph; ov.classList.add("open"); document.body.classList.add("menu-open"); render(""); setTimeout(() => input.focus(), 60); };
-    const closeS = () => { ov.classList.remove("open"); document.body.classList.remove("menu-open"); searchToggle.focus(); };
+    const openS = () => { input.placeholder = STR().ph; ov.hidden = false; ov.classList.add("open"); document.body.classList.add("menu-open"); render(""); setTimeout(() => input.focus(), 60); };
+    const closeS = () => { ov.classList.remove("open"); document.body.classList.remove("menu-open"); setTimeout(() => { ov.hidden = true; }, 200); searchToggle.focus(); };
     searchToggle.addEventListener("click", openS);
     ov.addEventListener("click", (e) => { if (e.target === ov) closeS(); });
     ov.querySelector(".sb-close").addEventListener("click", closeS);
@@ -1298,6 +1372,8 @@
   const btn = document.querySelector(".gov-how");
   const panel = document.querySelector(".gov-panel");
   if (!btn || !panel) return;
+  panel.id = panel.id || "official-preview-details";
+  btn.setAttribute("aria-controls", panel.id);
   btn.addEventListener("click", () => {
     const open = btn.getAttribute("aria-expanded") === "true";
     btn.setAttribute("aria-expanded", String(!open));
@@ -1382,8 +1458,9 @@
     if (!scroller) return;
     const tick = items.filter((i) => ["ticker", "notice", "news"].indexOf(i.type) !== -1);
     if (!tick.length) return;
-    const set = () => tick.map((i) => '<a href="' + safeLink(i.link) + '">' + esc(i.title) + " &middot;</a>").join("");
-    scroller.innerHTML = set() + set(); // duplicate for a seamless loop
+    const set = (duplicate) => tick.map((i) => '<a href="' + safeLink(i.link) + '"' + (duplicate ? ' aria-hidden="true" tabindex="-1"' : "") + '>' + esc(i.title) + " &middot;</a>").join("");
+    scroller.innerHTML = set(false) + set(true); // duplicate visually for a seamless loop
+    window.configureAnnouncementTicker?.(scroller);
   }
 
   function popups(items) {
@@ -1500,12 +1577,15 @@
   box.setAttribute("role", "dialog");
   box.setAttribute("aria-modal", "true");
   box.setAttribute("aria-hidden", "true");
+  box.hidden = true;
   document.body.appendChild(box);
   const img = box.querySelector("img"), cap = box.querySelector(".lb-cap");
   let lastTrigger = null;
   const close = () => {
     box.classList.remove("open");
     box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("menu-open");
+    box.hidden = true;
     if (lastTrigger) lastTrigger.focus();
   };
   const open = (it) => {
@@ -1513,12 +1593,18 @@
     img.src = it.getAttribute("data-zoom");
     img.alt = it.getAttribute("data-cap") || "Embassy gallery photograph";
     cap.textContent = it.getAttribute("data-cap") || "";
+    box.hidden = false;
     box.classList.add("open");
     box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("menu-open");
     box.querySelector(".lb-x").focus();
   };
   box.addEventListener("click", (e) => { if (e.target === box || e.target.classList.contains("lb-x")) close(); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  document.addEventListener("keydown", (e) => {
+    if (box.hidden) return;
+    if (e.key === "Escape") close();
+    if (e.key === "Tab") { e.preventDefault(); box.querySelector(".lb-x").focus(); }
+  });
   items.forEach((it) => {
     const nativeControl = it.matches("button,a[href]");
     if (!nativeControl) {
@@ -3314,7 +3400,7 @@
    reached (e.g. fully static hosting). ------------------------------------- */
 (function () {
   "use strict";
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var motionPreference = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
 
   function shuffle(a) {
     for (var i = a.length - 1; i > 0; i--) {
@@ -3353,14 +3439,25 @@
       if (s && !s.on) { s.el.style.backgroundImage = "url('" + s.src + "')"; s.on = true; }
     };
     load(0); load(1);                       // current + next only (lazy)
-    if (slides.length < 2 || reduce) return;
+    if (slides.length < 2) return;
     var si = 0;
-    setInterval(function () {
+    var timer = 0;
+    var advance = function () {
       slides[si].el.classList.remove("active");
       si = (si + 1) % slides.length;
       load(si); load(si + 1);
       slides[si].el.classList.add("active");
-    }, ms);
+    };
+    var sync = function () {
+      clearInterval(timer);
+      timer = 0;
+      if (!document.hidden && !(motionPreference && motionPreference.matches)) {
+        timer = setInterval(advance, Math.max(ms, 9000));
+      }
+    };
+    document.addEventListener("visibilitychange", sync);
+    if (motionPreference && motionPreference.addEventListener) motionPreference.addEventListener("change", sync);
+    sync();
   }
 
   function start() {
@@ -3453,14 +3550,22 @@
   if (reduce) return;
 
   /* Pointer-reactive glow on interactive cards (mouse/pen only) */
+  var glowFrame = 0;
+  var glowEvent = null;
   document.addEventListener("pointermove", function (e) {
     if (e.pointerType === "touch") return;
-    var card = e.target.closest && e.target.closest(".card-hover");
-    if (!card) return;
-    var r = card.getBoundingClientRect();
-    card.style.setProperty("--mx", (e.clientX - r.left) + "px");
-    card.style.setProperty("--my", (e.clientY - r.top) + "px");
-    if (!card.classList.contains("is-lit")) card.classList.add("is-lit");
+    glowEvent = e;
+    if (glowFrame) return;
+    glowFrame = requestAnimationFrame(function () {
+      glowFrame = 0;
+      var event = glowEvent;
+      var card = event && event.target.closest && event.target.closest(".card-hover");
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", (event.clientX - r.left) + "px");
+      card.style.setProperty("--my", (event.clientY - r.top) + "px");
+      if (!card.classList.contains("is-lit")) card.classList.add("is-lit");
+    });
   }, { passive: true });
   document.addEventListener("pointerout", function (e) {
     var card = e.target.closest && e.target.closest(".card-hover");
@@ -3488,7 +3593,7 @@
 /* CRAFT pass: pause ambient loop animations while offscreen (perf) */
 (function () {
   if (!("IntersectionObserver" in window)) return;
-  var loops = document.querySelectorAll(".rule, .sec-head .eyebrow, .seal-bg");
+  var loops = document.querySelectorAll(".announce, .hero, .amb-hero, .kinshasa-stage, .rule, .sec-head .eyebrow, .seal-bg");
   if (!loops.length) return;
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
@@ -3535,13 +3640,21 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!stage || reduce) return;
 
+  var parallaxFrame = 0;
+  var parallaxEvent = null;
   stage.addEventListener("pointermove", function (event) {
     if (event.pointerType === "touch") return;
-    var bounds = stage.getBoundingClientRect();
-    var x = ((event.clientX - bounds.left) / bounds.width - .5) * -16;
-    var y = ((event.clientY - bounds.top) / bounds.height - .5) * -10;
-    stage.style.setProperty("--kin-x", x.toFixed(2) + "px");
-    stage.style.setProperty("--kin-y", y.toFixed(2) + "px");
+    parallaxEvent = event;
+    if (parallaxFrame) return;
+    parallaxFrame = requestAnimationFrame(function () {
+      parallaxFrame = 0;
+      var current = parallaxEvent;
+      var bounds = stage.getBoundingClientRect();
+      var x = ((current.clientX - bounds.left) / bounds.width - .5) * -6;
+      var y = ((current.clientY - bounds.top) / bounds.height - .5) * -4;
+      stage.style.setProperty("--kin-x", x.toFixed(2) + "px");
+      stage.style.setProperty("--kin-y", y.toFixed(2) + "px");
+    });
   }, { passive: true });
 
   stage.addEventListener("pointerleave", function () {

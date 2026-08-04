@@ -70,6 +70,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+:where(p, li, dt, dd, label, legend, h1, h2, h3, h4, h5, h6, .crumbs, .meta, .hint) {
+  overflow-wrap: anywhere;
+}
+
+:where(button, [role="button"], input[type="checkbox"], input[type="radio"]) {
+  min-inline-size: 24px;
+  min-block-size: 24px;
+}
+
 :where(main, section, article, aside, header, footer, nav, form, fieldset, .container, .grid, .split, .row, .card) {
   min-inline-size: 0;
 }
@@ -297,6 +306,18 @@ body.menu-open {
 
 .mobile-menu[hidden] {
   display: none !important;
+}
+
+.search-overlay[hidden],
+.lbox[hidden] {
+  display: none !important;
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid CanvasText !important;
+    outline-offset: 3px !important;
+  }
 }
 
 /* A diplomatic interface should feel composed, not mechanically animated. */
