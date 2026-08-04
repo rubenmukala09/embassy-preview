@@ -2254,9 +2254,7 @@ main :is(
   .kinshasa-story,
   .experience-rail,
   .hotspot-card
-) :is(p,li,small,.lead,.muted,.sub,.note,.em-sub){
-  color:#c8d5e7!important;
-}
+) :is(p,li,small,.lead,.muted,.sub,.note,.em-sub){color:#c8d5e7!important}
 
 main :is(
   .dark-surface,
@@ -2282,9 +2280,7 @@ main :is(
   .hotspot-card
 ) a:not(.btn):not(.em-act){color:#fff!important}
 
-main :is(.dark-surface,.cta-premium,.below-cta,.info-card,.booking-aside,.contact-grid .info,.quote-band) a:not(.btn):not(.em-act):hover{
-  color:#ffe680!important;
-}
+main :is(.dark-surface,.cta-premium,.below-cta,.info-card,.booking-aside,.contact-grid .info,.quote-band) a:not(.btn):not(.em-act):hover{color:#ffe680!important}
 main :is(.dark-surface,.booking-aside,.contact-grid .info) :is(label,.field label){color:#edf4fc!important}
 main :is(.dark-surface,.booking-aside) :is(input,select,textarea,option){color:#102945!important}
 main :is(.dark-surface,.booking-aside) :is(input,textarea)::placeholder{color:#71839a!important}
@@ -3467,3 +3463,129 @@ main .kinshasa-hotspot:focus-visible{outline:2px solid #fff;outline-offset:5px}
   main .kinshasa-stage > img,main .hotspot-card{transition:none!important;transform:none!important}
   main .hotspot-pulse::after{animation:none!important}
 }
+
+/* ===========================================================================
+   Final dark-surface contract · sitewide readable text on navy widgets
+   This remains last in the cascade so later brand typography cannot leak in.
+   ========================================================================== */
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-timeline .tl-item:first-child,
+  .partnership-timeline .tl-item:last-child,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+){color:#fff}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-timeline .tl-item:first-child,
+  .partnership-timeline .tl-item:last-child,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+) :is(h1,h2,h3,h4,h5,h6){color:#fff!important}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-timeline .tl-item:first-child,
+  .partnership-timeline .tl-item:last-child,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+) :is(p,li,small,.lead,.muted,.sub,.note,.em-sub){color:#c8d5e7!important}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .kinshasa-story
+) .eyebrow{color:#ffe680!important}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .emergency,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .partnership-timeline .tl-item:first-child,
+  .partnership-timeline .tl-item:last-child,
+  .kinshasa-story,
+  .experience-rail,
+  .hotspot-card
+) a:not(.btn):not(.em-act){color:#fff!important}
+
+main :is(
+  .dark-surface,
+  .cta-premium,
+  .below-cta,
+  .info-card,
+  .booking-aside,
+  .contact-grid .info,
+  .quote-band,
+  .bilateral-quote,
+  .presidential-section,
+  .invest-sectors,
+  .kinshasa-story
+) a:not(.btn):not(.em-act):hover{color:#ffe680!important}
+
+main :is(.dark-surface,.booking-aside,.contact-grid .info) :is(label,.field label){color:#edf4fc!important}
+main :is(.dark-surface,.booking-aside) :is(input,select,textarea,option){color:#102945!important}
+main :is(.dark-surface,.booking-aside) :is(input,textarea)::placeholder{color:#71839a!important}
+
+/* Light controls intentionally retain dark lettering for their own contrast. */
+main :is(.dark-surface,.cta-premium,.below-cta,.info-card,.booking-aside,.emergency,.bilateral-quote,.presidential-section,.invest-sectors) :is(.btn-gold,.em-act),
+main .emergency .em-act :is(span,strong){color:#291f08!important}
+main :is(.dark-surface,.cta-premium,.below-cta,.booking-aside,.quote-band,.bilateral-quote,.presidential-section,.kinshasa-story) :is(.btn-ghost,.btn-outline){color:#fff!important}
+
+main .contact-grid .info .li span,
+main .info-card .hr span,
+main .booking-aside .bk-info :is(p,li),
+main .presidential-section .presidential-principles span,
+main .experience-rail :is(b,small),
+main .hotspot-card > span{color:#c8d5e7!important}
+main .contact-grid .info .li svg,
+main .info-card h4 svg{color:#ffe680}
