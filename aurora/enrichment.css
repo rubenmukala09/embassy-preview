@@ -5038,3 +5038,200 @@ main .drc-cta-actions .btn-ghost{color:#fff!important;border-color:rgba(255,255,
 @media(prefers-reduced-motion:reduce){
   main :is(.atlas-shot,.leader-photo img,.sector-card,.gorilla-shot img,.gorilla-shot::after){transition:none!important}
 }
+
+/* ========================================================================== 
+   DR Congo 2026 · glass editorial accents
+   ========================================================================== */
+main .drc-editorial-interlude{
+  position:relative;
+  overflow:hidden;
+  padding-block:104px 118px;
+  background:
+    radial-gradient(circle at 8% 18%,rgba(0,192,252,.12),transparent 28%),
+    radial-gradient(circle at 92% 72%,rgba(255,195,0,.13),transparent 25%),
+    linear-gradient(145deg,#06162d 0%,#092b50 58%,#071b35 100%);
+}
+main .drc-editorial-interlude::before,
+main .drc-editorial-interlude::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:50%;
+}
+main .drc-editorial-interlude::before{width:520px;height:520px;left:-290px;top:-310px;box-shadow:0 0 90px rgba(0,192,252,.08)}
+main .drc-editorial-interlude::after{width:360px;height:360px;right:-210px;bottom:-235px;box-shadow:0 0 90px rgba(255,195,0,.08)}
+main .drc-interlude-heading{position:relative;z-index:1;margin-bottom:38px}
+main .drc-interlude-heading h2,
+main .drc-interlude-heading>p{color:#fff}
+main .drc-interlude-heading>p{border-left-color:rgba(255,195,0,.7);color:rgba(239,245,252,.78)}
+main .drc-editorial-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(320px,.8fr);
+  gap:20px;
+}
+main .drc-editorial-card{
+  position:relative;
+  min-height:610px;
+  padding:0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:30px;
+  background:#091d36;
+  color:#fff;
+  text-align:left;
+  cursor:zoom-in;
+  isolation:isolate;
+  box-shadow:0 30px 80px rgba(0,8,24,.34),inset 0 1px rgba(255,255,255,.2);
+  transition:transform .42s cubic-bezier(.2,.8,.2,1),border-color .25s ease,box-shadow .42s ease;
+}
+main .drc-editorial-materials{min-height:540px;margin-top:70px}
+main .drc-editorial-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(180deg,transparent 34%,rgba(4,17,34,.18) 55%,rgba(4,17,34,.76) 100%);
+  pointer-events:none;
+}
+main .drc-editorial-card::after{
+  content:"";
+  position:absolute;
+  inset:15px;
+  z-index:3;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:20px;
+  pointer-events:none;
+}
+main .drc-editorial-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 1s cubic-bezier(.2,.8,.2,1),filter .45s ease;
+}
+main .drc-editorial-materials img{object-position:58% center}
+main .drc-editorial-glass{
+  position:absolute;
+  z-index:4;
+  left:34px;
+  right:34px;
+  bottom:34px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+  max-width:580px;
+  padding:22px 24px 20px;
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(7,29,57,.72),rgba(7,29,57,.38));
+  -webkit-backdrop-filter:blur(18px) saturate(130%);
+  backdrop-filter:blur(18px) saturate(130%);
+  box-shadow:0 18px 44px rgba(0,7,20,.25),inset 0 1px rgba(255,255,255,.18);
+}
+main .drc-editorial-glass small{font:800 11px/1.2 "Public Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#ffe36c}
+main .drc-editorial-glass strong{font:700 clamp(25px,2.6vw,40px)/1.08 Merriweather,serif;letter-spacing:-.025em;color:#fff}
+main .drc-editorial-glass em{display:flex;flex-wrap:wrap;gap:7px;margin-top:5px;font-style:normal}
+main .drc-editorial-glass em span{padding:7px 10px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.08);font:700 10px/1 "Public Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#f7fbff}
+main .drc-image-action{
+  position:absolute;
+  z-index:5;
+  top:32px;
+  right:32px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 11px 9px 14px;
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;
+  background:rgba(5,24,48,.55);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  font:750 10px/1 "Public Sans",sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#fff;
+}
+main .drc-image-action b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#ffc300;color:#092344;font-size:12px}
+main .drc-editorial-card:is(:hover,:focus-visible){transform:translateY(-7px);border-color:rgba(255,227,108,.72);box-shadow:0 38px 100px rgba(0,8,24,.46),0 0 0 1px rgba(255,195,0,.12)}
+main .drc-editorial-card:is(:hover,:focus-visible) img{transform:scale(1.045);filter:saturate(1.06) contrast(1.03)}
+main .drc-editorial-card:focus-visible{outline:3px solid #ffe36c;outline-offset:5px}
+
+main :is(.leader-profile,.sector-card,.heritage-grid article,.culture-notes details,.number-grid>div){
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+main :is(.sector-card,.heritage-grid article,.culture-notes details,.number-grid>div)::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:150px;
+  height:150px;
+  right:-92px;
+  top:-92px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,192,252,.13),transparent 70%);
+  pointer-events:none;
+}
+main .sector-card{
+  border-color:rgba(9,43,80,.12);
+  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(245,249,253,.77));
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  box-shadow:0 22px 55px rgba(4,30,61,.09),inset 0 1px #fff;
+}
+main .sector-card::after{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,#00c0fc,#ffc300 58%,transparent);opacity:.8}
+main .heritage-grid article{
+  border:1px solid rgba(9,43,80,.1);
+  background:linear-gradient(150deg,rgba(255,255,255,.9),rgba(244,248,252,.7));
+  box-shadow:0 18px 42px rgba(5,35,70,.08),inset 0 1px #fff;
+}
+main .heritage-grid article::after{content:"";position:absolute;left:24px;right:24px;top:0;height:1px;background:linear-gradient(90deg,#ffc300,rgba(0,192,252,.35),transparent)}
+main .culture-layout{
+  padding:18px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:30px;
+  background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  box-shadow:0 30px 75px rgba(0,10,30,.25),inset 0 1px rgba(255,255,255,.15);
+}
+main .culture-image{border-radius:21px;box-shadow:0 20px 48px rgba(0,9,27,.3)}
+main .culture-notes details{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.075);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+main .number-grid>div{
+  border:1px solid rgba(7,43,79,.11);
+  background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(241,247,252,.78));
+  box-shadow:0 18px 42px rgba(7,36,68,.08),inset 0 1px #fff;
+}
+main .number-grid>div:nth-child(2)::before,
+main .number-grid>div:nth-child(4)::before{background:radial-gradient(circle,rgba(255,195,0,.17),transparent 70%)}
+main .drc-opening,
+main .drc-invest,
+main .gorilla-experience,
+main .drc-numbers{background-image:radial-gradient(circle at 10% 15%,rgba(0,192,252,.045),transparent 22%),radial-gradient(circle at 92% 82%,rgba(255,195,0,.055),transparent 20%)}
+
+@media(max-width:980px){
+  main .drc-editorial-grid{grid-template-columns:1fr}
+  main .drc-editorial-card,main .drc-editorial-materials{min-height:560px;margin-top:0}
+}
+@media(max-width:720px){
+  main .drc-editorial-interlude{padding-block:78px 86px}
+  main .drc-editorial-card,main .drc-editorial-materials{min-height:500px;border-radius:24px}
+  main .drc-editorial-glass{left:22px;right:22px;bottom:22px;padding:19px 18px}
+  main .drc-image-action{top:23px;right:23px}
+  main .culture-layout{padding:10px;border-radius:24px}
+}
+@media(max-width:430px){
+  main .drc-editorial-card,main .drc-editorial-materials{min-height:460px}
+  main .drc-editorial-glass strong{font-size:24px}
+  main .drc-image-action{font-size:0;padding:8px}
+  main .drc-image-action b{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  main .drc-editorial-card,main .drc-editorial-card img{transition:none!important}
+}
