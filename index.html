@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1785618722" />
-<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785796800" />
+<link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785800400" />
 
 <script type="application/ld+json">
 {"<?php $__contextArgs = [];\nif (context()->has($__contextArgs[0])) :\nif (isset($value)) { $__contextPrevious[] = $value; }\n$value = context()->get($__contextArgs[0]); ?>":"https://schema.org","@type":"GovernmentOrganization","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","alternateName":"Embassy of the DR Congo","url":"http://127.0.0.1:8050","logo":"http://127.0.0.1:8050/aurora/assets/img/embassy-seal.png","image":"http://127.0.0.1:8050/aurora/assets/img/hero/ambassador-podium-flags-2026.webp","email":"ambassade@ambardcusa.org","telephone":"+1 (202) 234-7690","address":{"@type":"PostalAddress","streetAddress":"1100 Connecticut Avenue NW, Suite 725","addressLocality":"Washington","addressRegion":"DC","postalCode":"20036","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"parentOrganization":"Government of the Democratic Republic of the Congo"}
@@ -189,22 +189,25 @@
 <section class="section" id="tools"><div class="container">
   <div class="sec-head center"><p class="eyebrow">Tools &amp; services</p><div class="rule"></div><h2>Plan your visit at a glance</h2><p>Live information and quick estimators for citizens and visitors.</p></div>
   <div class="widgets">
-    <div class="widget">
+    <div class="widget widget-time">
       <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Local time</div>
       <div class="clock"><span class="city">Kinshasa</span><span class="time" data-tz="Africa/Kinshasa">--:--</span></div>
       <div class="clock"><span class="city">Washington, D.C.</span><span class="time" data-tz="America/New_York">--:--</span></div>
+      <div class="widget-route" aria-hidden="true"><span>KIN</span><i></i><b>+6H</b><i></i><span>WDC</span></div>
       <small>The DRC is GMT+1, about 6 hours ahead of D.C.</small>
     </div>
-    <div class="widget status-w" title="Based on Washington, D.C. local time">
-      <span class="status-dot" id="embassyStatus"></span>
-      <div><b id="statusText">Checking…</b><span>Office Mon–Thu 9 AM–4 PM, Fri 9 AM–1 PM · Consular drop-off 10 AM–1 PM</span></div>
+    <div class="widget status-w widget-status" title="Based on Washington, D.C. local time">
+      <div class="w-head"><span class="widget-code" aria-hidden="true">OPS</span> Mission status</div>
+      <div class="status-main"><span class="status-dot" id="embassyStatus"></span><div><b id="statusText">Checking…</b><span>Office Mon–Thu 9 AM–4 PM, Fri 9 AM–1 PM · Consular drop-off 10 AM–1 PM</span></div></div>
+      <div class="office-meter" aria-hidden="true"><span>MON</span><i></i><span>THU</span><i></i><span>FRI</span></div>
     </div>
-    <div class="widget">
+    <div class="widget widget-currency">
       <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Currency</div>
       <div class="cc"><input id="ccAmount" type="number" value="100" min="0" aria-label="Amount in USD"/> USD = <output id="ccResult">280,000</output> CDF</div>
+      <div class="currency-telemetry" aria-hidden="true"><span>USD</span><div><i></i><i></i><i></i><i></i><i></i><i></i></div><span>CDF</span></div>
       <small>Indicative rate · 1 USD ≈ 2,800 Congolese Francs</small>
     </div>
-    <div class="widget">
+    <div class="widget widget-fee">
       <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7h6m-6 4h6m-6 4h4"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg> Fee estimator</div>
       <select id="feeService" aria-label="Choose a service">
         <option data-fee="$135" data-proc=" · 10–15 business days">Passport renewal</option>
@@ -215,6 +218,7 @@
         <option data-fee="$90" data-proc=" · 5–7 business days">Laissez-Passer (Tenant-Lieu)</option>
       </select>
       <div class="fee-out" id="feeOut"></div>
+      <div class="service-flow" aria-hidden="true"><span>SELECT</span><i></i><span>VERIFY</span><i></i><span>APPLY</span></div>
     </div>
   </div>
 </div></section>
