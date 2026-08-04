@@ -1684,6 +1684,7 @@
   var FR = {
     // -- Official banner / brand --
     "Embassy website preview — services and information under review": "Aperçu du site de l’Ambassade — services et informations en cours de vérification",
+    "About this preview": "À propos de cet aperçu",
     "Here’s how you know": "Voici comment le savoir",
     "Here's how you know": "Voici comment le savoir",
     "Official source": "Source officielle",
@@ -1711,6 +1712,9 @@
     "Fees & Processing": "Frais & traitement",
     "News & Events": "Actualités & événements",
     "Contact Us": "Nous contacter",
+    "Appointment guidance": "Informations sur les rendez-vous",
+    "Search the embassy": "Rechercher sur le site de l’Ambassade",
+    "Verify current consular instructions before visiting or sending documents.": "Vérifiez les consignes consulaires en vigueur avant toute visite ou tout envoi de documents.",
     "Request appointment": "Demander un rendez-vous",
     "Request now": "Demander maintenant",
     "Request biometric appointment": "Demander un rendez-vous biométrique",

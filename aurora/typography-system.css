@@ -242,3 +242,111 @@ html[lang="fr"] body main :is(h1, h2, h3, h4, .btn, button, [role="button"]) {
   }
 }
 
+/*
+ * Bilingual header fit
+ * French labels are allowed to occupy their real width. The desktop header
+ * expands horizontally while keeping its existing compact vertical height.
+ */
+.site-head .brand > span,
+.site-head .brand b,
+.site-head .brand-full,
+.site-head .brand > span > span:last-child {
+  text-overflow: clip;
+}
+
+.site-head .brand b {
+  overflow: visible;
+  white-space: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+.site-head .head-cta .btn-sm {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+@media (min-width: 1600px) {
+  .gov-banner > .container,
+  .gov-panel > .container,
+  .topbar > .container,
+  .site-head > .container,
+  html.is-stuck .site-head > .container,
+  .announce > .container {
+    max-width: min(1760px, calc(100vw - 48px));
+  }
+
+  .site-head > .container,
+  html.is-stuck .site-head > .container {
+    grid-template-columns: minmax(360px, 405px) minmax(0, 1fr) max-content;
+    column-gap: clamp(14px, 1.25vw, 24px);
+  }
+
+  .site-head .brand {
+    grid-template-columns: 72px minmax(0, 1fr);
+    max-width: none;
+  }
+
+  .site-head .brand > span { overflow: visible; }
+  .site-head .brand b { font-size: 17px; white-space: nowrap; }
+
+  .site-head .brand-full,
+  .site-head .brand > span > span:last-child {
+    display: block;
+    overflow: visible;
+    white-space: nowrap;
+  }
+
+  .site-head .mainnav {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group > a {
+    min-width: max-content;
+    padding-inline: clamp(6px, .5vw, 10px);
+    font-size: clamp(10.5px, .67vw, 11.75px);
+  }
+
+  html[lang="fr"] .site-head .mainnav > a,
+  html[lang="fr"] .site-head .mainnav > .nav-group > a {
+    padding-inline: clamp(5px, .42vw, 8px);
+    font-size: clamp(10.25px, .63vw, 11.25px);
+  }
+
+  .site-head .head-cta .btn-sm {
+    max-inline-size: 230px;
+    padding-inline: 14px;
+    font-size: 10.75px;
+  }
+
+  html[lang="fr"] .site-head .head-cta .btn-sm {
+    max-inline-size: 230px;
+    font-size: 10.25px;
+  }
+}
+
+@media (min-width: 1401px) and (max-width: 1599px) {
+  .site-head > .container,
+  html.is-stuck .site-head > .container {
+    grid-template-columns: minmax(286px, 320px) minmax(0, 1fr) auto;
+    max-width: calc(100vw - 30px);
+  }
+
+  .site-head .brand { max-width: 320px; }
+  .site-head .brand > span { overflow: visible; }
+  .site-head .brand b { font-size: 15px; line-height: 1.02; }
+
+  .site-head .head-cta .btn-sm {
+    max-inline-size: 156px;
+    padding-inline: 9px;
+    font-size: 9.75px;
+    line-height: 1.15;
+  }
+}
+
