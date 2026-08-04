@@ -2484,3 +2484,203 @@ main #tools .currency-telemetry i{transition:transform .24s ease}
 @media(prefers-reduced-motion:reduce){
   main #tools .widget,main #tools .widget::after,main #tools .currency-telemetry i{transition:none!important;transform:none!important}
 }
+
+/* ===========================================================================
+   Diplomatic clarity pass · senior UX/UI art direction
+   A final restraint layer: fewer effects, stronger hierarchy, cleaner color.
+   ========================================================================== */
+
+main{
+  --ux-ink:#0b1f38;
+  --ux-copy:#43546a;
+  --ux-muted:#667589;
+  --ux-blue:#1269ad;
+  --ux-blue-soft:#eaf3fa;
+  --ux-gold:#b08d3b;
+  --ux-gold-soft:#f5ecd5;
+  --ux-green:#287b55;
+  --ux-line:rgba(11,31,56,.12);
+  --ux-line-soft:rgba(11,31,56,.07);
+  --ux-surface:#fff;
+  --ux-surface-soft:#f7f9fb;
+  --ux-shadow:0 18px 42px -34px rgba(7,27,53,.42);
+  --ops-grid:rgba(11,31,56,.014);
+}
+
+/* Editorial rhythm: spacious, repeatable and easy to scan. */
+main > .section:not(.tight){padding-top:clamp(68px,7vw,94px);padding-bottom:clamp(68px,7vw,94px)}
+main > .section.tight{padding-top:clamp(38px,4.5vw,58px);padding-bottom:clamp(38px,4.5vw,58px)}
+main > .section > .container{background-size:48px 48px}
+main .section .sec-head{margin-bottom:clamp(34px,4vw,48px)}
+main .section .sec-head.center{padding-bottom:22px}
+main .section .sec-head h2,
+main .section .split h2{color:var(--ux-ink);line-height:1.18;letter-spacing:-.022em}
+main .section .sec-head > p:last-child,
+main .section .lead{color:var(--ux-copy);line-height:1.7}
+main .section .muted{color:var(--ux-muted);line-height:1.68}
+main .section .eyebrow{color:#49627c;letter-spacing:.12em}
+main .section .rule,
+main .section .rule.left{
+  animation:none!important;
+  background-size:100% 100%;
+  box-shadow:none;
+}
+
+/* Module labels remain useful but visually quiet. */
+main > .section:not(.tight) > .container::before{
+  top:-40px;
+  height:21px;
+  color:#607084;
+  border-color:rgba(11,31,56,.1);
+  background:
+    radial-gradient(circle at 11px 50%,#428466 0 2px,rgba(66,132,102,.11) 3px 5px,transparent 6px),
+    rgba(255,255,255,.72);
+  box-shadow:none;
+  opacity:.86;
+}
+main > .section:not(.tight) > .container::after{opacity:.58;box-shadow:none}
+main .section .sec-head.center::before{
+  color:#52677e;
+  border-color:rgba(11,31,56,.1);
+  background:
+    radial-gradient(circle at 12px 50%,#c5a74c 0 2px,rgba(197,167,76,.12) 3px 5px,transparent 6px),
+    rgba(255,255,255,.76);
+  box-shadow:none;
+}
+
+/* One professional surface language for functional UI. */
+main .section .card:not(.below-cta),
+main .section .tile,
+main .widget,
+main .panel,
+main .accordion,
+main .dl-item,
+main .ncard{
+  border-color:var(--ux-line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),var(--ux-shadow);
+}
+main .section .grid > .card,
+main .section .grid > .tile{height:100%}
+main .section .card h3,
+main .section .tile b,
+main .panel h3{color:var(--ux-ink);line-height:1.35}
+main .section .qbadge,
+main .section .tile .ic,
+main .widget .w-head svg{
+  color:#265c8b;
+  border-color:rgba(18,105,173,.14);
+  background:linear-gradient(145deg,#f5f9fc,#e8f1f8);
+  box-shadow:inset 0 1px 0 #fff,0 8px 16px -14px rgba(7,27,53,.38);
+}
+main .section .grid > .card::after{opacity:.035}
+main .section .grid > .card:hover::after{opacity:.055}
+
+/* Status and metadata should feel official, not decorative. */
+main .badge,
+main .tag,
+main .chip{
+  border-radius:4px;
+  letter-spacing:.07em;
+  box-shadow:none;
+}
+main .section .grid > .card.pad:not(.below-cta)::before{
+  color:#546a81;
+  border-color:rgba(11,31,56,.1);
+  background:rgba(248,250,252,.9);
+  box-shadow:none;
+}
+main .widget .w-head::before,
+main .panel .ph::before{
+  background:#428466;
+  box-shadow:0 0 0 3px rgba(66,132,102,.09);
+}
+
+/* Preserve the enhanced buttons, now with one clean elevation system. */
+main .section .btn,
+main .below-cta .btn,
+main .quote-cta,
+main .em-act{
+  border-radius:5px;
+  box-shadow:0 8px 18px -14px rgba(7,27,53,.48),inset 0 1px 0 rgba(255,255,255,.28);
+}
+main .section .btn-navy,
+main .below-cta .btn-navy{background:linear-gradient(180deg,#0b315c,#071f3e);border-color:#071b35;color:#fff}
+main .section .btn-gold,
+main .quote-cta{background:linear-gradient(180deg,#f2d779,#d7ad38);border-color:#b18b2d;color:#2c230c}
+main .section .btn-outline,
+main .below-cta .btn-outline{background:rgba(255,255,255,.92);border-color:rgba(11,31,56,.18);color:var(--ux-ink)}
+@media(hover:hover) and (pointer:fine){
+  main .section .btn:hover,
+  main .below-cta .btn:hover,
+  main .quote-cta:hover,
+  main .em-act:hover{transform:translateY(-1px);filter:none;box-shadow:0 12px 24px -16px rgba(7,27,53,.55),inset 0 1px 0 rgba(255,255,255,.35)}
+  main .section .card:not(.below-cta):hover,
+  main .section .tile:hover,
+  main .widget:hover,
+  main .panel:hover,
+  main .dl-item:hover,
+  main .ncard:hover{
+    transform:translateY(-2px);
+    border-color:rgba(18,105,173,.22);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.94),0 22px 46px -34px rgba(7,27,53,.5);
+  }
+}
+
+/* Inputs and tables prioritize comprehension and error-free operation. */
+main .section .field label{color:#4e6177}
+main .section .field input:not([type="checkbox"]):not([type="radio"]),
+main .section .field select,
+main .section .field textarea,
+main .widget select{
+  color:var(--ux-ink);
+  border-color:rgba(11,31,56,.16);
+  background:#fff;
+  box-shadow:inset 0 1px 2px rgba(7,27,53,.025);
+}
+main .section .field input:focus,
+main .section .field select:focus,
+main .section .field textarea:focus{
+  border-color:var(--ux-blue);
+  box-shadow:inset 2px 0 0 var(--ux-blue),0 0 0 3px rgba(18,105,173,.07);
+}
+main .section .table{border-color:var(--ux-line);box-shadow:var(--ux-shadow)}
+main .section .table th{color:#52677e;background:#f3f6f9}
+main .section .table tbody tr:nth-child(even) td{background:#fafbfd}
+main .section .table tbody tr:hover td{background:#f1f6fa;box-shadow:inset 2px 0 0 var(--ux-blue)}
+
+/* Widget illustrations remain distinct, but their colors stay diplomatic. */
+main #tools .widget{border-color:var(--ux-line);box-shadow:inset 0 1px 0 #fff,var(--ux-shadow)}
+main #tools .widget::after{opacity:.05}
+main #tools .widget:hover::after{opacity:.075}
+main #tools .widget .w-head::after{
+  border-radius:4px;
+  color:#3d607e;
+  border-color:rgba(18,105,173,.12);
+  background:#eef4f8;
+}
+main #tools .widget-status .w-head::after{color:#356f53;border-color:rgba(66,132,102,.16);background:#edf6f1}
+main #tools .widget-route,
+main #tools .status-main,
+main #tools .currency-telemetry{
+  border-color:rgba(11,31,56,.09);
+  background:rgba(255,255,255,.76);
+  box-shadow:none;
+}
+
+/* Clear, consistent keyboard navigation. */
+main .section :is(a,button,input,select,textarea):focus-visible,
+main .bilateral-quote :is(a,button):focus-visible{
+  outline:2px solid var(--ux-blue);
+  outline-offset:3px;
+}
+
+@media(max-width:760px){
+  main > .section:not(.tight){padding-top:60px;padding-bottom:60px}
+  main > .section.tight{padding-top:38px;padding-bottom:38px}
+  main > .section > .container{background-size:56px 56px}
+  main .section .sec-head{margin-bottom:32px}
+  main .section .sec-head.center{padding-bottom:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  main .section *,main .bilateral-quote *{scroll-behavior:auto!important}
+}
