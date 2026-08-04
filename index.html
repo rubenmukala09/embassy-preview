@@ -26,6 +26,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1785618722" />
 <link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1785834000" />
+<style>
+.consular-journey{padding:clamp(64px,7vw,96px) 0;background:linear-gradient(180deg,#f7f4ec,#f1eee6)}
+.journey-shell{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(250px,315px) minmax(0,1fr);gap:clamp(28px,4vw,52px);padding:clamp(30px,4vw,54px);border:1px solid rgba(211,176,58,.28);border-radius:18px;background:radial-gradient(circle at 10% 12%,rgba(0,127,255,.16),transparent 28%),linear-gradient(135deg,#061c38,#0a2e56 72%,#071f3d);box-shadow:0 34px 74px -52px rgba(1,22,47,.9)}
+.journey-shell::before{content:"";position:absolute;z-index:-1;left:-66px;bottom:-86px;width:280px;height:280px;background:url('/embassy-preview/aurora/assets/img/embassy-seal.png') center/contain no-repeat;opacity:.045;pointer-events:none}
+.journey-intro{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;padding-right:clamp(20px,3vw,38px);border-right:1px solid rgba(255,255,255,.12)}
+.journey-kicker{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;color:#ffe06a;font:800 9px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.journey-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:#f3cd3e;box-shadow:0 0 0 5px rgba(243,205,62,.12)}
+.journey-intro h2{max-width:280px;margin:0;color:#fff;font-size:clamp(31px,3.2vw,44px);line-height:1.06}
+.journey-intro>p{max-width:280px;margin:18px 0 0;color:#c7d4e7;font-size:14px;line-height:1.7}
+.journey-rail{display:grid;grid-template-columns:1.5fr .7fr .7fr;width:104px;height:4px;margin:24px 0 26px;overflow:hidden;border-radius:99px}
+.journey-rail i:nth-child(1){background:#007fff}.journey-rail i:nth-child(2){background:#f7d618}.journey-rail i:nth-child(3){background:#ce1021}
+.journey-intro .btn{margin-top:auto}
+.journey-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none;counter-reset:journey}
+.journey-card{position:relative;overflow:hidden;min-height:176px;padding:20px 18px 18px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.035));box-shadow:inset 0 1px 0 rgba(255,255,255,.07);counter-increment:journey;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.journey-card::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,#007fff 0 58%,#f7d618 58% 78%,#ce1021 78%)}
+.journey-card:hover{transform:translateY(-3px);border-color:rgba(255,224,106,.4);background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.045))}
+.journey-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.journey-number{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(255,224,106,.38);border-radius:8px;color:#ffe06a;background:rgba(255,224,106,.07);font:800 11px/1 var(--sans);letter-spacing:.08em}
+.journey-number::before{content:"0" counter(journey)}
+.journey-phase{color:#8fa5c1;font:800 7.5px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.journey-card h3{margin:0;color:#fff;font:700 15px/1.35 var(--sans)}
+.journey-card p{margin:8px 0 0;color:#b9c8dc;font-size:11.5px;line-height:1.55}
+@media(max-width:1000px){.journey-shell{grid-template-columns:1fr}.journey-intro{padding:0 0 28px;border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.journey-intro h2,.journey-intro>p{max-width:620px}.journey-intro .btn{margin-top:0}.journey-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.consular-journey{padding:52px 0}.journey-shell{padding:26px 20px;border-radius:14px}.journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.journey-card{min-height:162px}}
+@media(max-width:480px){.journey-grid{grid-template-columns:1fr}.journey-card{min-height:0}.journey-card-head{margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){.journey-card{transition:none}.journey-card:hover{transform:none}}
+</style>
 
 <script type="application/ld+json">
 {"<?php $__contextArgs = [];\nif (context()->has($__contextArgs[0])) :\nif (isset($value)) { $__contextPrevious[] = $value; }\n$value = context()->get($__contextArgs[0]); ?>":"https://schema.org","@type":"GovernmentOrganization","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","alternateName":"Embassy of the DR Congo","url":"http://127.0.0.1:8050","logo":"http://127.0.0.1:8050/aurora/assets/img/embassy-seal.png","image":"http://127.0.0.1:8050/aurora/assets/img/hero/ambassador-podium-flags-2026.webp","email":"ambassade@ambardcusa.org","telephone":"+1 (202) 234-7690","address":{"@type":"PostalAddress","streetAddress":"1100 Connecticut Avenue NW, Suite 725","addressLocality":"Washington","addressRegion":"DC","postalCode":"20036","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"parentOrganization":"Government of the Democratic Republic of the Congo"}
@@ -325,15 +352,23 @@
 </div></section>
 
 <!-- HOW IT WORKS -->
-<section class="section bg-cream"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Getting started</p><div class="rule"></div><h2>How it works</h2></div>
-  <div class="steps">
-    <div class="step"><div class="snum">1</div><h4>Check requirements</h4><p>Review what your service needs.</p></div>
-    <div class="step"><div class="snum">2</div><h4>Prepare documents</h4><p>Gather the required papers.</p></div>
-    <div class="step"><div class="snum">3</div><h4>Submit application</h4><p>Online or in person.</p></div>
-    <div class="step"><div class="snum">4</div><h4>Request appointment</h4><p>Schedule at your convenience.</p></div>
-    <div class="step"><div class="snum">5</div><h4>Attend appointment</h4><p>Verification &amp; processing.</p></div>
-    <div class="step"><div class="snum">6</div><h4>Receive service</h4><p>Collect your documents.</p></div>
+<section class="consular-journey"><div class="container">
+  <div class="journey-shell">
+    <div class="journey-intro">
+      <p class="journey-kicker">Consular protocol</p>
+      <h2>Your service, clearly guided</h2>
+      <p>A structured path from your first document check to final collection, with every stage designed to keep your request moving.</p>
+      <span class="journey-rail" aria-hidden="true"><i></i><i></i><i></i></span>
+      <a class="btn btn-gold" href="consular-services.html">Choose your service →</a>
+    </div>
+    <ol class="journey-grid" aria-label="Six stages of a consular request">
+      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Understand</span></div><h3>Check requirements</h3><p>Confirm eligibility, fees and the documents required for your service.</p></li>
+      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Prepare</span></div><h3>Prepare documents</h3><p>Gather originals, certified copies and supporting evidence.</p></li>
+      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Submit</span></div><h3>Submit application</h3><p>Follow the submission method specified for your selected service.</p></li>
+      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Schedule</span></div><h3>Request appointment</h3><p>Reserve a visit when an in-person verification is required.</p></li>
+      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Verify</span></div><h3>Attend appointment</h3><p>Present your file for identity checks and consular processing.</p></li>
+      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Complete</span></div><h3>Receive service</h3><p>Collect your approved document or follow the delivery instructions.</p></li>
+    </ol>
   </div>
 </div></section>
 
