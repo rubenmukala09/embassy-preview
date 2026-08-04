@@ -1771,6 +1771,287 @@ main .section .acc-a .inner{padding:2px 20px 22px;line-height:1.72}
   main .section .field :is(input,select,textarea){transition:none}
 }
 
+/* ===========================================================================
+   Presidential constellation · generative ceremonial Head of State system
+   ========================================================================== */
+main .section.bg-cream.presidential-section{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  color:#fff;
+  background:
+    radial-gradient(circle at 21% 34%,rgba(0,192,252,.16),transparent 24%),
+    radial-gradient(circle at 83% 72%,rgba(247,214,24,.1),transparent 28%),
+    linear-gradient(118deg,#03142f,#0a2c5b 54%,#041936);
+}
+main .section.bg-cream.presidential-section::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-110px;
+  right:auto;
+  top:50%;
+  bottom:auto;
+  width:420px;
+  aspect-ratio:1;
+  opacity:.12;
+  clip-path:var(--geo-drc);
+  transform:translateY(-50%)!important;
+  background:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 1px,transparent 1px 10px),
+    linear-gradient(145deg,#00c0fc,#f7d618 52%,#ce1021);
+  filter:drop-shadow(0 24px 46px rgba(0,0,0,.28));
+  pointer-events:none;
+}
+main .presidential-section::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 7% 18%,rgba(247,214,24,.7) 0 1.4px,transparent 2px),
+    radial-gradient(circle at 14% 77%,rgba(255,255,255,.5) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 27% 9%,rgba(0,192,252,.7) 0 1.2px,transparent 2px),
+    radial-gradient(circle at 42% 88%,rgba(247,214,24,.5) 0 1.3px,transparent 2px),
+    radial-gradient(circle at 58% 13%,rgba(255,255,255,.45) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 71% 81%,rgba(0,192,252,.55) 0 1.4px,transparent 2px),
+    radial-gradient(circle at 88% 19%,rgba(247,214,24,.66) 0 1.2px,transparent 2px),
+    radial-gradient(circle at 96% 66%,rgba(255,255,255,.42) 0 1px,transparent 1.8px),
+    linear-gradient(90deg,transparent,rgba(255,255,255,.025),transparent);
+}
+main .presidential-section .container{position:relative;z-index:2}
+main .presidential-section .hos{
+  position:relative;
+  display:grid;
+  grid-template-columns:330px minmax(0,1fr);
+  align-items:center;
+  gap:clamp(42px,6vw,84px);
+  max-width:1120px;
+  min-height:430px;
+  padding:48px clamp(38px,5vw,70px);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  border-top-color:rgba(255,226,122,.3);
+  border-radius:26px;
+  background:
+    linear-gradient(112deg,transparent 0 36%,rgba(255,255,255,.08) 48%,transparent 60%) 155% 0/240% 100% no-repeat,
+    linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  -webkit-backdrop-filter:blur(18px) saturate(1.18);
+  backdrop-filter:blur(18px) saturate(1.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 34px 72px -48px rgba(0,0,0,.9);
+  transition:background-position .75s var(--brand-ease),border-color .3s ease,box-shadow .35s ease;
+}
+main .presidential-section .hos::before{
+  content:"PRESIDENCY  ·  DEMOCRATIC REPUBLIC OF THE CONGO";
+  position:absolute;
+  left:28px;
+  bottom:15px;
+  color:rgba(255,255,255,.22);
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.28em;
+  white-space:nowrap;
+}
+main .presidential-section .hos::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:3px;
+  background:linear-gradient(90deg,#007fff 0 34%,#f7d618 34% 41%,#ce1021 41% 59%,#f7d618 59% 66%,#007fff 66% 100%);
+  box-shadow:0 1px 18px rgba(0,192,252,.24);
+}
+
+main .presidential-section .hos-photo{
+  width:286px;
+  height:286px;
+  margin:auto;
+}
+main .presidential-section .hos-photo::before{
+  inset:-11px;
+  animation:none;
+  background:conic-gradient(from -32deg,#007fff 0 30%,#f7d618 30% 35%,#ce1021 35% 47%,#f7d618 47% 52%,#007fff 52% 78%,#fff 78% 80%,#007fff 80% 100%);
+  box-shadow:0 0 0 1px rgba(255,255,255,.3),0 0 42px rgba(0,192,252,.16);
+}
+main .presidential-section .hos-flip{animation:none!important}
+main .presidential-section .hos-face{
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 0 0 5px rgba(2,18,42,.9),0 25px 58px -26px rgba(0,0,0,.92);
+}
+main .presidential-section .hos-front img{filter:saturate(.97) contrast(1.035)}
+main .presidential-section .hos-back{
+  background:
+    radial-gradient(circle at 50% 43%,rgba(0,192,252,.28),transparent 40%),
+    linear-gradient(155deg,#0e4b91,#03172f);
+}
+
+main .presidential-stars{
+  position:absolute;
+  z-index:3;
+  inset:-39px;
+  border:1px dashed rgba(255,226,122,.22);
+  border-radius:50%;
+  pointer-events:none;
+  animation:presidentialOrbit 26s linear infinite;
+  transition:filter .35s ease;
+}
+main .presidential-stars::before,
+main .presidential-stars::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(0,192,252,.13);
+  border-radius:50%;
+}
+main .presidential-stars::after{
+  inset:-13px;
+  border-color:rgba(255,255,255,.08);
+  box-shadow:0 0 0 12px rgba(255,255,255,.012);
+}
+main .presidential-stars i{position:absolute;inset:0;display:block}
+main .presidential-stars i::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-7px;
+  width:14px;
+  height:14px;
+  transform:translateX(-50%);
+  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 94%,50% 72%,21% 94%,32% 57%,2% 35%,39% 35%);
+  background:linear-gradient(145deg,#fff8cf,#f7d618 56%,#aa7f00);
+  filter:drop-shadow(0 0 5px rgba(247,214,24,.52));
+}
+main .presidential-stars i:nth-child(1){transform:rotate(0deg)}
+main .presidential-stars i:nth-child(2){transform:rotate(30deg)}
+main .presidential-stars i:nth-child(3){transform:rotate(60deg)}
+main .presidential-stars i:nth-child(4){transform:rotate(90deg)}
+main .presidential-stars i:nth-child(5){transform:rotate(120deg)}
+main .presidential-stars i:nth-child(6){transform:rotate(150deg)}
+main .presidential-stars i:nth-child(7){transform:rotate(180deg)}
+main .presidential-stars i:nth-child(8){transform:rotate(210deg)}
+main .presidential-stars i:nth-child(9){transform:rotate(240deg)}
+main .presidential-stars i:nth-child(10){transform:rotate(270deg)}
+main .presidential-stars i:nth-child(11){transform:rotate(300deg)}
+main .presidential-stars i:nth-child(12){transform:rotate(330deg)}
+@keyframes presidentialOrbit{to{transform:rotate(360deg)}}
+main .presidential-section .hos-photo:has(.hos-flip.flipped) .presidential-stars{animation-direction:reverse;filter:hue-rotate(12deg) brightness(1.16)}
+main .presidential-section .hos-hint{
+  bottom:-34px;
+  padding:6px 12px;
+  border:1px solid rgba(255,226,122,.28);
+  color:rgba(255,255,255,.86);
+  background:rgba(3,19,44,.88);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+
+main .presidential-section .hos-text{position:relative;z-index:3;padding:20px 0}
+main .presidential-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:22px;
+  padding:7px 11px;
+  border:1px solid rgba(255,226,122,.27);
+  border-radius:99px;
+  color:rgba(255,255,255,.72);
+  background:rgba(255,255,255,.055);
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+main .presidential-kicker span{color:#f7d618;font-size:12px;text-shadow:0 0 12px rgba(247,214,24,.7)}
+main .presidential-section .hos-text .eyebrow{color:var(--gold-soft)}
+main .presidential-section .hos-text h3{
+  max-width:620px;
+  margin-top:10px;
+  color:#fff;
+  font-size:clamp(26px,3vw,38px);
+  line-height:1.13;
+  letter-spacing:-.035em;
+}
+main .presidential-section .hos-role{
+  margin-top:11px;
+  color:#9fdcff;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+main .presidential-section .hos-note{
+  max-width:650px;
+  margin-top:20px;
+  color:rgba(255,255,255,.72);
+  font-size:14px;
+  line-height:1.75;
+}
+main .presidential-principles{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+  margin-top:28px;
+}
+main .presidential-principles span{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:9px;
+  min-height:52px;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.035));
+  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);
+  transition:transform .24s var(--brand-ease),border-color .24s ease,background .24s ease;
+}
+main .presidential-principles i{
+  display:grid;
+  place-items:center;
+  width:26px;
+  height:26px;
+  border:1px solid rgba(247,214,24,.28);
+  border-radius:50%;
+  color:var(--gold-soft);
+  font-size:8px;
+  font-style:normal;
+  font-weight:800;
+}
+main .presidential-principles b{color:rgba(255,255,255,.86);font-size:10px;line-height:1.35;letter-spacing:.025em}
+
+@media(hover:hover) and (pointer:fine){
+  main .presidential-section .hos:hover{
+    border-color:rgba(255,226,122,.3);
+    background-position:-42% 0,0 0;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 40px 82px -48px rgba(0,0,0,.95);
+  }
+  main .presidential-section .hos-photo:hover .presidential-stars{animation-duration:15s;filter:brightness(1.18)}
+  main .presidential-principles span:hover{transform:translateY(-3px);border-color:rgba(247,214,24,.3);background:rgba(255,255,255,.1)}
+}
+main .presidential-section .hos:focus-within{border-color:rgba(247,214,24,.46);box-shadow:0 0 0 4px rgba(247,214,24,.06),0 36px 74px -48px rgba(0,0,0,.9)}
+
+@media(max-width:880px){
+  main .presidential-section .hos{grid-template-columns:280px minmax(0,1fr);gap:36px;padding:42px 30px}
+  main .presidential-section .hos-photo{width:240px;height:240px}
+  main .presidential-principles{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  main .presidential-section .hos{display:flex;min-height:0;padding:48px 22px 38px;text-align:center}
+  main .presidential-section .hos-photo{width:218px;height:218px;margin-bottom:34px}
+  main .presidential-section .hos-text{display:flex;flex-direction:column;align-items:center;padding:0}
+  main .presidential-section .hos-text h3{font-size:29px}
+  main .presidential-section .hos-note{margin-right:auto;margin-left:auto}
+  main .presidential-principles{width:100%;text-align:left}
+  main .presidential-section .hos::before{left:50%;transform:translateX(-50%);font-size:6px;letter-spacing:.18em}
+}
+@media(prefers-reduced-motion:reduce){
+  main .presidential-stars{animation:none}
+  main .presidential-section .hos,
+  main .presidential-principles span{transition:none}
+}
+
 /* ==========================================================================
    Sitewide decorative, structural and interaction accents · below fold only
    ========================================================================== */
