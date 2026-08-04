@@ -1444,19 +1444,24 @@
   box.addEventListener("click", (e) => { if (e.target === box || e.target.classList.contains("lb-x")) close(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
   items.forEach((it) => {
-    it.setAttribute("tabindex", "0");
-    it.setAttribute("role", "button");
+    const nativeControl = it.matches("button,a[href]");
+    if (!nativeControl) {
+      it.setAttribute("tabindex", "0");
+      it.setAttribute("role", "button");
+    }
     it.setAttribute("aria-label", "View larger photo: " + (it.getAttribute("data-cap") || "Embassy gallery"));
     it.addEventListener("click", (e) => {
       e.preventDefault();
       open(it);
     });
-    it.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        open(it);
-      }
-    });
+    if (!nativeControl) {
+      it.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open(it);
+        }
+      });
+    }
   });
 })();
 
