@@ -4212,6 +4212,8 @@ main .contact-grid .map svg{
   width:15px;
   height:15px;
   opacity:.96;
+  transform:scale(1.55);
+  transform-origin:center;
   filter:drop-shadow(0 0 5px rgba(241,202,83,.2));
 }
 .foot .gov-foot span{white-space:nowrap}
