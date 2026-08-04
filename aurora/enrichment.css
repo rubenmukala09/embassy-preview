@@ -1529,6 +1529,248 @@ main .embassy-values .tile:focus-within{
   main .embassy-about .stat{transition:none}
 }
 
+/* ===========================================================================
+   2026 diplomatic brand language · typography, rhythm and communication
+   Content sections only: page heroes and the footer remain unchanged.
+   ========================================================================== */
+:root{
+  --brand-ink:#071a34;
+  --brand-copy:#334763;
+  --brand-muted:#66758b;
+  --brand-line:rgba(7,42,82,.13);
+  --brand-glass:rgba(255,255,255,.72);
+  --brand-radius:16px;
+  --brand-measure:68ch;
+  --brand-ease:cubic-bezier(.2,.75,.2,1);
+}
+
+main .section{
+  color:var(--brand-copy);
+  font-family:var(--sans);
+  font-feature-settings:"kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+main .section>.container{position:relative;z-index:2}
+main .section h2,
+main .section h3,
+main .section h4{
+  color:var(--brand-ink);
+  text-wrap:balance;
+  letter-spacing:-.025em;
+}
+main .section h2{
+  font-family:var(--serif);
+  font-size:clamp(29px,3vw,43px);
+  font-weight:700;
+  line-height:1.14;
+}
+main .section h3{
+  font-family:var(--serif);
+  font-size:clamp(19px,1.65vw,25px);
+  line-height:1.25;
+}
+main .section h4{font-size:15px;line-height:1.38;letter-spacing:-.012em}
+main .section p,
+main .section li{
+  color:var(--brand-copy);
+  line-height:1.72;
+  text-wrap:pretty;
+}
+main .section p{max-width:var(--brand-measure)}
+main .section p+p{margin-top:1.05em}
+main .section .lead{
+  max-width:62ch;
+  color:#263d5b;
+  font-size:clamp(16px,1.3vw,18px);
+  line-height:1.72;
+  letter-spacing:-.008em;
+}
+main .section .muted{color:var(--brand-muted);line-height:1.72}
+
+main .section .sec-head{
+  max-width:860px;
+  margin-right:auto;
+  margin-bottom:clamp(34px,4.5vw,58px);
+  margin-left:auto;
+}
+main .section .sec-head h2{max-width:19ch;margin:13px auto 0}
+main .section .sec-head>p:last-child{
+  max-width:66ch;
+  margin:17px auto 0;
+  font-size:15.5px;
+  line-height:1.78;
+}
+main .section .sec-head:not(.center){margin-left:0}
+main .section .sec-head:not(.center) h2,
+main .section .sec-head:not(.center)>p:last-child{margin-left:0}
+main .section .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:2px;
+  color:#775c0c;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.18em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+main .section .eyebrow::before{
+  content:"";
+  flex:none;
+  width:7px;
+  height:7px;
+  border:1px solid rgba(0,127,255,.38);
+  border-radius:50%;
+  background:#f7d618;
+  box-shadow:0 0 0 4px rgba(247,214,24,.1);
+}
+main .section .eyebrow.on-navy{color:var(--gold-soft)}
+main .section .rule{
+  height:2px;
+  margin-top:12px;
+  border-radius:2px;
+  background:linear-gradient(90deg,#007fff 0 36%,#f7d618 36% 64%,#ce1021 64% 100%);
+  box-shadow:0 5px 14px -6px rgba(0,127,255,.55);
+}
+
+/* Deliberate reading margins inside cards, widgets, steps and form panels. */
+main .section :is(.card,.widget,.tile,.step,.bk-step,.acc-item) h3+ p,
+main .section :is(.card,.widget,.tile,.step,.bk-step,.acc-item) h4+ p{margin-top:9px}
+main .section :is(.card,.widget,.tile,.step,.bk-step,.acc-item) p+ :is(a,.btn,.row,ul,ol){margin-top:17px}
+main .section :is(.card,.widget,.tile,.step,.bk-step,.acc-item) ul,
+main .section :is(.card,.widget,.tile,.step,.bk-step,.acc-item) ol{margin-top:13px}
+main .section :is(.card,.widget,.tile,.step,.bk-step,.acc-item) li+li{margin-top:7px}
+main .section .card.pad{padding:clamp(23px,2.6vw,32px)}
+main .section .card.pad> :first-child{margin-top:0}
+main .section .card.pad> :last-child{margin-bottom:0}
+
+/* Communicative form language: labels, controls, hints and focus states. */
+main .section .field{display:flex;flex-direction:column;gap:8px}
+main .section .field label{
+  color:#152c4b;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.055em;
+  line-height:1.4;
+  text-transform:uppercase;
+}
+main .section .field :is(input,select,textarea){
+  min-height:48px;
+  padding:12px 14px;
+  border:1px solid rgba(7,42,82,.2);
+  border-radius:10px;
+  color:var(--brand-ink);
+  background:rgba(255,255,255,.8);
+  box-shadow:inset 0 1px 2px rgba(0,28,58,.04),0 8px 22px -20px rgba(0,42,82,.46);
+  font-family:var(--sans);
+  font-size:15px;
+  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+main .section .field textarea{min-height:132px;line-height:1.6;resize:vertical}
+main .section .field :is(input,select,textarea)::placeholder{color:#8290a3}
+main .section .field :is(input,select,textarea):focus{
+  outline:none;
+  border-color:#007fff;
+  background:#fff;
+  box-shadow:0 0 0 4px rgba(0,127,255,.1),0 12px 28px -22px rgba(0,42,82,.55);
+}
+main .section .field :is(small,.hint,.help){color:#6c7b90;font-size:12px;line-height:1.55}
+
+/* Modern action language with clear feedback. */
+main .section .btn{
+  min-height:46px;
+  border-radius:8px;
+  font-weight:750;
+  letter-spacing:.015em;
+  box-shadow:0 12px 25px -20px rgba(0,31,67,.7),inset 0 1px 0 rgba(255,255,255,.18);
+  transition:transform .2s var(--brand-ease),box-shadow .22s ease,border-color .2s ease,background .2s ease;
+}
+main .section a:not(.btn,.qtile,.fl){text-underline-offset:3px;text-decoration-thickness:1px}
+main .section :is(.card,.widget,.tile) a:not(.btn){font-weight:700}
+main .section :is(a,button,input,select,textarea):focus-visible{
+  outline:2px solid #007fff;
+  outline-offset:3px;
+}
+
+/* Cartographic illustration system for quiet content bands. */
+main .section.bg-cream:not(.embassy-history),
+main .section.bg-ivory:not(.tight){position:relative;isolation:isolate;overflow:hidden}
+main .section.bg-cream:not(.embassy-history)::before,
+main .section.bg-ivory:not(.tight)::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  right:clamp(-110px,-6vw,-55px);
+  bottom:-115px;
+  width:clamp(260px,30vw,420px);
+  aspect-ratio:1;
+  pointer-events:none;
+  opacity:.19;
+  filter:drop-shadow(0 18px 30px rgba(0,42,82,.08));
+  transform:rotate(-4deg);
+}
+main .section.bg-cream:not(.embassy-history)::before{
+  clip-path:var(--geo-africa);
+  background:
+    repeating-linear-gradient(135deg,rgba(0,42,82,.14) 0 1px,transparent 1px 9px),
+    radial-gradient(circle at 34% 38%,#f7d618 0 3px,transparent 4px),
+    linear-gradient(145deg,rgba(0,127,255,.16),rgba(255,255,255,.1));
+}
+main .section.bg-ivory:not(.tight)::before{
+  clip-path:var(--geo-drc);
+  background:
+    repeating-linear-gradient(135deg,rgba(0,127,255,.14) 0 1px,transparent 1px 10px),
+    radial-gradient(circle at 40% 45%,#f7d618 0 3px,transparent 4px),
+    linear-gradient(145deg,rgba(0,127,255,.13),rgba(206,16,33,.08));
+}
+
+/* Premium section and component interaction without sacrificing seriousness. */
+main .section :is(.card,.widget,.tile,.step,.acc-item){
+  transition:transform .28s var(--brand-ease),box-shadow .3s ease,border-color .25s ease;
+}
+main .section :is(.qbadge,.ic,.snum,.fi){
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 9px 20px -16px rgba(0,42,82,.72);
+}
+main .section .badge{
+  padding:6px 10px;
+  border:1px solid rgba(196,162,89,.24);
+  border-radius:99px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+main .section .acc-q{
+  min-height:58px;
+  padding:17px 20px;
+  color:var(--brand-ink);
+  font-size:14px;
+  font-weight:750;
+}
+main .section .acc-a .inner{padding:2px 20px 22px;line-height:1.72}
+
+@media(hover:hover) and (pointer:fine){
+  main .section .btn:hover{transform:translateY(-2px);box-shadow:0 18px 32px -20px rgba(0,31,67,.82),inset 0 1px 0 rgba(255,255,255,.28)}
+  main .section :is(.card,.widget,.tile,.step,.acc-item):hover{border-color:rgba(0,127,255,.2)}
+  main .section :is(.card,.widget,.tile) a:not(.btn):hover{color:#005fc2}
+}
+
+@media(max-width:760px){
+  main .section h2{font-size:clamp(27px,8vw,35px)}
+  main .section .sec-head{margin-bottom:32px}
+  main .section .sec-head>p:last-child{font-size:14.5px;line-height:1.72}
+  main .section .card.pad{padding:22px}
+  main .section.bg-cream:not(.embassy-history)::before,
+  main .section.bg-ivory:not(.tight)::before{right:-110px;width:270px;opacity:.12}
+}
+@media(prefers-reduced-motion:reduce){
+  main .section .btn,
+  main .section :is(.card,.widget,.tile,.step,.acc-item),
+  main .section .field :is(input,select,textarea){transition:none}
+}
+
 /* ==========================================================================
    Sitewide decorative, structural and interaction accents · below fold only
    ========================================================================== */
