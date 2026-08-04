@@ -190,3 +190,78 @@
 @media (prefers-reduced-motion: reduce) {
   body main .hero-slide { transition: opacity .2s linear !important; }
 }
+
+/* Compact Kinshasa marketing card so the city photograph stays dominant. */
+body main .kinshasa-story {
+  bottom: 78px;
+  width: min(296px, calc(100% - 36px));
+  padding: 12px 13px 11px;
+  border-radius: 12px;
+}
+
+body main .kinshasa-story::before {
+  margin-bottom: 7px;
+}
+
+body main .kinshasa-story .eyebrow {
+  font-size: 7px;
+  letter-spacing: .14em;
+}
+
+body main .kinshasa-story h3 {
+  max-width: 260px;
+  margin: 4px 0 5px;
+  font-size: clamp(19px, 1.7vw, 22px);
+  line-height: 1.05;
+}
+
+body main .kinshasa-story > p:not(.eyebrow) {
+  max-width: 268px;
+  font-size: 9.25px;
+  line-height: 1.4;
+}
+
+body main .kinshasa-actions {
+  gap: 5px;
+  margin-top: 7px;
+}
+
+body main .kinshasa-actions .btn {
+  min-height: 31px;
+  padding: 5px 8px;
+  font-size: 7.25px;
+}
+
+@media (max-width: 620px) {
+  body main .kinshasa-story {
+    right: 10px;
+    bottom: 76px;
+    width: min(268px, calc(100% - 20px));
+    padding: 10px 11px 9px;
+  }
+
+  body main .kinshasa-story::before {
+    margin-bottom: 6px;
+  }
+
+  body main .kinshasa-story h3 {
+    margin-block: 3px 5px;
+    font-size: 18px;
+  }
+
+  body main .kinshasa-story > p:not(.eyebrow) {
+    font-size: 8.75px;
+    line-height: 1.38;
+  }
+
+  body main .kinshasa-actions {
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  body main .kinshasa-actions .btn {
+    min-height: 30px;
+    padding: 5px 7px;
+    font-size: 7px;
+  }
+}
