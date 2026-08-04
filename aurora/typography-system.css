@@ -275,6 +275,7 @@ html[lang="fr"] body main :is(h1, h2, h3, h4, .btn, button, [role="button"]) {
   .site-head > .container,
   html.is-stuck .site-head > .container,
   .announce > .container {
+    inline-size: min(1760px, calc(100vw - 48px));
     max-width: min(1760px, calc(100vw - 48px));
   }
 
@@ -303,6 +304,7 @@ html[lang="fr"] body main :is(h1, h2, h3, h4, .btn, button, [role="button"]) {
     display: flex;
     width: 100%;
     min-width: 0;
+    padding-inline-end: 8px;
     justify-content: center;
   }
 
@@ -325,6 +327,15 @@ html[lang="fr"] body main :is(h1, h2, h3, h4, .btn, button, [role="button"]) {
     font-size: 10.75px;
   }
 
+  .site-head .head-cta {
+    position: relative;
+    z-index: 4;
+    min-inline-size: 272px;
+    justify-content: flex-end;
+    padding-inline-start: 8px;
+    background: linear-gradient(90deg, rgba(255, 254, 250, 0), #fffefa 12px);
+  }
+
   html[lang="fr"] .site-head .head-cta .btn-sm {
     max-inline-size: 230px;
     font-size: 10.25px;
@@ -335,6 +346,7 @@ html[lang="fr"] body main :is(h1, h2, h3, h4, .btn, button, [role="button"]) {
   .site-head > .container,
   html.is-stuck .site-head > .container {
     grid-template-columns: minmax(286px, 320px) minmax(0, 1fr) auto;
+    inline-size: calc(100vw - 30px);
     max-width: calc(100vw - 30px);
   }
 
@@ -348,5 +360,12 @@ html[lang="fr"] body main :is(h1, h2, h3, h4, .btn, button, [role="button"]) {
     font-size: 9.75px;
     line-height: 1.15;
   }
-}
 
+  .site-head .mainnav { padding-inline-end: 8px; }
+  .site-head .head-cta {
+    position: relative;
+    z-index: 4;
+    padding-inline-start: 7px;
+    background: linear-gradient(90deg, rgba(255, 254, 250, 0), #fffefa 10px);
+  }
+}

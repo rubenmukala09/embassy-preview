@@ -1715,6 +1715,7 @@
     "Appointment guidance": "Informations sur les rendez-vous",
     "Search the embassy": "Rechercher sur le site de l’Ambassade",
     "Verify current consular instructions before visiting or sending documents.": "Vérifiez les consignes consulaires en vigueur avant toute visite ou tout envoi de documents.",
+    "Verify current consular instructions before visiting": "Vérifiez les consignes consulaires en vigueur avant votre visite",
     "Request appointment": "Demander un rendez-vous",
     "Request now": "Demander maintenant",
     "Request biometric appointment": "Demander un rendez-vous biométrique",
