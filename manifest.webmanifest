@@ -1,0 +1,39 @@
+{
+  "name": "Embassy of the Democratic Republic of the Congo — Washington, D.C.",
+  "short_name": "DRC Embassy",
+  "description": "Embassy information, consular guidance, DRC resources and official contact pathways.",
+  "id": "/embassy-preview/",
+  "start_url": "/embassy-preview/",
+  "scope": "/embassy-preview/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fbfaf6",
+  "theme_color": "#061b36",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/embassy-preview/aurora/assets/img/embassy-seal.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Consular services",
+      "short_name": "Services",
+      "url": "/embassy-preview/consular-services.html"
+    },
+    {
+      "name": "Contact the Embassy",
+      "short_name": "Contact",
+      "url": "/embassy-preview/contact.html"
+    },
+    {
+      "name": "Discover the DRC",
+      "short_name": "DR Congo",
+      "url": "/embassy-preview/dr-congo.html"
+    }
+  ]
+}
