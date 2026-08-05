@@ -1,0 +1,177 @@
+/* DR Congo editorial image pair · protected photographic presentation */
+
+body main .drc-editorial-grid {
+  align-items: start;
+  grid-template-columns: minmax(0, 1.28fr) minmax(340px, .82fr);
+  gap: clamp(20px, 2.2vw, 34px);
+}
+
+body main button.drc-editorial-card {
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 0;
+  block-size: auto !important;
+  min-block-size: clamp(560px, 41vw, 680px) !important;
+  aspect-ratio: 1.52 / 1;
+  padding: 0 !important;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 28px;
+  background: #071b35;
+  box-shadow:
+    0 34px 80px -38px rgba(0, 6, 20, .9),
+    inset 0 1px rgba(255, 255, 255, .18);
+  isolation: isolate;
+}
+
+body main button.drc-editorial-materials {
+  min-block-size: clamp(510px, 36vw, 600px) !important;
+  aspect-ratio: 1.24 / 1;
+  margin-block-start: clamp(46px, 5vw, 76px);
+}
+
+body main .drc-editorial-card::before {
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(2, 13, 29, .05) 0 43%, rgba(2, 13, 29, .26) 67%, rgba(2, 13, 29, .78) 100%),
+    linear-gradient(90deg, rgba(2, 13, 29, .14), transparent 48%);
+}
+
+body main .drc-editorial-card::after {
+  inset: 14px;
+  z-index: 3;
+  border-color: rgba(255, 255, 255, .2);
+  border-radius: 19px;
+}
+
+body main .drc-editorial-card img {
+  z-index: 1;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: saturate(1.06) contrast(1.025) brightness(1.02);
+}
+
+body main .drc-editorial-river img { object-position: 52% center; }
+body main .drc-editorial-materials img { object-position: 63% center; }
+
+body main .drc-editorial-glass {
+  left: clamp(24px, 3vw, 38px);
+  right: clamp(24px, 3vw, 38px);
+  bottom: clamp(24px, 3vw, 38px);
+  z-index: 5;
+  min-block-size: 0 !important;
+  padding: clamp(18px, 2vw, 25px);
+  overflow: visible;
+  border-color: rgba(255, 255, 255, .34);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(5, 27, 54, .82), rgba(5, 27, 54, .49));
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+  box-shadow:
+    0 20px 45px rgba(0, 7, 20, .3),
+    inset 0 1px rgba(255, 255, 255, .19);
+}
+
+body main .drc-editorial-glass small {
+  display: block;
+  font-size: 9.5px !important;
+  line-height: 1.25;
+  letter-spacing: .16em;
+}
+
+body main .drc-editorial-glass strong {
+  display: block;
+  max-inline-size: 21ch;
+  margin-block: 8px 12px;
+  color: #fff !important;
+  font-family: var(--serif, "Merriweather", Georgia, serif);
+  font-size: clamp(25px, 2.15vw, 36px) !important;
+  font-weight: 700;
+  line-height: 1.08 !important;
+  letter-spacing: -.026em;
+  text-wrap: balance;
+}
+
+body main .drc-editorial-glass em {
+  gap: 7px;
+  margin-block-start: 0;
+}
+
+body main .drc-editorial-glass em span {
+  padding: 6px 9px;
+  color: #f7fbff !important;
+  font-size: 8.5px !important;
+  line-height: 1;
+}
+
+body main .drc-image-action {
+  top: clamp(24px, 2.4vw, 34px);
+  right: clamp(24px, 2.4vw, 34px);
+  z-index: 6;
+  min-block-size: 0 !important;
+  border-color: rgba(255, 255, 255, .4);
+  background: rgba(4, 24, 48, .72);
+  box-shadow: 0 12px 28px rgba(0, 8, 22, .24);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body main button.drc-editorial-card:hover {
+    transform: translateY(-6px);
+  }
+
+  body main button.drc-editorial-card:hover img {
+    transform: scale(1.035);
+    filter: saturate(1.1) contrast(1.035) brightness(1.04);
+  }
+}
+
+@media (max-width: 980px) {
+  body main .drc-editorial-grid { grid-template-columns: 1fr; }
+
+  body main button.drc-editorial-card,
+  body main button.drc-editorial-materials {
+    min-block-size: clamp(470px, 65vw, 610px) !important;
+    aspect-ratio: 16 / 10;
+    margin-block-start: 0;
+  }
+
+  body main .drc-editorial-materials img { object-position: 66% center; }
+}
+
+@media (max-width: 620px) {
+  body main button.drc-editorial-card,
+  body main button.drc-editorial-materials {
+    min-block-size: clamp(420px, 112vw, 520px) !important;
+    aspect-ratio: auto;
+    border-radius: 22px;
+  }
+
+  body main .drc-editorial-card::after {
+    inset: 10px;
+    border-radius: 15px;
+  }
+
+  body main .drc-editorial-glass {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    padding: 17px;
+  }
+
+  body main .drc-editorial-glass strong {
+    font-size: clamp(23px, 7vw, 29px) !important;
+  }
+
+  body main .drc-image-action {
+    top: 18px;
+    right: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body main button.drc-editorial-card,
+  body main .drc-editorial-card img { transition: none !important; }
+}
+
