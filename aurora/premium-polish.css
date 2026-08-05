@@ -1366,3 +1366,118 @@ body main .kinshasa-actions .btn {
     transform: none;
   }
 }
+
+/* 2026-08-05 · Universal diplomatic navigation scale and interaction pass. */
+@media (min-width: 1401px) {
+  .site-head > .container,
+  html.is-stuck .site-head > .container {
+    inline-size: min(1600px, calc(100% - 40px));
+  }
+
+  .site-head .mainnav {
+    gap: clamp(1px, .18vw, 3px);
+  }
+
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group > a {
+    min-width: max-content;
+    min-height: 42px;
+    padding: 10px clamp(7px, .48vw, 10px);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #173b5d;
+    font-size: clamp(12.5px, .82vw, 13.5px);
+    font-weight: 750;
+    line-height: 1.15;
+    letter-spacing: .003em;
+    transition: color .18s ease, background-color .18s ease,
+      border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+
+  .site-head .mainnav > a:hover,
+  .site-head .mainnav > a:focus-visible,
+  .site-head .mainnav > .nav-group:hover > a,
+  .site-head .mainnav > .nav-group:focus-within > a {
+    color: #075f9d;
+    border-color: rgba(14, 128, 194, .2);
+    background: linear-gradient(180deg, rgba(236, 248, 255, .96), rgba(224, 243, 253, .8));
+    box-shadow: 0 8px 20px -17px rgba(0, 69, 120, .78), inset 0 1px rgba(255, 255, 255, .92);
+    transform: translateY(-1px);
+  }
+
+  .site-head .mainnav > a.active,
+  .site-head .mainnav > .nav-group > a.active,
+  .site-head .mainnav > a[aria-current="page"],
+  .site-head .mainnav > .nav-group > a[aria-current="page"] {
+    color: #075f9d;
+    border-color: rgba(14, 128, 194, .14);
+    background: linear-gradient(180deg, #f4fbff, #e7f5fc);
+    box-shadow: inset 0 -2px #1593d1, 0 7px 18px -18px rgba(0, 69, 120, .75);
+  }
+
+  .site-head .mainnav .chev {
+    display: inline-grid;
+    width: 17px;
+    height: 17px;
+    margin-inline-start: 1px;
+    place-items: center;
+    border-radius: 999px;
+    color: #315a78;
+    background: rgba(10, 108, 166, .07);
+    font-size: 9px;
+    line-height: 1;
+    opacity: .86;
+    transition: color .18s ease, background-color .18s ease, transform .18s ease;
+  }
+
+  .site-head .mainnav > .nav-group:hover .chev,
+  .site-head .mainnav > .nav-group:focus-within .chev {
+    color: #075f9d;
+    background: rgba(10, 108, 166, .13);
+    transform: rotate(180deg);
+  }
+}
+
+/* The full French menu remains readable in the narrow desktop transition band. */
+@media (min-width: 1401px) and (max-width: 1500px) {
+  .site-head > .container,
+  html.is-stuck .site-head > .container {
+    grid-template-columns: minmax(210px, 232px) max-content max-content;
+    column-gap: 8px;
+  }
+
+  .site-head .brand {
+    max-width: 232px;
+  }
+
+  .site-head .brand b {
+    font-size: 14.5px;
+  }
+
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group > a {
+    min-height: 40px;
+    padding-inline: 5px;
+    font-size: 11.25px;
+  }
+
+  html[lang="fr"] .site-head .mainnav > a,
+  html[lang="fr"] .site-head .mainnav > .nav-group > a {
+    padding-inline: 4px;
+    font-size: 10.75px;
+  }
+
+  .site-head .head-cta .btn-sm {
+    max-width: 154px;
+    padding-inline: 10px;
+    font-size: 10.5px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .site-head .mainnav > a,
+  .site-head .mainnav > .nav-group > a {
+    padding-inline: 11px;
+    font-size: 14px;
+  }
+}
