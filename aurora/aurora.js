@@ -85,6 +85,15 @@
         ["Fees & Requirements", "consular-services.html#fees", "Published costs, documents and payment guidance"],
       ],
     },
+    "news-events.html": {
+      label: "News, culture & events",
+      items: [
+        ["News & announcements", "news-events.html#published-news", "Official-source Embassy updates and service notices"],
+        ["Annual DRC calendar", "news-events.html#annual-calendar", "Recurring national observances and calendar download"],
+        ["Congo Shining 2026", "congo-shining.html", "Houston and Atlanta program archive"],
+        ["Media & resources", "news-events.html#resources", "Photography, releases and published resources"],
+      ],
+    },
   };
   const arrowSvg =
     '<svg class="ns-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
@@ -120,6 +129,11 @@
     const serviceGroup = $$(":scope > div", grid).find((column) => $("h5", column)?.textContent.trim() === "Services");
     if (serviceGroup) serviceGroup.appendChild(el('<a class="fl" href="/embassy-preview/official-links.html">Official DRC portals</a>'));
   });
+  $$(".foot .grid").forEach((grid) => {
+    if ($('a[href="/embassy-preview/congo-shining.html"]', grid)) return;
+    const newsColumn = $$(":scope > div", grid).find((column) => $('a[href="/embassy-preview/news-events.html"]', column));
+    if (newsColumn) newsColumn.appendChild(el('<a class="fl" href="/embassy-preview/congo-shining.html">Congo Shining 2026</a>'));
+  });
 
   /* ---- 2. Mobile menu --------------------------------------------------- */
   const nav = $(".mainnav");
@@ -135,6 +149,7 @@
       '<div class="mobile-menu" id="embassy-mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden><button class="mm-close" aria-label="Close menu">×</button>' +
         links +
         '<a href="/embassy-preview/official-links.html">Official DRC portals</a>' +
+        '<a href="/embassy-preview/congo-shining.html">Congo Shining 2026</a>' +
         '<button class="mm-search" type="button" aria-label="Search the embassy">Search the embassy</button>' +
         '<a href="/embassy-preview/portal.html" class="mm-cta">Appointment guidance →</a>' +
         '<a class="mm-logo" href="/embassy-preview/" aria-label="Embassy of the DRC - home">' +
@@ -908,6 +923,7 @@
       { t: "Media centre", tf: "Médiathèque", d: "Video, audio, press releases and notices", df: "Vidéo, audio, communiqués et avis", u: "index.html#media", k: "video audio media press announcement watch listen medias presse communique regarder ecouter" },
       { t: "News & Events", tf: "Actualités et événements", d: "Latest embassy news, press and events", df: "Dernières actualités, presse et événements de l'ambassade", u: "news-events.html", k: "news press events calendar actualites nouvelles presse evenements agenda" },
       { t: "Annual DRC calendar", tf: "Calendrier annuel de la RDC", d: "Automatically updated national observances and legal holidays", df: "Commémorations nationales et jours fériés légaux mis à jour automatiquement", u: "news-events.html#annual-calendar", k: "annual calendar yearly events holidays independence martyrs kimbangu parents recurring annuel calendrier evenements jours feries independance martyrs" },
+      { t: "Congo Shining 2026", tf: "Congo Shining 2026", d: "Houston and Atlanta cultural, sports and investment program archive", df: "Archive du programme culturel, sportif et économique de Houston et Atlanta", u: "congo-shining.html", k: "congo shining congolese weeks semaines congolaises houston atlanta leopards culture sports investment diaspora 2026" },
       { t: "The Embassy", tf: "L'Ambassade", d: "Our mission, history and role", df: "Notre mission, histoire et rôle", u: "the-embassy.html", k: "about mission history a propos histoire ambassade role" },
       { t: "The Ambassador", tf: "L'Ambassadeur", d: "H.E. Yvette Kapinga Ngandu, Head of Mission", df: "S.E. Yvette Kapinga Ngandu, Chef de mission", u: "the-embassy.html#ambassador", k: "ambassador head of mission leadership yvette kapinga ngandu ambassadeur chef de mission" },
       { t: "Divisions & departments", tf: "Divisions et départements", d: "Consular, political, economic and cultural sections", df: "Sections consulaire, politique, économique et culturelle", u: "the-embassy.html#divisions", k: "divisions departments sections departements service" },
@@ -1099,6 +1115,7 @@
       "official-links.html": { en: "Official portal navigator", fr: "Navigation des portails officiels", enChips: ["Official DRC portals", "Passport portal", "NIF tax ID", "Investment agencies", "Contact the Embassy"], frChips: ["Portails officiels de la RDC", "Portail des passeports", "Numéro fiscal NIF", "Agences d'investissement", "Contacter l'Ambassade"] },
       "invest-in-drc.html": { en: "Investment desk guide", fr: "Guide du bureau économique", enChips: ["Invest in the DRC", "Investment agencies", "NIF tax ID", "Mining and trade", "Contact the Embassy"], frChips: ["Investir en RDC", "Agences d'investissement", "Numéro fiscal NIF", "Mines et commerce", "Contacter l'Ambassade"] },
       "news-events.html": { en: "News and calendar guide", fr: "Guide des actualités et du calendrier", enChips: ["Annual DRC calendar", "Embassy holidays", "News and events", "Register for alerts", "Contact the Embassy"], frChips: ["Calendrier annuel de la RDC", "Jours fériés de l'Ambassade", "Actualités et événements", "S'inscrire aux alertes", "Contacter l'Ambassade"] },
+      "congo-shining.html": { en: "Congo Shining 2026 archive", fr: "Archive Congo Shining 2026", enChips: ["Congo Shining 2026", "Houston program", "Atlanta program", "Culture and heritage", "Contact the Embassy"], frChips: ["Congo Shining 2026", "Programme de Houston", "Programme d'Atlanta", "Culture et patrimoine", "Contacter l'Ambassade"] },
       "contact.html": { en: "Contact and directions guide", fr: "Guide des contacts et de l'accès", enChips: ["Opening hours", "Embassy address", "Call the Embassy", "Emergency", "Request an appointment"], frChips: ["Heures d'ouverture", "Adresse de l'Ambassade", "Appeler l'Ambassade", "Urgence", "Prendre rendez-vous"] },
       "digital-services.html": { en: "Digital service guide", fr: "Guide des services numériques", enChips: ["Official DRC portals", "Passport portal", "Request an appointment", "Account support", "Contact the Embassy"], frChips: ["Portails officiels de la RDC", "Portail des passeports", "Prendre rendez-vous", "Aide au compte", "Contacter l'Ambassade"] },
       "portal.html": { en: "Appointment guidance", fr: "Informations sur les rendez-vous", enChips: ["Request an appointment", "Passport requirements", "Visa requirements", "Opening hours", "Contact the Embassy"], frChips: ["Prendre rendez-vous", "Conditions du passeport", "Conditions du visa", "Heures d'ouverture", "Contacter l'Ambassade"] },
@@ -1137,6 +1154,7 @@
       { k: ["culture","heritage","patrimoine","music","musique","art","rumba","tradition","dance","danse"], a: "Explore Congolese music (including the world-famous rumba), art and traditions. <a href='dr-congo.html#culture'>Culture &amp; heritage &rarr;</a>", af: "Explorez la musique congolaise (dont la célèbre rumba), l'art et les traditions. <a href='dr-congo.html#culture'>Culture et patrimoine &rarr;</a>" },
       { k: ["news","actualite","press","presse","event","evenement","media","medias","video","newsroom","communique"], a: "See the latest news, press releases and events, plus video and audio in the Media Centre. <a href='news-events.html'>Newsroom &rarr;</a>", af: "Consultez les dernières actualités, communiqués et événements, avec vidéos et audio dans la Médiathèque. <a href='news-events.html'>Actualités &rarr;</a>" },
       { k: ["annual event","yearly event","annual calendar","national holiday","independence day","martyrs day","kimbangu day","parents day","evenement annuel","calendrier annuel","jour ferie","fete nationale","fete de l independance"], a: "The <b>annual DRC calendar</b> automatically advances each year across the ten recurring legal holidays. It shows the next observance, year filters and a downloadable recurring calendar. Embassy closures and public ceremonies still require an annual confirmation. <a href='news-events.html#annual-calendar'>Open the annual calendar &rarr;</a>", af: "Le <b>calendrier annuel de la RDC</b> avance automatiquement chaque année pour les dix jours fériés légaux récurrents. Il affiche la prochaine commémoration, des filtres par année et un calendrier récurrent à télécharger. Les fermetures de l'Ambassade et les cérémonies publiques nécessitent toujours une confirmation annuelle. <a href='news-events.html#annual-calendar'>Ouvrir le calendrier annuel &rarr;</a>" },
+      { k: ["congo shining","congolese weeks","semaines congolaises","houston program","atlanta program","programme houston","programme atlanta","leopards 2026"], a: "<b>Congo Shining 2026</b> brought together a published cultural, sports, diaspora and investment program in Houston and Atlanta in June 2026. The new Embassy page preserves the public program as an archive and links to the campaign source. <a href='congo-shining.html'>Open the 2026 archive &rarr;</a>", af: "<b>Congo Shining 2026</b> a réuni un programme culturel, sportif, diasporique et économique publié à Houston et Atlanta en juin 2026. La nouvelle page de l'Ambassade conserve ce programme public sous forme d'archive et renvoie à la source de la campagne. <a href='congo-shining.html'>Ouvrir l'archive 2026 &rarr;</a>" },
       { k: ["ambassador","ambassadeur","head of mission","chef de mission","yvette","kapinga","ngandu"], a: "The Head of Mission is <b>H.E. Yvette Kapinga Ngandu</b>, Ambassador Extraordinary and Plenipotentiary, in post since 30 October 2025. <a href='the-embassy.html#ambassador'>About the Ambassador &rarr;</a>", af: "La Cheffe de mission est <b>S.E. Yvette Kapinga Ngandu</b>, Ambassadrice extraordinaire et plénipotentiaire, en poste depuis le 30 octobre 2025. <a href='the-embassy.html#ambassador'>À propos de l'Ambassadrice &rarr;</a>" },
       { k: ["president","tshisekedi","felix","head of state","chef de l etat"], a: "The Head of State is <b>H.E. Felix-Antoine Tshisekedi Tshilombo</b>, President of the Democratic Republic of the Congo. <a href='the-embassy.html'>The Embassy &rarr;</a>", af: "Le Chef de l'État est <b>S.E. Félix-Antoine Tshisekedi Tshilombo</b>, Président de la République démocratique du Congo. <a href='the-embassy.html'>L'Ambassade &rarr;</a>" },
       { k: ["jurisdiction","which states","states","consulate","consulat","cover","serve","competence","ressort"], a: "This Embassy serves DR Congolese nationals and consular matters across the <b>United States</b> from Washington, D.C. For your specific case, contact us and we'll confirm the right channel. <a href='contact.html'>Contact &rarr;</a>", af: "Cette Ambassade dessert les ressortissants congolais et les affaires consulaires aux <b>États-Unis</b> depuis Washington. Pour votre cas précis, contactez-nous et nous confirmerons la démarche. <a href='contact.html'>Contact &rarr;</a>" },
@@ -3416,9 +3434,20 @@
     phTranslated = [];
   }
 
+  function applyEmbeddedTranslation(lang, root) {
+    var scope = root || document;
+    var nodes = [];
+    if (scope.nodeType === 1 && scope.matches && scope.matches("[data-emb-en][data-emb-fr]")) nodes.push(scope);
+    if (scope.querySelectorAll) nodes = nodes.concat(Array.prototype.slice.call(scope.querySelectorAll("[data-emb-en][data-emb-fr]")));
+    nodes.forEach(function (node) {
+      node.textContent = node.getAttribute(lang === "fr" ? "data-emb-fr" : "data-emb-en");
+    });
+  }
+
   function apply(lang, scope) {
     if (lang === "fr") toFrench(scope || document.body);
     else toEnglish();
+    applyEmbeddedTranslation(lang, scope || document.body);
     document.documentElement.lang = lang;
   }
 
