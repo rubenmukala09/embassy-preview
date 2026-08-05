@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/typography-system.css?v=1785930600" />
 <link rel="stylesheet" href="/embassy-preview/aurora/official-content.css?v=1786032000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/deep-build.css?v=1786010400" />
-<link rel="stylesheet" href="/embassy-preview/aurora/annual-events.css?v=1786125600" />
+<link rel="stylesheet" href="/embassy-preview/aurora/annual-events.css?v=1786165200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/congo-shining.css?v=1786136400" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,8 +139,15 @@
       <aside class="annual-next" aria-live="polite"><small data-en="Next annual observance" data-fr="Prochaine commémoration annuelle">Next annual observance</small><strong data-next-name>—</strong><span data-next-date>—</span><span data-next-count>—</span></aside>
     </div>
     <div class="annual-stats"><div class="annual-stat"><b>10</b><span data-en="legal holidays in the recurring calendar" data-fr="jours fériés légaux dans le calendrier récurrent">legal holidays in the recurring calendar</span></div><div class="annual-stat"><b data-current-year>—</b><span data-en="selected calendar year" data-fr="année civile sélectionnée">selected calendar year</span></div><div class="annual-stat"><b>12</b><span data-en="months generated automatically" data-fr="mois générés automatiquement">months generated automatically</span></div></div>
+    <section class="annual-upcoming" aria-labelledby="annual-upcoming-title">
+      <div class="annual-upcoming-head">
+        <div><span class="annual-live"><i aria-hidden="true"></i><span data-en="Automatically updated" data-fr="Mise à jour automatique">Automatically updated</span></span><h3 id="annual-upcoming-title" data-en="Coming up" data-fr="À venir">Coming up</h3><p data-en="The next three recurring national observances, ordered from today." data-fr="Les trois prochaines commémorations nationales récurrentes, classées à partir d’aujourd’hui.">The next three recurring national observances, ordered from today.</p></div>
+        <a href="#annual-calendar-list" data-en="Explore the full year ↓" data-fr="Explorer toute l’année ↓">Explore the full year ↓</a>
+      </div>
+      <div class="annual-upcoming-grid" data-annual-upcoming aria-live="polite"></div>
+    </section>
     <div class="annual-controls"><div class="annual-filters" aria-label="Filter annual observances"><button class="annual-filter is-active" type="button" data-filter="all" data-en="All observances" data-fr="Toutes les dates">All observances</button><button class="annual-filter" type="button" data-filter="memory" data-en="Nation &amp; memory" data-fr="Nation et mémoire">Nation &amp; memory</button><button class="annual-filter" type="button" data-filter="culture" data-en="Culture &amp; heritage" data-fr="Culture et patrimoine">Culture &amp; heritage</button><button class="annual-filter" type="button" data-filter="society" data-en="Society &amp; family" data-fr="Société et famille">Society &amp; family</button><button class="annual-filter" type="button" data-filter="state" data-en="State &amp; service" data-fr="État et service">State &amp; service</button></div><div class="annual-year-wrap"><label for="annual-year" data-en="Calendar year" data-fr="Année civile">Calendar year</label><select class="annual-year" id="annual-year" data-annual-year aria-label="Calendar year"></select><button class="annual-download" type="button" data-download-annual data-en="Download recurring calendar (.ics)" data-fr="Télécharger le calendrier récurrent (.ics)">Download recurring calendar (.ics)</button></div></div>
-    <div class="annual-calendar" data-annual-calendar aria-live="polite"></div>
+    <div class="annual-calendar" id="annual-calendar-list" data-annual-calendar aria-live="polite"></div>
   </div>
   <div class="annual-note" data-localized><span data-en="Legal dates do not automatically confirm that the Embassy in Washington will close or host a public ceremony. Weekend shifts and Embassy operations require a current annual notice." data-fr="Les dates légales ne confirment pas automatiquement la fermeture de l’Ambassade à Washington ni l’organisation d’une cérémonie publique. Les reports de week-end et le fonctionnement de l’Ambassade nécessitent un avis annuel à jour.">Legal dates do not automatically confirm that the Embassy in Washington will close or host a public ceremony. Weekend shifts and Embassy operations require a current annual notice.</span><a href="https://acp.cd/nation/combat-de-simon-kimbangu-le-6-avril-decrete-jour-ferie-legal-en-rdc/" target="_blank" rel="noopener noreferrer" data-en="Review the published legal list ↗" data-fr="Consulter la liste légale publiée ↗">Review the published legal list ↗</a></div>
 </div></section>
@@ -292,7 +299,7 @@
 </div></footer>
 
 <script src="/embassy-preview/aurora/aurora.js?v=1786161601" defer></script>
-<script src="/embassy-preview/aurora/annual-events.js?v=1786125600" defer></script>
+<script src="/embassy-preview/aurora/annual-events.js?v=1786165200" defer></script>
 <script src="/embassy-preview/aurora/mobile-os.js?v=1786161601" defer></script>
 </body>
 </html>

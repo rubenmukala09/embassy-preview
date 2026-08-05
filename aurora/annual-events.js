@@ -36,11 +36,19 @@
     });
   }
 
-  function nextOccurrence() {
+  function futureOccurrences(limit) {
     const today = dayStart();
     const candidates = [];
-    [currentYear, currentYear + 1].forEach(year => EVENTS.forEach(event => candidates.push({ event, date:utcDate(year, event) })));
-    return candidates.filter(item => item.date.getTime() >= today).sort((a,b) => a.date - b.date)[0];
+    [currentYear, currentYear + 1, currentYear + 2].forEach(year => EVENTS.forEach(event => candidates.push({ event, date:utcDate(year, event) })));
+    return candidates.filter(item => item.date.getTime() >= today).sort((a,b) => a.date - b.date).slice(0, limit || 3);
+  }
+
+  function nextOccurrence() { return futureOccurrences(1)[0]; }
+
+  function countdownLabel(date) {
+    const count = daysUntil(date);
+    if (count === 0) return text("Today", "Aujourd’hui");
+    return `${count} ${text(count === 1 ? "day away" : "days away", count === 1 ? "jour restant" : "jours restants")}`;
   }
 
   function typeLabel(type) {
@@ -63,6 +71,24 @@
     if (nextCount) {
       const count = daysUntil(next.date);
       nextCount.innerHTML = count === 0 ? `<b>${text("Today","Aujourd’hui")}</b>` : `<b>${count}</b> ${text(count === 1 ? "day away" : "days away", count === 1 ? "jour restant" : "jours restants")}`;
+    }
+
+    const upcoming = root.querySelector("[data-annual-upcoming]");
+    if (upcoming) {
+      upcoming.innerHTML = futureOccurrences(3).map(({event, date}, index) => {
+        const count = daysUntil(date);
+        const countdown = count === 0
+          ? `<b>${escapeHtml(text("Today", "Aujourd’hui"))}</b>`
+          : `<b>${count}</b> ${escapeHtml(text(count === 1 ? "day" : "days", count === 1 ? "jour" : "jours"))}`;
+        return `<article class="annual-upcoming-card${index === 0 ? " is-primary" : ""}" data-date="${iso(date)}">
+          <div class="annual-upcoming-card-head"><span class="annual-kind">${escapeHtml(typeLabel(event.type))}</span><span class="annual-upcoming-order">${String(index + 1).padStart(2, "0")}</span></div>
+          <div class="annual-upcoming-card-main">
+            <time class="annual-date" datetime="${iso(date)}"><b>${event.day}</b><span>${escapeHtml(monthShort(date))}</span></time>
+            <div><h4>${escapeHtml(name(event))}</h4><p>${escapeHtml(dateLabel(date))}</p></div>
+          </div>
+          <div class="annual-upcoming-card-foot"><span class="annual-upcoming-count">${countdown}</span><span>${date.getUTCFullYear()}</span></div>
+        </article>`;
+      }).join("");
     }
 
     const yearSelect = root.querySelector("[data-annual-year]");
@@ -104,10 +130,7 @@
   }
 
   function renderCompact(root) {
-    const today = dayStart(); const items = [];
-    [currentYear, currentYear + 1].forEach(year => EVENTS.forEach(event => { const date=utcDate(year,event); if (date.getTime() >= today) items.push({event,date}); }));
-    const nextThree = items.sort((a,b) => a.date - b.date).slice(0,3);
-    root.innerHTML = nextThree.map(({event,date}) => `<article class="home-annual-event"><time class="annual-date" datetime="${iso(date)}"><b>${event.day}</b><span>${escapeHtml(monthShort(date))}</span></time><div><h3>${escapeHtml(name(event))}</h3><p>${escapeHtml(dateLabel(date))}</p></div><span>${daysUntil(date)} ${escapeHtml(text(daysUntil(date) === 1 ? "day" : "days", daysUntil(date) === 1 ? "jour" : "jours"))}</span></article>`).join("");
+    root.innerHTML = futureOccurrences(3).map(({event,date}) => `<article class="home-annual-event"><time class="annual-date" datetime="${iso(date)}"><b>${event.day}</b><span>${escapeHtml(monthShort(date))}</span></time><div><h3>${escapeHtml(name(event))}</h3><p>${escapeHtml(dateLabel(date))}</p></div><span>${escapeHtml(countdownLabel(date))}</span></article>`).join("");
   }
 
   function downloadCalendar() {
