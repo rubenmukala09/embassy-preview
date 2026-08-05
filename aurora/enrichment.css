@@ -5279,3 +5279,115 @@ main #tools .widgets > .widget{
 @media(max-width:620px){
   main #tools .widgets{grid-auto-columns:minmax(252px,82vw);gap:12px;padding-bottom:13px}
 }
+
+/* ========================================================================== 
+   DRC IDENTITY — layered language system and living-voices panel
+   ========================================================================== */
+main .identity-shell{
+  grid-template-columns:minmax(320px,.8fr) minmax(0,1.2fr);
+  min-height:510px;
+  border-color:rgba(8,40,74,.14);
+  border-radius:24px;
+  box-shadow:0 30px 70px -42px rgba(8,40,74,.58);
+}
+main .identity-copy{
+  position:relative;
+  display:flex;
+  min-width:0;
+  overflow:hidden;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(38px,5.6vw,68px);
+  background:
+    radial-gradient(circle at 96% 8%,rgba(0,163,224,.1),transparent 30%),
+    linear-gradient(145deg,#fff 0%,#f8fbff 68%,#eef6fc 100%);
+}
+main .identity-copy::before{
+  content:"";
+  position:absolute;
+  right:-120px;
+  bottom:-150px;
+  width:360px;
+  height:360px;
+  border:1px solid rgba(0,127,191,.1);
+  border-radius:50%;
+  box-shadow:0 0 0 45px rgba(0,163,224,.025),0 0 0 90px rgba(247,214,24,.018);
+  pointer-events:none;
+}
+main .identity-copy::after{
+  content:"";
+  position:absolute;
+  inset:0 0 auto auto;
+  width:170px;
+  height:5px;
+  background:linear-gradient(90deg,#00a3e0 0 38%,#f7d618 38% 67%,#ce1021 67%);
+  pointer-events:none;
+}
+main .identity-copy>*{position:relative;z-index:1}
+main .identity-copy .eyebrow{display:flex;align-items:center;gap:10px;color:#536985!important;font-size:11px;letter-spacing:.15em}
+main .identity-copy .eyebrow::before{content:"";width:10px;height:10px;border:3px solid #fff;border-radius:50%;background:#f0d64c;box-shadow:0 0 0 2px rgba(213,177,25,.22)}
+main .identity-copy h2{max-width:760px;margin:14px 0 17px;font-size:clamp(38px,4.2vw,58px);line-height:1.06;letter-spacing:-.03em;text-wrap:balance}
+main .identity-copy>p:not(.eyebrow){max-width:850px;font-size:15px;line-height:1.75}
+main .language-key{display:flex;align-items:center;flex-wrap:wrap;gap:15px;margin-top:23px;color:#597087;font:750 10px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+main .language-key span{display:inline-flex;align-items:center;gap:7px}
+main .language-key i{width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 3px rgba(5,51,96,.055)}
+main .language-key .key-official{background:#e4bd22}
+main .language-key .key-national{background:#168ac6}
+main .language-key .key-community{background:#9aaabd}
+main .language-cloud{gap:9px;margin-top:13px}
+main .language-cloud span{
+  display:inline-flex;
+  align-items:center;
+  min-height:38px;
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:11.5px;
+  letter-spacing:.035em;
+  box-shadow:0 5px 14px rgba(5,51,96,.045);
+}
+main .language-cloud .language-official{border-color:rgba(198,155,0,.42);background:linear-gradient(145deg,#fffbed,#f7edbf);color:#604a00!important}
+main .language-cloud .language-national{border-color:rgba(0,127,191,.28);background:linear-gradient(145deg,#f9fdff,#e7f5fc);color:#064f7c!important}
+main .language-cloud .language-community{border-color:rgba(75,101,128,.17);background:rgba(255,255,255,.82);color:#40566d!important}
+main .language-cloud .language-more{gap:7px;border-color:#0c4774;background:linear-gradient(145deg,#0e527f,#082f57);color:#fff!important;box-shadow:0 8px 20px rgba(5,51,96,.15)}
+main .language-cloud .language-more b{display:grid;place-items:center;width:17px;height:17px;border:1px solid rgba(255,255,255,.38);border-radius:50%;color:#ffe36d!important;font-size:13px;line-height:1}
+main .identity-language-metrics{
+  display:grid;
+  grid-template-columns:.62fr .72fr 1.2fr;
+  gap:1px;
+  overflow:hidden;
+  margin-top:28px;
+  border:1px solid rgba(5,51,96,.11);
+  border-radius:16px;
+  background:rgba(5,51,96,.1);
+  box-shadow:0 12px 28px rgba(5,51,96,.055);
+}
+main .identity-language-metrics>div{position:relative;display:flex;min-width:0;flex-direction:column;justify-content:center;min-height:86px;padding:15px 18px;background:rgba(255,255,255,.9)}
+main .identity-language-metrics strong{color:var(--navy)!important;font-family:var(--serif);font-size:26px;line-height:1}
+main .identity-language-metrics>div>span:not(.voice-bars){margin-top:7px;color:#536a82!important;font-size:10.5px;font-weight:750;line-height:1.35;text-transform:uppercase;letter-spacing:.055em}
+main .identity-language-metrics .identity-voices{padding-right:104px;background:linear-gradient(120deg,rgba(255,255,255,.96),rgba(232,246,253,.96))}
+main .voice-bars{position:absolute;right:18px;bottom:19px;display:flex;align-items:flex-end;gap:4px;height:42px}
+main .voice-bars i{display:block;width:5px;border-radius:999px;background:linear-gradient(180deg,#00a3e0,#0a4d7d)}
+main .voice-bars i:nth-child(1),main .voice-bars i:nth-child(7){height:12px;opacity:.42}
+main .voice-bars i:nth-child(2),main .voice-bars i:nth-child(6){height:23px;opacity:.62}
+main .voice-bars i:nth-child(3),main .voice-bars i:nth-child(5){height:34px;opacity:.82}
+main .voice-bars i:nth-child(4){height:42px;background:linear-gradient(180deg,#f4d23f,#ce9c05)}
+@media(max-width:980px){
+  main .identity-shell{grid-template-columns:1fr}
+  main .identity-flag{min-height:330px}
+  main .identity-copy{padding:42px 34px}
+}
+@media(max-width:650px){
+  main .identity-shell{min-height:0;border-radius:20px}
+  main .identity-flag{min-height:270px}
+  main .identity-copy{padding:34px 22px 27px}
+  main .identity-copy h2{font-size:clamp(34px,11vw,46px)}
+  main .identity-copy>p:not(.eyebrow){font-size:14px;line-height:1.68}
+  main .language-key{gap:11px;font-size:9.5px}
+  main .language-cloud span{min-height:40px;padding:9px 12px;font-size:11.5px}
+  main .identity-language-metrics{grid-template-columns:1fr 1fr}
+  main .identity-language-metrics .identity-voices{grid-column:1/-1;min-height:92px}
+}
+@media(max-width:390px){
+  main .identity-language-metrics{grid-template-columns:1fr}
+  main .identity-language-metrics .identity-voices{grid-column:auto}
+}
