@@ -101,14 +101,18 @@
     const href = (a.getAttribute("href") || "").split("#")[0];
     const cfg = SUBNAV[href.split("/").pop()];
     if (!cfg) return;
+    const subId = "nav-sub-" + href.split("/").pop().replace(/\.html$/, "");
     const group = el('<span class="nav-group"></span>');
     a.parentNode.insertBefore(group, a);
     group.appendChild(a);
     a.classList.add("has-sub");
+    a.setAttribute("aria-haspopup", "true");
+    a.setAttribute("aria-expanded", "false");
+    a.setAttribute("aria-controls", subId);
     a.appendChild(el('<span class="chev">▾</span>'));
     group.appendChild(
       el(
-        '<div class="nav-sub" role="menu">' +
+        '<div class="nav-sub" id="' + subId + '" role="menu" aria-label="' + cfg.label + '">' +
           '<div class="ns-label">' + cfg.label + "</div>" +
           cfg.items
             .map(
@@ -121,6 +125,140 @@
           "</div>",
       ),
     );
+  });
+
+  /* Route-aware navigation. Static active classes can drift as new pages are
+     added, so the browser derives one exact current page and one parent section. */
+  const SITE_PREFIX = "/embassy-preview";
+  const SECTION_FOR_PATH = {
+    "/account/": "/consular-services.html",
+    "/documents/": "/consular-services.html",
+    "/pay/": "/consular-services.html",
+    "/portal.html": "/consular-services.html",
+    "/invest-in-drc.html": "/dr-congo.html",
+    "/official-links.html": "/dr-congo.html",
+    "/ambience.html": "/news-events.html",
+    "/congo-shining.html": "/news-events.html",
+  };
+
+  function normalizedSitePath(pathname) {
+    let path = String(pathname || "/").replace(new RegExp("^" + SITE_PREFIX), "") || "/";
+    path = path.replace(/\/index\.html$/, "/");
+    if (!path.startsWith("/")) path = "/" + path;
+    return path;
+  }
+
+  function navigationTarget(anchor) {
+    const url = new URL(anchor.getAttribute("href") || "", window.location.href);
+    return { path: normalizedSitePath(url.pathname), hash: url.hash };
+  }
+
+  function syncNavigationState() {
+    const currentPath = normalizedSitePath(window.location.pathname);
+    const currentHash = window.location.hash;
+    const sectionPath = SECTION_FOR_PATH[currentPath] || currentPath;
+    const primaryLinks = $$(".mainnav > a, .mainnav > .nav-group > a");
+
+    primaryLinks.forEach((link) => {
+      const target = navigationTarget(link);
+      const exact = target.path === currentPath && !target.hash;
+      const section = !exact && target.path === sectionPath;
+      link.classList.toggle("active", exact || section);
+      link.classList.toggle("section-active", section);
+      link.removeAttribute("aria-current");
+      link.removeAttribute("data-current");
+      if (exact) link.setAttribute("aria-current", "page");
+      else if (section) link.setAttribute("data-current", "section");
+    });
+
+    $$('.head-cta a[href*="portal.html"]').forEach((link) => {
+      const exact = navigationTarget(link).path === currentPath;
+      link.classList.toggle("active", exact);
+      link.removeAttribute("aria-current");
+      if (exact) link.setAttribute("aria-current", "page");
+    });
+
+    $$(".nav-sub a").forEach((link) => {
+      const target = navigationTarget(link);
+      const exactPath = target.path === currentPath;
+      const exactLocation = exactPath && (target.hash ? target.hash === currentHash : !currentHash);
+      link.classList.toggle("active", exactLocation);
+      link.removeAttribute("aria-current");
+      if (exactLocation) link.setAttribute("aria-current", target.hash ? "location" : "page");
+    });
+
+    $$(".mobile-menu a[href]:not(.mm-logo)").forEach((link) => {
+      const target = navigationTarget(link);
+      const exact = target.path === currentPath && (!target.hash || target.hash === currentHash);
+      const section = !exact && target.path === sectionPath;
+      link.classList.toggle("active", exact);
+      link.classList.toggle("section-active", section);
+      link.removeAttribute("aria-current");
+      link.removeAttribute("data-current");
+      if (exact) link.setAttribute("aria-current", target.hash ? "location" : "page");
+      else if (section) link.setAttribute("data-current", "section");
+    });
+
+    document.documentElement.dataset.currentSection = sectionPath.replace(/^\//, "").replace(/\.html$/, "") || "home";
+  }
+
+  $$(".nav-group").forEach((group) => {
+    const trigger = $(":scope > a", group);
+    const submenu = $(":scope > .nav-sub", group);
+    if (!trigger || !submenu) return;
+    const items = () => $$("a[href]", submenu);
+    let escapeClosing = false;
+    const setOpen = (open) => {
+      if (open) group.removeAttribute("data-closed");
+      group.toggleAttribute("data-open", open);
+      trigger.setAttribute("aria-expanded", String(open));
+    };
+    group.addEventListener("mouseenter", () => setOpen(true));
+    group.addEventListener("mouseleave", () => setOpen(false));
+    group.addEventListener("focusin", () => {
+      if (escapeClosing) {
+        escapeClosing = false;
+        return;
+      }
+      setOpen(true);
+    });
+    group.addEventListener("focusout", () => {
+      window.setTimeout(() => {
+        if (!group.contains(document.activeElement)) setOpen(false);
+      }, 0);
+    });
+    trigger.addEventListener("keydown", (event) => {
+      const links = items();
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        setOpen(true);
+        (event.key === "ArrowDown" ? links[0] : links[links.length - 1])?.focus();
+      } else if (event.key === "Escape") {
+        event.preventDefault();
+        escapeClosing = true;
+        group.setAttribute("data-closed", "");
+        setOpen(false);
+        trigger.focus();
+      }
+    });
+    submenu.addEventListener("keydown", (event) => {
+      const links = items();
+      const index = links.indexOf(document.activeElement);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        escapeClosing = true;
+        group.setAttribute("data-closed", "");
+        setOpen(false);
+        trigger.focus();
+      } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        const direction = event.key === "ArrowDown" ? 1 : -1;
+        links[(index + direction + links.length) % links.length]?.focus();
+      } else if (event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        (event.key === "Home" ? links[0] : links[links.length - 1])?.focus();
+      }
+    });
   });
 
   /* Keep the official public-service directory reachable from every page. */
@@ -159,6 +297,7 @@
     );
     const scrim = el('<div class="scrim"></div>');
     document.body.append(scrim, menu);
+    syncNavigationState();
     let lastFocus = null;
     const focusables = () => $$("a[href], button:not([disabled])", menu);
     const open = () => {
@@ -201,6 +340,9 @@
       if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
+
+  syncNavigationState();
+  window.addEventListener("hashchange", syncNavigationState);
 
   /* ---- 2b. Docked quick-access bar: hide while scrolling, reveal when idle -- */
   (function () {

@@ -83,7 +83,7 @@ body { min-width: 320px; }
     inset: auto max(10px, env(safe-area-inset-right)) max(9px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
     z-index: 1500;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     width: auto;
     max-width: none;
     min-height: var(--mos-dock-h);
@@ -254,7 +254,7 @@ body { min-width: 320px; }
 }
 
 @media (max-height: 520px) and (orientation: landscape) {
-  .mobile-os-nav { --mos-dock-h: 58px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .mobile-os-nav { --mos-dock-h: 58px; grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .mobile-os-nav a { min-height: 46px; flex-direction: row; gap: 5px; }
   .mobile-os-nav a::before { width: 23px; height: 22px; }
   .mobile-os-nav a span { font-size: 8px; }

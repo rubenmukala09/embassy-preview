@@ -961,6 +961,15 @@ body{background:#f8f5ee}
 .nav-sub a:hover::before{transform:scaleY(1)}
 .nav-sub a:hover b{color:var(--gold-deep)}
 .nav-sub a:hover .ns-arrow{opacity:1;transform:translateX(0)}
+.nav-group[data-open] .nav-sub{opacity:1;visibility:visible;transform:translateY(0)}
+/* Escape must win over :focus-within while focus returns to the parent trigger. */
+.nav-group[data-closed] .nav-sub{opacity:0!important;visibility:hidden!important;transform:translateY(6px)!important;pointer-events:none!important}
+.nav-sub a[aria-current]{background:linear-gradient(90deg,rgba(196,162,89,.18),rgba(196,162,89,.035))}
+.nav-sub a[aria-current]::before{transform:scaleY(1)}
+.nav-sub a[aria-current] b{color:var(--gold-deep)}
+.nav-sub a[aria-current] .ns-arrow{opacity:1;transform:translateX(0)}
+.mobile-menu a[aria-current]{color:#fff;background:linear-gradient(90deg,rgba(17,119,196,.32),rgba(17,119,196,.08));box-shadow:inset 3px 0 0 var(--gold)}
+.mobile-menu a[data-current="section"]{color:var(--gold-soft)}
 
 /* ============================================================================
    AMBASSADOR PORTRAIT - bio frame + quote-band avatar
