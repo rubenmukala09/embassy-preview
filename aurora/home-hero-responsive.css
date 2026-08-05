@@ -709,3 +709,17 @@ body main #tools .tools-intro-verify a b {
     transform: none;
   }
 }
+
+/* Homepage pale/gold actions always carry diplomatic navy labels. */
+body main #contact .info-card .home-hours-link,
+body main #contact .info-card .home-hours-link:hover,
+body main #contact .info-card .home-hours-link:focus-visible,
+body main #contact .info-card .home-hours-link:active,
+html body .foot .footer-news-link,
+html body .foot .footer-news-link:hover,
+html body .foot .footer-news-link:focus-visible,
+html body .foot .footer-news-link:active,
+html body .foot .footer-news-link span {
+  color: #071f3d !important;
+  text-shadow: none !important;
+}
