@@ -3723,16 +3723,60 @@
   else start();
 })();
 
-/* ---- Hero / page-head photo slideshow (auto-updating) ---------------------
-   Pulls every image in public/img/image via the /hero-photos manifest, so any
-   photo dropped into that folder appears automatically with no rebuild, and
-   crossfades them behind the home hero and every interior page-head. Images
-   are loaded lazily (only the current + next slide) to stay light, and the
-   page's existing background is kept as a fallback if the manifest can't be
-   reached (e.g. fully static hosting). ------------------------------------- */
+/* ---- Curated hero photo library ------------------------------------------
+   Thirty original, text-free editorial photographs are grouped by route so
+   each hero supports the page it introduces. Only the current and next image
+   load; motion preferences and tab visibility are respected. The local
+   library also keeps GitHub Pages independent from an optional API. -------- */
 (function () {
   "use strict";
   var motionPreference = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  var root = "/embassy-preview/aurora/assets/img/generated/hero-library-2026/";
+  var library = {
+    home: ["01-kinshasa-sunrise", "02-kinshasa-blue-hour", "04-embassy-reception", "05-bilateral-table", "07-diplomatic-podium"],
+    embassy: ["04-embassy-reception", "05-bilateral-table", "06-washington-embassy", "07-diplomatic-podium", "08-bilateral-welcome"],
+    country: ["01-kinshasa-sunrise", "02-kinshasa-blue-hour", "03-congo-river-aerial", "09-virunga-highlands", "10-congo-rainforest", "11-kinshasa-creative", "12-congolese-music"],
+    consular: ["14-passport-preparation", "15-consular-reception", "16-travel-documents", "24-appointment-guidance", "25-document-legalization"],
+    digital: ["17-digital-citizen-service", "18-official-portals", "26-account-support", "29-privacy-security"],
+    news: ["19-embassy-newsroom", "20-diaspora-cultural-event", "30-congo-shining-gala", "12-congolese-music"],
+    contact: ["06-washington-embassy", "23-washington-diplomatic-city", "24-appointment-guidance", "08-bilateral-welcome"],
+    investment: ["13-kinshasa-enterprise", "21-responsible-industry", "22-clean-energy-drc", "03-congo-river-aerial"],
+    portals: ["18-official-portals", "17-digital-citizen-service", "29-privacy-security"],
+    appointment: ["24-appointment-guidance", "15-consular-reception", "14-passport-preparation"],
+    account: ["26-account-support", "17-digital-citizen-service", "29-privacy-security"],
+    documents: ["25-document-legalization", "14-passport-preparation"],
+    payment: ["27-payment-guidance", "16-travel-documents"],
+    accessibility: ["28-accessible-service", "15-consular-reception"],
+    legal: ["29-privacy-security", "25-document-legalization", "18-official-portals"]
+  };
+  var pageGroups = {
+    "/": "home", "/index.html": "home",
+    "/the-embassy.html": "embassy",
+    "/dr-congo.html": "country",
+    "/consular-services.html": "consular",
+    "/digital-services.html": "digital",
+    "/news-events.html": "news",
+    "/contact.html": "contact",
+    "/invest-in-drc.html": "investment",
+    "/official-links.html": "portals",
+    "/portal.html": "appointment",
+    "/account/": "account", "/account/index.html": "account",
+    "/documents/": "documents", "/documents/index.html": "documents",
+    "/pay/": "payment", "/pay/index.html": "payment",
+    "/accessibility.html": "accessibility",
+    "/privacy.html": "legal", "/terms.html": "legal", "/cookies.html": "legal", "/disclaimer.html": "legal"
+  };
+
+  function currentGroup() {
+    var path = window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
+    return pageGroups[path] || "embassy";
+  }
+
+  function photosForPage() {
+    return (library[currentGroup()] || library.embassy).map(function (name) {
+      return root + name + ".webp";
+    });
+  }
 
   function shuffle(a) {
     for (var i = a.length - 1; i > 0; i--) {
@@ -3748,7 +3792,6 @@
     var hero = document.querySelector(".hero-slides");
     if (hero) list.push({ box: hero, ms: 7000 });
     document.querySelectorAll(".phead").forEach(function (ph) {
-      if (ph.hasAttribute("data-hero-static")) return;   // keeps its own background
       if (ph.querySelector(".phead-slides")) return;
       var box = document.createElement("div");
       box.className = "phead-slides";
@@ -3795,14 +3838,10 @@
   function start() {
     var spots = targets();
     if (!spots.length) return;
-    if (!window.EMBASSY_API) return;
-    fetch(window.EMBASSY_API + "/hero-photos", { headers: { Accept: "application/json" } })
-      .then(function (r) { return r.ok ? r.json() : []; })
-      .then(function (photos) {
-        if (!Array.isArray(photos) || !photos.length) return; // keep existing bg
-        spots.forEach(function (s) { run(s.box, shuffle(photos.slice()), s.ms); });
-      })
-      .catch(function () {}); // offline / static host -> existing bg stays
+    var photos = photosForPage();
+    if (!photos.length) return;
+    document.documentElement.setAttribute("data-hero-library", currentGroup());
+    spots.forEach(function (s) { run(s.box, shuffle(photos.slice()), s.ms); });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
