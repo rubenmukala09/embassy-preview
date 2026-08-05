@@ -65,6 +65,7 @@
       items: [
         ["About DR Congo", "dr-congo.html", "Geography, people and the essential facts"],
         ["Invest in DRC", "invest-in-drc.html", "Priority sectors, ANAPI support and investment guidance"],
+        ["Official DRC portals", "official-links.html", "Government institutions and verified .cd services"],
         ["Tourism", "dr-congo.html#tourism", "National parks, wildlife and destinations"],
         ["Culture & Heritage", "dr-congo.html#culture", "Music, art and Congolese traditions"],
       ],
@@ -108,6 +109,13 @@
     );
   });
 
+  /* Keep the official public-service directory reachable from every page. */
+  $$(".foot .grid").forEach((grid) => {
+    if ($('a[href="/embassy-preview/official-links.html"]', grid)) return;
+    const serviceGroup = $$(":scope > div", grid).find((column) => $("h5", column)?.textContent.trim() === "Services");
+    if (serviceGroup) serviceGroup.appendChild(el('<a class="fl" href="/embassy-preview/official-links.html">Official DRC portals</a>'));
+  });
+
   /* ---- 2. Mobile menu --------------------------------------------------- */
   const nav = $(".mainnav");
   if (nav) {
@@ -121,6 +129,7 @@
     const menu = el(
       '<div class="mobile-menu" id="embassy-mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden><button class="mm-close" aria-label="Close menu">×</button>' +
         links +
+        '<a href="/embassy-preview/official-links.html">Official DRC portals</a>' +
         '<button class="mm-search" type="button" aria-label="Search the embassy">Search the embassy</button>' +
         '<a href="/embassy-preview/portal.html" class="mm-cta">Appointment guidance →</a>' +
         '<a class="mm-logo" href="/embassy-preview/" aria-label="Embassy of the DRC - home">' +
@@ -898,6 +907,7 @@
       { t: "Divisions & departments", tf: "Divisions et départements", d: "Consular, political, economic and cultural sections", df: "Sections consulaire, politique, économique et culturelle", u: "the-embassy.html#divisions", k: "divisions departments sections departements service" },
 { t: "Democratic Republic of the Congo", tf: "République démocratique du Congo", d: "About the country, facts and figures", df: "À propos du pays, faits et chiffres", u: "dr-congo.html", k: "drc congo country about rdc congo pays" },
       { t: "Invest in the DRC", tf: "Investir en RDC", d: "Priority sectors, ANAPI support and investment-code guidance", df: "Secteurs prioritaires, accompagnement ANAPI et cadre des investissements", u: "invest-in-drc.html", k: "invest investment anapi sector agriculture energy mining infrastructure tourism business trade economy investissement investir secteur mines energie commerce economie" },
+      { t: "Official DRC portals", tf: "Portails officiels de la RDC", d: "Government, passport, identity, tax, customs and investment websites", df: "Sites du gouvernement, des passeports, de l'identité, des impôts, des douanes et de l'investissement", u: "official-links.html", k: "official government portal links dot cd gouv cd passport nif tax customs presidency primature officiel gouvernement portails liens passeport impot douane presidence" },
       { t: "Tourism", tf: "Tourisme", d: "Parks, wildlife and destinations", df: "Parcs, faune et destinations", u: "dr-congo.html#tourism", k: "tourism visit parks wildlife tourisme visiter parcs gorilles nature" },
       { t: "Culture & heritage", tf: "Culture et patrimoine", d: "Music, art and Congolese traditions", df: "Musique, art et traditions congolaises", u: "dr-congo.html#culture", k: "culture heritage music art patrimoine musique traditions" },
       { t: "Contact the Embassy", tf: "Contacter l'ambassade", d: "Address, phone, email and map", df: "Adresse, téléphone, courriel et plan", u: "contact.html", k: "contact address phone email map directions adresse telephone courriel plan itineraire coordonnees" },
@@ -1088,6 +1098,7 @@
       { k: ["advisory","safe","safety","security","securite","conseil","danger"], a: "Check the current <b>travel advisory</b> and entry requirements before travelling to the DRC, and register your trip so we can reach you in an emergency. <a href='index.html#advisory'>Travel advisory &rarr;</a>", af: "Consultez les <b>conseils aux voyageurs</b> et les conditions d'entrée avant de partir en RDC, et enregistrez votre voyage pour que nous puissions vous joindre en cas d'urgence. <a href='index.html#advisory'>Conseils aux voyageurs &rarr;</a>" },
       { k: ["register","registration","diaspora","enrol","enroll","alert","inscription","inscrire","enregistrer","alertes","carte consulaire"], a: "Register with the Embassy, <b>free of charge</b>, to receive alerts and so we can assist you in an emergency. <a href='index.html#register'>Register with the Embassy &rarr;</a>", af: "Inscrivez-vous auprès de l'Ambassade, <b>gratuitement</b>, pour recevoir des alertes et être assisté en cas d'urgence. <a href='index.html#register'>S'inscrire &rarr;</a>" },
 { k: ["invest","investment","investir","investissement","business","trade","commerce","economy","economie","sector","secteur","mining","mines"], a: "The Embassy publishes ten investment pathways and identifies <b>ANAPI</b> as the principal investor-facilitation body. <a href='invest-in-drc.html'>Open the investment guide &rarr;</a>", af: "L'Ambassade présente dix filières d'investissement et identifie l'<b>ANAPI</b> comme organisme principal d'accompagnement. <a href='invest-in-drc.html'>Ouvrir le guide d'investissement &rarr;</a>" },
+      { k: ["official website","official link","government website","government portal","dot cd","gouv cd","site officiel","lien officiel","portail gouvernement","ministere","ministry","dgi","anapi","customs","douane"], a: "Use the <b>Official DRC portals</b> directory for government, passport, identity, tax, customs and investment websites. Every destination shows its domain before you leave this site. <a href='official-links.html'>Open official portals &rarr;</a>", af: "Utilisez l'annuaire des <b>portails officiels de la RDC</b> pour les sites du gouvernement, des passeports, de l'identité, des impôts, des douanes et de l'investissement. Chaque destination affiche son domaine avant de quitter ce site. <a href='official-links.html'>Ouvrir les portails officiels &rarr;</a>" },
       { k: ["tourism","tourisme","visit","visiter","gorilla","gorille","park","parc","virunga","river","fleuve","nature","wildlife"], a: "Discover the DRC's national parks, mountain gorillas and the Congo River. <a href='dr-congo.html#tourism'>Tourism &rarr;</a>", af: "Découvrez les parcs nationaux de la RDC, les gorilles de montagne et le fleuve Congo. <a href='dr-congo.html#tourism'>Tourisme &rarr;</a>" },
       { k: ["culture","heritage","patrimoine","music","musique","art","rumba","tradition","dance","danse"], a: "Explore Congolese music (including the world-famous rumba), art and traditions. <a href='dr-congo.html#culture'>Culture &amp; heritage &rarr;</a>", af: "Explorez la musique congolaise (dont la célèbre rumba), l'art et les traditions. <a href='dr-congo.html#culture'>Culture et patrimoine &rarr;</a>" },
       { k: ["news","actualite","press","presse","event","evenement","media","medias","video","newsroom","communique"], a: "See the latest news, press releases and events, plus video and audio in the Media Centre. <a href='news-events.html'>Newsroom &rarr;</a>", af: "Consultez les dernières actualités, communiqués et événements, avec vidéos et audio dans la Médiathèque. <a href='news-events.html'>Actualités &rarr;</a>" },
