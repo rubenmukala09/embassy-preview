@@ -59,6 +59,7 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/premium-polish.css?v=1785925200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/home-hero-responsive.css?v=1785926400" />
 <link rel="stylesheet" href="/embassy-preview/aurora/typography-system.css?v=1785930600" />
+<link rel="stylesheet" href="/embassy-preview/aurora/official-content.css?v=1786032000" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -205,48 +206,42 @@
 
 <!-- CITIZEN TOOLS / WIDGETS -->
 <section class="section" id="tools"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Tools &amp; services</p><div class="rule"></div><h2>Plan your visit at a glance</h2><p>Live information and quick estimators for citizens and visitors.</p></div>
+  <div class="sec-head center"><p class="eyebrow">Official information at a glance</p><div class="rule"></div><h2>Plan with published guidance</h2><p>Useful orientation drawn from the Embassy’s current public pages. Confirm operational details before travelling.</p></div>
   <div class="widgets">
     <div class="widget widget-time">
       <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Local time</div>
       <div class="clock"><span class="city">Kinshasa</span><span class="time" data-tz="Africa/Kinshasa">--:--</span></div>
       <div class="clock"><span class="city">Washington, D.C.</span><span class="time" data-tz="America/New_York">--:--</span></div>
-      <div class="widget-route" aria-hidden="true"><span>KIN</span><i></i><b>+6H</b><i></i><span>WDC</span></div>
-      <small>The DRC is GMT+1, about 6 hours ahead of D.C.</small>
+      <div class="widget-route" aria-hidden="true"><span>KIN</span><i></i><b>LOCAL</b><i></i><span>WDC</span></div>
+      <small>Both clocks adjust automatically for the selected cities.</small>
     </div>
-    <div class="widget status-w widget-status widget-capacity" title="Office status and illustrative appointment-load planning guide">
-      <div class="w-head"><span class="widget-code" aria-hidden="true">OPS</span> Mission status &amp; workload</div>
-      <div class="status-main"><span class="status-dot" id="embassyStatus"></span><div><b id="statusText">Checking…</b><span>Track expected booking pressure here. Maximum daily handling: 75 visitors.</span></div></div>
-      <div class="capacity-summary is-red" id="capacitySummary" aria-live="polite">
-        <div><span id="capacityLabel">Morning workload</span><strong id="capacityValue">62 / 75</strong></div>
-        <div class="capacity-track" role="progressbar" aria-label="Projected appointment workload" aria-valuemin="0" aria-valuemax="75" aria-valuenow="62" id="capacityTrack"><i id="capacityBar" style="width:82.67%"></i></div>
-      </div>
-      <div class="capacity-periods" aria-label="Choose a time period to review projected appointment load">
-        <button type="button" class="capacity-period is-active" data-period="Morning" data-load="62" aria-pressed="true"><span>Morning</span><b>62</b><small>High</small></button>
-        <button type="button" class="capacity-period" data-period="Afternoon" data-load="42" aria-pressed="false"><span>Afternoon</span><b>42</b><small>Busy</small></button>
-        <button type="button" class="capacity-period" data-period="Evening" data-load="18" aria-pressed="false"><span>Evening</span><b>18</b><small>Light</small></button>
-      </div>
-      <div class="capacity-legend" aria-label="Workload color guide"><span class="green">0–15</span><span class="blue">16–29</span><span class="yellow">30–49</span><span class="red">50–75</span></div>
-      <small class="capacity-note">Planning estimate · select a period to compare demand.</small>
+    <div class="widget status-w widget-status">
+      <div class="w-head"><span class="widget-code" aria-hidden="true">VISA</span> Drop-off &amp; collection</div>
+      <div class="status-main"><span class="status-dot" style="background:var(--gold)"></span><div><b>Published service windows</b><span>Drop-off Mon–Thu 10:00–15:00 · Fri 10:00–13:00</span></div></div>
+      <div class="hr"><span>Pick-up · Tuesday &amp; Thursday</span><b>14:00–15:30</b></div>
+      <div class="hr"><span>Pick-up · Friday</span><b>11:00–12:30</b></div>
+      <a class="widget-action" href="/embassy-preview/consular-services.html#visa">Check requirements <span aria-hidden="true">→</span></a>
     </div>
     <div class="widget widget-currency">
-      <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Currency</div>
-      <div class="cc"><input id="ccAmount" type="number" value="100" min="0" aria-label="Amount in USD"/> USD = <output id="ccResult">280,000</output> CDF</div>
-      <div class="currency-telemetry" aria-hidden="true"><span>USD</span><div><i></i><i></i><i></i><i></i><i></i><i></i></div><span>CDF</span></div>
-      <small>Indicative rate · 1 USD ≈ 2,800 Congolese Francs</small>
+      <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 13h2v3H9zM15 13h2v3h-2z"/></svg> Invest in the DRC</div>
+      <div class="cc" style="display:block"><b style="font-size:20px;color:var(--navy)">10 published sectors</b></div>
+      <div class="currency-telemetry" aria-hidden="true"><span>PROJECT</span><div><i></i><i></i><i></i><i></i><i></i><i></i></div><span>ANAPI</span></div>
+      <small>Sector directory, investor support, legal framework and official source links.</small>
+      <a class="widget-action" href="/embassy-preview/invest-in-drc.html">Open investment guide <span aria-hidden="true">→</span></a>
     </div>
     <div class="widget widget-fee">
       <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7h6m-6 4h6m-6 4h4"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg> Fee estimator</div>
       <select id="feeService" aria-label="Choose a service">
-        <option data-fee="$135" data-proc=" · 10–15 business days">Passport renewal</option>
-        <option data-fee="$185" data-proc=" · 15–20 business days">New passport</option>
-        <option data-fee="$100" data-proc=" · 3–5 business days">Tourist visa (1 month)</option>
-        <option data-fee="$175" data-proc=" · 3–5 business days">Business visa</option>
-        <option data-fee="$50" data-proc=" · 2–3 business days">Document legalization</option>
-        <option data-fee="$90" data-proc=" · 5–7 business days">Laissez-Passer (Tenant-Lieu)</option>
+        <option data-fee="$75" data-proc=" · paid through the official passport process">Biometric passport</option>
+        <option data-fee="$185" data-proc=" · 2-year reciprocity visa">U.S. citizen visa</option>
+        <option data-fee="$100" data-proc=" · single entry, 1 month">Single-entry visa</option>
+        <option data-fee="$120" data-proc=" · multiple entry, 1 month">Multiple-entry visa</option>
+        <option data-fee="$45" data-proc=" · one-way airport transit">Airport transit visa</option>
+        <option data-fee="$50" data-proc=" · standard civil/notarial item">Civil or notarial service</option>
       </select>
       <div class="fee-out" id="feeOut"></div>
       <div class="service-flow" aria-hidden="true"><span>SELECT</span><i></i><span>VERIFY</span><i></i><span>APPLY</span></div>
+      <small>Published amount · always verify before payment.</small>
     </div>
     <div class="widget widget-africa-map">
       <div class="w-head"><span class="widget-code" aria-hidden="true">AFR</span> Africa &amp; the DRC</div>
@@ -267,16 +262,16 @@
     <p>Review the current entry requirements and travel guidance, and register with the Embassy so we can send you alerts and reach you in an emergency.</p></div>
   <div class="advisory-grid">
     <article class="advisory-card" data-severity="caution">
-      <div class="adv-status"><span class="adv-flag" aria-hidden="true"></span><div><b>Advisory in effect</b><span>Reviewed 24 June 2026</span></div></div>
+      <div class="adv-status"><span class="adv-flag" aria-hidden="true"></span><div><b>Before you travel</b><span>Verify current requirements before departure</span></div></div>
       <h3>Democratic Republic of the Congo</h3>
-      <p class="muted">Exercise increased caution across the country. Avoid non-essential travel to the eastern provinces, North Kivu, South Kivu and Ituri, where the security situation remains volatile.</p>
+      <p class="muted">Use the Embassy’s published visa checklist and consult current government travel, security and health guidance for every destination on your itinerary.</p>
       <ul class="adv-req">
         <li><span>Visa</span> Required for most travellers. <a href="/embassy-preview/consular-services.html#visa">Apply for a visa →</a></li>
         <li><span>Passport</span> Valid at least six months, with two blank pages.</li>
         <li><span>Health</span> A yellow-fever vaccination certificate is mandatory.</li>
-        <li><span>On arrival</span> Carry identification at all times.</li>
+        <li><span>Supporting file</span> Requirements vary for tourism, business, study and official travel.</li>
       </ul>
-      <a class="btn btn-outline btn-sm" href="/embassy-preview/dr-congo.html">Country &amp; travel information</a>
+      <a class="btn btn-outline btn-sm" href="/embassy-preview/consular-services.html#visa">Country &amp; travel information</a>
       <p class="adv-feedback">Information out of date, or have something to report? <a href="/embassy-preview/contact.html">Suggest an update or request assistance →</a></p>
     </article>
     <article class="register-card" id="register">
@@ -367,9 +362,9 @@
 <section class="section"><div class="container">
   <div class="sec-head center"><p class="eyebrow">News &amp; Events</p><div class="rule"></div><h2>Latest from the Embassy</h2></div>
   <div class="grid cols-3">
-    <a class="card card-hover ncard" data-body="The Embassy welcomes the signing of three major diplomatic instruments by the Democratic Republic of the Congo: a peace agreement with Rwanda, a regional economic-integration framework, and a strategic partnership with the United States. Together they open a new era of lasting regional stability, sovereignty and shared prosperity for the Congolese people." href="/embassy-preview/news-events.html"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp')"></div><div class="bd"><div class="date">May 11, 2026</div><h3>The Washington Agreements: a new era of peace, sovereignty and prosperity for the DRC</h3><div class="read">Read more →</div></div></a>
-    <a class="card card-hover ncard" data-body="As part of the strategic partnership between the two countries, the Democratic Republic of the Congo and the United States have agreed to extend visa reciprocity to Congolese and American citizens travelling for tourism, study and business, strengthening people-to-people ties between the two nations." href="/embassy-preview/news-events.html"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/mboka-conference-handshake-flags-2026.webp')"></div><div class="bd"><div class="date">May 2026</div><h3>The DRC and the United States extend visa reciprocity</h3><div class="read">Read more →</div></div></a>
-    <a class="card card-hover ncard" data-body="Until further notice, the Embassy is not accepting online bookings. Visa applications are received in person at the Embassy, Monday to Friday from 10:00 to 13:00, and all consular payments must be made by blank money order only. Please plan your visit accordingly." href="/embassy-preview/consular-services.html#visa"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/mboka-seminar-crowd-08.webp')"></div><div class="bd"><div class="date">Important notice</div><h3>Visa applications received in person - no online bookings</h3><div class="read">Read more →</div></div></a>
+<a class="card card-hover ncard" data-body="The Embassy describes the Washington Agreements as a three-part framework bringing together the DRC–Rwanda Peace Agreement, a Regional Economic Integration Framework and a strategic partnership between the DRC and the United States." href="https://www.ambadrcusa.org/2026/05/11/the-washington-agreements-a-new-era-of-peace-sovereignty-and-prosperity-for-the-drc/" target="_blank" rel="noopener noreferrer"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp')"></div><div class="bd"><div class="date">Official release · May 11, 2026</div><h3>The Washington Agreements: peace, sovereignty and prosperity for the DRC</h3><div class="read">Read the official release ↗</div></div></a>
+<a class="card card-hover ncard" data-body="The Embassy publishes a two-year US $185 reciprocity visa for U.S. citizens travelling for tourism, study or business. Applicants must still submit the supporting documents required for their purpose of travel." href="/embassy-preview/consular-services.html#visa"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/mboka-conference-handshake-flags-2026.webp')"></div><div class="bd"><div class="date">Current consular guidance</div><h3>Two-year visa reciprocity for eligible U.S. travellers</h3><div class="read">Review official-source requirements →</div></div></a>
+<a class="card card-hover ncard" data-body="Visa drop-off is published for Monday through Thursday, 10:00 to 15:00, and Friday, 10:00 to 13:00. Pick-up is Tuesday and Thursday, 14:00 to 15:30, and Friday, 11:00 to 12:30. Confirm before visiting." href="/embassy-preview/consular-services.html#visa"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/mboka-seminar-crowd-08.webp')"></div><div class="bd"><div class="date">Service hours</div><h3>Current visa drop-off and collection windows</h3><div class="read">Plan your visit →</div></div></a>
   </div>
   <div class="center mt32"><a class="btn btn-outline" href="/embassy-preview/news-events.html">View all news →</a></div>
 </div></section>
@@ -398,21 +393,19 @@
         <span class="mi-body"><span class="media-badge badge-audio">Audio</span><b>National Anthem of the DR Congo</b><span class="mi-meta">Debout Congolais &middot; Instrumental</span></span>
         <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
       </button>
-      <button class="media-item" type="button" data-media="video"
-        data-title="Investment &amp; Trade Forum 2026, highlights" data-meta="Video · 3:18"
-        data-src="/embassy-preview/aurora/assets/img/hero/mboka-conference-networking-flags-2026.webp">
+      <a class="media-item" href="/embassy-preview/invest-in-drc.html">
         <span class="mi-ic ic-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="14" height="14" rx="1"/><path d="m22 7-6 5 6 5z"/></svg></span>
-        <span class="mi-body"><span class="media-badge badge-video2">Video</span><b>Investment &amp; Trade Forum 2026, highlights</b><span class="mi-meta">Economic affairs · 3:18</span></span>
-        <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-      </button>
-      <a class="media-item" href="/embassy-preview/consular-services.html#passport" data-media="doc">
+        <span class="mi-body"><span class="media-badge badge-video2">Guide</span><b>Invest in the DRC</b><span class="mi-meta">Ten sectors · ANAPI · investment framework</span></span>
+        <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+      </a>
+      <a class="media-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Passport_application_writable.pdf" target="_blank" rel="noopener noreferrer" data-media="doc">
         <span class="mi-ic ic-doc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
-        <span class="mi-body"><span class="media-badge badge-doc">Document</span><b>Press release: new biometric passport fees</b><span class="mi-meta">PDF · 240 KB</span></span>
+        <span class="mi-body"><span class="media-badge badge-doc">Document</span><b>Biometric passport application form</b><span class="mi-meta">Official Embassy-linked PDF · writable</span></span>
         <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span>
       </a>
-      <a class="media-item" href="/embassy-preview/news-events.html" data-media="notice">
+      <a class="media-item" href="https://www.ambadrcusa.org/2026/05/11/the-washington-agreements-a-new-era-of-peace-sovereignty-and-prosperity-for-the-drc/" target="_blank" rel="noopener noreferrer" data-media="notice">
         <span class="mi-ic ic-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
-        <span class="mi-body"><span class="media-badge badge-notice">Notice</span><b>Embassy closed Monday, 1 July, Independence Day</b><span class="mi-meta">Official notice</span></span>
+        <span class="mi-body"><span class="media-badge badge-notice">Official release</span><b>The Washington Agreements</b><span class="mi-meta">Published May 11, 2026</span></span>
         <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
       </a>
     </div>
@@ -427,21 +420,19 @@
       <h2 style="font-size:26px;margin-top:12px">Forms &amp; downloads</h2>
       <p class="lead mt16" style="margin-bottom:22px">Download and prepare consular forms before your appointment.</p>
       <div class="dl-list">
-        <a class="dl-item" href="/embassy-preview/consular-services.html#passport"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Passport application form</b><span>PDF · 240 KB · EN/FR</span></span><span class="dlbtn">View →</span></a>
-        <a class="dl-item" href="/embassy-preview/consular-services.html#visa"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Visa application form</b><span>PDF · 198 KB · EN/FR</span></span><span class="dlbtn">View →</span></a>
-        <a class="dl-item" href="/embassy-preview/consular-services.html#legalization"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Document legalization request</b><span>PDF · 156 KB · EN/FR</span></span><span class="dlbtn">View →</span></a>
-        <a class="dl-item" href="/embassy-preview/consular-services.html#tenant-lieu"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Laissez-Passer (Tenant-Lieu) form</b><span>PDF · 172 KB · EN/FR</span></span><span class="dlbtn">View →</span></a>
+<a class="dl-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Passport_application_writable.pdf" target="_blank" rel="noopener noreferrer"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Passport application form</b><span>Official Embassy-linked PDF · writable</span></span><span class="dlbtn">Open ↗</span></a>
+<a class="dl-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Visas_application_writable.pdf" target="_blank" rel="noopener noreferrer"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Visa application form</b><span>Official Embassy-linked PDF · writable</span></span><span class="dlbtn">Open ↗</span></a>
+<a class="dl-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Laissez-passer_or_tenant_lieu_de_passeport_-writable.pdf" target="_blank" rel="noopener noreferrer"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Laissez-Passer / Tenant-Lieu form</b><span>Official Embassy-linked PDF · writable</span></span><span class="dlbtn">Open ↗</span></a>
+<a class="dl-item" href="/embassy-preview/consular-services.html#legalization"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="meta"><b>Legalization requirements</b><span>Document-specific Embassy guidance</span></span><span class="dlbtn">View →</span></a>
       </div>
     </div>
     <div class="info-card">
       <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Office hours</h4>
       <div class="hr"><span>Monday – Thursday</span><span>9:00 – 16:00</span></div><div class="hr"><span>Friday</span><span>9:00 – 13:00</span></div>
-      <div class="hr"><span>Consular drop-off</span><span>10:00 – 13:00</span></div>
+      <div class="hr"><span>Visa drop-off · Mon–Thu</span><span>10:00 – 15:00</span></div>
+      <div class="hr"><span>Visa drop-off · Fri</span><span>10:00 – 13:00</span></div>
       <div class="hr"><span>Weekends</span><span>Closed</span></div>
-      <h4 style="margin-top:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Upcoming holidays</h4>
-      <div class="hr"><span>Independence Day (DRC)</span><span>Jun 30</span></div>
-      <div class="hr"><span>Independence Day (US)</span><span>Jul 4</span></div>
-      <div class="hr"><span>Parents' Day (DRC)</span><span>Aug 1</span></div>
+      <a class="btn btn-outline btn-block" href="/embassy-preview/contact.html" style="margin-top:20px">Confirm hours &amp; closures</a>
     </div>
   </div>
 </div></section>
@@ -561,8 +552,10 @@
     <div class="hours">
       <h4 style="font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:12px">Office hours</h4>
       <div class="hr"><span>Monday – Thursday</span><span>9:00 – 16:00</span></div><div class="hr"><span>Friday</span><span>9:00 – 13:00</span></div>
-      <div class="hr"><span>Consular drop-off</span><span>10:00 – 13:00</span></div>
-      <div class="hr"><span>Document pick-up</span><span>14:00 – 16:00</span></div>
+      <div class="hr"><span>Visa drop-off · Mon–Thu</span><span>10:00 – 15:00</span></div>
+      <div class="hr"><span>Visa drop-off · Fri</span><span>10:00 – 13:00</span></div>
+      <div class="hr"><span>Visa pick-up · Tue/Thu</span><span>14:00 – 15:30</span></div>
+      <div class="hr"><span>Visa pick-up · Fri</span><span>11:00 – 12:30</span></div>
       <div class="hr"><span>Weekends</span><span>Closed</span></div>
     </div>
   </div>
@@ -607,4 +600,3 @@
 <script src="/embassy-preview/aurora/aurora.js?v=1785930600" defer></script>
 </body>
 </html>
-
