@@ -212,6 +212,51 @@ body { min-width: 320px; }
 }
 
 @media (max-width: 520px) {
+  /* Full-resolution phone heroes. The home photo gets one complete dynamic
+     viewport before its copy panel; interior hero photography fills the same
+     visible height while allowing longer translated copy to expand safely. */
+  body main .hero {
+    --phone-hero-image-height: 100vh;
+    --phone-hero-image-height: 100svh;
+    --phone-hero-image-height: 100dvh;
+    min-height: 0 !important;
+    grid-template-rows: var(--phone-hero-image-height) auto !important;
+  }
+  body main .hero-slides {
+    width: 100%;
+    height: var(--phone-hero-image-height);
+    min-height: var(--phone-hero-image-height);
+  }
+  body main .hero-overlay {
+    width: 100%;
+    height: var(--phone-hero-image-height) !important;
+  }
+  body main .hero-slide,
+  body main .phead .hero-slide {
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: 68% center !important;
+  }
+  body main .phead,
+  body main .amb-hero,
+  body main .shine-hero {
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    min-height: 100dvh !important;
+  }
+  body main .phead,
+  body main .amb-hero .amb-bg {
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: 68% center !important;
+  }
+  body main .shine-hero > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 68% center;
+  }
+
   body .container { padding-left: 16px; padding-right: 16px; }
   .gov-banner .gov-text { max-width: 68vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .topbar { display: none; }
@@ -230,7 +275,6 @@ body { min-width: 320px; }
   .qa-band .qtile:nth-child(even) { border-right: 0; }
   .qa-band .qtile:nth-child(-n+2) { border-top: 0; }
 
-  .hero { min-height: min(720px, 76svh); }
   .hero .container { padding-block: 28px 36px; }
   .hero .cta,
   .phead .cta { width: auto; max-width: 100%; }
