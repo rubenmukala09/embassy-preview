@@ -791,12 +791,43 @@
 
 
   /* ---- 13. Accordion (FAQ / requirements) ----------------------------- */
-  $$(".acc-q").forEach((q) => {
-    q.addEventListener("click", () => {
-      const item = q.closest(".acc-item");
+  $$(".accordion").forEach((accordion, groupIndex) => {
+    const items = $$(".acc-item", accordion);
+    accordion.classList.add("faq-enhanced");
+
+    const syncItem = (item) => {
+      const q = $(".acc-q", item);
+      const answer = $(".acc-a", item);
+      if (!q || !answer) return;
       const open = item.classList.contains("open");
-      $$(".acc-item", item.closest(".accordion")).forEach((i) => i.classList.remove("open"));
-      if (!open) item.classList.add("open");
+      q.setAttribute("aria-expanded", open ? "true" : "false");
+      answer.setAttribute("aria-hidden", open ? "false" : "true");
+    };
+
+    items.forEach((item, itemIndex) => {
+      const q = $(".acc-q", item);
+      const answer = $(".acc-a", item);
+      if (!q || !answer) return;
+      const idBase = `embassy-faq-${groupIndex + 1}-${itemIndex + 1}`;
+      q.type = "button";
+      q.id = `${idBase}-question`;
+      q.setAttribute("aria-controls", `${idBase}-answer`);
+      answer.id = `${idBase}-answer`;
+      answer.setAttribute("role", "region");
+      answer.setAttribute("aria-labelledby", q.id);
+      const marker = $(".pm", q);
+      if (marker) marker.setAttribute("aria-hidden", "true");
+      syncItem(item);
+
+      q.addEventListener("click", () => {
+        const wasOpen = item.classList.contains("open");
+        items.forEach((other) => {
+          other.classList.remove("open");
+          syncItem(other);
+        });
+        if (!wasOpen) item.classList.add("open");
+        syncItem(item);
+      });
     });
   });
 

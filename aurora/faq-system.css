@@ -1,0 +1,184 @@
+/* Embassy FAQ system — one accessible diplomatic pattern across the site */
+:root{
+  --faq-navy:#062447;
+  --faq-blue:#0b78ca;
+  --faq-gold:#e6bd36;
+  --faq-paper:#ffffff;
+  --faq-mist:#f4f8fc;
+  --faq-line:rgba(6,50,91,.15);
+  --faq-muted:#536b82;
+}
+
+main section:has(.accordion){
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 8% 12%,rgba(0,127,255,.07),transparent 26%),
+    radial-gradient(circle at 92% 88%,rgba(230,189,54,.09),transparent 25%),
+    linear-gradient(180deg,#fbfcfe,#f5f8fb);
+}
+main section:has(.accordion)::before,
+main section:has(.accordion)::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  border:1px solid rgba(0,72,132,.08);
+  border-radius:50%;
+}
+main section:has(.accordion)::before{width:260px;height:260px;left:-180px;top:18%}
+main section:has(.accordion)::after{width:170px;height:170px;right:-112px;bottom:8%}
+main section:has(.accordion)>.container{position:relative;z-index:1}
+main section:has(.accordion) .sec-head{margin-bottom:clamp(28px,4vw,44px)}
+
+main .accordion{
+  counter-reset:embassy-faq;
+  display:grid;
+  gap:12px;
+  overflow:visible;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+main .accordion .acc-item{
+  counter-increment:embassy-faq;
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--faq-line)!important;
+  border-radius:14px!important;
+  background:rgba(255,255,255,.92)!important;
+  box-shadow:0 13px 34px -28px rgba(2,33,66,.62),inset 0 1px 0 rgba(255,255,255,.9)!important;
+  transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease,background-color .22s ease;
+}
+main .accordion .acc-item::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:4px;
+  background:linear-gradient(180deg,var(--faq-blue),var(--faq-gold) 58%,#ce1021);
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .25s ease;
+}
+main .accordion .acc-item.open{
+  border-color:rgba(11,120,202,.3)!important;
+  background:var(--faq-paper)!important;
+  box-shadow:0 22px 54px -34px rgba(2,33,66,.7),0 0 0 1px rgba(11,120,202,.05)!important;
+}
+main .accordion .acc-item.open::before{transform:scaleY(1)}
+
+main .accordion .acc-q{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:15px;
+  width:100%;
+  min-height:76px;
+  padding:14px 16px 14px 18px;
+  border:0;
+  color:var(--faq-navy);
+  background:transparent;
+  font:750 clamp(14px,1.15vw,16px)/1.4 var(--sans,Arial,sans-serif);
+  letter-spacing:-.012em;
+  text-align:left;
+  cursor:pointer;
+  transition:color .2s ease,background-color .2s ease;
+}
+main .accordion .acc-q::before{
+  content:"0" counter(embassy-faq);
+  display:grid;
+  flex:0 0 42px;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(11,120,202,.18);
+  border-radius:11px;
+  color:#0a65a9;
+  background:linear-gradient(145deg,#eef8ff,#fff);
+  box-shadow:inset 0 1px 0 #fff;
+  font:850 9px/1 var(--sans,Arial,sans-serif);
+  letter-spacing:.1em;
+}
+main .accordion .acc-q:hover{padding-left:18px;color:#075fae;background:linear-gradient(90deg,rgba(11,120,202,.055),transparent 72%)}
+main .accordion .acc-q:focus-visible{position:relative;z-index:3;outline:3px solid #f7d618!important;outline-offset:-4px!important}
+main .accordion .acc-q .pm{
+  display:grid;
+  flex:0 0 36px;
+  place-items:center;
+  width:36px;
+  height:36px;
+  margin-left:auto;
+  border:1px solid rgba(6,36,71,.14);
+  border-radius:50%;
+  color:var(--faq-navy);
+  background:#f2f7fb;
+  font-size:0;
+  line-height:1;
+  box-shadow:inset 0 1px 0 #fff;
+  transition:color .2s ease,background-color .2s ease,border-color .2s ease,transform .2s ease;
+}
+main .accordion .acc-q .pm::before{content:"+";font:600 20px/1 Arial,sans-serif}
+main .accordion .acc-item.open .acc-q .pm{transform:none!important;border-color:var(--faq-gold);color:#09213e;background:#f7d618;box-shadow:0 8px 20px -12px rgba(173,130,0,.75)}
+main .accordion .acc-item.open .acc-q .pm::before{content:"−"}
+
+main .accordion.faq-enhanced .acc-a{
+  display:grid;
+  grid-template-rows:0fr;
+  max-height:none!important;
+  overflow:hidden;
+  opacity:0;
+  visibility:hidden;
+  transition:grid-template-rows .3s cubic-bezier(.2,.8,.2,1),opacity .22s ease,visibility 0s linear .3s;
+}
+main .accordion.faq-enhanced .acc-item.open .acc-a{
+  grid-template-rows:1fr;
+  opacity:1;
+  visibility:visible;
+  transition:grid-template-rows .34s cubic-bezier(.2,.8,.2,1),opacity .25s ease,visibility 0s linear 0s;
+}
+main .accordion .acc-a .inner{
+  position:relative;
+  min-height:0;
+  overflow:hidden;
+  padding:0 68px 24px 76px!important;
+  color:var(--faq-muted)!important;
+  font-size:14px;
+  line-height:1.75;
+}
+main .accordion .acc-a .inner::before{
+  content:"RESPONSE · RÉPONSE";
+  display:block;
+  margin-bottom:8px;
+  color:#987713;
+  font:850 8px/1.2 var(--sans,Arial,sans-serif);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+main .accordion .acc-a a{color:#075fae;font-weight:750;text-decoration-thickness:1px;text-underline-offset:3px}
+
+@media(hover:hover) and (pointer:fine){
+  main .accordion .acc-item:not(.open):hover{transform:translateY(-2px);border-color:rgba(11,120,202,.25)!important;box-shadow:0 20px 42px -31px rgba(2,33,66,.72)!important}
+  main .accordion .acc-q:hover .pm{border-color:rgba(11,120,202,.28);background:#e9f5fd}
+}
+@media(max-width:620px){
+  main section:has(.accordion) .sec-head{margin-bottom:25px}
+  main .accordion{gap:9px}
+  main .accordion .acc-item{border-radius:12px!important}
+  main .accordion .acc-q{min-height:68px;gap:11px;padding:11px 12px 11px 13px;font-size:14px}
+  main .accordion .acc-q:hover{padding-left:13px}
+  main .accordion .acc-q::before{flex-basis:36px;width:36px;height:36px;border-radius:9px;font-size:8px}
+  main .accordion .acc-q .pm{flex-basis:32px;width:32px;height:32px}
+  main .accordion .acc-a .inner{padding:0 18px 20px 60px!important;font-size:13.5px;line-height:1.68}
+}
+@media(max-width:380px){
+  main .accordion .acc-q{gap:9px;padding-inline:10px}
+  main .accordion .acc-q::before{flex-basis:32px;width:32px;height:32px}
+  main .accordion .acc-a .inner{padding-left:50px!important;padding-right:14px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  main .accordion .acc-item,
+  main .accordion .acc-item::before,
+  main .accordion .acc-q,
+  main .accordion .acc-q .pm,
+  main .accordion.faq-enhanced .acc-a{transition:none!important}
+}
