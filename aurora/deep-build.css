@@ -1,0 +1,283 @@
+/* Embassy of the DRC — verified content and deep-build refinement
+   2026-08-04. Calm, diplomatic and accessible by design. */
+
+:root {
+  --deep-ink: #071d38;
+  --deep-blue: #006bbf;
+  --deep-gold: #d5aa24;
+  --deep-paper: #fbfaf6;
+  --deep-muted: #52657c;
+  --deep-line: rgba(7, 29, 56, .13);
+  --deep-radius: 18px;
+  --deep-shadow: 0 18px 52px rgba(7, 29, 56, .09);
+}
+
+html { scroll-padding-top: 132px; }
+main { overflow: clip; }
+main :where(section[id], article[id], div[id]) { scroll-margin-top: 132px; }
+
+/* A consistent reading rhythm below the page hero. */
+main > .section,
+main > section.section { padding-block: clamp(54px, 6vw, 92px); }
+.section-head { max-width: 780px; margin-inline: auto; }
+.section-head p { max-width: 66ch; margin-inline: auto; color: var(--deep-muted); }
+.section-head h2 { text-wrap: balance; letter-spacing: -.025em; }
+
+/* Verified-information rail used on operational pages. */
+.official-guidance {
+  position: relative;
+  z-index: 4;
+  padding: 0;
+  background: var(--deep-paper);
+  border-block: 1px solid rgba(7, 29, 56, .08);
+}
+.official-guidance__inner {
+  display: grid;
+  grid-template-columns: minmax(160px, .62fr) minmax(300px, 1.7fr) auto;
+  gap: 22px;
+  align-items: center;
+  padding: 17px 0;
+}
+.official-guidance__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--deep-ink);
+  font: 750 11px/1.3 var(--font-sans, Arial, sans-serif);
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.official-guidance__status::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+  background: #25855f;
+  box-shadow: 0 0 0 5px rgba(37, 133, 95, .11);
+}
+.official-guidance p { margin: 0; color: #344a63; font-size: 13px; line-height: 1.55; }
+.official-guidance p strong { color: var(--deep-ink); }
+.official-guidance__links { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 35px;
+  padding: 8px 12px;
+  border: 1px solid rgba(7, 29, 56, .14);
+  border-radius: 999px;
+  color: var(--deep-ink);
+  background: #fff;
+  font-size: 11px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+.source-chip:hover { border-color: rgba(0, 107, 191, .42); background: #f3f8fc; transform: translateY(-1px); }
+
+/* Stronger information surfaces without noisy decorative lines. */
+main :where(.card, .service-card, .news-card, .contact-card, .portal-card, .info-card) {
+  border-color: var(--deep-line);
+  box-shadow: var(--deep-shadow);
+}
+main :where(.card, .service-card, .news-card, .contact-card, .portal-card, .info-card):hover {
+  border-color: rgba(0, 107, 191, .22);
+}
+main :where(.card, .service-card, .news-card, .contact-card, .portal-card, .info-card) :where(h2, h3, h4) {
+  text-wrap: balance;
+}
+main :where(.card, .service-card, .news-card, .contact-card, .portal-card, .info-card) p {
+  line-height: 1.68;
+}
+
+/* Readability correction: text only, never a global card-colour override. */
+:where(.bg-navy, .dark, .dark-card, .navy-card, .card-navy, .service-notice, .service-status-card, .cta-dark, .below-cta)
+  :where(h1, h2, h3, h4, p, li, dt, dd, label, small, strong, span:not(.badge):not(.dot)) {
+  color: #f4f7fb;
+}
+:where(.bg-navy, .dark, .dark-card, .navy-card, .card-navy, .service-notice, .service-status-card, .cta-dark, .below-cta)
+  :where(p, li, dd, small) { color: #d8e2ef; }
+
+/* Forms feel official and clearly distinguish editable, focused and unavailable states. */
+main :where(input, select, textarea) {
+  min-height: 48px;
+  border: 1px solid rgba(7, 29, 56, .22);
+  border-radius: 11px;
+  background: #fff;
+  color: var(--deep-ink);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+}
+main textarea { min-height: 126px; resize: vertical; }
+main :where(input, select, textarea):focus {
+  border-color: var(--deep-blue);
+  outline: 3px solid rgba(0, 107, 191, .15);
+  outline-offset: 1px;
+}
+main :where(input, select, textarea):disabled {
+  background: #eef2f6;
+  color: #66768a;
+  border-color: rgba(7, 29, 56, .12);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.field label { color: var(--deep-ink); font-weight: 700; }
+
+/* Buttons communicate action with a measured tactile response. */
+main :where(.btn, button, [role="button"]) { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+main :where(.btn, button, [role="button"]):hover { transform: translateY(-1px); }
+main :where(.btn, button, [role="button"]):active { transform: translateY(0); }
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #1b8be0 !important;
+  outline-offset: 3px !important;
+}
+
+/* Tables remain legible and usable on narrow screens. */
+.table,
+.legal-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--deep-line);
+  border-radius: 14px;
+  background: #fff;
+}
+:where(.table, .legal-table) th {
+  background: #eef4f8;
+  color: var(--deep-ink);
+  font-size: 12px;
+  letter-spacing: .035em;
+}
+:where(.table, .legal-table) :where(th, td) { padding: 14px 16px; border-bottom: 1px solid var(--deep-line); }
+:where(.table, .legal-table) tr:last-child :where(th, td) { border-bottom: 0; }
+
+/* Accordions use hierarchy and spacing instead of extra ornament. */
+.accordion { border: 1px solid var(--deep-line); border-radius: var(--deep-radius); overflow: hidden; background: #fff; box-shadow: var(--deep-shadow); }
+.acc-item + .acc-item { border-top: 1px solid var(--deep-line); }
+.acc-q { width: 100%; min-height: 60px; padding: 17px 20px; color: var(--deep-ink); background: #fff; font-weight: 750; text-align: left; }
+.acc-a .inner { padding: 0 20px 21px; color: var(--deep-muted); line-height: 1.72; }
+
+/* Legal and policy documents get a professional reading layout. */
+.legal-doc {
+  display: grid;
+  grid-template-columns: minmax(200px, 250px) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 70px);
+  align-items: start;
+}
+.legal-toc {
+  position: sticky;
+  top: 146px;
+  padding: 20px;
+  border: 1px solid var(--deep-line);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .88);
+  box-shadow: 0 12px 35px rgba(7, 29, 56, .06);
+  backdrop-filter: blur(12px);
+}
+.legal-body { max-width: 78ch; }
+.legal-body :where(h2, h3) { color: var(--deep-ink); text-wrap: balance; }
+.legal-body p,
+.legal-body li { color: #40546c; line-height: 1.78; }
+
+/* Preview-only service flows are visibly safe, not deceptively interactive. */
+.service-notice {
+  border: 1px solid rgba(213, 170, 36, .35);
+  border-left: 4px solid var(--deep-gold);
+  border-radius: 12px;
+  padding: 15px 17px;
+  background: #0a294d;
+  box-shadow: 0 14px 32px rgba(7, 29, 56, .12);
+}
+.service-notice b { color: #fff; }
+.service-notice a { color: #ffe47c; }
+
+.travel-caution {
+  padding: 18px 20px;
+  border: 1px solid rgba(167, 29, 42, .2);
+  border-left: 4px solid #a71d2a;
+  border-radius: 13px;
+  background: #fff7f7;
+  color: #4f2430;
+}
+.travel-caution strong { color: #78131f; }
+
+/* Original country-profile artwork: one calm editorial statement, not another widget grid. */
+.drc-future-section { background: #f4f1e9; }
+.drc-future-visual {
+  position: relative;
+  min-height: clamp(500px, 48vw, 650px);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
+  align-items: stretch;
+  border: 1px solid rgba(7, 29, 56, .14);
+  border-radius: clamp(20px, 3vw, 34px);
+  background-color: #061c37;
+  background-image: var(--drc-future-image);
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 30px 80px rgba(7, 29, 56, .2);
+  isolation: isolate;
+}
+.drc-future-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(4, 19, 37, .05) 24%, rgba(4, 19, 37, .48) 52%, rgba(4, 19, 37, .95) 73%);
+}
+.drc-future-copy {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 19px;
+  padding: clamp(38px, 5vw, 72px);
+  color: #fff;
+}
+.drc-future-copy .eyebrow { margin: 0; color: #ffe168; }
+.drc-future-copy h2 { max-width: 11ch; margin: 0; color: #fff; font-size: clamp(38px, 4.6vw, 68px); line-height: .98; letter-spacing: -.045em; }
+.drc-future-copy > p { max-width: 48ch; margin: 0; color: #dce6f2; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.7; }
+.drc-future-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 4px; }
+.drc-future-fact { padding: 13px 14px; border: 1px solid rgba(255, 255, 255, .16); border-radius: 12px; background: rgba(255, 255, 255, .07); backdrop-filter: blur(12px); }
+.drc-future-fact strong { display: block; color: #fff; font-size: 19px; }
+.drc-future-fact span { display: block; margin-top: 2px; color: #cbd7e5; font-size: 11px; line-height: 1.35; }
+.drc-future-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 3px; }
+.drc-future-note { margin: 0; color: #9fb0c4; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+
+@media (max-width: 980px) {
+  html { scroll-padding-top: 112px; }
+  main :where(section[id], article[id], div[id]) { scroll-margin-top: 112px; }
+  .official-guidance__inner { grid-template-columns: 1fr auto; }
+  .official-guidance__inner p { grid-column: 1 / -1; grid-row: 2; }
+  .legal-doc { grid-template-columns: 1fr; }
+  .legal-toc { position: static; }
+  .drc-future-visual { grid-template-columns: 1fr; background-position: 35% center; }
+  .drc-future-visual::before { background: linear-gradient(0deg, rgba(4, 19, 37, .97) 0%, rgba(4, 19, 37, .8) 51%, rgba(4, 19, 37, .08) 86%); }
+  .drc-future-copy { grid-column: 1; align-self: end; padding-top: 260px; }
+  .drc-future-copy h2 { max-width: 13ch; }
+}
+
+@media (max-width: 720px) {
+  main > .section,
+  main > section.section { padding-block: 48px; }
+  .official-guidance__inner { grid-template-columns: 1fr; gap: 11px; padding-block: 15px; }
+  .official-guidance__inner p,
+  .official-guidance__links { grid-column: auto; grid-row: auto; }
+  .official-guidance__links { justify-content: flex-start; }
+  .source-chip { white-space: normal; }
+  .table,
+  .legal-table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  :where(.table, .legal-table) :where(th, td) { min-width: 130px; padding: 12px; }
+  .acc-q { padding-inline: 16px; }
+  .acc-a .inner { padding-inline: 16px; }
+  .drc-future-visual { min-height: 620px; background-position: 29% center; }
+  .drc-future-copy { padding: 275px 24px 28px; gap: 14px; }
+  .drc-future-copy h2 { font-size: clamp(35px, 11vw, 48px); }
+  .drc-future-facts { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
