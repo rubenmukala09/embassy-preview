@@ -57,6 +57,9 @@ body { min-width: 320px; }
 }
 
 @media (max-width: 820px) {
+  /* The fixed mobile OS navigation replaces the larger in-page service strip. */
+  .qa-band { display: none !important; }
+
   html {
     width: 100%;
     max-width: 100%;
