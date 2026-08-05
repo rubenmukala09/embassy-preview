@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/typography-system.css?v=1785930600" />
 <link rel="stylesheet" href="/embassy-preview/aurora/official-content.css?v=1786032000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/deep-build.css?v=1786010400" />
+<link rel="stylesheet" href="/embassy-preview/aurora/annual-events.css?v=1786125600" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -102,6 +103,7 @@
   <p class="eyebrow">From the Embassy</p>
   <h1>News &amp; Events</h1>
   <p>Official announcements, consular updates, bilateral news and cultural events from the Embassy of the Democratic Republic of the Congo in Washington, D.C.</p>
+  <div class="official-actions" data-localized><a class="btn btn-gold" href="#annual-calendar" data-en="Annual DRC calendar" data-fr="Calendrier annuel de la RDC">Annual DRC calendar</a><a class="btn btn-ghost" href="#published-news" data-en="Published news" data-fr="Actualités publiées">Published news</a></div>
 </div></section>
 
 <!-- Quick-access bar (shared) -->
@@ -121,8 +123,22 @@
   <p><strong>This newsroom is a design preview, not the Embassy&rsquo;s publication of record.</strong> Confirm dates, closures, registration links and official statements on the Embassy website before sharing or attending.</p>
   <div class="official-guidance__links"><a class="source-chip" href="https://www.ambadrcusa.org/announcement-page/" target="_blank" rel="noopener">Official Embassy news ↗</a><a class="source-chip" href="https://www.ambadrcusa.org/" target="_blank" rel="noopener">Official website ↗</a></div>
 </div></div></section>
+<!-- AUTOMATED ANNUAL DRC CALENDAR -->
+<section class="section" id="annual-calendar"><div class="container">
+  <div class="annual-shell" data-annual-events data-filter="all" data-localized>
+    <div class="annual-top">
+      <div><p class="eyebrow on-navy" data-en="National annual calendar" data-fr="Calendrier national annuel">National annual calendar</p><h2 data-en="The dates that return every year." data-fr="Les dates qui reviennent chaque année.">The dates that return every year.</h2><p data-en="The calendar automatically advances each year using the ten legal holidays established by Ordinance 23/042. One-time Embassy ceremonies and registration links remain in the verified newsroom until formally announced." data-fr="Le calendrier avance automatiquement chaque année à partir des dix jours fériés légaux fixés par l’Ordonnance 23/042. Les cérémonies ponctuelles de l’Ambassade et leurs liens d’inscription restent dans la rubrique vérifiée jusqu’à leur annonce officielle.">The calendar automatically advances each year using the ten legal holidays established by Ordinance 23/042. One-time Embassy ceremonies and registration links remain in the verified newsroom until formally announced.</p></div>
+      <aside class="annual-next" aria-live="polite"><small data-en="Next annual observance" data-fr="Prochaine commémoration annuelle">Next annual observance</small><strong data-next-name>—</strong><span data-next-date>—</span><span data-next-count>—</span></aside>
+    </div>
+    <div class="annual-stats"><div class="annual-stat"><b>10</b><span data-en="legal holidays in the recurring calendar" data-fr="jours fériés légaux dans le calendrier récurrent">legal holidays in the recurring calendar</span></div><div class="annual-stat"><b data-current-year>—</b><span data-en="selected calendar year" data-fr="année civile sélectionnée">selected calendar year</span></div><div class="annual-stat"><b>12</b><span data-en="months generated automatically" data-fr="mois générés automatiquement">months generated automatically</span></div></div>
+    <div class="annual-controls"><div class="annual-filters" aria-label="Filter annual observances"><button class="annual-filter is-active" type="button" data-filter="all" data-en="All observances" data-fr="Toutes les dates">All observances</button><button class="annual-filter" type="button" data-filter="memory" data-en="Nation &amp; memory" data-fr="Nation et mémoire">Nation &amp; memory</button><button class="annual-filter" type="button" data-filter="culture" data-en="Culture &amp; heritage" data-fr="Culture et patrimoine">Culture &amp; heritage</button><button class="annual-filter" type="button" data-filter="society" data-en="Society &amp; family" data-fr="Société et famille">Society &amp; family</button><button class="annual-filter" type="button" data-filter="state" data-en="State &amp; service" data-fr="État et service">State &amp; service</button></div><div class="annual-year-wrap"><label for="annual-year" data-en="Calendar year" data-fr="Année civile">Calendar year</label><select class="annual-year" id="annual-year" data-annual-year aria-label="Calendar year"></select><button class="annual-download" type="button" data-download-annual data-en="Download recurring calendar (.ics)" data-fr="Télécharger le calendrier récurrent (.ics)">Download recurring calendar (.ics)</button></div></div>
+    <div class="annual-calendar" data-annual-calendar aria-live="polite"></div>
+  </div>
+  <div class="annual-note" data-localized><span data-en="Legal dates do not automatically confirm that the Embassy in Washington will close or host a public ceremony. Weekend shifts and Embassy operations require a current annual notice." data-fr="Les dates légales ne confirment pas automatiquement la fermeture de l’Ambassade à Washington ni l’organisation d’une cérémonie publique. Les reports de week-end et le fonctionnement de l’Ambassade nécessitent un avis annuel à jour.">Legal dates do not automatically confirm that the Embassy in Washington will close or host a public ceremony. Weekend shifts and Embassy operations require a current annual notice.</span><a href="https://acp.cd/nation/combat-de-simon-kimbangu-le-6-avril-decrete-jour-ferie-legal-en-rdc/" target="_blank" rel="noopener noreferrer" data-en="Review the published legal list ↗" data-fr="Consulter la liste légale publiée ↗">Review the published legal list ↗</a></div>
+</div></section>
+
 <!-- FEATURED ARTICLE -->
-<section class="section"><div class="container">
+<section class="section" id="published-news"><div class="container">
   <div class="split">
     <div class="media"><img width="1400" height="788" loading="lazy" src="/embassy-preview/aurora/assets/img/passports/passport-01.webp" alt="Two biometric passports of the Democratic Republic of the Congo on a desk before the national flag" /></div>
     <div>
@@ -267,6 +283,7 @@
   <div class="bar"><span>© 2026 Embassy of the Democratic Republic of the Congo, Washington, D.C.</span><span class="ft-legal"><a href="/embassy-preview/terms.html">Terms &amp; Conditions</a> · <a href="/embassy-preview/privacy.html">Privacy Policy</a> · <a href="/embassy-preview/cookies.html">Cookie Policy</a> · <a href="/embassy-preview/accessibility.html">Accessibility</a> · <a href="/embassy-preview/disclaimer.html">Legal Disclaimer</a></span></div>
 </div></footer>
 
-<script src="/embassy-preview/aurora/aurora.js?v=1785930600" defer></script>
+<script src="/embassy-preview/aurora/aurora.js?v=1786125600" defer></script>
+<script src="/embassy-preview/aurora/annual-events.js?v=1786125600" defer></script>
 </body>
 </html>

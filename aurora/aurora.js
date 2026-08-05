@@ -50,6 +50,11 @@
   }
   window.configureAnnouncementTicker = configureAnnouncementTicker;
 
+  /* Keep the shared legal footer current without editing every page yearly. */
+  $$(".foot .bar > span:first-child").forEach((stamp) => {
+    stamp.textContent = stamp.textContent.replace(/\b20\d{2}\b/, String(new Date().getFullYear()));
+  });
+
   /* ---- 1. Primary-nav dropdowns (injected from config) ----------------- */
   const SUBNAV = {
     "the-embassy.html": {
@@ -902,6 +907,7 @@
       { t: "Travel advisory", tf: "Conseils aux voyageurs", d: "Current entry requirements and safety guidance", df: "Conditions d'entrée et conseils de sécurité actuels", u: "index.html#advisory", k: "advisory safety security guidance conseils securite voyage avertissement" },
       { t: "Media centre", tf: "Médiathèque", d: "Video, audio, press releases and notices", df: "Vidéo, audio, communiqués et avis", u: "index.html#media", k: "video audio media press announcement watch listen medias presse communique regarder ecouter" },
       { t: "News & Events", tf: "Actualités et événements", d: "Latest embassy news, press and events", df: "Dernières actualités, presse et événements de l'ambassade", u: "news-events.html", k: "news press events calendar actualites nouvelles presse evenements agenda" },
+      { t: "Annual DRC calendar", tf: "Calendrier annuel de la RDC", d: "Automatically updated national observances and legal holidays", df: "Commémorations nationales et jours fériés légaux mis à jour automatiquement", u: "news-events.html#annual-calendar", k: "annual calendar yearly events holidays independence martyrs kimbangu parents recurring annuel calendrier evenements jours feries independance martyrs" },
       { t: "The Embassy", tf: "L'Ambassade", d: "Our mission, history and role", df: "Notre mission, histoire et rôle", u: "the-embassy.html", k: "about mission history a propos histoire ambassade role" },
       { t: "The Ambassador", tf: "L'Ambassadeur", d: "H.E. Yvette Kapinga Ngandu, Head of Mission", df: "S.E. Yvette Kapinga Ngandu, Chef de mission", u: "the-embassy.html#ambassador", k: "ambassador head of mission leadership yvette kapinga ngandu ambassadeur chef de mission" },
       { t: "Divisions & departments", tf: "Divisions et départements", d: "Consular, political, economic and cultural sections", df: "Sections consulaire, politique, économique et culturelle", u: "the-embassy.html#divisions", k: "divisions departments sections departements service" },
@@ -1102,6 +1108,7 @@
       { k: ["tourism","tourisme","visit","visiter","gorilla","gorille","park","parc","virunga","river","fleuve","nature","wildlife"], a: "Discover the DRC's national parks, mountain gorillas and the Congo River. <a href='dr-congo.html#tourism'>Tourism &rarr;</a>", af: "Découvrez les parcs nationaux de la RDC, les gorilles de montagne et le fleuve Congo. <a href='dr-congo.html#tourism'>Tourisme &rarr;</a>" },
       { k: ["culture","heritage","patrimoine","music","musique","art","rumba","tradition","dance","danse"], a: "Explore Congolese music (including the world-famous rumba), art and traditions. <a href='dr-congo.html#culture'>Culture &amp; heritage &rarr;</a>", af: "Explorez la musique congolaise (dont la célèbre rumba), l'art et les traditions. <a href='dr-congo.html#culture'>Culture et patrimoine &rarr;</a>" },
       { k: ["news","actualite","press","presse","event","evenement","media","medias","video","newsroom","communique"], a: "See the latest news, press releases and events, plus video and audio in the Media Centre. <a href='news-events.html'>Newsroom &rarr;</a>", af: "Consultez les dernières actualités, communiqués et événements, avec vidéos et audio dans la Médiathèque. <a href='news-events.html'>Actualités &rarr;</a>" },
+      { k: ["annual event","yearly event","annual calendar","national holiday","independence day","martyrs day","kimbangu day","parents day","evenement annuel","calendrier annuel","jour ferie","fete nationale","fete de l independance"], a: "The <b>annual DRC calendar</b> automatically advances each year across the ten recurring legal holidays. It shows the next observance, year filters and a downloadable recurring calendar. Embassy closures and public ceremonies still require an annual confirmation. <a href='news-events.html#annual-calendar'>Open the annual calendar &rarr;</a>", af: "Le <b>calendrier annuel de la RDC</b> avance automatiquement chaque année pour les dix jours fériés légaux récurrents. Il affiche la prochaine commémoration, des filtres par année et un calendrier récurrent à télécharger. Les fermetures de l'Ambassade et les cérémonies publiques nécessitent toujours une confirmation annuelle. <a href='news-events.html#annual-calendar'>Ouvrir le calendrier annuel &rarr;</a>" },
       { k: ["ambassador","ambassadeur","head of mission","chef de mission","yvette","kapinga","ngandu"], a: "The Head of Mission is <b>H.E. Yvette Kapinga Ngandu</b>, Ambassador Extraordinary and Plenipotentiary, in post since 30 October 2025. <a href='the-embassy.html#ambassador'>About the Ambassador &rarr;</a>", af: "La Cheffe de mission est <b>S.E. Yvette Kapinga Ngandu</b>, Ambassadrice extraordinaire et plénipotentiaire, en poste depuis le 30 octobre 2025. <a href='the-embassy.html#ambassador'>À propos de l'Ambassadrice &rarr;</a>" },
       { k: ["president","tshisekedi","felix","head of state","chef de l etat"], a: "The Head of State is <b>H.E. Felix-Antoine Tshisekedi Tshilombo</b>, President of the Democratic Republic of the Congo. <a href='the-embassy.html'>The Embassy &rarr;</a>", af: "Le Chef de l'État est <b>S.E. Félix-Antoine Tshisekedi Tshilombo</b>, Président de la République démocratique du Congo. <a href='the-embassy.html'>L'Ambassade &rarr;</a>" },
       { k: ["jurisdiction","which states","states","consulate","consulat","cover","serve","competence","ressort"], a: "This Embassy serves DR Congolese nationals and consular matters across the <b>United States</b> from Washington, D.C. For your specific case, contact us and we'll confirm the right channel. <a href='contact.html'>Contact &rarr;</a>", af: "Cette Ambassade dessert les ressortissants congolais et les affaires consulaires aux <b>États-Unis</b> depuis Washington. Pour votre cas précis, contactez-nous et nous confirmerons la démarche. <a href='contact.html'>Contact &rarr;</a>" },
@@ -3295,7 +3302,7 @@
         if (!p || !p.nodeName) return NodeFilter.FILTER_REJECT;
         var tag = p.nodeName;
         if (tag === "SCRIPT" || tag === "STYLE" || tag === "TEXTAREA") return NodeFilter.FILTER_REJECT;
-        if (p.closest && p.closest(".lang-wrap")) return NodeFilter.FILTER_REJECT;
+        if (p.closest && (p.closest(".lang-wrap") || p.closest("[data-localized]"))) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
@@ -3311,7 +3318,7 @@
   function placeholders(root) {
     var nodes = root.querySelectorAll ? root.querySelectorAll("[placeholder]") : [];
     nodes.forEach(function (el) {
-      if (el.__enPh !== undefined || el.closest(".lang-wrap")) return;
+      if (el.__enPh !== undefined || el.closest(".lang-wrap") || el.closest("[data-localized]")) return;
       var fr = lookup(el.getAttribute("placeholder"));
       if (fr === null) return;
       el.__enPh = el.getAttribute("placeholder");
