@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Embassy-wide text contrast repair
+   Text-only overrides: existing card, widget and section backgrounds stay intact.
+   Loaded last so late theme rules cannot return dark copy to dark surfaces.
+   ========================================================================== */
+
+:root {
+  --contrast-on-dark: #f8fbff;
+  --contrast-on-dark-soft: #dce7f4;
+  --contrast-on-dark-muted: #c7d7e8;
+  --contrast-on-dark-accent: #ffe47a;
+  --contrast-on-light: #082a50;
+  --contrast-on-light-muted: #465c74;
+}
+
+/* Core dark-surface contract. Keep gold buttons and badges dark-on-gold. */
+main :is(
+  .hero,
+  .phead,
+  .dark-surface,
+  .bg-navy,
+  .cta-premium,
+  .below-cta,
+  .quote-band,
+  .bilateral-quote,
+  .booking-aside,
+  .journey-shell,
+  .kinshasa-story,
+  .presidential-section,
+  .service-status-card,
+  .info-card
+) :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--contrast-on-dark) !important;
+}
+
+main :is(
+  .hero,
+  .phead,
+  .dark-surface,
+  .bg-navy,
+  .cta-premium,
+  .below-cta,
+  .quote-band,
+  .bilateral-quote,
+  .booking-aside,
+  .journey-shell,
+  .kinshasa-story,
+  .presidential-section,
+  .service-status-card,
+  .info-card
+) :is(p, li, dt, dd, blockquote) {
+  color: var(--contrast-on-dark-soft) !important;
+}
+
+main :is(
+  .hero,
+  .phead,
+  .dark-surface,
+  .bg-navy,
+  .cta-premium,
+  .below-cta,
+  .quote-band,
+  .bilateral-quote,
+  .booking-aside,
+  .journey-shell,
+  .kinshasa-story,
+  .presidential-section,
+  .service-status-card,
+  .info-card
+) :is(.muted, small) {
+  color: var(--contrast-on-dark-muted) !important;
+}
+
+main :is(
+  .hero,
+  .phead,
+  .dark-surface,
+  .bg-navy,
+  .cta-premium,
+  .below-cta,
+  .quote-band,
+  .bilateral-quote,
+  .booking-aside,
+  .journey-shell,
+  .kinshasa-story,
+  .presidential-section,
+  .service-status-card,
+  .info-card
+) .eyebrow {
+  color: var(--contrast-on-dark-accent) !important;
+}
+
+/* Preview notices were navy, while their unwrapped DIV copy inherited ink. */
+.service-notice,
+.service-notice > div,
+.service-notice > div > span,
+.service-notice > div > strong,
+.service-notice > div > b {
+  color: var(--contrast-on-dark) !important;
+}
+
+.service-notice a {
+  color: var(--contrast-on-dark-accent) !important;
+}
+
+/* Automated calendar panels: late typography rules previously won the cascade. */
+.home-annual-intro :is(h2, h3),
+.annual-top :is(h2, h3) {
+  color: var(--contrast-on-dark) !important;
+  text-shadow: 0 2px 18px rgba(0, 12, 30, .34);
+}
+
+.home-annual-intro p:not(.eyebrow),
+.annual-top p {
+  color: var(--contrast-on-dark-soft) !important;
+}
+
+.home-annual-intro .eyebrow,
+.annual-top :is(.eyebrow, small) {
+  color: var(--contrast-on-dark-accent) !important;
+}
+
+/* Editorial DRC feature uses a deliberately dark image treatment. */
+.drc-future-visual .drc-future-copy :is(h2, h3) {
+  color: var(--contrast-on-dark) !important;
+  text-shadow: 0 2px 22px rgba(0, 10, 28, .4);
+}
+
+.drc-future-visual .drc-future-copy p,
+.drc-future-visual .drc-future-note {
+  color: var(--contrast-on-dark-soft) !important;
+}
+
+.drc-future-visual .eyebrow {
+  color: var(--contrast-on-dark-accent) !important;
+}
+
+/* Outline actions on light cards inherited the global white ghost-button text. */
+main .advisory-card .btn-outline,
+main .service-directory-card .btn-ghost,
+main .card.pad:not(.dark-surface):not(.below-cta):not(.info-card) > .btn-ghost,
+main .card.pad:not(.dark-surface):not(.below-cta):not(.info-card) > :is(.row, .acts, .cta, .official-actions) .btn-ghost {
+  color: var(--contrast-on-light) !important;
+  text-shadow: none !important;
+}
+
+/* Restore white ghost actions when those same utility classes sit on navy. */
+main :is(.dark-surface, .below-cta, .info-card, .cta-premium, .drc-future-visual) :is(.btn-ghost, .btn-outline) {
+  color: var(--contrast-on-dark) !important;
+}
+
+/* Small labels and media captions need a clean edge over photography. */
+.africa-drc-marker small {
+  color: var(--contrast-on-dark) !important;
+  text-shadow: 0 1px 4px rgba(0, 18, 45, .92);
+}
+
+.media-feature :is(b, strong, span) {
+  color: var(--contrast-on-dark) !important;
+  text-shadow: 0 2px 10px rgba(0, 8, 24, .72);
+}
+
+/* Quiet copy on white and ivory surfaces now clears AA at body sizes. */
+.advisory-card .muted,
+.register-card .muted,
+.bg-cream .muted,
+.bg-ivory .muted,
+.card.pad:not(.dark-surface):not(.below-cta):not(.info-card) .muted,
+.sector-article .source-note,
+.asst-foot {
+  color: var(--contrast-on-light-muted) !important;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --contrast-on-dark-soft: #f2f7fc;
+    --contrast-on-dark-muted: #e6eef8;
+    --contrast-on-light-muted: #29445f;
+  }
+}
