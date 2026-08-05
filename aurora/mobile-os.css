@@ -57,8 +57,19 @@ body { min-width: 320px; }
 }
 
 @media (max-width: 820px) {
-  html { scroll-padding-bottom: calc(var(--mos-dock-h) + env(safe-area-inset-bottom) + 12px); }
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    scroll-padding-bottom: calc(var(--mos-dock-h) + env(safe-area-inset-bottom) + 12px);
+  }
   body {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
     padding-bottom: calc(var(--mos-dock-h) + env(safe-area-inset-bottom)) !important;
     background: var(--mos-paper);
   }
@@ -68,21 +79,26 @@ body { min-width: 320px; }
   :where(main, footer) :where(h1, h2, h3, h4, p, li, a, span) { overflow-wrap: anywhere; }
 
   .mobile-os-nav {
-    position: fixed;
-    left: max(10px, env(safe-area-inset-left));
-    right: max(10px, env(safe-area-inset-right));
-    bottom: max(9px, env(safe-area-inset-bottom));
+    position: fixed !important;
+    inset: auto max(10px, env(safe-area-inset-right)) max(9px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
     z-index: 1500;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: auto;
+    max-width: none;
     min-height: var(--mos-dock-h);
     padding: 6px;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, .16);
     border-radius: 21px;
     background: rgba(5, 24, 48, .94);
     box-shadow: 0 18px 50px rgba(2, 12, 26, .35), 0 1px 0 rgba(255, 255, 255, .11) inset;
     backdrop-filter: blur(20px) saturate(1.35);
     -webkit-backdrop-filter: blur(20px) saturate(1.35);
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    transform: translate3d(0, 0, 0);
+    isolation: isolate;
   }
   .mobile-os-nav::before {
     content: "";
@@ -167,6 +183,29 @@ body { min-width: 320px; }
   .official-guidance { margin: 0; }
   .official-guidance__inner { padding-inline: 2px; }
   .drc-future-visual { border-radius: 22px; }
+
+  /* Phone and tablet content uses the normal vertical reading flow. The
+     six-card desktop tool rail must not require a sideways swipe. */
+  main #tools .widgets {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: auto !important;
+    gap: 14px !important;
+    width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    scroll-snap-type: none !important;
+    overscroll-behavior-inline: auto !important;
+  }
+  main #tools .widgets > .widget {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    scroll-snap-align: none !important;
+  }
 }
 
 @media (max-width: 520px) {
@@ -200,7 +239,7 @@ body { min-width: 320px; }
   .contact-grid .hr span:last-child,
   .info-card .hr span:last-child { text-align: right; }
 
-  .mobile-os-nav { left: max(7px, env(safe-area-inset-left)); right: max(7px, env(safe-area-inset-right)); bottom: max(6px, env(safe-area-inset-bottom)); border-radius: 19px; }
+  .mobile-os-nav { inset: auto max(7px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom)) max(7px, env(safe-area-inset-left)) !important; border-radius: 19px; }
 }
 
 @media (max-width: 360px) {
