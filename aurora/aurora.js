@@ -928,7 +928,7 @@
       { t: "Cookie Policy", tf: "Politique de cookies", d: "How we use cookies", df: "Comment nous utilisons les cookies", u: "cookies.html", k: "cookies temoins" },
       { t: "Accessibility", tf: "Accessibilité", d: "Our accessibility commitment", df: "Notre engagement en matière d'accessibilité", u: "accessibility.html", k: "accessibility wcag accessibilite" },
       { t: "Legal disclaimer", tf: "Avertissement légal", d: "Disclaimers and notices", df: "Avertissements et mentions", u: "disclaimer.html", k: "disclaimer notice avertissement mentions legales" },
-      { t: "Ask the Embassy", tf: "Demander à l'ambassade", d: "Get instant answers from the embassy assistant", df: "Obtenez des réponses instantanées de l'assistant", u: "index.html", k: "assistant chat help question ask aide question demander poser" },
+      { t: "Ask the Embassy", tf: "Demander à l'ambassade", d: "Open the bilingual verified website guide", df: "Ouvrir le guide bilingue vérifié du site", u: "#assistant", k: "assistant chat help question ask aide question demander poser" },
     ];
     const rxEsc = (s) => Array.from(s).map((c) => (/[a-z0-9 ]/i.test(c) ? c : "\\" + c)).join("");
     const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -1075,16 +1075,44 @@
 
   /* ---- 19. AI reception assistant ("Ask the Embassy") ------------------ */
   (function assistant() {
-    // The advisory assistant is activated only with an approved service API.
-    // Static previews must not present unverified operational guidance as live advice.
-    if (!window.EMBASSY_API) return;
+    // Privacy-first preview guide: answers from published site content only.
+    // It never submits forms, books appointments, tracks cases or accepts payment.
     // ---- language + accent-insensitive matching (self-contained) ----
     const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
     const isFR = () => { try { return localStorage.getItem("emb-lang") === "fr"; } catch (e) { return document.documentElement.lang === "fr"; } };
+    const pathParts = location.pathname.toLowerCase().split("/").filter(Boolean);
+    const directoryUrl = /\/$/.test(location.pathname);
+    const pageName = directoryUrl ? "index.html" : (pathParts[pathParts.length - 1] || "index.html");
+    const parentName = directoryUrl ? (pathParts[pathParts.length - 1] || "") : (pathParts.length > 1 ? pathParts[pathParts.length - 2] : "");
+    const pageKey = pageName === "index.html" && /^(account|pay|documents)$/.test(parentName) ? parentName + "/index.html" : pageName;
+    const assistantScript = Array.from(document.scripts).find((s) => /\/aurora\/aurora\.js(?:\?|$)/.test(s.src));
+    const siteRoot = assistantScript ? new URL("../", assistantScript.src) : new URL("./", location.href);
+    const routeLinks = (root) => root.querySelectorAll("a[href]").forEach((a) => {
+      const href = a.getAttribute("href");
+      if (href && !/^(?:[a-z]+:|#)/i.test(href)) a.href = new URL(href, siteRoot).href;
+    });
+    const PAGE = {
+      "index.html": { en: "Homepage concierge", fr: "Accueil et orientation", enChips: ["Renew my passport", "Visas & fees", "Official DRC portals", "Annual DRC calendar", "Contact the Embassy"], frChips: ["Renouveler mon passeport", "Visas et frais", "Portails officiels de la RDC", "Calendrier annuel de la RDC", "Contacter l'Ambassade"] },
+      "consular-services.html": { en: "Consular service guide", fr: "Guide des services consulaires", enChips: ["Passport requirements", "Visa requirements", "Legalize a document", "Visas & fees", "Request an appointment"], frChips: ["Conditions du passeport", "Conditions du visa", "Légaliser un document", "Visas et frais", "Prendre rendez-vous"] },
+      "dr-congo.html": { en: "DR Congo guide", fr: "Guide de la RDC", enChips: ["Visit Kinshasa", "Tourism in the DRC", "Culture and heritage", "Invest in the DRC", "National symbols"], frChips: ["Visiter Kinshasa", "Tourisme en RDC", "Culture et patrimoine", "Investir en RDC", "Symboles nationaux"] },
+      "official-links.html": { en: "Official portal navigator", fr: "Navigation des portails officiels", enChips: ["Official DRC portals", "Passport portal", "NIF tax ID", "Investment agencies", "Contact the Embassy"], frChips: ["Portails officiels de la RDC", "Portail des passeports", "Numéro fiscal NIF", "Agences d'investissement", "Contacter l'Ambassade"] },
+      "invest-in-drc.html": { en: "Investment desk guide", fr: "Guide du bureau économique", enChips: ["Invest in the DRC", "Investment agencies", "NIF tax ID", "Mining and trade", "Contact the Embassy"], frChips: ["Investir en RDC", "Agences d'investissement", "Numéro fiscal NIF", "Mines et commerce", "Contacter l'Ambassade"] },
+      "news-events.html": { en: "News and calendar guide", fr: "Guide des actualités et du calendrier", enChips: ["Annual DRC calendar", "Embassy holidays", "News and events", "Register for alerts", "Contact the Embassy"], frChips: ["Calendrier annuel de la RDC", "Jours fériés de l'Ambassade", "Actualités et événements", "S'inscrire aux alertes", "Contacter l'Ambassade"] },
+      "contact.html": { en: "Contact and directions guide", fr: "Guide des contacts et de l'accès", enChips: ["Opening hours", "Embassy address", "Call the Embassy", "Emergency", "Request an appointment"], frChips: ["Heures d'ouverture", "Adresse de l'Ambassade", "Appeler l'Ambassade", "Urgence", "Prendre rendez-vous"] },
+      "digital-services.html": { en: "Digital service guide", fr: "Guide des services numériques", enChips: ["Official DRC portals", "Passport portal", "Request an appointment", "Account support", "Contact the Embassy"], frChips: ["Portails officiels de la RDC", "Portail des passeports", "Prendre rendez-vous", "Aide au compte", "Contacter l'Ambassade"] },
+      "portal.html": { en: "Appointment guidance", fr: "Informations sur les rendez-vous", enChips: ["Request an appointment", "Passport requirements", "Visa requirements", "Opening hours", "Contact the Embassy"], frChips: ["Prendre rendez-vous", "Conditions du passeport", "Conditions du visa", "Heures d'ouverture", "Contacter l'Ambassade"] },
+      "account/index.html": { en: "Account support guide", fr: "Guide d'aide au compte", enChips: ["Account support", "Official DRC portals", "Passport portal", "Contact the Embassy", "Privacy guidance"], frChips: ["Aide au compte", "Portails officiels de la RDC", "Portail des passeports", "Contacter l'Ambassade", "Protection des données"] },
+      "pay/index.html": { en: "Payment safety guide", fr: "Guide de sécurité des paiements", enChips: ["Online payment", "Visas & fees", "Passport fees", "Contact the Embassy", "Payment safety"], frChips: ["Paiement en ligne", "Visas et frais", "Frais de passeport", "Contacter l'Ambassade", "Sécurité des paiements"] },
+      "documents/index.html": { en: "Document checklist guide", fr: "Guide des pièces à fournir", enChips: ["Passport requirements", "Visa requirements", "Legalize a document", "Documents for a minor", "Contact the Embassy"], frChips: ["Conditions du passeport", "Conditions du visa", "Légaliser un document", "Documents pour un mineur", "Contacter l'Ambassade"] },
+    };
+    const pageContext = () => PAGE[pageKey] || { en: "Embassy website guide", fr: "Guide du site de l'Ambassade", enChips: ["Passports", "Visas & fees", "Opening hours", "Official DRC portals", "Contact the Embassy"], frChips: ["Passeports", "Visas et frais", "Heures d'ouverture", "Portails officiels de la RDC", "Contacter l'Ambassade"] };
 
     // Bilingual knowledge base: keywords (k, FR+EN), English answer (a), French answer (af).
     const KB = [
+      { k: ["passport portal","official passport website","passeport gouv cd","portail passeport","site officiel passeport"], a: "The official passport pre-registration destination is <b>passeport.gouv.cd</b>. Review the Embassy's requirements before leaving this site; the external domain is shown first. <a href='official-links.html'>Open the verified portal directory &rarr;</a>", af: "Le portail officiel de pré-enregistrement des passeports est <b>passeport.gouv.cd</b>. Consultez d'abord les conditions publiées par l'Ambassade ; le domaine externe est affiché avant la sortie du site. <a href='official-links.html'>Ouvrir l'annuaire vérifié &rarr;</a>" },
+      { k: ["account support","login","sign in","password","mot de passe","connexion","aide au compte","privacy guidance","protection des donnees"], a: "This preview does not create or access user accounts. For help choosing the correct official channel, use the account-support guidance or contact the Embassy—never send a password in chat. <a href='account/'>Account guidance &rarr;</a>", af: "Cet aperçu ne crée pas de compte et n'y accède pas. Pour identifier le canal officiel, consultez l'aide au compte ou contactez l'Ambassade — ne communiquez jamais de mot de passe dans ce chat. <a href='account/'>Aide au compte &rarr;</a>" },
+      { k: ["online payment","pay online","credit card","debit card","paiement en ligne","carte bancaire","payment safety","securite des paiements"], a: "No payment is accepted through this preview or assistant. Confirm the current method on the published service page before paying, and never share card or bank details here. <a href='pay/'>Payment guidance &rarr;</a>", af: "Aucun paiement n'est accepté dans cet aperçu ni par cet assistant. Vérifiez le moyen de paiement publié avant de payer et ne partagez jamais de données bancaires ici. <a href='pay/'>Informations sur les paiements &rarr;</a>" },
       { k: ["passport","passeport","renew","renouvel","biometric","biometrique","new passport","nouveau passeport","expired","expire"], a: "<b>Passports</b> are biometric and issued by Kinshasa. Three steps: 1) pre-register and pay <b>US$75</b> at passeport.gouv.cd (after obtaining an NIF tax ID), 2) email your documents to the consulate, 3) attend a biometric appointment. Processing takes about 90 days. <a href='consular-services.html#passport'>Full process &rarr;</a>", af: "Les <b>passeports</b> sont biométriques et délivrés par Kinshasa. Trois étapes : 1) pré-enregistrement et paiement de <b>75 US$</b> sur passeport.gouv.cd (après l'obtention d'un NIF), 2) envoi de vos documents au consulat, 3) rendez-vous biométrique. Délai : environ 90 jours. <a href='consular-services.html#passport'>Procédure complète &rarr;</a>" },
       { k: ["minor","child","children","kid","baby","enfant","mineur","bebe","passport","passeport"], a: "For a <b>minor's passport</b>, also bring the original birth certificate, a legalized parental authorization and a parent's passport. <a href='consular-services.html#passport'>Details &rarr;</a>", af: "Pour un <b>passeport de mineur</b>, ajoutez l'acte de naissance original, une autorisation parentale légalisée et le passeport d'un parent. <a href='consular-services.html#passport'>Détails &rarr;</a>" },
       { k: ["lost","stolen","perdu","vole","perte","police report","declaration de police","passport","passeport"], a: "If your passport is <b>lost or stolen</b>, file a police report and bring it to your appointment. You may also apply for a <b>Tenant-Lieu</b> travel document to return home. For emergencies call <a href='tel:+12022347690'>+1 (202) 234-7690</a>. <a href='consular-services.html#tenant-lieu'>Travel document &rarr;</a>", af: "En cas de <b>passeport perdu ou volé</b>, faites une déclaration de police et apportez-la à votre rendez-vous. Vous pouvez aussi demander un <b>Tenant-Lieu</b> pour rentrer. Urgences : <a href='tel:+12022347690'>+1 (202) 234-7690</a>. <a href='consular-services.html#tenant-lieu'>Document de voyage &rarr;</a>" },
@@ -1154,38 +1182,45 @@
       return fr && best.af ? best.af : best.a;
     };
 
-    // Localized interface copy.
-    const STR = () => (isFR() ? {
-      sub: "Bilingue · réponse immédiate",
-      launch: "Assistant bilingue · Aperçu",
-      ph: "Posez une question : passeports, visas, horaires…",
-      foot: 'Assistance automatisée. Pour parler à un agent, appelez <a href="tel:+12022347690">+1 (202) 234-7690</a>.',
-      greet: "Bonjour et bienvenue à l'Ambassade de la RDC. Je peux vous renseigner sur les passeports, visas, rendez-vous, horaires et bien plus. Comment puis-je vous aider ?",
-      chips: ["Renouveler mon passeport", "Prendre rendez-vous", "Visas et frais", "Heures d'ouverture", "S'inscrire aux alertes", "Urgence"],
-    } : {
-      sub: "Bilingual · replies instantly",
-      launch: "Bilingual assistant · Preview",
-      ph: "Ask about passports, visas, hours…",
-      foot: 'Automated guidance. For a person, call <a href="tel:+12022347690">+1 (202) 234-7690</a>.',
-      greet: "Bonjour, and welcome to the Embassy of the DRC. I can help with passports, visas, appointments, hours and much more. How may I assist you today?",
-      chips: ["Renew my passport", "Request an appointment", "Visas & fees", "Opening hours", "Register for alerts", "Emergency"],
-    });
+    // Localized interface copy and page-aware suggested questions.
+    const STR = () => {
+      const ctx = pageContext();
+      return isFR() ? {
+        title: "Guide IA de l'Ambassade", sub: "Informations vérifiées · Français + English", launch: "Guide IA · Informations vérifiées",
+        context: ctx.fr, ph: "Posez votre question…", clear: "Nouvelle conversation", close: "Fermer l'assistant", send: "Envoyer",
+        privacy: "Ne partagez jamais de numéro de passeport, de coordonnées bancaires ou de documents.",
+        foot: 'Aperçu informatif : aucune demande, aucun paiement et aucun rendez-vous ne sont transmis ici. <a href="contact.html">Contacter un agent</a>.',
+        greet: "Bonjour et bienvenue. Je suis le guide intelligent de l'Ambassade de la RDC. Je peux vous orienter vers les informations publiées et les bonnes pages, sans recueillir vos données personnelles.",
+        hidden: "[Données sensibles masquées]", sensitive: "Pour votre sécurité, je n'affiche ni ne traite les données sensibles. Ne partagez pas de numéro de passeport, de carte bancaire, de compte ou de document ici. Utilisez uniquement les canaux officiels. <a href='contact.html'>Contacter l'Ambassade &rarr;</a>",
+        source: "Guide du site · Vérifiez avant d'agir", typing: "L'assistant prépare une réponse", chips: ctx.frChips,
+      } : {
+        title: "Embassy AI Guide", sub: "Verified guidance · English + Français", launch: "AI guide · Verified information",
+        context: ctx.en, ph: "Ask your question…", clear: "New conversation", close: "Close assistant", send: "Send",
+        privacy: "Never share passport numbers, banking details or documents.",
+        foot: 'Information preview: no application, payment or appointment is submitted here. <a href="contact.html">Contact an officer</a>.',
+        greet: "Bonjour and welcome. I am the Embassy of the DRC smart guide. I can route you to published information and the right pages without collecting personal information.",
+        hidden: "[Sensitive details hidden]", sensitive: "For your security, I do not display or process sensitive details. Do not share passport, payment, account or document information here. Use official channels only. <a href='contact.html'>Contact the Embassy &rarr;</a>",
+        source: "Website guide · Verify before acting", typing: "Assistant is preparing a response", chips: ctx.enChips,
+      };
+    };
 
     const AV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
     const launcher = el(
-      '<button class="asst-launch" aria-label="Ask the Embassy" aria-expanded="false">' +
+      '<button class="asst-launch" aria-label="Ask the Embassy" aria-expanded="false" aria-controls="embassy-assistant">' +
         '<span class="asst-av">' + AV + '<i class="asst-on"></i></span>' +
         '<span class="asst-lt"><b>Ask the Embassy</b><small class="asst-ls">Bilingual assistant &middot; Preview</small></span>' +
       '</button>',
     );
     const panel = el(
-      '<section class="asst-panel" role="dialog" aria-label="Embassy assistant" hidden>' +
+      '<section class="asst-panel" id="embassy-assistant" role="dialog" aria-modal="false" aria-label="Embassy assistant" hidden>' +
         '<header class="asst-head">' +
           '<span class="asst-hav">' + AV + '<i class="asst-on"></i></span>' +
           '<div class="asst-htxt"><b>Embassy Assistant</b><small class="asst-sub">Bilingual &middot; replies instantly</small></div>' +
-          '<button class="asst-x" aria-label="Close">&times;</button></header>' +
+          '<div class="asst-tools"><button class="asst-clear" type="button" aria-label="New conversation" title="New conversation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 0 2.34-5.66L4 8.68"/><path d="M4 4v4.68h4.68"/></svg></button><button class="asst-x" type="button" aria-label="Close">&times;</button></div></header>' +
+        '<div class="asst-context"><span></span><b></b></div>' +
         '<div class="asst-log" aria-live="polite"></div>' +
         '<div class="asst-quick"></div>' +
+        '<p class="asst-privacy"></p>' +
         '<form class="asst-form"><input type="text" aria-label="Type your question" placeholder="Ask about passports, visas, hours…" autocomplete="off" />' +
         '<button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button></form>' +
         '<p class="asst-foot"></p>' +
@@ -1198,17 +1233,21 @@
     const form = panel.querySelector(".asst-form");
     const input = form.querySelector("input");
 
-    const push = (who, html) => {
+    const push = (who, html, withSource) => {
       const m = el('<div class="asst-msg ' + who + '"></div>');
-      m.innerHTML = html;
+      m.innerHTML = html + (withSource ? '<small class="asst-source">' + esc(STR().source) + '</small>' : '');
+      routeLinks(m);
       log.appendChild(m);
       log.scrollTop = log.scrollHeight;
     };
+    const isSensitive = (q) => /\b(passport|passeport|card|carte|bank|banque|account|compte|ssn|social security|cvv|pin)\s*(number|no|num|numero|n°|#|:)\b/i.test(norm(q)) || /\b\d{8,}\b/.test(q);
     const ask = (q) => {
-      push("me", esc(q));
-      const typing = el('<div class="asst-msg bot asst-typing" aria-label="typing"><span></span><span></span><span></span></div>');
+      const sensitive = isSensitive(q);
+      push("me", esc(sensitive ? STR().hidden : q));
+      const typing = el('<div class="asst-msg bot asst-typing"><span></span><span></span><span></span></div>');
+      typing.setAttribute("aria-label", STR().typing);
       log.appendChild(typing); log.scrollTop = log.scrollHeight;
-      setTimeout(() => { typing.remove(); push("bot", answer(q)); }, 480);
+      setTimeout(() => { typing.remove(); push("bot", sensitive ? STR().sensitive : answer(q), true); }, 420);
     };
 
     const buildChips = (labels) => {
@@ -1223,21 +1262,38 @@
     const localize = () => {
       const st = STR();
       input.placeholder = st.ph;
+      input.setAttribute("aria-label", st.ph);
+      panel.setAttribute("aria-label", st.title);
+      panel.querySelector(".asst-htxt b").textContent = st.title;
       panel.querySelector(".asst-sub").textContent = st.sub;
+      panel.querySelector(".asst-context b").textContent = st.context;
+      panel.querySelector(".asst-privacy").textContent = st.privacy;
       panel.querySelector(".asst-foot").innerHTML = st.foot;
+      routeLinks(panel.querySelector(".asst-foot"));
+      panel.querySelector(".asst-clear").setAttribute("aria-label", st.clear);
+      panel.querySelector(".asst-clear").setAttribute("title", st.clear);
+      panel.querySelector(".asst-x").setAttribute("aria-label", st.close);
+      form.querySelector("button").setAttribute("aria-label", st.send);
+      launcher.setAttribute("aria-label", isFR() ? "Demander à l'Ambassade" : "Ask the Embassy");
+      launcher.querySelector(".asst-lt b").textContent = isFR() ? "Demander à l'Ambassade" : "Ask the Embassy";
       const ls = launcher.querySelector(".asst-ls"); if (ls) ls.textContent = st.launch;
       buildChips(st.chips);
     };
     localize();
-    document.addEventListener("emb:setlang", localize);
+    document.addEventListener("emb:setlang", () => { localize(); if (opened) reset(); });
 
     let opened = false;
+    const reset = () => {
+      log.innerHTML = "";
+      opened = true;
+      push("bot", STR().greet, true);
+    };
     const open = () => {
       panel.hidden = false;
       requestAnimationFrame(() => panel.classList.add("open"));
       launcher.setAttribute("aria-expanded", "true");
       localize();
-      if (!opened) { opened = true; push("bot", STR().greet); }
+      if (!opened) reset();
       setTimeout(() => input.focus(), 80);
     };
     const close = () => {
@@ -1247,7 +1303,19 @@
     };
     launcher.addEventListener("click", () => (panel.hidden ? open() : close()));
     panel.querySelector(".asst-x").addEventListener("click", close);
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) close(); });
+    panel.querySelector(".asst-clear").addEventListener("click", reset);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !panel.hidden) { close(); launcher.focus(); return; }
+      if (e.key !== "Tab" || panel.hidden) return;
+      const focusable = Array.from(panel.querySelectorAll('button:not([disabled]),input:not([disabled]),a[href]'));
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    window.openEmbassyAssistant = open;
+    if (location.hash === "#assistant") setTimeout(open, 350);
+    window.addEventListener("hashchange", () => { if (location.hash === "#assistant") open(); });
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const q = input.value.trim();
