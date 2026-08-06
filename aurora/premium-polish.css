@@ -1632,28 +1632,30 @@ body main .kinshasa-actions .btn {
   }
 }
 
-/* ---- Assistant launcher: smaller resting footprint ------------------------
-   The pill sat at 227x54 in the lower-right corner, which reads as an
-   advertisement rather than an offer of help. Scaled back to roughly two
-   thirds of that: smaller avatar, tighter type, less padding. The touch
-   target stays comfortably above the 44px minimum, and the mobile circular
-   variant below 900px is untouched. */
-/* 521px is where aurora.css collapses the launcher to a circle, so the pill
-   is resized across its whole range rather than leaving 521-899px oversized. */
-@media (min-width: 521px) {
-  .asst-launch {
-    min-block-size: 42px;
-    padding: 5px 13px 5px 6px;
-    gap: 8px;
-    border-radius: 11px;
-  }
-
-  .asst-launch .asst-av { inline-size: 28px; block-size: 28px; }
-  .asst-launch .asst-av svg { inline-size: 15px; block-size: 15px; }
-
-  .asst-launch .asst-lt b { font-size: 11.5px; }
-  .asst-launch .asst-ls { font-size: 9px; }
+/* ---- Assistant launcher: one small round button --------------------------
+   It was a 227x54 pill carrying a title and a subtitle, which read as an
+   advertisement parked over the content. It is now a single 48px circle at
+   every width - icon only, no wording. The name is not lost: the button
+   already carries aria-label="Ask the Embassy", and a title attribute gives
+   sighted users the same words on hover. The circle is above the 44px minimum
+   touch target, and the panel it opens is unchanged. */
+.asst-launch {
+  inline-size: 48px;
+  block-size: 48px;
+  min-block-size: 0;
+  padding: 0;
+  gap: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
 }
+
+/* The wording block and the decorative top rule both belonged to the pill. */
+.asst-launch .asst-lt { display: none; }
+.asst-launch::before { display: none; }
+
+.asst-launch .asst-av { inline-size: 30px; block-size: 30px; }
+.asst-launch .asst-av svg { inline-size: 16px; block-size: 16px; }
 
 /* ---- Keyboard focus: make navigation answer back -------------------------
    Nav links resolved to `outline: none` with no replacement, so tabbing
@@ -1677,4 +1679,52 @@ body main .kinshasa-actions .btn {
    against pale backgrounds. */
 .site-head :is(a, button):focus-visible {
   box-shadow: 0 0 0 4px rgba(0, 29, 61, .18);
+}
+
+/* The launcher tucks away rather than sitting on top of a hero or a form. */
+.asst-launch {
+  transition: opacity .25s ease, transform .25s ease, background .2s ease, border-color .2s ease;
+}
+
+.asst-launch.is-tucked {
+  opacity: 0;
+  transform: translateY(10px) scale(.88);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asst-launch { transition: opacity .25s ease; }
+  .asst-launch.is-tucked { transform: none; }
+}
+
+/* ---- Assistant panel: a smaller conversation window -----------------------
+   It opened at 420px wide and up to 670px tall, which on a laptop covered a
+   large share of the page behind it. Brought down to 340 x 480 with the inner
+   spacing and type scaled to match, so it reads as a helper alongside the
+   content rather than a second page on top of it. The mobile sheet below
+   520px keeps its own full-width treatment. */
+@media (min-width: 521px) {
+  .asst-panel {
+    inline-size: 340px;
+    block-size: min(480px, calc(100dvh - 120px));
+    max-block-size: calc(100dvh - 120px);
+    border-radius: 16px;
+  }
+
+  .asst-panel::before { block-size: 118px; }
+
+  .asst-head { min-block-size: 56px; padding: 10px 12px 9px 12px; }
+  .asst-head b { font-size: 14px; }
+  .asst-head small { font-size: 9.5px; }
+  .asst-hav { inline-size: 30px; block-size: 30px; }
+
+  .asst-context { padding-inline: 13px; font-size: 10px; }
+  .asst-log { padding: 13px; }
+  .asst-msg { max-inline-size: 94%; font-size: 13px; }
+  .asst-quick { padding: 8px 13px 7px; gap: 6px; }
+  .asst-chip { min-block-size: 32px; font-size: 11.5px; }
+  .asst-privacy { padding-inline: 13px; font-size: 10px; }
+  .asst-foot { padding-inline: 13px; font-size: 9.5px; }
+  .asst-form { padding: 9px 13px 12px; }
+  .asst-form input { min-block-size: 40px; padding: 9px 11px; font-size: 13px; }
 }

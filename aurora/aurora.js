@@ -1397,7 +1397,7 @@
 
     const AV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
     const launcher = el(
-      '<button class="asst-launch" aria-label="Ask the Embassy" aria-expanded="false" aria-controls="embassy-assistant">' +
+      '<button class="asst-launch" aria-label="Ask the Embassy" title="Ask the Embassy" aria-expanded="false" aria-controls="embassy-assistant">' +
         '<span class="asst-av">' + AV + '<i class="asst-on"></i></span>' +
         '<span class="asst-lt"><b>Ask the Embassy</b><small class="asst-ls">Bilingual assistant &middot; Preview</small></span>' +
       '</button>',
@@ -4302,4 +4302,73 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
   else setTimeout(apply, 0);   // let handlers registered earlier run first
+})();
+
+/* ---- Assistant launcher: step aside for the content that matters ----------
+   A floating button parked in the corner is fine over ordinary body copy and
+   wrong over a hero or a form someone is filling in. The launcher now hides
+   whenever one of those regions reaches the corner it occupies, and returns as
+   soon as the corner is clear.
+
+   Overlap is measured against the launcher's own rectangle rather than a fixed
+   scroll offset, so it holds regardless of hero height, viewport size or how
+   far down a form sits. While the panel is open the launcher stays put: it is
+   the control that closes it.
+   -------------------------------------------------------------------------*/
+(function () {
+  "use strict";
+
+  // Heroes, and the one card a visitor actually types into. Deliberately not
+  // every panel and card: hiding the launcher over ordinary content would
+  // leave the assistant unreachable for most of the page.
+  var KEEP_CLEAR = ".hero, .phead, .amb-hero, .shine-hero, .register-card";
+  var MARGIN = 16;                       // breathing room around the button
+
+  var launcher = document.querySelector(".asst-launch");
+  if (!launcher) return;
+
+  var regions = Array.prototype.slice.call(document.querySelectorAll(KEEP_CLEAR))
+    .filter(function (el) { return el !== launcher && !launcher.contains(el); });
+  if (!regions.length) return;
+
+  var panel = document.querySelector(".asst-panel");
+  var ticking = false;
+
+  function overlaps(a, b) {
+    return !(b.right < a.left - MARGIN || b.left > a.right + MARGIN ||
+             b.bottom < a.top - MARGIN || b.top > a.bottom + MARGIN);
+  }
+
+  function update() {
+    ticking = false;
+
+    // With the panel smaller, the launcher would sit on top of it. The panel
+    // carries its own close button, so the launcher steps aside while open.
+    if (panel && !panel.hidden) { launcher.classList.add("is-tucked"); return; }
+
+    var box = launcher.getBoundingClientRect();
+    var blocked = false;
+    for (var i = 0; i < regions.length; i++) {
+      var r = regions[i].getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) continue;      // display:none, skip
+      if (overlaps(box, r)) { blocked = true; break; }
+    }
+    launcher.classList.toggle("is-tucked", blocked);
+  }
+
+  function schedule() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule, { passive: true });
+  launcher.addEventListener("click", function () { window.setTimeout(update, 60); });
+  if (panel) {
+    var close = panel.querySelector(".asst-x");
+    if (close) close.addEventListener("click", function () { window.setTimeout(update, 60); });
+  }
+
+  update();
 })();
