@@ -3737,12 +3737,12 @@
     embassy: ["31-ambassador-reception", "32-ambassador-in-conversation", "36-diplomatic-reception", "35-greeting-guests", "06-washington-embassy", "05-bilateral-table"],
     country: ["01-kinshasa-sunrise", "02-kinshasa-blue-hour", "03-congo-river-aerial", "09-virunga-highlands", "10-congo-rainforest", "11-kinshasa-creative", "12-congolese-music"],
     consular: ["40-passports-and-flag", "41-passport-collection", "42-passports-desk", "43-passport-booklets", "14-passport-preparation", "24-appointment-guidance"],
-    digital: ["17-digital-citizen-service", "18-official-portals", "26-account-support", "29-privacy-security"],
+    digital: ["17-digital-citizen-service", "18-official-portals", "26-account-support", "29-privacy-security", "19-embassy-newsroom"],
     news: ["33-formal-evening", "38-evening-gathering", "39-community-gathering", "20-diaspora-cultural-event", "30-congo-shining-gala"],
     contact: ["37-welcoming-the-diaspora", "34-community-welcome", "06-washington-embassy", "23-washington-diplomatic-city"],
     investment: ["13-kinshasa-enterprise", "21-responsible-industry", "22-clean-energy-drc", "03-congo-river-aerial"],
     portals: ["18-official-portals", "17-digital-citizen-service", "29-privacy-security"],
-    appointment: ["24-appointment-guidance", "15-consular-reception", "14-passport-preparation"],
+    appointment: ["24-appointment-guidance", "15-consular-reception", "14-passport-preparation", "04-embassy-reception", "08-bilateral-welcome"],
     account: ["26-account-support", "17-digital-citizen-service", "29-privacy-security"],
     documents: ["25-document-legalization", "14-passport-preparation"],
     payment: ["27-payment-guidance", "16-travel-documents"],
@@ -4034,234 +4034,238 @@
   }, { passive: true });
 })();
 
-/* ---- Shared motion gate --------------------------------------------------
-   One decision, consulted by every motion layer: heroes and widgets alike.
-   Motion is opt-out by the visitor's own settings, not by ours. ----------- */
-window.embassyMotionOK = (function () {
-  "use strict";
-  var m = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (m && m.matches) return false;                       // respect the OS setting
-  if (window.innerWidth < 900) return false;              // small screens stay still
-  if (!document.createElement("video").canPlayType("video/mp4")) return false;
-  var net = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  if (net && (net.saveData || /(^|-)2g$|^3g$/.test(net.effectiveType || ""))) return false;
-  return true;
-})();
+/* ---- Motion layers: heroes and widgets ------------------------------------
+   One implementation serves both. A muted, looping clip sits behind a still
+   design that stays the poster and the permanent fallback: if motion is
+   unwelcome, unaffordable or unsupported, no clip is fetched and the surface
+   is exactly what it was.
 
-/* ---- Hero motion layer ----------------------------------------------------
-   A muted, looping clip behind each hero, chosen by the same route group the
-   photo library already resolved onto <html data-hero-library>.
-
-   The photograph underneath stays the poster and the permanent fallback. The
-   clip is fetched only when the visitor's motion preference, screen size,
-   connection and tab state all say motion is welcome, it never competes with
-   the first paint, and it stops the moment it is off-screen or backgrounded.
+   The gate is a function, not a value captured at load. A visitor who resizes
+   a desktop window down to phone width, or rotates a tablet, gets the clip
+   torn down rather than left decoding behind display:none - hiding a video
+   does not stop it. Resizing back up brings it back without a reload.
    -------------------------------------------------------------------------*/
 (function () {
   "use strict";
 
   var ROOT = "/embassy-preview/aurora/assets/video/hero/";
+  // Width is asked of matchMedia rather than window.innerWidth so it reads from
+  // exactly the same breakpoint the stylesheet uses, and so the change event
+  // drives updates instead of a debounced resize poll. innerWidth also reports
+  // 0 in a detached or zero-size frame, which would tear a live layer down.
+  var wideEnough = window.matchMedia ? window.matchMedia("(min-width: 900px)") : null;
+  var reduceMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+
+  function motionAllowed() {
+    if (reduceMotion && reduceMotion.matches) return false;
+    if (wideEnough && !wideEnough.matches) return false;
+    if (!document.createElement("video").canPlayType("video/mp4")) return false;
+    var net = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (net && (net.saveData || /(^|-)2g$|^3g$/.test(net.effectiveType || ""))) return false;
+    return true;
+  }
+
+  /* A single layer owns its element, its observer and its own teardown, so
+     nothing outlives the clip it was created for. */
+  function MotionLayer(host, opts) {
+    this.host = host;
+    this.clip = opts.clip;
+    this.soft = !!opts.soft;
+    this.hero = opts.hero !== false;
+    this.anchor = opts.anchor || null;      // insert before this node, else append
+    this.rootMargin = opts.rootMargin || "0px";
+    this.threshold = opts.threshold || 0.05;
+    this.video = null;
+    this.observer = null;
+    this.live = false;
+  }
+
+  MotionLayer.prototype.mount = function () {
+    if (this.video) return;
+    var self = this;
+
+    var v = document.createElement("video");
+    v.className = this.hero ? "hero-video" : ("widget-video" + (this.soft ? " is-soft" : ""));
+    v.muted = true;
+    v.defaultMuted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.preload = "none";
+    v.disablePictureInPicture = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    v.setAttribute("aria-hidden", "true");
+    v.setAttribute("tabindex", "-1");
+    v.src = ROOT + this.clip + ".mp4";
+
+    if (this.anchor && this.anchor.parentNode === this.host) this.host.insertBefore(v, this.anchor);
+    else this.host.appendChild(v);
+    this.video = v;
+
+    v.addEventListener("playing", function () {
+      self.live = true;
+      v.classList.add("is-live");
+      self.host.classList.add("motion-live");
+    }, { once: true });
+
+    v.addEventListener("error", function () { self.unmount(); }, { once: true });
+
+    if ("IntersectionObserver" in window) {
+      this.observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!self.video) return;
+          if (e.isIntersecting) { self.video.preload = "auto"; self.play(); }
+          else self.video.pause();
+        });
+      }, { rootMargin: this.rootMargin, threshold: this.threshold });
+      this.observer.observe(this.host);
+    } else {
+      v.preload = "auto";
+      this.play();
+    }
+  };
+
+  MotionLayer.prototype.play = function () {
+    if (!this.video) return;
+    var p = this.video.play();
+    if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
+  };
+
+  /* Full teardown: the observer is disconnected and the element released, so
+     nothing keeps firing against a node no longer in the document. */
+  MotionLayer.prototype.unmount = function () {
+    if (this.observer) { this.observer.disconnect(); this.observer = null; }
+    var v = this.video;
+    this.video = null;
+    this.live = false;
+    this.host.classList.remove("motion-live");
+    if (!v) return;
+    try { v.pause(); } catch (e) {}
+    v.removeAttribute("src");
+    try { v.load(); } catch (e) {}
+    if (v.parentNode) v.parentNode.removeChild(v);
+  };
+
+  MotionLayer.prototype.pause = function () {
+    if (!this.video) return;
+    try { this.video.pause(); } catch (e) {}
+  };
+
+  MotionLayer.prototype.resume = function () {
+    if (this.video && this.live) this.play();
+  };
+
+  /* ---- Which surfaces get a layer, and where the clip is inserted ---------
+     Insertion point decides paint order, so each surface names its own anchor
+     rather than relying on a z-index guess: the clip must cover the still
+     background and stay underneath the scrim that keeps the copy legible. */
   var CLIPS = ["home", "embassy", "country", "consular", "digital", "news",
                "contact", "investment", "portals", "appointment", "account",
                "documents", "payment", "accessibility", "legal",
                "ambience", "congo-shining"];
 
   // Two pages predate the shared hero system and carry their own markup, so
-  // they are not in the photo library's route map and get no data-hero-library.
+  // they are absent from the route map the photo library uses.
   var BESPOKE = { "/ambience.html": "ambience", "/congo-shining.html": "congo-shining" };
 
-  var motion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
-  if (!window.embassyMotionOK) return;
-
-  var path = window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
-  var group = BESPOKE[path] || document.documentElement.getAttribute("data-hero-library") || "";
-  if (CLIPS.indexOf(group) === -1) return;
-
-  // The photo library rebuilds these containers with innerHTML on start(), so
-  // this module must append only after that has run. It does: aurora.js is
-  // deferred and this block is last in the file.
-  // Where the clip is inserted decides its paint order, so each hero names its
-  // own anchor rather than relying on a z-index guess: the clip must cover the
-  // still background and stay underneath the scrim that keeps the text legible.
-  var host, anchor = null, mode = "append";
-  var ambBg = document.querySelector(".amb-hero .amb-bg");
-  var shineOverlay = document.querySelector(".shine-hero .shine-hero-overlay");
-  if (document.querySelector(".hero-slides")) {
-    host = document.querySelector(".hero-slides");
-  } else if (document.querySelector(".phead-slides")) {
-    host = document.querySelector(".phead-slides");
-  } else if (ambBg) {
-    host = ambBg.parentNode; anchor = ambBg.nextSibling; mode = "before";
-  } else if (shineOverlay) {
-    host = shineOverlay.parentNode; anchor = shineOverlay; mode = "before";
-  }
-  if (!host) return;
-
-  var video = document.createElement("video");
-  video.className = "hero-video";
-  video.muted = true;
-  video.defaultMuted = true;
-  video.loop = true;
-  video.playsInline = true;
-  video.preload = "none";
-  video.disablePictureInPicture = true;
-  video.setAttribute("muted", "");
-  video.setAttribute("playsinline", "");
-  video.setAttribute("aria-hidden", "true");
-  video.setAttribute("tabindex", "-1");
-  video.src = ROOT + group + ".mp4";
-  if (mode === "before") host.insertBefore(video, anchor);
-  else host.appendChild(video);
-
-  var live = false;
-
-  function teardown() {
-    try { video.pause(); } catch (e) {}
-    video.removeAttribute("src");
-    try { video.load(); } catch (e) {}
-    video.remove();
-    host.classList.remove("motion-live");
-    live = false;
+  function currentPath() {
+    return window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
   }
 
-  function play() {
-    var p = video.play();
-    if (p && p.catch) p.catch(function () { /* autoplay refused: photo stays */ });
+  function heroSpec() {
+    var group = BESPOKE[currentPath()] || document.documentElement.getAttribute("data-hero-library") || "";
+    if (CLIPS.indexOf(group) === -1) return null;
+
+    var slides = document.querySelector(".hero-slides") || document.querySelector(".phead-slides");
+    if (slides) return { host: slides, clip: group, anchor: null };
+
+    var ambBg = document.querySelector(".amb-hero .amb-bg");
+    if (ambBg) return { host: ambBg.parentNode, clip: group, anchor: ambBg.nextSibling };
+
+    var shine = document.querySelector(".shine-hero .shine-hero-overlay");
+    if (shine) return { host: shine.parentNode, clip: group, anchor: shine };
+
+    return null;
   }
 
-  function start() {
-    video.preload = "auto";
-    play();
+  function widgetSpecs() {
+    var out = [];
+    document.querySelectorAll(".kinshasa-stage").forEach(function (h) {
+      out.push({ host: h, clip: "w-kinshasa", anchor: h.querySelector(".kinshasa-overlay"), soft: false });
+    });
+    document.querySelectorAll(".cta-premium").forEach(function (h) {
+      out.push({ host: h, clip: "w-river", anchor: h.firstChild, soft: true });
+    });
+    return out;
   }
 
-  video.addEventListener("playing", function () {
-    live = true;
-    video.classList.add("is-live");
-    host.classList.add("motion-live");
-  }, { once: true });
+  var layers = [];
 
-  video.addEventListener("error", teardown, { once: true });
+  function build() {
+    if (layers.length) return;
+    var hero = heroSpec();
+    if (hero) {
+      layers.push(new MotionLayer(hero.host, { clip: hero.clip, anchor: hero.anchor, threshold: 0.05 }));
+    }
+    widgetSpecs().forEach(function (w) {
+      layers.push(new MotionLayer(w.host, {
+        clip: w.clip, anchor: w.anchor, soft: w.soft, hero: false,
+        rootMargin: "200px 0px", threshold: 0.01
+      }));
+    });
+    layers.forEach(function (l) { l.mount(); });
+  }
 
-  // Never compete with the hero's first paint.
+  function destroy() {
+    layers.forEach(function (l) { l.unmount(); });
+    layers = [];
+  }
+
+  function sync() {
+    if (motionAllowed()) build();
+    else destroy();
+  }
+
+  // Never compete with the first paint.
   function kick() {
-    if ("requestIdleCallback" in window) requestIdleCallback(start, { timeout: 2500 });
-    else setTimeout(start, 1200);
+    if ("requestIdleCallback" in window) requestIdleCallback(sync, { timeout: 2500 });
+    else setTimeout(sync, 1200);
   }
   if (document.readyState === "complete") kick();
   else window.addEventListener("load", kick, { once: true });
 
-  // Stop decoding pixels nobody is looking at.
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { if (live) play(); }
-        else video.pause();
-      });
-    }, { threshold: 0.05 }).observe(host);
+  // One listener per query, registered outside any per-layer loop. Crossing the
+  // breakpoint or switching the motion preference re-runs the same decision.
+  function watch(mq) {
+    if (!mq) return;
+    if (mq.addEventListener) mq.addEventListener("change", sync);
+    else if (mq.addListener) mq.addListener(sync);
   }
+  watch(wideEnough);
+  watch(reduceMotion);
 
   document.addEventListener("visibilitychange", function () {
-    if (document.hidden) video.pause();
-    else if (live) play();
-  });
-
-  // Honour a motion preference switched on mid-session.
-  if (motion && motion.addEventListener) {
-    motion.addEventListener("change", function (e) { if (e.matches) teardown(); });
-  }
-})();
-
-/* ---- Widget motion layer --------------------------------------------------
-   A few surfaces earn motion of their own: the Kinshasa showcase, and the
-   consular call-to-action panel that closes most pages. Same rules as the
-   heroes -- the still design underneath is the fallback, the clip is fetched
-   only when the shared gate allows it, and it stops when out of view.
-   -------------------------------------------------------------------------*/
-(function () {
-  "use strict";
-  if (!window.embassyMotionOK) return;
-
-  var ROOT = "/embassy-preview/aurora/assets/video/hero/";
-  var TARGETS = [
-    // The showcase panel: the clip replaces the still panorama outright.
-    { sel: ".kinshasa-stage", clip: "w-kinshasa", before: ".kinshasa-overlay", soft: false },
-    // The closing CTA: the navy panel must stay the subject, so the river sits
-    // well back behind it rather than competing with the copy.
-    { sel: ".cta-premium", clip: "w-river", before: null, soft: true }
-  ];
-
-  TARGETS.forEach(function (t) {
-    document.querySelectorAll(t.sel).forEach(function (host) {
-      if (host.querySelector(".widget-video")) return;
-
-      var video = document.createElement("video");
-      video.className = "widget-video" + (t.soft ? " is-soft" : "");
-      video.muted = true;
-      video.defaultMuted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.preload = "none";
-      video.disablePictureInPicture = true;
-      video.setAttribute("muted", "");
-      video.setAttribute("playsinline", "");
-      video.setAttribute("aria-hidden", "true");
-      video.setAttribute("tabindex", "-1");
-      video.src = ROOT + t.clip + ".mp4";
-
-      var anchor = t.before ? host.querySelector(t.before) : host.firstChild;
-      if (anchor) host.insertBefore(video, anchor);
-      else host.appendChild(video);
-
-      var live = false;
-      function play() {
-        var p = video.play();
-        if (p && p.catch) p.catch(function () {});
-      }
-      video.addEventListener("playing", function () {
-        live = true;
-        video.classList.add("is-live");
-        host.classList.add("motion-live");
-      }, { once: true });
-      video.addEventListener("error", function () {
-        video.remove();
-        host.classList.remove("motion-live");
-      }, { once: true });
-
-      // Widgets sit below the fold, so nothing loads until they are approached.
-      if ("IntersectionObserver" in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              if (!live) { video.preload = "auto"; }
-              play();
-            } else {
-              video.pause();
-            }
-          });
-        }, { rootMargin: "200px 0px", threshold: 0.01 });
-        io.observe(host);
-      } else {
-        video.preload = "auto";
-        play();
-      }
-
-      document.addEventListener("visibilitychange", function () {
-        if (document.hidden) video.pause();
-      });
+    layers.forEach(function (l) {
+      if (document.hidden) l.pause();
+      else l.resume();
     });
   });
 })();
 
-/* ---- Navigation: reflect where the visitor actually is --------------------
-   Seven pages are direct nav destinations and mark themselves active in the
-   markup. Three more (invest-in-drc, official-links, congo-shining) already
-   inherit their parent section. The rest arrived with no active item at all,
-   so the header gave no feedback about where you had landed. These map each
-   remaining page onto the section that owns it. Legal and utility pages are
-   deliberately absent: they belong to the footer, not the main navigation.
+/* ---- Navigation: expose the current section to assistive technology -------
+   The header already marks the active item visually. What it does not do is
+   say so programmatically: on the section pages the link carries .active with
+   no aria-current, so a screen reader announces an ordinary link.
+
+   This runs after DOMContentLoaded so it sees whatever the rest of the site
+   has already marked, then fills two gaps: it mirrors an existing .active into
+   aria-current, and if nothing is marked at all it falls back to the section
+   that owns the page. Legal and utility pages are deliberately absent - they
+   belong to the footer, not the main navigation.
    -------------------------------------------------------------------------*/
 (function () {
   "use strict";
+
   var OWNER = {
     "/ambience.html":        "/the-embassy.html",
     "/portal.html":          "/consular-services.html",
@@ -4273,18 +4277,29 @@ window.embassyMotionOK = (function () {
     "/documents/index.html": "/digital-services.html"
   };
 
-  var nav = document.querySelector(".mainnav");
-  if (!nav) return;
-  if (nav.querySelector(".active, [aria-current='page']")) return;   // already marked
+  function apply() {
+    var nav = document.querySelector(".mainnav");
+    if (!nav) return;
 
-  var path = window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
-  var owner = OWNER[path];
-  if (!owner) return;
+    var path = window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
+    var marked = nav.querySelector("a.active, a[aria-current]");
 
-  var link = nav.querySelector('a[href="/embassy-preview' + owner + '"]');
-  if (!link) return;
-  link.classList.add("active");
-  // The section is the visitor's location, not the exact page, so aria-current
-  // is "true" rather than "page" - the page itself is elsewhere in the section.
-  link.setAttribute("aria-current", "true");
+    if (!marked) {
+      var owner = OWNER[path];
+      if (!owner) return;
+      marked = nav.querySelector('a[href="/embassy-preview' + owner + '"]');
+      if (!marked) return;
+      marked.classList.add("active");
+    }
+
+    if (marked.hasAttribute("aria-current")) return;
+    // "page" only when the link is this document; otherwise the visitor is
+    // inside the section but not on that exact page.
+    var href = marked.getAttribute("href") || "";
+    var self = "/embassy-preview" + (path === "/" ? "/" : path);
+    marked.setAttribute("aria-current", href === self ? "page" : "true");
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
+  else setTimeout(apply, 0);   // let handlers registered earlier run first
 })();

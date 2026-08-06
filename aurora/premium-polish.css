@@ -1583,12 +1583,10 @@ body main .kinshasa-actions .btn {
   .register-card form > .btn[type="submit"] { margin-block-start: auto; }
 
   /* Both cards stretch to the same height, so the actions line up only if the
-     space below them matches too. The left note wraps to two lines and the
-     right note is one, so each is given the same reserved box, and both
-     actions the same height. Measured, not guessed: without this the two
-     buttons sat 30px apart. */
-  .advisory-card > .btn,
-  .register-card form > .btn[type="submit"] { min-block-size: 52px; }
+     space below them matches too. Reserving that space is what does the work -
+     a min-block-size on the actions themselves was measured as inert (both
+     render at 46px from their own padding) and has been removed rather than
+     left as a rule that looks load-bearing and is not. */
 
   .advisory-card > .adv-feedback,
   .register-card .hint {
