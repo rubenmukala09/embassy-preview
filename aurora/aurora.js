@@ -4251,3 +4251,40 @@ window.embassyMotionOK = (function () {
     });
   });
 })();
+
+/* ---- Navigation: reflect where the visitor actually is --------------------
+   Seven pages are direct nav destinations and mark themselves active in the
+   markup. Three more (invest-in-drc, official-links, congo-shining) already
+   inherit their parent section. The rest arrived with no active item at all,
+   so the header gave no feedback about where you had landed. These map each
+   remaining page onto the section that owns it. Legal and utility pages are
+   deliberately absent: they belong to the footer, not the main navigation.
+   -------------------------------------------------------------------------*/
+(function () {
+  "use strict";
+  var OWNER = {
+    "/ambience.html":        "/the-embassy.html",
+    "/portal.html":          "/consular-services.html",
+    "/account/":             "/digital-services.html",
+    "/account/index.html":   "/digital-services.html",
+    "/pay/":                 "/digital-services.html",
+    "/pay/index.html":       "/digital-services.html",
+    "/documents/":           "/digital-services.html",
+    "/documents/index.html": "/digital-services.html"
+  };
+
+  var nav = document.querySelector(".mainnav");
+  if (!nav) return;
+  if (nav.querySelector(".active, [aria-current='page']")) return;   // already marked
+
+  var path = window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
+  var owner = OWNER[path];
+  if (!owner) return;
+
+  var link = nav.querySelector('a[href="/embassy-preview' + owner + '"]');
+  if (!link) return;
+  link.classList.add("active");
+  // The section is the visitor's location, not the exact page, so aria-current
+  // is "true" rather than "page" - the page itself is elsewhere in the section.
+  link.setAttribute("aria-current", "true");
+})();

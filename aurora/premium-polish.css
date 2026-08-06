@@ -1603,3 +1603,50 @@ body main .kinshasa-actions .btn {
     min-block-size: 86px;
   }
 }
+
+/* ---- Assistant launcher: smaller resting footprint ------------------------
+   The pill sat at 227x54 in the lower-right corner, which reads as an
+   advertisement rather than an offer of help. Scaled back to roughly two
+   thirds of that: smaller avatar, tighter type, less padding. The touch
+   target stays comfortably above the 44px minimum, and the mobile circular
+   variant below 900px is untouched. */
+/* 521px is where aurora.css collapses the launcher to a circle, so the pill
+   is resized across its whole range rather than leaving 521-899px oversized. */
+@media (min-width: 521px) {
+  .asst-launch {
+    min-block-size: 42px;
+    padding: 5px 13px 5px 6px;
+    gap: 8px;
+    border-radius: 11px;
+  }
+
+  .asst-launch .asst-av { inline-size: 28px; block-size: 28px; }
+  .asst-launch .asst-av svg { inline-size: 15px; block-size: 15px; }
+
+  .asst-launch .asst-lt b { font-size: 11.5px; }
+  .asst-launch .asst-ls { font-size: 9px; }
+}
+
+/* ---- Keyboard focus: make navigation answer back -------------------------
+   Nav links resolved to `outline: none` with no replacement, so tabbing
+   through the header moved an invisible cursor - the navigation simply did
+   not react. :focus-visible keeps this off mouse clicks, so nothing changes
+   for pointer users. */
+.mainnav a:focus-visible,
+.mainnav .nav-sub a:focus-visible,
+.topbar a:focus-visible,
+.brand:focus-visible,
+.head-cta a:focus-visible,
+.head-cta button:focus-visible,
+.foot a:focus-visible,
+.skip-link:focus {
+  outline: 2px solid var(--gold, #ffc300);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* On the light header the gold ring needs a dark companion to stay legible
+   against pale backgrounds. */
+.site-head :is(a, button):focus-visible {
+  box-shadow: 0 0 0 4px rgba(0, 29, 61, .18);
+}

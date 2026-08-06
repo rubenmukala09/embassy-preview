@@ -516,6 +516,7 @@ main .section .btn-ghost {
    Their own stylesheets set the see-through fill, so they are named here
    rather than guessed at. */
 main .kinshasa-actions .btn-ghost,
-main .drc-final-cta .drc-cta-actions .btn-ghost {
-  color: var(--contrast-on-dark) !important;
+main .drc-final-cta .drc-cta-actions .btn-ghost,
+main .cta-premium .btn-ghost {
+  color: #fff !important;
 }
