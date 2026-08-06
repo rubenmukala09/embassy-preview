@@ -358,9 +358,11 @@ form :is(input, select, textarea):disabled {
   box-shadow: 0 28px 66px rgba(4, 29, 57, .22), inset 0 1px rgba(255, 255, 255, .08);
 }
 
-/* Footer: quieter separation and more editorial link rhythm. */
+/* Footer: quieter separation and more editorial link rhythm.
+   Background matches the original navy footer (var(--navy) -> var(--navy-900),
+   top-to-bottom); do not reintroduce the lighter diagonal blue gradient. */
 .foot {
-  background: linear-gradient(145deg, #031a33, #062b51 68%, #031d39);
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-900) 100%);
   border-block-start: 3px solid transparent;
   border-image: linear-gradient(90deg, var(--lux-blue) 0 56%, var(--lux-gold) 56% 78%, var(--lux-red) 78%) 1;
 }

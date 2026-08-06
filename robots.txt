@@ -3,3 +3,8 @@ Disallow: /
 
 # Preview build: indexing will be enabled only after Embassy approval,
 # content verification, and migration to the official production domain.
+#
+# The sitemap below is declared but NOT crawlable while "Disallow: /" stands.
+# To go live: remove the Disallow line above and update the Sitemap host.
+
+Sitemap: https://rubenmukala09.github.io/embassy-preview/sitemap.xml
