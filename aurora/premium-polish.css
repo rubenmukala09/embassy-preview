@@ -1483,3 +1483,53 @@ body main .kinshasa-actions .btn {
     font-size: 14px;
   }
 }
+
+/* ============================================================================
+   HERO MOTION LAYER
+   A muted, looping clip sits inside the existing slide layer, beneath the
+   scrim. The photograph underneath is the poster and the permanent fallback:
+   if motion is unwelcome, unaffordable or unsupported the clip never loads and
+   the hero is exactly what it was before.
+   ========================================================================= */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+  border: 0;
+  background: #06122a;
+}
+
+.hero-video.is-live { opacity: 1; }
+
+/* While the clip carries the motion, stop the still layer's Ken Burns push so
+   the two are not animating the same pixels against each other. */
+.hero-slides.motion-live .hero-slide.active,
+.phead-slides.motion-live .hero-slide.active { animation: none; }
+
+/* Phones and tablets keep the still hero: a cropped background clip costs
+   real data and buys almost nothing at that size. */
+@media (max-width: 899px) { .hero-video { display: none !important; } }
+
+@media (prefers-reduced-motion: reduce) { .hero-video { display: none !important; } }
+
+/* The ambience hero darkens itself with a ::before, which paints before every
+   real child - including the clip. Rather than restack a working hero, give
+   the motion state its own scrim on ::after, which paints after all children
+   and still below the relatively-positioned copy. With no clip, nothing here
+   applies and the hero is untouched. */
+.amb-hero.motion-live::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 17, 42, .34), rgba(0, 17, 42, .84));
+}
+
+/* Only one thing should be moving behind the copy. */
+.amb-hero.motion-live .amb-bg { animation: none; }

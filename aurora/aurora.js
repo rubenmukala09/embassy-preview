@@ -4033,3 +4033,131 @@
     stage.style.setProperty("--kin-y", "0px");
   }, { passive: true });
 })();
+
+/* ---- Hero motion layer ----------------------------------------------------
+   A muted, looping clip behind each hero, chosen by the same route group the
+   photo library already resolved onto <html data-hero-library>.
+
+   The photograph underneath stays the poster and the permanent fallback. The
+   clip is fetched only when the visitor's motion preference, screen size,
+   connection and tab state all say motion is welcome, it never competes with
+   the first paint, and it stops the moment it is off-screen or backgrounded.
+   -------------------------------------------------------------------------*/
+(function () {
+  "use strict";
+
+  var ROOT = "/embassy-preview/aurora/assets/video/hero/";
+  var CLIPS = ["home", "embassy", "country", "consular", "digital", "news",
+               "contact", "investment", "portals", "appointment", "account",
+               "documents", "payment", "accessibility", "legal",
+               "ambience", "congo-shining"];
+
+  // Two pages predate the shared hero system and carry their own markup, so
+  // they are not in the photo library's route map and get no data-hero-library.
+  var BESPOKE = { "/ambience.html": "ambience", "/congo-shining.html": "congo-shining" };
+
+  var motion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  if (motion && motion.matches) return;                 // respect the OS setting
+  if (window.innerWidth < 900) return;                  // small screens keep the still hero
+  if (!document.createElement("video").canPlayType("video/mp4")) return;
+
+  var net = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (net && (net.saveData || /(^|-)2g$|^3g$/.test(net.effectiveType || ""))) return;
+
+  var path = window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
+  var group = BESPOKE[path] || document.documentElement.getAttribute("data-hero-library") || "";
+  if (CLIPS.indexOf(group) === -1) return;
+
+  // The photo library rebuilds these containers with innerHTML on start(), so
+  // this module must append only after that has run. It does: aurora.js is
+  // deferred and this block is last in the file.
+  // Where the clip is inserted decides its paint order, so each hero names its
+  // own anchor rather than relying on a z-index guess: the clip must cover the
+  // still background and stay underneath the scrim that keeps the text legible.
+  var host, anchor = null, mode = "append";
+  var ambBg = document.querySelector(".amb-hero .amb-bg");
+  var shineOverlay = document.querySelector(".shine-hero .shine-hero-overlay");
+  if (document.querySelector(".hero-slides")) {
+    host = document.querySelector(".hero-slides");
+  } else if (document.querySelector(".phead-slides")) {
+    host = document.querySelector(".phead-slides");
+  } else if (ambBg) {
+    host = ambBg.parentNode; anchor = ambBg.nextSibling; mode = "before";
+  } else if (shineOverlay) {
+    host = shineOverlay.parentNode; anchor = shineOverlay; mode = "before";
+  }
+  if (!host) return;
+
+  var video = document.createElement("video");
+  video.className = "hero-video";
+  video.muted = true;
+  video.defaultMuted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = "none";
+  video.disablePictureInPicture = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("aria-hidden", "true");
+  video.setAttribute("tabindex", "-1");
+  video.src = ROOT + group + ".mp4";
+  if (mode === "before") host.insertBefore(video, anchor);
+  else host.appendChild(video);
+
+  var live = false;
+
+  function teardown() {
+    try { video.pause(); } catch (e) {}
+    video.removeAttribute("src");
+    try { video.load(); } catch (e) {}
+    video.remove();
+    host.classList.remove("motion-live");
+    live = false;
+  }
+
+  function play() {
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { /* autoplay refused: photo stays */ });
+  }
+
+  function start() {
+    video.preload = "auto";
+    play();
+  }
+
+  video.addEventListener("playing", function () {
+    live = true;
+    video.classList.add("is-live");
+    host.classList.add("motion-live");
+  }, { once: true });
+
+  video.addEventListener("error", teardown, { once: true });
+
+  // Never compete with the hero's first paint.
+  function kick() {
+    if ("requestIdleCallback" in window) requestIdleCallback(start, { timeout: 2500 });
+    else setTimeout(start, 1200);
+  }
+  if (document.readyState === "complete") kick();
+  else window.addEventListener("load", kick, { once: true });
+
+  // Stop decoding pixels nobody is looking at.
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { if (live) play(); }
+        else video.pause();
+      });
+    }, { threshold: 0.05 }).observe(host);
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) video.pause();
+    else if (live) play();
+  });
+
+  // Honour a motion preference switched on mid-session.
+  if (motion && motion.addEventListener) {
+    motion.addEventListener("change", function (e) { if (e.matches) teardown(); });
+  }
+})();
