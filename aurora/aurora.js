@@ -666,7 +666,7 @@
 
   /* Real status lookup: query the embassy for this reference + last name. */
   function checkStatus(scope, btn) {
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const v = (id) => (scope.querySelector("#" + id)?.value || "").toString().trim();
     const reference = (v("ref") || fieldsIn(scope)[0]?.value || "").trim();
     const lastName = v("ln") || fieldsIn(scope)[1]?.value?.trim() || "";
@@ -706,7 +706,7 @@
 
   /* Register with the Embassy (safety-alert enrolment) -> an Inquiry the staff see. */
   function submitRegistration(scope, btn) {
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const v = (id) => (scope.querySelector("#" + id)?.value || "").toString().trim();
     const show = (ref, msg) => {
       scope.querySelector(".form-success")?.remove();
@@ -728,7 +728,7 @@
 
   /* Attorney joins the Embassy's legal-partner network -> an Inquiry the staff review. */
   function submitLegalPartner(scope, btn) {
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const v = (id) => (scope.querySelector("#" + id)?.value || "").toString().trim();
     const show = (ref, msg) => {
       scope.querySelector(".form-success")?.remove();
@@ -750,7 +750,7 @@
 
   /* Public RSVP for an Embassy event -> an Inquiry the events desk handles. */
   function submitEvent(scope, btn) {
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const v = (id) => (scope.querySelector("#" + id)?.value || "").toString().trim();
     const show = (ref, msg) => {
       scope.querySelector(".form-success")?.remove();
@@ -770,7 +770,7 @@
   }
 
   function renderBooking(scope) {
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const v = (id) => (scope.querySelector("#" + id)?.value || "").toString().trim();
     const service = v("b-service") || "Consular appointment";
     const time = v("b-time") || "Morning";
@@ -827,7 +827,7 @@
   }
 
   function submitInquiry(scope, btn) {
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const v = (id) => (scope.querySelector("#" + id)?.value || "").toString().trim();
     const show = (ref, msg) => {
       scope.querySelector(".form-success")?.remove();
@@ -847,7 +847,7 @@
 
   /* Suggestion box → an Inquiry ("Website suggestion") the staff dashboard triages. */
   function submitSuggestion(scope, btn) {
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const v = (id) => (scope.querySelector("#" + id)?.value || "").toString().trim();
     const show = (ref, msg) => {
       scope.querySelector(".form-success")?.remove();
@@ -1120,7 +1120,7 @@
       { t: "Ask the Embassy", tf: "Demander à l'ambassade", d: "Open the bilingual verified website guide", df: "Ouvrir le guide bilingue vérifié du site", u: "#assistant", k: "assistant chat help question ask aide question demander poser" },
     ];
     const rxEsc = (s) => Array.from(s).map((c) => (/[a-z0-9 ]/i.test(c) ? c : "\\" + c)).join("");
-    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     // Accent- and case-insensitive, so "légalisation" and "legalisation" match alike.
     const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(new RegExp("[\u0300-\u036f]", "g"), "");
     // Current display language, as persisted by the header language switcher.
@@ -1267,7 +1267,7 @@
     // Privacy-first preview guide: answers from published site content only.
     // It never submits forms, books appointments, tracks cases or accepts payment.
     // ---- language + accent-insensitive matching (self-contained) ----
-    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
     const isFR = () => { try { return localStorage.getItem("emb-lang") === "fr"; } catch (e) { return document.documentElement.lang === "fr"; } };
     const pathParts = location.pathname.toLowerCase().split("/").filter(Boolean);
@@ -1678,7 +1678,7 @@
   const cards = Array.from(document.querySelectorAll(".ncard"));
   if (!cards.length) return;
   const mk = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstChild; };
-  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const modal = mk('<div class="reader" role="dialog" aria-modal="true" aria-label="Article" hidden><div class="rd-scrim"></div><article class="rd-box"><button class="rd-x" aria-label="Close">&times;</button><span class="rd-date"></span><h2 class="rd-title"></h2><div class="rd-body"></div><p class="rd-note">Preview article. Verify releases and statements through the Embassy newsroom and official website.</p></article></div>');
   document.body.appendChild(modal);
   let lastCard = null;
@@ -1725,7 +1725,7 @@
     { type: "news", severity: "info", title: "Discover the Democratic Republic of the Congo", body: "Explore culture, destinations, economic potential and opportunities for partnership.", link: "/embassy-preview/dr-congo.html" },
     { type: "notice", severity: "info", title: "Contact the appropriate Embassy department", body: "Find verified pathways for Consular Affairs, Economic and Trade, and Press and Communication inquiries.", link: "/embassy-preview/contact.html#department-contacts" },
   ];
-  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const sev = (s) => SEV[s] || SEV.info;
   // Only allow safe destinations (no javascript:/data: URLs).
   const safeLink = (u) => (/^(https?:\/\/|\/|[\w./#?-]+|tel:|mailto:)/i.test(String(u || "")) && !/^\s*javascript:/i.test(String(u || ""))) ? String(u) : "news-events.html";
@@ -1827,7 +1827,7 @@
 (function () {
   const mounts = document.querySelectorAll("[data-embassy-load]");
   if (!mounts.length) return;
-  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   function paint(m, d) {
     const compact = m.dataset.embassyLoad === "compact";
@@ -1924,7 +1924,7 @@
   const mount = document.getElementById("resources-widget");
   if (!mount) return;
   if (!window.EMBASSY_API) return;
-  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   fetch((window.EMBASSY_API || "") + "/content/pages", { headers: { Accept: "application/json" } })
     .then((r) => (r.ok ? r.json() : Promise.reject(r)))
     .then((d) => {
