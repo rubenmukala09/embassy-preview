@@ -1563,3 +1563,43 @@ body main .kinshasa-actions .btn {
 
 @media (max-width: 899px) { .widget-video { display: none !important; } }
 @media (prefers-reduced-motion: reduce) { .widget-video { display: none !important; } }
+
+/* ---- Advisory + register cards: actions on one line ------------------------
+   The two cards carry different amounts of copy, so their calls to action
+   landed at different heights. The grid already stretches both cards to equal
+   height, so letting the content above each action grow puts both buttons on
+   the same baseline, and reserving equal space for the closing note below
+   keeps them there. Single column stacks below 880px, where none of this
+   applies. */
+@media (min-width: 881px) {
+  .advisory-card,
+  .register-card { display: flex; flex-direction: column; }
+
+  .advisory-card > .btn,
+  .register-card form,
+  .register-card > .btn { margin-block-start: auto; }
+
+  .register-card form { display: flex; flex-direction: column; }
+  .register-card form > .btn[type="submit"] { margin-block-start: auto; }
+
+  /* Both cards stretch to the same height, so the actions line up only if the
+     space below them matches too. The left note wraps to two lines and the
+     right note is one, so each is given the same reserved box, and both
+     actions the same height. Measured, not guessed: without this the two
+     buttons sat 30px apart. */
+  .advisory-card > .btn,
+  .register-card form > .btn[type="submit"] { min-block-size: 52px; }
+
+  .advisory-card > .adv-feedback,
+  .register-card .hint {
+    /* !important only to beat the inline style="margin-top:10px" on the
+       right-hand note, matching the convention used elsewhere in this sheet. */
+    margin-block-start: 18px !important;
+    margin-block-end: 0;
+    /* The left note wraps to three lines at the narrow end of the two-column
+       range (84px measured at 881px) while the right note stays at two. Both
+       reserve the taller box so the actions do not drift apart as the grid
+       narrows. */
+    min-block-size: 86px;
+  }
+}

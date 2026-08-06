@@ -491,3 +491,31 @@ body main :is(
 ) :is(input, select, textarea, option) {
   color: #10263f !important;
 }
+
+/* ---- Light-filled actions keep dark ink -----------------------------------
+   The dark-surface rule above assumes .btn-ghost / .btn-outline are
+   transparent chips on navy, so it paints their label light. But
+   enrichment.css gives .btn-outline a near-white fill (rgba(255,255,255,.92))
+   and premium-polish.css gives .btn-ghost rgba(255,255,255,.68). Where both
+   applied, the label went white on a white button: six actions across the
+   site measured between 1.0:1 and 2.0:1 -- literally invisible.
+
+   Fill and ink are re-paired here. Only the label colour changes; the fills,
+   borders and geometry are untouched. Buttons that really are transparent on
+   navy (rgba(255,255,255,.05) from aurora.css) are excluded, because there
+   the light label is correct. */
+main :is(.dark-surface, .below-cta, .info-card, .cta-premium, .drc-future-visual) :is(.btn-ghost, .btn-outline),
+main .section .btn-outline,
+main .below-cta .btn-outline,
+main .section .btn-ghost {
+  color: #0b1f38 !important;
+}
+
+/* Exceptions: two contexts deliberately keep a translucent chip over
+   photography or a dark panel, where the light label is the correct one.
+   Their own stylesheets set the see-through fill, so they are named here
+   rather than guessed at. */
+main .kinshasa-actions .btn-ghost,
+main .drc-final-cta .drc-cta-actions .btn-ghost {
+  color: var(--contrast-on-dark) !important;
+}
