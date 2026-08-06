@@ -1533,3 +1533,33 @@ body main .kinshasa-actions .btn {
 
 /* Only one thing should be moving behind the copy. */
 .amb-hero.motion-live .amb-bg { animation: none; }
+
+/* ---- Widget motion --------------------------------------------------------
+   Same contract as the hero clips: the still design underneath is the poster
+   and the fallback, and nothing loads on small screens or under a reduced
+   motion preference. */
+.widget-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+  border: 0;
+}
+
+.widget-video.is-live { opacity: 1; }
+
+/* On the closing CTA the navy panel is the subject; the river only breathes
+   behind it, never enough to pull against the copy. Measured: at .38 the
+   body copy (#c5cfe2) fell to 3.96:1 against the moving water. At .24 it
+   holds 5.9:1 and white headings 9.3:1 across the whole clip. */
+.widget-video.is-soft.is-live { opacity: .24; }
+
+.cta-premium.motion-live { background: linear-gradient(120deg, #021428 0%, #04213f 55%, #062a4e 100%); }
+
+@media (max-width: 899px) { .widget-video { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .widget-video { display: none !important; } }

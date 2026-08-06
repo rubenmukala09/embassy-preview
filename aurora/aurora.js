@@ -4034,6 +4034,20 @@
   }, { passive: true });
 })();
 
+/* ---- Shared motion gate --------------------------------------------------
+   One decision, consulted by every motion layer: heroes and widgets alike.
+   Motion is opt-out by the visitor's own settings, not by ours. ----------- */
+window.embassyMotionOK = (function () {
+  "use strict";
+  var m = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (m && m.matches) return false;                       // respect the OS setting
+  if (window.innerWidth < 900) return false;              // small screens stay still
+  if (!document.createElement("video").canPlayType("video/mp4")) return false;
+  var net = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (net && (net.saveData || /(^|-)2g$|^3g$/.test(net.effectiveType || ""))) return false;
+  return true;
+})();
+
 /* ---- Hero motion layer ----------------------------------------------------
    A muted, looping clip behind each hero, chosen by the same route group the
    photo library already resolved onto <html data-hero-library>.
@@ -4057,12 +4071,7 @@
   var BESPOKE = { "/ambience.html": "ambience", "/congo-shining.html": "congo-shining" };
 
   var motion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
-  if (motion && motion.matches) return;                 // respect the OS setting
-  if (window.innerWidth < 900) return;                  // small screens keep the still hero
-  if (!document.createElement("video").canPlayType("video/mp4")) return;
-
-  var net = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  if (net && (net.saveData || /(^|-)2g$|^3g$/.test(net.effectiveType || ""))) return;
+  if (!window.embassyMotionOK) return;
 
   var path = window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
   var group = BESPOKE[path] || document.documentElement.getAttribute("data-hero-library") || "";
@@ -4160,4 +4169,85 @@
   if (motion && motion.addEventListener) {
     motion.addEventListener("change", function (e) { if (e.matches) teardown(); });
   }
+})();
+
+/* ---- Widget motion layer --------------------------------------------------
+   A few surfaces earn motion of their own: the Kinshasa showcase, and the
+   consular call-to-action panel that closes most pages. Same rules as the
+   heroes -- the still design underneath is the fallback, the clip is fetched
+   only when the shared gate allows it, and it stops when out of view.
+   -------------------------------------------------------------------------*/
+(function () {
+  "use strict";
+  if (!window.embassyMotionOK) return;
+
+  var ROOT = "/embassy-preview/aurora/assets/video/hero/";
+  var TARGETS = [
+    // The showcase panel: the clip replaces the still panorama outright.
+    { sel: ".kinshasa-stage", clip: "w-kinshasa", before: ".kinshasa-overlay", soft: false },
+    // The closing CTA: the navy panel must stay the subject, so the river sits
+    // well back behind it rather than competing with the copy.
+    { sel: ".cta-premium", clip: "w-river", before: null, soft: true }
+  ];
+
+  TARGETS.forEach(function (t) {
+    document.querySelectorAll(t.sel).forEach(function (host) {
+      if (host.querySelector(".widget-video")) return;
+
+      var video = document.createElement("video");
+      video.className = "widget-video" + (t.soft ? " is-soft" : "");
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.preload = "none";
+      video.disablePictureInPicture = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("aria-hidden", "true");
+      video.setAttribute("tabindex", "-1");
+      video.src = ROOT + t.clip + ".mp4";
+
+      var anchor = t.before ? host.querySelector(t.before) : host.firstChild;
+      if (anchor) host.insertBefore(video, anchor);
+      else host.appendChild(video);
+
+      var live = false;
+      function play() {
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      video.addEventListener("playing", function () {
+        live = true;
+        video.classList.add("is-live");
+        host.classList.add("motion-live");
+      }, { once: true });
+      video.addEventListener("error", function () {
+        video.remove();
+        host.classList.remove("motion-live");
+      }, { once: true });
+
+      // Widgets sit below the fold, so nothing loads until they are approached.
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              if (!live) { video.preload = "auto"; }
+              play();
+            } else {
+              video.pause();
+            }
+          });
+        }, { rootMargin: "200px 0px", threshold: 0.01 });
+        io.observe(host);
+      } else {
+        video.preload = "auto";
+        play();
+      }
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) video.pause();
+      });
+    });
+  });
 })();
