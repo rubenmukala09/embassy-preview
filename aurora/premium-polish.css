@@ -284,13 +284,37 @@ main .section :is(.bg-navy, .on-navy, [data-theme="dark"], .cta-premium, .below-
   box-shadow: 0 10px 24px rgba(4, 29, 57, .18), inset 0 1px rgba(255, 255, 255, .1);
 }
 
-.btn-ghost { border-color: rgba(6, 40, 77, .25); background: rgba(255, 255, 255, .68); }
+/* --btn-ink travels with the fill. Every rule that gives one of these buttons
+   a background states the label colour that goes with it, and contrast-repair
+   reads the token rather than guessing from context. A new variant declares
+   both in one place and needs no entry anywhere else. */
+.btn-ghost {
+  border-color: rgba(6, 40, 77, .25);
+  background: rgba(255, 255, 255, .68);
+  --btn-ink: #0b1f38;
+}
 
 :is(.bg-navy, .on-navy, [data-theme="dark"], .cta-premium, .below-cta, .info-card, .qpanel) .btn-ghost {
   color: #fff;
   background: rgba(255, 255, 255, .065);
   border-color: rgba(255, 255, 255, .34);
+  --btn-ink: #fff;
 }
+
+/* The light fill that .btn-outline carries almost everywhere (enrichment.css
+   gives it rgba(255,255,255,.92)) always wants dark ink. */
+.btn-outline { --btn-ink: #0b1f38; }
+
+/* Dark surfaces where a ghost button is a translucent chip rather than a
+   light pill: the photographic heroes, and two panels whose fills are set in
+   their own page stylesheets. Grouped by the surface being dark, not added
+   one at a time as buttons are found to have disappeared. */
+.hero .btn-ghost,
+.phead .btn-ghost,
+.amb-hero .btn-ghost,
+.shine-hero .btn-ghost,
+.kinshasa-actions .btn-ghost,
+.drc-final-cta .drc-cta-actions .btn-ghost { --btn-ink: #fff; }
 
 /* Forms feel deliberate and trustworthy, with clearer input hierarchy. */
 .field { gap: 8px; }
@@ -1595,10 +1619,16 @@ body main .kinshasa-actions .btn {
     margin-block-start: 18px !important;
     margin-block-end: 0;
     /* The left note wraps to three lines at the narrow end of the two-column
-       range (84px measured at 881px) while the right note stays at two. Both
-       reserve the taller box so the actions do not drift apart as the grid
-       narrows. */
-    min-block-size: 86px;
+       range while the right note stays at two, so both reserve the taller box
+       and the actions above them stay level.
+
+       In rem rather than the 86px this was originally measured at, so the
+       reserve grows with the reader's own font-size setting instead of staying
+       a stale pixel figure. It has to be one shared value: `3lh` was tried and
+       broke the alignment it was meant to protect, because each note then
+       reserves three of its own lines and the two line-heights differ (67.1px
+       against 64.5px, pushing the actions 3px apart). */
+    min-block-size: 5.4rem;
   }
 }
 

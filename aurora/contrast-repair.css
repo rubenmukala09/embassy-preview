@@ -492,31 +492,25 @@ body main :is(
   color: #10263f !important;
 }
 
-/* ---- Light-filled actions keep dark ink -----------------------------------
+/* ---- Button ink follows its fill ------------------------------------------
    The dark-surface rule above assumes .btn-ghost / .btn-outline are
-   transparent chips on navy, so it paints their label light. But
-   enrichment.css gives .btn-outline a near-white fill (rgba(255,255,255,.92))
-   and premium-polish.css gives .btn-ghost rgba(255,255,255,.68). Where both
-   applied, the label went white on a white button: six actions across the
-   site measured between 1.0:1 and 2.0:1 -- literally invisible.
+   transparent chips on navy and paints their label light. Several sheets give
+   them a near-white fill instead, and where both applied the label went white
+   on a white button: six actions across the site measured between 1.0:1 and
+   2.0:1 -- invisible, not merely low contrast.
 
-   Fill and ink are re-paired here. Only the label colour changes; the fills,
-   borders and geometry are untouched. Buttons that really are transparent on
-   navy (rgba(255,255,255,.05) from aurora.css) are excluded, because there
-   the light label is correct. */
+   Ink is read from --btn-ink, declared beside each fill in premium-polish.css,
+   so the two cannot drift apart. This replaces a blanket rule plus a list of
+   hand-named exceptions that sat at equal specificity and were resolved only
+   by their order in this file; every new translucent context needed another
+   entry. A variant now declares its fill and its ink together and needs
+   nothing here. The default serves the light-filled majority.
+
+   The dark-surface rule earlier in this file is !important at (0,3,1), so the
+   first selector below repeats that shape to outrank it; the second catches
+   everything else. Both resolve to the same token, so this stays one decision
+   rather than two competing ones. */
 main :is(.dark-surface, .below-cta, .info-card, .cta-premium, .drc-future-visual) :is(.btn-ghost, .btn-outline),
-main .section .btn-outline,
-main .below-cta .btn-outline,
-main .section .btn-ghost {
-  color: #0b1f38 !important;
-}
-
-/* Exceptions: two contexts deliberately keep a translucent chip over
-   photography or a dark panel, where the light label is the correct one.
-   Their own stylesheets set the see-through fill, so they are named here
-   rather than guessed at. */
-main .kinshasa-actions .btn-ghost,
-main .drc-final-cta .drc-cta-actions .btn-ghost,
-main .cta-premium .btn-ghost {
-  color: #fff !important;
+main :is(.btn-ghost, .btn-outline) {
+  color: var(--btn-ink, #0b1f38) !important;
 }
