@@ -3733,13 +3733,13 @@
   var motionPreference = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
   var root = "/embassy-preview/aurora/assets/img/generated/hero-library-2026/";
   var library = {
-    home: ["01-kinshasa-sunrise", "02-kinshasa-blue-hour", "04-embassy-reception", "05-bilateral-table", "07-diplomatic-podium"],
-    embassy: ["04-embassy-reception", "05-bilateral-table", "06-washington-embassy", "07-diplomatic-podium", "08-bilateral-welcome"],
+    home: ["01-kinshasa-sunrise", "31-ambassador-reception", "35-greeting-guests", "02-kinshasa-blue-hour", "05-bilateral-table", "07-diplomatic-podium"],
+    embassy: ["31-ambassador-reception", "32-ambassador-in-conversation", "36-diplomatic-reception", "35-greeting-guests", "06-washington-embassy", "05-bilateral-table"],
     country: ["01-kinshasa-sunrise", "02-kinshasa-blue-hour", "03-congo-river-aerial", "09-virunga-highlands", "10-congo-rainforest", "11-kinshasa-creative", "12-congolese-music"],
-    consular: ["14-passport-preparation", "15-consular-reception", "16-travel-documents", "24-appointment-guidance", "25-document-legalization"],
+    consular: ["40-passports-and-flag", "41-passport-collection", "42-passports-desk", "43-passport-booklets", "14-passport-preparation", "24-appointment-guidance"],
     digital: ["17-digital-citizen-service", "18-official-portals", "26-account-support", "29-privacy-security"],
-    news: ["19-embassy-newsroom", "20-diaspora-cultural-event", "30-congo-shining-gala", "12-congolese-music"],
-    contact: ["06-washington-embassy", "23-washington-diplomatic-city", "24-appointment-guidance", "08-bilateral-welcome"],
+    news: ["33-formal-evening", "38-evening-gathering", "39-community-gathering", "20-diaspora-cultural-event", "30-congo-shining-gala"],
+    contact: ["37-welcoming-the-diaspora", "34-community-welcome", "06-washington-embassy", "23-washington-diplomatic-city"],
     investment: ["13-kinshasa-enterprise", "21-responsible-industry", "22-clean-energy-drc", "03-congo-river-aerial"],
     portals: ["18-official-portals", "17-digital-citizen-service", "29-privacy-security"],
     appointment: ["24-appointment-guidance", "15-consular-reception", "14-passport-preparation"],
