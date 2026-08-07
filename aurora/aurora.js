@@ -4372,3 +4372,68 @@
 
   update();
 })();
+
+/* ---- Phone heroes: measure the furniture, not guess it --------------------
+   mobile-os.css sizes phone heroes as one screen minus the fixed chrome
+   above and the navigation dock below. Those two heights are not constants:
+   the notice bar can be dismissed, the government banner is hidden in
+   standalone mode, and the dock changes height in landscape. Measuring them
+   keeps the hero exactly one visible screen in every one of those states.
+
+   The stylesheet ships sensible fallbacks, so if this never runs the layout
+   is merely approximate rather than broken.
+   -------------------------------------------------------------------------*/
+(function () {
+  "use strict";
+
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 520px)") : null;
+  if (!phone) return;
+
+  var root = document.documentElement;
+  var ticking = false;
+
+  function measure() {
+    ticking = false;
+
+    if (!phone.matches) {
+      root.style.removeProperty("--phone-chrome");
+      root.style.removeProperty("--phone-dock");
+      return;
+    }
+
+    var hero = document.querySelector("main .hero, main .phead, main .amb-hero");
+    if (hero) {
+      // Distance from the top of the document to the top of the hero is the
+      // whole stack above it, whatever that stack happens to contain today.
+      var top = Math.round(hero.getBoundingClientRect().top + window.scrollY);
+      if (top >= 0 && top < window.innerHeight) {
+        root.style.setProperty("--phone-chrome", top + "px");
+      }
+    }
+
+    var dock = document.querySelector(".mobile-os-nav");
+    if (dock) {
+      var box = dock.getBoundingClientRect();
+      var clear = box.height ? Math.round(window.innerHeight - box.top) : 0;
+      if (clear > 0 && clear < window.innerHeight / 2) {
+        root.style.setProperty("--phone-dock", clear + "px");
+      }
+    }
+  }
+
+  function schedule() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(measure);
+  }
+
+  window.addEventListener("resize", schedule, { passive: true });
+  window.addEventListener("orientationchange", schedule, { passive: true });
+  if (phone.addEventListener) phone.addEventListener("change", schedule);
+  else if (phone.addListener) phone.addListener(schedule);
+
+  // The notice bar can be dismissed and the dock is built by mobile-os.js,
+  // so re-measure once the page has settled as well as on first pass.
+  measure();
+  window.addEventListener("load", schedule);
+})();
