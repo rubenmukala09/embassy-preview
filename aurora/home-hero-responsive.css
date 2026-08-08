@@ -730,10 +730,15 @@ html body .foot .footer-news-link span {
    more than a third of it was blank white, which read as an unfinished
    layout next to the solid navy beside it.
 
-   Washington at golden hour fills that space and says where this Embassy
-   is, without a caption. It is laid in as a layer *behind* the type rather
-   than as a decorative block beside it, so the composition stays one card
-   instead of two.
+   Kinshasa at sunrise fills that space — the Congo River, the boulevard and
+   the city's towers. This is the Democratic Republic of the Congo's mission,
+   so the country leads the picture; Washington imagery belongs on the pages
+   about visiting the building, not on the homepage's own furniture. The
+   frame also happens to suit the slot: the skyline sits on the right of the
+   photograph, which is the part the card reveals.
+
+   It is laid in as a layer *behind* the type rather than as a decorative
+   block beside it, so the composition stays one card instead of two.
 
    The veil is opaque white across the whole text column and only releases
    the photograph past it, which is what keeps the navy body copy on plain
@@ -780,7 +785,7 @@ body main #tools .tools-intro-copy::after {
       rgba(255, 252, 245, .38) 0%,
       rgba(255, 255, 255, 0) 34%
     ),
-    url("assets/img/generated/hero-library-2026/23-washington-diplomatic-city.webp");
+    url("assets/img/generated/hero-library-2026/01-kinshasa-sunrise.webp");
   background-repeat: no-repeat;
   background-position: center, center, center 32%;
   background-size: cover, cover, cover;
