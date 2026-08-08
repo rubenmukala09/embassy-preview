@@ -4437,3 +4437,56 @@
   measure();
   window.addEventListener("load", schedule);
 })();
+
+/* ---- Assistant quick replies: keep the scroll hint honest -----------------
+   premium-polish.css fades whichever edge of the suggestion row has content
+   past it. This decides which edges those are: on scroll, on resize, and
+   whenever the chips are rebuilt (they are re-rendered on every language
+   change and on every page context switch).
+   -------------------------------------------------------------------------*/
+(function () {
+  "use strict";
+
+  var row = document.querySelector(".asst-quick");
+  if (!row) return;
+
+  var ticking = false;
+
+  function sync() {
+    ticking = false;
+
+    var max = row.scrollWidth - row.clientWidth;
+    var x = row.scrollLeft;
+
+    // The row carries scroll-snap-type: x proximity, so its resting position
+    // at the start is the first chip's snap point — measured at 13.2px, one
+    // inline padding in — not zero. Testing against zero left a fade on the
+    // start edge that no amount of scrolling could clear. The padding is the
+    // offset, so the padding is the tolerance.
+    var snapRest = parseFloat(getComputedStyle(row).paddingInlineStart) || 0;
+
+    row.classList.toggle("can-scroll-start", x > snapRest + 2);
+    row.classList.toggle("can-scroll-end", x < max - 1);
+  }
+
+  function schedule() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(sync);
+  }
+
+  row.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule, { passive: true });
+
+  // The chips are replaced wholesale rather than mutated, so watching the
+  // child list catches every rebuild without the assistant having to know
+  // this module exists.
+  if (window.MutationObserver) {
+    new MutationObserver(schedule).observe(row, { childList: true });
+  }
+  if (window.ResizeObserver) {
+    new ResizeObserver(schedule).observe(row);
+  }
+
+  sync();
+})();

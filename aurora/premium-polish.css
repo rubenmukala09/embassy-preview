@@ -1728,3 +1728,37 @@ body main .kinshasa-actions .btn {
   .asst-form { padding: 9px 13px 12px; }
   .asst-form input { min-block-size: 40px; padding: 9px 11px; font-size: 13px; }
 }
+
+/* ---- Assistant quick replies: show that the row scrolls --------------------
+   The row holds five suggestions and never wraps. At the panel's old 420px
+   width three of them fitted, so the clipped fourth hinted there was more; at
+   340px only two fit and the row looked like a complete list of two. The
+   remaining three were reachable but invisible.
+
+   A mask fades whichever edge has content beyond it, so the row reads as
+   scrollable in exactly the states where it is. aurora.js toggles the two
+   classes; with no JS the row simply has no fade, which is where it started.
+   -------------------------------------------------------------------------*/
+.asst-quick { --asst-fade: 28px; }
+
+.asst-quick.can-scroll-end {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - var(--asst-fade)), transparent 100%);
+          mask-image: linear-gradient(90deg, #000 calc(100% - var(--asst-fade)), transparent 100%);
+}
+
+.asst-quick.can-scroll-start {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--asst-fade));
+          mask-image: linear-gradient(90deg, transparent 0, #000 var(--asst-fade));
+}
+
+.asst-quick.can-scroll-start.can-scroll-end {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--asst-fade), #000 calc(100% - var(--asst-fade)), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 var(--asst-fade), #000 calc(100% - var(--asst-fade)), transparent 100%);
+}
+
+/* A mask clips the focus ring along with everything else, so a chip reached
+   by keyboard drops its fade for as long as it holds focus. */
+.asst-quick:focus-within {
+  -webkit-mask-image: none;
+          mask-image: none;
+}
