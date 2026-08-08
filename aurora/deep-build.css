@@ -58,6 +58,21 @@ main > section.section { padding-block: clamp(54px, 6vw, 92px); }
 }
 .official-guidance p { margin: 0; color: #344a63; font-size: 13px; line-height: 1.55; }
 .official-guidance p strong { color: var(--deep-ink); }
+/* The claim "verified against published guidance" needs its source attached
+   to the claim, not competing with the actions. Putting it inline keeps the
+   button row internal and clean while the provenance stays one click away.
+
+   The colour is left to the site's standard inline-link rule rather than
+   overridden here, so it reads as the same kind of link as every other one
+   in body copy. Measured 5.38:1 on this strip's cream. */
+.source-inline {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+.source-inline:hover { text-decoration-color: currentColor; }
+.source-inline:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 2px; }
 .official-guidance__links { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
 .source-chip {
   display: inline-flex;
