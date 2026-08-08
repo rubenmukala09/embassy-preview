@@ -723,3 +723,77 @@ html body .foot .footer-news-link span {
   color: #071f3d !important;
   text-shadow: none !important;
 }
+
+/* ---- Guidance card: photography in the empty half --------------------------
+   The card is a wide two-column band — copy on the left, a navy "verify"
+   panel on the right. The copy only reaches x=623 of a 971px column, so
+   more than a third of it was blank white, which read as an unfinished
+   layout next to the solid navy beside it.
+
+   Washington at golden hour fills that space and says where this Embassy
+   is, without a caption. It is laid in as a layer *behind* the type rather
+   than as a decorative block beside it, so the composition stays one card
+   instead of two.
+
+   The veil is opaque white across the whole text column and only releases
+   the photograph past it, which is what keeps the navy body copy on plain
+   white ground. Contrast is therefore unchanged by this addition — the
+   type never sits on a pixel of photograph.
+
+   That boundary is set in pixels, not per cent, and the reason matters.
+   The copy has its own maximum measure, so its longest line lands at very
+   nearly the same absolute position however wide the card gets — measured
+   at 613, 612, 606 and 599px across viewports from 1600 down to 1100. As a
+   percentage that same line runs from 59% to 90% of the column, so a
+   percentage boundary that cleared the text at 1600px put the paragraph
+   straight onto the photograph at 1280px.
+
+   Holding the veil opaque to 632px covers the text at every width, and it
+   makes the effect self-regulating: a narrow card is narrower than the veil
+   itself, so the photograph simply never appears where there is no empty
+   space to fill.
+   -------------------------------------------------------------------------*/
+body main #tools .sec-head.tools-intro .tools-intro-copy {
+  isolation: isolate;
+  background: #ffffff;
+}
+
+body main #tools .tools-intro-copy::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    /* Opaque past the longest line of copy, then the picture arrives. */
+    linear-gradient(
+      90deg,
+      #ffffff 0,
+      #ffffff 632px,
+      rgba(255, 255, 255, .86) 700px,
+      rgba(255, 255, 255, .44) 800px,
+      rgba(255, 255, 255, .12) 920px,
+      rgba(255, 255, 255, .06) 100%
+    ),
+    /* a touch of cream at the foot so the crop never ends on a hard line */
+    linear-gradient(
+      0deg,
+      rgba(255, 252, 245, .38) 0%,
+      rgba(255, 255, 255, 0) 34%
+    ),
+    url("assets/img/generated/hero-library-2026/23-washington-diplomatic-city.webp");
+  background-repeat: no-repeat;
+  background-position: center, center, center 32%;
+  background-size: cover, cover, cover;
+}
+
+/* The eyebrow row sits highest and closest to the reveal, so it gets a
+   little extra white under it. */
+body main #tools .tools-intro-copy > * {
+  position: relative;
+}
+
+/* Below this the column is narrower than the veil, so the photograph is
+   already invisible — dropping it here just saves the download. */
+@media (max-width: 1000px) {
+  body main #tools .tools-intro-copy::after { background-image: none; }
+}
