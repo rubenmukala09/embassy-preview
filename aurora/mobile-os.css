@@ -381,9 +381,8 @@ body { min-width: 320px; }
      These stops are measured, not eyeballed. Each of the six homepage
      photographs was composited through candidate gradients and sampled
      across every text band. The gentler ramp this replaced left the eyebrow
-     at 2.48:1 and the headline at 3.20:1 over the brightest frames
-     (01-kinshasa-sunrise, 35-greeting-guests, 07-diplomatic-podium) — both
-     below AA. Worst case across all six is now 5.43:1 for the eyebrow and
+     at 2.48:1 and the headline at 3.20:1 over the brightest frames — both
+     below AA. Worst case across the full set is now 5.43:1 for the eyebrow and
      6.22:1 for the headline, and this profile keeps the top of the frame
      more open than the alternatives that scored the same. */
   body main .hero-overlay {

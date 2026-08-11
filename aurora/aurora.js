@@ -3733,7 +3733,7 @@
   var motionPreference = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
   var root = "/embassy-preview/aurora/assets/img/generated/hero-library-2026/";
   var library = {
-    home: ["31-ambassador-reception", "32-ambassador-in-conversation", "35-greeting-guests", "36-diplomatic-reception", "05-bilateral-table", "07-diplomatic-podium"],
+    home: ["31-ambassador-reception", "32-ambassador-in-conversation", "35-greeting-guests", "36-diplomatic-reception", "05-bilateral-table"],
     embassy: ["31-ambassador-reception", "32-ambassador-in-conversation", "36-diplomatic-reception", "35-greeting-guests", "06-washington-embassy", "05-bilateral-table"],
     country: ["01-kinshasa-sunrise", "02-kinshasa-blue-hour", "03-congo-river-aerial", "09-virunga-highlands", "10-congo-rainforest", "11-kinshasa-creative", "12-congolese-music"],
     consular: ["40-passports-and-flag", "41-passport-collection", "42-passports-desk", "43-passport-booklets", "14-passport-preparation", "24-appointment-guidance"],
