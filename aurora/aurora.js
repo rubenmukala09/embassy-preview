@@ -989,7 +989,7 @@
       clearInterval(slideTimer);
       slideTimer = 0;
       if (!motionPreference.matches && !document.hidden) {
-        slideTimer = setInterval(advanceSlide, 9000);
+        slideTimer = setInterval(advanceSlide, document.querySelector(".hero") ? 2000 : 9000);
       }
     };
     document.addEventListener("visibilitychange", syncSlideshow);
@@ -3733,7 +3733,7 @@
   var motionPreference = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
   var root = "/embassy-preview/aurora/assets/img/generated/hero-library-2026/";
   var library = {
-    home: ["01-kinshasa-sunrise", "31-ambassador-reception", "35-greeting-guests", "02-kinshasa-blue-hour", "05-bilateral-table", "07-diplomatic-podium"],
+    home: ["31-ambassador-reception", "32-ambassador-in-conversation", "35-greeting-guests", "36-diplomatic-reception", "05-bilateral-table", "07-diplomatic-podium"],
     embassy: ["31-ambassador-reception", "32-ambassador-in-conversation", "36-diplomatic-reception", "35-greeting-guests", "06-washington-embassy", "05-bilateral-table"],
     country: ["01-kinshasa-sunrise", "02-kinshasa-blue-hour", "03-congo-river-aerial", "09-virunga-highlands", "10-congo-rainforest", "11-kinshasa-creative", "12-congolese-music"],
     consular: ["40-passports-and-flag", "41-passport-collection", "42-passports-desk", "43-passport-booklets", "14-passport-preparation", "24-appointment-guidance"],
@@ -3790,7 +3790,7 @@
   function targets() {
     var list = [];
     var hero = document.querySelector(".hero-slides");
-    if (hero) list.push({ box: hero, ms: 7000 });
+    if (hero) list.push({ box: hero, ms: 2000 });
     document.querySelectorAll(".phead").forEach(function (ph) {
       if (ph.querySelector(".phead-slides")) return;
       var box = document.createElement("div");
@@ -3827,7 +3827,7 @@
       clearInterval(timer);
       timer = 0;
       if (!document.hidden && !(motionPreference && motionPreference.matches)) {
-        timer = setInterval(advance, Math.max(ms, 9000));
+        timer = setInterval(advance, Math.max(ms, 2000));
       }
     };
     document.addEventListener("visibilitychange", sync);
@@ -4166,14 +4166,18 @@
 
   // Two pages predate the shared hero system and carry their own markup, so
   // they are absent from the route map the photo library uses.
-  var BESPOKE = { "/ambience.html": "ambience", "/congo-shining.html": "congo-shining" };
+  // The former homepage motion clip now belongs to the Ambience page. The
+  // homepage itself remains a photo-only diplomatic presentation.
+  var BESPOKE = { "/ambience.html": "home", "/congo-shining.html": "congo-shining" };
 
   function currentPath() {
     return window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
   }
 
   function heroSpec() {
-    var group = BESPOKE[currentPath()] || document.documentElement.getAttribute("data-hero-library") || "";
+    var path = currentPath();
+    if (path === "/" || path === "/index.html") return null;
+    var group = BESPOKE[path] || document.documentElement.getAttribute("data-hero-library") || "";
     if (CLIPS.indexOf(group) === -1) return null;
 
     var slides = document.querySelector(".hero-slides") || document.querySelector(".phead-slides");
