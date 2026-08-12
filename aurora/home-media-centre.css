@@ -202,17 +202,54 @@ main #media .media-item:focus-visible {
 main #media .media-item:focus-visible { outline: 3px solid #168cd0; outline-offset: 3px; }
 
 main #media .mi-ic {
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, .15);
-  border-radius: 11px;
-  background: rgba(255, 255, 255, .08);
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 13px;
+  background: #f4f8fc;
+  box-shadow: 0 9px 22px rgba(0, 8, 24, .28), inset 0 1px 0 #fff;
 }
-main #media .mi-ic svg { width: 20px; height: 20px; }
-main #media .ic-audio { color: #71d9a5; }
-main #media .ic-video { color: #ff8993; }
-main #media .ic-doc { color: #80caff; }
-main #media .ic-notice { color: #ffe06a; }
+main #media .mi-ic::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  opacity: .14;
+  pointer-events: none;
+}
+main #media .mi-ic svg {
+  position: relative;
+  z-index: 1;
+  width: 25px;
+  height: 25px;
+  color: inherit !important;
+  stroke: currentColor !important;
+  stroke-width: 2.35;
+  opacity: 1 !important;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .7));
+}
+main #media .ic-audio {
+  color: #087348 !important;
+  background: #e7fff4;
+  border-color: #79d4aa;
+}
+main #media .ic-video {
+  color: #b40e2c !important;
+  background: #fff0f1;
+  border-color: #ee9aa7;
+}
+main #media .ic-doc {
+  color: #005a9c !important;
+  background: #eaf6ff;
+  border-color: #8ec8ec;
+}
+main #media .ic-notice {
+  color: #765500 !important;
+  background: #fff7d6;
+  border-color: #e3c558;
+}
 
 main #media .mi-body b {
   margin: 5px 0 4px;
@@ -256,6 +293,8 @@ main #media .media-item:focus-visible .mi-go { color: #ffe06a; }
   main #media .media-cap b { font-size: 21px; }
   main #media .media-list { grid-template-columns: 1fr; }
   main #media .media-item { min-height: 86px; padding: 13px; }
+  main #media .mi-ic { width: 48px; height: 48px; flex-basis: 48px; }
+  main #media .mi-ic svg { width: 23px; height: 23px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
