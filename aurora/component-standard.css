@@ -1,0 +1,311 @@
+/* ==========================================================================
+   Embassy Component Standard · August 2026
+   A single, restrained contract for cards, widgets, actions and information.
+   Specialty editorial components keep their own art direction; recurring
+   operational components inherit this system so the site feels intentional.
+   ========================================================================== */
+
+:root {
+  --std-ink: #0a2545;
+  --std-muted: #546a82;
+  --std-blue: #087fc7;
+  --std-blue-dark: #063b70;
+  --std-navy: #061f3d;
+  --std-gold: #e1b82f;
+  --std-paper: #fffefa;
+  --std-line: rgba(6, 40, 77, .14);
+  --std-line-strong: rgba(6, 40, 77, .22);
+  --std-radius-sm: 10px;
+  --std-radius-md: 16px;
+  --std-radius-lg: 24px;
+  --std-shadow-rest: 0 1px 2px rgba(6, 31, 61, .04), 0 14px 36px rgba(6, 31, 61, .07);
+  --std-shadow-hover: 0 3px 8px rgba(6, 31, 61, .05), 0 24px 54px rgba(6, 31, 61, .12);
+  --std-ease: cubic-bezier(.2, .75, .25, 1);
+}
+
+/* One reading rhythm across pages. */
+main > :is(.section, section.section) {
+  padding-block: clamp(58px, 6vw, 88px);
+}
+
+main :is(.sec-head, .section-head) {
+  margin-block-end: clamp(28px, 3.4vw, 44px);
+}
+
+main :is(.sec-head, .section-head) > :is(p, .lead):not(.eyebrow) {
+  max-inline-size: 66ch;
+  color: var(--std-muted);
+}
+
+main :is(.sec-head, .section-head) h2 {
+  max-inline-size: 19ch;
+  font-size: clamp(30px, 3vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+main :is(.sec-head.center, .section-head.center) h2,
+main :is(.sec-head.center, .section-head.center) > p {
+  margin-inline: auto;
+}
+
+/* Recurring surfaces: one silhouette, one border, one elevation scale. */
+main :is(
+  .card,
+  .widget,
+  .journey-card,
+  .sector-card,
+  .department-card,
+  .portal-card,
+  .official-card,
+  .office-location-card,
+  .advisory-card,
+  .register-card,
+  .cw-ref-card,
+  .news-rail-card,
+  .map-location-card
+) {
+  border: 1px solid var(--std-line);
+  border-radius: var(--std-radius-md);
+  box-shadow: var(--std-shadow-rest);
+}
+
+main :is(.card, .widget, .journey-card, .sector-card, .department-card, .portal-card, .official-card, .cw-ref-card) {
+  transition: transform .22s var(--std-ease), box-shadow .22s ease, border-color .22s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  main :is(.card-hover, .widget, a.card, a.portal-card, a.official-card, a.department-card):hover {
+    transform: translateY(-3px);
+    border-color: rgba(8, 127, 199, .3);
+    box-shadow: var(--std-shadow-hover);
+  }
+}
+
+main :is(.grid.cards, .widgets, .tiles) {
+  gap: clamp(16px, 2vw, 24px);
+}
+
+main :is(.grid.cards, .widgets) > * {
+  block-size: 100%;
+}
+
+main :is(.card.pad, .service-directory-card, .portal-card, .official-card, .department-card) {
+  padding: clamp(20px, 2.2vw, 28px);
+}
+
+main :is(.card, .widget, .journey-card, .sector-card, .department-card, .portal-card, .official-card) :is(h2, h3, h4) {
+  color: var(--std-ink);
+  text-wrap: balance;
+}
+
+main :is(.card, .widget, .journey-card, .sector-card, .department-card, .portal-card, .official-card) p {
+  color: var(--std-muted);
+  line-height: 1.65;
+}
+
+/* Widgets read as a coordinated diplomatic instrument panel. */
+main .widgets {
+  align-items: stretch;
+}
+
+main .widget {
+  min-block-size: 100%;
+  padding: 22px;
+  overflow: hidden;
+  background-color: rgba(255, 254, 250, .96);
+  border-block-start: 3px solid #61b9e6;
+}
+
+main .widget .w-head {
+  min-block-size: 48px;
+  margin-block-end: 16px;
+  padding-block-end: 14px;
+  color: #174f7a;
+  border-block-end: 1px solid rgba(8, 127, 199, .14);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  line-height: 1.35;
+}
+
+main .widget-code,
+main .service-card-icon {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 42px;
+  block-size: 42px;
+  flex: 0 0 42px;
+  color: #126ca6;
+  background: #eef8fd;
+  border: 1px solid rgba(8, 127, 199, .2);
+  border-radius: var(--std-radius-sm);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+main .widget-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-block-size: 40px;
+  margin-block-start: auto;
+  color: #075f9d;
+  font-weight: 750;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+main .widget-action:hover { color: var(--std-navy); text-decoration: underline; }
+
+/* Cards have a repeatable internal hierarchy. */
+main .service-directory-card {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 320px;
+  background: linear-gradient(155deg, #fffefa 0%, #fff 70%, #f4f9fd 100%);
+}
+
+main .service-directory-card .service-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-block-end: 22px;
+}
+
+main .service-directory-card h3 {
+  margin-block: 0 12px;
+  font-size: clamp(21px, 1.7vw, 27px);
+  line-height: 1.18;
+}
+
+main .service-directory-card p { margin-block: 0 22px; }
+main .service-directory-card .btn { margin-block-start: auto; }
+
+main .ncard {
+  overflow: hidden;
+  background: var(--std-paper);
+}
+
+main .ncard .ph { min-block-size: 190px; }
+main .ncard .bd { padding: 22px; }
+main .ncard .date { color: #80610c; letter-spacing: .09em; }
+
+/* Buttons: consistent geometry and unmistakable click affordance. */
+main .btn,
+.site-head .btn,
+.head-cta .btn {
+  min-block-size: 44px;
+  padding: 10px 20px;
+  border-radius: var(--std-radius-sm);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: .015em;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+main .btn-sm,
+.site-head .btn-sm,
+.head-cta .btn-sm {
+  min-block-size: 40px;
+  padding: 9px 16px;
+  font-size: 11.5px;
+}
+
+main .btn-navy {
+  background: linear-gradient(180deg, #0a447e, var(--std-navy));
+  border-color: rgba(3, 27, 55, .76);
+  color: #fff;
+}
+
+main .btn-gold,
+.site-head .btn-gold,
+.head-cta .btn-gold {
+  color: #211b06;
+  border-color: #bc920b;
+}
+
+main :is(.btn, button, [role="button"]):active { transform: translateY(0) scale(.985); }
+
+/* Badges are labels, never competing buttons. */
+main :is(.badge, .tag, .chip, .qbadge, .media-badge, .source-chip) {
+  min-block-size: 27px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Quick-access tiles reuse the same operational grammar. */
+.qpanel .qtile {
+  min-inline-size: 0;
+  border-inline-end: 1px solid rgba(255, 255, 255, .1);
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.qpanel .qtile:last-child { border-inline-end: 0; }
+.qpanel .qtile-ic { border-radius: var(--std-radius-sm); }
+.qpanel .qtile-t { font-weight: 750; }
+
+/* Premium calls to action use one confident architectural frame. */
+main :is(.cta-premium, .below-cta, .drc-cta-shell, .embassy-contact-panel) {
+  border-radius: var(--std-radius-lg);
+  border: 1px solid rgba(225, 184, 47, .28);
+  box-shadow: 0 28px 70px rgba(4, 27, 54, .2), inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+
+main .cta-premium {
+  padding: clamp(30px, 4vw, 48px);
+}
+
+/* Form controls follow the same size, radius and focus language. */
+main :is(input, select, textarea) {
+  min-block-size: 48px;
+  border-radius: var(--std-radius-sm);
+  border-color: var(--std-line-strong);
+}
+
+main :is(input, select, textarea):focus {
+  border-color: var(--std-blue);
+  outline: 3px solid rgba(8, 127, 199, .16);
+  outline-offset: 1px;
+}
+
+/* A visible, universal focus treatment. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #1595db !important;
+  outline-offset: 3px !important;
+}
+
+@media (max-width: 760px) {
+  main > :is(.section, section.section) { padding-block: 52px; }
+  main :is(.sec-head, .section-head) h2 { font-size: clamp(28px, 9vw, 38px); }
+
+  main :is(.card.pad, .widget, .service-directory-card, .portal-card, .official-card, .department-card) {
+    padding: 20px;
+  }
+
+  main .service-directory-card { min-block-size: 0; }
+  main .widget .w-head { min-block-size: 42px; }
+
+  main :is(.badge, .tag, .chip, .qbadge, .media-badge, .source-chip) {
+    font-size: 11px;
+  }
+
+  main .btn,
+  .site-head .btn,
+  .head-cta .btn {
+    min-block-size: 46px;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main :is(.card, .widget, .btn, button, [role="button"]) { transition: none !important; }
+}
