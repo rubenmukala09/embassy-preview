@@ -4034,11 +4034,10 @@
   }, { passive: true });
 })();
 
-/* ---- Motion layers: heroes and widgets ------------------------------------
-   One implementation serves both. A muted, looping clip sits behind a still
-   design that stays the poster and the permanent fallback: if motion is
-   unwelcome, unaffordable or unsupported, no clip is fetched and the surface
-   is exactly what it was.
+/* ---- Motion layers: selected below-fold widgets ---------------------------
+   Hero pages are deliberately photo-only. A muted, looping clip may still sit
+   behind the two explicitly selected below-fold promotional widgets, while
+   their still image remains the permanent fallback.
 
    The gate is a function, not a value captured at load. A visitor who resizes
    a desktop window down to phone width, or rotates a tablet, gets the clip
@@ -4071,7 +4070,6 @@
     this.host = host;
     this.clip = opts.clip;
     this.soft = !!opts.soft;
-    this.hero = opts.hero !== false;
     this.anchor = opts.anchor || null;      // insert before this node, else append
     this.rootMargin = opts.rootMargin || "0px";
     this.threshold = opts.threshold || 0.05;
@@ -4085,7 +4083,7 @@
     var self = this;
 
     var v = document.createElement("video");
-    v.className = this.hero ? "hero-video" : ("widget-video" + (this.soft ? " is-soft" : ""));
+    v.className = "widget-video" + (this.soft ? " is-soft" : "");
     v.muted = true;
     v.defaultMuted = true;
     v.loop = true;
@@ -4155,43 +4153,6 @@
     if (this.video && this.live) this.play();
   };
 
-  /* ---- Which surfaces get a layer, and where the clip is inserted ---------
-     Insertion point decides paint order, so each surface names its own anchor
-     rather than relying on a z-index guess: the clip must cover the still
-     background and stay underneath the scrim that keeps the copy legible. */
-  var CLIPS = ["home", "embassy", "country", "consular", "digital", "news",
-               "contact", "investment", "portals", "appointment", "account",
-               "documents", "payment", "accessibility", "legal",
-               "ambience", "congo-shining"];
-
-  // Two pages predate the shared hero system and carry their own markup, so
-  // they are absent from the route map the photo library uses.
-  // The former homepage motion clip now belongs to the Ambience page. The
-  // homepage itself remains a photo-only diplomatic presentation.
-  var BESPOKE = { "/ambience.html": "home", "/congo-shining.html": "congo-shining" };
-
-  function currentPath() {
-    return window.location.pathname.replace(/^\/embassy-preview/, "") || "/";
-  }
-
-  function heroSpec() {
-    var path = currentPath();
-    if (path === "/" || path === "/index.html") return null;
-    var group = BESPOKE[path] || document.documentElement.getAttribute("data-hero-library") || "";
-    if (CLIPS.indexOf(group) === -1) return null;
-
-    var slides = document.querySelector(".hero-slides") || document.querySelector(".phead-slides");
-    if (slides) return { host: slides, clip: group, anchor: null };
-
-    var ambBg = document.querySelector(".amb-hero .amb-bg");
-    if (ambBg) return { host: ambBg.parentNode, clip: group, anchor: ambBg.nextSibling };
-
-    var shine = document.querySelector(".shine-hero .shine-hero-overlay");
-    if (shine) return { host: shine.parentNode, clip: group, anchor: shine };
-
-    return null;
-  }
-
   function widgetSpecs() {
     var out = [];
     document.querySelectorAll(".kinshasa-stage").forEach(function (h) {
@@ -4207,13 +4168,9 @@
 
   function build() {
     if (layers.length) return;
-    var hero = heroSpec();
-    if (hero) {
-      layers.push(new MotionLayer(hero.host, { clip: hero.clip, anchor: hero.anchor, threshold: 0.05 }));
-    }
     widgetSpecs().forEach(function (w) {
       layers.push(new MotionLayer(w.host, {
-        clip: w.clip, anchor: w.anchor, soft: w.soft, hero: false,
+        clip: w.clip, anchor: w.anchor, soft: w.soft,
         rootMargin: "200px 0px", threshold: 0.01
       }));
     });
