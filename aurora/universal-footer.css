@@ -25,16 +25,9 @@ body .foot {
 }
 
 body .foot::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: auto -90px -130px auto;
-  width: 390px;
-  height: 390px;
-  border: 1px solid rgba(255, 255, 255, .045);
-  border-radius: 50%;
-  box-shadow: 0 0 0 34px rgba(255, 255, 255, .018), 0 0 0 68px rgba(255, 255, 255, .012);
-  pointer-events: none;
+  content: none;
+  display: none;
+  background: none;
 }
 
 body .foot::after { display: none; }
