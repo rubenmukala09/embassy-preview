@@ -23,11 +23,48 @@
   --std-ease: cubic-bezier(.2, .75, .25, 1);
   --std-surface: linear-gradient(155deg, #fffefa 0%, #ffffff 68%, #f2f8fc 100%);
   --std-surface-warm: linear-gradient(155deg, #fffefa 0%, #ffffff 66%, #faf5e7 100%);
+  --std-glass-light: rgba(255, 255, 255, .78);
+  --std-glass-soft: rgba(242, 249, 253, .7);
+  --std-glass-line: rgba(255, 255, 255, .74);
+  --std-glass-shadow: 0 1px 2px rgba(6, 31, 61, .035), 0 18px 48px rgba(6, 31, 61, .09), inset 0 1px 0 rgba(255, 255, 255, .92);
+  --std-glass-blur: 18px;
+}
+
+/* Shared diplomatic glass: translucent enough to feel crafted, opaque enough
+   to preserve government-grade contrast and calm. */
+body .site-head {
+  background: rgba(255, 254, 250, .88) !important;
+  border-block-end: 1px solid rgba(6, 40, 77, .12);
+  box-shadow: 0 12px 34px rgba(6, 31, 61, .075), inset 0 1px 0 rgba(255, 255, 255, .94);
+  -webkit-backdrop-filter: saturate(135%) blur(var(--std-glass-blur));
+  backdrop-filter: saturate(135%) blur(var(--std-glass-blur));
+}
+
+body .site-head .icon-btn,
+body .site-head .mainnav > a,
+body .site-head .mainnav > .nav-group > a {
+  border-radius: var(--std-radius-sm);
+}
+
+body .site-head .icon-btn {
+  background: rgba(255, 255, 255, .72);
+  border-color: rgba(6, 40, 77, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 8px 20px -16px rgba(6, 31, 61, .6);
 }
 
 /* One reading rhythm across pages. */
 main > :is(.section, section.section) {
+  position: relative;
   padding-block: clamp(58px, 6vw, 88px);
+}
+
+main > :is(.section, section.section) + :is(.section, section.section)::before {
+  content: "";
+  position: absolute;
+  inset: 0 max(20px, calc((100% - 1180px) / 2)) auto;
+  block-size: 1px;
+  background: linear-gradient(90deg, transparent, rgba(8, 127, 199, .18) 22%, rgba(225, 184, 47, .26) 50%, rgba(201, 16, 47, .13) 78%, transparent);
+  pointer-events: none;
 }
 
 main :is(.sec-head, .section-head) {
@@ -87,10 +124,14 @@ main :is(
   .map-location-card,
   .tile
 ) {
-  background: var(--std-surface) !important;
+  background:
+    radial-gradient(circle at 100% 0, rgba(97, 185, 230, .12), transparent 31%),
+    linear-gradient(150deg, var(--std-glass-light), rgba(255, 255, 255, .94) 58%, var(--std-glass-soft)) !important;
   border: 1px solid var(--std-line) !important;
   border-radius: var(--std-radius-md) !important;
-  box-shadow: var(--std-shadow-rest) !important;
+  box-shadow: var(--std-glass-shadow) !important;
+  -webkit-backdrop-filter: saturate(125%) blur(12px);
+  backdrop-filter: saturate(125%) blur(12px);
 }
 
 main :is(.card:not(.ncard):not(.below-cta):not(.dark-surface), .sector-card, .portal-card, .official-card, .tile) {
@@ -157,11 +198,15 @@ main .widget {
   min-block-size: 100%;
   padding: 22px !important;
   overflow: hidden;
-  background: var(--std-surface) !important;
+  background:
+    radial-gradient(circle at 100% 0, rgba(8, 127, 199, .16), transparent 34%),
+    linear-gradient(155deg, rgba(255, 255, 255, .9), rgba(245, 251, 255, .76)) !important;
   border: 1px solid rgba(8, 127, 199, .2) !important;
   border-block-start: 3px solid #61b9e6 !important;
   border-radius: var(--std-radius-md) !important;
-  box-shadow: var(--std-shadow-rest) !important;
+  box-shadow: var(--std-glass-shadow) !important;
+  -webkit-backdrop-filter: saturate(135%) blur(var(--std-glass-blur));
+  backdrop-filter: saturate(135%) blur(var(--std-glass-blur));
 }
 
 main .widget::before {
@@ -201,9 +246,10 @@ main .service-card-icon {
   block-size: 42px;
   flex: 0 0 42px;
   color: #126ca6;
-  background: #eef8fd;
-  border: 1px solid rgba(8, 127, 199, .2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .9), rgba(222, 243, 253, .76));
+  border: 1px solid rgba(8, 127, 199, .22);
   border-radius: var(--std-radius-sm);
+  box-shadow: inset 0 1px 0 #fff, 0 10px 24px -18px rgba(6, 74, 119, .72);
   font-size: 11px;
   font-weight: 800;
 }
@@ -249,10 +295,14 @@ main .service-directory-card .btn { margin-block-start: auto; }
 
 main .ncard {
   overflow: hidden;
-  background: var(--std-surface-warm) !important;
+  background:
+    radial-gradient(circle at 100% 0, rgba(225, 184, 47, .11), transparent 34%),
+    linear-gradient(155deg, rgba(255, 255, 255, .93), rgba(255, 253, 246, .8)) !important;
   border-radius: var(--std-radius-md) !important;
   border: 1px solid var(--std-line) !important;
-  box-shadow: var(--std-shadow-rest) !important;
+  box-shadow: var(--std-glass-shadow) !important;
+  -webkit-backdrop-filter: saturate(120%) blur(10px);
+  backdrop-filter: saturate(120%) blur(10px);
 }
 
 main .ncard .ph { min-block-size: 190px; }
@@ -344,6 +394,11 @@ main :is(.badge, .tag, .chip, .qbadge, .media-badge, .source-chip) {
   letter-spacing: .08em;
   line-height: 1.2;
   text-transform: uppercase;
+  border: 1px solid rgba(6, 40, 77, .12);
+  background-color: rgba(255, 255, 255, .72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .86), 0 8px 18px -16px rgba(6, 31, 61, .7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 /* Quick-access tiles reuse the same operational grammar. */
@@ -362,6 +417,8 @@ main :is(.cta-premium, .below-cta, .drc-cta-shell, .embassy-contact-panel) {
   border-radius: var(--std-radius-lg) !important;
   border: 1px solid rgba(225, 184, 47, .28);
   box-shadow: 0 28px 70px rgba(4, 27, 54, .2), inset 0 1px 0 rgba(255, 255, 255, .07);
+  -webkit-backdrop-filter: saturate(125%) blur(14px);
+  backdrop-filter: saturate(125%) blur(14px);
 }
 
 main .cta-premium {
@@ -377,6 +434,10 @@ main :is(input, select, textarea) {
   min-block-size: 48px;
   border-radius: var(--std-radius-sm);
   border-color: var(--std-line-strong);
+  background-color: rgba(255, 255, 255, .84);
+  box-shadow: inset 0 1px 2px rgba(6, 31, 61, .045), 0 1px 0 rgba(255, 255, 255, .9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 main :is(input, select, textarea):focus {
@@ -411,6 +472,14 @@ main :is(input, select, textarea):focus {
   .head-cta .btn {
     min-block-size: 46px;
     font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  body .site-head,
+  main :is(.card, .widget, .ncard, .tile, .cta-premium, .below-cta, input, select, textarea) {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
   }
 }
 
