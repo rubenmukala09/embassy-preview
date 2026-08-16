@@ -1426,3 +1426,24 @@ main .preview-disabled-fields :is(input, textarea):disabled::placeholder {
   color: #6b7d8d;
   opacity: 1;
 }
+
+/* Header CTA labels must remain complete and unobscured in every language.
+   The general button shimmer sits above bare text nodes, so it is intentionally
+   removed from this compact navigation control. */
+.site-head .head-cta .btn-sm,
+html[lang="fr"] .site-head .head-cta .btn-sm {
+  min-inline-size: max-content;
+  max-inline-size: none;
+  overflow: visible;
+  color: #211b0a !important;
+  text-overflow: clip;
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+.site-head .head-cta .btn-sm::before,
+.site-head .head-cta .btn-sm::after,
+.site-head .head-cta .btn-sm .ink {
+  display: none !important;
+  animation: none !important;
+}
