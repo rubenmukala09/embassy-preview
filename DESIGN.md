@@ -57,6 +57,15 @@ National-flag colour combinations may appear in photography, the official flag a
 
 Cream and ivory section classes map to these two light surfaces. They must not introduce additional hue families.
 
+## Chromatic rhythm
+
+- Pale-sky fields distinguish grouped reading sections from the white page canvas.
+- Cobalt icon shells identify operational tools, downloads, forms and service widgets.
+- The shared quick-access dock uses a navy-to-cobalt field with gold reserved for the active or priority state.
+- Active navigation uses a pale-sky surface and blue rule; it does not compete with the gold primary CTA.
+- Cards use a restrained sky cast at their lower edge, with stronger blue borders only on hover or focus.
+- Red remains absent from interface decoration and appears only in authentic national imagery.
+
 ## CTA hierarchy
 
 - `.btn-gold`: one primary task per component or section.
