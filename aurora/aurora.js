@@ -352,29 +352,6 @@
     const hero = $(":scope > .phead, :scope > .hero, :scope > .amb-hero, :scope > .shine-hero", main);
     if (!hero) return null;
 
-    let motion = $(".hero-motion", hero);
-    if (!motion) {
-      motion = el(
-        '<div class="hero-motion" aria-hidden="true">' +
-          '<span class="hero-motion__orbit hero-motion__orbit--outer"></span>' +
-          '<span class="hero-motion__orbit hero-motion__orbit--inner"></span>' +
-          '<span class="hero-motion__route"><i></i></span>' +
-          '<span class="hero-motion__node hero-motion__node--drc"></span>' +
-          '<span class="hero-motion__node hero-motion__node--usa"></span>' +
-        '</div>'
-      );
-      hero.appendChild(motion);
-    }
-    hero.classList.add("has-diplomatic-motion");
-    if ("IntersectionObserver" in window) {
-      const motionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => motion.classList.toggle("is-visible", entry.isIntersecting));
-      }, { threshold: 0.12 });
-      motionObserver.observe(hero);
-    } else {
-      motion.classList.add("is-visible");
-    }
-
     let band = $(":scope > .qa-band", main);
     if (!band) {
       const items = [
