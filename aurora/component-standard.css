@@ -475,6 +475,150 @@ main :is(input, select, textarea):focus {
   }
 }
 
+/* One authored motion moment: a restrained diplomatic connection signal.
+   It communicates the relationship between Kinshasa and Washington without
+   competing with photography or operational content. */
+body main > :is(.hero, .phead, .amb-hero, .shine-hero).has-diplomatic-motion > .container,
+body main > .shine-hero.has-diplomatic-motion > .shine-hero-grid {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-motion {
+  --hero-motion-size: clamp(360px, 36vw, 590px);
+  --hero-motion-route: clamp(360px, 43vw, 620px);
+  --hero-motion-travel: clamp(340px, 41vw, 592px);
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .72;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0 39%, #000 57% 100%);
+  mask-image: linear-gradient(90deg, transparent 0 39%, #000 57% 100%);
+}
+
+.hero-motion__orbit {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: clamp(-120px, -5vw, -34px);
+  inline-size: var(--hero-motion-size);
+  aspect-ratio: 1;
+  border: 1px solid rgba(219, 229, 236, .22);
+  border-radius: 50%;
+  transform: translateY(-50%) rotate(-14deg);
+  clip-path: circle(0 at 50% 50%);
+}
+
+.hero-motion__orbit--outer {
+  box-shadow: inset 0 0 0 1px rgba(201, 165, 60, .08);
+  animation: hero-orbit-reveal .8s cubic-bezier(.16, 1, .3, 1) .08s forwards;
+}
+
+.hero-motion__orbit--inner {
+  --hero-motion-size: clamp(238px, 24vw, 390px);
+  inset-inline-end: clamp(-20px, 2vw, 56px);
+  border-color: rgba(201, 165, 60, .3);
+  animation: hero-orbit-reveal .72s cubic-bezier(.16, 1, .3, 1) .2s forwards;
+}
+
+.hero-motion__route {
+  position: absolute;
+  inset-block-start: 52%;
+  inset-inline-end: 3%;
+  inline-size: var(--hero-motion-route);
+  block-size: 1px;
+  background: linear-gradient(90deg, rgba(54, 125, 167, 0), rgba(219, 229, 236, .42) 24%, rgba(201, 165, 60, .7) 68%, rgba(219, 229, 236, .08));
+  transform: rotate(-18deg);
+  transform-origin: center;
+}
+
+.hero-motion__route::before {
+  content: "";
+  position: absolute;
+  inset: -5px 0;
+  background: inherit;
+  filter: blur(7px);
+  opacity: .18;
+}
+
+.hero-motion__route i {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 0;
+  inline-size: 9px;
+  block-size: 9px;
+  border: 2px solid rgba(255, 255, 255, .82);
+  border-radius: 50%;
+  background: var(--brand-gold-500);
+  box-shadow: 0 0 0 5px rgba(201, 165, 60, .12), 0 5px 16px rgba(4, 20, 39, .34);
+  transform: translate3d(0, -50%, 0);
+  animation: hero-signal 7.2s cubic-bezier(.76, 0, .24, 1) 1s infinite;
+}
+
+.hero-motion__node {
+  position: absolute;
+  inline-size: 13px;
+  block-size: 13px;
+  border: 3px solid rgba(255, 255, 255, .72);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, .06);
+}
+
+.hero-motion__node--drc {
+  inset-block-start: 63%;
+  inset-inline-end: min(43vw, 610px);
+  background: var(--brand-blue-600);
+}
+
+.hero-motion__node--usa {
+  inset-block-start: 31%;
+  inset-inline-end: 8%;
+  background: var(--brand-red-600);
+}
+
+.hero-motion:not(.is-visible) :is(.hero-motion__orbit, .hero-motion__route i),
+.page-hidden .hero-motion :is(.hero-motion__orbit, .hero-motion__route i) {
+  animation-play-state: paused;
+}
+
+@keyframes hero-orbit-reveal {
+  to { clip-path: circle(72% at 50% 50%); }
+}
+
+@keyframes hero-signal {
+  0%, 14% { opacity: 0; transform: translate3d(0, -50%, 0) scale(.72); }
+  22% { opacity: 1; }
+  72% { opacity: 1; }
+  82%, 100% { opacity: 0; transform: translate3d(var(--hero-motion-travel), -50%, 0) scale(1); }
+}
+
+@media (max-width: 760px) {
+  .hero-motion {
+    --hero-motion-size: min(92vw, 430px);
+    --hero-motion-route: min(78vw, 360px);
+    --hero-motion-travel: min(74vw, 340px);
+    opacity: .48;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0 52%, #000 76% 100%);
+    mask-image: linear-gradient(90deg, transparent 0 52%, #000 76% 100%);
+  }
+
+  .hero-motion__node--drc { inset-inline-end: 72vw; }
+  .hero-motion__node--usa { inset-inline-end: 5%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-motion__orbit {
+    clip-path: circle(72% at 50% 50%);
+    animation: none;
+  }
+
+  .hero-motion__route i {
+    inset-inline-start: 64%;
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-transparency: reduce) {
   body .site-head,
   main :is(.card, .widget, .ncard, .tile, .cta-premium, .below-cta, input, select, textarea) {
