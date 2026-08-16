@@ -14,17 +14,17 @@ This system governs every public page in the Embassy preview. It is designed to 
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--brand-navy-950` | `#03182e` | Deep institutional backgrounds |
-| `--brand-navy-900` | `#052746` | Primary brand surface and text |
-| `--brand-navy-700` | `#084b76` | Navigation actions, alerts and hover |
-| `--brand-blue-600` | `#147fba` | Links, focus and digital navigation |
-| `--brand-gold-500` | `#efc94c` | Primary action and ceremonial accent |
-| `--brand-sky-100` | `#eaf5fb` | Quiet information and grouped surfaces |
+| `--brand-navy-950` | `#011a35` | Deep institutional backgrounds |
+| `--brand-navy-900` | `#052f57` | Primary brand surface and text |
+| `--brand-navy-700` | `#075d96` | Navigation actions, alerts and hover |
+| `--brand-blue-600` | `#0c8fd3` | Links, focus and digital navigation |
+| `--brand-gold-500` | `#f2ce4f` | Primary action and ceremonial accent |
+| `--brand-sky-100` | `#def3fd` | Quiet information and grouped surfaces |
 | `--brand-paper` | `#ffffff` | Cards and primary reading surfaces |
-| `--brand-canvas` | `#f5f7f7` | Page canvas and grouped sections |
-| `--brand-ink` | `#102a43` | Primary text |
-| `--brand-muted` | `#52677b` | Secondary text |
-| `--brand-line` | `rgba(16,42,67,.13)` | Standard border and divider |
+| `--brand-canvas` | `#f2f8fc` | Page canvas and grouped sections |
+| `--brand-ink` | `#082b4b` | Primary text |
+| `--brand-muted` | `#486a84` | Secondary text |
+| `--brand-line` | `rgba(5,47,87,.17)` | Standard border and divider |
 
 National-flag colour combinations may appear in photography, the official flag and the seal. Interface rule lines, card accents, alerts and status surfaces use only navy, DRC blue, pale sky and clean gold.
 

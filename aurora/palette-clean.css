@@ -9,20 +9,20 @@
   color-scheme: light;
 
   /* Institutional core */
-  --brand-navy-950: #03182e;
-  --brand-navy-900: #052746;
-  --brand-navy-700: #084b76;
-  --brand-blue-600: #147fba;
-  --brand-blue-500: #2298cf;
-  --brand-sky-100: #eaf5fb;
-  --brand-sky-050: #f5fafd;
-  --brand-gold-500: #efc94c;
-  --brand-gold-100: #fff6d4;
+  --brand-navy-950: #011a35;
+  --brand-navy-900: #052f57;
+  --brand-navy-700: #075d96;
+  --brand-blue-600: #0c8fd3;
+  --brand-blue-500: #22ace8;
+  --brand-sky-100: #def3fd;
+  --brand-sky-050: #f0f9fe;
+  --brand-gold-500: #f2ce4f;
+  --brand-gold-100: #fff4c4;
   --brand-paper: #ffffff;
-  --brand-canvas: #f5f8fa;
-  --brand-ink: #0b2945;
-  --brand-muted: #526b80;
-  --brand-line: rgba(5, 39, 70, .14);
+  --brand-canvas: #f2f8fc;
+  --brand-ink: #082b4b;
+  --brand-muted: #486a84;
+  --brand-line: rgba(5, 47, 87, .17);
 
   /* Current component contract */
   --std-ink: var(--brand-ink);
@@ -33,9 +33,9 @@
   --std-gold: var(--brand-gold-500);
   --std-paper: var(--brand-paper);
   --std-line: var(--brand-line);
-  --std-line-strong: rgba(5, 39, 70, .22);
-  --std-surface: linear-gradient(155deg, #ffffff 0%, #ffffff 70%, #f0f8fc 100%);
-  --std-surface-warm: linear-gradient(155deg, #ffffff 0%, #ffffff 70%, #f4f9fc 100%);
+  --std-line-strong: rgba(5, 47, 87, .27);
+  --std-surface: linear-gradient(155deg, #ffffff 0%, #fbfdff 62%, #e8f6fd 100%);
+  --std-surface-warm: linear-gradient(155deg, #ffffff 0%, #fffdf5 65%, #edf8fd 100%);
 
   /* Legacy aliases resolve into the same reduced palette. */
   --navy: var(--brand-navy-900);
@@ -47,16 +47,16 @@
   --sky-deep: var(--brand-navy-700);
   --blue: var(--brand-blue-600);
   --gold: var(--brand-gold-500);
-  --gold-bright: #f5d768;
-  --gold-soft: #fff0a8;
-  --gold-deep: #755d12;
-  --gold-grad: linear-gradient(180deg, #f8dc74 0%, #efc94c 100%);
+  --gold-bright: #ffdf69;
+  --gold-soft: #fff0a2;
+  --gold-deep: #6d5508;
+  --gold-grad: linear-gradient(180deg, #ffe37a 0%, #f2ce4f 100%);
   --ivory: var(--brand-canvas);
   --cream: var(--brand-sky-050);
   --paper: var(--brand-paper);
   --ink: var(--brand-ink);
   --muted: var(--brand-muted);
-  --faint: #6d8294;
+  --faint: #638099;
   --line: var(--brand-line);
   --line-2: rgba(5, 39, 70, .09);
 
@@ -82,7 +82,7 @@ html {
 
 body {
   color: var(--brand-ink);
-  background: var(--brand-paper);
+  background: linear-gradient(180deg, var(--brand-paper) 0%, var(--brand-sky-050) 100%) fixed;
 }
 
 main {
@@ -94,7 +94,7 @@ main {
 
 ::selection {
   color: var(--brand-navy-950);
-  background: #d6edf8;
+  background: #bfe9fb;
 }
 
 :focus-visible {
@@ -114,7 +114,7 @@ main :is(.card, .widget, .panel, .info-card, .official-card, .portal-card,
 
 /* One quiet section divider instead of decorative multi-colour rules. */
 main > :is(.section, section.section) + :is(.section, section.section)::before {
-  background: linear-gradient(90deg, transparent, rgba(20, 127, 186, .24) 24%, rgba(239, 201, 76, .28) 50%, rgba(20, 127, 186, .24) 76%, transparent) !important;
+  background: linear-gradient(90deg, transparent, rgba(12, 143, 211, .34) 24%, rgba(242, 206, 79, .42) 50%, rgba(12, 143, 211, .34) 76%, transparent) !important;
 }
 
 main .phead::after,
@@ -151,7 +151,7 @@ body .foot .flagbar .r {
 
 main > .section:not(.tight) > .container::before {
   background:
-    radial-gradient(circle at 11px 50%, var(--brand-blue-600) 0 2px, rgba(20, 127, 186, .15) 3px 6px, transparent 7px),
+    radial-gradient(circle at 11px 50%, var(--brand-blue-600) 0 2px, rgba(12, 143, 211, .22) 3px 6px, transparent 7px),
     rgba(255, 255, 255, .9) !important;
 }
 
@@ -164,28 +164,33 @@ main .tag::before,
 .status-dot.open,
 .status-dot.closed {
   background: var(--brand-blue-600) !important;
-  box-shadow: 0 0 0 3px rgba(20, 127, 186, .15) !important;
+  box-shadow: 0 0 0 3px rgba(12, 143, 211, .22) !important;
 }
 
 /* Primary and ceremonial actions use a clear, bright gold with dark copy. */
 :is(.btn-gold, .annual-download, .annual-controls .btn-primary,
   .newsletter-field .btn, .footer-news-link) {
   color: var(--brand-navy-950) !important;
-  background: linear-gradient(180deg, #f7dc78 0%, var(--brand-gold-500) 100%) !important;
-  border-color: #caa52e !important;
+  background: linear-gradient(180deg, #ffe37b 0%, var(--brand-gold-500) 100%) !important;
+  border-color: #c9a321 !important;
   box-shadow: 0 10px 24px -18px rgba(3, 24, 46, .5), inset 0 1px rgba(255, 255, 255, .6) !important;
 }
 
 :is(.btn-gold, .annual-download, .annual-controls .btn-primary,
   .newsletter-field .btn, .footer-news-link):hover {
   color: var(--brand-navy-950) !important;
-  background: linear-gradient(180deg, #f9e08a 0%, #e9bf3d 100%) !important;
+  background: linear-gradient(180deg, #ffe991 0%, #edc43e 100%) !important;
 }
 
 :is(.btn-navy, .widget-action, .card-action, .route-action) {
   color: #ffffff !important;
-  background: linear-gradient(180deg, var(--brand-navy-700), var(--brand-navy-900)) !important;
+  background: linear-gradient(145deg, var(--brand-blue-600) 0%, var(--brand-navy-700) 48%, var(--brand-navy-900) 100%) !important;
   border-color: rgba(255, 255, 255, .14) !important;
+  box-shadow: 0 12px 26px -20px rgba(1, 26, 53, .9), inset 0 1px rgba(255, 255, 255, .16) !important;
+}
+
+:is(.btn-navy, .widget-action, .card-action, .route-action):hover {
+  background: linear-gradient(145deg, var(--brand-blue-500) 0%, var(--brand-blue-600) 42%, var(--brand-navy-700) 100%) !important;
 }
 
 .btn-outline {
@@ -245,7 +250,7 @@ main .tag::before,
 .nav .nav-emergency,
 .topbar .top-emergency {
   color: #ffffff !important;
-  background: rgba(20, 127, 186, .18) !important;
+  background: rgba(34, 172, 232, .2) !important;
   border-color: rgba(141, 207, 236, .38) !important;
   box-shadow: none !important;
 }
@@ -254,7 +259,7 @@ main .tag::before,
 .nav .nav-emergency:hover,
 .topbar .top-emergency:hover {
   color: #ffffff !important;
-  background: rgba(20, 127, 186, .32) !important;
+  background: rgba(34, 172, 232, .36) !important;
   border-color: rgba(141, 207, 236, .62) !important;
 }
 
@@ -279,7 +284,9 @@ main .tag::before,
 /* Footer uses the same core palette and no decorative red band. */
 body .foot {
   color: #cbddea;
-  background: linear-gradient(180deg, var(--brand-navy-900), var(--brand-navy-950)) !important;
+  background:
+    radial-gradient(circle at 88% 4%, rgba(34, 172, 232, .18), transparent 30%),
+    linear-gradient(145deg, #063760 0%, var(--brand-navy-900) 42%, var(--brand-navy-950) 100%) !important;
   border-image: linear-gradient(90deg, var(--brand-blue-600) 0 76%, var(--brand-gold-500) 76%) 1 !important;
 }
 
@@ -395,7 +402,8 @@ main .embassy-map-panel {
     linear-gradient(96deg, transparent 0 30%, rgba(255,255,255,.44) 31% 33%, transparent 34%),
     repeating-linear-gradient(0deg, transparent 0 48px, rgba(5,39,70,.09) 49px 51px),
     repeating-linear-gradient(90deg, transparent 0 62px, rgba(5,39,70,.08) 63px 65px),
-    linear-gradient(145deg, #dcecf4, #b9d6e5) !important;
+    radial-gradient(circle at 72% 22%, rgba(255,255,255,.6), transparent 28%),
+    linear-gradient(145deg, #d7effa, #9ccde4) !important;
 }
 
 main .embassy-map-panel::before {
@@ -525,7 +533,7 @@ main #media .media-action-dock {
   margin-top: 18px !important;
   overflow: hidden !important;
   color: #ffffff !important;
-  background: var(--brand-navy-950) !important;
+  background: linear-gradient(135deg, var(--brand-navy-950), var(--brand-navy-900) 54%, var(--brand-navy-700)) !important;
   border: 1px solid rgba(255,255,255,.16) !important;
   border-radius: 12px !important;
 }
