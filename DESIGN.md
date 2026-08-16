@@ -72,6 +72,8 @@ Buttons use a minimum 44px target on desktop and 48px on mobile. CTA labels begi
 
 - Cards share the same border, radius and elevation; content and imagery provide variation.
 - Widgets end with exactly one explicit CTA.
+- Every principal route opens with the same responsive hero frame: 660px desktop, 560px tablet and one visible screen on phones.
+- The six-route consular quick-access system follows every hero and becomes the persistent bottom dock on tablet and phone.
 - FAQs use paper rows, navy questions and one gold state marker.
 - Forms use persistent labels, white controls and blue focus rings.
 - Dark panels use only navy tonal variation; secondary text is blue-tinted white.

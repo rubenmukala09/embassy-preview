@@ -1154,3 +1154,85 @@ main :is(input, select, textarea):focus {
 @media (prefers-color-scheme: dark) {
   :root { color-scheme: light; }
 }
+
+/* ==========================================================================
+   Universal hero frame and operational route selector
+   ========================================================================== */
+:root {
+  --brand-page-hero-height: 660px;
+  --brand-page-hero-height-tablet: 560px;
+}
+
+body main > :is(.hero, .phead, .amb-hero, .shine-hero) {
+  block-size: var(--brand-page-hero-height) !important;
+  min-block-size: var(--brand-page-hero-height) !important;
+  max-block-size: var(--brand-page-hero-height) !important;
+  overflow: hidden;
+}
+
+body main > .qa-band {
+  position: relative;
+  z-index: 30;
+  margin: 0;
+  padding: 0 0 30px;
+  background: var(--brand-canvas);
+}
+
+body main > .qa-band > .container {
+  max-inline-size: var(--brand-container);
+}
+
+body main > .qa-band .qpanel {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  inline-size: 100%;
+  max-inline-size: none;
+  min-block-size: 112px;
+  margin: 0;
+  border-radius: 0 0 var(--brand-radius-card) var(--brand-radius-card);
+}
+
+body main > .qa-band .qtile {
+  min-block-size: 112px;
+  padding: 18px 10px 16px;
+}
+
+body main > .qa-band .qtile-t {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+body main > .qa-band .qtile-s {
+  margin-block-start: 3px;
+  color: #aebfce;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  body main > :is(.hero, .phead, .amb-hero, .shine-hero) {
+    block-size: var(--brand-page-hero-height-tablet) !important;
+    min-block-size: var(--brand-page-hero-height-tablet) !important;
+    max-block-size: var(--brand-page-hero-height-tablet) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body main > :is(.hero, .phead, .amb-hero, .shine-hero) {
+    block-size: auto !important;
+    min-block-size: calc(100dvh - var(--phone-chrome, 168px) - var(--phone-dock, 92px)) !important;
+    max-block-size: none !important;
+  }
+
+  body main > .qa-band {
+    padding: 0;
+    background: transparent;
+  }
+
+  body main > .qa-band .qpanel,
+  body main > .qa-band .qtile {
+    min-block-size: 0;
+  }
+}

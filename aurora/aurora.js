@@ -341,10 +341,56 @@
     });
   }
 
+  /* ---- 2b. Universal hero quick-access system --------------------------
+     Every principal page follows the same opening sequence: one diplomatic
+     hero, then one operational route selector. Existing server-rendered
+     copies are preserved; pages with a custom hero receive the same component
+     progressively so the navigation can no longer drift page by page. */
+  function ensureUniversalQuickAccess() {
+    const main = $("main");
+    if (!main) return null;
+    const hero = $(":scope > .phead, :scope > .hero, :scope > .amb-hero, :scope > .shine-hero", main);
+    if (!hero) return null;
+
+    let band = $(":scope > .qa-band", main);
+    if (!band) {
+      const items = [
+        ["/embassy-preview/consular-services.html#passport", "Passports", "Renew or apply", '<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>'],
+        ["/embassy-preview/consular-services.html#visa", "Visas", "Travel to the DRC", '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>'],
+        ["/embassy-preview/consular-services.html#tenant-lieu", "Tenant-Lieu", "Laissez-Passer", '<path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/><circle cx="12" cy="12" r="10"/>'],
+        ["/embassy-preview/consular-services.html#legalization", "Legalization", "Authenticate documents", '<path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>'],
+        ["/embassy-preview/portal.html", "Appointment guidance", "Plan your visit", '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'],
+        ["/embassy-preview/consular-services.html#status", "Status guidance", "Contact support", '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'],
+      ];
+      const tiles = items.map(([href, title, subtitle, icon]) =>
+        '<a class="qtile" href="' + href + '">' +
+          '<span class="qtile-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + icon + '</svg></span>' +
+          '<span class="qtile-txt"><span class="qtile-t">' + title + '</span><span class="qtile-s">' + subtitle + '</span></span>' +
+          '<span class="qtile-go" aria-hidden="true">' + arrowSvg + '</span>' +
+        '</a>'
+      ).join("");
+      band = el('<section class="qa-band" data-universal-quick-access><div class="container"><nav class="qpanel" aria-label="Quick access to consular services">' + tiles + '</nav></div></section>');
+    }
+
+    band.setAttribute("data-universal-quick-access", "");
+    if (hero.nextElementSibling !== band) hero.insertAdjacentElement("afterend", band);
+
+    const current = new URL(window.location.href);
+    $$(".qtile", band).forEach((tile) => {
+      const target = new URL(tile.getAttribute("href"), current);
+      const exact = target.pathname === current.pathname && (!target.hash || target.hash === current.hash);
+      tile.classList.toggle("active", exact);
+      if (exact) tile.setAttribute("aria-current", "location");
+      else tile.removeAttribute("aria-current");
+    });
+    return band;
+  }
+
+  ensureUniversalQuickAccess();
   syncNavigationState();
   window.addEventListener("hashchange", syncNavigationState);
 
-  /* ---- 2b. Docked quick-access bar: hide while scrolling, reveal when idle -- */
+  /* ---- 2c. Docked quick-access bar: hide while scrolling, reveal when idle -- */
   (function () {
     const band = document.querySelector(".qa-band");
     if (!band) return;
@@ -360,7 +406,7 @@
     );
   })();
 
-  /* ---- 2c. Scroll-spy: light the docked-nav item for the section in view --- */
+  /* ---- 2d. Scroll-spy: light the docked-nav item for the section in view --- */
   (function () {
     const tiles = $$(".qa-band .qtile");
     if (!tiles.length) return;
@@ -4362,7 +4408,7 @@
       return;
     }
 
-    var hero = document.querySelector("main .hero, main .phead, main .amb-hero");
+    var hero = document.querySelector("main .hero, main .phead, main .amb-hero, main .shine-hero");
     if (hero) {
       // Distance from the top of the document to the top of the hero is the
       // whole stack above it, whatever that stack happens to contain today.
