@@ -83,7 +83,7 @@ Buttons use a minimum 44px target on desktop and 48px on mobile. CTA labels begi
 
 - Hover lift is limited to 2px.
 - Motion uses `cubic-bezier(.2,.75,.25,1)` and lasts 180–220ms.
-- The shared hero may use one slow connection signal to express the Kinshasa–Washington relationship; it pauses offscreen and when the page is hidden.
+- Hero photography may transition slowly, but no universal decorative graphic animation is layered over hero content.
 - No bounce, pulse or other decorative continuous motion.
 - Reduced-motion preferences remove all non-essential transforms.
 
