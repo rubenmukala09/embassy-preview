@@ -486,3 +486,275 @@ main :is(input, select, textarea):focus {
 @media (prefers-reduced-motion: reduce) {
   main :is(.card, .widget, .btn, button, [role="button"]) { transition: none !important; }
 }
+
+/* ==========================================================================
+   Diplomatic restraint pass · one palette, one surface language
+   Navy and paper carry the interface. Gold identifies primary actions, blue
+   identifies links and focus, and red is reserved for warnings.
+   ========================================================================== */
+:root {
+  --navy: #071f3a;
+  --navy-700: #0a3158;
+  --navy-600: #124a76;
+  --navy-900: #041427;
+  --gold: #d4ad32;
+  --gold-soft: #f1df9d;
+  --gold-bright: #e2c45d;
+  --gold-deep: #675016;
+  --sky: #367da7;
+  --sky-deep: #245c7e;
+  --red: #8f2d3b;
+  --red-deep: #6f1f2b;
+  --red-soft: #b85c68;
+  --cream: #f7f8f7;
+  --ivory: #f4f5f4;
+  --paper: #ffffff;
+  --ink: #102a43;
+  --muted: #52677b;
+  --faint: #687b8e;
+  --line: #dfe5ea;
+  --line-2: #e9edf0;
+  --std-ink: #102a43;
+  --std-muted: #52677b;
+  --std-blue: #367da7;
+  --std-blue-dark: #245c7e;
+  --std-navy: #071f3a;
+  --std-gold: #c9a53c;
+  --std-paper: #ffffff;
+  --std-line: rgba(16, 42, 67, .13);
+  --std-line-strong: rgba(16, 42, 67, .21);
+  --std-shadow-rest: 0 1px 2px rgba(7, 31, 58, .035), 0 12px 30px rgba(7, 31, 58, .055);
+  --std-shadow-hover: 0 2px 5px rgba(7, 31, 58, .045), 0 18px 38px rgba(7, 31, 58, .085);
+  --std-surface: #ffffff;
+  --std-surface-warm: #fffdf8;
+}
+
+html { scrollbar-color: #8294a5 #eef1f3; }
+::selection { color: #071f3a; background: #d9e7ef; }
+
+body {
+  color: var(--std-ink);
+  background: #f7f8f8;
+}
+
+body .site-head {
+  background: rgba(255, 255, 255, .965) !important;
+  border-block-end-color: rgba(16, 42, 67, .12);
+  box-shadow: 0 8px 24px rgba(7, 31, 58, .055);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body .site-head .icon-btn {
+  background: #ffffff;
+  border-color: var(--std-line);
+  box-shadow: none;
+}
+
+main > :is(.section, section.section) + :is(.section, section.section)::before {
+  background: linear-gradient(90deg, transparent, rgba(16, 42, 67, .14) 18%, rgba(16, 42, 67, .14) 82%, transparent);
+}
+
+main .phead::before {
+  background: linear-gradient(100deg, rgba(4, 20, 39, .82) 0%, rgba(7, 31, 58, .66) 46%, rgba(7, 31, 58, .22) 100%) !important;
+}
+
+main .phead::after {
+  height: 2px !important;
+  background: rgba(201, 165, 60, .86) !important;
+}
+
+main .phead :is(h1, p, .crumbs) { text-shadow: 0 2px 16px rgba(4, 20, 39, .38); }
+main .eyebrow:not(.on-navy) { color: #586f82; }
+main .rule { height: 1px; background: var(--std-gold); }
+
+main :is(.sec-head, .section-head) > :is(p, .lead):not(.eyebrow),
+main :is(.card, .widget, .journey-card, .sector-card, .department-card, .portal-card, .official-card) p {
+  color: var(--std-muted);
+}
+
+main :is(.dark-surface, .cta-premium, .below-cta, .portal-network, .embassy-contact-panel) :is(h1, h2, h3, h4) {
+  color: #ffffff;
+}
+
+main :is(.dark-surface, .cta-premium, .below-cta, .portal-network, .embassy-contact-panel) :is(p, .lead, small) {
+  color: #c7d3de;
+}
+
+main :is(.dark-surface, .cta-premium, .below-cta, .portal-network, .embassy-contact-panel) .eyebrow {
+  color: #f1df9d;
+}
+
+main :is(
+  .card:not(.ncard):not(.below-cta):not(.dark-surface),
+  .widget,
+  .sector-card,
+  .department-card,
+  .portal-card,
+  .official-card,
+  .office-location-card,
+  .advisory-card,
+  .register-card,
+  .cw-ref-card,
+  .map-location-card,
+  .tile,
+  .ncard
+) {
+  background: #ffffff !important;
+  border: 1px solid var(--std-line) !important;
+  border-radius: var(--std-radius-md) !important;
+  box-shadow: var(--std-shadow-rest) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+main :is(
+  .card:not(.ncard):not(.below-cta):not(.dark-surface),
+  .sector-card,
+  .portal-card,
+  .official-card,
+  .tile,
+  .widget
+)::before,
+main .widget::after {
+  display: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  main :is(.card-hover, .widget, a.card, a.portal-card, a.official-card, a.department-card):hover {
+    transform: translateY(-2px);
+    border-color: rgba(54, 125, 167, .28) !important;
+    box-shadow: var(--std-shadow-hover) !important;
+  }
+}
+
+main .widget {
+  border-block-start: 1px solid var(--std-line) !important;
+}
+
+main .widget .w-head {
+  color: var(--std-ink);
+  border-block-end-color: var(--std-line);
+}
+
+main .widget-code,
+main .service-card-icon {
+  color: var(--std-blue-dark);
+  background: #edf4f7;
+  border-color: rgba(54, 125, 167, .2);
+  box-shadow: none;
+}
+
+main .widget-action,
+main :is(.card, .widget, .official-card, .portal-card) a:not(.btn) {
+  color: var(--std-blue-dark);
+}
+
+main .ncard,
+main .service-directory-card {
+  background: #ffffff !important;
+}
+
+main .tile .ic {
+  color: #f1df9d;
+  background: var(--std-navy);
+  border-color: rgba(7, 31, 58, .16);
+  box-shadow: none;
+}
+
+main :is(.sector-blue, .sector-gold, .sector-red) {
+  border-block-start: 1px solid var(--std-line) !important;
+}
+
+main .btn-navy,
+.site-head .btn-navy,
+.head-cta .btn-navy {
+  color: #ffffff;
+  background: #0a3158;
+  border-color: #0a3158;
+  box-shadow: none;
+}
+
+main .btn-navy:hover,
+.site-head .btn-navy:hover,
+.head-cta .btn-navy:hover {
+  background: #071f3a;
+  border-color: #071f3a;
+}
+
+main .btn-gold,
+.site-head .btn-gold,
+.head-cta .btn-gold {
+  color: #231d0b;
+  background: #d4b34d;
+  border-color: #b8942c;
+  box-shadow: none;
+}
+
+main .btn-gold:hover,
+.site-head .btn-gold:hover,
+.head-cta .btn-gold:hover {
+  color: #1d1809;
+  background: #c9a53c;
+  border-color: #a98524;
+  filter: none;
+}
+
+main :is(.btn-outline, .btn-plain) {
+  color: var(--std-navy);
+  background: #ffffff;
+  border-color: var(--std-line-strong);
+  box-shadow: none;
+}
+
+main :is(.badge, .tag, .chip, .qbadge, .media-badge, .source-chip) {
+  color: #294962;
+  background: #edf2f5;
+  border-color: rgba(16, 42, 67, .1);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+main :is(.badge-bad, .status-error, .alert-danger) {
+  color: #7a2632;
+  background: #f8e9eb;
+  border-color: rgba(143, 45, 59, .18);
+}
+
+main :is(.cta-premium, .below-cta, .drc-cta-shell, .embassy-contact-panel) {
+  border-color: rgba(201, 165, 60, .22);
+  box-shadow: 0 22px 54px rgba(7, 31, 58, .16), inset 0 1px 0 rgba(255, 255, 255, .06);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+main :is(input, select, textarea) {
+  color: var(--std-ink);
+  background: #ffffff;
+  border-color: var(--std-line-strong);
+  box-shadow: inset 0 1px 2px rgba(7, 31, 58, .04);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+main :is(input, select, textarea):focus {
+  border-color: var(--std-blue);
+  outline-color: rgba(54, 125, 167, .16);
+}
+
+main :is(.official-note, .source-ribbon, .notice-box, .info-note) {
+  color: #294962;
+  background: #f2f6f8;
+  border-color: rgba(54, 125, 167, .16);
+  box-shadow: none;
+}
+
+main :is(details, .official-accordions details) {
+  border-color: var(--std-line);
+  box-shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: light; }
+}
