@@ -1069,7 +1069,6 @@ main :is(
   .advisory-card,
   .register-card,
   .cw-ref-card,
-  .info-card,
   .apply-card,
   .drc-map-card
 ) {
@@ -1090,7 +1089,6 @@ main :is(
   .service-directory-card,
   .sector-card,
   .department-card,
-  .info-card,
   .apply-card,
   .drc-map-card
 ) :is(h2, h3, h4) {
@@ -1379,4 +1377,52 @@ body main > .qa-band .qtile-s {
   body main > .qa-band .qtile {
     min-block-size: 0;
   }
+}
+
+/* Preserve the established dark operational surface and its high-contrast type. */
+main .info-card {
+  color: #dbe5ec;
+  background: var(--brand-navy-900) !important;
+  border: 1px solid rgba(201, 165, 60, .22) !important;
+  border-radius: var(--brand-radius-card) !important;
+  box-shadow: var(--brand-shadow-feature) !important;
+}
+
+main .info-card h4 {
+  color: #fff;
+}
+
+main .info-card h4 svg {
+  color: #f1d66d;
+}
+
+main .info-card .hr {
+  color: #dbe5ec;
+  border-block-end-color: rgba(255, 255, 255, .12);
+}
+
+main .info-card .hr span:last-child {
+  color: #fff;
+}
+
+/* Disabled preview fields remain unmistakably inactive without becoming illegible. */
+main .preview-disabled-fields {
+  opacity: 1;
+}
+
+main .preview-disabled-fields .field label {
+  color: var(--brand-ink);
+}
+
+main .preview-disabled-fields :is(input, select, textarea):disabled {
+  opacity: 1;
+  color: var(--brand-muted);
+  -webkit-text-fill-color: var(--brand-muted);
+  background: #f5f7f8;
+  border-color: var(--brand-line-strong);
+}
+
+main .preview-disabled-fields :is(input, textarea):disabled::placeholder {
+  color: #6b7d8d;
+  opacity: 1;
 }
