@@ -822,6 +822,335 @@ main .widget .widget-action:focus-visible {
   }
 }
 
+/* ==========================================================================
+   Embassy brand contract · shared across every route
+   ========================================================================== */
+:root {
+  --brand-navy-950: #041427;
+  --brand-navy-900: #071f3a;
+  --brand-navy-700: #0a3158;
+  --brand-blue-600: #367da7;
+  --brand-blue-100: #e8f0f4;
+  --brand-gold-500: #c9a53c;
+  --brand-gold-100: #f5ecd0;
+  --brand-red-600: #8f2d3b;
+  --brand-paper: #ffffff;
+  --brand-canvas: #f5f7f7;
+  --brand-ink: #102a43;
+  --brand-muted: #52677b;
+  --brand-line: rgba(16, 42, 67, .13);
+  --brand-line-strong: rgba(16, 42, 67, .22);
+  --brand-radius-control: 9px;
+  --brand-radius-card: 14px;
+  --brand-radius-feature: 20px;
+  --brand-shadow-card: 0 1px 2px rgba(4, 20, 39, .035), 0 12px 30px rgba(4, 20, 39, .055);
+  --brand-shadow-feature: 0 22px 52px rgba(4, 20, 39, .16);
+  --brand-ease: cubic-bezier(.2, .75, .25, 1);
+  --brand-section-space: clamp(60px, 6vw, 86px);
+  --brand-grid-gap: clamp(16px, 2vw, 24px);
+  --std-radius-sm: var(--brand-radius-control);
+  --std-radius-md: var(--brand-radius-card);
+  --std-radius-lg: var(--brand-radius-feature);
+  --std-line: var(--brand-line);
+  --std-line-strong: var(--brand-line-strong);
+  --std-shadow-rest: var(--brand-shadow-card);
+  --std-shadow-hover: 0 2px 5px rgba(4, 20, 39, .04), 0 18px 38px rgba(4, 20, 39, .085);
+}
+
+body { color: var(--brand-ink); background: var(--brand-canvas); }
+.container { max-inline-size: 1200px; }
+
+main > :is(.section, section.section) {
+  padding-block: var(--brand-section-space);
+}
+
+main > :is(.section.bg-cream, section.section.bg-cream) {
+  background: var(--brand-canvas) !important;
+}
+
+main > :is(.section.bg-ivory, section.section.bg-ivory) {
+  background: var(--brand-paper) !important;
+}
+
+main :is(.sec-head, .section-head) {
+  max-inline-size: 720px;
+  margin-block-end: clamp(30px, 3.5vw, 46px);
+}
+
+main :is(.sec-head, .section-head) h2 {
+  max-inline-size: 18ch;
+  color: var(--brand-ink);
+  font-size: clamp(31px, 3vw, 46px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+main :is(.sec-head, .section-head) > :is(p, .lead):not(.eyebrow) {
+  max-inline-size: 70ch;
+  color: var(--brand-muted);
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.72;
+}
+
+main .eyebrow {
+  color: #5f7284;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+main .rule {
+  inline-size: 54px;
+  block-size: 2px;
+  background: linear-gradient(90deg, var(--brand-navy-900) 0 72%, var(--brand-gold-500) 72%);
+}
+
+main :is(.dark-surface, .phead, .hero, .portal-network, .cta-premium, .below-cta) .rule {
+  background: linear-gradient(90deg, rgba(255, 255, 255, .86) 0 62%, var(--brand-gold-500) 62%);
+}
+
+main :is(
+  .card:not(.dark-surface):not(.below-cta),
+  .widget,
+  .ncard,
+  .tile,
+  .portal-card,
+  .official-card,
+  .service-directory-card,
+  .sector-card,
+  .department-card,
+  .map-location-card,
+  .office-location-card,
+  .advisory-card,
+  .register-card,
+  .cw-ref-card,
+  .info-card,
+  .apply-card,
+  .drc-map-card
+) {
+  color: var(--brand-ink);
+  background: var(--brand-paper) !important;
+  border: 1px solid var(--brand-line) !important;
+  border-radius: var(--brand-radius-card) !important;
+  box-shadow: var(--brand-shadow-card) !important;
+}
+
+main :is(
+  .card:not(.dark-surface):not(.below-cta),
+  .widget,
+  .ncard,
+  .tile,
+  .portal-card,
+  .official-card,
+  .service-directory-card,
+  .sector-card,
+  .department-card,
+  .info-card,
+  .apply-card,
+  .drc-map-card
+) :is(h2, h3, h4) {
+  color: var(--brand-ink);
+}
+
+main :is(.grid, .cards, .widgets, .tiles, .official-grid, .portal-grid) {
+  gap: var(--brand-grid-gap);
+}
+
+main :is(.dark-surface, .portal-network, .cta-premium, .below-cta, .drc-cta-shell, .embassy-contact-panel) {
+  color: #ffffff;
+  border-color: rgba(201, 165, 60, .2);
+  border-radius: var(--brand-radius-feature);
+  box-shadow: var(--brand-shadow-feature);
+}
+
+main :is(.dark-surface, .portal-network, .cta-premium, .below-cta, .drc-cta-shell, .embassy-contact-panel) :is(h1, h2, h3, h4) {
+  color: #ffffff;
+}
+
+main :is(.dark-surface, .portal-network, .cta-premium, .below-cta, .drc-cta-shell, .embassy-contact-panel) :is(p, .lead, small) {
+  color: #c9d5df;
+}
+
+main :is(.btn, .kinshasa-action, .passport-email-action),
+.site-head :is(.btn, .header-news-cta),
+.head-cta .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-block-size: 44px;
+  padding: 10px 19px;
+  border: 1px solid transparent;
+  border-radius: var(--brand-radius-control);
+  box-shadow: none;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 750;
+  letter-spacing: .01em;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s var(--brand-ease);
+}
+
+main :is(.btn-gold, .kinshasa-action-primary),
+.site-head .btn-gold,
+.head-cta .btn-gold {
+  color: #211b0a;
+  background: var(--brand-gold-500);
+  border-color: #a98524;
+}
+
+main :is(.btn-navy, .kinshasa-action:not(.kinshasa-action-primary)),
+.site-head .btn-navy,
+.head-cta .btn-navy {
+  color: #ffffff;
+  background: var(--brand-navy-700);
+  border-color: var(--brand-navy-700);
+}
+
+main :is(.btn-outline, .btn-plain),
+.site-head .btn-outline {
+  color: var(--brand-navy-900);
+  background: var(--brand-paper);
+  border-color: var(--brand-line-strong);
+}
+
+main .btn-ghost {
+  color: var(--brand-navy-900);
+  background: transparent;
+  border-color: var(--brand-line-strong);
+}
+
+main :is(.phead, .hero, .dark-surface, .portal-network, .cta-premium, .below-cta) .btn-ghost {
+  color: #ffffff;
+  background: rgba(255, 255, 255, .045);
+  border-color: rgba(255, 255, 255, .38);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  main :is(.btn, .kinshasa-action, .passport-email-action):hover,
+  .site-head :is(.btn, .header-news-cta):hover {
+    transform: translateY(-2px);
+  }
+}
+
+main :is(.ncard .read, .dlbtn) {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 40px;
+  color: var(--brand-blue-600);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(54, 125, 167, .28);
+  text-underline-offset: 4px;
+}
+
+main .accordion {
+  display: grid;
+  gap: 10px;
+}
+
+main .accordion .acc-item {
+  overflow: hidden;
+  background: var(--brand-paper);
+  border: 1px solid var(--brand-line);
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+main .accordion .acc-q {
+  min-block-size: 58px;
+  padding: 16px 18px;
+  color: var(--brand-ink);
+  background: var(--brand-paper) !important;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+main .accordion .acc-q:hover {
+  color: var(--brand-navy-700);
+  background: #f4f7f8 !important;
+  padding-inline-start: 18px;
+}
+
+main .accordion .acc-q .pm {
+  display: grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  flex: 0 0 28px;
+  color: var(--brand-navy-900);
+  background: var(--brand-gold-100);
+  border-radius: 8px;
+}
+
+main .accordion .acc-a .inner {
+  color: var(--brand-muted);
+  line-height: 1.72;
+}
+
+main .qpanel {
+  background: var(--brand-navy-900) !important;
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 14px 34px rgba(4, 20, 39, .18);
+}
+
+main .qpanel .qtile {
+  color: #d5dee6;
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, .1);
+}
+
+main .qpanel .qtile:is(:hover, .active, [aria-current="location"]) {
+  color: #ffffff;
+  background: rgba(255, 255, 255, .065) !important;
+}
+
+main .qpanel .qtile-ic {
+  color: #dbe5ec;
+  background: rgba(255, 255, 255, .055);
+  border-color: rgba(255, 255, 255, .16);
+  box-shadow: none;
+}
+
+main .qpanel .qtile:is(.active, [aria-current="location"]) .qtile-ic {
+  color: var(--brand-navy-900);
+  background: var(--brand-gold-500);
+}
+
+main :is(table, .table-wrap) {
+  border-color: var(--brand-line);
+  border-radius: var(--brand-radius-card);
+  box-shadow: none;
+}
+
+main table thead { color: var(--brand-ink); background: #edf2f4; }
+main table tbody tr:nth-child(even) { background: #f8f9f9; }
+
+main :is(input, select, textarea) {
+  min-block-size: 48px;
+  color: var(--brand-ink);
+  background: var(--brand-paper);
+  border: 1px solid var(--brand-line-strong);
+  border-radius: var(--brand-radius-control);
+}
+
+main :is(input, select, textarea):focus {
+  border-color: var(--brand-blue-600);
+  outline: 3px solid rgba(54, 125, 167, .16);
+  outline-offset: 1px;
+}
+
+@media (max-width: 760px) {
+  :root { --brand-section-space: 52px; }
+  main :is(.sec-head, .section-head) h2 { font-size: clamp(28px, 8.8vw, 38px); }
+  main :is(.btn, .kinshasa-action, .passport-email-action),
+  .site-head :is(.btn, .header-news-cta),
+  .head-cta .btn { min-block-size: 48px; font-size: 13px; }
+}
+
 @media (prefers-color-scheme: dark) {
   :root { color-scheme: light; }
 }

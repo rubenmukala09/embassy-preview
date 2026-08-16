@@ -1,0 +1,93 @@
+# Embassy of the Democratic Republic of the Congo — Digital Brand System
+
+This system governs every public page in the Embassy preview. It is designed to feel authoritative, calm, precise and distinctly Congolese without using national colours as decoration on every component.
+
+## Brand principles
+
+1. **Authority through restraint.** Navy, paper and disciplined spacing carry the interface.
+2. **National identity through precision.** Gold marks priority and ceremony. DRC blue marks navigation and digital action. Red is reserved for warnings and urgent notices.
+3. **One action hierarchy.** Gold is the primary task action, navy is the standard navigation action, and outline is secondary. A component never presents two competing primary actions.
+4. **Information before ornament.** Photography, the Embassy seal and official content provide richness. Repeated cards do not need unrelated gradients, glows or decorative geometry.
+5. **Bilingual by construction.** Components allow French expansion and never depend on fixed text widths.
+
+## Semantic colour tokens
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `--brand-navy-950` | `#041427` | Deep institutional backgrounds |
+| `--brand-navy-900` | `#071f3a` | Primary brand surface and text |
+| `--brand-navy-700` | `#0a3158` | Navigation actions and hover |
+| `--brand-blue-600` | `#367da7` | Links, focus and digital navigation |
+| `--brand-gold-500` | `#c9a53c` | Primary action and ceremonial accent |
+| `--brand-red-600` | `#8f2d3b` | Warning and urgent states only |
+| `--brand-paper` | `#ffffff` | Cards and primary reading surfaces |
+| `--brand-canvas` | `#f5f7f7` | Page canvas and grouped sections |
+| `--brand-ink` | `#102a43` | Primary text |
+| `--brand-muted` | `#52677b` | Secondary text |
+| `--brand-line` | `rgba(16,42,67,.13)` | Standard border and divider |
+
+National-flag colour combinations may appear in photography, the official flag, the seal and rare ceremonial moments. They are not routine card accents.
+
+## Typography
+
+- **Display and institutional headings:** Merriweather, 700.
+- **Interface and body copy:** Public Sans, 400–800.
+- Page headings use a maximum measure of 18 characters when practical.
+- Body copy uses a maximum measure of 70 characters.
+- Eyebrows are quiet navigational labels, not decorative headlines.
+- Interface text never drops below 12px on desktop or 13px on mobile.
+
+## Spacing and geometry
+
+- Section rhythm: 64–88px desktop; 48–56px mobile.
+- Content gutter: 40px desktop; 20px tablet; 16px mobile.
+- Standard card radius: 14px.
+- Feature panel radius: 20px.
+- Button and control radius: 9px.
+- Standard grid gap: 16–24px.
+- Shadows use neutral navy-black elevation only; no coloured halos.
+
+## Surface hierarchy
+
+1. **Canvas:** cool diplomatic neutral.
+2. **Reading surface:** pure paper.
+3. **Operational card:** paper, one border, one restrained shadow.
+4. **Feature panel:** deep navy with white text and muted-gold accent.
+5. **Image feature:** photography supplies variation; its frame follows the same geometry.
+
+Cream and ivory section classes map to these two light surfaces. They must not introduce additional hue families.
+
+## CTA hierarchy
+
+- `.btn-gold`: one primary task per component or section.
+- `.btn-navy`: normal navigation and official next steps.
+- `.btn-outline`: secondary or reversible navigation.
+- `.btn-ghost`: only on dark or photographic surfaces.
+- `.widget-action`: a full-width final row that takes the visitor directly to the related system.
+- Text links remain DRC blue and always retain a visible underline on hover or focus.
+
+Buttons use a minimum 44px target on desktop and 48px on mobile. CTA labels begin with a verb and name their destination or outcome.
+
+## Component grammar
+
+- Cards share the same border, radius and elevation; content and imagery provide variation.
+- Widgets end with exactly one explicit CTA.
+- FAQs use paper rows, navy questions and one gold state marker.
+- Forms use persistent labels, white controls and blue focus rings.
+- Dark panels use only navy tonal variation; secondary text is blue-tinted white.
+- Status red is never used as a decorative accent.
+
+## Motion
+
+- Hover lift is limited to 2px.
+- Motion uses `cubic-bezier(.2,.75,.25,1)` and lasts 180–220ms.
+- No bounce, pulse or decorative continuous motion.
+- Reduced-motion preferences remove all non-essential transforms.
+
+## Accessibility and localization
+
+- Body contrast meets WCAG AA.
+- Focus rings are visible on every interactive component.
+- Icon-only controls require an accessible name.
+- Layouts allow at least 35% text expansion for French.
+- Meaning never depends only on colour, iconography or position.
