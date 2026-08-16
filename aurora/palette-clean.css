@@ -1518,3 +1518,66 @@ body main #tools .widget .widget-action .widget-action-arrow {
     background: linear-gradient(145deg, var(--brand-blue-500) 0%, var(--brand-blue-600) 48%, var(--brand-navy-700) 100%) !important;
   }
 }
+
+/* Embassy contact CTA rollback
+   Keep the locator and content hierarchy, but restore the restrained navy
+   treatment that preceded the full-width blue and gold colour field. */
+body main .section .card.below-cta.embassy-contact-panel {
+  background-color: var(--brand-navy-950) !important;
+  background-image:
+    radial-gradient(circle at 18% 76%, rgba(34, 172, 232, .14), transparent 31%),
+    linear-gradient(135deg, var(--brand-navy-950) 0%, #082c52 58%, var(--brand-navy-700) 100%) !important;
+  background-position: center !important;
+  background-size: cover !important;
+  border-color: rgba(191, 233, 251, .2) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 28px 62px -38px rgba(1, 26, 53, .82) !important;
+}
+
+body main .section .card.below-cta.embassy-contact-panel::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .055)),
+    var(--brand-signature) top / 100% 3px no-repeat !important;
+}
+
+body main .embassy-contact-panel .embassy-contact-copy {
+  border-color: rgba(191, 233, 251, .18) !important;
+  border-left-color: rgba(242, 206, 79, .36) !important;
+  background: rgba(6, 26, 50, .66) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 20px 42px -32px rgba(0, 10, 26, .76) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+body main .embassy-contact-panel .embassy-map-caption {
+  border-color: rgba(191, 233, 251, .18) !important;
+  background: rgba(6, 26, 50, .74) !important;
+  box-shadow: 0 16px 32px -25px rgba(0, 10, 26, .78) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body main .embassy-contact-panel .embassy-contact-copy:hover {
+    transform: none !important;
+    border-color: rgba(191, 233, 251, .26) !important;
+    border-left-color: rgba(242, 206, 79, .42) !important;
+    background: rgba(6, 26, 50, .72) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .09),
+      0 20px 42px -32px rgba(0, 10, 26, .8) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body main .embassy-contact-panel .embassy-contact-copy {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    border-left: 0 !important;
+    border-top-color: rgba(191, 233, 251, .18) !important;
+    background: rgba(6, 26, 50, .54) !important;
+  }
+}
