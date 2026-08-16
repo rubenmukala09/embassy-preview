@@ -1,0 +1,311 @@
+/*
+   Embassy clean palette contract
+   Loaded after every page and footer stylesheet. This is the final colour
+   authority for the public UI; authentic flags, seals and photography retain
+   their original colours.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Institutional core */
+  --brand-navy-950: #03182e;
+  --brand-navy-900: #052746;
+  --brand-navy-700: #084b76;
+  --brand-blue-600: #147fba;
+  --brand-blue-500: #2298cf;
+  --brand-sky-100: #eaf5fb;
+  --brand-sky-050: #f5fafd;
+  --brand-gold-500: #efc94c;
+  --brand-gold-100: #fff6d4;
+  --brand-paper: #ffffff;
+  --brand-canvas: #f5f8fa;
+  --brand-ink: #0b2945;
+  --brand-muted: #526b80;
+  --brand-line: rgba(5, 39, 70, .14);
+
+  /* Current component contract */
+  --std-ink: var(--brand-ink);
+  --std-muted: var(--brand-muted);
+  --std-blue: var(--brand-blue-600);
+  --std-blue-dark: var(--brand-navy-700);
+  --std-navy: var(--brand-navy-900);
+  --std-gold: var(--brand-gold-500);
+  --std-paper: var(--brand-paper);
+  --std-line: var(--brand-line);
+  --std-line-strong: rgba(5, 39, 70, .22);
+  --std-surface: linear-gradient(155deg, #ffffff 0%, #ffffff 70%, #f0f8fc 100%);
+  --std-surface-warm: linear-gradient(155deg, #ffffff 0%, #ffffff 70%, #f4f9fc 100%);
+
+  /* Legacy aliases resolve into the same reduced palette. */
+  --navy: var(--brand-navy-900);
+  --navy-900: var(--brand-navy-950);
+  --navy-700: var(--brand-navy-700);
+  --navy-600: var(--brand-navy-700);
+  --navy-050: var(--brand-sky-100);
+  --sky: var(--brand-blue-600);
+  --sky-deep: var(--brand-navy-700);
+  --blue: var(--brand-blue-600);
+  --gold: var(--brand-gold-500);
+  --gold-bright: #f5d768;
+  --gold-soft: #fff0a8;
+  --gold-deep: #755d12;
+  --gold-grad: linear-gradient(180deg, #f8dc74 0%, #efc94c 100%);
+  --ivory: var(--brand-canvas);
+  --cream: var(--brand-sky-050);
+  --paper: var(--brand-paper);
+  --ink: var(--brand-ink);
+  --muted: var(--brand-muted);
+  --faint: #6d8294;
+  --line: var(--brand-line);
+  --line-2: rgba(5, 39, 70, .09);
+
+  /* Former red-family aliases are intentionally blue. Urgency is expressed
+     with icon, copy, contrast and borders rather than a third UI hue. */
+  --red: var(--brand-blue-600);
+  --red-deep: var(--brand-navy-700);
+  --red-soft: #8bc7e4;
+  --brand-red-600: var(--brand-blue-600);
+  --lux-red: var(--brand-navy-700);
+  --vs-red-600: var(--brand-blue-600);
+  --bad: var(--brand-navy-700);
+  --warn: #755d12;
+  --info: var(--brand-blue-600);
+  --ok: #13708f;
+  --color-error: var(--brand-navy-700);
+  --color-warning: #755d12;
+}
+
+html {
+  accent-color: var(--brand-blue-600);
+}
+
+body {
+  color: var(--brand-ink);
+  background: var(--brand-paper);
+}
+
+main {
+  --ops-blue: var(--brand-blue-600);
+  --ops-navy: var(--brand-navy-700);
+  --ops-gold: var(--brand-gold-500);
+  --ops-green: var(--brand-blue-600);
+}
+
+::selection {
+  color: var(--brand-navy-950);
+  background: #d6edf8;
+}
+
+:focus-visible {
+  outline-color: var(--brand-blue-600) !important;
+}
+
+/* Calm surfaces: remove the old cream/mustard cast without flattening depth. */
+main :is(.cream, .ivory, .bg-cream, .bg-ivory) {
+  background-color: var(--brand-canvas) !important;
+}
+
+main :is(.card, .widget, .panel, .info-card, .official-card, .portal-card,
+  .department-card, .sector-card, .journey-card, .office-location-card,
+  .annual-event, .annual-shell, .field input, .field select, .field textarea) {
+  border-color: var(--brand-line);
+}
+
+/* One quiet section divider instead of decorative multi-colour rules. */
+main > :is(.section, section.section) + :is(.section, section.section)::before {
+  background: linear-gradient(90deg, transparent, rgba(20, 127, 186, .24) 24%, rgba(239, 201, 76, .28) 50%, rgba(20, 127, 186, .24) 76%, transparent) !important;
+}
+
+main .phead::after,
+.phead::after,
+.hero-flagstripe,
+.official-card::before,
+.passport-communique::before,
+.portal-card::after {
+  background: linear-gradient(90deg, var(--brand-blue-600) 0 72%, var(--brand-gold-500) 72% 100%) !important;
+}
+
+.flagbar .b,
+.hero-flagstripe .b,
+body .foot .flagbar .b {
+  background: var(--brand-blue-600) !important;
+}
+
+.flagbar .y,
+.hero-flagstripe .y,
+body .foot .flagbar .y {
+  background: var(--brand-gold-500) !important;
+}
+
+.flagbar .r,
+.hero-flagstripe .r,
+body .foot .flagbar .r {
+  background: var(--brand-navy-700) !important;
+}
+
+.rule,
+.domain-rail i {
+  background: var(--brand-gold-500) !important;
+}
+
+main > .section:not(.tight) > .container::before {
+  background:
+    radial-gradient(circle at 11px 50%, var(--brand-blue-600) 0 2px, rgba(20, 127, 186, .15) 3px 6px, transparent 7px),
+    rgba(255, 255, 255, .9) !important;
+}
+
+main > .section:not(.tight) > .container::after {
+  background: linear-gradient(90deg, var(--brand-blue-600), var(--brand-gold-500) 70%, transparent) !important;
+}
+
+.announce .tag::before,
+main .tag::before,
+.status-dot.open,
+.status-dot.closed {
+  background: var(--brand-blue-600) !important;
+  box-shadow: 0 0 0 3px rgba(20, 127, 186, .15) !important;
+}
+
+/* Primary and ceremonial actions use a clear, bright gold with dark copy. */
+:is(.btn-gold, .annual-download, .annual-controls .btn-primary,
+  .newsletter-field .btn, .footer-news-link) {
+  color: var(--brand-navy-950) !important;
+  background: linear-gradient(180deg, #f7dc78 0%, var(--brand-gold-500) 100%) !important;
+  border-color: #caa52e !important;
+  box-shadow: 0 10px 24px -18px rgba(3, 24, 46, .5), inset 0 1px rgba(255, 255, 255, .6) !important;
+}
+
+:is(.btn-gold, .annual-download, .annual-controls .btn-primary,
+  .newsletter-field .btn, .footer-news-link):hover {
+  color: var(--brand-navy-950) !important;
+  background: linear-gradient(180deg, #f9e08a 0%, #e9bf3d 100%) !important;
+}
+
+:is(.btn-navy, .widget-action, .card-action, .route-action) {
+  color: #ffffff !important;
+  background: linear-gradient(180deg, var(--brand-navy-700), var(--brand-navy-900)) !important;
+  border-color: rgba(255, 255, 255, .14) !important;
+}
+
+.btn-outline {
+  color: var(--brand-navy-900) !important;
+  background: #ffffff !important;
+  border-color: rgba(5, 39, 70, .25) !important;
+}
+
+.btn-outline:hover {
+  color: var(--brand-blue-600) !important;
+  border-color: var(--brand-blue-600) !important;
+}
+
+/* Badges and media types stay within blue, sky and clean gold. */
+:is(.badge-gold, .badge-warn, .badge-notice, .tag-gold) {
+  color: #604d12 !important;
+  background: var(--brand-gold-100) !important;
+  border-color: rgba(117, 93, 18, .18) !important;
+}
+
+:is(.badge-bad, .badge-video, .badge-video2, .badge-info, .tag-video,
+  .ic-video, .mp-badge, .status-critical) {
+  color: var(--brand-navy-700) !important;
+  background: var(--brand-sky-100) !important;
+  border-color: rgba(20, 127, 186, .22) !important;
+}
+
+:is(.badge-ok, .badge-audio, .ic-audio, .verified) {
+  color: var(--brand-navy-700) !important;
+  background-color: var(--brand-sky-100) !important;
+}
+
+/* Official alerts: unmistakable without an unrelated red surface. */
+.emergency {
+  color: #ffffff !important;
+  background: linear-gradient(110deg, var(--brand-navy-950), var(--brand-navy-700)) !important;
+  border: 1px solid rgba(239, 201, 76, .42) !important;
+  box-shadow: 0 18px 38px -28px rgba(3, 24, 46, .75) !important;
+}
+
+.emergency .ico {
+  color: var(--brand-gold-500) !important;
+  background: rgba(255, 255, 255, .09) !important;
+}
+
+.emergency .ico svg,
+.emergency .em-sub {
+  color: #d8e8f3 !important;
+}
+
+.emergency .em-act {
+  color: var(--brand-navy-950) !important;
+  background: var(--brand-gold-500) !important;
+}
+
+.announce .ann-emergency,
+.nav .nav-emergency,
+.topbar .top-emergency {
+  color: #ffffff !important;
+  background: rgba(20, 127, 186, .18) !important;
+  border-color: rgba(141, 207, 236, .38) !important;
+  box-shadow: none !important;
+}
+
+.announce .ann-emergency:hover,
+.nav .nav-emergency:hover,
+.topbar .top-emergency:hover {
+  color: #ffffff !important;
+  background: rgba(20, 127, 186, .32) !important;
+  border-color: rgba(141, 207, 236, .62) !important;
+}
+
+/* Annual calendar and notices: pale sky replaces muddy yellow panels. */
+.annual-note {
+  color: var(--brand-ink) !important;
+  background: var(--brand-sky-100) !important;
+  border: 1px solid rgba(20, 127, 186, .2) !important;
+  box-shadow: none !important;
+}
+
+.annual-note a {
+  color: var(--brand-navy-700) !important;
+}
+
+.annual-shell::before,
+.annual-top::before,
+.annual-event::after {
+  background: linear-gradient(90deg, var(--brand-blue-600), var(--brand-gold-500)) !important;
+}
+
+/* Footer uses the same core palette and no decorative red band. */
+body .foot {
+  color: #cbddea;
+  background: linear-gradient(180deg, var(--brand-navy-900), var(--brand-navy-950)) !important;
+  border-image: linear-gradient(90deg, var(--brand-blue-600) 0 76%, var(--brand-gold-500) 76%) 1 !important;
+}
+
+body .foot .ft-sub,
+body .foot h5 {
+  color: #f4d66c !important;
+}
+
+body .foot a:hover,
+body .foot .bar a:hover {
+  color: #f4d66c !important;
+  text-decoration-color: #f4d66c !important;
+}
+
+body .foot .newsletter-field input:focus {
+  border-color: var(--brand-blue-500) !important;
+  outline-color: rgba(34, 152, 207, .3) !important;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --brand-muted: #304d65;
+    --brand-line: rgba(3, 24, 46, .34);
+  }
+
+  :is(.btn-gold, .btn-navy, .btn-outline) {
+    border-width: 2px !important;
+  }
+}
