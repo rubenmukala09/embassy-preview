@@ -1491,3 +1491,30 @@ body main .division-card:first-child p {
     background: #fff;
   }
 }
+
+/* Operational widget actions sit on a dark diplomatic surface. Keep their
+   labels and icons visibly white in every link state. */
+body main #tools .widget .widget-action,
+body main #tools .widget .widget-action:visited,
+body main #tools .widget .widget-action:hover,
+body main #tools .widget .widget-action:active,
+body main #tools .widget .widget-action .widget-action-label,
+body main #tools .widget .widget-action .widget-action-arrow {
+  color: #ffffff !important;
+}
+
+body main #tools .widget .widget-action {
+  background: linear-gradient(145deg, var(--brand-blue-600) 0%, var(--brand-navy-700) 52%, var(--brand-navy-900) 100%) !important;
+  border-color: rgba(255, 255, 255, .18) !important;
+  box-shadow: 0 14px 28px -22px rgba(1, 26, 53, .9), inset 0 1px rgba(255, 255, 255, .18) !important;
+}
+
+body main #tools .widget .widget-action .widget-action-arrow {
+  background: rgba(2, 35, 69, .46) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body main #tools .widget .widget-action:hover {
+    background: linear-gradient(145deg, var(--brand-blue-500) 0%, var(--brand-blue-600) 48%, var(--brand-navy-700) 100%) !important;
+  }
+}
