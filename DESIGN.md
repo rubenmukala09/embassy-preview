@@ -5,7 +5,7 @@ This system governs every public page in the Embassy preview. It is designed to 
 ## Brand principles
 
 1. **Authority through restraint.** Navy, paper and disciplined spacing carry the interface.
-2. **National identity through precision.** Clean gold marks priority and ceremony. DRC blue marks navigation, digital action and official alerts. Red appears only inside authentic flags, seals and photography—not as a routine interface colour.
+2. **National identity through precision.** Congo blue marks navigation and digital action. Clean yellow marks priority and ceremony. Flag red is reserved for signature rails, urgent actions and error states; it never fills routine cards or reading surfaces.
 3. **One action hierarchy.** Gold is the primary task action, navy is the standard navigation action, and outline is secondary. A component never presents two competing primary actions.
 4. **Information before ornament.** Photography, the Embassy seal and official content provide richness. Repeated cards do not need unrelated gradients, glows or decorative geometry.
 5. **Bilingual by construction.** Components allow French expansion and never depend on fixed text widths.
@@ -17,16 +17,17 @@ This system governs every public page in the Embassy preview. It is designed to 
 | `--brand-navy-950` | `#011a35` | Deep institutional backgrounds |
 | `--brand-navy-900` | `#052f57` | Primary brand surface and text |
 | `--brand-navy-700` | `#075d96` | Navigation actions, alerts and hover |
-| `--brand-blue-600` | `#0c8fd3` | Links, focus and digital navigation |
-| `--brand-gold-500` | `#f2ce4f` | Primary action and ceremonial accent |
-| `--brand-sky-100` | `#def3fd` | Quiet information and grouped surfaces |
+| `--brand-blue-600` | `#2d70d6` | Links, focus and digital navigation |
+| `--brand-gold-500` | `#f3d34a` | Primary action and ceremonial accent |
+| `--brand-red-600` | `#c4333e` | Signature rails, urgency and error states |
+| `--brand-sky-100` | `#e7f1ff` | Quiet information and grouped surfaces |
 | `--brand-paper` | `#ffffff` | Cards and primary reading surfaces |
 | `--brand-canvas` | `#f2f8fc` | Page canvas and grouped sections |
 | `--brand-ink` | `#082b4b` | Primary text |
 | `--brand-muted` | `#486a84` | Secondary text |
 | `--brand-line` | `rgba(5,47,87,.17)` | Standard border and divider |
 
-National-flag colour combinations may appear in photography, the official flag and the seal. Interface rule lines, card accents, alerts and status surfaces use only navy, DRC blue, pale sky and clean gold.
+National-flag colour combinations may appear in photography, the official flag, the seal and thin institutional signature rails. Routine cards remain navy, paper or pale sky; red is never used as decorative card fill.
 
 ## Typography
 
@@ -64,7 +65,7 @@ Cream and ivory section classes map to these two light surfaces. They must not i
 - The shared quick-access dock uses a navy-to-cobalt field with gold reserved for the active or priority state.
 - Active navigation uses a pale-sky surface and blue rule; it does not compete with the gold primary CTA.
 - Cards use a restrained sky cast at their lower edge, with stronger blue borders only on hover or focus.
-- Red remains absent from interface decoration and appears only in authentic national imagery.
+- Red appears in thin flag-signature rails and semantic urgent/error states; blue and paper remain visually dominant.
 
 ## CTA hierarchy
 
@@ -86,7 +87,7 @@ Buttons use a minimum 44px target on desktop and 48px on mobile. CTA labels begi
 - FAQs use paper rows, navy questions and one gold state marker.
 - Forms use persistent labels, white controls and blue focus rings.
 - Dark panels use only navy tonal variation; secondary text is blue-tinted white.
-- Official alerts use navy/blue contrast, an icon and explicit copy; meaning never depends on a red fill.
+- Official alerts use navy structure with a red urgent action, an icon and explicit copy; meaning never depends on colour alone.
 
 ## Motion
 
