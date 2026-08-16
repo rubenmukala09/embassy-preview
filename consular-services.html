@@ -44,7 +44,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://rubenmukala09.github.io/embassy-preview/#website","url":"https://rubenmukala09.github.io/embassy-preview/","name":"Embassy of the DR Congo, Washington, D.C.","inLanguage":"en","description":"Unofficial demonstration prototype of a diplomatic mission website."},{"@type":"WebPage","@id":"https://rubenmukala09.github.io/embassy-preview/consular-services.html#webpage","url":"https://rubenmukala09.github.io/embassy-preview/consular-services.html","name":"Consular Services, Embassy of the Democratic Republic of the Congo, Washington, D.C.","description":"Consular services for DR Congolese citizens in the United States - passports, visas, travel documents, legalization, fees and processing times.","inLanguage":"en","isPartOf":{"@id":"https://rubenmukala09.github.io/embassy-preview/#website"}},{"@type":"BreadcrumbList","@id":"https://rubenmukala09.github.io/embassy-preview/consular-services.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rubenmukala09.github.io/embassy-preview/"},{"@type":"ListItem","position":2,"name":"Consular Services","item":"https://rubenmukala09.github.io/embassy-preview/consular-services.html"}]}]}</script>
 <link rel="stylesheet" href="/embassy-preview/aurora/component-standard.css?v=1787245200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/universal-footer.css?v=1786780800" />
-<link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900003" />
+<link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900004" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -224,16 +224,28 @@
 </div></section>
 
 <!-- PASSPORT VIDEO GUIDE -->
-<section class="section dark-surface" style="background:linear-gradient(160deg,#0a1c40,#06122c)" id="passport-video"><div class="container">
-  <div class="sec-head center">
-    <p class="eyebrow on-navy">Step-by-step guide</p><div class="rule"></div>
-    <h2 style="color:#fff">How to obtain a Congolese passport</h2>
-    <p style="color:#c2cde0">Watch this step-by-step guide to applying for a biometric passport of the Democratic Republic of the Congo, from pre-registration and payment to your biometric appointment. English subtitles are turned on by default - if they don&rsquo;t appear, use the CC button and choose English.</p>
+<section class="section dark-surface passport-video-section" id="passport-video"><div class="container">
+  <div class="passport-video-shell">
+    <div class="passport-video-copy">
+      <span class="passport-video-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h5M8 15h4"/><path d="m15 14 4 2.5-4 2.5Z"/></svg></span>
+      <h2>How to obtain a Congolese passport</h2>
+      <p>Follow the complete biometric-passport process—from online pre-registration and payment to your in-person biometric appointment.</p>
+      <ol class="passport-video-steps" aria-label="Passport guide chapters">
+        <li><span>01</span><b>Pre-register online</b></li>
+        <li><span>02</span><b>Prepare your documents</b></li>
+        <li><span>03</span><b>Attend biometrics</b></li>
+      </ol>
+      <div class="passport-video-actions"><a class="btn btn-gold" href="#passport">Read the written guide</a><a class="btn btn-ghost" href="#forms">Open official forms</a></div>
+      <p class="passport-video-caption">French audio · English subtitles available with the CC control.</p>
+    </div>
+    <div class="passport-video-frame">
+      <div class="passport-video-label"><span>Official video guide</span><small>Approx. 6 minutes</small></div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/qUfBVZsywb0?cc_load_policy=1&amp;cc_lang_pref=en&amp;hl=en&amp;rel=0" title="How to obtain a Congolese passport - step-by-step guide" loading="lazy" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p>Original title: &laquo;&nbsp;D&eacute;marches pour obtenir un passeport congolais&nbsp;&raquo;.</p>
+    </div>
   </div>
-  <div class="video-embed" style="max-width:960px;margin:0 auto">
-    <iframe src="https://www.youtube.com/embed/qUfBVZsywb0?cc_load_policy=1&amp;cc_lang_pref=en&amp;hl=en&amp;rel=0" title="How to obtain a Congolese passport - step-by-step guide" loading="lazy" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-  <p class="muted center mt16" style="color:#8ea0c4;font-size:12px">Original title (French): &laquo;&nbsp;D&eacute;marches pour obtenir un passeport congolais&nbsp;&raquo;.</p>
 </div></section>
 
 <!-- VISAS -->
@@ -290,10 +302,13 @@
 </div></section>
 
 <!-- FEES TABLE -->
-<section class="section bg-cream" id="fees"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Published reference</p><div class="rule"></div><h2>Consular fee schedule</h2><p>The amounts below reproduce the Embassy’s publicly published fee references so applicants can prepare. They are not a live price feed and must be confirmed before payment.</p></div>
-  <div class="official-note" role="note"><strong>Confirm both the amount and payment method.</strong><br />The legacy Embassy pages publish different payment pathways for different services: the fee page refers to blank money orders, the legalization page also mentions certified or company checks, and the 2025 biometric-passport notice directs applicants to an online Equity BCDC payment link after pre-registration. Follow the instruction for your exact service and contact the Embassy if the sources differ.</div>
-  <div class="card" style="overflow:hidden">
+<section class="section bg-cream fees-section" id="fees"><div class="container">
+  <div class="fees-masthead">
+    <div class="fees-heading"><span class="fees-symbol" aria-hidden="true">$</span><div><h2>Consular fee schedule</h2><p>Published reference amounts for planning. Confirm the exact fee and accepted payment method before submitting any application.</p></div></div>
+    <div class="fees-verification" role="note"><strong>Verify before payment</strong><p>Payment pathways vary by service. Passport applicants receive the approved Equity BCDC link after pre-registration; other services may use a different published method.</p><a href="/embassy-preview/contact.html">Confirm with Consular Affairs →</a></div>
+  </div>
+  <div class="fees-legend" aria-label="Fee table guide"><span><i></i>Visa services</span><span><i></i>Civil and notarial services</span><span><i></i>Travel documents</span><small>Amounts shown in U.S. dollars</small></div>
+  <div class="card fees-ledger">
     <table class="table">
       <thead><tr><th>Service</th><th>Fee (USD)</th></tr></thead>
       <tbody>
@@ -320,7 +335,7 @@
       </tbody>
     </table>
   </div>
-  <p class="muted center mt16" style="font-size:12.5px">Published fees are non-refundable and may change. Confirm the correct amount and service-specific payment instruction before submitting your application. <a href="https://www.ambadrcusa.org/consular-affairs/all-consular-affairs-related-fees/" target="_blank" rel="noopener noreferrer">Verify the official fee schedule ↗</a> · <a href="https://www.ambadrcusa.org/consular-affairs/legalization-of-documents/" target="_blank" rel="noopener noreferrer">Verify legalization instructions ↗</a></p>
+  <div class="fees-foot"><p>Published fees are non-refundable and may change. Always confirm service-specific payment instructions before submitting.</p><div><a href="https://www.ambadrcusa.org/consular-affairs/all-consular-affairs-related-fees/" target="_blank" rel="noopener noreferrer">Verify official fees ↗</a><a href="https://www.ambadrcusa.org/consular-affairs/legalization-of-documents/" target="_blank" rel="noopener noreferrer">Legalization guidance ↗</a></div></div>
 </div></section>
 
 <!-- CHECK STATUS -->
@@ -358,7 +373,7 @@
 </div></section>
 
 <!-- FORMS & DOWNLOADS -->
-<section class="section bg-ivory"><div class="container">
+<section class="section bg-ivory" id="forms"><div class="container">
   <div class="sec-head center"><p class="eyebrow">Official resources</p><div class="rule"></div><h2>Forms &amp; downloads</h2><p>These buttons open the application files currently linked by the Embassy’s official website.</p></div>
   <div class="dl-list" style="max-width:760px;margin:0 auto">
     <a class="dl-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Passport_application_writable.pdf" target="_blank" rel="noopener noreferrer">

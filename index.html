@@ -76,7 +76,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://rubenmukala09.github.io/embassy-preview/#website","url":"https://rubenmukala09.github.io/embassy-preview/","name":"Embassy of the DR Congo, Washington, D.C.","inLanguage":"en","description":"Unofficial demonstration prototype of a diplomatic mission website."},{"@type":"WebPage","@id":"https://rubenmukala09.github.io/embassy-preview#webpage","url":"https://rubenmukala09.github.io/embassy-preview","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","description":"Website preview of the Embassy of the Democratic Republic of the Congo in Washington, D.C. - consular services, visas, passports, news and contact.","inLanguage":"en","isPartOf":{"@id":"https://rubenmukala09.github.io/embassy-preview/#website"}},{"@type":"BreadcrumbList","@id":"https://rubenmukala09.github.io/embassy-preview#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rubenmukala09.github.io/embassy-preview/"}]}]}</script>
 <link rel="stylesheet" href="/embassy-preview/aurora/component-standard.css?v=1787245200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/universal-footer.css?v=1786780800" />
-<link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900003" />
+<link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900004" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -308,10 +308,12 @@
 </div></section>
 
 <!-- TRAVEL ADVISORY & EMBASSY REGISTRATION -->
-<section class="section bg-ivory" id="advisory"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Travel, safety &amp; registration</p><div class="rule"></div>
-    <h2>Travelling to or living in the DRC?</h2>
-    <p>Review the current entry requirements and travel guidance, and register with the Embassy so we can send you alerts and reach you in an emergency.</p></div>
+<section class="section bg-ivory advisory-section" id="advisory"><div class="container">
+  <div class="advisory-masthead">
+    <span class="advisory-masthead-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4.5 6.4v5.1c0 4.7 3.2 8.1 7.5 9.5 4.3-1.4 7.5-4.8 7.5-9.5V6.4L12 3Z"/><path d="M9 12h6M12 9v6"/></svg></span>
+    <div><h2>Travelling to or living in the DRC?</h2><p>Check entry requirements, prepare your documents, and register for Embassy safety and consular notices.</p></div>
+    <a class="advisory-masthead-link" href="/embassy-preview/contact.html"><span>Need urgent guidance?</span><b>Contact the Embassy →</b></a>
+  </div>
   <div class="advisory-grid">
     <article class="advisory-card" data-severity="caution">
       <div class="adv-status"><span class="adv-flag" aria-hidden="true"></span><div><b>Before you travel</b><span>Verify current requirements before departure</span></div></div>
@@ -346,19 +348,19 @@
 </div></section>
 
 <!-- Suggestion box (feeds the dashboard inquiries) -->
-<section class="section" id="suggestions"><div class="container">
-  <div class="split">
-    <div>
-      <p class="eyebrow">Your voice</p><div class="rule left"></div>
-      <h2 style="font-size:28px;margin-top:12px">Suggestion box</h2>
-      <p class="lead mt16">Have an idea to improve our services, or something to report about this website? Share it with us - every suggestion reaches the Embassy team for review.</p>
-      <ul class="checklist mt24">
-        <li>Goes straight to the Embassy team</li>
-        <li>You receive a reference number by email</li>
-        <li>No account needed</li>
+<section class="section suggestion-section" id="suggestions"><div class="container">
+  <div class="suggestion-shell">
+    <div class="suggestion-brief">
+      <span class="suggestion-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 9h8M8 13h5"/></svg></span>
+      <h2>Help us improve the Embassy experience.</h2>
+      <p>Share an idea, report unclear information, or tell us where a service could work better. Every message is routed to the Embassy team for review.</p>
+      <ul class="suggestion-promises">
+        <li><b>Direct review</b><span>Sent to the Embassy team</span></li>
+        <li><b>Reference by email</b><span>Keep a record of your message</span></li>
+        <li><b>No account</b><span>Send feedback in one step</span></li>
       </ul>
     </div>
-    <div class="card pad" data-intake="suggestion">
+    <div class="suggestion-form" data-intake="suggestion">
       <div class="rg-row">
         <div class="field"><label for="s-name">Your name</label><input id="s-name" placeholder="Your name" /></div>
         <div class="field"><label for="s-email">Email</label><input id="s-email" type="email" placeholder="you@example.com" /></div>
@@ -371,21 +373,20 @@
 </div></section>
 
 <!-- DIPLOMATIC MISSION -->
-<section class="section bg-ivory"><div class="container">
-  <div class="split">
-    <div>
-      <p class="eyebrow">About the Embassy</p><div class="rule left"></div>
-      <h2 style="font-size:32px;margin-top:14px">Our diplomatic mission</h2>
-      <p class="lead mt16">The Embassy of the Democratic Republic of the Congo advances the interests of the DRC and its citizens, fosters international cooperation, and promotes peace, prosperity and sustainable development between the DRC and the United States.</p>
-      <div class="stats mt32">
+<section class="section bg-ivory mission-section"><div class="container">
+  <div class="mission-shell">
+    <div class="mission-copy">
+      <h2>Our diplomatic mission</h2>
+      <p>The Embassy advances the interests of the Democratic Republic of the Congo and its citizens while strengthening cooperation, peace, prosperity and sustainable development with the United States.</p>
+      <div class="stats mission-stats">
         <div class="stat"><i></i><b>60+</b><span>Years of relations</span></div>
         <div class="stat"><i></i><b>4</b><span>Consular services</span></div>
         <div class="stat"><i></i><b>50</b><span>U.S. states served</span></div>
         <div class="stat"><i></i><b>2</b><span>Official languages</span></div>
       </div>
-      <div class="mt32"><a class="btn btn-navy" href="/embassy-preview/the-embassy.html">Learn more about us</a></div>
+      <div class="mission-actions"><a class="btn btn-navy" href="/embassy-preview/the-embassy.html">Explore the Embassy</a><a href="/embassy-preview/the-embassy.html#divisions">Meet our divisions →</a></div>
     </div>
-    <div class="media"><img width="1672" height="941" loading="lazy" src="/embassy-preview/aurora/assets/img/hero/mboka-conference-community-hug-flags-2026.webp" alt="DRC–U.S. diplomatic reception" /></div>
+    <figure class="mission-media"><img width="1672" height="941" loading="lazy" src="/embassy-preview/aurora/assets/img/hero/mboka-conference-community-hug-flags-2026.webp" alt="DRC–U.S. diplomatic reception" /><figcaption><span>Diplomacy in action</span><b>Community, cooperation and service</b></figcaption></figure>
   </div>
 </div></section>
 
