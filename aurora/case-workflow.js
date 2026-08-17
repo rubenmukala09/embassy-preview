@@ -22,7 +22,6 @@
   var board = document.getElementById("cw-board");
   if (!board) return;
 
-  var detailEl = document.getElementById("cw-detail");
   var statsEl = document.getElementById("cw-stats");
   var liveEl = document.getElementById("cw-live");
   var tabsEl = document.querySelector(".cw-role-tabs");
@@ -176,39 +175,53 @@
     return '<div class="cw-stat ' + (cls || "") + '"><b>' + n + "</b><span>" + esc(label) + "</span></div>";
   }
 
+  /* The board reads down the page, one band per stage, with the files inside
+     a band wrapping onto as many rows as they need.
+
+     It used to be seven columns in a horizontal scroller, which meant most
+     of the process was off the right-hand edge — you had to scroll sideways
+     to discover that stages existed at all, and cases hid in the columns you
+     had not reached. Reading order now matches the order of the process, and
+     nothing is ever off-screen horizontally. */
   function renderBoard() {
     board.innerHTML = "";
-    var cols = STAGES.slice();
-    cols.splice(2, 0, HOLD); // hold sits beside the early stages, where it happens
+    var order = STAGES.slice();
+    order.splice(2, 0, HOLD); // the stall belongs where it happens, early on
 
-    cols.forEach(function (st) {
-      var inCol = cases.filter(function (c) { return c.stage === st.id && visible(c); });
-      var col = document.createElement("section");
-      col.className = "cw-col" + (st.id === "hold" ? " is-hold" : "");
-      col.setAttribute("aria-label", st.name + ", " + inCol.length + " files");
+    order.forEach(function (st, i) {
+      var inBand = cases.filter(function (c) { return c.stage === st.id && visible(c); });
+
+      var band = document.createElement("section");
+      band.className = "cw-band" + (st.id === "hold" ? " is-hold" : "") + (inBand.length ? "" : " is-empty");
+      band.setAttribute("aria-label", st.name + ", " + inBand.length + " files");
 
       var head = document.createElement("header");
-      head.className = "cw-col-head";
-      head.innerHTML = "<h3>" + esc(st.name) + "</h3><span class='cw-count'>" + inCol.length + "</span>";
-      col.appendChild(head);
+      head.className = "cw-band-head";
+      head.innerHTML =
+        '<span class="cw-step" aria-hidden="true">' + (st.id === "hold" ? "!" : (i < 2 ? i + 1 : i)) + "</span>" +
+        '<div class="cw-band-title"><h3>' + esc(st.name) + "</h3>" +
+        '<p>' + esc(st.blurb) + "</p></div>" +
+        '<span class="cw-count">' + inBand.length + '<span class="cw-sr"> files</span></span>';
+      band.appendChild(head);
 
-      var note = document.createElement("p");
-      note.className = "cw-col-blurb";
-      note.textContent = st.blurb;
-      col.appendChild(note);
-
-      if (!inCol.length) {
+      var body = document.createElement("div");
+      body.className = "cw-band-cards";
+      if (!inBand.length) {
         var none = document.createElement("p");
         none.className = "cw-empty";
-        none.textContent = "Nothing here.";
-        col.appendChild(none);
+        none.textContent = "Nothing at this stage.";
+        body.appendChild(none);
+      } else {
+        inBand.forEach(function (c) { body.appendChild(card(c)); });
       }
+      band.appendChild(body);
 
-      inCol.forEach(function (c) {
-        col.appendChild(card(c));
-      });
+      /* The detail opens inside the band that holds the file, directly under
+         it, rather than in a side rail the reader has to look away to find. */
+      var open = inBand.filter(function (c) { return c.ref === selected; })[0];
+      if (open) band.appendChild(detailPanel(open));
 
-      board.appendChild(col);
+      board.appendChild(band);
     });
   }
 
@@ -217,7 +230,7 @@
     var b = document.createElement("button");
     b.type = "button";
     b.className = "cw-card" + (isOverdue(c) ? " is-late" : "") + (selected === c.ref ? " is-sel" : "");
-    b.setAttribute("aria-pressed", selected === c.ref ? "true" : "false");
+    b.setAttribute("aria-expanded", selected === c.ref ? "true" : "false");
     b.innerHTML =
       '<span class="cw-ref">' + esc(c.ref) + "</span>" +
       '<span class="cw-svc">' + esc(svc.name) + "</span>" +
@@ -228,68 +241,76 @@
       selected = selected === c.ref ? null : c.ref;
       render();
       if (selected) {
-        var h = detailEl.querySelector("h3");
+        var h = board.querySelector(".cw-detail-in h3");
         if (h) h.focus();
+      } else {
+        var again = board.querySelector('.cw-card[data-ref="' + c.ref + '"]');
+        if (again) again.focus();
       }
     });
+    b.setAttribute("data-ref", c.ref);
     return b;
   }
 
-  function renderDetail() {
-    if (!selected) {
-      detailEl.innerHTML = '<div class="cw-detail-empty"><p>Select a file to see its checklist, where it has been and what this desk can do with it next.</p></div>';
-      return;
-    }
-    var c = null;
-    for (var i = 0; i < cases.length; i++) if (cases[i].ref === selected) c = cases[i];
-    if (!c) { detailEl.innerHTML = ""; return; }
+  /* Returns the open file's detail as an element, for the band to hold. */
+  function detailPanel(c) {
+    var wrap = document.createElement("div");
+    wrap.className = "cw-detail";
 
     var svc = SERVICES[c.svc];
     var st = stageById(c.stage);
     var list = CHECKLISTS[c.svc] || [];
 
+    /* Three self-contained groups. They were flat children of one grid
+       before, which meant each heading and list claimed its own grid row and
+       the columns tore apart vertically — a checklist heading marooned a
+       hundred pixels above its own list. Wrapping each group keeps every
+       column a single stack. */
     var html = '<div class="cw-detail-in">';
+
+    html += '<div class="cw-dcol cw-dcol-id">';
     html += '<h3 tabindex="-1">' + esc(c.ref) + "</h3>";
     html += '<p class="cw-detail-svc">' + esc(svc.name) + " · applicant " + esc(c.who) + "</p>";
     html += '<p class="cw-detail-note">' + esc(svc.note) + "</p>";
-
     html += '<dl class="cw-facts">';
     html += "<dt>Stage</dt><dd>" + esc(st.name) + "</dd>";
     html += "<dt>In this stage</dt><dd>" + c.age + " " + (c.age === 1 ? "day" : "days") + "</dd>";
     html += "<dt>Published target</dt><dd>" + svc.target + " " + esc(svc.unit) +
             (isOverdue(c) ? ' <span class="cw-flag">over target</span>' : "") + "</dd>";
     html += "</dl>";
-
     if (c.stage === "hold" && c.holdFor) {
       html += '<p class="cw-hold">Waiting on the applicant for: <strong>' + esc(c.holdFor) + "</strong></p>";
     }
+    html += "</div>";
 
-    html += "<h4>Checklist</h4><ul class='cw-check'>";
+    html += '<div class="cw-dcol"><h4>Checklist</h4><ul class="cw-check">';
     list.forEach(function (item, i) {
       var ok = i < c.done;
       html += "<li class='" + (ok ? "is-ok" : "is-todo") + "'><span aria-hidden='true'>" + (ok ? "✓" : "○") +
               "</span> " + esc(item) + "<span class='cw-sr'>" + (ok ? " — received" : " — outstanding") + "</span></li>";
     });
-    html += "</ul>";
+    html += "</ul></div>";
 
-    html += "<h4>History</h4><ol class='cw-hist'>";
+    html += '<div class="cw-dcol"><h4>History</h4><ol class="cw-hist">';
     c.history.forEach(function (h) {
       html += "<li><b>" + esc(stageById(h.stage).name) + "</b><span>" + esc(h.note) + "</span></li>";
     });
     html += "</ol>";
-
-    html += '<div class="cw-do" id="cw-do"></div>';
+    html += '<div class="cw-do"></div>';
     html += "</div>";
-    detailEl.innerHTML = html;
 
-    renderActions(c);
+    html += "</div>";
+    wrap.innerHTML = html;
+
+    renderActions(c, wrap);
+    return wrap;
   }
 
   /* Actions are gated on the desk that owns the current stage, so switching
      role visibly changes what can be done — that is the workflow, not
      decoration. */
-  function renderActions(c) {
-    var wrap = detailEl.querySelector("#cw-do");
+  function renderActions(c, root) {
+    var wrap = root.querySelector(".cw-do");
     if (!wrap) return;
     var st = stageById(c.stage);
     var mine = role === "all" || st.desk === role;
@@ -370,7 +391,6 @@
     renderRoles();
     renderStats();
     renderBoard();
-    renderDetail();
   }
 
   if (resetBtn) {

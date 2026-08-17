@@ -6,14 +6,14 @@
 
    Two deliberate choices worth keeping:
 
-   · Stage is never carried by colour alone. Each column is titled, each card
-     names its stage through its position and its detail panel, and "over
-     target" is spelled out in words next to the day count. The red edge is a
-     second signal, not the only one.
+   · Stage is never carried by colour alone. Each band is numbered and
+     titled, and "over target" is spelled out in words next to the day
+     count. The red edge is a second signal, not the only one.
 
-   · The board scrolls horizontally rather than compressing seven columns
-     into an unreadable grid. On phones the columns stack instead, because a
-     horizontal scroller of card stacks is miserable on a small screen.
+   · Nothing on this page scrolls sideways. The process reads down the page,
+     one band per stage, and the files inside a band wrap. An earlier version
+     put the stages in a horizontal scroller, which hid most of the process
+     off the right-hand edge along with any file sitting in it.
    ======================================================================== */
 
 .cw-head { --phead-min: 0; }
@@ -36,9 +36,9 @@
 
 /* Headings inside the board are interface labels, not editorial headings.
    typography-system.css sets `body main :is(h1,h2,h3,h4)` to the serif face,
-   which outranks a bare `.cw-col-head h3`, so these carry the same prefix to
+   which outranks a bare `.cw-band-head h3`, so these carry the same prefix to
    win honestly rather than reaching for !important. */
-body main .cw-col-head h3,
+body main .cw-band-head h3,
 body main .cw-detail-in h3,
 body main .cw-detail-in h4,
 body main .cw-ref-card h3 {
@@ -46,7 +46,7 @@ body main .cw-ref-card h3 {
   text-wrap: wrap;
 }
 
-body main .cw-col-head h3 { font-size: 12.5px; font-weight: 800; line-height: 1.3; letter-spacing: 0; }
+body main .cw-band-head h3 { font-size: 13.5px; font-weight: 800; line-height: 1.3; letter-spacing: 0; }
 body main .cw-detail-in h3 { font-size: 15px; font-weight: 800; }
 body main .cw-detail-in h4 { font-size: 10.5px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 body main .cw-ref-card h3 { font-size: 13px; font-weight: 800; }
@@ -104,7 +104,7 @@ body main .cw-ref-card h3 { font-size: 13px; font-weight: 800; }
 .cw-role-tabs { display: flex; flex-wrap: wrap; gap: 7px; }
 
 .cw-role-tab {
-  min-height: 38px;
+  min-height: 44px;
   padding: 8px 14px;
   border: 1px solid rgba(10, 27, 61, .18);
   border-radius: 999px;
@@ -127,7 +127,7 @@ body main .cw-ref-card h3 { font-size: 13px; font-weight: 800; }
 
 .cw-toolbar-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .cw-role-duty { margin: 0; max-width: 46ch; font-size: 12.5px; line-height: 1.5; color: #4a5c72; }
-.cw-reset { min-height: 38px; padding: 8px 14px; font-size: 12px; }
+main .cw-toolbar .cw-reset { min-height: 44px; padding: 8px 14px; font-size: 12px; }
 
 /* ---- Counters ----------------------------------------------------------- */
 .cw-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
@@ -147,55 +147,80 @@ body main .cw-ref-card h3 { font-size: 13px; font-weight: 800; }
 .cw-stat.is-warn { border-color: rgba(192, 57, 43, .34); background: #fef6f5; }
 .cw-stat.is-warn b { color: var(--bad, #c0392b); }
 
-/* ---- Layout ------------------------------------------------------------- */
-.cw-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
-  gap: 20px;
-  align-items: start;
-}
+/* ---- Layout: the process reads downwards --------------------------------
+   This was seven columns in a horizontal scroller. Most of the process sat
+   off the right-hand edge, so you had to swipe sideways to find out the
+   later stages existed, and files hid inside columns you had not reached.
 
+   Now each stage is a band down the page and its files wrap onto as many
+   rows as they need. Reading order matches the order of the process, every
+   file is on screen at its own stage, and there is no horizontal scrolling
+   anywhere on the page. */
 .cw-board {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 232px;
-  align-items: start;   /* columns size to their contents, not to the tallest */
   gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scroll-snap-type: x proximity;
 }
 
-.cw-board > * { scroll-snap-align: start; }
-
-.cw-col {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 13px;
+.cw-band {
+  display: grid;
+  gap: 12px;
+  padding: 15px 16px 16px;
   border: 1px solid rgba(10, 27, 61, .12);
+  border-left: 3px solid rgba(10, 27, 61, .26);
   border-radius: var(--r-card, 16px);
   background: #f7f9fc;
 }
 
-.cw-col.is-hold { background: #fffaf0; border-color: rgba(181, 131, 42, .3); }
+.cw-band.is-hold { background: #fffaf0; border-color: rgba(181, 131, 42, .3); border-left-color: var(--warn, #b5832a); }
+.cw-band.is-empty { background: #fbfcfe; border-left-color: rgba(10, 27, 61, .12); }
+.cw-band.is-empty .cw-band-head { opacity: .68; }
 
-.cw-col-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.cw-col-head h3 { margin: 0; font-family: var(--sans); font-size: 12.5px; font-weight: 800; letter-spacing: .01em; color: var(--navy, #0a1b3d); }
+/* Number, title and count on one line; the blurb sits under the title so a
+   long stage name never squeezes the count off the end. */
+.cw-band-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.cw-step {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--navy, #0a1b3d);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+.cw-band.is-hold .cw-step { background: var(--warn, #b5832a); }
+.cw-band.is-empty .cw-step { background: #b6c2d1; }
+
+.cw-band-title { min-width: 0; }
+.cw-band-title p { margin: 2px 0 0; font-size: 11.5px; line-height: 1.45; color: #6a7c92; }
 
 .cw-count {
-  min-width: 22px;
-  padding: 2px 7px;
+  min-width: 26px;
+  padding: 3px 9px;
   border-radius: 999px;
   background: rgba(10, 27, 61, .09);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 800;
   text-align: center;
   color: #33475f;
 }
 
-.cw-col-blurb { margin: 0 0 2px; font-size: 11px; line-height: 1.45; color: #6a7c92; }
-.cw-empty { margin: 0; padding: 10px 0; font-size: 11.5px; color: #8b9aab; font-style: italic; }
+/* Cards wrap. They never scroll. */
+.cw-band-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(226px, 1fr));
+  gap: 10px;
+}
+
+.cw-empty { grid-column: 1 / -1; margin: 0; padding: 2px 0 4px; font-size: 11.5px; color: #8b9aab; font-style: italic; }
 
 /* ---- Cards -------------------------------------------------------------- */
 .cw-card {
@@ -222,18 +247,31 @@ body main .cw-ref-card h3 { font-size: 13px; font-weight: 800; }
 .cw-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 2px; font-size: 10.5px; color: #6a7c92; }
 .cw-card.is-late .cw-age { color: var(--bad, #c0392b); font-weight: 700; }
 
-/* ---- Detail panel ------------------------------------------------------- */
+/* ---- Detail panel --------------------------------------------------------
+   Opens inside the band that holds the file, directly beneath it, instead of
+   in a side rail the reader has to look away from the case to find. On a wide
+   screen its three parts sit side by side so the panel stays shallow and the
+   next stage is not pushed a screen and a half down. */
 .cw-detail {
-  position: sticky;
-  top: 92px;
-  padding: 18px;
-  border: 1px solid rgba(10, 27, 61, .13);
+  padding: 17px 18px 18px;
+  border: 1px solid rgba(10, 27, 61, .16);
   border-radius: var(--r-card, 16px);
   background: #fff;
   box-shadow: var(--shadow-sm);
 }
 
-.cw-detail-empty p { margin: 0; font-size: 13px; line-height: 1.6; color: #6a7c92; }
+.cw-detail-in { display: grid; gap: 18px 26px; }
+.cw-dcol { min-width: 0; }
+
+@media (min-width: 900px) {
+  .cw-detail-in {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  /* The identity column already opens with the reference; the other two need
+     their headings to line up with it rather than float below. */
+  .cw-dcol:not(.cw-dcol-id) > h4:first-child { margin-top: 0; }
+}
 .cw-detail-in h3 { margin: 0 0 3px; font-family: var(--sans); font-size: 15px; font-weight: 800; color: var(--navy, #0a1b3d); }
 .cw-detail-in h3:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
 .cw-detail-svc { margin: 0 0 4px; font-size: 12.5px; font-weight: 700; color: #33475f; }
@@ -261,7 +299,10 @@ body main .cw-ref-card h3 { font-size: 13px; font-weight: 800; }
 
 .cw-do { margin-top: 16px; display: grid; gap: 8px; }
 .cw-do h4 { margin: 0; }
-.cw-act { width: 100%; min-height: 42px; justify-content: center; font-size: 12px; }
+/* enrichment.css sets `main .section .btn { min-height: 42px }` at (0,2,1),
+   which outranks a bare .cw-act and even `.cw-detail .cw-act`. Matching that
+   shape — and loading later — wins it back without !important. */
+main .cw-detail .cw-act { width: 100%; min-height: 44px; justify-content: center; font-size: 12px; }
 .cw-do-none { margin: 0; padding: 11px 12px; border-radius: var(--r-control, 10px); background: #f2f5f9; font-size: 11.5px; line-height: 1.5; color: #63758a; }
 
 .cw-live { margin: 14px 0 0; min-height: 1.4em; font-size: 12px; color: #4a5c72; }
@@ -280,20 +321,34 @@ body main .cw-ref-card h3 { font-size: 13px; font-weight: 800; }
 
 .cw-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 
-/* ---- Narrower screens ---------------------------------------------------
-   The sticky side panel becomes a normal block, and below 760px the board
-   stops being a horizontal scroller: stacked columns beat swiping sideways
-   through seven stacks of cards on a phone. */
-@media (max-width: 1080px) {
-  .cw-layout { grid-template-columns: minmax(0, 1fr); }
-  .cw-detail { position: static; }
-}
-
+/* ---- Narrower screens ----------------------------------------------------
+   Nothing here needs to undo a scroller any more: the band layout is already
+   vertical, and the card grid reflows on its own down to one card per row. */
 @media (max-width: 760px) {
-  .cw-board { grid-auto-flow: row; grid-auto-columns: auto; overflow-x: visible; scroll-snap-type: none; }
+  .cw-band { padding: 13px 13px 14px; }
+  .cw-band-cards { grid-template-columns: 1fr; }
   .cw-toolbar { align-items: flex-start; }
   .cw-toolbar-right { width: 100%; justify-content: space-between; }
   .cw-note { flex-direction: column; gap: 10px; }
+  .cw-detail { padding: 15px; }
+
+  /* The two reference tables were the last thing on the page that scrolled
+     sideways: long service names will not sit beside their target in a
+     narrow column. Stacked, each row reads as a label and its value and
+     nothing is hidden off the edge. */
+  .cw-table,
+  .cw-table tbody,
+  .cw-table tr,
+  .cw-table td { display: block; overflow-x: visible; }
+  .cw-table thead { display: none; }
+  .cw-table tr {
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(10, 27, 61, .09);
+  }
+  .cw-table tr:last-child { border-bottom: 0; }
+  .cw-table td { padding: 0; border: 0; }
+  .cw-table td:first-child { font-weight: 700; color: var(--navy, #0a1b3d); }
+  .cw-table td + td { margin-top: 2px; color: #56687e; }
 }
 
 @media (prefers-reduced-motion: reduce) {
