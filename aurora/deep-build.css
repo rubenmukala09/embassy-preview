@@ -296,3 +296,54 @@ main :where(.btn, button, [role="button"]):active { transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ---- Form replies ---------------------------------------------------------
+   Feedback for the inert preview forms (see aurora/form-notice.js). Sized to
+   sit inside the footer newsletter block as comfortably as a full-width
+   contact form. */
+.form-notice {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.form-notice.is-info {
+  border: 1px solid rgba(47, 143, 208, .34);
+  color: #123c5c;
+  background: #eaf4fb;
+}
+.form-notice.is-error {
+  border: 1px solid rgba(192, 57, 43, .38);
+  color: #8d2318;
+  background: #fdecea;
+}
+.form-notice a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+:is(input, select, textarea).is-invalid {
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, .14);
+}
+
+/* The footer sits on navy, so the notice needs its own light ground there. */
+.foot .form-notice.is-info { border-color: rgba(255, 255, 255, .28); color: #eaf2fb; background: rgba(255, 255, 255, .09); }
+.foot .form-notice.is-error { border-color: rgba(255, 145, 130, .5); color: #ffd9d4; background: rgba(192, 57, 43, .22); }
+
+/* ---- Touch targets --------------------------------------------------------
+   enrichment.css sets `main .section .btn { min-height: 42px }`, two pixels
+   under the 44px minimum, on roughly nine buttons a page. The banner
+   disclosure was 26px and the assistant chips 37px. Raised only where a
+   finger is actually the input device, so the desktop rhythm is unchanged.
+   Selector shapes match the rules they override rather than using
+   !important. */
+@media (pointer: coarse) {
+  main .section .btn,
+  main .below-cta .btn,
+  main .btn,
+  main :where(.btn, button, [role="button"]) { min-height: 44px; }
+
+  .gov-banner .gov-how { min-height: 44px; padding-block: 8px; }
+  .asst-quick .asst-chip { min-block-size: 44px; }
+  .asst-head .asst-x,
+  .asst-head .asst-clear { min-inline-size: 44px; min-block-size: 44px; }
+}

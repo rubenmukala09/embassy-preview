@@ -3708,7 +3708,7 @@ main .booking-aside{
   isolation:isolate;
   background-image:
     linear-gradient(180deg,rgba(0,29,61,.76),rgba(0,18,43,.94)),
-    url('/embassy-preview/img/image/embassy-widget-accent-2026.png');
+    url('/embassy-preview/img/image/embassy-widget-accent-2026.webp');
   background-size:cover;
   background-position:58% center;
 }
@@ -3825,7 +3825,7 @@ main .below-cta{
   border:1px solid rgba(255,226,122,.34);
   background-image:
     linear-gradient(100deg,rgba(0,22,50,.97) 0%,rgba(0,29,61,.88) 48%,rgba(0,29,61,.5) 100%),
-    url('/embassy-preview/img/image/embassy-widget-accent-2026.png');
+    url('/embassy-preview/img/image/embassy-widget-accent-2026.webp');
   background-size:cover;
   background-position:center right;
   box-shadow:0 34px 72px -40px rgba(0,18,43,.88);
@@ -3968,7 +3968,7 @@ main .below-cta{
     linear-gradient(25deg,transparent 0 41%,rgba(247,214,24,.13) 41.2% 41.5%,transparent 41.8%),
     linear-gradient(154deg,transparent 0 63%,rgba(0,192,252,.12) 63.2% 63.5%,transparent 63.8%),
     linear-gradient(100deg,rgba(0,22,50,.97) 0%,rgba(0,29,61,.88) 48%,rgba(0,29,61,.5) 100%),
-    url('/embassy-preview/img/image/embassy-widget-accent-2026.png');
+    url('/embassy-preview/img/image/embassy-widget-accent-2026.webp');
 }
 main .cta-premium.geo-map::after,
 main .below-cta.geo-map::after{
@@ -4051,7 +4051,7 @@ main .section .card.below-cta{
     linear-gradient(25deg,transparent 0 41%,rgba(247,214,24,.13) 41.2% 41.5%,transparent 41.8%),
     linear-gradient(154deg,transparent 0 63%,rgba(0,192,252,.12) 63.2% 63.5%,transparent 63.8%),
     linear-gradient(100deg,rgba(0,22,50,.99) 0%,rgba(0,29,61,.94) 52%,rgba(0,29,61,.68) 100%),
-    url('/embassy-preview/img/image/embassy-widget-accent-2026.png');
+    url('/embassy-preview/img/image/embassy-widget-accent-2026.webp');
   background-position:center,center,center,center,center,center,center right;
   background-size:auto,auto,auto,auto,auto,auto,cover;
   border-color:rgba(255,226,122,.36);
