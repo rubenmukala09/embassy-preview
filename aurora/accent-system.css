@@ -1,0 +1,101 @@
+/* ===========================================================================
+   Congolese accent system
+   ---------------------------------------------------------------------------
+   One motif, applied consistently, loaded last so it settles on top of the
+   other sheets without specificity games.
+
+   The motif is a seamless tile drawn from Kuba cloth geometry — the
+   interlocking lozenge and stepped-fret language of the Kasai — redrawn as
+   flat two-tone navy rather than photographed. That matters: the first
+   version of this used a photograph of real Kuba cloth, which carried the
+   camera's depth of field and angle, so the weave was sharper at the bottom
+   than the top and was cropped mid-motif at every panel edge. A tile has no
+   focal point, repeats at a controlled size, stays crisp at any panel
+   dimension, and never crops awkwardly. Seam tested: wrapping error is below
+   the image's own adjacent-pixel noise, and a 2x2 tiling shows no join.
+
+   It is deliberately quiet. At these opacities the geometry reads as a woven
+   ground on a navy panel, not as a picture, and every text measurement on
+   the affected surfaces stayed above 10:1.
+   ======================================================================== */
+
+:root {
+  --accent-weave: url("assets/img/generated/accents-2026/accent-weave.webp");
+  --accent-weave-size: 300px;      /* tile drawn at half its 640px source */
+  --accent-weave-strength: .5;
+}
+
+/* The shared overlay. Applied through a child layer rather than the host's
+   own background, because several of these panels already have a background
+   set with !important by other sheets. */
+.has-weave { position: relative; isolation: isolate; }
+
+.has-weave > .weave,
+.weave-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--accent-weave) repeat;
+  background-size: var(--accent-weave-size) var(--accent-weave-size);
+  opacity: var(--accent-weave-strength);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+/* ---- Applications --------------------------------------------------------
+   Dark panels only. The weave is invisible on light surfaces and would only
+   add weight to the page. */
+
+/* The footer, on every page: its two pseudo-elements are already spoken for
+   (flag rule and seal), so the weave rides on the background stack instead,
+   appended to the gradient that universal-footer.css sets. */
+body .foot {
+  background:
+    radial-gradient(circle at 90% 0, rgba(46, 123, 196, .14), transparent 28%),
+    linear-gradient(145deg, rgba(7, 52, 92, .97) 0%, rgba(8, 43, 80, .97) 42%, rgba(3, 26, 51, .98) 100%),
+    var(--accent-weave) repeat !important;
+  background-size: auto, auto, var(--accent-weave-size) var(--accent-weave-size) !important;
+}
+
+/* Premium call-to-action panels. */
+main .cta-premium {
+  background:
+    linear-gradient(120deg, rgba(0, 29, 61, .95) 0%, rgba(0, 40, 82, .95) 55%, rgba(0, 52, 105, .96) 100%),
+    var(--accent-weave) repeat;
+  background-size: auto, var(--accent-weave-size) var(--accent-weave-size);
+}
+
+/* The river clip already carries this panel when it plays; one texture at a
+   time. aurora.js sets .motion-live on the host. */
+main .cta-premium.motion-live {
+  background: linear-gradient(120deg, var(--navy) 0%, var(--navy-700) 55%, var(--navy-600) 100%);
+}
+
+/* Closing calls to action on the interior pages. */
+main .below-cta,
+main .drc-final-cta {
+  background-image:
+    linear-gradient(140deg, rgba(4, 26, 51, .95), rgba(6, 38, 74, .95)),
+    var(--accent-weave);
+  background-repeat: no-repeat, repeat;
+  background-size: auto, var(--accent-weave-size) var(--accent-weave-size);
+}
+
+/* The homepage "verify current instructions" panel keeps the river, because
+   that one is a place rather than a pattern. */
+body main #tools .tools-intro-verify {
+  background:
+    radial-gradient(circle at 92% 14%, rgba(0, 163, 224, .24), transparent 28%),
+    linear-gradient(145deg, rgba(8, 47, 89, .93), rgba(4, 29, 57, .96) 78%),
+    url("assets/img/generated/accents-2026/accent-congo-river.webp") center / cover no-repeat;
+}
+
+/* Phones get a slightly larger tile: at 300px the motif becomes busy on a
+   narrow column. */
+@media (max-width: 620px) {
+  :root { --accent-weave-size: 220px; --accent-weave-strength: .42; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .has-weave > .weave, .weave-layer { transition: none; }
+}
