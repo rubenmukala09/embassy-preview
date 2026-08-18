@@ -347,3 +347,45 @@ main :where(.btn, button, [role="button"]):active { transform: translateY(0); }
   .asst-head .asst-x,
   .asst-head .asst-clear { min-inline-size: 44px; min-block-size: 44px; }
 }
+
+/* ---- Congolese accent textures · 2026-08-18 -------------------------------
+   Two dark panels on the site were flat gradients. They now carry a texture
+   from the country itself, laid in beneath the panel's own gradient so it
+   reads as depth rather than as a picture.
+
+   · Kuba cloth — the raffia weave of the Kasai, with its interlocking
+     lozenge geometry — under the premium call-to-action panels.
+   · The Congo river from above at first light, on the "verify current
+     instructions" panel, whose blue-grey already matches the palette.
+
+   The weave stands down when the river clip is playing over the same panel
+   (aurora.js marks the host `.motion-live`), so the two never compete.
+   On phones, where the clip never loads, the weave is what you get instead
+   of a flat gradient.
+
+   Both sit UNDER the panel's existing gradient, so the type keeps the same
+   ground it had.
+
+   Malachite was generated alongside these and deliberately not used: it is
+   authentically Congolese and handsome, but this identity is navy, gold and
+   flag red, and a saturated green would read as a fourth brand colour
+   rather than an accent. It is kept in the folder for the record.
+   -------------------------------------------------------------------------*/
+main .cta-premium {
+  background:
+    linear-gradient(120deg, rgba(0, 29, 61, .93) 0%, rgba(0, 40, 82, .94) 55%, rgba(0, 52, 105, .95) 100%),
+    url("assets/img/generated/accents-2026/accent-kuba-cloth.webp") center / cover no-repeat;
+}
+
+/* The clip is already carrying this panel; drop the weave rather than layer
+   one texture over another. */
+main .cta-premium.motion-live {
+  background: linear-gradient(120deg, var(--navy) 0%, var(--navy-700) 55%, var(--navy-600) 100%);
+}
+
+body main #tools .tools-intro-verify {
+  background:
+    radial-gradient(circle at 92% 14%, rgba(0, 163, 224, .24), transparent 28%),
+    linear-gradient(145deg, rgba(8, 47, 89, .93), rgba(4, 29, 57, .96) 78%),
+    url("assets/img/generated/accents-2026/accent-congo-river.webp") center / cover no-repeat;
+}
