@@ -5,10 +5,7 @@
 <title>Not available in this preview - Embassy of the DR Congo</title>
 <meta name="description" content="The requested Embassy of the Democratic Republic of the Congo preview page could not be found.">
 <link rel="canonical" href="https://rubenmukala09.github.io/embassy-preview/404.html">
-<style>*{box-sizing:border-box}body{margin:0;min-height:100vh;overflow-x:hidden;background:#0a1b3d;color:#f4f0e6}
-.error-main{display:grid;place-items:center;min-height:70vh;padding:80px 24px;text-align:center;font:16px/1.7 Georgia,serif}.error-main>div{max-width:100%}
-h1{font-size:clamp(21px,6vw,26px);margin:0 0 10px;overflow-wrap:break-word}a{color:#ffc300}p{max-width:min(52ch,100%);color:#cfd6e4;overflow-wrap:break-word;margin-inline:auto}
-.tick{display:inline-block;width:44px;height:3px;border-radius:3px;background:linear-gradient(90deg,#ffc300,#00c0fc);margin-bottom:22px}</style><link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1786161601" /><link rel="stylesheet" href="/embassy-preview/aurora/responsive-control.css?v=1785853109" />
+<link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1786161601" /><link rel="stylesheet" href="/embassy-preview/aurora/responsive-control.css?v=1785853109" />
 <link rel="stylesheet" href="/embassy-preview/aurora/premium-polish.css?v=1786503000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/typography-system.css?v=1785930600" />
 <link rel="stylesheet" href="/embassy-preview/aurora/deep-build.css?v=1786541000" />
@@ -21,10 +18,65 @@ h1{font-size:clamp(21px,6vw,26px);margin:0 0 10px;overflow-wrap:break-word}a{col
 <link rel="stylesheet" href="/embassy-preview/aurora/component-standard.css?v=1787245200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900003" />
 <link rel="stylesheet" href="/embassy-preview/aurora/universal-footer.css?v=1787248800" />
+<style>
+/* Placed after the site stylesheets on purpose. This block used to sit at the
+   top of the head, so every later sheet overrode it: the page asked for a
+   navy background and got the site's white canvas, which left the paragraph
+   — a colour picked for navy — at 1.46:1 against white. It now follows the
+   site's light palette instead of fighting it. */
+.error-main {
+  display: grid;
+  place-items: center;
+  min-height: 62vh;
+  padding: clamp(56px, 10vw, 104px) 24px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f8fb 100%);
+}
+/* The reading measure belongs on the paragraph, not the wrapper — capping the
+   wrapper squeezed the three actions onto two rows and orphaned the last. */
+.error-main > div { max-width: 100%; }
+.error-main .tick {
+  display: inline-block;
+  width: 54px; height: 4px;
+  margin-bottom: 22px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #007fff 0 40%, #f7d618 40% 70%, #ce1021 70%);
+}
+.error-main h1 {
+  margin: 0 0 12px;
+  color: #07203f;
+  font-size: clamp(24px, 5.4vw, 34px);
+  line-height: 1.18;
+  overflow-wrap: break-word;
+}
+.error-main p.lead {
+  max-width: 46ch;
+  margin: 0 auto 26px;
+  color: #46586e;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.error-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.error-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.error-actions .is-primary { color: #07203f; background: #ffd034; border: 1px solid #e4b81f; }
+.error-actions .is-primary:hover { background: #ffd94f; }
+.error-actions .is-quiet { color: #07203f; background: #fff; border: 1px solid rgba(7, 32, 63, .22); }
+.error-actions .is-quiet:hover { border-color: rgba(7, 32, 63, .45); }
+.error-actions a:focus-visible { outline: 3px solid #1b8be0; outline-offset: 3px; }
+</style>
 </head>
 <body><svg width="0" height="0" style="position:absolute"><defs><symbol id="crest" viewBox="0 0 100 100"><image href="/embassy-preview/aurora/assets/img/embassy-seal.png" width="100" height="100"/></symbol></defs></svg><main class="error-main"><div><span class="tick"></span><h1>We could not find that page</h1>
-<p>You are viewing the Embassy website preview. The address may have changed, or the service may not yet be available.</p>
-<p><a href="/embassy-preview/">Return to the preview home</a> · <a href="/embassy-preview/digital-services.html">View digital services</a></p></div></main>
+<p class="lead">You are viewing the Embassy website preview. The address may have changed, or the page may not be part of this preview.</p>
+<div class="error-actions"><a class="is-primary" href="/embassy-preview/">Return to the home page</a><a class="is-quiet" href="/embassy-preview/consular-services.html">Consular services</a><a class="is-quiet" href="/embassy-preview/contact.html">Contact the Embassy</a></div></div></main>
 <footer class="foot"><div class="container">
   <div class="grid">
     <div>
