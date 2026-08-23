@@ -1,0 +1,173 @@
+/* ===========================================================================
+   Composition refinement · 2026-08-18
+   ---------------------------------------------------------------------------
+   Loaded last. Two corrections, both measured on the live homepage, that make
+   the site read as composed rather than accumulated.
+
+   1. ONE BUTTON. The same .btn component was shipping in two geometries —
+      some at 5px radius / weight 800, others at 9px / weight 750 — because
+      later stylesheets each restyled it without removing the earlier rule.
+      Nineteen buttons on the homepage rendered as nine distinct looks. They
+      now share one radius, one weight and one height. Nothing else about
+      them changes: the gold, navy, ghost and outline variants keep their
+      own colour.
+
+   2. A FLOOR UNDER THE TYPE. The page carried text at 6.5px and 7px, and
+      the section eyebrow — which appears above almost every heading on the
+      site — sat at 9.5px. Small type is the fastest way to make a serious
+      institution look cheap, and at those sizes it is barely legible. The
+      floor below is deliberately modest: enough to read, not so much that
+      any label reflows.
+
+   Both are visual only. No layout, spacing or colour is altered.
+   ======================================================================== */
+
+/* ---- One button ---------------------------------------------------------
+   Matching the selector shapes that set the competing values, so this wins
+   on the cascade rather than on !important. */
+main .btn,
+main .section .btn,
+main .below-cta .btn,
+main a.btn,
+main button.btn {
+  border-radius: 10px;          /* the site's own --r-control */
+  font-weight: 750;
+  min-height: 44px;
+}
+
+/* ---- A floor under the type ---------------------------------------------
+   The eyebrow is the most repeated small element on the site, so it gets the
+   most care: 11px with its letter-spacing eased slightly, because tracking
+   tuned for 9.5px reads loose once the glyphs grow. */
+main .eyebrow,
+main p.eyebrow,
+main .sec-head .eyebrow {
+  font-size: 11px;
+  letter-spacing: .12em;
+}
+
+/* Hero and page-head eyebrows are pinned by typography-system.css to
+   --type-label with !important. Raising the token is the honest fix — it
+   moves every label the system owns, which is the point, rather than
+   fighting one instance of its own rule. */
+:root { --type-label: 11px; }
+
+/* Small institutional labels and chips. */
+main .tools-intro-meta,
+main .tools-intro-verify > span,
+main .service-compass-code,
+main .journey-phase,
+main .qtile-s {
+  font-size: 10.5px;
+}
+
+/* The widget code badges — three to seven uppercase characters each, so the
+   extra two pixels cost no line width worth speaking of. */
+main .widget-code,
+main .widget-route span,
+main .widget-route b,
+main .currency-telemetry span,
+main .media-badge {
+  font-size: 9.5px;
+}
+
+/* ---- One elevation ------------------------------------------------------
+   Cards were carrying three different shadow recipes. One quiet elevation
+   reads calmer than three competing ones. */
+main :where(.card, .widget, .info-card, .sector-card, .portal-card, .tile):not(.dark-surface) {
+  box-shadow: 0 1px 2px rgba(7, 29, 56, .05), 0 14px 34px -22px rgba(7, 29, 56, .28);
+}
+
+/* Two buttons sat outside the family because home-hero-responsive.css styles
+   them at (0,3,1) — higher than `main .btn`. Matching that shape rather than
+   reaching for !important. */
+body main #advisory .advisory-card > .btn,
+body main #advisory .register-card .btn-block,
+body main #advisory .btn {
+  border-radius: 10px;
+  min-height: 44px;
+}
+
+/* ---- The last of the very small type -------------------------------------
+   Micro-labels inside the widgets, maps and media cards were running from
+   6.5px to 9px: code chips, map markers, format tags. At 6.5px they are
+   decoration pretending to be information. Lifted to a common 9.5px floor —
+   enough to read, small enough that none of these tight components reflow.
+   Each selector is one observed on the page rather than a blanket rule, so
+   nothing that was already comfortable gets shrunk to meet the floor. */
+main .experience-rail small,
+main .africa-drc-marker b,
+main .africa-map-copy span,
+main .widget-route span,
+main .widget-route b,
+main .widget-code,
+main .map-location-card span,
+main .service-flow span,
+main .currency-telemetry span,
+main .media-badge,
+main .media-action-dock__label,
+main .destination-mark b,
+main .em-act span,
+main .announcement-formats [class^="format-"] {
+  font-size: 9.5px;
+}
+
+/* The widget micro-labels are scoped with an id in enrichment.css
+   (`main #tools .widget-code`), which outranks any selector without one.
+   Matching the id is the only honest way to win it. */
+main #tools .widget-code,
+main #tools .widget-route span,
+main #tools .widget-route b,
+main #tools .currency-telemetry span,
+main #tools .service-flow span,
+main #tools .africa-map-copy span,
+main #tools .africa-drc-marker b,
+main #tools .map-location-card span,
+main #tools .destination-mark b,
+main #tools .experience-rail small,
+main #tools .experience-rail b {
+  font-size: 9.5px;
+}
+
+/* The remaining micro-labels, outside #tools: status chips, date marks,
+   media format tags and badges. Same 9.5px floor, same reasoning. */
+main .tools-intro-meta span,
+main .tools-intro-verify > span,
+main .service-compass-status span,
+main .service-compass-status time,
+main .mission-media figcaption span,
+main .home-annual-event .annual-date span,
+main .announcement-formats > [class^="format-"],
+main .media-feature .media-badge,
+main .media-item .media-badge,
+main .mi-body .media-badge,
+main .experience-rail small,
+main .experience-rail b {
+  font-size: 9.5px;
+}
+
+/* Last two holdouts, both scoped past a plain class selector:
+   `main #media .media-badge` uses an id, and the experience-rail caption is
+   nested one level deeper inside .kinshasa-stage. */
+main #media .media-badge,
+main #media .media-feature > .media-badge,
+main #media .mi-body .media-badge {
+  font-size: 9.5px;
+}
+
+main .kinshasa-stage .experience-rail small,
+main .kinshasa-stage .experience-rail b {
+  font-size: 9.5px;
+}
+
+/* dr-congo carries its own CTA stylesheets, and drc-cta-premium.css scopes
+   the button four levels deep (0,4,1). For the record, the radius of .btn is
+   declared thirteen times across this codebase — 1px, 2px, 5px, 6px, 8px,
+   9px, 10px and 999px all appear — which is precisely why the buttons had
+   drifted apart. This is the last shape that outranked the rule above. */
+body main .drc-final-cta .drc-cta-actions .btn,
+body main .drc-cta-actions .btn,
+body main .drc-future-actions .btn {
+  border-radius: 10px;
+  min-height: 44px;
+}
