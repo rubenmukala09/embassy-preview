@@ -171,3 +171,64 @@ body main .drc-future-actions .btn {
   border-radius: 10px;
   min-height: 44px;
 }
+
+/* ===========================================================================
+   Surfaces: one rhythm instead of two
+   ---------------------------------------------------------------------------
+   The homepage was reading as sixteen faint stripes rather than a document,
+   and the cause was two striping systems running at once:
+
+     · the explicit .bg-cream / .bg-ivory classes, placed deliberately, and
+     · an automatic zebra in palette-clean.css that tints every EVEN section
+       — `main > .section:nth-of-type(even)` — in a third off-white, with a
+       grid-line pattern laid over it.
+
+   Because the two systems disagree about which sections are tinted, the page
+   alternated on no discernible logic, between four whites that sit within
+   three points of each other: #ffffff, #f3f7fc, #f4faff and #f7f8f8. Banding
+   you can see but cannot read as structure is the definition of visual noise,
+   and it is the single biggest reason the layout did not feel composed.
+
+   The automatic zebra and its grid overlay stand down. Surface is now decided
+   only where someone decided it, and there is one tint rather than three.
+   ======================================================================== */
+
+:root {
+  --brand-canvas: #f4f7fb;   /* the single tint */
+  --ivory: #f4f7fb;
+  --cream: #f4f7fb;
+}
+
+/* Stand down the automatic zebra and its grid. */
+main > .section:nth-of-type(even):not(.bg-navy):not(.dark-surface):not(.cream):not(.ivory):not(.bg-cream):not(.bg-ivory),
+main > section.section:nth-of-type(even):not(.bg-navy):not(.dark-surface):not(.bg-cream):not(.bg-ivory) {
+  background-color: transparent;
+  background-image: none;
+}
+
+/* The two explicit surfaces, and nothing between them. */
+main > :is(.section.bg-cream, section.section.bg-cream),
+main > :is(.section.bg-ivory, section.section.bg-ivory) {
+  background: var(--brand-canvas) !important;
+  background-image: none !important;
+}
+
+/* The page canvas was #f7f8f8 while the tinted sections were #f4f7fb — three
+   points apart. That is why the alternation registered as haze rather than
+   rhythm: you could see a change without being able to read it as one.
+
+   Paper is now actually paper, and the tint is given just enough presence to
+   be legible as a deliberate band. Still quiet — eleven points from white,
+   nowhere near a colour — but now the page has a structure you can perceive
+   instead of a shimmer you can only half-notice. */
+body { background: #ffffff; }
+
+:root {
+  --brand-canvas: #eef3f9;
+  --ivory: #eef3f9;
+  --cream: #eef3f9;
+}
+
+/* One section carried its own fourth off-white. Folded into the tint so the
+   page uses exactly two light surfaces and one dark. */
+main .consular-journey { background: var(--brand-canvas); }
