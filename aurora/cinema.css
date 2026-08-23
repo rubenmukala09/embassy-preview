@@ -1,0 +1,36 @@
+/* ============================================================
+   CINEMA LAYER - ambient hero films under the existing scrims.
+   The film mounts inside the hero's media layer (z:0), below
+   .hero-overlay / .phead::before (z:1) and the content (z:2),
+   so every contrast decision already made for the photos
+   applies unchanged to the moving picture.
+   Loaded only by pages that carry a [data-film] mount.
+   ============================================================ */
+
+.hero-slides .film-layer,
+.phead .film-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+/* The film fades in only once it is actually playing; until then
+   the photo hero stands exactly as before (and remains the
+   fallback whenever the film never mounts). */
+.hero-slides.film-live .film-layer,
+.phead.film-live .film-layer { opacity: 1; }
+
+/* Once the film carries the motion, retire the Ken Burns photo
+   animation running invisibly behind it. */
+.hero-slides.film-live .hero-slide.active { animation: none; }
+
+/* Phone crop: the 16:9 frame is cut to a tall sliver, so bias
+   toward the hoist - the star is the one thing that must stay. */
+@media (max-width: 767px) {
+  .hero-slides .film-layer { object-position: 26% 50%; }
+}
