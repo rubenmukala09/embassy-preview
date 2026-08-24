@@ -85,3 +85,46 @@
     mounts.forEach(function (m) { io.observe(m); });
   }
 })();
+
+/* The preview notice stays tucked away. It appears when the reader
+   deliberately scrolls back UP twice - a single flick will not do it -
+   and then fades in and stays. */
+(function () {
+  var de = document.documentElement;
+  if (!document.querySelector('.gov-banner')) return;
+
+  var RUN = 60;        /* px of upward travel before a gesture counts */
+  var GESTURES = 2;    /* how many separate up-scrolls are needed */
+  var GAP = 220;       /* ms of stillness that ends one gesture */
+
+  var lastY = window.scrollY || de.scrollTop || 0;
+  var run = 0, count = 0, idle = null, done = false;
+
+  function endGesture() {
+    idle = null;
+    if (run >= RUN) {
+      count++;
+      if (count >= GESTURES && !done) {
+        done = true;
+        de.classList.add('gov-shown');
+        window.removeEventListener('scroll', onScroll);
+      }
+    }
+    run = 0;
+  }
+
+  function onScroll() {
+    var y = window.scrollY || de.scrollTop || 0;
+    var d = lastY - y;
+    lastY = y;
+    if (d > 0) {
+      run += d;
+      if (idle) clearTimeout(idle);
+      idle = setTimeout(endGesture, GAP);
+    } else if (d < -4) {
+      if (idle) { clearTimeout(idle); endGesture(); }
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();

@@ -3840,7 +3840,9 @@
   function targets() {
     var list = [];
     var hero = document.querySelector(".hero-slides");
-    if (hero) list.push({ box: hero, ms: 5000 });
+    /* The homepage hero is the national flag, not a photo rotation,
+       when it declares itself static. */
+    if (hero && !hero.hasAttribute("data-hero-static")) list.push({ box: hero, ms: 5000 });
     document.querySelectorAll(".phead").forEach(function (ph) {
       if (ph.querySelector(".phead-slides")) return;
       /* A page that declares data-hero-static keeps its own photograph

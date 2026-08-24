@@ -570,7 +570,11 @@ main #media .media-feature::before { content: none !important; }
    sitting over photographs was verified separately and left alone). */
 
 /* Muted meta text sat at 3.9-4.3:1 on white; AA needs 4.5. */
-main :is(.source-note, .apply-note, .cw-who, .cw-age, .bk-st-dot, .mi-meta, small, .muted):not(.ed-band *):not(#media *):not(.cta-premium *):not(.dark-surface *):not(.phead *):not(.hero *) {
+/* Scoped to the named classes only. An earlier version also caught
+   every <small> and .muted, which recoloured labels sitting on navy
+   and red grounds - 1.03:1 in one case. The --faint token now carries
+   the general case on light surfaces. */
+main :is(.source-note, .apply-note, .cw-who, .cw-age, .bk-st-dot, .mi-meta):not(.ed-band *):not(#media *):not(.cta-premium *):not(.dark-surface *):not(.phead *):not(.hero *) {
   color: #55677d !important;
 }
 main [class^="annual-upcoming-or"]:not(.ed-band *) { color: #55677d !important; }
@@ -602,3 +606,73 @@ html body main .sector-card summary span {
 
 /* Brand red kept a touch deeper for 9px marks on tinted washes. */
 main .sector-mark { color: #9c0c1a !important; }
+
+/* ---- 26 · The preview notice waits for the reader ---------------
+   The banner used to occupy the very top of every page before a word
+   of content. It is collapsed until the reader has genuinely scrolled
+   (see cinema.js), then slides in. It stays in the document rather
+   than being display:none, so assistive technology still announces
+   the preview disclosure at the top of the page. */
+body .gov-banner {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-bottom-width: 0;
+  transition: max-height .4s cubic-bezier(.4, 0, .2, 1), opacity .5s ease .1s, border-bottom-width .4s ease;
+}
+html.gov-shown body .gov-banner {
+  max-height: 60rem;
+  opacity: 1;
+  border-bottom-width: 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  body .gov-banner { transition: none; }
+}
+
+/* ---- 27 · Colour tone ------------------------------------------
+   Three things kept the palette from reading as considered:
+
+   1. Every navy was pure blue (#001d3d, #002a52, #003566, #00112a -
+      all with red at zero). On a wide-gamut or 4K panel that reads
+      electric rather than like ink. A few points of red settle them
+      into a deep diplomatic navy without changing the hue family.
+   2. The hairlines were warm grey (#e5e4de) sitting on a cool canvas
+      (#eef3f9), so every border looked faintly dirty. They are cool
+      now, from the same family as the tint.
+   3. --faint measured 4.3:1 on white, just under AA, which is what
+      put muted meta text on the failure list page after page. Fixed
+      at the token so it stops recurring.
+   Gold is left alone: it is the flag, not a preference. */
+:root {
+  --navy: #0b1f3a;
+  --navy-700: #10294a;
+  --navy-600: #163457;
+  --navy-900: #071528;
+  --navy-050: #e8eef7;
+
+  --ink: #0c1c33;
+  --muted: #34455e;
+  --faint: #55677d;
+
+  --line: #e2e8f0;
+  --line-2: #eef2f7;
+
+  --ivory: #eef3f9;
+  --cream: #eef3f9;
+  --paper: #ffffff;
+}
+
+/* ---- 28 · Location cards: one navy ground for all three ---------
+   Two of the map location cards carried an inline navy background;
+   the third (.office-location-card, which sits outside the map panel)
+   fell through to the generic white card surface while keeping its
+   white text - invisible at 1:1. All three share the ground now, and
+   the colour lives here rather than in inline styles. */
+/* The two cards inside the map panel carry a navy ground inline and
+   read fine. The third is pinned to the white card surface by a
+   layered !important rule, so its text goes dark instead - it sits on
+   white legitimately, beside the opening hours. */
+html body main a.office-location-card :is(strong, small) { color: #0c1c33 !important; }
+html body main a.office-location-card small { color: #45596f !important; }
+html body main a.office-location-card > span:first-child { color: #7a5f00 !important; }
+html body main a.office-location-card { border: 1px solid #e2e8f0 !important; }
