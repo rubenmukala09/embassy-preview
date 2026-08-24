@@ -215,9 +215,15 @@ main .ed-band::before { content: none !important; }
 main .ed-band::after { content: none !important; }
 main .ed-band > .container { width: 100%; }
 main .ed-band > .container { position: relative; z-index: 1; }
-main .ed-band :is(h2, h3, h4, b, strong) { color: #fff; }
-main .ed-band :is(p, li, .lead) { color: #ccd6e8; }
-main .ed-band .eyebrow { color: #f1dba2; }
+/* The band always sits on a dark scrim, so its typography is forced:
+   the legal and official-content layers set their own body colours
+   and were painting dark blue text onto dark navy. */
+main .ed-band :is(h1, h2, h3, h4, b, strong) { color: #ffffff !important; }
+main .ed-band :is(p, li, .lead, span:not(.eyebrow)) { color: #ccd6e8 !important; }
+main .ed-band .ed-band-facts b { color: #f1dba2 !important; }
+main .ed-band .ed-band-facts span { color: #b7c4da !important; }
+main .ed-band .eyebrow { color: #f1dba2 !important; }
+main .ed-band a:not(.btn) { color: #f1dba2 !important; }
 main .ed-band .rule { background: linear-gradient(90deg, #f1dba2, transparent); }
 main .ed-band .card,
 main .ed-band .card.pad {
