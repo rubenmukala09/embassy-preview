@@ -368,33 +368,6 @@ main #service-status .grid.cards > .service-directory-card:nth-child(n+4) .btn:h
   color: #0a1731 !important;
 }
 
-/* ---- 15 · Congo Shining hero: never clip the programme card ---
-   The hero was locked to the viewport (calc(100svh - 136px) = 660px
-   here) with overflow:hidden, while its content measured 755px - so
-   the card's last line ("registration closed") was cut off. It now
-   fills the viewport OR grows to fit, whichever is taller. */
-@media (min-width: 981px) {
-  html body main section.shine-hero,
-  main .shine-hero {
-    height: auto !important;
-    /* Fill the viewport when there is room, but never below what the
-       programme card actually needs (726px of content + padding). */
-    min-height: max(812px, calc(100svh - 136px)) !important;
-    /* Something outside the stylesheets clamps this hero to
-       max-height:660px, which is what cut the card off. */
-    max-height: none !important;
-    align-items: center;
-  }
-  html body main section.shine-hero .shine-hero-grid,
-  main .shine-hero > .container {
-    padding-block-end: 42px;
-  }
-}
-
-/* ============================================================
-   QUIET PASS - 2026-08-24. Taking decoration away, not adding it.
-   ============================================================ */
-
 /* ---- 16 · The gallery is photographs, not framing --------------
    Every tile carried three separate marks: a white hairline frame
    inset 8px (aurora.css), a gold corner bracket (aurora.css) and an
@@ -404,14 +377,6 @@ main #service-status .grid.cards > .service-directory-card:nth-child(n+4) .btn:h
 main .gallery a::before,
 main .gallery a::after,
 main .gallery > a span::before { content: none !important; }
-
-/* ---- 17 · Congo Shining hero: no streak across the faces -------
-   A flag-coloured diagonal was drawn at 118deg straight over the
-   photograph. It read as an artifact, not as an emblem. Only the
-   soft depth glow is kept, and softened. */
-html body main section.shine-hero::after {
-  background-image: radial-gradient(circle at 84% 18%, rgba(0, 127, 255, .14), rgba(0, 0, 0, 0) 30%) !important;
-}
 
 /* ---- 18 · Buttons end with their label, not a bead -------------
    enrichment.css appended a 5px translucent dot with a glow ring to
@@ -431,3 +396,42 @@ main .quote-cta::after { content: none !important; }
 main #ambassador,
 main #contact { background-image: none !important; }
 main > .section > .container { background-image: none !important; }
+
+/* ---- 20 · Hero fact list (standard heroes) ---------------------
+   Congo Shining used to carry a bespoke glass panel with an
+   orbiting globe. Its facts were worth keeping; the panel was not.
+   This states them in the hero's own voice, under the lead. */
+main .phead .phead-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  margin: 26px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(241, 219, 162, .3);
+  max-width: 780px;
+}
+main .phead .phead-facts > div { min-width: 150px; }
+main .phead .phead-facts dt {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: #f1dba2;
+}
+main .phead .phead-facts dd {
+  margin: 5px 0 0;
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.25;
+  color: #ffffff;
+}
+main .phead .official-actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* This hero carries more than a title, so it needs room to breathe. */
+main .phead.shine-lede { min-height: 620px; }
+main .phead.shine-lede > .container { padding-block: 34px; }
+@media (max-width: 700px) {
+  main .phead .phead-facts { gap: 16px 26px; }
+  main .phead .phead-facts dd { font-size: 15.5px; }
+}

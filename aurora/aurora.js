@@ -3843,6 +3843,9 @@
     if (hero) list.push({ box: hero, ms: 5000 });
     document.querySelectorAll(".phead").forEach(function (ph) {
       if (ph.querySelector(".phead-slides")) return;
+      /* A page that declares data-hero-static keeps its own photograph
+         instead of the shared rotation burying it. */
+      if (ph.hasAttribute("data-hero-static")) return;
       var box = document.createElement("div");
       box.className = "phead-slides";
       ph.insertBefore(box, ph.firstChild);
