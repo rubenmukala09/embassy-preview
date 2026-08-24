@@ -511,7 +511,7 @@
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.01, rootMargin: "300px 0px 300px 0px" },
     );
     revealTargets.forEach((t) => io.observe(t));
   }
@@ -4025,7 +4025,7 @@
     entries.forEach(function (en) {
       en.target.classList.toggle("anim-idle", !en.isIntersecting);
     });
-  }, { rootMargin: "80px 0px" });
+  }, { rootMargin: "600px 0px" });
   loops.forEach(function (el) { io.observe(el); });
 })();
 
@@ -4226,7 +4226,7 @@
     widgetSpecs().forEach(function (w) {
       layers.push(new MotionLayer(w.host, {
         clip: w.clip, anchor: w.anchor, soft: w.soft,
-        rootMargin: "200px 0px", threshold: 0.01
+        rootMargin: "1200px 0px", threshold: 0.01
       }));
     });
     layers.forEach(function (l) { l.mount(); });

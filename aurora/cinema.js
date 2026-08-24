@@ -50,7 +50,7 @@
           obs.unobserve(en.target);
         }
       });
-    }, { rootMargin: '700px 0px' });
+    }, { rootMargin: '1600px 0px' });
     mounts.forEach(function (m) { mountIo.observe(m); });
   } else {
     mounts.forEach(buildFilm);
@@ -127,4 +127,49 @@
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* ------------------------------------------------------------------
+   Warm-up: CSS background images are only fetched when the element is
+   painted, which is what made galleries and thumbnails appear late.
+   Nothing here is lazy - after first paint we walk the document in
+   reading order and pull every background into cache during idle
+   time, so by the time a band scrolls up it is already decoded.
+   ------------------------------------------------------------------ */
+(function () {
+  var seen = {}, queue = [];
+
+  function collect() {
+    var urls = [];
+    document.querySelectorAll('[style*="background-image"], [style*="--ed-photo"]').forEach(function (el) {
+      var raw = el.getAttribute('style') || '';
+      var re = /url\(\s*['"]?([^'")]+?)['"]?\s*\)/g, m;
+      while ((m = re.exec(raw))) urls.push(m[1]);
+    });
+    urls.forEach(function (u) {
+      if (!u || seen[u]) return;
+      seen[u] = 1;
+      queue.push(u);
+    });
+  }
+
+  function pump(deadline) {
+    while (queue.length && (!deadline || deadline.timeRemaining() > 4)) {
+      var img = new Image();
+      img.decoding = 'async';
+      if ('fetchPriority' in img) img.fetchPriority = 'low';
+      img.src = queue.shift();
+    }
+    if (queue.length) schedule();
+  }
+
+  function schedule() {
+    if (window.requestIdleCallback) requestIdleCallback(pump, { timeout: 1200 });
+    else setTimeout(function () { pump(null); }, 200);
+  }
+
+  function start() { collect(); schedule(); }
+
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start);
 })();
