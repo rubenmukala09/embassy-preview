@@ -420,3 +420,14 @@ html body main section.shine-hero::after {
    rather than an ornament. */
 main .section .btn::after,
 main .quote-cta::after { content: none !important; }
+
+/* ---- 19 · One surface, no leftover texture --------------------
+   aurora.css paints a navy dot texture on .bg-ivory / .bg-cream and
+   on #ambassador / #contact. The refinement layer already flattened
+   the .bg-* bands, so the dots survived on two sections out of
+   seventeen - arbitrary rather than intentional. And enrichment.css
+   lays 48px graph paper inside every section container, which is
+   an operations-dashboard motif, not a diplomatic one. */
+main #ambassador,
+main #contact { background-image: none !important; }
+main > .section > .container { background-image: none !important; }
