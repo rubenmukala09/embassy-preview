@@ -390,3 +390,33 @@ main #service-status .grid.cards > .service-directory-card:nth-child(n+4) .btn:h
     padding-block-end: 42px;
   }
 }
+
+/* ============================================================
+   QUIET PASS - 2026-08-24. Taking decoration away, not adding it.
+   ============================================================ */
+
+/* ---- 16 · The gallery is photographs, not framing --------------
+   Every tile carried three separate marks: a white hairline frame
+   inset 8px (aurora.css), a gold corner bracket (aurora.css) and an
+   auto-numbered badge 01-08 (enrichment.css). Twenty-four decorative
+   marks in one section, and the numbering implied a sequence that
+   does not exist. The picture and one caption line are enough. */
+main .gallery a::before,
+main .gallery a::after,
+main .gallery > a span::before { content: none !important; }
+
+/* ---- 17 · Congo Shining hero: no streak across the faces -------
+   A flag-coloured diagonal was drawn at 118deg straight over the
+   photograph. It read as an artifact, not as an emblem. Only the
+   soft depth glow is kept, and softened. */
+html body main section.shine-hero::after {
+  background-image: radial-gradient(circle at 84% 18%, rgba(0, 127, 255, .14), rgba(0, 0, 0, 0) 30%) !important;
+}
+
+/* ---- 18 · Buttons end with their label, not a bead -------------
+   enrichment.css appended a 5px translucent dot with a glow ring to
+   every .btn inside a section. On the many buttons that already end
+   in an arrow it rendered as "Label -> *", which reads as a glitch
+   rather than an ornament. */
+main .section .btn::after,
+main .quote-cta::after { content: none !important; }
