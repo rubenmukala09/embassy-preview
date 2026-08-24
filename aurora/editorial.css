@@ -395,7 +395,10 @@ main .quote-cta::after { content: none !important; }
    an operations-dashboard motif, not a diplomatic one. */
 main #ambassador,
 main #contact { background-image: none !important; }
-main > .section > .container { background-image: none !important; }
+/* NOTE: do NOT blanket-clear container background-images here. The
+   48px graph paper was invisible at 1.6% alpha, but the same property
+   carries the Media Centre's dark navy card (home-media-centre.css),
+   and clearing it left white text on a white ground. */
 
 /* ---- 20 · Hero fact list (standard heroes) ---------------------
    Congo Shining used to carry a bespoke glass panel with an
@@ -435,3 +438,167 @@ main .phead.shine-lede > .container { padding-block: 34px; }
   main .phead .phead-facts { gap: 16px 26px; }
   main .phead .phead-facts dd { font-size: 15.5px; }
 }
+
+/* ---- 21 · Wider side margins below the fold, on every page -----
+   Standard bands sit in a 1180px container, but a few run to 1760px
+   and hug the screen edge. Nothing below the fold now runs closer to
+   the edge than this gutter, and no band exceeds 1560px. */
+main .section > .container,
+main .qa-band > .container {
+  padding-inline: clamp(20px, 4vw, 72px);
+}
+main .section > .container { max-inline-size: min(1560px, 100%); }
+
+/* ---- 22 · The tools band fits instead of scrolling sideways -----
+   component-standard.css turned this into a horizontal scroll rail
+   (grid-auto-flow:column + overflow-x:auto + scroll-snap), so on any
+   screen narrower than about 1850px the widgets slid off to the
+   right. They wrap now, and never scroll. */
+main #tools > .container {
+  inline-size: min(1560px, calc(100% - 2 * clamp(24px, 5vw, 104px))) !important;
+  max-inline-size: 1560px !important;
+}
+main #tools .widgets {
+  grid-auto-flow: row !important;
+  grid-auto-columns: auto !important;
+  grid-template-columns: repeat(auto-fit, minmax(236px, 1fr)) !important;
+  grid-template-rows: none !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  scroll-snap-type: none !important;
+  padding-bottom: 0 !important;
+}
+main #tools .widgets > .widget {
+  min-inline-size: 0;
+  scroll-snap-align: none !important;
+}
+@media (max-width: 620px) {
+  main #tools .widgets { grid-template-columns: 1fr !important; }
+}
+
+/* ---- 23 · Media Centre, redesigned -----------------------------
+   Four problems: the format legend rendered as four large empty
+   pills that looked like dead buttons; each list row sat in its own
+   bordered box inside an already-bordered card; the row glyphs were
+   coloured app-style tiles; and the featured item was repeated
+   verbatim as the first row (that row is now removed in markup). */
+
+/* The formats are a legend, not controls - one quiet row. */
+main #media .announcement-formats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+}
+main #media .announcement-formats > span {
+  min-height: 0 !important;
+  padding: 0 0 0 15px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  color: #c7d8ee !important;
+  font-size: 9.5px !important;
+}
+main #media .announcement-formats > span::before { left: 0 !important; }
+
+/* The list reads as a record, not four floating boxes. */
+main #media .media-list { gap: 0 !important; grid-template-rows: none !important; }
+main #media .media-item {
+  border: 0 !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .13) !important;
+  background: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 17px 8px !important;
+  min-height: 0 !important;
+}
+main #media .media-item:last-child { border-bottom: 0 !important; }
+main #media .media-item:hover,
+main #media .media-item:focus-visible {
+  transform: none !important;
+  background: rgba(255, 255, 255, .055) !important;
+  border-color: rgba(255, 255, 255, .13) !important;
+}
+
+/* Engraved glyph instead of a coloured application icon. */
+main #media .mi-ic {
+  width: 27px !important;
+  height: 27px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  color: #f1dba2 !important;
+}
+main #media .mi-ic svg { width: 20px !important; height: 20px !important; }
+
+/* The feature already says what it is; drop the second label. */
+main #media .media-feature::before { content: none !important; }
+
+/* ---- 24 · Break the centred stack ------------------------------
+   Every band announced itself dead centre, so the whole below-fold
+   read as one narrow column. Section heads now alternate side to
+   side, which gives the page an editorial rhythm without moving any
+   of the grids. Phones stay left-aligned. */
+@media (min-width: 861px) {
+  main > .section:nth-of-type(odd) > .container > .sec-head.center {
+    margin-inline: 0 auto;
+    text-align: left;
+  }
+  main > .section:nth-of-type(odd) > .container > .sec-head.center .rule {
+    margin-inline: 0 auto;
+  }
+  main > .section:nth-of-type(even) > .container > .sec-head.center {
+    margin-inline: auto 0;
+    text-align: right;
+  }
+  main > .section:nth-of-type(even) > .container > .sec-head.center .rule {
+    margin-inline: auto 0;
+  }
+  /* The media centre head is a two-column grid of its own. */
+  main #media > .container > .sec-head.center {
+    margin-inline: 0 !important;
+    text-align: left !important;
+  }
+  main #media > .container > .sec-head.center .rule { margin-inline: 0 !important; }
+}
+
+/* ---- 25 · Contrast repair, found by auditing every page --------
+   A scripted pass over all 19 pages measured every text node against
+   its composited background. These are the genuine failures (text
+   sitting over photographs was verified separately and left alone). */
+
+/* Muted meta text sat at 3.9-4.3:1 on white; AA needs 4.5. */
+main :is(.source-note, .apply-note, .cw-who, .cw-age, .bk-st-dot, .mi-meta, small, .muted):not(.ed-band *):not(#media *):not(.cta-premium *):not(.dark-surface *):not(.phead *):not(.hero *) {
+  color: #55677d !important;
+}
+main [class^="annual-upcoming-or"]:not(.ed-band *) { color: #55677d !important; }
+
+/* White on a pale chip - the feature label was near-invisible. */
+main #media .media-feature > .media-badge {
+  color: #ffffff !important;
+  background: rgba(6, 20, 44, .82) !important;
+  border: 1px solid rgba(255, 255, 255, .3) !important;
+}
+
+/* White numeral on a light grey step marker (1.81:1). */
+main .cw-band.is-empty .cw-step { background: #55677d !important; color: #fff !important; }
+
+/* White glyphs on gold read at 1.6-2.2:1; navy on gold reads clean. */
+/* The arrow's colour is pinned white by a layered !important rule we
+   cannot outrank, so the chip goes navy instead - white on navy, and
+   it now matches the sector "+" below. */
+html body main .drc-image-action b {
+  background: #0a1731 !important;
+  border: 1px solid rgba(255, 255, 255, .35) !important;
+}
+/* The sector "+" was white on gold (2.2:1) and on blue (3.8:1). One
+   navy chip reads everywhere; the card keeps its sector colour. */
+html body main .sector-card summary span {
+  background: #0a1731 !important;
+  color: #ffffff !important;
+}
+
+/* Brand red kept a touch deeper for 9px marks on tinted washes. */
+main .sector-mark { color: #9c0c1a !important; }
