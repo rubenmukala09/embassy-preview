@@ -324,3 +324,69 @@ main .ed-strip figcaption span {
 }
 @media (max-width: 860px) { main .ed-strip { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { main .ed-strip { grid-template-columns: 1fr; } }
+
+/* ---- 14 · Service directory: three choices, five references ---
+   Eight equal boxes in a three-column grid left a ragged hole in
+   the last row and gave a reference link the same weight as the
+   main pathway. The trio stays loud; the rest step back and the
+   richest card takes the empty slot so the grid closes cleanly. */
+@media (min-width: 900px) {
+  main #service-status .grid.cards > .service-directory-card:last-child {
+    grid-column: span 2;
+  }
+  main #service-status .grid.cards > .service-directory-card:last-child .service-card-head { margin-bottom: 4px; }
+}
+
+/* The five reference cards are quieter and shorter than the trio. */
+main #service-status .grid.cards > .service-directory-card:nth-child(n+4) {
+  background: #ffffff !important;
+  border-color: rgba(10, 23, 49, .1) !important;
+  box-shadow: none !important;
+}
+main #service-status .grid.cards > .service-directory-card:nth-child(n+4) h3 {
+  font-size: 17px;
+}
+main #service-status .grid.cards > .service-directory-card:nth-child(n+4) p {
+  font-size: 13.5px;
+  margin-block-end: 16px;
+}
+/* Their action is a quiet link, not a third competing button. */
+main #service-status .grid.cards > .service-directory-card:nth-child(n+4) .btn {
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  color: #124a86 !important;
+  font-size: 13.5px !important;
+  font-weight: 750 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  box-shadow: none !important;
+  justify-content: flex-start !important;
+}
+main #service-status .grid.cards > .service-directory-card:nth-child(n+4) .btn:hover {
+  color: #0a1731 !important;
+}
+
+/* ---- 15 · Congo Shining hero: never clip the programme card ---
+   The hero was locked to the viewport (calc(100svh - 136px) = 660px
+   here) with overflow:hidden, while its content measured 755px - so
+   the card's last line ("registration closed") was cut off. It now
+   fills the viewport OR grows to fit, whichever is taller. */
+@media (min-width: 981px) {
+  html body main section.shine-hero,
+  main .shine-hero {
+    height: auto !important;
+    /* Fill the viewport when there is room, but never below what the
+       programme card actually needs (726px of content + padding). */
+    min-height: max(812px, calc(100svh - 136px)) !important;
+    /* Something outside the stylesheets clamps this hero to
+       max-height:660px, which is what cut the card off. */
+    max-height: none !important;
+    align-items: center;
+  }
+  html body main section.shine-hero .shine-hero-grid,
+  main .shine-hero > .container {
+    padding-block-end: 42px;
+  }
+}
