@@ -166,3 +166,155 @@ main .official-guidance .official-guidance__status {
   border-radius: 6px;
   transform: rotate(-1.2deg);
 }
+
+/* ============================================================
+   COMPOSITION PASS - 2026-08-23 (second round)
+   The site read long and loose: every section carried up to
+   94px of padding top AND bottom (premium-polish.css), and the
+   homepage repeated its message across four orientation bands.
+   This block tightens the vertical rhythm site-wide and gives
+   the page a second register - full-bleed photographic bands -
+   so the eye is not fed the same white card grid seventeen
+   times in a row.
+   ============================================================ */
+
+/* ---- 9 · One vertical rhythm, roughly 40% tighter ------------- */
+main .section { padding-block: clamp(34px, 3.2vw, 54px); }
+main .section.tight { padding-block: clamp(22px, 2.2vw, 34px); }
+main .section .sec-head { margin-bottom: clamp(20px, 2.1vw, 28px); }
+main .grid { gap: 20px; }
+main .mt32 { margin-top: 22px; }
+
+/* Consecutive bands of the same ground should not double their
+   air at the seam. */
+main > .section + .section { padding-block-start: clamp(30px, 2.8vw, 46px); }
+
+/* ---- 10 · Full-bleed photographic band ------------------------
+   A section that carries its own picture edge to edge, with the
+   measured navy scrim the heroes already use, so text keeps AA
+   contrast over any of the editorial-2026 stills. */
+main .ed-band {
+  --ed-scrim: linear-gradient(100deg, rgba(4, 10, 24, .96) 0%, rgba(5, 13, 30, .92) 34%, rgba(5, 13, 30, .74) 62%, rgba(5, 13, 30, .56) 100%);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 430px;
+  color: #fff;
+  background-color: #0a1731;
+  /* The scrim rides in the same background stack as the photograph,
+     so no foreign ::before rule can win it away and leave white
+     text sitting on a bright sky. */
+  background-image: var(--ed-scrim), var(--ed-photo, none) !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  overflow: hidden;
+}
+main .ed-band::before { content: none !important; }
+main .ed-band::after { content: none !important; }
+main .ed-band > .container { width: 100%; }
+main .ed-band > .container { position: relative; z-index: 1; }
+main .ed-band :is(h2, h3, h4, b, strong) { color: #fff; }
+main .ed-band :is(p, li, .lead) { color: #ccd6e8; }
+main .ed-band .eyebrow { color: #f1dba2; }
+main .ed-band .rule { background: linear-gradient(90deg, #f1dba2, transparent); }
+main .ed-band .card,
+main .ed-band .card.pad {
+  background: rgba(255, 255, 255, .06) !important;
+  border-color: rgba(255, 255, 255, .16) !important;
+  backdrop-filter: blur(2px);
+}
+main .ed-band .card :is(h3, h4, b, strong) { color: #fff; }
+main .ed-band .card p { color: #c2cde0; }
+/* On a photographic band the copy should hold a column, not run
+   the full width of the screen. */
+main .ed-band .sec-head { margin-inline: 0; text-align: left; max-width: 620px; }
+main .ed-band .sec-head .rule { margin-inline: 0; }
+
+/* ---- 11 · Leadership pair reads as one act -------------------- */
+main .home-president-original + .section { padding-block-start: clamp(20px, 2vw, 30px); }
+
+/* ---- 12 · Phones: the same rhythm, one notch tighter ---------- */
+@media (max-width: 767px) {
+  main .section { padding-block: clamp(26px, 6vw, 38px); }
+  main > .section + .section { padding-block-start: clamp(24px, 5.4vw, 34px); }
+  main .grid { gap: 16px; }
+}
+
+/* ---- 13 · Inserted photographic band + sector strip -----------
+   Most inner pages ran 7-8 consecutive card sections with no
+   picture at all. These two components break that wall: a short
+   full-bleed band that states one idea over a photograph, and a
+   three-up strip of real images with captions. */
+main .ed-band .ed-band-copy { max-width: 640px; }
+main .ed-band .ed-band-copy .rule { margin-inline: 0; }
+main .ed-band .ed-band-copy h2 { margin-top: 10px; font-size: clamp(24px, 2.6vw, 33px); }
+main .ed-band .ed-band-copy p { margin-top: 12px; font-size: 15.5px; line-height: 1.62; }
+main .ed-band .ed-band-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px 42px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(241, 219, 162, .28);
+}
+main .ed-band .ed-band-facts div { min-width: 128px; }
+main .ed-band .ed-band-facts b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 23px;
+  color: #f1dba2;
+  line-height: 1.1;
+}
+main .ed-band .ed-band-facts span {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #b7c4da;
+}
+
+main .ed-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+main .ed-strip figure {
+  position: relative;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0a1731;
+  aspect-ratio: 3 / 2;
+}
+main .ed-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s cubic-bezier(.2, .7, .3, 1);
+}
+main .ed-strip figure:hover img { transform: scale(1.035); }
+main .ed-strip figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 30px 16px 13px;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(6, 14, 32, .88));
+}
+main .ed-strip figcaption b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 16.5px;
+  line-height: 1.2;
+}
+main .ed-strip figcaption span {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: #f1dba2;
+}
+@media (max-width: 860px) { main .ed-strip { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { main .ed-strip { grid-template-columns: 1fr; } }
