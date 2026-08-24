@@ -11,7 +11,10 @@
 
   var wide = window.matchMedia('(min-width: 768px)').matches;
 
-  mounts.forEach(function (mount) {
+  /* Build lazily: a film mounts only once its section approaches the
+     viewport, so below-the-fold films cost nothing until needed. */
+  function buildFilm(mount) {
+    if (mount.querySelector('video.film-layer')) return;
     var src = wide
       ? mount.getAttribute('data-film')
       : (mount.getAttribute('data-film-sm') || mount.getAttribute('data-film'));
@@ -37,7 +40,21 @@
     mount.appendChild(v);
     var p = v.play();
     if (p && p.catch) p.catch(function () { /* photo hero remains */ });
-  });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var mountIo = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          buildFilm(en.target);
+          obs.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '700px 0px' });
+    mounts.forEach(function (m) { mountIo.observe(m); });
+  } else {
+    mounts.forEach(buildFilm);
+  }
 
   /* Opened in a background tab? Resume when it becomes visible. */
   document.addEventListener('visibilitychange', function () {

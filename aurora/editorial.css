@@ -1,0 +1,168 @@
+/* ============================================================
+   EDITORIAL LAYER - below-the-fold composition, 2026-08-23.
+   Loads LAST, after refinement.css and cinema.css. Each block
+   upgrades one shared component with the bespoke editorial-2026
+   art set; nothing here touches the heroes.
+   ============================================================ */
+
+/* ---- 1 · Gallery: editorial mosaic with a living centerpiece --- */
+main .gallery { grid-auto-rows: 205px; gap: 14px; }
+main .gallery a { aspect-ratio: auto; height: 100%; }
+main .gallery a.g-wide { grid-column: span 2; }
+main .gallery a.g-tall { grid-row: span 2; }
+/* Captions are part of the composition, not a hover secret. */
+main .gallery a span {
+  opacity: 1;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 30px 12px 10px;
+  background: linear-gradient(transparent, rgba(8, 16, 34, .78));
+}
+main .gallery a .film-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  z-index: 0;
+}
+main .gallery a.film-live .film-layer { opacity: 1; }
+@media (max-width: 767px) {
+  main .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+}
+
+/* ---- 2 · The consular journey: a thread, not six boxes --------- */
+main .steps::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 25px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(191,155,58,.75) 9%, rgba(191,155,58,.75) 91%, transparent);
+}
+main .snum {
+  border-radius: 50% !important;
+  background: linear-gradient(160deg, #0a1731, #172c55);
+  color: #f1dba2;
+  border: 1px solid rgba(241, 219, 162, .5);
+  box-shadow: 0 0 0 7px var(--step-ground, #fff), 0 14px 26px -18px rgba(6, 13, 30, .55);
+}
+main .snum::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px dashed rgba(191, 155, 58, .5);
+  border-radius: 50%;
+}
+main .bg-cream .steps, main .bg-ivory .steps { --step-ground: #eef3f9; }
+@media (max-width: 992px) { main .steps::before { display: none; } }
+
+/* ---- 3 · Application journey rail (honest status guidance) ----- */
+main .status-rail { list-style: none; margin: 0; padding: 0; position: relative; }
+main .status-rail::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(191,155,58,.85), rgba(191,155,58,.25));
+}
+main .status-rail li { position: relative; padding: 0 0 18px 38px; }
+main .status-rail li:last-child { padding-bottom: 0; }
+main .status-rail li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #bf9b3a;
+  background: #fff;
+}
+main .status-rail li:first-child::before { background: #bf9b3a; }
+main .status-rail li:last-child::before  { border-color: #0f7c3f; }
+main .status-rail li b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 15.5px;
+  color: #0a1731;
+}
+main .status-rail li span { font-size: 13px; color: #5a6b85; }
+
+/* ---- 4 · Forms as dossiers, not link rows ---------------------- */
+main .dl-item { border-radius: 12px; padding: 15px 18px; gap: 16px; }
+main .dl-item .fi {
+  width: 46px;
+  height: 57px;
+  border-radius: 4px 12px 4px 4px;
+  background: linear-gradient(155deg, #0e1f42, #1d3767);
+  position: relative;
+  overflow: hidden;
+}
+main .dl-item .fi::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 13px;
+  height: 13px;
+  background: linear-gradient(225deg, #fff 0 49%, rgba(241, 219, 162, .95) 50%);
+}
+main .dl-item .fi::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.4px solid rgba(241, 219, 162, .8);
+  background: radial-gradient(circle, rgba(241, 219, 162, .35), transparent 72%);
+}
+main .dl-item .fi svg { color: #f1dba2; width: 18px; height: 18px; margin-top: -10px; }
+main .dl-item:hover .fi { background: linear-gradient(155deg, #16295a, #2a4a8a); }
+main .dl-item:hover .fi svg { color: #f1dba2; }
+
+/* ---- 5 · The city block, drawn for the Embassy ----------------- */
+main .embassy-map-panel {
+  background: #0b1c3a url('assets/img/generated/editorial-2026/embassy-street-map.webp') center / cover no-repeat !important;
+}
+main .embassy-map-panel .embassy-map-pin { display: none !important; }
+
+/* ---- 6 · Digital services: three lit pathway steps ------------- */
+main #service-status .grid.cards > .service-directory-card:nth-child(-n+3) {
+  background: linear-gradient(168deg, #0c1d3f, #142b52) !important;
+  border-color: rgba(241, 219, 162, .3) !important;
+}
+main #service-status .grid.cards > .service-directory-card:nth-child(-n+3) h3 { color: #fff; }
+main #service-status .grid.cards > .service-directory-card:nth-child(-n+3) p { color: #c2cde0; }
+main #service-status .grid.cards > .service-directory-card:nth-child(-n+3) .service-card-icon { color: #f1dba2; }
+main #service-status .grid.cards > .service-directory-card:nth-child(-n+3) .btn.btn-navy {
+  background: linear-gradient(160deg, #f1dba2, #d8b45e) !important;
+  color: #0a1f4d !important;
+  border-color: transparent !important;
+}
+
+/* ---- 7 · Offices band (the-embassy): medallion cards ----------- */
+main .offices-band .card.pad {
+  border-top: 2px solid rgba(191, 155, 58, .65) !important;
+  border-radius: 0 0 12px 12px;
+}
+
+/* ---- 8 · Official-guidance: a record of verification ----------- */
+main .official-guidance { border-left: 3px solid rgba(191, 155, 58, .65); }
+main .official-guidance .official-guidance__status {
+  border: 1px dashed rgba(191, 155, 58, .75);
+  border-radius: 6px;
+  transform: rotate(-1.2deg);
+}
