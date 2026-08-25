@@ -1586,7 +1586,7 @@ summary {
   }
 
   .hero-protocol {
-    display: none;
+    display: none !important;
   }
 
   body main .hero h1 {
@@ -1612,6 +1612,20 @@ summary {
   .hero .cta .btn,
   .phead .cta .btn {
     width: 100%;
+  }
+
+  body main .hero .cta .btn-gold,
+  body main .phead .cta .btn-gold {
+    border-color: var(--mission-brass) !important;
+    background: var(--mission-brass-light) !important;
+    color: var(--mission-night) !important;
+  }
+
+  body main .hero .cta .btn-ghost,
+  body main .phead .cta .btn-ghost {
+    border-color: rgba(255, 255, 255, .52) !important;
+    background: rgba(4, 17, 37, .3) !important;
+    color: #fff !important;
   }
 
   body main .hero::after {
