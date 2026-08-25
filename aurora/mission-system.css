@@ -1582,29 +1582,23 @@ summary {
   }
 
   body main .hero > .container {
-    padding: 150px var(--gut) 44px !important;
+    padding: 94px var(--gut) 30px !important;
   }
 
   .hero-protocol {
-    gap: 10px;
-    margin-bottom: 17px;
-    font-size: .58rem;
-  }
-
-  .hero-protocol span + span {
-    padding-left: 10px;
+    display: none;
   }
 
   body main .hero h1 {
     max-width: 12ch;
-    font-size: clamp(3.45rem, 15vw, 5.1rem) !important;
+    font-size: clamp(3.15rem, 13.8vw, 4.7rem) !important;
     line-height: .91 !important;
   }
 
   body main .hero p.lead {
-    margin-top: 18px;
+    margin-top: 14px;
     font-size: .96rem !important;
-    line-height: 1.58 !important;
+    line-height: 1.54 !important;
   }
 
   .hero .cta,
@@ -1612,7 +1606,7 @@ summary {
     display: grid;
     grid-template-columns: 1fr;
     width: min(100%, 360px);
-    margin-top: 22px;
+    margin-top: 16px;
   }
 
   .hero .cta .btn,
@@ -1723,15 +1717,11 @@ summary {
   }
 
   body main .hero > .container {
-    padding-bottom: 34px !important;
+    padding-bottom: 28px !important;
   }
 
   body main .hero h1 {
-    font-size: clamp(3.18rem, 15.5vw, 4.35rem) !important;
-  }
-
-  .hero-protocol span:last-child {
-    display: none;
+    font-size: clamp(3.05rem, 13.5vw, 4.15rem) !important;
   }
 
   .foot .grid {
