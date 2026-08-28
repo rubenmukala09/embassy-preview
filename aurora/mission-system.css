@@ -270,6 +270,9 @@ main :where(p, li) {
 }
 
 .topbar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   color: #e5ebf1;
 }
 
@@ -415,6 +418,9 @@ main :where(p, li) {
 }
 
 .announce .ticker a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   font-size: .76rem;
 }
 
@@ -622,6 +628,9 @@ body main .phead > .container {
 }
 
 .phead .crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   color: var(--mission-brass-light);
 }
 
@@ -1038,6 +1047,24 @@ textarea {
   line-height: 1.4;
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 24px;
+  border-color: #8795a3;
+  border-radius: 3px;
+  accent-color: var(--mission-blue);
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+}
+
 .field textarea,
 textarea {
   min-height: 132px;
@@ -1109,6 +1136,50 @@ summary {
 .details-body {
   color: var(--mission-slate);
   line-height: 1.72;
+}
+
+main :where(
+  .source-inline,
+  .source-note a,
+  .mission-actions > a:not(.btn),
+  .center.muted > a,
+  .legal-body a,
+  .official-list a,
+  .official-actions a:not(.btn),
+  .links a,
+  .footer-news-link
+) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+[data-news-dots] button {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+[data-news-dots] button::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1px solid #77879a;
+  border-radius: 50%;
+  background: #fff;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+[data-news-dots] button:is(.is-active, [aria-current="true"])::after {
+  border-color: var(--mission-brass);
+  background: var(--mission-brass);
 }
 
 .service-notice,
@@ -1294,6 +1365,9 @@ summary {
 }
 
 .foot a.fl {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
   padding: 5px 0;
   color: #becbd8;
   font-size: .78rem;
@@ -1329,6 +1403,14 @@ summary {
   color: #8494a6;
   font-size: .68rem;
   line-height: 1.6;
+}
+
+.foot-contact a,
+.ft-legal a,
+.footer-news-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
 }
 
 .flagbar {
