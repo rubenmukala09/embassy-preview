@@ -1844,12 +1844,19 @@ main :where(
   }
 }
 
+body main #advisory .adv-check input[type="checkbox"],
 body main .adv-check input[type="checkbox"] {
   width: 24px !important;
   min-width: 24px !important;
   height: 24px !important;
   min-height: 24px !important;
   flex: 0 0 24px !important;
+}
+
+body main #advisory .adv-check input[type="checkbox"]:checked::after,
+body main .adv-check input[type="checkbox"]:checked::after {
+  left: 8px;
+  top: 4px;
 }
 
 @media print {
