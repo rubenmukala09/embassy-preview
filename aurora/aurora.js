@@ -1234,16 +1234,17 @@
       '<div class="search-overlay" role="dialog" aria-modal="true" aria-label="Search the embassy" hidden><div class="search-panel">' +
         '<div class="search-box">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
-          '<input type="search" placeholder="Search the embassy: passports, visas, hours…" aria-label="Search" autocomplete="off"/>' +
+          '<input type="search" placeholder="Search the embassy: passports, visas, hours…" aria-label="Search" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sr-list" aria-autocomplete="list"/>' +
           '<button class="sb-close" aria-label="Close search">×</button>' +
         "</div>" +
-        '<div class="search-results"></div>' +
+        '<div class="search-results" id="sr-list"></div><div class="sr-keys" aria-hidden="true"></div>' +
       "</div></div>",
     );
     document.body.appendChild(ov);
     const input = ov.querySelector("input");
     const results = ov.querySelector(".search-results");
     let current = [];
+    let active = -1;
     // Localized UI copy, chosen from the active display language at render time.
     const STR = () => (isFR() ? {
       ph: "Rechercher : passeports, visas, horaires…",
@@ -1255,16 +1256,54 @@
       empty: (q) => 'No matches for “' + q + '”. Try another term or <a href="contact.html">contact us</a>.',
     });
     const render = (q) => {
+      input.removeAttribute("aria-activedescendant");
       const s = STR();
-      if (!q.trim()) { results.innerHTML = '<div class="sr-hint">' + s.hint + '</div>'; current = []; return; }
+      if (!q.trim()) { results.removeAttribute("role"); input.setAttribute("aria-expanded", "false"); results.innerHTML = '<div class="sr-hint">' + s.hint + '</div>'; current = []; active = -1; return; }
       current = find(q);
-      if (!current.length) { results.innerHTML = '<div class="sr-empty">' + s.empty(esc(q.trim())) + '</div>'; return; }
+      if (!current.length) { results.removeAttribute("role"); input.setAttribute("aria-expanded", "false"); active = -1; results.innerHTML = '<div class="sr-empty">' + s.empty(esc(q.trim())) + '</div>'; return; }
       const destination = (u) => /^(https?:|tel:|mailto:|\/)/i.test(u) ? u : "/embassy-preview/" + u;
-      results.innerHTML = current.map((it) => '<a class="sr-item" href="' + destination(it.u) + '"><span class="sr-t">' + hl(T(it), q) + '</span><span class="sr-d">' + esc(D(it)) + "</span></a>").join("");
+      active = -1; input.removeAttribute("aria-activedescendant");
+      results.setAttribute("role", "listbox"); input.setAttribute("aria-expanded", "true");
+      results.innerHTML = current.map((it, i) => '<a class="sr-item" id="sr-opt-' + i + '" role="option" aria-selected="false" href="' + destination(it.u) + '"><span class="sr-t">' + hl(T(it), q) + '</span><span class="sr-d">' + esc(D(it)) + "</span></a>").join("");
     };
-    const openS = () => { input.placeholder = STR().ph; ov.hidden = false; ov.classList.add("open"); document.body.classList.add("menu-open"); render(""); setTimeout(() => input.focus(), 60); };
-    const closeS = () => { ov.classList.remove("open"); document.body.classList.remove("menu-open"); setTimeout(() => { ov.hidden = true; }, 200); searchToggle.focus(); };
+    let hideT;
+    const openS = () => { clearTimeout(hideT); input.placeholder = STR().ph; paintKeys(); ov.hidden = false; ov.classList.add("open"); document.body.classList.add("menu-open"); render(""); setTimeout(() => input.focus(), 60); };
+    const closeS = () => { ov.classList.remove("open"); document.body.classList.remove("menu-open"); clearTimeout(hideT); hideT = setTimeout(() => { if (!ov.classList.contains("open")) ov.hidden = true; }, 200); searchToggle.focus(); };
     searchToggle.addEventListener("click", openS);
+    // Keyboard: the platform's own modifier + K (Cmd on Mac, Ctrl elsewhere, so
+    // the macOS Ctrl+K "kill line" binding in text fields is left alone), or "/"
+    // when not typing. Never while another dialog - the reader, the player, the
+    // lightbox or the mobile menu - is open: search would open behind or over it.
+    const mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+    const MOD = mac ? "⌘" : "Ctrl";
+    searchToggle.setAttribute("aria-keyshortcuts", mac ? "Meta+K /" : "Control+K /");
+    const keys = ov.querySelector(".sr-keys");
+    const paintKeys = () => {
+      const k = isFR()
+        ? { tip: "Rechercher", move: "naviguer", open: "ouvrir", close: "fermer", any: "partout" }
+        : { tip: "Search", move: "move", open: "open", close: "close", any: "anywhere" };
+      searchToggle.setAttribute("title", k.tip + " (" + MOD + (mac ? "" : " ") + "K)");
+      if (keys) keys.innerHTML = '<span><kbd>↑</kbd><kbd>↓</kbd> ' + k.move + '</span><span><kbd>Enter</kbd> ' + k.open + '</span><span><kbd>Esc</kbd> ' + k.close + '</span><span><kbd>' + MOD + '</kbd><kbd>K</kbd> ' + k.any + '</span>';
+    };
+    paintKeys();
+    if (window.MutationObserver) new MutationObserver(paintKeys).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    const typing = (t) => !!t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+    const otherModalOpen = () => document.body.classList.contains("menu-open") ||
+      Array.prototype.some.call(document.querySelectorAll('[aria-modal="true"], .lbox'), (m) => {
+        if (m === ov || m.hidden) return false;
+        const cs = getComputedStyle(m);
+        return cs.display !== "none" && cs.visibility !== "hidden" && parseFloat(cs.opacity) > 0.05;
+      });
+    document.addEventListener("keydown", (e) => {
+      const isK = e.key === "k" || e.key === "K", isSlash = e.key === "/";
+      if (!isK && !isSlash) return;
+      if (ov.classList.contains("open") || e.defaultPrevented || e.isComposing) return;
+      if (isK && !((mac ? e.metaKey && !e.ctrlKey : e.ctrlKey && !e.metaKey) && !e.altKey && !e.shiftKey)) return;
+      if (isSlash && (e.metaKey || e.ctrlKey || e.altKey || typing(e.target))) return;
+      if (otherModalOpen()) return;
+      e.preventDefault();
+      openS();
+    });
     ov.addEventListener("click", (e) => { if (e.target === ov) closeS(); });
     ov.querySelector(".sb-close").addEventListener("click", closeS);
     // Auto-switch the whole site to the language being typed. Debounced so the
@@ -1282,7 +1321,20 @@
         }
       }, 450);
     });
-    input.addEventListener("keydown", (e) => { if (e.key === "Enter" && current[0]) window.location.href = /^(https?:|tel:|mailto:|\/)/i.test(current[0].u) ? current[0].u : "/embassy-preview/" + current[0].u; });
+    const go = (it) => { window.location.href = /^(https?:|tel:|mailto:|\/)/i.test(it.u) ? it.u : "/embassy-preview/" + it.u; };
+    const setActive = (i) => {
+      const items = $$(".sr-item", results);
+      if (!items.length) return;
+      active = (i + items.length) % items.length;
+      items.forEach((a, n) => { const on = n === active; a.classList.toggle("is-active", on); a.setAttribute("aria-selected", on ? "true" : "false"); });
+      input.setAttribute("aria-activedescendant", items[active].id);
+      items[active].scrollIntoView({ block: "nearest" });
+    };
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); setActive(active + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); setActive(active - 1); }
+      else if (e.key === "Enter" && current.length) { e.preventDefault(); go(current[active >= 0 ? active : 0]); }
+    });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && ov.classList.contains("open")) closeS();
       if (e.key !== "Tab" || !ov.classList.contains("open")) return;

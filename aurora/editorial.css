@@ -676,3 +676,128 @@ html body main a.office-location-card :is(strong, small) { color: #0c1c33 !impor
 html body main a.office-location-card small { color: #45596f !important; }
 html body main a.office-location-card > span:first-child { color: #7a5f00 !important; }
 html body main a.office-location-card { border: 1px solid #e2e8f0 !important; }
+
+/* ---- 29 · Hero edge: the flag's stripe, in motion --------------
+   The hero used to end on a flat 5px bar in muted, off-palette tones
+   (#2d70d6 / #f3d34a / #c4333e). It now leaves the page on a gentle
+   curve, like the silk above it, and the edge carries the flag's own
+   stripe - yellow, red, yellow, then the sky-blue field - in the
+   official colours #007FFF / #F7D618 / #CE1021. The clip and the
+   ribbon are generated from ONE curve so they meet exactly at every
+   width; strokes use non-scaling-stroke so they stay crisp. The old
+   stripe element is retired and the ribbon is drawn on the hero's
+   own ::after, which nothing else claims. */
+html body main section.hero {
+  clip-path: polygon(0 0, 100% 0, 100.000% calc(100% - 10.96px), 97.917% calc(100% - 9.83px), 95.833% calc(100% - 8.76px), 93.750% calc(100% - 7.79px), 91.667% calc(100% - 6.94px), 89.583% calc(100% - 6.22px), 87.500% calc(100% - 5.66px), 85.417% calc(100% - 5.27px), 83.333% calc(100% - 5.05px), 81.250% calc(100% - 5.01px), 79.167% calc(100% - 5.15px), 77.083% calc(100% - 5.46px), 75.000% calc(100% - 5.95px), 72.917% calc(100% - 6.60px), 70.833% calc(100% - 7.39px), 68.750% calc(100% - 8.31px), 66.667% calc(100% - 9.34px), 64.583% calc(100% - 10.45px), 62.500% calc(100% - 11.61px), 60.417% calc(100% - 12.81px), 58.333% calc(100% - 14.01px), 56.250% calc(100% - 15.19px), 54.167% calc(100% - 16.32px), 52.083% calc(100% - 17.37px), 50.000% calc(100% - 18.33px), 47.917% calc(100% - 19.16px), 45.833% calc(100% - 19.86px), 43.750% calc(100% - 20.40px), 41.667% calc(100% - 20.77px), 39.583% calc(100% - 20.97px), 37.500% calc(100% - 20.99px), 35.417% calc(100% - 20.82px), 33.333% calc(100% - 20.48px), 31.250% calc(100% - 19.97px), 29.167% calc(100% - 19.30px), 27.083% calc(100% - 18.49px), 25.000% calc(100% - 17.56px), 22.917% calc(100% - 16.52px), 20.833% calc(100% - 15.40px), 18.750% calc(100% - 14.23px), 16.667% calc(100% - 13.03px), 14.583% calc(100% - 11.83px), 12.500% calc(100% - 10.66px), 10.417% calc(100% - 9.54px), 8.333% calc(100% - 8.50px), 6.250% calc(100% - 7.56px), 4.167% calc(100% - 6.74px), 2.083% calc(100% - 6.06px), 0.000% calc(100% - 5.54px));
+}
+html body main section.hero .hero-flagstripe { display: none !important; }
+/* The band below tucks 22px up behind the hero, so the sliver the curve
+   reveals shows that band's own tint instead of a white seam. The hero
+   sits one layer above it; the card keeps its exact position. */
+html body main section.hero { position: relative; z-index: 31; margin-bottom: -22px; }
+html body main section.hero ~ .qa-band { padding-top: 22px; }
+/* At <=820px the quick-access band is hidden (mobile-os.css), so the tuck
+   lands on the next section instead. Give that section back its 22px as
+   a border in its own canvas colour: invisible, and independent of
+   whatever padding it already carries. */
+@media (max-width: 820px) {
+  html body main section.hero ~ section.home-president-original {
+    border-top: 22px solid var(--brand-canvas, #eef3f9);
+  }
+}
+html body main section.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 40px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 40' preserveAspectRatio='none'%3E%3Cpolyline points='0.0,33.46 20.8,32.94 41.7,32.26 62.5,31.44 83.3,30.50 104.2,29.46 125.0,28.34 145.8,27.17 166.7,25.97 187.5,24.77 208.3,23.60 229.2,22.48 250.0,21.44 270.8,20.51 291.7,19.70 312.5,19.03 333.3,18.52 354.2,18.18 375.0,18.01 395.8,18.03 416.7,18.23 437.5,18.60 458.3,19.14 479.2,19.84 500.0,20.67 520.8,21.63 541.7,22.68 562.5,23.81 583.3,24.99 604.2,26.19 625.0,27.39 645.8,28.55 666.7,29.66 687.5,30.69 708.3,31.61 729.2,32.40 750.0,33.05 770.8,33.54 791.7,33.85 812.5,33.99 833.3,33.95 854.2,33.73 875.0,33.34 895.8,32.78 916.7,32.06 937.5,31.21 958.3,30.24 979.2,29.17 1000.0,28.04' fill='none' stroke='%23F7D618' stroke-width='2.0' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpolyline points='0.0,29.96 20.8,29.44 41.7,28.76 62.5,27.94 83.3,27.00 104.2,25.96 125.0,24.84 145.8,23.67 166.7,22.47 187.5,21.27 208.3,20.10 229.2,18.98 250.0,17.94 270.8,17.01 291.7,16.20 312.5,15.53 333.3,15.02 354.2,14.68 375.0,14.51 395.8,14.53 416.7,14.73 437.5,15.10 458.3,15.64 479.2,16.34 500.0,17.17 520.8,18.13 541.7,19.18 562.5,20.31 583.3,21.49 604.2,22.69 625.0,23.89 645.8,25.05 666.7,26.16 687.5,27.19 708.3,28.11 729.2,28.90 750.0,29.55 770.8,30.04 791.7,30.35 812.5,30.49 833.3,30.45 854.2,30.23 875.0,29.84 895.8,29.28 916.7,28.56 937.5,27.71 958.3,26.74 979.2,25.67 1000.0,24.54' fill='none' stroke='%23CE1021' stroke-width='5.0' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpolyline points='0.0,26.46 20.8,25.94 41.7,25.26 62.5,24.44 83.3,23.50 104.2,22.46 125.0,21.34 145.8,20.17 166.7,18.97 187.5,17.77 208.3,16.60 229.2,15.48 250.0,14.44 270.8,13.51 291.7,12.70 312.5,12.03 333.3,11.52 354.2,11.18 375.0,11.01 395.8,11.03 416.7,11.23 437.5,11.60 458.3,12.14 479.2,12.84 500.0,13.67 520.8,14.63 541.7,15.68 562.5,16.81 583.3,17.99 604.2,19.19 625.0,20.39 645.8,21.55 666.7,22.66 687.5,23.69 708.3,24.61 729.2,25.40 750.0,26.05 770.8,26.54 791.7,26.85 812.5,26.99 833.3,26.95 854.2,26.73 875.0,26.34 895.8,25.78 916.7,25.06 937.5,24.21 958.3,23.24 979.2,22.17 1000.0,21.04' fill='none' stroke='%23F7D618' stroke-width='2.0' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpolyline points='0.0,20.96 20.8,20.44 41.7,19.76 62.5,18.94 83.3,18.00 104.2,16.96 125.0,15.84 145.8,14.67 166.7,13.47 187.5,12.27 208.3,11.10 229.2,9.98 250.0,8.94 270.8,8.01 291.7,7.20 312.5,6.53 333.3,6.02 354.2,5.68 375.0,5.51 395.8,5.53 416.7,5.73 437.5,6.10 458.3,6.64 479.2,7.34 500.0,8.17 520.8,9.13 541.7,10.18 562.5,11.31 583.3,12.49 604.2,13.69 625.0,14.89 645.8,16.05 666.7,17.16 687.5,18.19 708.3,19.11 729.2,19.90 750.0,20.55 770.8,21.04 791.7,21.35 812.5,21.49 833.3,21.45 854.2,21.23 875.0,20.84 895.8,20.28 916.7,19.56 937.5,18.71 958.3,17.74 979.2,16.67 1000.0,15.54' fill='none' stroke='%23007FFF' stroke-width='3.0' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") left bottom / 100% 40px no-repeat;
+}
+
+/* ---- 30 · Search behaves like a command palette ----------------
+   Ctrl/Cmd+K or "/" opens it from anywhere; arrow keys move through
+   results; Enter opens the highlighted one. The active row is marked
+   the same way for mouse and keyboard, and the key legend sits quietly
+   under the results. */
+.search-overlay .sr-item.is-active {
+  background: #eef3f9;
+  box-shadow: inset 3px 0 0 #bf9b3a;
+}
+.search-overlay .sr-item.is-active .sr-t { color: #0a1731; }
+/* The legend sits below the results card. It carries its own solid navy
+   surface so it reads the same over a dark hero or a white section. */
+.search-overlay .sr-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 10px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: rgba(7, 18, 40, .92);
+  color: #e3eaf4;
+  font-size: 11.5px;
+}
+.search-overlay .sr-keys span { display: inline-flex; align-items: center; gap: 4px; }
+.search-overlay .sr-keys kbd {
+  min-width: 20px;
+  padding: 1px 6px;
+  border: 1px solid #d6dee8;
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: #fff;
+  color: #0c1c33;
+  font: 600 11px/1.5 var(--sans, system-ui);
+  text-align: center;
+}
+@media (max-width: 760px), (pointer: coarse) {
+  .search-overlay .sr-keys { display: none; }
+}
+
+/* ---- 31 · Page-to-page transitions -----------------------------
+   Moving between pages used to blink white. The browser now cross-
+   fades the content while the header and top bar hold perfectly still
+   (cross-document View Transitions - no JavaScript). Browsers without
+   support simply navigate as before, and reduced motion turns it off. */
+@view-transition { navigation: auto; }
+/* No named groups: naming the header and top bar trapped the EN/FR menu
+   under the header and made them fly when two pages were scrolled
+   differently. The header is identical on both pages, so a plain root
+   crossfade already reads as still. */
+::view-transition-old(root) { animation: emb-vt-out .2s ease both; }
+::view-transition-new(root) { animation: emb-vt-in .34s cubic-bezier(.2, .7, .3, 1) both; }
+@keyframes emb-vt-out { to { opacity: 0; } }
+@keyframes emb-vt-in { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
+/* ---- 32 · Live office status in the top bar --------------------- */
+.topbar .ti .emb-status { gap: 7px; }
+.topbar .ti .emb-status a { color: inherit; text-decoration: none; }
+.topbar .ti .emb-status a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.topbar .ti .emb-status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f4c25b;
+  box-shadow: 0 0 0 3px rgba(244, 194, 91, .2);
+  flex: none;
+}
+.topbar .ti .emb-status.is-open i {
+  background: #3fd08a;
+  box-shadow: 0 0 0 3px rgba(63, 208, 138, .22);
+}
+
+/* ---- 33 · Top bar room for the office status ---------------------
+   With four items the bar truncated every one of them at 821-1000px.
+   The status keeps its natural width, and on narrower bars the street
+   address (also in the footer and on Contact) yields its place. */
+.topbar .ti .emb-status { flex: none; }
+@media (max-width: 1080px) {
+  .topbar .ti:has(.emb-status) > span:first-child { display: none; }
+}
