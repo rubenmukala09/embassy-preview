@@ -1579,6 +1579,7 @@
     };
     const open = () => {
       panel.hidden = false;
+      void panel.offsetWidth; /* commit the closed state so the fade-in runs */
       requestAnimationFrame(() => panel.classList.add("open"));
       launcher.setAttribute("aria-expanded", "true");
       localize();

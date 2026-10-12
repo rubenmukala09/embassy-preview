@@ -801,3 +801,424 @@ html body main section.hero::after {
 @media (max-width: 1080px) {
   .topbar .ti:has(.emb-status) > span:first-child { display: none; }
 }
+
+/* ============================================================
+   PHONE LAYER - 2026-10-12. Found by loading every page in a real
+   390px and 360px frame and measuring, not by eye.
+   ============================================================ */
+
+/* ---- 34 · Touch targets: 44px, the size a fingertip actually needs ----
+   The audit found 28-48 undersized targets per page, almost all in a few
+   shared components: footer links at 29px, the footer legal links at
+   14px, the legal pages' "On this page" menu at 26px, the ticker pause
+   button 24px wide, the preview banner button 26px tall, and the
+   assistant's chips and clear button. */
+@media (max-width: 760px) {
+  html body footer a.fl { display: inline-flex; align-items: center; min-height: 44px; }
+  html body footer .ft-legal a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 2px; }
+  html body main .legal-toc nav a { display: flex; align-items: center; min-height: 44px; }
+  html body .ticker-toggle { min-width: 44px !important; min-height: 44px !important; }
+  html body .asst-chip { min-height: 44px; }
+  html body .asst-clear { min-width: 44px; min-height: 44px; }
+}
+
+/* ---- 35 · A floor under the type on phones -------------------------
+   Functional micro-text (labels, meta, badges, table heads, form labels,
+   FAQ summaries) sat at 8.5-10.5px. These 82 selectors were generated
+   from measurements across all 19 pages and kept ONLY where every element
+   they match anywhere on the site is currently under 11px - so this can
+   only ever enlarge text, never shrink it. Decorative cartographic marks
+   below 8.5px (map labels) are deliberately left alone. */
+@media (max-width: 760px) {
+  main :is(
+    .tools-intro-meta span,
+    .tools-intro-verify span,
+    .tools-intro-verify a,
+    div.w-head,
+    .widget-route span,
+    .widget-route b,
+    span.widget-code,
+    .currency-telemetry span,
+    .service-flow span,
+    .africa-map-copy span,
+    .service-compass-status span,
+    .service-compass-status time,
+    span.service-compass-code,
+    .advisory-masthead-link span,
+    .field label,
+    span.opt,
+    .mission-media span,
+    .annual-date span,
+    .home-annual-event span,
+    span.format-video,
+    span.format-audio,
+    span.format-document,
+    span.format-notice,
+    span.media-badge,
+    span.mi-meta,
+    .media-action-dock span,
+    .destination-mark span,
+    .hotspot-card span,
+    .experience-rail b,
+    .experience-rail small,
+    .map-location-card span,
+    .newsletter-form label,
+    p.newsletter-note,
+    a.footer-news-link,
+    a.source-chip,
+    .presidential-principles b,
+    span.division-code,
+    .values-intro span,
+    .collision-core b,
+    span.quote-signature,
+    .tl-item p,
+    .p span,
+    p.leader-hint,
+    span.drc-atlas-mark,
+    .drc-map-footer b,
+    .language-key span,
+    span.sector-mark,
+    .sector-card summary,
+    .drc-editorial-glass small,
+    .drc-editorial-glass span,
+    .heritage-grid summary,
+    p.gallery-credit,
+    .gallery-credit a,
+    .culture-image span,
+    .culture-notes summary,
+    .number-grid span,
+    .passport-communique-meta span,
+    .passport-communique-meta time,
+    .passport-reference-stamp span,
+    .passport-published-facts dt,
+    .passport-published-facts small,
+    .passport-email-action span,
+    .passport-video-steps span,
+    .fees-legend small,
+    .table th,
+    span.annual-kind,
+    .phead-facts dt,
+    span.shine-match,
+    .shine-zones span,
+    .shine-program span,
+    .shine-story em,
+    .shine-organizers span,
+    .bk-info h5,
+    .domain-rail span,
+    span.portal-status,
+    .migration-map span,
+    .migration-map em,
+    span.amb-cat,
+    span.cw-note-tag,
+    span.cw-role-label,
+    span.cw-who,
+    span.cw-age
+  ),
+  footer :is(
+    .tools-intro-meta span,
+    .tools-intro-verify span,
+    .tools-intro-verify a,
+    div.w-head,
+    .widget-route span,
+    .widget-route b,
+    span.widget-code,
+    .currency-telemetry span,
+    .service-flow span,
+    .africa-map-copy span,
+    .service-compass-status span,
+    .service-compass-status time,
+    span.service-compass-code,
+    .advisory-masthead-link span,
+    .field label,
+    span.opt,
+    .mission-media span,
+    .annual-date span,
+    .home-annual-event span,
+    span.format-video,
+    span.format-audio,
+    span.format-document,
+    span.format-notice,
+    span.media-badge,
+    span.mi-meta,
+    .media-action-dock span,
+    .destination-mark span,
+    .hotspot-card span,
+    .experience-rail b,
+    .experience-rail small,
+    .map-location-card span,
+    .newsletter-form label,
+    p.newsletter-note,
+    a.footer-news-link,
+    a.source-chip,
+    .presidential-principles b,
+    span.division-code,
+    .values-intro span,
+    .collision-core b,
+    span.quote-signature,
+    .tl-item p,
+    .p span,
+    p.leader-hint,
+    span.drc-atlas-mark,
+    .drc-map-footer b,
+    .language-key span,
+    span.sector-mark,
+    .sector-card summary,
+    .drc-editorial-glass small,
+    .drc-editorial-glass span,
+    .heritage-grid summary,
+    p.gallery-credit,
+    .gallery-credit a,
+    .culture-image span,
+    .culture-notes summary,
+    .number-grid span,
+    .passport-communique-meta span,
+    .passport-communique-meta time,
+    .passport-reference-stamp span,
+    .passport-published-facts dt,
+    .passport-published-facts small,
+    .passport-email-action span,
+    .passport-video-steps span,
+    .fees-legend small,
+    .table th,
+    span.annual-kind,
+    .phead-facts dt,
+    span.shine-match,
+    .shine-zones span,
+    .shine-program span,
+    .shine-story em,
+    .shine-organizers span,
+    .bk-info h5,
+    .domain-rail span,
+    span.portal-status,
+    .migration-map span,
+    .migration-map em,
+    span.amb-cat,
+    span.cw-note-tag,
+    span.cw-role-label,
+    span.cw-who,
+    span.cw-age
+  ) { font-size: 11px !important; }
+}
+
+/* ---- 36 · The notice ticker wraps instead of truncating on small phones */
+@media (max-width: 400px) {
+  html body .announce .scrolling a { white-space: normal; text-overflow: clip; line-height: 1.3; }
+}
+
+/* ---- 37 · Phone stragglers: the assistant close button, the featured-story
+   dots (a 44px hit area around the same small dot - the global 44px button
+   floor had stretched each dot into a tall bar), and the last labels under
+   the 11px floor, at a specificity that outranks the page layers. */
+@media (max-width: 760px) {
+  html body .asst-x { min-width: 44px; min-height: 44px; }
+  html body .news-rail-dots { gap: 0; }
+  html body .news-rail-dots button {
+    box-sizing: border-box;
+    width: 44px; height: 44px; min-height: 44px;
+    padding: 17.5px;
+    background-clip: content-box;
+  }
+  html body .news-rail-dots button.is-active { width: 62px; background-clip: content-box; }
+  html body main #service-status .grid.cards > .service-directory-card:nth-child(n+4) .btn {
+    min-height: 44px !important; align-items: center !important; margin-block-end: -12px;
+  }
+  html body main .leader-photo span,
+  html body main .atlas-shot i,
+  html body main .drc-editorial-glass small,
+  html body main .drc-editorial-glass span { font-size: 11px !important; }
+}
+
+/* ---- 38 · Phone label floor, part two: the emergency telephone caption,
+   home stats and widget notes, the media format chips, the partnership
+   graphic, the notice ticker and the dock labels. */
+@media (max-width: 760px) {
+  html body main .widgets .widget small,
+  html body main .mission-copy .stats .stat span,
+  html body main .announcement-formats span,
+  html body main .hos-photo .hos-hint,
+  html body main .bilateral-stage .stage-kicker,
+  html body main .bilateral-stage .capital-link { font-size: 11px !important; }
+  html body main .emergency .em-act span { font-size: 11px !important; letter-spacing: .08em; }
+  html body main .partnership-visual .nation-copy em { font-size: 9px !important; }
+  html body .announce .tag { font-size: 9.5px !important; }
+  html body .announce .scrolling a { font-size: 11px !important; }
+  html body .mobile-os-nav a span { font-size: 10px; letter-spacing: 0; }
+}
+@media (max-width: 360px) {
+  html body .mobile-os-nav a span { font-size: 9.5px; }
+}
+
+/* ---- 39 · Breadcrumb links get a 44px hit area on phones; the negative
+   block margin keeps the row exactly as tall as before. */
+@media (max-width: 760px) {
+  html body .crumbs a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; margin: -11px -4px; }
+}
+
+/* ---- 40 · One button typeface. The console layer set section buttons in
+   monospace while the hero, widget and form buttons use Public Sans - two
+   voices for one control. Every button now speaks the site's sans. */
+html body main .section .btn,
+html body main .below-cta .btn,
+html body main .quote-cta,
+html body main .em-act {
+  font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: .01em;
+}
+@media (max-width: 760px) {
+  /* The tools band kept its desktop side inset on phones (48px lost). */
+  html body main #tools > .container { inline-size: 100%; }
+  /* Single column: each widget is as tall as its content, not the map's. */
+  html body main #tools .widgets { grid-auto-rows: auto; }
+  html body main #tools .widget { block-size: auto; min-block-size: 0; }
+  html body main span.widget-code { white-space: nowrap; inline-size: auto; }
+}
+
+/* ---- 41 · Phones: back-to-top joins the assistant in one right-hand
+   column instead of sitting over the start of every text line. */
+@media (max-width: 760px) {
+  html body .to-top { left: auto !important; right: calc(17px + env(safe-area-inset-right)) !important; }
+}
+
+/* ---- 42 · Widget status chips (DIGITAL / LIVE / SYNCED) inherited the base
+   hairline's flex:1 and stretched into empty bars with 6px text; they are
+   compact right-aligned chips again. The Africa map's DRC label no longer
+   breaks one letter per line. */
+html body main .widget .w-head::after { flex: none; }
+html body main #tools .widget .w-head::after { font-size: 8.5px; padding: 4px 8px; }
+html body main .africa-drc-marker b,
+html body main .africa-drc-marker small { white-space: nowrap; }
+
+/* ---- 43 · Phones: two headings were capped at 10-11 characters and broke
+   into three or four lines; form labels let "(optional)" wrap as a unit
+   instead of squeezing it one letter per line. */
+@media (max-width: 760px) {
+  html body main .mission-copy h2,
+  html body main .suggestion-brief h2 { max-width: none; }
+}
+html body main .field label:has(.opt) { flex-wrap: wrap; column-gap: 6px; }
+html body main .field label .opt { white-space: nowrap; }
+
+/* ---- 44 · Every .read link already ends in its own arrow (→ / ↗); the
+   base chevron doubled it ("→ ›"). */
+html body .read::after { content: none; }
+
+/* ---- 45 · Phones: the Kinshasa hotspots near the right edge open their
+   label and card toward the left so neither is clipped by the frame. */
+@media (max-width: 760px) {
+  html body main :is(.hotspot-skyline, .hotspot-boulevard)::before { left: auto; right: 31px; }
+  html body main :is(.hotspot-skyline, .hotspot-boulevard):is(:hover, :focus-visible, .is-active)::before { transform: translate(-3px, -50%); }
+  html body main :is(.hotspot-skyline, .hotspot-boulevard) .hotspot-card { left: auto; right: -10px; transform: translate(0, 8px) scale(.97); }
+  html body main :is(.hotspot-skyline, .hotspot-boulevard):is(:hover, :focus-visible, .is-active) .hotspot-card { transform: none; }
+  html body main :is(.hotspot-skyline, .hotspot-boulevard) .hotspot-card::after { left: auto; right: 18px; transform: rotate(45deg); }
+}
+
+/* ---- 46 · the-embassy on phones: the bilateral quote card had a 4px inner
+   margin (text touched its edge); the values shell nested cards inside a
+   32px-padded card; and value descriptions sat on a 24px strut. */
+@media (max-width: 760px) {
+  html body main .bilateral-copy { padding: 26px 22px; }
+  html body main .bilateral-copy > p:first-of-type { font-size: 21px; }
+  html body main .values-shell { padding-inline: 16px; }
+  html body main .values-grid .tile > div { line-height: 1.45; }
+}
+
+/* ---- 47 · Badges and tags join the buttons in the site's sans (the console
+   layer had set them in monospace beside sans eyebrows). Code chips such as
+   VISA / AFR / KIN stay monospace - they are codes. */
+html body main .section :is(.badge, .tag) {
+  font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ---- 48 · The closed assistant panel was invisible but still on the page:
+   its display:flex outranked the hidden attribute, so an opacity-0 panel
+   caught every tap over most of the phone screen (and the bottom-right
+   corner on desktop). Closed now means gone. */
+html body .asst-panel[hidden] { display: none !important; }
+
+/* ---- 49 · Phones: the stacked partnership timeline put each milestone dot
+   35px above its card - inside the previous card's last line. The dots now
+   sit in the gap between cards. */
+@media (max-width: 760px) {
+  html body main .partnership-timeline { row-gap: 34px !important; }
+  html body main .partnership-timeline .tl-item::before { top: -27px; }
+}
+
+/* ---- 50 · Closed accordion answers kept their padding (~40px of blank band
+   under every question): a collapsed grid row or max-height:0 cannot shrink
+   a box below its own padding. Closed answers now take no space. */
+html body main .accordion .acc-item:not(.open) .acc-a { padding-block: 0 !important; }
+html body main .accordion .acc-item:not(.open) .acc-a .inner { padding-block: 0 !important; }
+
+/* ---- 51 · Phones: the DRC x USA seal sat on the two nation cards' captions;
+   the visual grows so the route line and seal sit below the cards. */
+@media (max-width: 760px) {
+  html body main .partnership-visual { min-height: 366px; height: auto; }
+}
+
+/* ---- 52 · Phones: the passport communique was a card inside a card inside
+   the service card (text column ~200px). Its own frame drops on phones so
+   the stage cards use the service card's full width. */
+@media (max-width: 760px) {
+  html body main .card.pad > .passport-communique { padding-inline: 0; border: 0; box-shadow: none; }
+}
+
+/* ---- 53 · Phones: the consular fee table was forced to 700px inside a card
+   that clips overflow - the Fee column was simply cut off. A two-column
+   ledger fits a phone: service on the left, amount on the right. */
+@media (max-width: 760px) {
+  html body main .fees-ledger .table { display: table; min-width: 0; width: 100%; white-space: normal; overflow: visible; }
+  html body main .fees-ledger .table :is(th, td) { min-width: 0; white-space: normal; }
+  html body main .fees-ledger .table :is(th, td):last-child { width: 38%; text-align: right; white-space: normal; padding-left: 12px; }
+}
+
+/* ---- 54 · The "stand down the zebra" rule (refinement.css) clears the
+   background of every even-numbered section - including two deliberately
+   dark DR Congo bands, which left their white headings on a white page
+   ("River, material, momentum." and the conservation gallery). Their navy
+   grounds are restored; the light tints it was written for stay cleared. */
+html body main > section.section.drc-editorial-interlude {
+  background:
+    radial-gradient(circle at 8% 18%, rgba(0, 192, 252, .12), transparent 28%),
+    radial-gradient(circle at 92% 72%, rgba(255, 195, 0, .13), transparent 25%),
+    linear-gradient(145deg, #06162d 0%, #092b50 58%, #071b35 100%) !important;
+}
+html body main > section.section.gorilla-experience { background: #071b35 !important; }
+
+/* ---- 55 · DR Congo "at a glance" figures: two layers fought over the cards'
+   ::before - one a 4px flag stripe, the other a 150px corner glow - so cards
+   1 and 3 drew a solid blue / red 150px disc over their own numbers. Every
+   card now gets the soft corner glow it was designed with. */
+html body main .number-grid > div::before { left: auto; right: -92px; }
+html body main .number-grid > div:is(:nth-child(1), :nth-child(3))::before {
+  background: radial-gradient(circle, rgba(0, 192, 252, .13), transparent 70%);
+}
+
+/* ---- 56 · News & Events annual calendar: palette-clean painted the national
+   signature (blue / yellow / red bands) into .annual-top::before - but that
+   pseudo-element is a full-card overlay, so the paragraph ran across bold
+   flag bands. The overlay returns to its quiet gold rule and blue glow; the
+   signature stays on the shell's top edge. */
+html body .annual-top::before {
+  background:
+    linear-gradient(122deg, transparent 0 68%, rgba(255, 215, 0, .1) 68.2% 68.7%, transparent 68.9%),
+    radial-gradient(circle at 8% 105%, rgba(0, 163, 224, .2), transparent 28%) !important;
+}
+
+/* ---- 57 · Official portals: the "verified" status chip shares its class
+   with two unrelated .verified styles (a 20px round badge and a gold-ruled
+   box), so its dot stacked above a squashed pill. The chip is a chip again. */
+html body main .portal-status.verified {
+  display: inline-flex; place-items: normal; align-items: center;
+  min-width: 0; height: auto; border: 0; border-radius: 999px; box-shadow: none;
+  color: #08714f; background: #e9f8f1;
+}
+
+/* ---- 58 · Phones: the Ambience hero had no side gutter - eyebrow, title
+   and copy ran into the screen edge. */
+@media (max-width: 760px) {
+  html body .amb-hero .amb-inner { padding-inline: 20px; }
+}
+
+/* ---- 59 · Ambience hero eyebrow was navy-blue on a dark photograph; it takes
+   the same gold as every other hero eyebrow. */
+html body main .amb-hero .eyebrow { color: #ffe36d !important; }
