@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
@@ -68,7 +68,7 @@ main .contact-grid .hours .office-location-card small{font-size:12px;line-height
 <link rel="stylesheet" href="/embassy-preview/aurora/universal-footer.css?v=1787248800" />
 <link rel="stylesheet" href="/embassy-preview/aurora/accent-system.css?v=1786560000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/refinement.css?v=1786582000" />
-<link rel="stylesheet" href="/embassy-preview/aurora/editorial.css?v=1787050000" />
+<link rel="stylesheet" href="/embassy-preview/aurora/editorial.css?v=1787110000" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -325,15 +325,15 @@ main .contact-grid .hours .office-location-card small{font-size:12px;line-height
         <li><b>No account</b><span>Send feedback in one step</span></li>
       </ul>
     </div>
-    <div class="suggestion-form" data-intake="suggestion">
+    <form class="suggestion-form" data-intake="suggestion" novalidate>
       <div class="rg-row">
-        <div class="field"><label for="s-name">Your name</label><input id="s-name" placeholder="Your name" /></div>
-        <div class="field"><label for="s-email">Email</label><input id="s-email" type="email" placeholder="you@example.com" /></div>
+        <div class="field"><label for="s-name">Your name</label><input id="s-name" name="name" autocomplete="name" placeholder="Your name" /></div>
+        <div class="field"><label for="s-email">Email</label><input id="s-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" /></div>
       </div>
       <div class="field"><label for="s-suggestion">Your suggestion</label><textarea id="s-suggestion" rows="4" placeholder="Tell us your idea, feedback, or what could be improved…"></textarea></div>
-      <button class="btn btn-gold btn-block">Send suggestion &rarr;</button>
+      <button class="btn btn-gold btn-block" type="submit">Send suggestion &rarr;</button>
       <p class="hint" style="margin-top:10px">Your details are used only to contact you. See our <a href="/embassy-preview/privacy.html">Privacy Policy</a>.</p>
-    </div>
+    </form>
   </div>
 </div></section>
 
@@ -372,9 +372,9 @@ main .contact-grid .hours .office-location-card small{font-size:12px;line-height
   <div class="bar"><span>© 2026 Embassy of the Democratic Republic of the Congo, Washington, D.C.</span><span class="ft-legal"><a href="/embassy-preview/terms.html">Terms &amp; Conditions</a> · <a href="/embassy-preview/privacy.html">Privacy Policy</a> · <a href="/embassy-preview/cookies.html">Cookie Policy</a> · <a href="/embassy-preview/accessibility.html">Accessibility</a> · <a href="/embassy-preview/disclaimer.html">Legal Disclaimer</a></span></div>
 </div></footer>
 
-<script src="/embassy-preview/aurora/aurora.js?v=1786850000" defer></script>
+<script src="/embassy-preview/aurora/mobile-os.js?v=1787060000" defer></script>
+<script src="/embassy-preview/aurora/aurora.js?v=1787060000" defer></script>
 <script src="/embassy-preview/aurora/cinema.js?v=1787050000" defer></script>
-<script src="/embassy-preview/aurora/mobile-os.js?v=1786161601" defer></script>
 <script src="/embassy-preview/aurora/form-notice.js?v=1786540000" defer></script>
 </body>
 </html>

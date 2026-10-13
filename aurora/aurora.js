@@ -12,6 +12,7 @@
     t.innerHTML = html.trim();
     return t.content.firstChild;
   };
+  const frNow = () => document.documentElement.lang === "fr";
 
   const syncPageActivity = () => document.documentElement.classList.toggle("page-hidden", document.hidden);
   document.addEventListener("visibilitychange", syncPageActivity);
@@ -42,8 +43,11 @@
       control.addEventListener("click", () => {
         const paused = announce.classList.toggle("ticker-paused");
         control.setAttribute("aria-pressed", String(paused));
-        control.setAttribute("aria-label", paused ? "Play embassy notices" : "Pause embassy notices");
-        control.title = paused ? "Play embassy notices" : "Pause embassy notices";
+        const lbl = paused
+          ? (frNow() ? "Reprendre les avis de l’Ambassade" : "Play embassy notices")
+          : (frNow() ? "Mettre en pause les avis de l’Ambassade" : "Pause embassy notices");
+        control.setAttribute("aria-label", lbl);
+        control.title = lbl;
         control.querySelector("span").textContent = paused ? "▶" : "Ⅱ";
       });
     }
@@ -288,7 +292,8 @@
         links +
         '<a href="/embassy-preview/official-links.html">Official DRC portals</a>' +
         '<a href="/embassy-preview/congo-shining.html">Congo Shining 2026</a>' +
-        '<button class="mm-search" type="button" aria-label="Search the embassy">Search the embassy</button>' +
+        '<button class="mm-lang" type="button" lang="fr">Lire en français</button>' +
+        '<button class="mm-search" type="button">Search the embassy</button>' +
         '<a href="/embassy-preview/portal.html" class="mm-cta">Appointment guidance →</a>' +
         '<a class="mm-logo" href="/embassy-preview/" aria-label="Embassy of the DRC - home">' +
           '<svg class="crest" aria-hidden="true"><use href="#crest"/></svg>' +
@@ -307,7 +312,7 @@
       menu.classList.add("open");
       scrim.classList.add("open");
       toggle.setAttribute("aria-expanded", "true");
-      toggle.setAttribute("aria-label", "Close menu");
+      toggle.setAttribute("aria-label", frNow() ? "Fermer le menu" : "Close menu");
       document.body.classList.add("menu-open");
       focusables()[0]?.focus();
     };
@@ -315,7 +320,7 @@
       menu.classList.remove("open");
       scrim.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", "Open menu");
+      toggle.setAttribute("aria-label", frNow() ? "Ouvrir le menu" : "Open menu");
       document.body.classList.remove("menu-open");
       menu.setAttribute("inert", "");
       window.setTimeout(() => { menu.hidden = true; }, 220);
@@ -327,6 +332,21 @@
     $(".mm-search", menu).addEventListener("click", () => {
       close();
       window.setTimeout(() => $(".search-toggle")?.click(), 240);
+    });
+    // The top bar (and its EN/FR pill) is hidden at 520px and below, so the
+    // menu carries the switch. Its label names the other language, in it.
+    const mmLang = $(".mm-lang", menu);
+    const syncMmLang = () => {
+      const fr = frNow();
+      mmLang.lang = fr ? "en" : "fr";
+      mmLang.textContent = fr ? "Read in English" : "Lire en français";
+    };
+    new MutationObserver(syncMmLang).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    syncMmLang();
+    mmLang.addEventListener("click", () => {
+      const to = frNow() ? "en" : "fr";
+      close();
+      document.dispatchEvent(new CustomEvent("emb:setlang", { detail: to }));
     });
     $$(".mobile-menu a").forEach((a) => a.addEventListener("click", close));
     menu.addEventListener("keydown", (e) => {
@@ -1268,7 +1288,7 @@
     };
     let hideT;
     const openS = () => { clearTimeout(hideT); input.placeholder = STR().ph; paintKeys(); ov.hidden = false; ov.classList.add("open"); document.body.classList.add("menu-open"); render(""); setTimeout(() => input.focus(), 60); };
-    const closeS = () => { ov.classList.remove("open"); document.body.classList.remove("menu-open"); clearTimeout(hideT); hideT = setTimeout(() => { if (!ov.classList.contains("open")) ov.hidden = true; }, 200); searchToggle.focus(); };
+    const closeS = () => { ov.classList.remove("open"); document.body.classList.remove("menu-open"); clearTimeout(hideT); hideT = setTimeout(() => { if (!ov.classList.contains("open")) ov.hidden = true; }, 200); (searchToggle.offsetParent ? searchToggle : document.querySelector(".nav-toggle"))?.focus(); };
     searchToggle.addEventListener("click", openS);
     // Keyboard: the platform's own modifier + K (Cmd on Mac, Ctrl elsewhere, so
     // the macOS Ctrl+K "kill line" binding in text fields is left alone), or "/"
@@ -1569,7 +1589,7 @@
       buildChips(st.chips);
     };
     localize();
-    document.addEventListener("emb:setlang", () => { localize(); if (opened) reset(); });
+    new MutationObserver(() => { localize(); if (opened) reset(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
 
     let opened = false;
     const reset = () => {
@@ -1589,7 +1609,7 @@
     const close = () => {
       panel.classList.remove("open");
       launcher.setAttribute("aria-expanded", "false");
-      setTimeout(() => { panel.hidden = true; }, 220);
+      setTimeout(() => { panel.hidden = true; if (panel.contains(document.activeElement) || document.activeElement === document.body) launcher.focus({ preventScroll: true }); }, 220);
     };
     launcher.addEventListener("click", () => (panel.hidden ? open() : close()));
     panel.querySelector(".asst-x").addEventListener("click", close);
@@ -2062,6 +2082,37 @@
 
   // English (exact rendered text, whitespace-collapsed) -> Francais.
   var FR = {
+    "Open menu": "Ouvrir le menu",
+    "Close menu": "Fermer le menu",
+    "Back to top": "Retour en haut",
+    "Close": "Fermer",
+    "Close search": "Fermer la recherche",
+    "Menu": "Menu",
+    "Primary mobile navigation": "Navigation mobile principale",
+    "Quick access to consular services": "Accès rapide aux services consulaires",
+    "Embassy assistant": "Assistant de l’Ambassade",
+    "Pause embassy notices": "Mettre en pause les avis de l’Ambassade",
+    "Play embassy notices": "Reprendre les avis de l’Ambassade",
+    "Status guidance": "Suivi de dossier",
+    "Contact support": "Contacter l’assistance",
+    "Official DRC portals": "Portails officiels de la RDC",
+    "Preview environment": "Environnement d’aperçu",
+    "Secure browsing": "Navigation sécurisée",
+    "Privacy first": "Confidentialité d’abord",
+    "Independent systems": "Systèmes indépendants",
+    "Official-source information": "Informations de source officielle",
+    "Public event archive": "Archive d’un événement public",
+    "Source-first presentation": "Présentation fondée sur les sources",
+    "Verified destinations": "Destinations vérifiées",
+    "This website is being reviewed before official publication. Verify urgent or operational information directly with the Embassy.": "Ce site est en cours de révision avant sa publication officielle. Vérifiez toute information urgente ou opérationnelle directement auprès de l’Ambassade.",
+    "This website is being reviewed before official publication. Verify legal, tax and investment decisions with the responsible Congolese authority.": "Ce site est en cours de révision avant sa publication officielle. Vérifiez toute décision juridique, fiscale ou d’investissement auprès de l’autorité congolaise compétente.",
+    "This preview uses HTTPS. Do not submit identity documents, payment details or other sensitive information until an approved service is announced.": "Cet aperçu utilise HTTPS. Ne transmettez aucun document d’identité, aucune donnée de paiement ni aucune autre information sensible avant l’annonce d’un service approuvé.",
+    "Do not submit identity documents, payment details or other sensitive information through this preview.": "Ne transmettez aucun document d’identité, aucune donnée de paiement ni aucune autre information sensible par cet aperçu.",
+    "These services are operated by their respective institutions, not by this Embassy website preview.": "Ces services sont exploités par leurs institutions respectives, et non par cet aperçu du site de l’Ambassade.",
+    "This directory points to external Congolese public institutions. Check the domain carefully before sharing personal or payment information.": "Cet annuaire renvoie vers des institutions publiques congolaises externes. Vérifiez attentivement le domaine avant de communiquer des informations personnelles ou de paiement.",
+    "This page organizes material published by the Embassy and routes investors to ANAPI and the original sources.": "Cette page organise les contenus publiés par l’Ambassade et oriente les investisseurs vers l’ANAPI et les sources d’origine.",
+    "This page reorganizes information published by Congo Shining. It does not reopen registration or guarantee that archived program details remain operational.": "Cette page réorganise les informations publiées par Congo Shining. Elle ne rouvre pas les inscriptions et ne garantit pas que les détails archivés du programme restent d’actualité.",
+    "Dates and program descriptions remain attributed to the campaign source. Confirm any future edition through a current Embassy announcement.": "Les dates et descriptions du programme restent attribuées à la source de la campagne. Confirmez toute édition future au moyen d’une annonce actuelle de l’Ambassade.",
     // -- Official banner / brand --
     "Embassy website preview — services and information under review": "Aperçu du site de l’Ambassade — services et informations en cours de vérification",
     "About this preview": "À propos de cet aperçu",
@@ -3653,12 +3704,15 @@
   // decorative trailing tokens that may follow a label (arrows, ticker middot)
   var TAIL = /^([\s\S]*?)(\s*[→↓↑▾·])$/; // -> down up small-triangle middot
 
+  var NBSP = String.fromCharCode(160);
+  function nb(s) { return s.replace(/ ([:;?!»])/g, NBSP + "$1").replace(/« /g, "«" + NBSP); }
+
   function lookup(raw) {
     var norm = raw.replace(/\s+/g, " ").trim();
     if (!norm) return null;
-    if (Object.prototype.hasOwnProperty.call(FR, norm)) return FR[norm];
+    if (Object.prototype.hasOwnProperty.call(FR, norm)) return nb(FR[norm]);
     var m = norm.match(TAIL);
-    if (m && Object.prototype.hasOwnProperty.call(FR, m[1].trim())) return FR[m[1].trim()] + m[2];
+    if (m && Object.prototype.hasOwnProperty.call(FR, m[1].trim())) return nb(FR[m[1].trim()]) + m[2];
     return null;
   }
 
@@ -3698,6 +3752,49 @@
     });
   }
 
+  // aria-label / title are what screen readers and tooltips announce; an
+  // English name over French visible text fails WCAG 2.5.3.
+  var attrTranslated = [];
+  function attrs(root) {
+    var nodes = root.querySelectorAll ? Array.prototype.slice.call(root.querySelectorAll("[aria-label], [title]")) : [];
+    if (root.nodeType === 1 && (root.hasAttribute("aria-label") || root.hasAttribute("title"))) nodes.unshift(root);
+    nodes.forEach(function (el) {
+      if (el.__enAttr || el.closest(".lang-wrap") || el.closest("[data-localized]")) return;
+      var saved = {}, any = false;
+      ["aria-label", "title"].forEach(function (a) {
+        var v = el.getAttribute(a);
+        if (!v) return;
+        var fr = lookup(v);
+        if (fr === null) return;
+        saved[a] = v; any = true;
+        el.setAttribute(a, fr);
+      });
+      if (any) { el.__enAttr = saved; attrTranslated.push(el); }
+    });
+  }
+
+  // Text the dictionary does not cover stays English; mark it lang="en" so a
+  // phone screen reader does not read it with French rules (WCAG 3.1.2).
+  var enMarked = [];
+  var EN_WORDS = new RegExp("(^|[^A-Za-z])(the|and|of|to|for|with|your|our|is|are|from|this|that|will|by|on|in)([^A-Za-z]|$)", "i");
+  function markEnglish(root) {
+    var cands = [];
+    eachTextNode(root, function (n) {
+      if (n.__en !== undefined) return;
+      var p = n.parentNode;
+      if (!p || p.nodeType !== 1 || p.hasAttribute("lang") || cands.indexOf(p) !== -1) return;
+      if (p.closest("[data-emb-fr], .asst-panel, .search-overlay")) return;
+      var up = p.parentElement && p.parentElement.closest("[lang]");
+      if (up && up !== document.documentElement) return;
+      if (!EN_WORDS.test(n.nodeValue)) return;
+      cands.push(p);
+    });
+    cands.forEach(function (p) {
+      var mixed = Array.prototype.some.call(p.childNodes, function (c) { return c.nodeType === 3 && c.__en !== undefined; });
+      if (!mixed) { p.setAttribute("lang", "en"); enMarked.push(p); }
+    });
+  }
+
   function toFrench(root) {
     eachTextNode(root, function (n) {
       if (n.__en !== undefined) return;            // already handled
@@ -3709,7 +3806,7 @@
       n.nodeValue = lead + fr + trail;
       translated.push(n);
     });
-    if (root && root.querySelectorAll) placeholders(root);
+    if (root && root.querySelectorAll) { placeholders(root); attrs(root); markEnglish(root); }
   }
 
   function toEnglish() {
@@ -3717,6 +3814,13 @@
     translated = [];
     phTranslated.forEach(function (el) { if (el.__enPh !== undefined) { el.setAttribute("placeholder", el.__enPh); el.__enPh = undefined; } });
     phTranslated = [];
+    attrTranslated.forEach(function (el) {
+      var sv = el.__enAttr;
+      if (sv) { Object.keys(sv).forEach(function (a) { el.setAttribute(a, sv[a]); }); el.__enAttr = undefined; }
+    });
+    attrTranslated = [];
+    enMarked.forEach(function (el) { el.removeAttribute("lang"); });
+    enMarked = [];
   }
 
   function applyEmbeddedTranslation(lang, root) {
@@ -3901,10 +4005,18 @@
       /* A page that declares data-hero-static keeps its own photograph
          instead of the shared rotation burying it. */
       if (ph.hasAttribute("data-hero-static")) return;
+      /* A page with a hero film shows the film; rotating photos underneath
+         it only cost downloads nobody sees. */
+      if (ph.hasAttribute("data-film")) return;
+      /* Slide one is the photograph the page already painted, so nothing
+         swaps after the script runs. */
+      var bg = ph.style.backgroundImage || "", first = "";
+      var at = bg.indexOf("url(");
+      if (at !== -1) first = bg.slice(at + 4).split(")")[0].replace(/["']/g, "").trim();
       var box = document.createElement("div");
       box.className = "phead-slides";
       ph.insertBefore(box, ph.firstChild);
-      list.push({ box: box, ms: 7000 });
+      list.push({ box: box, ms: 7000, first: first });
     });
     return list;
   }
@@ -3921,10 +4033,16 @@
       var s = slides[(i + slides.length) % slides.length];
       if (s && !s.on) { s.el.style.backgroundImage = "url('" + s.src + "')"; s.on = true; }
     };
-    load(0); load(1);                       // current + next only (lazy)
+    load(0);                                // the next one loads when rotation starts
     if (slides.length < 2) return;
     var si = 0;
     var timer = 0;
+    /* Rotate (and fetch) only while the hero is on screen. */
+    var visible = true;
+    if ("IntersectionObserver" in window) {
+      visible = false;
+      new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; sync(); }).observe(box);
+    }
     var advance = function () {
       slides[si].el.classList.remove("active");
       si = (si + 1) % slides.length;
@@ -3934,7 +4052,8 @@
     var sync = function () {
       clearInterval(timer);
       timer = 0;
-      if (!document.hidden && !(motionPreference && motionPreference.matches)) {
+      if (visible && !document.hidden && !(motionPreference && motionPreference.matches)) {
+        load(si + 1);
         timer = setInterval(advance, Math.max(ms, 5000));
       }
     };
@@ -3949,7 +4068,11 @@
     var photos = photosForPage();
     if (!photos.length) return;
     document.documentElement.setAttribute("data-hero-library", currentGroup());
-    spots.forEach(function (s) { run(s.box, shuffle(photos.slice()), s.ms); });
+    spots.forEach(function (s) {
+      var list = shuffle(photos.slice());
+      if (s.first) list = [s.first].concat(list.filter(function (u) { return u !== s.first; }));
+      run(s.box, list, s.ms);
+    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
@@ -4402,6 +4525,9 @@
 
   var panel = document.querySelector(".asst-panel");
   var ticking = false;
+  // Re-check when the panel opens or closes, not only on scroll; otherwise
+  // the launcher stays tucked after the panel is closed with its own X.
+  if (panel && window.MutationObserver) new MutationObserver(schedule).observe(panel, { attributes: true, attributeFilter: ["hidden"] });
 
   function overlaps(a, b) {
     return !(b.right < a.left - MARGIN || b.left > a.right + MARGIN ||
