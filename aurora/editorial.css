@@ -1051,7 +1051,7 @@ html body main section.hero::after {
 /* ---- 39 · Breadcrumb links get a 44px hit area on phones; the negative
    block margin keeps the row exactly as tall as before. */
 @media (max-width: 760px) {
-  html body .crumbs a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; margin: -11px -4px; }
+  html body .crumbs a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding-inline: 4px; margin: -11px -4px; }
 }
 
 /* ---- 40 · One button typeface. The console layer set section buttons in
@@ -1237,7 +1237,7 @@ html body main .amb-hero .eyebrow { color: #ffe36d !important; }
   html body .site-head .icon-btn { min-width: 44px !important; min-height: 44px !important; }
   html body .topbar .lang { min-height: 28px; padding-block: 3px; }
   html body .topbar .ti a { display: flex; align-items: center; min-height: 28px; }
-  html body .crumbs a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; margin: -11px -4px; }
+  html body .crumbs a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding-inline: 4px; margin: -11px -4px; }
   html body .news-rail-dots { gap: 0; }
   html body .news-rail-dots button {
     box-sizing: border-box; width: 44px; height: 44px; min-height: 44px;
@@ -1434,6 +1434,11 @@ html body main .field input[aria-invalid="true"]:not([type="checkbox"]):not([typ
 @media (max-width: 760px) {
   html body .announce .scrolling a { white-space: normal; text-overflow: clip; line-height: 1.3; }
   html body .announce > .container { block-size: auto; min-block-size: 29px; padding-block: 4px; }
+  /* The 44px pause control and link floors set the bar's height (29px became
+     52px on every phone page); the text sets it now, the control keeps its
+     size and overflows into the bar's clipped padding. */
+  html body .announce .scrolling a { min-height: 0; min-block-size: 0; }
+  html body .announce .ticker-toggle { margin-block: -12px; }
 }
 @media (max-width: 520px) {
   html body main .crumbs { white-space: normal; flex-wrap: wrap; row-gap: 2px; }

@@ -38,16 +38,21 @@
     }
     let control = $(".ticker-toggle", announce);
     if (!control) {
-      control = el('<button class="ticker-toggle" type="button" aria-pressed="false" aria-label="Pause embassy notices" title="Pause embassy notices"><span aria-hidden="true">Ⅱ</span></button>');
+      control = el('<button class="ticker-toggle" type="button" data-localized aria-pressed="false" aria-label="Pause embassy notices" title="Pause embassy notices"><span aria-hidden="true">Ⅱ</span></button>');
       ticker.insertAdjacentElement("afterend", control);
-      control.addEventListener("click", () => {
-        const paused = announce.classList.toggle("ticker-paused");
-        control.setAttribute("aria-pressed", String(paused));
+      const setLbl = () => {
+        const paused = announce.classList.contains("ticker-paused");
         const lbl = paused
           ? (frNow() ? "Reprendre les avis de l’Ambassade" : "Play embassy notices")
           : (frNow() ? "Mettre en pause les avis de l’Ambassade" : "Pause embassy notices");
         control.setAttribute("aria-label", lbl);
         control.title = lbl;
+      };
+      new MutationObserver(setLbl).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+      control.addEventListener("click", () => {
+        const paused = announce.classList.toggle("ticker-paused");
+        control.setAttribute("aria-pressed", String(paused));
+        setLbl();
         control.querySelector("span").textContent = paused ? "▶" : "Ⅱ";
       });
     }
@@ -1589,7 +1594,14 @@
       buildChips(st.chips);
     };
     localize();
-    new MutationObserver(() => { localize(); if (opened) reset(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    let lastLang = document.documentElement.lang;
+    new MutationObserver(() => {
+      const l = document.documentElement.lang;
+      if (l === lastLang) return;
+      lastLang = l;
+      localize();
+      if (opened) reset();
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
 
     let opened = false;
     const reset = () => {

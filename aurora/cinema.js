@@ -145,7 +145,7 @@
     // screen will paint (phones get the 1x via editorial.css rule 67),
     // never both.
     var phone = window.matchMedia && matchMedia('(max-width: 760px)').matches;
-    var want2x = !phone && (window.devicePixelRatio || 1) >= 1.5;
+    var want2x = !phone && (window.devicePixelRatio || 1) > 1;
     document.querySelectorAll('[style*="background-image"], [style*="--ed-photo"]').forEach(function (el) {
       var raw = el.getAttribute('style') || '';
       var re = /url\(\s*['"]?([^'")]+?)['"]?\s*\)/g, m, found = [];
