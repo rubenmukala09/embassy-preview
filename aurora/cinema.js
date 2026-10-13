@@ -141,10 +141,20 @@
 
   function collect() {
     var urls = [];
+    // An image-set offers a 1x and a 2x file; fetch only the one this
+    // screen will paint (phones get the 1x via editorial.css rule 67),
+    // never both.
+    var phone = window.matchMedia && matchMedia('(max-width: 760px)').matches;
+    var want2x = !phone && (window.devicePixelRatio || 1) >= 1.5;
     document.querySelectorAll('[style*="background-image"], [style*="--ed-photo"]').forEach(function (el) {
       var raw = el.getAttribute('style') || '';
-      var re = /url\(\s*['"]?([^'")]+?)['"]?\s*\)/g, m;
-      while ((m = re.exec(raw))) urls.push(m[1]);
+      var re = /url\(\s*['"]?([^'")]+?)['"]?\s*\)/g, m, found = [];
+      while ((m = re.exec(raw))) found.push(m[1]);
+      if (raw.indexOf('image-set') !== -1) {
+        var pick = found.filter(function (u) { return (u.indexOf('@2x.') !== -1) === want2x; });
+        if (pick.length) found = pick;
+      }
+      found.forEach(function (u) { urls.push(u); });
     });
     urls.forEach(function (u) {
       if (!u || seen[u]) return;

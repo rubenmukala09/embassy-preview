@@ -3976,7 +3976,7 @@ main .section .grid > .card:nth-child(3n+1){
 main .geo-drc,
 main .widgets .widget:nth-child(4n+2),
 main .section .grid > .card:nth-child(3n+2){
-  --geo-real-map:url("assets/maps/drc-administrative.svg");
+  --geo-real-map:url("assets/maps/drc-administrative.webp");
   --geo-real-ratio:1.05;
 }
 main .geo-paris,
@@ -3988,7 +3988,7 @@ main .section .grid > .card:nth-child(3n+3){
 
 /* Explicit geographic classes always outrank the repeating card rhythm. */
 main .geo-africa{--geo-real-map:url("assets/maps/africa-political.svg")!important;--geo-real-ratio:1!important}
-main .geo-drc{--geo-real-map:url("assets/maps/drc-administrative.svg")!important;--geo-real-ratio:1.05!important}
+main .geo-drc{--geo-real-map:url("assets/maps/drc-administrative.webp")!important;--geo-real-ratio:1.05!important}
 main .geo-paris{--geo-real-map:url("assets/maps/paris-arrondissements.svg")!important;--geo-real-ratio:1.862!important}
 
 main :is(.geo-map,.widgets .widget,.section .grid > .card)::after{
@@ -4717,7 +4717,7 @@ main .consular-access-cta:focus-within::after{
   height:auto!important;
   aspect-ratio:1.05!important;
   clip-path:none!important;
-  background:url("assets/maps/drc-administrative.svg") center/contain no-repeat!important;
+  background:url("assets/maps/drc-administrative.webp") center/contain no-repeat!important;
   opacity:.2!important;
   transform:none!important;
   transform-origin:center!important;
