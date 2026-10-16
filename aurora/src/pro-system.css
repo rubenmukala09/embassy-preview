@@ -1,0 +1,640 @@
+/* ============================================================================
+   PRO SYSTEM: the final presentation layer for everything BELOW THE HERO.
+
+   Scope rule: this file never styles the frozen zones (preview banner, top bar,
+   site header, notice bar, page heroes, the quick-access dock attached to the
+   hero, and the footer). Every rule is nested under $BF:
+     main > section:not(.hero, .phead, .amb-hero, .qa-band)
+   which matches only the content sections between the hero and the footer.
+
+   Register: "quiet sovereign authority". One card, one heading pattern, one
+   action hierarchy, a readable type floor, no decorative motion.
+
+   Source file (CSS nesting). Compile to ../pro-system.css with:
+     npx lightningcss-cli@1.30.1 --minify --targets "safari >= 14, chrome >= 90, firefox >= 90" \
+       aurora/src/pro-system.css -o aurora/pro-system.css
+   ============================================================================ */
+
+:root {
+  --px-navy-950: #011a35;
+  --px-navy-900: #052f57;
+  --px-navy-800: #0a3d6e;
+  --px-blue-600: #2d70d6;
+  --px-blue-700: #1d5bb8;
+  --px-gold-500: #f3d34a;
+  --px-gold-600: #e2bd22;
+  --px-gold-ink: #7a5a00;
+  --px-red-600: #c4333e;
+  --px-ink: #0b2440;
+  --px-ink-2: #3b5571;
+  --px-ink-3: #5a7189;
+  --px-line: rgba(5, 47, 87, .14);
+  --px-line-strong: rgba(5, 47, 87, .24);
+  --px-canvas: #f4f7fb;
+  --px-paper: #ffffff;
+  --px-sky: #eaf2fd;
+
+  --px-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --px-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  --px-t-h2: clamp(28px, 2.4vw + 10px, 40px);
+  --px-t-h3: clamp(19px, .6vw + 15px, 23px);
+  --px-t-lead: clamp(17px, .3vw + 15.5px, 19px);
+  --px-t-body: 16.5px;
+  --px-t-meta: 14px;
+  --px-t-eyebrow: 12.5px;
+
+  --px-radius: 14px;
+  --px-radius-lg: 20px;
+  --px-radius-ctl: 10px;
+  --px-shadow: 0 1px 2px rgba(1, 26, 53, .05), 0 1px 1px rgba(1, 26, 53, .03);
+  --px-shadow-hover: 0 1px 2px rgba(1, 26, 53, .06), 0 12px 28px -18px rgba(1, 26, 53, .35);
+  --px-ease: cubic-bezier(.2, .75, .25, 1);
+}
+
+main > section:not(.hero, .phead, .amb-hero, .qa-band) {
+
+  /* ---------------------------------------------------------------- 1. Canvas
+     Two surfaces only: paper and a cool diplomatic canvas. Decorative section
+     patterns, glows and watermark art are removed; photography stays. */
+  &.section,
+  &.bg-cream,
+  &.bg-ivory {
+    background-image: none !important;
+  }
+  &.bg-cream,
+  &.bg-ivory {
+    background-color: var(--px-canvas) !important;
+  }
+  &.section::before,
+  &.section::after,
+  & .container::before,
+  & .container::after {
+    /* ghost seals, light beams, map watermarks, hatched corners */
+    content: none !important;
+  }
+  &.dark-surface {
+    background: var(--px-navy-950) !important;
+  }
+
+  /* Comfortable, consistent rhythm. */
+  &.section {
+    padding-block: clamp(56px, 6vw, 96px) !important;
+  }
+  &.section.tight {
+    padding-block: clamp(40px, 4vw, 64px) !important;
+  }
+
+  /* --------------------------------------------------- 2. Content is visible
+     Scroll-reveal kept whole bands blank (digital-services, documents, consular)
+     and hid content from print and from anyone who scrolls fast. */
+  & .reveal,
+  & .reveal:not(.in),
+  & .anim-idle {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* ------------------------------------------------ 3. One heading pattern
+     Left-aligned eyebrow, H2 and lede on the same edge as the content grid. */
+  & .sec-head:not(.tools-intro, .kinshasa-intro, .news-spotlight-head),
+  & .sec-head.center:not(.tools-intro, .kinshasa-intro, .news-spotlight-head) {
+    text-align: left !important;
+    margin-inline: 0 !important;
+    max-width: 760px !important;
+    display: block !important;
+    transform: none !important;
+    padding: 0 !important;
+    margin-bottom: clamp(28px, 3vw, 44px) !important;
+  }
+  & .sec-head::before,
+  & .sec-head::after,
+  & .sec-head.center::before,
+  & .sec-head.center::after {
+    content: none !important;
+    display: none !important;
+  }
+  & .rule {
+    display: none !important;
+  }
+  & .eyebrow {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 14px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    font: 700 var(--px-t-eyebrow)/1.3 var(--px-sans) !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+  }
+  & .eyebrow::before {
+    /* one quiet marker: a short gold rule */
+    content: "" !important;
+    display: block !important;
+    width: 22px !important;
+    height: 2px !important;
+    border-radius: 2px !important;
+    background: var(--px-gold-600) !important;
+    box-shadow: none !important;
+    animation: none !important;
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+    flex: none;
+  }
+  & .eyebrow::after {
+    content: none !important;
+  }
+  & .eyebrow.on-navy,
+  &.dark-surface .eyebrow,
+  & .dark-surface .eyebrow {
+    color: var(--px-gold-500) !important;
+  }
+  & .eyebrow.on-navy::before,
+  &.dark-surface .eyebrow::before {
+    background: var(--px-gold-500) !important;
+  }
+
+  & h2 {
+    font-family: var(--px-serif) !important;
+    font-weight: 700 !important;
+    letter-spacing: -.012em !important;
+    text-wrap: balance;
+  }
+  & .sec-head h2 {
+    font-size: var(--px-t-h2) !important;
+    line-height: 1.16 !important;
+    margin: 0 0 14px !important;
+  }
+  & .sec-head p,
+  & .sec-head .lede,
+  & .sec-head .lead {
+    max-width: 64ch !important;
+    margin: 0 !important;
+    font: 400 var(--px-t-lead)/1.6 var(--px-sans) !important;
+    text-align: left !important;
+  }
+  &.dark-surface .sec-head h2,
+  &.dark-surface h2 {
+    color: #fff;
+  }
+  &.dark-surface .sec-head p {
+    color: rgba(226, 236, 250, .86) !important;
+  }
+
+  & h3 {
+    font-family: var(--px-serif);
+    letter-spacing: -.005em;
+    text-wrap: balance;
+  }
+
+  /* ------------------------------------------------------ 4. Reading type
+     A real type floor: no body copy under 16px, no meta under 14px. */
+  & p:not([class]),
+  & li:not([class]),
+  & dd,
+  & td {
+    font-size: max(var(--px-t-body), 1em);
+    line-height: 1.62;
+    hyphens: manual !important;
+    text-wrap: pretty;
+  }
+  & .lead {
+    font-size: var(--px-t-lead) !important;
+    line-height: 1.6 !important;
+  }
+  & .muted,
+  & small,
+  & .meta,
+  & .date,
+  & .hint {
+    font-size: max(var(--px-t-meta), .875em) !important;
+  }
+  & .muted {
+    color: var(--px-ink-2) !important;
+  }
+  & th {
+    font-family: var(--px-sans) !important;
+    font-size: var(--px-t-meta) !important;
+    letter-spacing: .02em !important;
+  }
+  & label,
+  & .field label,
+  & .field > span:first-child {
+    font: 600 15px/1.4 var(--px-sans) !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+  & .field label::before {
+    content: none !important;
+  }
+  & input:not([type=checkbox]):not([type=radio]):not([type=range]),
+  & select,
+  & textarea {
+    font: 400 16px/1.4 var(--px-sans) !important;
+    min-height: 48px;
+    border-radius: var(--px-radius-ctl) !important;
+    border: 1px solid var(--px-line-strong) !important;
+    background-color: #fff !important;
+    box-shadow: none !important;
+  }
+  & textarea {
+    min-height: 120px;
+  }
+  & input[type=checkbox],
+  & input[type=radio] {
+    width: 22px !important;
+    height: 22px !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    accent-color: var(--px-navy-900);
+    flex: none;
+  }
+
+  /* --------------------------------------------------------- 5. One card
+     Paper, one border, one restrained shadow; blue border on hover/focus. */
+  & :is(.card, .ncard, .widget, .dl-item, .sector-card, .portal-card, .official-card,
+        .division-card, .department-card, .service-directory-card,
+        .info-card, .map-location-card, .annual-upcoming-card, .tile, .media-item,
+        .office-card, .acc-item):not(:is(.dark-surface, .consular-journey, .cta-premium, #media, .home-media-centre, .emergency, .shine-purpose, .portal-network, .passport-video-section, .bilateral-quote, .drc-final-cta, .widget-dark, [class*="navy"]) *) {
+    background-color: var(--px-paper) !important;
+    background-image: none !important;
+    border: 1px solid var(--px-line) !important;
+    border-radius: var(--px-radius) !important;
+    box-shadow: var(--px-shadow) !important;
+    transition: border-color .2s var(--px-ease), box-shadow .2s var(--px-ease) !important;
+  }
+  & :is(.card, .ncard, .widget, .dl-item, .sector-card, .portal-card, .official-card,
+        .division-card, .department-card, .service-directory-card,
+        .info-card, .map-location-card, .annual-upcoming-card, .tile, .media-item,
+        .office-card):not(:is(.dark-surface, .consular-journey, .cta-premium, #media, .home-media-centre, .emergency, .shine-purpose, .portal-network, .passport-video-section, .bilateral-quote, .drc-final-cta, .widget-dark, [class*="navy"]) *)::before,
+  & :is(.card, .ncard, .widget, .dl-item, .sector-card, .portal-card, .official-card,
+        .division-card, .department-card, .service-directory-card,
+        .info-card, .map-location-card, .annual-upcoming-card, .tile, .media-item,
+        .office-card):not(:is(.dark-surface, .consular-journey, .cta-premium, #media, .home-media-centre, .emergency, .shine-purpose, .portal-network, .passport-video-section, .bilateral-quote, .drc-final-cta, .widget-dark, [class*="navy"]) *)::after {
+    /* tricolour bottoms, sky casts, ghost numerals, sparkline corners */
+    content: none !important;
+  }
+  & :is(.card, .ncard, .widget, .dl-item, .sector-card, .portal-card, .official-card,
+        .division-card, .department-card, .service-directory-card,
+        .info-card, .tile, .media-item, .office-card):not(:is(.dark-surface, .consular-journey, .cta-premium, #media, .home-media-centre, .emergency, .shine-purpose, .portal-network, .passport-video-section, .bilateral-quote, .drc-final-cta, .widget-dark, [class*="navy"]) *):is(:hover, :focus-within) {
+    transform: none !important;
+    border-color: rgba(45, 112, 214, .55) !important;
+    box-shadow: var(--px-shadow-hover) !important;
+  }
+  /* Dark panels stay dark: only their frame is normalised. */
+
+
+  /* ----------------------------------------- 6. Fake dashboard chrome off
+     CSS-injected LIVE/SYNCED/NEWS chips, empty bar charts and code badges read
+     as template work and cannot be translated. */
+  & .w-head::after,
+  & .ncard .date::before,
+  & .qbadge::after,
+  & .stats .stat::after,
+  & .stat::after {
+    content: none !important;
+    display: none !important;
+  }
+  & :is(.currency-telemetry, .voice-bars, .service-flow, .widget-route, .widget-code,
+        .sector-mark, .portal-mark, .service-compass-code, .division-code) {
+    display: none !important;
+  }
+
+  /* ----------------------------------------------- 7. One action hierarchy
+     Flat fills only. Gold = the primary task; navy = next step; outline = secondary. */
+  & .btn {
+    font: 600 15px/1.2 var(--px-sans) !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    min-height: 46px;
+    padding: 12px 20px !important;
+    border-radius: var(--px-radius-ctl) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition: background-color .18s var(--px-ease), border-color .18s var(--px-ease), color .18s var(--px-ease) !important;
+  }
+  & .btn::before,
+  & .btn::after {
+    content: none !important;
+  }
+  & .btn.btn-sm {
+    min-height: 40px;
+    padding: 9px 16px !important;
+    font-size: 14.5px !important;
+  }
+  & .btn-gold {
+    background-color: var(--px-gold-500) !important;
+    color: var(--px-navy-950) !important;
+    border: 1px solid var(--px-gold-600) !important;
+  }
+  & .btn-gold:hover {
+    background-color: #f7dc66 !important;
+  }
+  & .btn-navy {
+    background-color: var(--px-navy-900) !important;
+    color: #fff !important;
+    border: 1px solid var(--px-navy-900) !important;
+  }
+  & .btn-navy:hover {
+    background-color: var(--px-navy-800) !important;
+  }
+  & .btn-outline {
+    background-color: #fff !important;
+    color: var(--px-navy-900) !important;
+    border: 1px solid var(--px-line-strong) !important;
+  }
+  & .btn-outline:hover {
+    border-color: var(--px-navy-900) !important;
+  }
+  & .btn-ghost {
+    background-color: transparent !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, .42) !important;
+  }
+  & .btn-ghost:hover {
+    background-color: rgba(255, 255, 255, .08) !important;
+  }
+  & a:not(.btn):not([class]) {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  /* ------------------------------------------------------- 8. Focus & motion */
+  & :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid var(--px-gold-500) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px var(--px-navy-950) !important;
+    border-radius: 6px;
+  }
+  & * {
+    animation-iteration-count: 1 !important;
+  }
+
+  /* ---------------------------------------------------- 9. Media frames */
+  & img {
+    image-rendering: auto;
+  }
+  & :is(.gallery, .media, .svc-photo) img {
+    border-radius: inherit;
+  }
+
+  /* ------------------------------------------- 9b. Shared pro components
+     Building blocks every page uses so the system reads as one. Patterns are
+     adapted from GOV.UK Frontend (summary list, inset text, metadata) and
+     USWDS (in-page navigation, measure), re-tokened to the Embassy palette. */
+
+  /* Lucide sprite icon (aurora/icons.svg) */
+  & .icon {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: -4px;
+  }
+  & .icon-chip {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--px-sky);
+    color: var(--px-blue-700);
+    flex: none;
+    & .icon { width: 22px; height: 22px; }
+  }
+
+  /* "Last updated" metadata line (GOV.UK metadata / GCDS date-modified) */
+  & .px-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 0 0 clamp(24px, 3vw, 36px);
+    padding: 0 0 14px;
+    border-bottom: 1px solid var(--px-line);
+    font: 400 var(--px-t-meta)/1.5 var(--px-sans);
+    color: var(--px-ink-3);
+    & b, & strong { color: var(--px-ink); font-weight: 600; }
+  }
+
+  /* Summary list: "At a glance" key facts (GOV.UK summary-list) */
+  & .px-summary {
+    display: grid;
+    grid-template-columns: minmax(140px, 30%) 1fr;
+    margin: 0;
+    border-top: 1px solid var(--px-line);
+    & > dt, & > dd {
+      margin: 0;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--px-line);
+      font-size: var(--px-t-body);
+      line-height: 1.55;
+    }
+    & > dt { font-weight: 600; color: var(--px-navy-950); padding-right: 20px; }
+    & > dd { color: var(--px-ink-2); }
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+      & > dt { border-bottom: 0; padding-bottom: 2px; }
+      & > dd { padding-top: 0; }
+    }
+  }
+
+  /* Inset text: one calm notice (GOV.UK inset-text) */
+  & .px-inset {
+    margin: 0 0 24px;
+    padding: 16px 20px;
+    border-left: 4px solid var(--px-blue-600);
+    background: var(--px-sky);
+    border-radius: 0 var(--px-radius-ctl) var(--px-radius-ctl) 0;
+    font-size: var(--px-t-body);
+    line-height: 1.6;
+    color: var(--px-ink);
+    & p { margin: 0; }
+  }
+  & .px-warning {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin: 0 0 24px;
+    font-weight: 600;
+    color: var(--px-ink);
+    &::before {
+      content: "!";
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--px-navy-950);
+      color: #fff;
+      font: 700 20px/1 var(--px-sans);
+    }
+  }
+
+  /* Step-by-step (adapted from GOV.UK publishing components, MIT) */
+  & .px-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: pxstep;
+    & > li {
+      position: relative;
+      padding: 0 0 30px 58px;
+      counter-increment: pxstep;
+    }
+    & > li::before {
+      content: counter(pxstep);
+      position: absolute;
+      left: 0;
+      top: -2px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      border: 2px solid var(--px-navy-900);
+      color: var(--px-navy-900);
+      font: 700 16px/1 var(--px-sans);
+    }
+    & > li::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 40px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--px-line-strong);
+    }
+    & > li:last-child { padding-bottom: 0; }
+    & > li:last-child::after { content: none; }
+    & > li.px-step-and::before { content: "and"; font-size: 12.5px; border-style: dashed; }
+    & h3 {
+      font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+      margin: 4px 0 8px;
+      color: var(--px-navy-950);
+    }
+    & p, & li li { color: var(--px-ink-2); }
+    & ul { margin: 8px 0 0; padding-left: 20px; }
+    & ul li { margin: 4px 0; }
+  }
+
+  /* On this page (USWDS in-page navigation) */
+  & .px-toc {
+    padding: 18px 20px;
+    border: 1px solid var(--px-line);
+    border-radius: var(--px-radius);
+    background: #fff;
+    & h2, & .px-toc-title {
+      font: 700 13px/1.3 var(--px-sans) !important;
+      letter-spacing: .12em !important;
+      text-transform: uppercase;
+      color: var(--px-ink-3);
+      margin: 0 0 10px !important;
+    }
+    & ol, & ul { list-style: none; margin: 0; padding: 0; }
+    & li { margin: 0; font-size: 15.5px; }
+    & a {
+      display: block;
+      padding: 7px 0 7px 12px;
+      border-left: 2px solid transparent;
+      color: var(--px-ink-2);
+      text-decoration: none;
+    }
+    & a:hover, & a[aria-current] {
+      color: var(--px-navy-950);
+      border-left-color: var(--px-gold-600);
+    }
+  }
+
+  /* Link list: grouped, scannable links (official portals, resources) */
+  & .px-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--px-line);
+    & > li { border-bottom: 1px solid var(--px-line); margin: 0; }
+    & a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 4px;
+      text-decoration: none;
+      color: var(--px-navy-950);
+      font-weight: 600;
+      font-size: 17px;
+    }
+    & a:hover { color: var(--px-blue-700); }
+    & a:hover .px-links-name { text-decoration: underline; text-underline-offset: 3px; }
+    & .px-links-meta { display: block; font-weight: 400; font-size: 14px; color: var(--px-ink-3); margin-top: 2px; }
+    & .icon { margin-left: auto; color: var(--px-ink-3); }
+  }
+
+  /* Image frame for official portraits & photography */
+  & .px-frame {
+    border-radius: var(--px-radius);
+    overflow: hidden;
+    border: 1px solid var(--px-line);
+    background: var(--px-canvas);
+    & img { width: 100%; height: 100%; object-fit: cover; }
+  }
+  & .px-caption {
+    margin-top: 10px;
+    font-size: var(--px-t-meta);
+    color: var(--px-ink-3);
+  }
+
+  /* ------------------------------------------------------ 10. Tables */
+  & table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* -------------------------------------------- 11. Big screens (2K / 4K)
+   The header grows to 1760px from 1920px, but content stayed at 1180px and
+   looked like a small strip on large monitors. Content sections scale in calm
+   steps so type stays readable and the column lines up with the header. */
+@media (min-width: 1920px) {
+  main > section:not(.hero, .phead, .amb-hero, .qa-band) {
+    zoom: 1.12;
+  }
+}
+@media (min-width: 2400px) {
+  main > section:not(.hero, .phead, .amb-hero, .qa-band) {
+    zoom: 1.3;
+  }
+}
+@media (min-width: 3000px) {
+  main > section:not(.hero, .phead, .amb-hero, .qa-band) {
+    zoom: 1.49;
+  }
+}
+
+/* ------------------------------------------------------ 12. Print */
+@media print {
+  main > section:not(.hero, .phead, .amb-hero, .qa-band) {
+    zoom: 1;
+    & .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main > section:not(.hero, .phead, .amb-hero, .qa-band) * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

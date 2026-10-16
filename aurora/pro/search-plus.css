@@ -1,0 +1,23 @@
+/* Full-text results group appended to the search palette (aurora/pro/search-plus.js). */
+.search-overlay .sr-pf-head {
+  margin: 14px 4px 6px;
+  font: 700 12px/1.3 'Public Sans', system-ui, sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #5a7189;
+}
+.search-overlay .sr-pf-sep {
+  height: 1px;
+  margin: 10px 4px 0;
+  background: rgba(5, 47, 87, .12);
+}
+.search-overlay .sr-pf .sr-pf-sub {
+  font-weight: 500;
+  color: #5a7189;
+}
+.search-overlay .sr-pf .sr-d mark {
+  background: #fdf1b8;
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}

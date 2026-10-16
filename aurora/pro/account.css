@@ -1,0 +1,222 @@
+/* ============================================================================
+   ACCOUNT SUPPORT (account/index.html): below-hero start page.
+   Scope: only sections carrying the .sp class, which never appear in the
+   frozen zones (banner, header, notice bar, hero, quick-access dock, footer).
+   Pattern: GOV.UK "start page" (purpose, prototype inset, details, help),
+   with an "At a glance" summary card beside the main column on wide screens.
+
+   Specificity: every rule starts with `main > section.sp:not(#sp-x)`. The
+   :not(#sp-x) adds one id of weight so these page rules reliably beat the
+   older shared layers (typography-system.css forces h2/p sizes with
+   !important at 0,3,4) without touching those shared files.
+   ============================================================================ */
+
+/* ------------------------------------------------------------ Layout */
+main > section.sp:not(#sp-x) .sp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 352px);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+main > section.sp:not(#sp-x) .sp-main {
+  min-width: 0;
+  max-width: 680px;
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.sp:not(#sp-x) .sp-main {
+    max-width: none;
+  }
+}
+
+/* ------------------------------------------------------------ Type */
+main > section.sp:not(#sp-x) .sp-lead {
+  margin: 0 0 24px;
+  max-width: 680px;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans);
+  color: var(--px-ink);
+  text-wrap: pretty;
+}
+main > section.sp:not(#sp-x) .sp-notice {
+  max-width: 680px;
+  margin: 0;
+}
+main > section.sp:not(#sp-x) .sp-h2 {
+  margin: clamp(44px, 5vw, 64px) 0 8px;
+  font-size: clamp(24px, 1.1vw + 16px, 30px) !important;
+  line-height: 1.22 !important;
+  letter-spacing: -.012em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-sub {
+  margin: 0 0 24px;
+  max-width: 62ch;
+  font: 400 var(--px-t-body)/1.6 var(--px-sans);
+  color: var(--px-ink-2);
+}
+
+/* ------------------------------------------------- Planned features grid */
+main > section.sp:not(#sp-x) .sp-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+main > section.sp:not(#sp-x) .sp-feature {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 20px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.sp:not(#sp-x) .sp-feature h3 {
+  margin: 2px 0 6px;
+  font: 700 18px/1.3 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-feature p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--px-ink-2);
+}
+@media (max-width: 640px) {
+  main > section.sp:not(#sp-x) .sp-features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+/* Two-up cards: icon above the text so the copy gets the full card width
+   (side-by-side left only ~200px of measure and four-line paragraphs). */
+@media (min-width: 641px) {
+  main > section.sp:not(#sp-x) .sp-feature {
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px 22px 24px;
+  }
+  main > section.sp:not(#sp-x) .sp-feature h3 {
+    margin-top: 0;
+  }
+}
+
+/* ------------------------------------------------- Help links (px-links) */
+main > section.sp:not(#sp-x) .sp-links a {
+  min-height: 44px;
+  padding: 16px 4px;
+}
+main > section.sp:not(#sp-x) .sp-links .sp-link-text {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+main > section.sp:not(#sp-x) .sp-links .icon-chip .icon {
+  margin: 0;
+  color: inherit;
+}
+main > section.sp:not(#sp-x) .sp-links .px-links-meta {
+  overflow-wrap: anywhere;
+}
+main > section.sp:not(#sp-x) .sp-links a > .icon:last-child {
+  transition: transform .18s var(--px-ease), color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-links a:hover > .icon:last-child {
+  color: var(--px-blue-700);
+}
+
+/* ------------------------------------------------- At-a-glance card */
+main > section.sp:not(#sp-x) .sp-aside {
+  min-width: 0;
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-aside {
+    max-width: 560px;
+  }
+}
+@media (min-width: 961px) {
+  main > section.sp:not(#sp-x) .sp-aside {
+    position: sticky;
+    top: 96px;
+  }
+}
+main > section.sp:not(#sp-x) .sp-card {
+  padding: 24px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-top: 3px solid var(--px-navy-900);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.sp:not(#sp-x) .sp-card-title {
+  margin: 0 0 8px;
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-facts {
+  margin: 0;
+}
+main > section.sp:not(#sp-x) .sp-facts dt {
+  margin: 0;
+  padding-top: 14px;
+  font: 600 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+}
+main > section.sp:not(#sp-x) .sp-facts dd {
+  margin: 2px 0 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--px-line);
+  font-size: var(--px-t-body);
+  line-height: 1.5;
+  color: var(--px-ink);
+  font-variant-numeric: tabular-nums;
+}
+main > section.sp:not(#sp-x) .sp-facts dd:last-child {
+  border-bottom: 0;
+}
+main > section.sp:not(#sp-x) .sp-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 20px;
+}
+main > section.sp:not(#sp-x) .sp-action .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+
+/* ------------------------------------------------- Shared fixes */
+/* Older layers set hyphens:auto on paragraphs ("doc-uments"). */
+main > section.sp:not(#sp-x),
+main > section.sp:not(#sp-x) * {
+  hyphens: manual !important;
+}
+/* The global ".sec-head p" lede rule (0,2,3) outranks ".eyebrow" (0,2,2)
+   when the eyebrow is a <p>, so it rendered at 19px/400. Restore it. */
+main > section.sp:not(#sp-x) .sec-head .eyebrow {
+  font: 700 var(--px-t-eyebrow)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  color: var(--px-navy-900) !important;
+  max-width: none !important;
+  margin: 0 0 12px !important;
+}
+main > section.sp:not(#sp-x) .sp-line {
+  display: block;
+}
+
+/* Paper surface: older layers paint a light page gradient that otherwise
+   shows behind the first section on 2K/4K screens. */
+main > section.sp:not(#sp-x):not(.bg-ivory) {
+  background-color: var(--px-paper);
+}

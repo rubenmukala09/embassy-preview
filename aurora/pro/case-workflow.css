@@ -1,0 +1,826 @@
+/* ============================================================================
+   case-workflow.html: below-the-hero content only.
+   Framed as "Proposal: staff case management": an at-a-glance summary, one
+   working model (stage overview + readable file table, rendered by
+   aurora/pro/case-workflow.js) and the published reference tables.
+   Every selector is scoped to the three page sections (.cwp-intro,
+   .cwp-model, .cwp-ref), so nothing reaches the frozen hero, dock or footer.
+   ============================================================================ */
+
+main > section:is(.cwp-intro, .cwp-model, .cwp-ref):not(.hero):not(.phead):not(.qa-band) {
+  --cw-navy: var(--px-navy-950, #011a35);
+  --cw-navy-9: var(--px-navy-900, #052f57);
+  --cw-ink: var(--px-ink, #0b2440);
+  --cw-ink-2: var(--px-ink-2, #3b5571);
+  --cw-ink-3: var(--px-ink-3, #5a7189);
+  --cw-line: var(--px-line, rgba(5, 47, 87, .14));
+  --cw-line-strong: var(--px-line-strong, rgba(5, 47, 87, .24));
+  --cw-blue: var(--px-blue-700, #1d5bb8);
+  --cw-sky: var(--px-sky, #eaf2fd);
+  --cw-canvas: var(--px-canvas, #f4f7fb);
+  --cw-zebra: #f8fafd;
+  --cw-ease: var(--px-ease, cubic-bezier(.2, .75, .25, 1));
+  hyphens: manual;
+}
+main > section:is(.cwp-intro, .cwp-model, .cwp-ref):not(.hero):not(.phead):not(.qa-band) :is(p, li, dd, dt, h2, h3, h4, span, td, th, button) {
+  hyphens: manual !important;
+  -webkit-hyphens: manual !important;
+}
+main > section:is(.cwp-intro, .cwp-model, .cwp-ref):not(.hero):not(.phead):not(.qa-band) .cwp-sr {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+}
+
+/* The shared ".sec-head p" lede rule outranks ".eyebrow" and turns every
+   eyebrow inside a section head into 19px body text; restore the label. */
+main > section:is(.cwp-intro, .cwp-model, .cwp-ref):not(.hero):not(.phead):not(.qa-band) .sec-head p.eyebrow {
+  font: 700 var(--px-t-eyebrow, 12.5px)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 14px !important;
+}
+
+/* ----------------------------------------------------------- Proposal */
+main > section.cwp-intro:not(.hero):not(.phead):not(.qa-band) .cwp-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(36px, 5vw, 72px);
+  align-items: start;
+}
+main > section.cwp-intro:not(.hero):not(.phead):not(.qa-band) .cwp-intro-grid .sec-head {
+  margin-bottom: 0 !important;
+}
+main > section.cwp-intro:not(.hero):not(.phead):not(.qa-band) .cwp-glance-title {
+  margin: 4px 0 14px !important;
+  font: 700 19px/1.3 var(--px-serif) !important;
+  color: var(--cw-navy) !important;
+}
+main > section.cwp-intro:not(.hero):not(.phead):not(.qa-band) .px-summary > dd {
+  font-size: 16.5px !important;
+}
+
+/* ------------------------------------------------------- Working model */
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .px-inset {
+  max-width: 760px;
+  margin: 0 0 28px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .px-inset p {
+  font-size: 16.5px !important;
+  line-height: 1.55 !important;
+  color: var(--cw-ink) !important;
+  max-width: none !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-app {
+  padding: clamp(18px, 2.6vw, 32px);
+  border: 1px solid var(--cw-line);
+  border-radius: var(--px-radius-lg, 20px);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(1, 26, 53, .05), 0 18px 40px -30px rgba(1, 26, 53, .35);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-noscript {
+  margin: 0 !important;
+  color: var(--cw-ink-2) !important;
+}
+
+/* Toolbar */
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px 24px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-desks {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-desks-label {
+  display: block;
+  margin: 0 0 10px;
+  font: 600 15px/1.35 var(--px-sans);
+  color: var(--cw-ink-2);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-seg-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 44px;
+  padding: 9px 16px !important;
+  border: 1px solid var(--cw-line-strong) !important;
+  border-radius: var(--px-radius-ctl, 10px) !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  font: 600 15px/1.2 var(--px-sans) !important;
+  color: var(--cw-navy-9) !important;
+  cursor: pointer;
+  transition: background-color .18s var(--cw-ease), border-color .18s var(--cw-ease), color .18s var(--cw-ease);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-seg-btn:hover {
+  border-color: var(--cw-navy-9) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-seg-btn[aria-pressed="true"] {
+  background: var(--cw-navy-9) !important;
+  border-color: var(--cw-navy-9) !important;
+  color: #fff !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-select {
+  display: none;
+  width: 100%;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-reset {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 44px;
+  padding: 8px 2px !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  font: 600 15.5px/1.2 var(--px-sans) !important;
+  color: var(--cw-blue) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-reset:hover {
+  color: var(--cw-navy) !important;
+  text-decoration-thickness: 2px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-duty {
+  margin: 12px 0 22px !important;
+  max-width: 72ch;
+  font-size: 15.5px !important;
+  line-height: 1.55 !important;
+  color: var(--cw-ink-2) !important;
+}
+
+/* Stage overview: compact table */
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages-wrap {
+  border: 1px solid var(--cw-line);
+  border-radius: var(--px-radius, 14px);
+  overflow: hidden;
+  overflow: clip;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages {
+  width: 100%;
+  margin: 0 !important;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages caption {
+  caption-side: top;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--cw-line);
+  background: #fff;
+  text-align: left;
+  font: 700 17px/1.3 var(--px-serif);
+  color: var(--cw-navy);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages th,
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages td {
+  padding: 10px 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--cw-line) !important;
+  background: #fff !important;
+  text-align: left !important;
+  vertical-align: middle;
+  font: 400 15.5px/1.4 var(--px-sans) !important;
+  color: var(--cw-ink) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages thead th {
+  background: var(--cw-canvas) !important;
+  font: 600 14px/1.35 var(--px-sans) !important;
+  color: var(--cw-ink-2) !important;
+  white-space: nowrap;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tbody tr:nth-child(even) > * {
+  background: var(--cw-zebra) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tbody tr:last-child > * {
+  border-bottom: 0 !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tbody th {
+  width: 42%;
+  white-space: normal !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-name {
+  display: block;
+  font: 600 15.5px/1.35 var(--px-sans);
+  color: var(--cw-navy);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-note {
+  display: block;
+  margin-top: 2px;
+  font: 400 14px/1.4 var(--px-sans);
+  color: var(--cw-ink-3);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-desk-m {
+  display: none;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-num {
+  text-align: right !important;
+  white-space: nowrap;
+  width: 16%;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages td.cwp-num b {
+  font: 700 17px/1.2 var(--px-sans);
+  color: var(--cw-navy);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tr.is-empty td.cwp-num b {
+  font-weight: 400;
+  color: var(--cw-ink-3);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tr.is-dim > * {
+  color: var(--cw-ink-3) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tr.is-dim .cwp-st-name,
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tr.is-dim td.cwp-num b {
+  font-weight: 400;
+  color: var(--cw-ink-3);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tr.is-mine:not(.is-empty) > th {
+  box-shadow: inset 3px 0 0 var(--cw-navy-9);
+}
+/* Summary */
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 26px;
+  margin: 26px 0 12px !important;
+  font-size: 15.5px !important;
+  line-height: 1.5 !important;
+  color: var(--cw-ink-2) !important;
+  max-width: none !important;
+  outline: none;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-summary b {
+  color: var(--cw-navy);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* File table */
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-table-wrap {
+  border: 1px solid var(--cw-line);
+  border-radius: var(--px-radius, 14px);
+  overflow: hidden;
+  overflow: clip;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files {
+  width: 100%;
+  margin: 0 !important;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files th,
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files td {
+  padding: 12px 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--cw-line) !important;
+  background: #fff !important;
+  text-align: left !important;
+  vertical-align: middle;
+  font: 400 15.5px/1.45 var(--px-sans) !important;
+  color: var(--cw-ink) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files thead th {
+  background: var(--cw-canvas) !important;
+  font: 600 14px/1.35 var(--px-sans) !important;
+  color: var(--cw-ink-2) !important;
+  white-space: nowrap;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files .cwp-num {
+  text-align: right !important;
+  white-space: nowrap;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files tbody tr:last-child > * {
+  border-bottom: 0 !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row:hover > *,
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row.is-open > * {
+  background: var(--cw-zebra) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row.is-open > * {
+  border-bottom-color: transparent !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-open {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 4px 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  font: 600 15.5px/1.3 var(--px-sans) !important;
+  font-variant-numeric: tabular-nums;
+  color: var(--cw-blue) !important;
+  white-space: nowrap;
+  cursor: pointer;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-open span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-open:hover span {
+  text-decoration-thickness: 2px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-open .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+  transition: transform .18s var(--cw-ease);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-open[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-status {
+  font-weight: 400;
+  color: var(--cw-ink-2);
+  white-space: nowrap;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-status.is-due {
+  font-weight: 600;
+  color: var(--px-gold-ink, #7a5a00);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-status.is-past {
+  font-weight: 700;
+  color: var(--cw-navy);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-status.is-none,
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-status.is-closed {
+  color: var(--cw-ink-3);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-empty td {
+  padding: 22px 16px !important;
+  color: var(--cw-ink-2) !important;
+}
+
+/* Detail */
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-row > td {
+  padding: 4px 16px 22px !important;
+  background: var(--cw-zebra) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail {
+  padding: 20px 22px;
+  border: 1px solid var(--cw-line);
+  border-radius: var(--px-radius-ctl, 10px);
+  background: #fff;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-head {
+  margin: 0 0 18px;
+  padding: 0 0 14px;
+  border-bottom: 1px solid var(--cw-line);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-head h3 {
+  margin: 0 0 4px !important;
+  font: 700 19px/1.3 var(--px-serif) !important;
+  color: var(--cw-navy) !important;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-head p {
+  margin: 0 !important;
+  max-width: none !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  color: var(--cw-ink-2) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-dcol h4 {
+  margin: 0 0 10px !important;
+  font: 700 15px/1.3 var(--px-sans) !important;
+  color: var(--cw-navy) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-check,
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hist {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-check li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  margin: 0 !important;
+  padding: 5px 0 !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  color: var(--cw-ink) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-check li::before,
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hist li::before {
+  content: none !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-check .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  vertical-align: 0;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-check .is-ok .icon {
+  color: var(--px-blue-600, #2d70d6);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-check .is-todo {
+  color: var(--cw-ink-2) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-check .is-todo .icon {
+  color: var(--cw-ink-3);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hold {
+  margin: 12px 0 0 !important;
+  padding: 10px 12px;
+  border-left: 3px solid var(--px-gold-600, #e2bd22);
+  background: #fffaf0;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  color: var(--cw-ink) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hist li {
+  position: relative;
+  margin: 0 !important;
+  padding: 0 0 12px 18px !important;
+  border-left: 2px solid var(--cw-line);
+  margin-left: 4px !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hist li:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0 !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hist li::after {
+  content: "" !important;
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--cw-navy-9);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hist b {
+  display: block;
+  font: 600 15px/1.35 var(--px-sans);
+  color: var(--cw-navy);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-hist span {
+  display: block;
+  font: 400 14px/1.45 var(--px-sans);
+  color: var(--cw-ink-3);
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-acts {
+  display: grid;
+  gap: 10px;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-act {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-muted {
+  margin: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  color: var(--cw-ink-2) !important;
+}
+main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-live {
+  min-height: 1.5em;
+  margin: 14px 0 0 !important;
+  max-width: none !important;
+  font-size: 14.5px !important;
+  line-height: 1.5 !important;
+  color: var(--cw-ink-2) !important;
+}
+
+/* ---------------------------------------------------------- Reference */
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-ref-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-ref-card {
+  padding: clamp(20px, 2.4vw, 28px);
+  border: 1px solid var(--cw-line);
+  border-radius: var(--px-radius, 14px);
+  background: #fff;
+  box-shadow: var(--px-shadow);
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-ref-card h3 {
+  margin: 0 0 16px !important;
+  font: 700 20px/1.3 var(--px-serif) !important;
+  color: var(--cw-navy) !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table {
+  width: 100%;
+  margin: 0 !important;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table th,
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table td {
+  padding: 12px 14px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--cw-line) !important;
+  background: #fff !important;
+  text-align: left !important;
+  vertical-align: top;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table thead th {
+  background: var(--cw-canvas) !important;
+  font: 600 14px/1.35 var(--px-sans) !important;
+  color: var(--cw-ink-2) !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody th {
+  width: 46%;
+  font: 600 15.5px/1.45 var(--px-sans) !important;
+  color: var(--cw-navy) !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody td {
+  font: 400 15.5px/1.45 var(--px-sans) !important;
+  color: var(--cw-ink) !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody tr:nth-child(even) > * {
+  background: var(--cw-zebra) !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody tr:last-child > * {
+  border-bottom: 0 !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-line {
+  display: block;
+  white-space: nowrap;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-ref-note {
+  margin: 14px 0 0 !important;
+  max-width: none !important;
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+  color: var(--cw-ink-3) !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 28px;
+  margin-top: 32px;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-textlink {
+  font: 600 16px/1.3 var(--px-sans);
+  color: var(--cw-blue) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px !important;
+}
+main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-textlink:hover {
+  color: var(--cw-navy) !important;
+  text-decoration-thickness: 2px !important;
+}
+
+/* --------------------------------------------------------- Responsive */
+@media (max-width: 1023px) {
+  main > section.cwp-intro:not(.hero):not(.phead):not(.qa-band) .cwp-intro-grid,
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-ref-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.cwp-intro:not(.hero):not(.phead):not(.qa-band) .cwp-intro-grid {
+    gap: 28px;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-dcol-act {
+    grid-column: 1 / -1;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-acts {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+@media (max-width: 860px) {
+  /* File table becomes a list of file cards */
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-table-wrap {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files tbody,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files tr,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files th,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files td {
+    display: block;
+    width: 100%;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files thead {
+    display: none;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 16px;
+    margin: 0 0 10px;
+    padding: 6px 16px 12px;
+    border: 1px solid var(--cw-line);
+    border-radius: var(--px-radius-ctl, 10px);
+    background: #fff;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row.is-open {
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 0;
+    background: var(--cw-zebra);
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > th,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > td {
+    padding: 6px 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > td::before {
+    content: attr(data-label);
+    display: block;
+    font: 400 14px/1.35 var(--px-sans);
+    color: var(--cw-ink-3);
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-files .cwp-num {
+    text-align: left !important;
+  }
+  /* Reference and status share the first line when they fit; the four
+     facts follow in two columns */
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > th {
+    order: 0;
+    flex: 0 0 auto;
+    width: auto !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > td:last-child {
+    order: 1;
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto !important;
+    align-self: center;
+    text-align: right !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > td:last-child .cwp-status {
+    white-space: normal;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row::before {
+    content: none !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row::after {
+    content: "" !important;
+    display: block !important;
+    order: 1;
+    flex: 0 0 100%;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > td:not(:last-child) {
+    order: 2;
+    flex: 0 0 calc(50% - 8px);
+    width: auto !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > td:last-child::before {
+    content: none;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-row {
+    margin: 0 0 10px;
+    border: 1px solid var(--cw-line);
+    border-top: 0;
+    border-radius: 0 0 var(--px-radius-ctl, 10px) var(--px-radius-ctl, 10px);
+    overflow: hidden;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-row > td {
+    padding: 0 12px 12px !important;
+    border: 0 !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-empty td {
+    border: 1px solid var(--cw-line) !important;
+    border-radius: var(--px-radius-ctl, 10px);
+  }
+}
+@media (min-width: 561px) and (max-width: 860px) {
+  /* Tablet: each file card reads in two rows */
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row > td:not(:last-child) {
+    flex-basis: calc(25% - 12px);
+  }
+}
+@media (max-width: 760px) {
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-seg {
+    display: none;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-select {
+    display: block;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-toolbar {
+    display: block;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-reset {
+    margin-top: 6px;
+  }
+}
+@media (max-width: 640px) {
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-desk,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-old,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-note {
+    display: none;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-desk-m {
+    display: block;
+    margin-top: 2px;
+    font: 400 14px/1.4 var(--px-sans);
+    color: var(--cw-ink-3);
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages th,
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages td {
+    padding: 10px 12px !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages caption {
+    padding: 12px !important;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages tbody th {
+    width: auto;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-num {
+    width: 1%;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail {
+    padding: 16px;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-detail-cols {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table,
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody,
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tr,
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table th,
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table td {
+    display: block;
+    width: 100% !important;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table thead {
+    display: none;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody tr {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--cw-line);
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody tr:nth-child(even) {
+    background: var(--cw-zebra);
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody th,
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody td {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-table tbody td {
+    margin-top: 2px;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-ref-card {
+    padding: 18px 16px;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-ref-card h3 {
+    margin-bottom: 10px !important;
+  }
+  main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  main > section:is(.cwp-intro, .cwp-model, .cwp-ref):not(.hero):not(.phead):not(.qa-band) * {
+    transition: none !important;
+  }
+}

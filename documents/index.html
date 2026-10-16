@@ -43,6 +43,8 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/component-standard.css?v=1787245200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900003" />
 <link rel="stylesheet" href="/embassy-preview/aurora/universal-footer.css?v=1787248800" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro-system.css?v=20261014a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/documents.css?v=20261014a" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -62,6 +64,7 @@
   <div class="gov-col"><span class="gov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-5h6v5"/></svg></span><div><b>Preview environment</b><p>This website is being reviewed before official publication. Verify urgent or operational information directly with the Embassy.</p></div></div>
   <div class="gov-col"><span class="gov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Secure browsing</b><p>This preview uses HTTPS. Do not submit identity documents, payment details or other sensitive information until an approved service is announced.</p></div></div>
 </div></div>
+</div>
 
 <!-- TOP BAR -->
 <div class="topbar"><div class="container">
@@ -125,78 +128,146 @@
   </nav>
 </div></section>
 
-<!-- UPLOAD -->
-<section class="section"><div class="container">
+<!-- DOCUMENT GUIDANCE: start page -->
+<section class="section sp sp-start" aria-labelledby="sp-before-title"><div class="container">
+  <div class="sp-layout">
+    <div class="sp-main">
+      <p class="sp-lead" data-emb-en="Use this guide to prepare the supporting documents for a passport, visa, Tenant‑Lieu or civil-status request before you visit the Embassy or send your file by post." data-emb-fr="Ce guide vous aide à préparer les pièces justificatives d’une demande de passeport, de visa, de Tenant‑Lieu ou d’acte d’état civil avant de vous rendre à l’Ambassade ou d’envoyer votre dossier par courrier.">Use this guide to prepare the supporting documents for a passport, visa, Tenant‑Lieu or civil-status request before you visit the Embassy or send your file by post.</p>
 
-  <div class="card pad note" style="margin-bottom:22px">
-    <b>Unofficial demonstration.</b> This is a design prototype of the consular platform. Please do <b>not</b> upload real passports, IDs or sensitive personal documents.
-  </div>
-
-  
-  
-  <div class="split">
-    <div>
-      <div class="sec-head"><p class="eyebrow">Reserved service</p><div class="rule left"></div><h2 style="font-size:26px;margin-top:12px">Secure upload preview</h2></div>
-      <p class="lead mt16">The fields below illustrate a future secure workflow only. Do not enter personal data or choose a real document in this preview.</p>
-
-      <div style="margin-top:20px" aria-describedby="document-preview-notice">
-        <fieldset class="preview-disabled-fields" disabled>
-
-        <div class="rg-row">
-          <div class="field"><label for="d-ref">Reference number</label><input id="d-ref" name="reference" required value="" placeholder="e.g. APT-2026-0481" /></div>
-          <div class="field"><label for="d-last">Applicant last name</label><input id="d-last" name="last_name" required value="" placeholder="As it appears on your request" /></div>
-        </div>
-
-        <div class="rg-row">
-          <div class="field"><label for="d-type">Document type</label>
-            <select id="d-type" name="type" required>
-                              <option value="passport_application" >Passport application</option>
-                              <option value="visa" >Visa document</option>
-                              <option value="birth_certificate" >Birth certificate</option>
-                              <option value="id_photo" >ID / passport photo</option>
-                              <option value="proof_of_address" >Proof of address</option>
-                              <option value="supporting_document" >Other supporting document</option>
-                              <option value="other" >Other</option>
-                          </select></div>
-          <div class="field"><label for="d-email">Email for confirmation <span class="opt">(optional)</span></label><input id="d-email" name="email" type="email" value="" placeholder="you@example.com" /></div>
-        </div>
-
-        <div class="field"><label for="d-file">File upload unavailable</label><input id="d-file" name="document" type="file" disabled aria-describedby="document-preview-notice" /></div>
-
-        <div class="field"><label for="d-note">Note <span class="opt">(optional)</span></label><textarea id="d-note" name="note" rows="3" placeholder="Anything the reviewing officer should know about this file."></textarea></div>
-        </fieldset>
-
-        <a class="btn btn-gold btn-block" href="/embassy-preview/consular-services.html">Review approved document guidance</a>
-        <p class="hint" id="document-preview-notice" style="text-align:center;margin-top:10px">No file can be uploaded or stored through this preview. Do not send identity documents by email unless the Embassy provides an approved secure method.</p>
+      <div class="px-inset sp-notice" role="note">
+        <p><strong data-emb-en="Prototype service." data-emb-fr="Service en prototype.">Prototype service.</strong> <span data-emb-en="Online upload and tracking are not available on this website. Do not send identity documents by ordinary email." data-emb-fr="Le téléversement et le suivi en ligne ne sont pas disponibles sur ce site. N’envoyez pas de pièces d’identité par simple courriel.">Online upload and tracking are not available on this website. Do not send identity documents by ordinary email.</span></p>
       </div>
+
+      <h2 class="sp-h2" id="sp-before-title" data-emb-en="Before you start" data-emb-fr="Avant de commencer">Before you start</h2>
+      <dl class="px-summary sp-summary">
+        <dt data-emb-en="Who this is for" data-emb-fr="Personnes concernées">Who this is for</dt>
+        <dd data-emb-en="Applicants for a passport, visa, Tenant‑Lieu, or a civil-status or notarial document" data-emb-fr="Les demandeurs de passeport, de visa, de Tenant‑Lieu ou d’un acte d’état civil ou notarié">Applicants for a passport, visa, Tenant‑Lieu, or a civil-status or notarial document</dd>
+        <dt data-emb-en="How to submit" data-emb-fr="Mode de dépôt">How to submit</dt>
+        <dd data-emb-en="In person at the Consular Section, or by post for most services" data-emb-fr="En personne à la Section consulaire, ou par courrier pour la plupart des services">In person at the Consular Section, or by post for most services</dd>
+        <dt data-emb-en="Processing time" data-emb-fr="Délais de traitement">Processing time</dt>
+        <dd><span data-emb-en="Visas: at least 1–2 business days after a complete file is received." data-emb-fr="Visas : au moins 1 à 2 jours ouvrables après réception d’un dossier complet.">Visas: at least 1–2 business days after a complete file is received.</span> <span data-emb-en="Biometric passports: about 90 days, as they are produced in Kinshasa." data-emb-fr="Passeports biométriques : environ 90 jours, car ils sont produits à Kinshasa.">Biometric passports: about 90 days, as they are produced in Kinshasa.</span></dd>
+        <dt data-emb-en="Fees" data-emb-fr="Frais">Fees</dt>
+        <dd><span data-emb-en="Non-refundable and payable by the published method." data-emb-fr="Non remboursables et payables selon le mode publié.">Non-refundable and payable by the published method.</span> <a href="/embassy-preview/pay/" data-emb-en="See the fee schedule" data-emb-fr="Consulter la grille des frais">See the fee schedule</a></dd>
+      </dl>
+
+      <h2 class="sp-h2" data-emb-en="Prepare your documents" data-emb-fr="Préparer vos documents">Prepare your documents</h2>
+      <ol class="px-steps sp-steps">
+        <li>
+          <h3 data-emb-en="Check the requirements for your service" data-emb-fr="Vérifiez les exigences propres à votre service">Check the requirements for your service</h3>
+          <p data-emb-en="Requirements differ by service and can change. Use the checklist for your service further down this page, and confirm it against the current consular guidance." data-emb-fr="Les exigences varient selon le service et peuvent évoluer. Utilisez la liste correspondant à votre service, plus bas sur cette page, et vérifiez-la au regard des instructions consulaires en vigueur.">Requirements differ by service and can change. Use the checklist for your service further down this page, and confirm it against the current consular guidance.</p>
+        </li>
+        <li>
+          <h3 data-emb-en="Complete and sign the application form" data-emb-fr="Remplissez et signez le formulaire de demande">Complete and sign the application form</h3>
+          <p data-emb-en="Use the current form for your service. Complete it in full, then date and sign it." data-emb-fr="Utilisez le formulaire en vigueur pour votre service. Remplissez-le entièrement, puis datez-le et signez-le.">Use the current form for your service. Complete it in full, then date and sign it.</p>
+          <p class="sp-step-link"><a href="/embassy-preview/consular-services.html#forms" data-emb-en="Forms and downloads" data-emb-fr="Formulaires et téléchargements">Forms and downloads</a></p>
+        </li>
+        <li>
+          <h3 data-emb-en="Gather originals and copies" data-emb-fr="Rassemblez les originaux et les copies">Gather originals and copies</h3>
+          <p data-emb-en="Bring each original document with one photocopy. Copies must be clear, full-page and show all four corners." data-emb-fr="Présentez chaque document original accompagné d’une photocopie. Les copies doivent être nettes, en pleine page, et laisser apparaître les quatre coins.">Bring each original document with one photocopy. Copies must be clear, full-page and show all four corners.</p>
+        </li>
+        <li>
+          <h3 data-emb-en="Add the fee and a return envelope" data-emb-fr="Joignez les frais et une enveloppe de retour">Add the fee and a return envelope</h3>
+          <p data-emb-en="Include the exact fee by the published payment method and, for postal applications, a prepaid, tracked return envelope such as FedEx or UPS. Use paper clips or tape rather than staples." data-emb-fr="Joignez le montant exact des frais selon le mode de paiement publié et, pour les demandes par courrier, une enveloppe de retour prépayée avec suivi, par exemple FedEx ou UPS. Utilisez des trombones ou du ruban adhésif plutôt que des agrafes.">Include the exact fee by the published payment method and, for postal applications, a prepaid, tracked return envelope such as FedEx or UPS. Use paper clips or tape rather than staples.</p>
+        </li>
+        <li>
+          <h3 data-emb-en="Submit your file and keep your receipt" data-emb-fr="Déposez votre dossier et conservez votre reçu">Submit your file and keep your receipt</h3>
+          <p data-emb-en="Hand in your file at the Consular Section or send it by tracked post. Keep the official receipt or reference: you will need it for any status enquiry." data-emb-fr="Remettez votre dossier à la Section consulaire ou envoyez-le par courrier suivi. Conservez le reçu ou la référence officielle : ils vous seront demandés pour toute demande de suivi.">Hand in your file at the Consular Section or send it by tracked post. Keep the official receipt or reference: you will need it for any status enquiry.</p>
+        </li>
+      </ol>
     </div>
 
-    <div class="card pad" style="background:var(--cream,#f6f1e7)">
-      <h4 style="font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep,#8a6d1f);margin-bottom:14px">What to bring</h4>
-      <div class="li" style="display:flex;gap:10px;margin-bottom:11px;font-size:13.5px"><span class="verified">✓</span><span>Your consular reference number (from your confirmation email)</span></div>
-      <div class="li" style="display:flex;gap:10px;margin-bottom:11px;font-size:13.5px"><span class="verified">✓</span><span>Clear, full-page scans - all four corners visible</span></div>
-      <div class="li" style="display:flex;gap:10px;margin-bottom:11px;font-size:13.5px"><span class="verified">✓</span><span>Passport application: form, current passport bio page, and photo</span></div>
-      <div class="li" style="display:flex;gap:10px;margin-bottom:11px;font-size:13.5px"><span class="verified">✓</span><span>Visa: invitation or purpose letter and supporting identity documents</span></div>
-      <div class="li" style="display:flex;gap:10px;font-size:13.5px"><span class="verified">✓</span><span>Civil records: birth, marriage or death certificate scans</span></div>
-    </div>
+    <aside class="sp-aside" aria-labelledby="sp-where-title">
+      <div class="sp-card">
+        <h2 class="sp-card-title" id="sp-where-title" data-emb-en="Where to submit" data-emb-fr="Où déposer votre dossier">Where to submit</h2>
+        <dl class="sp-facts">
+          <dt data-emb-en="Consular Section" data-emb-fr="Section consulaire">Consular Section</dt>
+          <dd data-emb-en="1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036" data-emb-fr="1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036">1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036</dd>
+          <dt data-emb-en="Office hours" data-emb-fr="Heures d’ouverture">Office hours</dt>
+          <dd><span class="sp-line" data-emb-en="Monday–Thursday 9:00–16:00" data-emb-fr="Du lundi au jeudi, 9 h–16 h">Monday–Thursday 9:00–16:00</span><span class="sp-line" data-emb-en="Friday 9:00–13:00" data-emb-fr="Le vendredi, 9 h–13 h">Friday 9:00–13:00</span></dd>
+          <dt data-emb-en="Visa drop-off" data-emb-fr="Dépôt des demandes de visa">Visa drop-off</dt>
+          <dd><span class="sp-line" data-emb-en="Monday–Thursday 10:00–15:00" data-emb-fr="Du lundi au jeudi, 10 h–15 h">Monday–Thursday 10:00–15:00</span><span class="sp-line" data-emb-en="Friday 10:00–13:00" data-emb-fr="Le vendredi, 10 h–13 h">Friday 10:00–13:00</span></dd>
+        </dl>
+        <a class="btn btn-gold sp-action" href="/embassy-preview/consular-services.html"><span data-emb-en="Check service requirements" data-emb-fr="Consulter les exigences">Check service requirements</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a>
+      </div>
+    </aside>
   </div>
-
-  <p class="hint" style="text-align:center;max-width:920px;margin:22px auto 0">Preview notice: document upload is disabled. No file or personal information entered here is transmitted or stored.</p>
 </div></section>
 
-<!-- DOCUMENTS ON FILE -->
-<section class="section bg-ivory"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Document support</p><div class="rule"></div><h2>Check an existing submission</h2><p>Tracking is not connected in this preview. Contact the Embassy without including identity documents or payment details in ordinary email.</p></div>
+<!-- DOCUMENT CHECKLIST BY SERVICE -->
+<section class="section bg-ivory sp sp-band" id="checklists" aria-labelledby="sp-checklist-title"><div class="container">
+  <div class="sec-head">
+    <p class="eyebrow" data-emb-en="Document checklist" data-emb-fr="Liste des pièces">Document checklist</p>
+    <h2 id="sp-checklist-title" data-emb-en="What to include for each service" data-emb-fr="Les pièces à fournir pour chaque service">What to include for each service</h2>
+    <p data-emb-en="Drawn from the Embassy’s published requirements. Confirm the current list before you submit." data-emb-fr="Établie à partir des exigences publiées par l’Ambassade. Vérifiez la liste en vigueur avant tout dépôt.">Drawn from the Embassy’s published requirements. Confirm the current list before you submit.</p>
+  </div>
+  <div class="sp-checks">
+    <article class="sp-check" aria-labelledby="sp-check-passport">
+      <header class="sp-check-head"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-book-open"/></svg></span><h3 id="sp-check-passport" data-emb-en="Passport" data-emb-fr="Passeport">Passport</h3></header>
+      <ul class="sp-checklist">
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Biometric information sheet from online pre-registration" data-emb-fr="Fiche de renseignements biométriques obtenue lors de la préinscription en ligne">Biometric information sheet from online pre-registration</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Note de Perception" data-emb-fr="Note de perception">Note de Perception</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Equity BCDC proof of payment" data-emb-fr="Justificatif de paiement Equity BCDC">Equity BCDC proof of payment</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Copy of your current passport" data-emb-fr="Copie de votre passeport actuel">Copy of your current passport</span></li>
+      </ul>
+      <p class="sp-check-link"><a href="/embassy-preview/consular-services.html#passport" data-emb-en="Passport guidance" data-emb-fr="Informations sur le passeport">Passport guidance</a></p>
+    </article>
+    <article class="sp-check" aria-labelledby="sp-check-visa">
+      <header class="sp-check-head"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-plane"/></svg></span><h3 id="sp-check-visa" data-emb-en="Visa" data-emb-fr="Visa">Visa</h3></header>
+      <ul class="sp-checklist">
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Application form, completed in full, dated and signed" data-emb-fr="Formulaire de demande entièrement rempli, daté et signé">Application form, completed in full, dated and signed</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="One recent 2 × 2 inch passport photograph" data-emb-fr="Une photo d’identité récente au format 2 × 2 pouces">One recent 2 × 2 inch passport photograph</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Copies of your yellow-fever vaccination card and flight itinerary" data-emb-fr="Copies de votre carnet de vaccination contre la fièvre jaune et de votre itinéraire de vol">Copies of your yellow-fever vaccination card and flight itinerary</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Original passport valid for six months, with two adjacent blank visa pages" data-emb-fr="Passeport original valide au moins six mois, avec deux pages de visa vierges et contiguës">Original passport valid for six months, with two adjacent blank visa pages</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Invitation or purpose letter, depending on the reason for travel" data-emb-fr="Lettre d’invitation ou lettre exposant l’objet du voyage, selon le motif du déplacement">Invitation or purpose letter, depending on the reason for travel</span></li>
+      </ul>
+      <p class="sp-check-link"><a href="/embassy-preview/consular-services.html#visa" data-emb-en="Visa guidance" data-emb-fr="Informations sur les visas">Visa guidance</a></p>
+    </article>
+    <article class="sp-check" aria-labelledby="sp-check-tl">
+      <header class="sp-check-head"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-file-text"/></svg></span><h3 id="sp-check-tl" data-emb-en="Tenant‑Lieu (Laissez-Passer)" data-emb-fr="Tenant‑Lieu (laissez-passer)">Tenant‑Lieu (Laissez-Passer)</h3></header>
+      <ul class="sp-checklist">
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Completed Tenant‑Lieu application form" data-emb-fr="Formulaire de demande de Tenant‑Lieu dûment rempli">Completed Tenant‑Lieu application form</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Copy of your current or previous Congolese passport, or a police report if it was lost or stolen" data-emb-fr="Copie de votre passeport congolais actuel ou précédent, ou un rapport de police en cas de perte ou de vol">Copy of your current or previous Congolese passport, or a police report if it was lost or stolen</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Two recent 2 × 2 inch passport photographs" data-emb-fr="Deux photos d’identité récentes au format 2 × 2 pouces">Two recent 2 × 2 inch passport photographs</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Proof of valid U.S. residence, such as a Green Card, I-20 or work permit" data-emb-fr="Justificatif de résidence valide aux États-Unis, tel qu’une carte verte, un formulaire I-20 ou un permis de travail">Proof of valid U.S. residence, such as a Green Card, I-20 or work permit</span></li>
+      </ul>
+      <p class="sp-check-link"><a href="/embassy-preview/consular-services.html#tenant-lieu" data-emb-en="Tenant‑Lieu guidance" data-emb-fr="Informations sur le Tenant‑Lieu">Tenant‑Lieu guidance</a></p>
+    </article>
+    <article class="sp-check" aria-labelledby="sp-check-civil">
+      <header class="sp-check-head"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-scroll-text"/></svg></span><h3 id="sp-check-civil" data-emb-en="Civil-status and notarial documents" data-emb-fr="Actes d’état civil et actes notariés">Civil-status and notarial documents</h3></header>
+      <ul class="sp-checklist">
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Birth certificate: signed form and evidence of birth in the DRC, such as a passport" data-emb-fr="Acte de naissance : formulaire signé et preuve de la naissance en RDC, par exemple un passeport">Birth certificate: signed form and evidence of birth in the DRC, such as a passport</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Marriage certificate: passport copies for both spouses and the marriage record established in the DRC" data-emb-fr="Acte de mariage : copies des passeports des deux époux et acte de mariage établi en RDC">Marriage certificate: passport copies for both spouses and the marriage record established in the DRC</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Inheritance certificate: passport copy and the certificate established in the DRC" data-emb-fr="Certificat d’hérédité : copie du passeport et certificat établi en RDC">Inheritance certificate: passport copy and the certificate established in the DRC</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-check"/></svg><span data-emb-en="Notarial acts: confirm the originals, identity documents and signatures required before you send anything" data-emb-fr="Actes notariés : vérifiez les originaux, pièces d’identité et signatures requis avant tout envoi">Notarial acts: confirm the originals, identity documents and signatures required before you send anything</span></li>
+      </ul>
+      <p class="sp-check-link"><a href="/embassy-preview/consular-services.html#legalization" data-emb-en="Legalization guidance" data-emb-fr="Informations sur la légalisation">Legalization guidance</a></p>
+    </article>
+  </div>
+</div></section>
 
-      <div style="max-width:640px;margin:0 auto">
-      <div class="rg-row">
-        <div class="field"><label for="l-ref">Reference number</label><input id="l-ref" name="reference" value="" placeholder="Tracking unavailable in this preview" disabled /></div>
-        <div class="field"><label for="l-last">Applicant last name</label><input id="l-last" name="last_name" value="" disabled /></div>
+<!-- CHECK AN EXISTING SUBMISSION -->
+<section class="section sp sp-status" id="status" aria-labelledby="sp-status-title"><div class="container">
+  <div class="sp-panel">
+    <div class="sp-panel-main">
+      <p class="eyebrow on-navy" data-emb-en="Status enquiries" data-emb-fr="Suivi des demandes">Status enquiries</p>
+      <h2 id="sp-status-title" data-emb-en="Check an existing submission" data-emb-fr="Suivre un dossier déjà déposé">Check an existing submission</h2>
+      <p class="sp-panel-lead" data-emb-en="Online tracking is not available yet. To ask about a submission, email the Embassy or call during office hours." data-emb-fr="Le suivi en ligne n’est pas encore disponible. Pour vous renseigner sur un dossier, écrivez à l’Ambassade ou appelez pendant les heures d’ouverture.">Online tracking is not available yet. To ask about a submission, email the Embassy or call during office hours.</p>
+      <div class="sp-panel-actions">
+        <a class="btn btn-gold" href="mailto:info@ambadrcusa.org?subject=Submission%20status%20enquiry"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-mail"/></svg><span data-emb-en="Email about a submission" data-emb-fr="Écrire au sujet d’un dossier">Email about a submission</span></a>
+        <a class="btn btn-ghost" href="tel:+12022347690"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-phone"/></svg><span data-emb-en="Call +1 (202) 234-7690" data-emb-fr="Appeler le +1 (202) 234-7690">Call +1 (202) 234-7690</span></a>
       </div>
-      <a class="btn btn-gold btn-block" href="mailto:info@ambadrcusa.org?subject=Document%20status%20inquiry">Contact the Embassy</a>
     </div>
-  </div></section>
-
+    <div class="sp-panel-side">
+      <h3 data-emb-en="Include in your message" data-emb-fr="À indiquer dans votre message">Include in your message</h3>
+      <ul class="sp-panel-list">
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-receipt"/></svg><span data-emb-en="The reference or receipt number from the Embassy" data-emb-fr="Le numéro de référence ou de reçu délivré par l’Ambassade">The reference or receipt number from the Embassy</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-user"/></svg><span data-emb-en="The applicant’s full name" data-emb-fr="Le nom complet du demandeur">The applicant’s full name</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-calendar"/></svg><span data-emb-en="The service you applied for and the date you submitted" data-emb-fr="Le service demandé et la date de dépôt">The service you applied for and the date you submitted</span></li>
+      </ul>
+      <p class="sp-panel-warn"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-shield-alert"/></svg><span data-emb-en="Do not attach passports, identity documents or payment details." data-emb-fr="Ne joignez ni passeport, ni pièce d’identité, ni coordonnées de paiement.">Do not attach passports, identity documents or payment details.</span></p>
+    </div>
+  </div>
+</div></section>
 </main>
 
 <!-- FOOTER -->

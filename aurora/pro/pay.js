@@ -1,0 +1,129 @@
+/* ============================================================================
+   PAYMENT GUIDANCE (pay/index.html): "Check a fee" helper.
+   Reads the fee schedule table on the page (single source of truth), builds
+   the service list from it and shows the published amount for the chosen
+   service. Nothing is submitted or stored; there is no form element.
+   Follows the site language switch (aurora.js sets <html lang>).
+   ============================================================================ */
+(function () {
+  'use strict';
+
+  var finder = document.querySelector('[data-fee-finder]');
+  var table = document.querySelector('[data-fee-table]');
+  if (!finder || !table) return;
+
+  var tool = finder.querySelector('.sp-finder-tool');
+  var fallback = finder.querySelector('.sp-finder-fallback');
+  var select = finder.querySelector('select');
+  var qty = finder.querySelector('input[type="number"]');
+  var labelEl = finder.querySelector('[data-fee-label]');
+  var amountEl = finder.querySelector('[data-fee-amount]');
+  var detailEl = finder.querySelector('[data-fee-detail]');
+  if (!tool || !select || !qty || !amountEl || !detailEl) return;
+
+  var TEXT = {
+    en: {
+      choose: 'Choose a service',
+      label: 'Published fee',
+      total: 'Total',
+      empty: 'Choose a service to see its fee.',
+      money: 'Pay by money order, included with your application.',
+      online: 'Paid online through the Equity BCDC link sent after pre-registration on passeport.gouv.cd.',
+      each: 'each'
+    },
+    fr: {
+      choose: 'Choisissez un service',
+      label: 'Montant publié',
+      total: 'Total',
+      empty: 'Choisissez un service pour afficher son montant.',
+      money: 'Paiement par mandat, joint à votre demande.',
+      online: 'Paiement en ligne au moyen du lien Equity BCDC reçu après la préinscription sur passeport.gouv.cd.',
+      each: 'l’unité'
+    }
+  };
+
+  function lang() {
+    return (document.documentElement.getAttribute('lang') || 'en').slice(0, 2) === 'fr' ? 'fr' : 'en';
+  }
+
+  function money(n) {
+    return '$' + n.toLocaleString('en-US');
+  }
+
+  function rowName(tr, L) {
+    var cell = tr.querySelector('td[data-emb-en]');
+    if (!cell) return tr.id;
+    return cell.getAttribute(L === 'fr' ? 'data-emb-fr' : 'data-emb-en') || cell.textContent.trim();
+  }
+
+  function build() {
+    var L = lang();
+    var current = select.value;
+    while (select.firstChild) select.removeChild(select.firstChild);
+
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = TEXT[L].choose;
+    select.appendChild(placeholder);
+
+    Array.prototype.forEach.call(table.tBodies, function (tbody) {
+      var head = tbody.querySelector('[data-group]');
+      var group = document.createElement('optgroup');
+      if (head) group.label = head.getAttribute(L === 'fr' ? 'data-emb-fr' : 'data-emb-en') || head.textContent.trim();
+      Array.prototype.forEach.call(tbody.querySelectorAll('tr[data-fee][id]'), function (tr) {
+        var opt = document.createElement('option');
+        opt.value = tr.id;
+        opt.textContent = rowName(tr, L);
+        group.appendChild(opt);
+      });
+      select.appendChild(group);
+    });
+
+    select.value = current;
+    if (select.value !== current) select.value = '';
+    update();
+  }
+
+  function update() {
+    var L = lang();
+    var t = TEXT[L];
+    var row = select.value ? document.getElementById(select.value) : null;
+    var n = parseInt(qty.value, 10);
+    if (!isFinite(n) || n < 1) n = 1;
+    if (n > 20) n = 20;
+
+    if (!row) {
+      finder.classList.remove('has-fee');
+      if (labelEl) labelEl.textContent = t.label;
+      amountEl.textContent = '—';
+      detailEl.textContent = t.empty;
+      return;
+    }
+
+    var fee = parseFloat(row.getAttribute('data-fee')) || 0;
+    var online = row.getAttribute('data-route') === 'online';
+    finder.classList.add('has-fee');
+    if (labelEl) labelEl.textContent = n > 1 ? t.total : t.label;
+    amountEl.textContent = money(fee * n);
+    detailEl.textContent = (n > 1 ? n + ' × ' + money(fee) + ' ' + t.each + '. ' : '') + (online ? t.online : t.money);
+  }
+
+  select.addEventListener('change', update);
+  qty.addEventListener('input', update);
+  qty.addEventListener('change', function () {
+    var n = parseInt(qty.value, 10);
+    if (!isFinite(n) || n < 1) qty.value = '1';
+    else if (n > 20) qty.value = '20';
+    update();
+  });
+
+  // Rebuild labels when the site language changes.
+  if ('MutationObserver' in window) {
+    new MutationObserver(build).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  }
+
+  build();
+  tool.hidden = false;
+  if (fallback) fallback.hidden = true;
+  finder.classList.add('is-ready');
+})();

@@ -1,0 +1,348 @@
+/* ============================================================================
+   AMBIENCE: page layer (below the hero only).
+   Loaded after aurora/pro-system.css on ambience.html. Every rule is scoped to
+   main > section#gallery or main > section#amb-next (the two content sections
+   of this page), or to the PhotoSwipe overlay opened by this page
+   (.pswp.amb-pswp), so the frozen zones (banner, top bar, header, notice bar,
+   hero, quick-access dock, footer) can never match.
+
+   Gallery: curated, even grid (2 / 3 / 4 columns), one card style, captions
+   below the photograph, the whole card opens the lightbox. Lightbox:
+   PhotoSwipe 5.4.4 (MIT, dimsemenov/PhotoSwipe), self-hosted in
+   aurora/vendor/photoswipe and initialised by aurora/pro/ambience.js.
+   ============================================================================ */
+
+/* ------------------------------------------------------------ Surfaces */
+main > section#gallery {
+  background-color: var(--px-paper) !important;
+}
+/* enrichment.css paints a faint graph-paper grid on every
+   main > .section > .container; plain surfaces only on this page. */
+main > section#gallery > .container,
+main > section#amb-next > .container {
+  background-image: none !important;
+}
+
+/* ------------------------------------------------------------ Gallery head */
+main > section#gallery .sec-head {
+  margin-bottom: 18px !important;
+}
+/* pro-system's ".sec-head p" lede rule outranks ".eyebrow" when the eyebrow
+   is a <p>, which turns it into 19px regular caps; restore the eyebrow type. */
+main > section#gallery .sec-head .eyebrow {
+  font: 700 var(--px-t-eyebrow)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+}
+main > section#gallery .sec-head h2 {
+  color: var(--px-navy-950);
+}
+main > section#gallery .sec-head .lede {
+  color: var(--px-ink-2);
+}
+
+/* No automatic hyphenation in this page's copy (EN or FR). */
+main > section#gallery :is(p, span, h2),
+main > section#amb-next :is(p, span, h2, .btn) {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+/* Discreet honesty note (shared .px-meta line, icon + text). Its hairline
+   runs the full column so it reads as the edge of the introduction, not a
+   rule that stops short; the text keeps the same measure as the lede. */
+main > section#gallery .amb-note {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: none;
+  margin: 0 0 clamp(24px, 3vw, 36px);
+  color: var(--px-ink-2);
+}
+main > section#gallery .amb-note > span {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 732px;
+  text-wrap: pretty;
+}
+main > section#gallery .amb-note .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--px-ink-3);
+}
+
+/* Visually hidden helper (link description for screen readers). */
+main > section#gallery .amb-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------ Even grid */
+main > section#gallery .amb-gallery {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (min-width: 600px) {
+  main > section#gallery .amb-gallery { gap: 20px; }
+}
+@media (min-width: 900px) {
+  main > section#gallery .amb-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+@media (min-width: 1920px) {
+  main > section#gallery .amb-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ------------------------------------------------------------ Card */
+main > section#gallery .amb-tile {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  overflow: clip;
+  transition: border-color .18s var(--px-ease), box-shadow .18s var(--px-ease);
+}
+main > section#gallery .amb-tile::before,
+main > section#gallery .amb-tile::after {
+  content: none;
+}
+main > section#gallery .amb-fig {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+main > section#gallery .amb-link {
+  display: block;
+  aspect-ratio: 3 / 2;
+  background: var(--px-canvas);
+  cursor: zoom-in;
+  text-decoration: none;
+}
+main > section#gallery .amb-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  border-radius: 0;
+  transform: none;
+  filter: none;
+  /* tidy alt-text fallback while a photograph loads or if it fails */
+  font: 400 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+}
+/* The whole card opens the lightbox (stretched link); the caption stays text. */
+main > section#gallery .amb-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+main > section#gallery .amb-cap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px 16px;
+}
+main > section#gallery .amb-cap-cat {
+  font: 600 14px/1.35 var(--px-sans);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--px-ink-3);
+}
+main > section#gallery .amb-cap-ttl {
+  font: 600 16.5px/1.4 var(--px-sans);
+  color: var(--px-navy-950);
+  text-wrap: balance;
+  transition: color .18s var(--px-ease);
+}
+@media (max-width: 599px) {
+  main > section#gallery .amb-cap { padding: 11px 12px 13px; gap: 2px; }
+  main > section#gallery .amb-cap-cat { font-size: 14px; }
+  main > section#gallery .amb-cap-ttl { font-size: 15.5px; line-height: 1.35; }
+}
+
+main > section#gallery .amb-tile:hover {
+  border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
+}
+main > section#gallery .amb-tile:hover .amb-cap-ttl {
+  color: var(--px-blue-700);
+}
+
+/* Focus: draw the ring around the whole card, not just the photograph. */
+@supports selector(:has(*)) {
+  main > section#gallery .amb-link:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  main > section#gallery .amb-tile:has(.amb-link:focus-visible) {
+    outline: 3px solid var(--px-gold-500);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--px-navy-950);
+  }
+}
+
+/* ------------------------------------------------------------ Next step panel */
+main > section#amb-next .amb-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 24px 48px;
+  padding: clamp(28px, 4vw, 48px) clamp(22px, 4vw, 52px);
+  border-radius: var(--px-radius-lg);
+  background: var(--px-navy-950);
+  color: #fff;
+  border: 0;
+  box-shadow: none;
+}
+main > section#amb-next .amb-cta-copy {
+  max-width: 64ch;
+}
+main > section#amb-next .amb-cta h2 {
+  margin: 0 0 12px !important;
+  font-size: clamp(26px, 1.6vw + 14px, 34px) !important;
+  line-height: 1.2 !important;
+  color: #fff !important;
+}
+main > section#amb-next .amb-cta p:not(.eyebrow) {
+  margin: 0;
+  font: 400 var(--px-t-body)/1.62 var(--px-sans);
+  color: rgba(226, 236, 250, .88);
+}
+main > section#amb-next .amb-cta-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+main > section#amb-next .amb-cta-acts .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  white-space: nowrap;
+}
+main > section#amb-next .amb-cta-acts .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+/* Side by side only when the French labels still leave the copy room. */
+@media (min-width: 1200px) {
+  main > section#amb-next .amb-cta {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+@media (max-width: 599px) {
+  main > section#amb-next .amb-cta-acts { flex-direction: column; align-items: stretch; }
+  main > section#amb-next .amb-cta-acts .btn { white-space: normal; text-align: center; }
+}
+
+/* ------------------------------------------------------------ Lightbox (PhotoSwipe) */
+.pswp.amb-pswp {
+  --pswp-bg: #011a35;
+  --pswp-placeholder-bg: #052f57;
+  --pswp-icon-color: #ffffff;
+  --pswp-icon-color-secondary: #011a35;
+  --pswp-icon-stroke-color: #011a35;
+  --pswp-icon-stroke-width: 2px;
+  --pswp-error-text-color: #e2ecfa;
+  font-family: var(--px-sans);
+}
+.pswp.amb-pswp .pswp__counter {
+  font: 600 14px/1 var(--px-sans);
+  color: rgba(255, 255, 255, .86);
+  opacity: 1;
+  text-shadow: none;
+  margin: 0 0 0 16px;
+  height: 56px;
+  line-height: 56px;
+}
+.pswp.amb-pswp .pswp__button {
+  opacity: .9;
+}
+.pswp.amb-pswp .pswp__button:hover,
+.pswp.amb-pswp .pswp__button:focus-visible {
+  opacity: 1;
+}
+.pswp.amb-pswp .pswp__button:focus-visible {
+  outline: 3px solid #f3d34a;
+  outline-offset: -4px;
+}
+/* Registered with appendTo: 'root', so PhotoSwipe adds .pswp__hide-on-close
+   and fades the caption with the rest of the UI. */
+.pswp.amb-pswp .amb-pswp-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-inline: auto;
+  width: min(100%, 760px);
+  padding: 14px 20px max(18px, env(safe-area-inset-bottom));
+  color: #fff;
+  text-align: left;
+}
+.pswp.amb-pswp .amb-pswp-caption p {
+  margin: 0;
+  -webkit-hyphens: manual;
+  hyphens: manual;
+  text-wrap: pretty;
+}
+.pswp.amb-pswp .amb-pswp-label {
+  font: 600 13.5px/1.4 var(--px-sans);
+  color: #f3d34a;
+  margin-bottom: 4px !important;
+}
+.pswp.amb-pswp .amb-pswp-title {
+  font: 700 17px/1.4 var(--px-sans);
+  color: #fff;
+}
+.pswp.amb-pswp .amb-pswp-desc {
+  margin-top: 4px !important;
+  font: 400 15px/1.55 var(--px-sans);
+  color: rgba(226, 236, 250, .86);
+  max-width: 70ch;
+}
+@media (max-width: 599px) {
+  .pswp.amb-pswp .amb-pswp-caption { padding: 12px 16px max(16px, env(safe-area-inset-bottom)); }
+  .pswp.amb-pswp .amb-pswp-title { font-size: 16px; }
+  .pswp.amb-pswp .amb-pswp-desc { font-size: 14px; }
+}
+/* 2K / 4K: scale the lightbox controls and caption in the same steps as the
+   page content (pro-system section 11), so they stay legible. */
+@media (min-width: 2400px) {
+  .pswp.amb-pswp :is(.pswp__top-bar, .pswp__button--arrow, .amb-pswp-caption) { zoom: 1.3; }
+}
+@media (min-width: 3000px) {
+  .pswp.amb-pswp :is(.pswp__top-bar, .pswp__button--arrow, .amb-pswp-caption) { zoom: 1.49; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main > section#gallery .amb-tile,
+  main > section#gallery .amb-cap-ttl {
+    transition: none;
+  }
+}
