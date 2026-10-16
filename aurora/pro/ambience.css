@@ -135,7 +135,14 @@ main > section#gallery .amb-fig {
 }
 main > section#gallery .amb-link {
   display: block;
+  flex: none;
   aspect-ratio: 3 / 2;
+  /* Flex items default to min-height:auto, which lets a 1672x1122 source
+     stretch the frame ~1.5px past 3:2 and misalign image edges in a row.
+     (The stretched ::after hit area is positioned against .amb-fig, so this
+     overflow does not clip it.) */
+  min-height: 0;
+  overflow: hidden;
   background: var(--px-canvas);
   cursor: zoom-in;
   text-decoration: none;

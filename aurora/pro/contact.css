@@ -67,6 +67,10 @@ main > section.ct-sec .px-meta a[href]:not(.btn):hover {
 main > section.ct-details .px-meta {
   max-width: 760px;
 }
+/* inline padding enlarges the tap area without moving the line */
+main > section.ct-details .px-meta a[href] {
+  padding-block: 14px;
+}
 main > section.ct-details .ct-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);

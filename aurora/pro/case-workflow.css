@@ -747,6 +747,15 @@ main > section.cwp-ref:not(.hero):not(.phead):not(.qa-band) .cwp-textlink:hover 
   }
 }
 @media (max-width: 640px) {
+  /* Phone: a little more room so the reference and its status share one line */
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-app {
+    padding: 16px 14px;
+  }
+  main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-row {
+    column-gap: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
   main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-desk,
   main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-old,
   main > section.cwp-model:not(.hero):not(.phead):not(.qa-band) .cwp-stages .cwp-st-note {

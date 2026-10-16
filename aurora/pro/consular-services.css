@@ -125,33 +125,36 @@ main > section.cs-guide .cs-meta a {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-/* In-page jumps: the site reserves 132px (112px below 981px) of scroll
+/* The divider between services belongs to the block above it, so every
+   block starts exactly at its eyebrow and every in-page jump lands alike. */
+main > section.cs-guide .cs-block:not(:last-child) {
+  margin-bottom: clamp(44px, 4.5vw, 64px);
+  padding-bottom: clamp(48px, 5vw, 72px);
+  border-bottom: 1px solid var(--px-line);
+}
+
+/* In-page jumps: the site reserves 132px (112px up to 980px) of scroll
    padding for a sticky header, but the header only sticks on phones. Pull
-   each section back up so its eyebrow lands ~32px below the viewport top
-   (~24px under the sticky header on phones) instead of 156px down. */
+   each block back up so its eyebrow lands ~48px below the viewport top
+   (~36px under the sticky header on phones) instead of 132px down. */
 main > section.cs-guide .cs-block {
-  scroll-margin-top: -100px;
+  scroll-margin-top: -92px;
 }
 @media (max-width: 980px) {
   main > section.cs-guide .cs-block {
-    scroll-margin-top: -80px;
+    scroll-margin-top: -72px;
   }
 }
 /* pro-system zooms below-hero sections on large screens; the margin is
    zoomed with them, so divide by the zoom factor to keep the same landing. */
 @media (min-width: 1920px) {
-  main > section.cs-guide .cs-block { scroll-margin-top: -89px; }
+  main > section.cs-guide .cs-block { scroll-margin-top: -82px; }
 }
 @media (min-width: 2400px) {
-  main > section.cs-guide .cs-block { scroll-margin-top: -77px; }
+  main > section.cs-guide .cs-block { scroll-margin-top: -71px; }
 }
 @media (min-width: 3000px) {
-  main > section.cs-guide .cs-block { scroll-margin-top: -67px; }
-}
-main > section.cs-guide .cs-block + .cs-block {
-  margin-top: clamp(48px, 5vw, 72px);
-  padding-top: clamp(44px, 4.5vw, 64px);
-  border-top: 1px solid var(--px-line);
+  main > section.cs-guide .cs-block { scroll-margin-top: -62px; }
 }
 
 /* Eyebrows: pro-system's ".sec-head p" lede rule outranks its own ".eyebrow"
@@ -165,7 +168,7 @@ main > section.cs-guide .sec-head p.eyebrow {
 }
 @media (max-width: 767px) {
   main > section.cs-guide .cs-block {
-    scroll-margin-top: -24px; /* sticky phone header */
+    scroll-margin-top: -24px; /* sticky phone header (~59px tall) */
   }
 }
 main > section.cs-guide .cs-block .sec-head {
@@ -273,6 +276,11 @@ main > section.cs-guide .cs-steps > li {
 main > section.cs-guide .cs-steps > li.px-step-and {
   counter-increment: none;
 }
+/* pro-system writes the "and" marker as CSS text, which the EN/FR switch
+   cannot reach; follow the document language instead. */
+html[lang="fr"] main > section.cs-guide .cs-steps > li.px-step-and::before {
+  content: "et";
+}
 main > section.cs-guide .cs-steps h4 {
   margin: 4px 0 8px;
   font: 700 clamp(18px, .4vw + 15.5px, 21px)/1.3 var(--px-serif);
@@ -371,9 +379,17 @@ main > section.cs-guide .cs-hint {
 main > section.cs-guide .cs-after {
   margin: 16px 0 0;
 }
+main > section.cs-guide .cs-after a.cs-link {
+  font-weight: 600 !important;
+}
 @media (max-width: 560px) {
+  /* Full-width on phones: label reads from the left, icon sits at the end,
+     whether the label takes one line or two. */
   main > section.cs-guide .cs-actions .btn {
     width: 100%;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -640,7 +656,12 @@ main > section.cs-guide .cs-fee-note {
   main > section.cs-guide table.cs-fees tbody td {
     font-size: 16px !important;
   }
-}
+  /* The two ranges may break after "/" or the en dash, so the amount
+     column stays narrow and service names keep their width. */
+  main > section.cs-guide table.cs-fees tbody td.cs-range {
+    white-space: normal;
+    min-width: 4.2em;
+  }}
 
 /* ------------------------------------------------- 9. Status stages */
 main > section.cs-guide .cs-note {
@@ -775,7 +796,15 @@ main > section.cs-guide .cs-forms a:hover .px-links-name {
   text-decoration-thickness: 2px;
 }
 
-/* ------------------------------------------------- 11. Print */
+/* ------------------------------------------------- 11. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  main > section.cs-guide :is(.cs-toc a, a.cs-link, .cs-details > summary,
+    .cs-details > summary .icon, .cs-video-play) {
+    transition: none !important;
+  }
+}
+
+/* ------------------------------------------------- 12. Print */
 @media print {
   main > section.cs-guide .cs-aside,
   main > section.cs-guide .cs-video-frame {

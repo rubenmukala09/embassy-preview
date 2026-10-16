@@ -7,7 +7,7 @@
 
    Structure (UK FCDO worldwide-organisation model):
    About -> Head of State -> The Ambassador -> Embassy offices -> History ->
-   Contact & before-you-visit -> Official websites.
+   Contact & before-you-visit -> Official websites -> Last updated.
    ============================================================================ */
 
 main > section.te-sec {
@@ -35,13 +35,20 @@ main > section.te-sec h2 {
   color: var(--px-navy-950) !important;
   letter-spacing: -.012em !important;
   margin: 0 0 14px !important;
-  max-width: 24ch;
+  max-width: 34ch;
+  text-wrap: balance;
 }
 main > section.te-sec h3 {
   font-family: var(--px-serif) !important;
   font-weight: 700 !important;
   color: var(--px-navy-950) !important;
   letter-spacing: -.005em !important;
+}
+/* Full-width section heads are already held to 760px by pro-system, so their
+   H2 runs on one line where it fits; the split heads (History, Official
+   websites) are limited by their grid column. */
+main > section.te-sec .sec-head h2 {
+  max-width: none;
 }
 main > section.te-sec .eyebrow {
   color: var(--px-navy-900) !important;
@@ -91,10 +98,10 @@ main > section.te-sec a:not(.btn):not(.te-office-link):hover {
   text-decoration-thickness: 2px;
 }
 /* External text link: inline so the arrow follows the last word when the
-   label wraps; vertical padding keeps a 44px tap target. */
+   label wraps; vertical padding gives a 44px tap target. */
 main > section.te-sec .te-ext {
   display: inline;
-  padding: 11px 0;
+  padding: 13px 0;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.4;
@@ -112,18 +119,10 @@ main > section.te-sec .te-source {
   line-height: 1.6 !important;
 }
 
-/* The page-wide "Last updated" line sits close under the dock. */
-main > section.section.te-sec.te-about {
-  padding-top: clamp(36px, 4vw, 56px) !important;
-}
-main > section.te-about .px-meta {
-  margin-bottom: clamp(28px, 3.4vw, 44px);
-}
-main > section.te-about .px-meta a {
-  font-size: inherit;
-}
-
 /* ------------------------------------------------------- 1. About */
+main > section.section.te-sec.te-about {
+  padding-top: clamp(44px, 5vw, 72px) !important;
+}
 main > section.te-about .te-about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -134,14 +133,14 @@ main > section.te-about .te-glance {
   background: var(--px-canvas);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
-  padding: clamp(20px, 2.4vw, 28px) clamp(20px, 2.4vw, 30px) clamp(10px, 1.4vw, 16px);
+  padding: clamp(20px, 2.4vw, 28px) clamp(20px, 2.4vw, 30px) clamp(6px, 1vw, 10px);
 }
 main > section.te-about .te-glance h3 {
   font: 700 13px/1.3 var(--px-sans) !important;
   letter-spacing: .12em !important;
   text-transform: uppercase;
   color: var(--px-ink-3) !important;
-  margin: 0 0 12px !important;
+  margin: 0 0 4px !important;
 }
 main > section.te-sec .px-summary {
   grid-template-columns: minmax(130px, 36%) 1fr;
@@ -158,6 +157,69 @@ main > section.te-sec .px-summary > dd {
 main > section.te-sec .px-summary > :is(dt, dd):nth-last-child(-n+2) {
   border-bottom: 0;
 }
+/* At a glance: label over value at every width, so short labels and long
+   values never wrap into ragged two-column rows. */
+main > section.te-about .te-glance .px-summary {
+  grid-template-columns: minmax(0, 1fr);
+  border-top: 0;
+}
+main > section.te-about .te-glance .px-summary > dt {
+  font: 600 14px/1.4 var(--px-sans) !important;
+  color: var(--px-ink-3) !important;
+  padding: 14px 0 3px;
+  border-bottom: 0;
+}
+main > section.te-about .te-glance .px-summary > dd {
+  font: 400 16.5px/1.5 var(--px-sans) !important;
+  padding: 0 0 14px;
+  border-bottom: 1px solid var(--px-line);
+}
+main > section.te-about .te-glance .px-summary > dd:last-child {
+  border-bottom: 0;
+}
+main > section.te-about .te-glance .px-summary > dd .te-sub {
+  margin-top: 1px;
+}
+/* 44px tap height for the Head of mission link without moving the text. */
+main > section.te-about .te-glance a.te-line {
+  display: inline-block;
+  padding-block: 10px;
+  margin-block: -10px;
+}
+
+/* ---------------------------------------------------- Profiles (2 + 3)
+   Head of State and Ambassador share one pattern: role label and name in the
+   text column beside the portrait; on phones the label comes first, then the
+   portrait, then the text. */
+main > section.te-sec .te-profile {
+  display: grid;
+  grid-template-columns: var(--te-photo-w) minmax(0, 1fr);
+  grid-template-areas:
+    "photo label"
+    "photo text";
+  grid-template-rows: auto 1fr;
+  column-gap: var(--te-col-gap);
+  align-items: start;
+}
+main > section.te-sec .te-profile-label {
+  grid-area: label;
+  justify-self: start;
+}
+main > section.te-sec .te-profile-photo {
+  grid-area: photo;
+  margin: 0;
+}
+main > section.te-sec .te-profile-text {
+  grid-area: text;
+  min-width: 0;
+}
+/* Same size as every section H2 (the legacy section-title size wins over
+   page rules), so the two names read as headings of equal rank. */
+main > section.te-sec .te-profile h2 {
+  line-height: 1.18 !important;
+  max-width: none;
+  margin: 0 0 8px !important;
+}
 
 /* --------------------------------------------------- 2. Head of State
    The page's one dark panel: flat navy, static portrait, no ornament. */
@@ -166,25 +228,36 @@ main > section.te-hos {
   color: #fff;
 }
 main > section.te-hos .te-hos-inner {
-  display: grid;
-  grid-template-columns: clamp(150px, 16vw, 208px) minmax(0, 1fr);
-  gap: clamp(24px, 4vw, 56px);
-  align-items: center;
+  --te-photo-w: clamp(148px, 14vw, 184px);
+  /* Text block centred against the portrait. */
+  grid-template-areas:
+    "photo ."
+    "photo label"
+    "photo text"
+    "photo .";
+  grid-template-rows: 1fr auto auto 1fr;
+  column-gap: clamp(24px, 4vw, 56px);
 }
+/* The only available source is a 480px press photograph with a microphone
+   below the collar: a square head-and-shoulders crop keeps it out of frame
+   and shows the image at about 1.4x density on desktop. */
 main > section.te-hos .te-hos-photo {
-  margin: 0;
-  aspect-ratio: 4 / 5;
+  position: relative;
+  aspect-ratio: 1 / 1;
   border-radius: var(--px-radius);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid rgba(255, 255, 255, .22);
   background: var(--px-navy-900);
 }
 main > section.te-hos .te-hos-photo img {
-  display: block;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -37.6%;
+  width: 186.05% !important;
+  height: 186.05% !important;
+  max-width: none !important;
+  max-height: none !important;
   object-fit: cover;
-  object-position: 50% 30%;
   border-radius: 0;
 }
 main > section.te-hos .eyebrow {
@@ -195,9 +268,6 @@ main > section.te-hos .eyebrow::before {
 }
 main > section.te-hos h2 {
   color: #fff !important;
-  font-size: clamp(26px, 1.6vw + 14px, 36px) !important;
-  margin-bottom: 8px !important;
-  max-width: 28ch;
 }
 main > section.te-hos .te-hos-role {
   font: 600 17px/1.45 var(--px-sans) !important;
@@ -212,7 +282,7 @@ main > section.te-hos .te-hos-note {
 }
 main > section.te-hos a.te-hos-link {
   display: inline-block;
-  padding: 11px 0;
+  padding: 12px 0;
   color: #fff !important;
   font: 600 16px/1.3 var(--px-sans);
   text-decoration: underline;
@@ -231,13 +301,10 @@ main > section.te-hos a.te-hos-link .icon {
 
 /* --------------------------------------------------- 3. The Ambassador */
 main > section.te-amb .te-amb-grid {
-  display: grid;
+  --te-photo-w: minmax(240px, 5fr);
   grid-template-columns: minmax(240px, 5fr) minmax(0, 7fr);
-  gap: var(--te-col-gap);
-  align-items: start;
 }
 main > section.te-amb .te-amb-photo {
-  margin: 0;
   border-radius: var(--px-radius);
   overflow: hidden;
   border: 1px solid var(--px-line);
@@ -258,11 +325,6 @@ main > section.te-amb .te-amb-photo img {
   object-fit: cover;
   border-radius: 0;
 }
-main > section.te-amb .te-amb-name {
-  font-size: clamp(24px, 1vw + 17px, 30px) !important;
-  line-height: 1.2 !important;
-  margin: 0 0 6px !important;
-}
 main > section.te-amb .te-amb-role {
   font: 600 16px/1.5 var(--px-sans) !important;
   color: var(--px-ink-2) !important;
@@ -271,8 +333,7 @@ main > section.te-amb .te-amb-role {
 }
 
 /* ------------------------------------------------------------ Accordions
-   One style for the biography and the questions: paper rows, navy questions,
-   a single gold state marker on the open row. */
+   Paper rows, navy questions, a single gold state marker on the open row. */
 main > section.te-sec .te-acc {
   margin: 24px 0 0;
   background: var(--px-paper);
@@ -383,7 +444,9 @@ main > section.te-sec .te-list-cols li {
   break-inside: avoid;
 }
 
-/* ------------------------------------------------- 4. Embassy offices */
+/* ------------------------------------------------- 4. Embassy offices
+   Plain organisation cards: name, remit, one email link aligned to the
+   bottom of each row. */
 main > section.te-offices .te-office-grid {
   list-style: none;
   margin: 0;
@@ -393,11 +456,8 @@ main > section.te-offices .te-office-grid {
   gap: var(--te-gap);
 }
 main > section.te-offices .te-office {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: clamp(20px, 2.2vw, 28px);
   background: var(--px-paper);
@@ -409,26 +469,31 @@ main > section.te-offices .te-office::before,
 main > section.te-offices .te-office::after {
   content: none !important;
 }
+main > section.te-offices .te-office-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 main > section.te-offices .te-office h3 {
   font-size: var(--px-t-h3) !important;
   line-height: 1.3 !important;
-  margin: 8px 0 8px !important;
+  margin: 0 0 8px !important;
 }
 main > section.te-offices .te-office p {
   font: 400 16.5px/1.6 var(--px-sans) !important;
   color: var(--px-ink-2) !important;
-  margin: 0 0 2px !important;
+  margin: 0 0 6px !important;
   max-width: 60ch !important;
 }
 main > section.te-offices a.te-office-link {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 8px;
+  display: inline-block;
   min-height: 44px;
-  padding: 11px 0;
-  margin-bottom: -11px;
+  margin-top: auto;
+  padding: 12px 0 0;
+  margin-bottom: -10px;
   color: var(--px-blue-700);
-  font: 600 16px/1.35 var(--px-sans);
+  font: 600 16px/1.4 var(--px-sans);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -441,8 +506,8 @@ main > section.te-offices a.te-office-link:hover {
 main > section.te-offices a.te-office-link .icon {
   width: 18px;
   height: 18px;
-  margin-top: 2px;
-  vertical-align: 0;
+  margin-right: 8px;
+  vertical-align: -3px;
 }
 
 /* -------------------------------------------------------- 5. History */
@@ -491,22 +556,23 @@ main > section.te-history .te-timeline p.te-source {
 }
 
 /* ---------------------------------------------- 6. Contact & visiting
-   Two equal paper cards: where and when to reach the Embassy, and what to
-   do before coming in person. One navy action; everything else is a link. */
+   One paper panel in two columns: where and when to reach the Embassy, and
+   what to do before coming in person. Each column's action follows its own
+   list directly, so no blank band opens above the button. */
 main > section.te-contact .te-contact-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--te-gap);
-  align-items: stretch;
-}
-main > section.te-contact .te-contact-card {
-  display: flex;
-  flex-direction: column;
   background: var(--px-paper);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
   box-shadow: var(--px-shadow);
-  padding: clamp(22px, 2.4vw, 32px);
+}
+main > section.te-contact .te-contact-card {
+  min-width: 0;
+  padding: clamp(22px, 2.6vw, 36px);
+}
+main > section.te-contact .te-contact-card + .te-contact-card {
+  border-left: 1px solid var(--px-line);
 }
 main > section.te-contact .te-contact-card h3 {
   font-size: var(--px-t-h3) !important;
@@ -529,8 +595,6 @@ main > section.te-contact .te-contact-btn {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  align-self: flex-start;
-  margin-top: auto;
 }
 main > section.te-contact .te-contact-btn .icon {
   width: 18px;
@@ -539,10 +603,10 @@ main > section.te-contact .te-contact-btn .icon {
 }
 main > section.te-contact .te-visit-links {
   list-style: none;
-  margin: auto 0 0;
+  margin: -8px 0 0;
   padding: 0;
   display: grid;
-  gap: 4px;
+  gap: 0;
 }
 main > section.te-contact .te-visit-links li {
   margin: 0;
@@ -550,9 +614,16 @@ main > section.te-contact .te-visit-links li {
 }
 main > section.te-contact .te-visit-links a {
   display: inline-block;
-  padding: 10px 0;
+  padding: 11px 0;
   font: 600 16px/1.4 var(--px-sans);
 }
+/* Larger hit areas for the inline contact links without changing the layout. */
+main > section.te-contact .te-contact-card dd a {
+  display: inline-block;
+  padding-block: 10px;
+  margin-block: -10px;
+}
+
 /* --------------------------------------------------- 7. Official websites */
 main > section.te-links .te-links-grid {
   display: grid;
@@ -565,6 +636,7 @@ main > section.te-sec.te-links .sec-head {
 }
 main > section.te-links .px-links a {
   min-height: 64px;
+  padding-inline: 0;
   text-decoration: none !important;
   color: var(--px-navy-950) !important;
 }
@@ -579,16 +651,25 @@ main > section.te-links .te-more {
   margin: 16px 0 0 !important;
   font-size: 16px !important;
 }
+main > section.te-links .te-more a {
+  display: inline-block;
+  padding-block: 12px;
+  margin-block: -12px;
+}
+/* Page metadata closes the content, as on GOV.UK. */
+main > section.te-links p.te-updated {
+  display: block;
+  margin: clamp(48px, 5vw, 72px) 0 0;
+  padding: 16px 0 0;
+  border-bottom: 0;
+  border-top: 1px solid var(--px-line);
+  font: 400 var(--px-t-meta)/1.5 var(--px-sans) !important;
+  color: var(--px-ink-3) !important;
+  max-width: none !important;
+}
 
 /* ------------------------------------------------------- Responsive */
 @media (max-width: 1023px) {
-  main > section.te-offices .te-office {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  main > section.te-offices .te-office h3 {
-    margin-top: 2px !important;
-  }
   main > section.te-history .te-history-grid,
   main > section.te-links .te-links-grid {
     grid-template-columns: 1fr;
@@ -596,6 +677,10 @@ main > section.te-links .te-more {
   }
   main > section.te-contact .te-contact-grid {
     grid-template-columns: 1fr;
+  }
+  main > section.te-contact .te-contact-card + .te-contact-card {
+    border-left: 0;
+    border-top: 1px solid var(--px-line);
   }
 }
 @media (max-width: 899px) {
@@ -605,15 +690,7 @@ main > section.te-links .te-more {
   }
   main > section.te-amb .te-amb-grid {
     grid-template-columns: minmax(180px, 2fr) minmax(0, 3fr);
-    gap: 28px;
-  }
-}
-@media (max-width: 599px) {
-  main > section.te-amb .te-amb-grid {
-    grid-template-columns: 1fr;
-  }
-  main > section.te-amb .te-amb-photo {
-    max-width: 340px;
+    column-gap: 28px;
   }
 }
 @media (max-width: 767px) {
@@ -621,14 +698,26 @@ main > section.te-links .te-more {
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 600px) {
-  main > section.te-hos .te-hos-inner {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    align-items: start;
+@media (max-width: 599px) {
+  main > section.te-sec .te-profile,
+  main > section.te-hos .te-hos-inner,
+  main > section.te-amb .te-amb-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "label"
+      "photo"
+      "text";
+    grid-template-rows: auto;
+  }
+  main > section.te-sec .te-profile-photo {
+    margin-bottom: 20px;
   }
   main > section.te-hos .te-hos-photo {
-    width: 148px;
+    width: 140px;
+  }
+  main > section.te-amb .te-amb-photo {
+    width: 100%;
+    max-width: 340px;
   }
   main > section.te-history .te-timeline > li {
     grid-template-columns: 1fr;
@@ -659,19 +748,4 @@ main > section.te-links .te-more {
   main > section.te-sec * {
     transition: none !important;
   }
-}
-
-/* Larger hit areas for the inline contact links without changing the layout. */
-main > section.te-contact .te-contact-card dd a {
-  display: inline-block;
-  padding-block: 10px;
-  margin-block: -10px;
-}
-
-/* Metadata and "see all" links: 44px touch height without moving the text. */
-main > section.te-about .px-meta a,
-main > section.te-links .te-more a {
-  display: inline-block;
-  padding-block: 12px;
-  margin-block: -12px;
 }

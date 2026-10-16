@@ -210,6 +210,8 @@ main > section.ol-sec .ol-group-foot {
   color: var(--px-ink-2);
 }
 main > section.ol-sec .ol-group-foot > a[href]:not(.btn) {
+  /* inline padding enlarges the tap area without moving the line */
+  padding-block: 14px;
   font-weight: 600;
   color: var(--px-blue-700);
   text-decoration: underline;
@@ -262,22 +264,19 @@ main > section.ol-sec .ol-group-foot > a[href]:not(.btn):hover {
   main > section.ol-sec .ol-links .ol-desc {
     font-size: 15px;
   }
-}
-
-/* Phone: tighter rhythm so the 30-entry directory stays scannable */
-@media (max-width: 560px) {
+  /* Tighter rhythm so the 22-entry directory stays scannable */
   main > section.ol-sec .ol-intro {
     gap: 28px;
     margin-bottom: 40px;
   }
   main > section.ol-sec .ol-group + .ol-group {
-    margin-top: 40px;
+    margin-top: 36px;
   }
   main > section.ol-sec .ol-group-head {
     margin-bottom: 12px;
   }
   main > section.ol-sec .ol-links a {
-    padding: 12px 2px;
+    padding: 11px 2px;
   }
   main > section.ol-sec .ol-safety h3 {
     font-size: 18px;

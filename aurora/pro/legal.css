@@ -345,6 +345,8 @@ html body main > section.lg .lg-body .lg-table :is(th, td, span) {
   html body main > section.lg .lg-body .lg-table tbody,
   html body main > section.lg .lg-body .lg-table tr,
   html body main > section.lg .lg-body .lg-table td { display: block; width: 100%; }
+  /* the shared phone rule turns section tables into nowrap scrollers; this one stacks instead */
+  html body main > section.lg .lg-body .lg-table { white-space: normal; overflow: visible; }
   html body main > section.lg .lg-body .lg-table caption { display: block; }
   html body main > section.lg .lg-body .lg-table tr { padding: 6px 0; border-bottom: 1px solid var(--px-line); }
   html body main > section.lg .lg-body .lg-table tr:last-child { border-bottom: 0; }
@@ -383,6 +385,10 @@ html body main > section.lg .lg-body .lg-status p {
   line-height: 1.6;
   color: var(--px-ink-2);
 }
+html body main > section.lg .lg-body .lg-status p b {
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
 
 /* related documents */
 html body main > section.lg .lg-body .lg-related { margin: 3.2em 0 0; }
@@ -411,12 +417,6 @@ html body main > section.lg .lg-body .lg-related .lg-link-text { display: block;
 html body main > section.lg .lg-body .lg-related .px-links-name { font-size: 17px; line-height: 1.35; }
 html body main > section.lg .lg-body .lg-related .px-links .icon { transition: transform .18s var(--px-ease), color .18s var(--px-ease); }
 html body main > section.lg .lg-body .lg-related .px-links a:hover .icon { color: var(--px-blue-700); transform: translateX(2px); }
-html body main > section.lg .lg-body .lg-related .lg-ask {
-  margin: 18px 0 0;
-  font-size: 15.5px;
-  line-height: 1.6;
-  color: var(--px-ink-2);
-}
 
 @media (prefers-reduced-motion: reduce) {
   html body main > section.lg .lg-body .lg-related .px-links a:hover .icon { transform: none; }

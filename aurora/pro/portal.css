@@ -629,6 +629,14 @@ main > section.ps-proto:not(.hero):not(.phead):not(.qa-band) .ps-result .ps-acti
 }
 
 /* ------------------------------------------------------------ Responsive */
+/* Desktop: the contact panel and related links stay beside the guidance
+   while it is read (the site header is not sticky at these widths). */
+@media (min-width: 1024px) and (min-height: 760px) {
+  main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-aside {
+    position: sticky;
+    top: 32px;
+  }
+}
 @media (max-width: 1023px) {
   main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-layout,
   main > section.ps-proto:not(.hero):not(.phead):not(.qa-band) .ps-proto-grid {

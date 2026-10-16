@@ -216,6 +216,26 @@ main > section.cs-purpose .cs-pillar p {
   margin: 0;
   color: rgba(226, 236, 250, .88);
 }
+/* Tablet: three stacked full-width pillars left a wide empty band to the
+   right of each short line; set the icon beside the text instead. */
+@media (min-width: 480px) and (max-width: 819px) {
+  main > section.cs-purpose .cs-pillars > .cs-pillar {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 18px;
+    align-content: start;
+  }
+  main > section.cs-purpose .cs-pillar .cs-pillar-icon {
+    grid-row: 1 / span 2;
+  }
+  main > section.cs-purpose .cs-pillar h3 {
+    margin: 8px 0 6px;
+  }
+  main > section.cs-purpose .cs-pillar p {
+    max-width: 56ch;
+  }
+}
 
 /* ------------------------------------------------- 4. Programme themes */
 main > section.cs-program .cs-days {

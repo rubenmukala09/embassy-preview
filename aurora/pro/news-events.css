@@ -4,7 +4,18 @@
    below-hero sections (#published-news, #annual-calendar, #resources) so it
    can never reach the preview banner, header, hero, quick-access dock,
    footer or the shared floating chrome.
+
+   One grid for the whole page: a wide column (1.5fr) and a narrow column
+   (1fr) with the same gap, so the guidance list, the Next observance block
+   and the sources list all start on the same vertical line.
+   One list style: hairline rows, 18px vertical rhythm, sans 600 titles,
+   14px meta, a 20px icon column, flush with the rule.
    ============================================================================ */
+
+main > section:is(#published-news, #annual-calendar, #resources) {
+  --nw-gap: clamp(28px, 3.6vw, 56px);
+  --nw-row: 18px;
+}
 
 /* Screen-reader-only helper (link context such as "opens in a new tab"). */
 main > section:is(#published-news, #annual-calendar, #resources) .nw-sr {
@@ -23,8 +34,10 @@ main > section:is(#published-news, #annual-calendar, #resources) .nw-sr {
    a) pro-system's ".sec-head p" lede rule out-ranks its own ".eyebrow" rule,
       so a <p class="eyebrow"> inside .sec-head rendered at 19px regular with
       no gap under it. Restore the intended quiet eyebrow.
-   b) A legacy faint grid pattern is painted on .container; remove it.
-   c) Automatic hyphenation split words mid-line on phones ("eco-nomic"). */
+   b) enrichment.css caps ".sec-head h2" at 19ch, which made headings
+      narrower than their own lede. Let the H2 share the sec-head measure.
+   c) A legacy faint grid pattern is painted on .container; remove it.
+   d) Automatic hyphenation split words mid-line on phones ("eco-nomic"). */
 main > section:is(#published-news, #annual-calendar, #resources) .sec-head .eyebrow {
   max-width: none !important;
   margin: 0 0 14px !important;
@@ -32,10 +45,14 @@ main > section:is(#published-news, #annual-calendar, #resources) .sec-head .eyeb
   letter-spacing: .14em !important;
   text-transform: uppercase !important;
 }
+main > section:is(#published-news, #annual-calendar, #resources) .sec-head h2 {
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
 main > section:is(#published-news, #annual-calendar, #resources) > .container {
   background-image: none !important;
 }
-main > section:is(#published-news, #annual-calendar, #resources) :is(p, li, h2, h3, h4, span, a) {
+main > section:is(#published-news, #annual-calendar, #resources) :is(p, li, h2, h3, h4, span, a, figcaption) {
   -webkit-hyphens: manual !important;
   hyphens: manual !important;
 }
@@ -46,8 +63,8 @@ main > section:is(#published-news, #annual-calendar, #resources) :is(p, li, h2, 
 main > section#published-news .nw-news-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: clamp(28px, 3.6vw, 56px);
-  align-items: start;
+  gap: var(--nw-gap);
+  align-items: stretch;
 }
 
 /* Lead story card */
@@ -67,26 +84,36 @@ main > section#published-news .nw-lead:is(:hover, :focus-within) {
   box-shadow: var(--px-shadow-hover);
 }
 main > section#published-news .nw-lead-media {
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: calc(var(--px-radius) - 1px) calc(var(--px-radius) - 1px) 0 0;
-  background: var(--px-canvas);
-  border-bottom: 1px solid var(--px-line);
 }
 main > section#published-news .nw-lead-media img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  object-position: 50% 62%;
+  object-position: 55% 42%;
   border-radius: 0;
+  background: var(--px-canvas);
+}
+/* Honest credit, attached to the image it describes. */
+main > section#published-news .nw-credit {
+  margin: 0;
+  padding: 8px clamp(22px, 2.4vw, 32px) 0;
+  font: 400 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+  text-align: right;
 }
 main > section#published-news .nw-lead-body {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: clamp(22px, 2.4vw, 32px);
+  padding: clamp(10px, 1.2vw, 16px) clamp(22px, 2.4vw, 32px) clamp(22px, 2.4vw, 32px);
 }
 main > section#published-news .nw-kicker {
   display: flex;
@@ -101,6 +128,9 @@ main > section#published-news .nw-kicker {
 main > section#published-news .nw-kicker > span:first-child,
 main > section#published-news .nw-item > .nw-kicker {
   color: var(--px-gold-ink);
+}
+main > section#published-news .nw-kicker time {
+  font-variant-numeric: tabular-nums;
 }
 main > section#published-news .nw-dot {
   color: var(--px-ink-3);
@@ -160,7 +190,8 @@ main > section#published-news .nw-cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 4px 0 0;
+  margin: auto 0 0;
+  padding-top: 4px;
   font: 600 16px/1.4 var(--px-sans);
   color: var(--px-blue-700);
 }
@@ -174,18 +205,13 @@ main > section#published-news .nw-cta .icon {
   height: 18px;
   vertical-align: 0;
 }
-main > section#published-news .nw-credit {
-  margin: 4px 0 0;
-  font: 400 14px/1.4 var(--px-sans);
-  color: var(--px-ink-3);
-}
 
-/* Guidance and archives: a calm hairline list, no images */
+/* Guidance and archives: the page's hairline list (shared with #resources) */
 main > section#published-news .nw-side-title {
   margin: 0;
   padding: 0 0 14px;
   border-bottom: 2px solid var(--px-navy-900);
-  font: 700 20px/1.3 var(--px-serif);
+  font: 700 20px/1.2 var(--px-serif);
   letter-spacing: -.005em;
   color: var(--px-navy-950);
 }
@@ -199,9 +225,9 @@ main > section#published-news .nw-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 20px;
   column-gap: 16px;
-  row-gap: 6px;
+  row-gap: 4px;
   margin: 0;
-  padding: 20px 2px 20px 0;
+  padding: var(--nw-row) 0;
   border-bottom: 1px solid var(--px-line);
 }
 main > section#published-news .nw-item > :not(.nw-item-go) {
@@ -209,19 +235,23 @@ main > section#published-news .nw-item > :not(.nw-item-go) {
 }
 main > section#published-news .nw-item h4 {
   margin: 0;
-  font: 700 19px/1.35 var(--px-serif);
-  letter-spacing: -.005em;
+  font: 600 18px/1.4 var(--px-sans);
+  letter-spacing: 0;
   color: var(--px-navy-950);
-  text-wrap: balance;
+  text-wrap: pretty;
+  transition: color .18s var(--px-ease);
 }
 main > section#published-news .nw-item .nw-summary {
+  margin-top: 2px;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.58;
 }
 main > section#published-news .nw-item-go {
   grid-column: 2;
   grid-row: 1 / span 3;
   align-self: center;
+  width: 20px;
+  height: 20px;
   color: var(--px-ink-3);
   transition: color .18s var(--px-ease);
 }
@@ -231,20 +261,61 @@ main > section#published-news .nw-item:hover h4 {
   color: var(--px-blue-700);
 }
 
-@media (max-width: 980px) {
+@media (min-width: 981px) {
+  /* Cap height of the side title meets the top edge of the lead card. */
+  main > section#published-news .nw-side-title {
+    margin-top: -3px;
+  }
+}
+
+/* Tablet: the lead card lies on its side so the image stays secondary. */
+@media (min-width: 641px) and (max-width: 980px) {
   main > section#published-news .nw-news-grid {
     grid-template-columns: 1fr;
+  }
+  main > section#published-news .nw-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  }
+  main > section#published-news .nw-lead-media {
+    border-radius: calc(var(--px-radius) - 1px) 0 0 calc(var(--px-radius) - 1px);
+    border-right: 1px solid var(--px-line);
+  }
+  main > section#published-news .nw-lead-media img {
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 220px;
+    aspect-ratio: auto;
+  }
+  main > section#published-news .nw-credit {
+    padding: 8px 16px 10px;
+    text-align: left;
+  }
+  main > section#published-news .nw-lead-body {
+    padding: 24px 28px 26px;
+  }
+}
+@media (max-width: 640px) {
+  main > section#published-news .nw-news-grid {
+    grid-template-columns: 1fr;
+  }
+  main > section#published-news .nw-credit {
+    padding-inline: 20px;
+  }
+  main > section#published-news .nw-lead-body {
+    padding: 8px 20px 22px;
   }
 }
 
 /* ------------------------------------------------------------------------
    2. National calendar: compact, after the news. annual-events.js renders
-      the months; its shared card/countdown styling is reset here.
+      the months; its shared card/countdown styling is reset here, and
+      news-events.js tidies each row (H4 names, weekday only).
    ------------------------------------------------------------------------ */
 main > section#annual-calendar .nw-cal-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
-  gap: 24px clamp(32px, 4vw, 64px);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 24px var(--nw-gap);
   align-items: end;
   margin-bottom: clamp(24px, 3vw, 36px);
 }
@@ -337,7 +408,7 @@ main > section#annual-calendar .nw-cal-ics .icon {
 
 main > section#annual-calendar .nw-cal-list {
   columns: 3 250px;
-  column-gap: clamp(28px, 3.6vw, 56px);
+  column-gap: var(--nw-gap);
   padding: clamp(20px, 2.6vw, 30px) clamp(18px, 2.4vw, 28px) clamp(6px, 1vw, 12px);
 }
 main > section#annual-calendar .annual-month {
@@ -404,16 +475,16 @@ main > section#annual-calendar .annual-event > div:not(.annual-event-meta) > p,
 main > section#annual-calendar .annual-kind {
   display: none !important;
 }
-main > section#annual-calendar .annual-event h3 {
+main > section#annual-calendar .annual-event :is(h3, h4) {
   margin: 0 !important;
-  font: 700 16.5px/1.35 var(--px-serif) !important;
-  letter-spacing: -.003em !important;
+  font: 600 17px/1.38 var(--px-sans) !important;
+  letter-spacing: 0 !important;
   color: var(--px-navy-950) !important;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 main > section#annual-calendar .annual-state {
   display: block;
-  margin-top: 3px;
+  margin-top: 2px;
   font: 400 14px/1.4 var(--px-sans) !important;
   letter-spacing: 0 !important;
   color: var(--px-ink-3) !important;
@@ -422,12 +493,9 @@ main > section#annual-calendar .annual-state.next {
   font-weight: 700 !important;
   color: var(--px-gold-ink) !important;
 }
-main > section#annual-calendar .annual-event.is-past .annual-state::before {
-  content: "Past · ";
-}
-html[lang|="fr"] main > section#annual-calendar .annual-event.is-past .annual-state::before {
-  content: "Passé · ";
-}
+/* Day chips: one quiet outline for every date; the single gold chip marks
+   the next observance. Past dates keep full-contrast names, only the chip
+   number steps back a tone. */
 main > section#annual-calendar .annual-date {
   display: grid !important;
   place-items: center !important;
@@ -435,12 +503,12 @@ main > section#annual-calendar .annual-date {
   height: 44px !important;
   margin: 0 !important;
   padding: 0 !important;
-  background: var(--px-navy-900) !important;
+  background: var(--px-paper) !important;
   background-image: none !important;
-  border: 1px solid var(--px-navy-900) !important;
+  border: 1px solid var(--px-line-strong) !important;
   border-radius: var(--px-radius-ctl) !important;
   box-shadow: none !important;
-  color: #fff !important;
+  color: var(--px-navy-900) !important;
 }
 main > section#annual-calendar .annual-date b {
   font: 700 17px/1 var(--px-sans) !important;
@@ -452,9 +520,8 @@ main > section#annual-calendar .annual-date span {
   display: none !important;
 }
 main > section#annual-calendar .annual-event.is-past .annual-date {
-  background: var(--px-paper) !important;
-  border-color: var(--px-line-strong) !important;
-  color: var(--px-navy-900) !important;
+  border-color: var(--px-line) !important;
+  color: var(--px-ink-3) !important;
 }
 main > section#annual-calendar .annual-event.is-next .annual-date {
   background: var(--px-gold-500) !important;
@@ -467,7 +534,7 @@ main > section#annual-calendar .annual-empty {
 }
 
 main > section#annual-calendar .nw-cal-note {
-  max-width: 82ch;
+  max-width: 70ch;
   margin: 16px 0 0;
   font: 400 15px/1.6 var(--px-sans);
   color: var(--px-ink-2);
@@ -514,21 +581,25 @@ main > section#annual-calendar .nw-cal-note a:hover {
 }
 
 /* ------------------------------------------------------------------------
-   3. Official sources: header beside one scannable link list
+   3. Official sources: header in the wide column, list in the narrow one
    ------------------------------------------------------------------------ */
 main > section#resources .nw-src-grid {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: 8px clamp(32px, 5vw, 80px);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 8px var(--nw-gap);
   align-items: start;
 }
 main > section#resources .nw-src-grid .sec-head {
   margin-bottom: 0 !important;
 }
+main > section#resources .px-links {
+  border-top: 2px solid var(--px-navy-900);
+}
 main > section#resources .px-links a {
+  gap: 16px;
   min-height: 64px;
-  padding: 16px 4px;
-  font-weight: 600 !important;
+  padding: var(--nw-row) 0;
+  font: 600 18px/1.4 var(--px-sans) !important;
   color: var(--px-navy-950) !important;
   text-decoration: none !important;
   transition: color .18s var(--px-ease);
@@ -540,9 +611,12 @@ main > section#resources .px-links a:hover {
 main > section#resources .px-links a:is(:hover, :focus-visible) .px-links-name {
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 main > section#resources .px-links-meta {
+  margin-top: 4px;
+  font: 400 14px/1.45 var(--px-sans);
+  color: var(--px-ink-3);
   text-decoration: none !important;
 }
 main > section#resources .nw-src-text {
@@ -556,14 +630,17 @@ main > section#resources .px-links-name {
 }
 main > section#resources .px-links .icon {
   flex: none;
+  width: 20px;
+  height: 20px;
   margin-left: auto;
+  color: var(--px-ink-3);
   transition: color .18s var(--px-ease);
 }
 main > section#resources .px-links a:hover .icon {
   color: var(--px-blue-700);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   main > section#resources .nw-src-grid {
     grid-template-columns: 1fr;
     gap: clamp(24px, 4vw, 32px);
