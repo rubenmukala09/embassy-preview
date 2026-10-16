@@ -121,3 +121,15 @@ html body main.error-main .error-actions a:focus-visible {
 @media (min-width: 3000px) {
   html body main.error-main > div { zoom: 1.49; }
 }
+
+/* Tall screens: keep the footer at the bottom of the window instead of leaving
+   a white band under it. Only the 404's body becomes a column; the footer's
+   own styles are untouched. */
+html body:has(> main.error-main) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+html body:has(> main.error-main) > main.error-main { flex: 1 0 auto; }
+html body:has(> main.error-main) > footer.foot { flex: none; }

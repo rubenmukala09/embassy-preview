@@ -63,6 +63,13 @@
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  function fitUp(zl) {
+    var es = zl && zl.elementSize, pa = zl && zl.panAreaSize;
+    if (!es || !pa || !es.x || !es.y) return zl && zl.fit ? zl.fit : 1;
+    var r = Math.min(pa.x / es.x, pa.y / es.y);
+    return Math.min(r, 1.6);
+  }
+
   var lightbox = new Lightbox({
     gallery: "#amb-gallery",
     children: "a.amb-link",
@@ -73,11 +80,19 @@
     showAnimationDuration: 220,
     hideAnimationDuration: 200,
     returnFocus: true,
+    /* PhotoSwipe caps "fit" at 1x, so on 2K/4K screens the smaller sources
+       would float in a sea of navy while the larger ones fill the frame.
+       Allow a modest upscale (up to 1.6x) so every slide fits the viewport. */
+    initialZoomLevel: fitUp,
+    secondaryZoomLevel: function (zl) { return Math.max(fitUp(zl) * 1.6, 1); },
+    maxZoomLevel: function (zl) { return Math.max(fitUp(zl) * 2.5, 2); },
     paddingFn: function (viewport) {
       var wide = viewport.x >= 900;
+      /* match the CSS zoom applied to the top bar and caption on 2K/4K */
+      var z = viewport.x >= 3000 ? 1.49 : viewport.x >= 2400 ? 1.3 : 1;
       return {
-        top: wide ? 64 : 56,
-        bottom: wide ? 132 : 150,
+        top: Math.round((wide ? 64 : 56) * z),
+        bottom: Math.round((wide ? 132 : 150) * z),
         left: wide ? 88 : 0,
         right: wide ? 88 : 0
       };

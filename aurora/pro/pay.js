@@ -2,8 +2,9 @@
    PAYMENT GUIDANCE (pay/index.html): "Check a fee" helper.
    Reads the fee schedule table on the page (single source of truth), builds
    the service list from it and shows the published amount for the chosen
-   service. Nothing is submitted or stored; there is no form element.
-   Follows the site language switch (aurora.js sets <html lang>).
+   service. It shows only the single published amount (no totals the
+   Embassy has not published). Nothing is submitted or stored; there is no
+   form element. Follows the site language switch (aurora.js sets <html lang>).
    ============================================================================ */
 (function () {
   'use strict';
@@ -15,30 +16,25 @@
   var tool = finder.querySelector('.sp-finder-tool');
   var fallback = finder.querySelector('.sp-finder-fallback');
   var select = finder.querySelector('select');
-  var qty = finder.querySelector('input[type="number"]');
   var labelEl = finder.querySelector('[data-fee-label]');
   var amountEl = finder.querySelector('[data-fee-amount]');
   var detailEl = finder.querySelector('[data-fee-detail]');
-  if (!tool || !select || !qty || !amountEl || !detailEl) return;
+  if (!tool || !select || !amountEl || !detailEl) return;
 
   var TEXT = {
     en: {
       choose: 'Choose a service',
       label: 'Published fee',
-      total: 'Total',
       empty: 'Choose a service to see its fee.',
       money: 'Pay by money order, included with your application.',
-      online: 'Paid online through the Equity BCDC link sent after pre-registration on passeport.gouv.cd.',
-      each: 'each'
+      online: 'Paid online through the Equity BCDC link sent after pre-registration on passeport.gouv.cd.'
     },
     fr: {
       choose: 'Choisissez un service',
       label: 'Montant publié',
-      total: 'Total',
       empty: 'Choisissez un service pour afficher son montant.',
       money: 'Paiement par mandat, joint à votre demande.',
-      online: 'Paiement en ligne au moyen du lien Equity BCDC reçu après la préinscription sur passeport.gouv.cd.',
-      each: 'l’unité'
+      online: 'Paiement en ligne au moyen du lien Equity BCDC reçu après la préinscription sur passeport.gouv.cd.'
     }
   };
 
@@ -88,9 +84,6 @@
     var L = lang();
     var t = TEXT[L];
     var row = select.value ? document.getElementById(select.value) : null;
-    var n = parseInt(qty.value, 10);
-    if (!isFinite(n) || n < 1) n = 1;
-    if (n > 20) n = 20;
 
     if (!row) {
       finder.classList.remove('has-fee');
@@ -103,19 +96,12 @@
     var fee = parseFloat(row.getAttribute('data-fee')) || 0;
     var online = row.getAttribute('data-route') === 'online';
     finder.classList.add('has-fee');
-    if (labelEl) labelEl.textContent = n > 1 ? t.total : t.label;
-    amountEl.textContent = money(fee * n);
-    detailEl.textContent = (n > 1 ? n + ' × ' + money(fee) + ' ' + t.each + '. ' : '') + (online ? t.online : t.money);
+    if (labelEl) labelEl.textContent = t.label;
+    amountEl.textContent = money(fee);
+    detailEl.textContent = online ? t.online : t.money;
   }
 
   select.addEventListener('change', update);
-  qty.addEventListener('input', update);
-  qty.addEventListener('change', function () {
-    var n = parseInt(qty.value, 10);
-    if (!isFinite(n) || n < 1) qty.value = '1';
-    else if (n > 20) qty.value = '20';
-    update();
-  });
 
   // Rebuild labels when the site language changes.
   if ('MutationObserver' in window) {

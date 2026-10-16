@@ -63,74 +63,55 @@ main > section:is(.cs-cities, .cs-village) .cs-card p {
   color: var(--px-ink-2);
 }
 
-/* ------------------------------------------------- 1. Archive overview */
-main > section.cs-overview .cs-overview-grid {
+/* ------------------------------------------------- 1. On this page */
+/* GOV.UK-style contents list: plain underlined links, no card boxes, so the
+   block cannot be mistaken for collapsed accordions. */
+main > section.cs-overview .cs-toc {
+  padding: 0 0 4px;
+  border: 0;
+  border-bottom: 1px solid var(--px-line);
+  border-radius: 0;
+  background: none;
+}
+main > section.cs-overview .cs-toc .px-toc-title {
+  margin: 0 0 6px !important;
+}
+main > section.cs-overview .cs-toc ul {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 0;
 }
-@media (min-width: 768px) {
-  main > section.cs-overview .cs-overview-grid {
-    gap: 16px 20px;
-  }
+main > section.cs-overview .cs-toc li {
+  font-size: var(--px-t-body);
 }
-main > section.cs-overview .cs-jump {
-  display: flex;
+main > section.cs-overview .cs-toc a {
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
-  min-height: 76px;
-  padding: 16px 16px 16px 18px;
-  background: var(--px-paper);
-  border: 1px solid var(--px-line);
-  border-radius: var(--px-radius);
-  box-shadow: var(--px-shadow);
-  color: var(--px-navy-950) !important;
-  text-decoration: none !important;
-  transition: border-color .18s var(--px-ease), box-shadow .18s var(--px-ease);
-}
-main > section.cs-overview .cs-jump:hover {
-  border-color: rgba(45, 112, 214, .55);
-  box-shadow: var(--px-shadow-hover);
-}
-main > section.cs-overview .cs-jump-text {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: grid;
-  gap: 2px;
-}
-main > section.cs-overview .cs-jump-label {
-  font: 700 16px/1.3 var(--px-sans);
-  color: var(--px-navy-950);
-}
-main > section.cs-overview .cs-jump-meta {
-  font: 400 14px/1.4 var(--px-sans);
-  color: var(--px-ink-3);
-}
-main > section.cs-overview .cs-jump-go {
-  width: 18px;
-  height: 18px;
-  color: var(--px-ink-3);
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 0;
+  border: 0;
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
   transition: color .18s var(--px-ease);
 }
-main > section.cs-overview .cs-jump:hover .cs-jump-go {
-  color: var(--px-blue-700);
+main > section.cs-overview .cs-toc a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
 }
-@media (max-width: 599px) {
-  main > section.cs-overview .cs-jump {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
-  }
-  main > section.cs-overview .cs-jump .icon-chip {
-    width: 40px;
-    height: 40px;
-  }
-  main > section.cs-overview .cs-jump-go {
-    display: none;
-  }
-  main > section.cs-overview .cs-jump-label {
-    font-size: 15.5px;
+main > section.cs-overview .cs-toc a .icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  transform: rotate(90deg);
+}
+@media (min-width: 768px) {
+  main > section.cs-overview .cs-toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 32px;
   }
 }
 
@@ -194,47 +175,15 @@ main > section.cs-purpose .cs-pillar {
   border: 1px solid rgba(255, 255, 255, .16);
   border-radius: var(--px-radius);
 }
-main > section.cs-purpose .cs-pillar-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, .08);
-  color: var(--px-gold-500);
-}
-main > section.cs-purpose .cs-pillar-icon .icon {
-  width: 22px;
-  height: 22px;
-}
 main > section.cs-purpose .cs-pillar h3 {
-  margin: 18px 0 8px;
+  margin: 0 0 8px;
   font: 700 var(--px-t-h3)/1.3 var(--px-serif);
   color: #fff;
 }
 main > section.cs-purpose .cs-pillar p {
   margin: 0;
+  max-width: 56ch;
   color: rgba(226, 236, 250, .88);
-}
-/* Tablet: three stacked full-width pillars left a wide empty band to the
-   right of each short line; set the icon beside the text instead. */
-@media (min-width: 480px) and (max-width: 819px) {
-  main > section.cs-purpose .cs-pillars > .cs-pillar {
-    display: grid;
-    grid-template-columns: 44px minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    column-gap: 18px;
-    align-content: start;
-  }
-  main > section.cs-purpose .cs-pillar .cs-pillar-icon {
-    grid-row: 1 / span 2;
-  }
-  main > section.cs-purpose .cs-pillar h3 {
-    margin: 8px 0 6px;
-  }
-  main > section.cs-purpose .cs-pillar p {
-    max-width: 56ch;
-  }
 }
 
 /* ------------------------------------------------- 4. Programme themes */
@@ -291,26 +240,8 @@ main > section.cs-village .cs-zones {
     gap: 20px;
   }
 }
-main > section.cs-village .cs-zone h3 {
-  margin-top: 18px;
-}
-@media (min-width: 480px) {
-  main > section.cs-village .cs-zones > .cs-zone {
-    display: grid;
-    grid-template-columns: 44px minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    column-gap: 18px;
-    align-content: start;
-  }
-  main > section.cs-village .cs-zone .icon-chip {
-    grid-row: 1 / span 2;
-  }
-  main > section.cs-village .cs-zone h3 {
-    margin: 8px 0 8px;
-  }
-  main > section.cs-village .cs-zone p {
-    max-width: 52ch;
-  }
+main > section.cs-village .cs-zone p {
+  max-width: 56ch;
 }
 
 /* -------------------------------------------------------- 6. Organisers */
@@ -354,8 +285,9 @@ main > section.cs-related .cs-stories > .cs-story {
   position: relative;
   margin: 0;
   display: grid;
-  grid-template-columns: 104px minmax(0, 1fr) auto;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  align-content: start;
   background: var(--px-paper);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
@@ -367,9 +299,12 @@ main > section.cs-related .cs-story:is(:hover, :focus-within) {
   border-color: rgba(45, 112, 214, .55);
   box-shadow: var(--px-shadow-hover);
 }
+/* Phone: the photo sits on top at full card width (16:9), so the 2:1
+   source keeps its subject instead of being cropped to a portrait strip. */
 main > section.cs-related .cs-story .px-frame {
-  align-self: stretch;
-  min-height: 112px;
+  grid-column: 1 / -1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   border: 0;
   border-radius: 0;
 }
@@ -377,7 +312,7 @@ main > section.cs-related .cs-story .px-frame img {
   display: block;
 }
 main > section.cs-related .cs-story-body {
-  padding: 16px 0 18px 16px;
+  padding: 18px 0 20px 18px;
 }
 main > section.cs-related .cs-story-label {
   margin: 0 0 4px;
@@ -425,8 +360,14 @@ main > section.cs-related .cs-story:hover .cs-story-go {
 @media (min-width: 600px) and (max-width: 999px) {
   main > section.cs-related .cs-stories > .cs-story {
     grid-template-columns: 220px minmax(0, 1fr) auto;
+    grid-template-rows: none;
+    align-items: start;
   }
   main > section.cs-related .cs-story .px-frame {
+    grid-column: auto;
+    align-self: stretch;
+    width: auto;
+    aspect-ratio: auto;
     min-height: 140px;
   }
   main > section.cs-related .cs-story-body {

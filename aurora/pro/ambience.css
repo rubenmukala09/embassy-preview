@@ -6,8 +6,9 @@
    (.pswp.amb-pswp), so the frozen zones (banner, top bar, header, notice bar,
    hero, quick-access dock, footer) can never match.
 
-   Gallery: curated, even grid (2 / 3 / 4 columns), one card style, captions
-   below the photograph, the whole card opens the lightbox. Lightbox:
+   Gallery: nine curated photographs in an even grid (1 / 2 / 3 columns), one
+   card style, a one-line caption below each photograph, the whole card opens
+   the lightbox. Next step: one light card with one gold action. Lightbox:
    PhotoSwipe 5.4.4 (MIT, dimsemenov/PhotoSwipe), self-hosted in
    aurora/vendor/photoswipe and initialised by aurora/pro/ambience.js.
    ============================================================================ */
@@ -34,7 +35,9 @@ main > section#gallery .sec-head .eyebrow {
   letter-spacing: .14em !important;
 }
 main > section#gallery .sec-head h2 {
+  max-width: none;
   color: var(--px-navy-950);
+  text-shadow: none !important;
 }
 main > section#gallery .sec-head .lede {
   color: var(--px-ink-2);
@@ -86,31 +89,36 @@ main > section#gallery .amb-sr {
   border: 0;
 }
 
-/* ------------------------------------------------------------ Even grid */
+/* ------------------------------------------------------------ Even grid
+   Nine photographs: one column on phones, two from 600px (the first
+   photograph spans both columns so no row is left with an orphan), three
+   from 900px at every larger width. Three columns are kept on 2K/4K so the
+   thumbnails grow with the screen (pro-system zooms the section) instead of
+   shrinking into a fourth column. */
 main > section#gallery .amb-gallery {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
 }
 @media (min-width: 600px) {
-  main > section#gallery .amb-gallery { gap: 20px; }
+  main > section#gallery .amb-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  main > section#gallery .amb-tile:first-child { grid-column: 1 / -1; }
+  main > section#gallery .amb-tile:first-child .amb-link { aspect-ratio: 16 / 9; }
 }
 @media (min-width: 900px) {
   main > section#gallery .amb-gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
   }
-}
-@media (min-width: 1920px) {
-  main > section#gallery .amb-gallery {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+  main > section#gallery .amb-tile:first-child { grid-column: auto; }
+  main > section#gallery .amb-tile:first-child .amb-link { aspect-ratio: 3 / 2; }
 }
 
-/* ------------------------------------------------------------ Card */
+/* ------------------------------------------------------------ Card
+   Archival, not product-like: white, 1px line, no resting shadow. */
 main > section#gallery .amb-tile {
   margin: 0;
   padding: 0;
@@ -118,7 +126,7 @@ main > section#gallery .amb-tile {
   background: var(--px-paper);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
-  box-shadow: var(--px-shadow);
+  box-shadow: none;
   overflow: clip;
   transition: border-color .18s var(--px-ease), box-shadow .18s var(--px-ease);
 }
@@ -168,27 +176,20 @@ main > section#gallery .amb-link::after {
   z-index: 1;
 }
 main > section#gallery .amb-cap {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px 16px;
-}
-main > section#gallery .amb-cap-cat {
-  font: 600 14px/1.35 var(--px-sans);
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--px-ink-3);
+  display: block;
+  padding: 14px 18px 16px;
+  border-top: 1px solid var(--px-line);
 }
 main > section#gallery .amb-cap-ttl {
-  font: 600 16.5px/1.4 var(--px-sans);
+  display: block;
+  font: 600 17px/1.4 var(--px-sans);
   color: var(--px-navy-950);
-  text-wrap: balance;
+  text-wrap: pretty;
   transition: color .18s var(--px-ease);
 }
 @media (max-width: 599px) {
-  main > section#gallery .amb-cap { padding: 11px 12px 13px; gap: 2px; }
-  main > section#gallery .amb-cap-cat { font-size: 14px; }
-  main > section#gallery .amb-cap-ttl { font-size: 15.5px; line-height: 1.35; }
+  main > section#gallery .amb-cap { padding: 12px 16px 14px; }
+  main > section#gallery .amb-cap-ttl { font-size: 16.5px; }
 }
 
 main > section#gallery .amb-tile:hover {
@@ -212,37 +213,46 @@ main > section#gallery .amb-tile:hover .amb-cap-ttl {
   }
 }
 
-/* ------------------------------------------------------------ Next step panel */
+/* ------------------------------------------------------------ Next step
+   A light card, not a second navy slab above the navy footer: one gold
+   action and an underlined text link. */
 main > section#amb-next .amb-cta {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 24px 48px;
-  padding: clamp(28px, 4vw, 48px) clamp(22px, 4vw, 52px);
+  padding: clamp(24px, 3.4vw, 40px) clamp(20px, 3.4vw, 44px);
   border-radius: var(--px-radius-lg);
-  background: var(--px-navy-950);
-  color: #fff;
-  border: 0;
+  background: var(--px-paper);
+  color: var(--px-ink);
+  border: 1px solid var(--px-line);
   box-shadow: none;
 }
 main > section#amb-next .amb-cta-copy {
   max-width: 64ch;
 }
+main > section#amb-next .amb-cta .eyebrow {
+  font: 700 var(--px-t-eyebrow)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  color: var(--px-blue-700);
+}
 main > section#amb-next .amb-cta h2 {
   margin: 0 0 12px !important;
-  font-size: clamp(26px, 1.6vw + 14px, 34px) !important;
-  line-height: 1.2 !important;
-  color: #fff !important;
+  font-size: clamp(24px, 1.2vw + 15px, 30px) !important;
+  line-height: 1.22 !important;
+  color: var(--px-navy-950) !important;
+  text-shadow: none !important;
 }
 main > section#amb-next .amb-cta p:not(.eyebrow) {
   margin: 0;
   font: 400 var(--px-t-body)/1.62 var(--px-sans);
-  color: rgba(226, 236, 250, .88);
+  color: var(--px-ink-2);
 }
 main > section#amb-next .amb-cta-acts {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  align-items: center;
+  gap: 12px 24px;
 }
 main > section#amb-next .amb-cta-acts .btn {
   display: inline-flex;
@@ -257,15 +267,35 @@ main > section#amb-next .amb-cta-acts .icon {
   height: 18px;
   vertical-align: 0;
 }
+main > section#amb-next .amb-cta-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 600 16px/1.3 var(--px-sans);
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease);
+}
+main > section#amb-next .amb-cta-link:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
 /* Side by side only when the French labels still leave the copy room. */
 @media (min-width: 1200px) {
   main > section#amb-next .amb-cta {
     grid-template-columns: minmax(0, 1fr) auto;
   }
+  main > section#amb-next .amb-cta-acts {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 @media (max-width: 599px) {
-  main > section#amb-next .amb-cta-acts { flex-direction: column; align-items: stretch; }
+  main > section#amb-next .amb-cta-acts { flex-direction: column; align-items: stretch; gap: 8px; }
   main > section#amb-next .amb-cta-acts .btn { white-space: normal; text-align: center; }
+  main > section#amb-next .amb-cta-link { justify-content: center; }
 }
 
 /* ------------------------------------------------------------ Lightbox (PhotoSwipe) */
@@ -349,7 +379,8 @@ main > section#amb-next .amb-cta-acts .icon {
 
 @media (prefers-reduced-motion: reduce) {
   main > section#gallery .amb-tile,
-  main > section#gallery .amb-cap-ttl {
+  main > section#gallery .amb-cap-ttl,
+  main > section#amb-next .amb-cta-link {
     transition: none;
   }
 }

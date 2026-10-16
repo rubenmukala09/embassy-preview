@@ -3,7 +3,9 @@
    Scope: only sections carrying the .sp class, which never appear in the
    frozen zones (banner, header, notice bar, hero, quick-access dock, footer).
    Pattern: GOV.UK "start page" (purpose, prototype inset, before you start,
-   step-by-step), a checklist by service, and one navy status panel.
+   step-by-step), a checklist by service, and a light status card that
+   holds the page's single gold action (the "Where to submit" card uses a
+   plain text link so the two never compete).
 
    Specificity: every rule starts with `main > section.sp:not(#sp-x)`. The
    :not(#sp-x) adds one id of weight so these page rules reliably beat the
@@ -43,10 +45,17 @@ main > section.sp:not(#sp-x) .sp-notice {
   max-width: 680px;
   margin: 0;
 }
+/* One H2 size for every section on this page (start page, checklist band
+   and status card), overriding the larger global .sec-head h2 size. */
+main > section.sp:not(#sp-x) .sp-h2,
+main > section.sp:not(#sp-x) .sec-head h2,
+main > section.sp:not(#sp-x) .sp-panel h2 {
+  font-size: clamp(26px, 1.1vw + 17px, 32px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.012em !important;
+}
 main > section.sp:not(#sp-x) .sp-h2 {
   margin: clamp(44px, 5vw, 64px) 0 20px;
-  font-size: clamp(24px, 1.1vw + 16px, 30px) !important;
-  line-height: 1.22 !important;
   letter-spacing: -.012em !important;
   color: var(--px-navy-950);
 }
@@ -110,7 +119,7 @@ main > section.sp:not(#sp-x) .sp-aside {
 }
 @media (max-width: 960px) {
   main > section.sp:not(#sp-x) .sp-aside {
-    max-width: 560px;
+    margin-top: 40px;
   }
 }
 main > section.sp:not(#sp-x) .sp-card {
@@ -131,37 +140,60 @@ main > section.sp:not(#sp-x) .sp-card-title {
 main > section.sp:not(#sp-x) .sp-facts {
   margin: 0;
 }
+main > section.sp:not(#sp-x) .sp-facts > div {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--px-line);
+}
+main > section.sp:not(#sp-x) .sp-facts > div:last-child {
+  border-bottom: 0;
+}
 main > section.sp:not(#sp-x) .sp-facts dt {
   margin: 0;
-  padding-top: 14px;
   font: 600 14px/1.4 var(--px-sans);
   color: var(--px-ink-3);
 }
 main > section.sp:not(#sp-x) .sp-facts dd {
   margin: 2px 0 0;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--px-line);
   font-size: var(--px-t-body);
   line-height: 1.5;
   color: var(--px-ink);
   font-variant-numeric: tabular-nums;
 }
-main > section.sp:not(#sp-x) .sp-facts dd:last-child {
-  border-bottom: 0;
+/* Tablet: the card spans the column; address on its own row, the two
+   sets of hours side by side. */
+@media (min-width: 600px) and (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+  }
+  main > section.sp:not(#sp-x) .sp-facts > div:first-child {
+    grid-column: 1 / -1;
+  }
+  main > section.sp:not(#sp-x) .sp-facts > div:nth-last-child(2) {
+    border-bottom: 0;
+  }
 }
-main > section.sp:not(#sp-x) .sp-action {
-  display: flex;
+main > section.sp:not(#sp-x) .sp-card-link {
+  margin: 4px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--px-line);
+  font-size: var(--px-t-body) !important;
+}
+main > section.sp:not(#sp-x) .sp-card-link a {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  min-height: 48px;
-  margin-top: 20px;
+  min-height: 44px;
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease);
 }
-main > section.sp:not(#sp-x) .sp-action .icon {
-  width: 18px;
-  height: 18px;
-  vertical-align: 0;
+main > section.sp:not(#sp-x) .sp-card-link a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
 }
 
 /* ------------------------------------------------- Checklist by service */
@@ -232,40 +264,36 @@ main > section.sp:not(#sp-x) .sp-check-link {
   font-size: 15.5px !important;
 }
 
-/* ------------------------------------------------- Status panel (navy) */
+/* ------------------------------------------------- Status card (light) */
+/* A secondary task, so a calm paper card (same 3px navy top rule as the
+   aside card) rather than a dark band stacked on the navy footer. */
 main > section.sp:not(#sp-x) .sp-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, .9fr);
   gap: clamp(28px, 4vw, 56px);
-  align-items: center;
-  padding: clamp(28px, 4.5vw, 56px);
-  background: var(--px-navy-900);
-  border-radius: var(--px-radius-lg);
-  color: #fff;
+  align-items: start;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-top: 3px solid var(--px-navy-900);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  color: var(--px-ink);
 }
 @media (max-width: 900px) {
   main > section.sp:not(#sp-x) .sp-panel {
     grid-template-columns: minmax(0, 1fr);
   }
 }
-main > section.sp:not(#sp-x) .sp-panel .eyebrow {
-  color: var(--px-gold-500) !important;
-}
-main > section.sp:not(#sp-x) .sp-panel .eyebrow::before {
-  background: var(--px-gold-500) !important;
-}
 main > section.sp:not(#sp-x) .sp-panel h2 {
   margin: 0 0 14px;
-  font-size: clamp(26px, 1.6vw + 16px, 36px) !important;
-  line-height: 1.18 !important;
-  letter-spacing: -.012em !important;
-  color: #fff !important;
+  color: var(--px-navy-950) !important;
 }
 main > section.sp:not(#sp-x) .sp-panel-lead {
   margin: 0;
   max-width: 52ch;
   font: 400 var(--px-t-lead)/1.6 var(--px-sans) !important;
-  color: rgba(226, 236, 250, .88) !important;
+  color: var(--px-ink-2) !important;
 }
 main > section.sp:not(#sp-x) .sp-panel-actions {
   display: flex;
@@ -287,14 +315,14 @@ main > section.sp:not(#sp-x) .sp-panel-actions .icon {
 }
 main > section.sp:not(#sp-x) .sp-panel-side {
   padding: clamp(20px, 2.4vw, 28px);
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .16);
-  border-radius: var(--px-radius);
+  background: var(--px-canvas);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-ctl);
 }
 main > section.sp:not(#sp-x) .sp-panel-side h3 {
   margin: 0 0 14px;
   font: 700 18px/1.3 var(--px-serif) !important;
-  color: #fff !important;
+  color: var(--px-navy-950) !important;
 }
 main > section.sp:not(#sp-x) .sp-panel-list {
   list-style: none;
@@ -311,7 +339,7 @@ main > section.sp:not(#sp-x) .sp-panel-warn {
   margin: 0;
   font-size: 16px !important;
   line-height: 1.5 !important;
-  color: rgba(234, 242, 253, .92) !important;
+  color: var(--px-ink) !important;
 }
 main > section.sp:not(#sp-x) .sp-panel-list li::before,
 main > section.sp:not(#sp-x) .sp-panel-list li::marker {
@@ -319,20 +347,21 @@ main > section.sp:not(#sp-x) .sp-panel-list li::marker {
 }
 main > section.sp:not(#sp-x) .sp-panel-list .icon,
 main > section.sp:not(#sp-x) .sp-panel-warn .icon {
+  flex: none;
   width: 18px;
   height: 18px;
   margin-top: 3px;
-  color: #9ec3f5;
+  color: var(--px-blue-700);
 }
 main > section.sp:not(#sp-x) .sp-panel-warn {
   margin-top: 18px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, .16);
+  border-top: 1px solid var(--px-line);
   font-weight: 600 !important;
-  color: #fff !important;
+  color: var(--px-navy-950) !important;
 }
 main > section.sp:not(#sp-x) .sp-panel-warn .icon {
-  color: var(--px-gold-500);
+  color: var(--px-gold-ink);
 }
 @media (max-width: 480px) {
   main > section.sp:not(#sp-x) .sp-panel-actions .btn {
@@ -345,15 +374,6 @@ main > section.sp:not(#sp-x) .sp-panel-warn .icon {
 main > section.sp:not(#sp-x),
 main > section.sp:not(#sp-x) * {
   hyphens: manual !important;
-}
-/* The global ".sec-head p" lede rule (0,2,3) outranks ".eyebrow" (0,2,2)
-   when the eyebrow is a <p>, so it rendered at 19px/400. Restore it. */
-main > section.sp:not(#sp-x) .sec-head .eyebrow {
-  font: 700 var(--px-t-eyebrow)/1.3 var(--px-sans) !important;
-  letter-spacing: .14em !important;
-  color: var(--px-navy-900) !important;
-  max-width: none !important;
-  margin: 0 0 12px !important;
 }
 main > section.sp:not(#sp-x) .sp-line {
   display: block;
@@ -377,4 +397,11 @@ main > section.sp:not(#sp-x) .sp-check-link a {
    shows behind the first section on 2K/4K screens. */
 main > section.sp:not(#sp-x):not(.bg-ivory) {
   background-color: var(--px-paper);
+}
+
+/* Tablet and phone: the inset spans the column like the cards below it. */
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-notice {
+    max-width: none;
+  }
 }

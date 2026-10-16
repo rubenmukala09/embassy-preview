@@ -4,7 +4,10 @@
    page's own content sections carry, so nothing here can reach the frozen
    zones (preview banner, top bar, header, notice bar, hero, dock, footer).
    Builds on aurora/pro-system.css tokens (--px-*) and components
-   (.px-summary, .px-meta, .icon, .icon-chip).
+   (.px-summary, .px-meta, .icon).
+   Sections: 1 contact details + hours (department emails live in the
+   summary list), 2 visiting + map, 3 FAQ + website feedback.
+   Section heads carry no eyebrow: one H2 per section.
    ============================================================================ */
 
 main > section.ct-sec {
@@ -45,8 +48,8 @@ main > section.ct-sec .ct-note {
 }
 main > section.ct-sec dd a[href]:not(.btn),
 main > section.ct-sec .ct-more > a[href]:not(.btn),
-main > section.ct-sec .ct-dept-link[href]:not(.btn),
-main > section.ct-sec .px-meta a[href]:not(.btn) {
+main > section.ct-sec .ct-link[href]:not(.btn),
+main > section.ct-sec .acc-a a[href]:not(.btn) {
   color: var(--px-blue-700);
   font-weight: 600;
   text-decoration: underline;
@@ -57,19 +60,16 @@ main > section.ct-sec .px-meta a[href]:not(.btn) {
 }
 main > section.ct-sec dd a[href]:not(.btn):hover,
 main > section.ct-sec .ct-more > a[href]:not(.btn):hover,
-main > section.ct-sec .ct-dept-link[href]:not(.btn):hover,
-main > section.ct-sec .px-meta a[href]:not(.btn):hover {
+main > section.ct-sec .ct-link[href]:not(.btn):hover,
+main > section.ct-sec .acc-a a[href]:not(.btn):hover {
   color: var(--px-navy-900);
   text-decoration-thickness: 2px;
 }
 
 /* ------------------------------------------- 1. Contact details + hours */
+/* The meta hairline spans the full content column, like the cards below. */
 main > section.ct-details .px-meta {
-  max-width: 760px;
-}
-/* inline padding enlarges the tap area without moving the line */
-main > section.ct-details .px-meta a[href] {
-  padding-block: 14px;
+  max-width: none;
 }
 main > section.ct-details .ct-grid {
   display: grid;
@@ -120,6 +120,18 @@ main > section.ct-details .ct-summary > dd.ct-multi {
 }
 main > section.ct-details .ct-summary > dd.ct-multi .ct-note {
   margin-top: 2px;
+}
+/* Email by department: three mailto links (anchors kept for inbound links) */
+main > section.ct-details .ct-summary > dd.ct-depts {
+  gap: 8px;
+}
+main > section.ct-details .ct-depts > a[href] {
+  scroll-margin-top: 140px;
+  border-radius: 4px;
+}
+main > section.ct-details .ct-depts > a[href]:target {
+  outline: 3px solid rgba(45, 112, 214, .35);
+  outline-offset: 2px;
 }
 main > section.ct-details .ct-actions {
   display: flex;
@@ -205,6 +217,7 @@ main > section.ct-details .ct-hours-table tbody tr:last-child > * {
   border-bottom: 0;
 }
 main > section.ct-details .ct-hours .ct-note {
+  max-width: none;
   margin-top: 18px;
   padding-top: 14px;
   border-top: 1px solid var(--px-line);
@@ -314,57 +327,30 @@ main > section.ct-visit .ct-map-bar .btn .icon {
   vertical-align: 0;
 }
 
-/* ------------------------------------------------------- 3. Departments */
-main > section.ct-depts .ct-dept-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--ct-gap);
-}
-main > section.ct-sec .ct-dept {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  scroll-margin-top: 130px;
-  transition: border-color .2s var(--px-ease), box-shadow .2s var(--px-ease);
-}
-main > section.ct-sec .ct-dept:is(:hover, :focus-within) {
-  border-color: rgba(45, 112, 214, .55);
-  box-shadow: var(--px-shadow-hover);
-}
-main > section.ct-sec .ct-dept:target {
-  border-color: var(--px-blue-600);
-  box-shadow: 0 0 0 3px rgba(45, 112, 214, .16), var(--px-shadow-hover);
-}
-main > section.ct-sec .ct-dept .icon-chip,
-main > section.ct-sec .ct-feedback .icon-chip {
-  margin-bottom: 18px;
-}
-main > section.ct-sec .ct-dept h3,
+/* ------------------------------------------------ Website feedback link */
 main > section.ct-sec .ct-feedback h3 {
   margin: 0 0 8px;
 }
-main > section.ct-sec .ct-dept p,
 main > section.ct-sec .ct-feedback p {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   color: var(--px-ink-2);
 }
-main > section.ct-sec .ct-dept-link {
+main > section.ct-sec .ct-link {
   display: inline-flex;
   align-items: flex-start;
-  padding-block: 11px;
   gap: 8px;
   min-height: 44px;
-  margin-top: auto;
+  padding-block: 11px;
   font-size: 16px;
 }
-main > section.ct-sec .ct-dept-link .icon {
+main > section.ct-sec .ct-link .icon {
   width: 18px;
   height: 18px;
   margin-top: 2px;
   vertical-align: 0;
 }
 
-/* ------------------------------------------- 4. FAQ + website feedback */
+/* ------------------------------------------- 3. FAQ + website feedback */
 main > section.ct-faq .ct-faq-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
@@ -460,6 +446,15 @@ main > section#contact-faq.ct-sec .ct-accordion .acc-a .inner {
   font: 400 16.5px/1.65 var(--px-sans) !important;
   color: var(--px-ink-2) !important;
 }
+main > section#contact-faq.ct-sec .ct-accordion .acc-a .inner > p {
+  margin: 0;
+  font: inherit !important;
+  color: inherit;
+}
+/* inline padding enlarges the tap area without moving the line */
+main > section#contact-faq.ct-sec .ct-accordion .acc-a a[href] {
+  padding-block: 12px;
+}
 
 /* Bottom padding only on the open row, so collapsed rows stay compact
    (faq-system.css collapses with grid 0fr, which keeps inner padding). */
@@ -468,33 +463,6 @@ main > section#contact-faq.ct-sec .ct-accordion .acc-item.open .acc-a .inner {
 }
 
 /* ------------------------------------------------------------ Responsive */
-@media (max-width: 1080px) {
-  /* Departments become compact rows: icon | name, remit, link */
-  main > section.ct-depts .ct-dept-grid {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: 760px;
-    gap: 16px;
-  }
-  main > section.ct-sec .ct-dept {
-    display: grid;
-    grid-template-columns: 44px minmax(0, 1fr);
-    column-gap: 18px;
-    align-items: start;
-  }
-  main > section.ct-sec .ct-dept .icon-chip {
-    grid-row: 1 / span 3;
-    margin-bottom: 0;
-  }
-  main > section.ct-sec .ct-dept h3 {
-    margin-top: 8px;
-  }
-  main > section.ct-sec .ct-dept p {
-    margin-bottom: 6px;
-  }
-  main > section.ct-sec .ct-dept-link {
-    justify-self: start;
-  }
-}
 @media (max-width: 960px) {
   main > section.ct-details .ct-grid,
   main > section.ct-visit .ct-visit-grid,
@@ -503,18 +471,10 @@ main > section#contact-faq.ct-sec .ct-accordion .acc-item.open .acc-a .inner {
   }
   main > section.ct-faq .ct-feedback {
     margin-top: 0;
-    max-width: 640px;
+    max-width: none;
   }
 }
 @media (max-width: 640px) {
-  main > section.ct-sec .ct-dept {
-    grid-template-columns: 40px minmax(0, 1fr);
-    column-gap: 14px;
-  }
-  main > section.ct-sec .ct-dept .icon-chip {
-    width: 40px;
-    height: 40px;
-  }
   main > section.ct-details .ct-actions .btn {
     flex: 1 1 100%;
     min-height: 48px;

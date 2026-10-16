@@ -5,11 +5,14 @@
    can never reach the preview banner, header, hero, quick-access dock,
    footer or the shared floating chrome.
 
-   One grid for the whole page: a wide column (1.5fr) and a narrow column
-   (1fr) with the same gap, so the guidance list, the Next observance block
-   and the sources list all start on the same vertical line.
-   One list style: hairline rows, 18px vertical rhythm, sans 600 titles,
-   14px meta, a 20px icon column, flush with the rule.
+   1. Recent publications: lead story (1.5fr) + guidance list (1fr).
+   2. Public holidays: sec-head (1.5fr) + the "Next public holiday" block
+      (1fr), so the guidance list and the navy block share a vertical line.
+   3. Official sources: sec-head (1fr) + the source list (1.5fr), so the
+      long rows get the wide column.
+   One heading scale: section H2s lead (27-38px), card titles follow
+   (21-26px), list titles 18px. One list style: hairline rows, 18px
+   vertical rhythm, sans 600 titles, 14px meta, a 20px icon column.
    ============================================================================ */
 
 main > section:is(#published-news, #annual-calendar, #resources) {
@@ -48,6 +51,8 @@ main > section:is(#published-news, #annual-calendar, #resources) .sec-head .eyeb
 main > section:is(#published-news, #annual-calendar, #resources) .sec-head h2 {
   max-width: none !important;
   margin-inline: 0 !important;
+  font-size: clamp(27px, 1.1vw + 19px, 38px) !important;
+  line-height: 1.2 !important;
 }
 main > section:is(#published-news, #annual-calendar, #resources) > .container {
   background-image: none !important;
@@ -82,6 +87,9 @@ main > section#published-news .nw-lead {
 main > section#published-news .nw-lead:is(:hover, :focus-within) {
   border-color: rgba(45, 112, 214, .55);
   box-shadow: var(--px-shadow-hover);
+}
+main > section#published-news .nw-lead-media[hidden] {
+  display: none !important;
 }
 main > section#published-news .nw-lead-media {
   display: flex;
@@ -136,9 +144,9 @@ main > section#published-news .nw-dot {
   color: var(--px-ink-3);
 }
 main > section#published-news .nw-lead h3 {
-  max-width: 30ch;
+  max-width: 32ch;
   margin: 0;
-  font: 700 clamp(23px, 1.1vw + 15px, 30px)/1.26 var(--px-serif);
+  font: 700 clamp(21px, .5vw + 17px, 26px)/1.25 var(--px-serif);
   letter-spacing: -.012em;
   color: var(--px-navy-950);
   text-wrap: balance;
@@ -261,10 +269,46 @@ main > section#published-news .nw-item:hover h4 {
   color: var(--px-blue-700);
 }
 
+/* Events pointer under the guidance list (plain text: the link itself is
+   in Official sources, so it is not repeated here). */
+main > section#published-news .nw-events-note {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 20px 0 0;
+  font: 400 15px/1.55 var(--px-sans);
+  color: var(--px-ink-2);
+}
+main > section#published-news .nw-events-note .icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  color: var(--px-ink-3);
+}
+
 @media (min-width: 981px) {
   /* Cap height of the side title meets the top edge of the lead card. */
   main > section#published-news .nw-side-title {
     margin-top: -3px;
+  }
+  /* The card is stretched to the list's height: the photo takes the extra
+     height, so the summary and its link stay together. */
+  main > section#published-news .nw-lead-media {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  main > section#published-news .nw-lead-media img {
+    flex: 1 1 auto;
+    height: 0;
+    min-height: 300px;
+    aspect-ratio: auto;
+  }
+  main > section#published-news .nw-lead-body {
+    flex: 0 0 auto;
+  }
+  main > section#published-news .nw-cta {
+    margin-top: 4px;
   }
 }
 
@@ -581,11 +625,11 @@ main > section#annual-calendar .nw-cal-note a:hover {
 }
 
 /* ------------------------------------------------------------------------
-   3. Official sources: header in the wide column, list in the narrow one
+   3. Official sources: header in the narrow column, list in the wide one
    ------------------------------------------------------------------------ */
 main > section#resources .nw-src-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
   gap: 8px var(--nw-gap);
   align-items: start;
 }
@@ -594,6 +638,12 @@ main > section#resources .nw-src-grid .sec-head {
 }
 main > section#resources .px-links {
   border-top: 2px solid var(--px-navy-900);
+}
+@media (min-width: 981px) {
+  /* Top rule sits level with the eyebrow's cap height. */
+  main > section#resources .px-links {
+    margin-top: 6px;
+  }
 }
 main > section#resources .px-links a {
   gap: 16px;
@@ -626,7 +676,7 @@ main > section#resources .nw-src-text {
 }
 main > section#resources .px-links-name {
   line-height: 1.4;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 main > section#resources .px-links .icon {
   flex: none;

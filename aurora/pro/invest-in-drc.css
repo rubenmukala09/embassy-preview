@@ -47,11 +47,11 @@ main > section:is(.inv-intro, .inv-anapi) .inv-lead {
   font: 400 var(--px-t-lead)/1.6 var(--px-sans);
   color: var(--px-ink-2);
 }
-main > section:is(.inv-intro, .inv-portals) .inv-textlink {
+main > section:is(.inv-intro, .inv-anapi, .inv-portals) .inv-textlink {
   margin: 22px 0 0;
   font-size: var(--px-t-body);
 }
-main > section:is(.inv-intro, .inv-portals) .inv-textlink a {
+main > section:is(.inv-intro, .inv-anapi, .inv-portals) .inv-textlink a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -62,7 +62,7 @@ main > section:is(.inv-intro, .inv-portals) .inv-textlink a {
   text-underline-offset: 4px;
   transition: color .18s var(--px-ease);
 }
-main > section:is(.inv-intro, .inv-portals) .inv-textlink a:hover {
+main > section:is(.inv-intro, .inv-anapi, .inv-portals) .inv-textlink a:hover {
   color: var(--px-navy-950);
   text-decoration-thickness: 2px;
 }
@@ -95,7 +95,7 @@ main > section.inv-intro .inv-glance-title {
   color: var(--px-ink-3);
 }
 main > section.inv-intro .inv-glance .px-summary {
-  grid-template-columns: minmax(130px, 34%) 1fr;
+  grid-template-columns: 11em minmax(0, 1fr);
 }
 main > section.inv-intro .inv-glance .px-summary > dt,
 main > section.inv-intro .inv-glance .px-summary > dd {
@@ -177,7 +177,7 @@ main > section.inv-sectors-sec .inv-sectors {
   display: grid;
   gap: 16px;
 }
-@media (min-width: 820px) {
+@media (min-width: 640px) {
   main > section.inv-sectors-sec .inv-sectors {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px 20px;
@@ -187,10 +187,10 @@ main > section.inv-sectors-sec .inv-sectors > .inv-sector {
   position: relative;
   margin: 0;
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 20px;
+  grid-template-columns: minmax(0, 1fr) 20px;
   gap: 16px;
   align-items: start;
-  padding: 22px 22px 22px 20px;
+  padding: 22px 22px 24px;
   background: var(--px-paper);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
@@ -239,12 +239,8 @@ main > section.inv-sectors-sec .inv-sector:hover .inv-sector-go {
 }
 @media (max-width: 479px) {
   main > section.inv-sectors-sec .inv-sectors > .inv-sector {
-    grid-template-columns: minmax(0, 1fr) 20px;
     gap: 12px;
     padding: 18px 18px 20px;
-  }
-  main > section.inv-sectors-sec .inv-sector .icon-chip {
-    display: none;
   }
 }
 
@@ -262,7 +258,7 @@ main > section.inv-anapi .inv-anapi-grid {
 }
 main > section.inv-anapi .inv-checks {
   list-style: none;
-  margin: 22px 0 28px;
+  margin: 22px 0 14px;
   padding: 0;
   border-top: 1px solid var(--px-line);
   max-width: 560px;
@@ -283,15 +279,17 @@ main > section.inv-anapi .inv-checks .icon {
   color: var(--px-blue-700);
   stroke-width: 2.2;
 }
-main > section.inv-anapi .inv-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+/* ANAPI is a tertiary link here (the hero and the portal list also point
+   to it); the inquiry email in the contact panel is the one gold action. */
+main > section.inv-anapi .inv-textlink {
+  margin: 0;
 }
-main > section.inv-anapi .inv-btn .icon {
-  width: 18px;
-  height: 18px;
-  vertical-align: 0;
+main > section.inv-anapi .inv-textlink a {
+  gap: 8px;
+}
+main > section.inv-anapi .inv-textlink .icon {
+  width: 16px;
+  height: 16px;
 }
 main > section.inv-anapi .inv-steps {
   padding: clamp(24px, 3.2vw, 44px);
@@ -332,7 +330,7 @@ main > section.inv-framework .inv-card {
   box-shadow: var(--px-shadow);
 }
 main > section.inv-framework .inv-card h3 {
-  margin: 18px 0 12px;
+  margin: 0 0 14px;
   font: 700 var(--px-t-h3)/1.3 var(--px-serif);
   color: var(--px-navy-950);
 }

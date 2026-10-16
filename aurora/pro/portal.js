@@ -1,5 +1,5 @@
 /* ============================================================================
-   portal.html: prototype of the planned online appointment request.
+   portal.html: prototype of a proposed online appointment request.
    One question per screen, then "Check your answers" and the published
    requirements for the chosen service. Nothing is sent, stored or logged:
    the answers live only in this page's radio buttons. All visible text is
@@ -74,9 +74,6 @@
     });
     $all("[data-ps-count]").forEach(function (el) {
       el.hidden = Number(el.getAttribute("data-ps-count")) !== step;
-    });
-    $all(".ps-flow-dots i").forEach(function (dot, i) {
-      dot.classList.toggle("is-on", i < step);
     });
     if (step === 3) buildResult();
     if (focus !== false) {

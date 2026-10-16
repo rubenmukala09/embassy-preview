@@ -35,6 +35,24 @@ html body main > section.lg .lg-grid {
   }
 }
 
+/* Large screens: the document grid takes the width of the footer's content grid
+   (1240px on screen), so the contents list and the footer share one left edge.
+   The shared layer zooms below-hero sections, so the width is divided by that zoom. */
+@media (min-width: 1920px) {
+  html body main > section.lg > .container { width: auto; max-width: none; }
+  html body main > section.lg .lg-grid { max-width: calc(1240px / 1.12); margin-inline: auto; }
+}
+@media (min-width: 2400px) {
+  html body main > section.lg .lg-grid {
+    max-width: calc(1240px / 1.3);
+    grid-template-columns: 252px minmax(0, 1fr);
+    column-gap: 40px;
+  }
+}
+@media (min-width: 3000px) {
+  html body main > section.lg .lg-grid { max-width: calc(1240px / 1.49); }
+}
+
 /* ------------------------------------------------------------- contents */
 html body main > section.lg .lg-toc {
   padding: 0;
@@ -54,8 +72,13 @@ html body main > section.lg .lg-toc .lg-toc-sum {
 }
 html body main > section.lg .lg-toc .lg-toc-sum::-webkit-details-marker { display: none; }
 html body main > section.lg .lg-toc .lg-toc-sum::marker { content: ""; }
+/* on phones and tablets the title is the label of a control, so it reads as one:
+   sentence case at body size rather than the 13px capitals of the shared eyebrow */
 html body main > section.lg .lg-toc .lg-toc-sum .px-toc-title {
   margin: 0 !important;
+  font: 600 16.5px/1.3 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+  text-transform: none;
   color: var(--px-navy-950);
 }
 html body main > section.lg .lg-toc .lg-toc-chev {
@@ -110,7 +133,13 @@ html body main > section.lg .lg-toc .lg-toc-list li > a[href]:hover .lg-t { text
   }
   /* the list stays visible on wide screens even before legal.js opens it */
   html body main > section.lg .lg-toc .lg-toc-fold::details-content { content-visibility: visible; }
-  html body main > section.lg .lg-toc .lg-toc-sum .px-toc-title { color: var(--px-ink-3); }
+  /* wide screens: the shared "On this page" label, at the 14px meta floor */
+  html body main > section.lg .lg-toc .lg-toc-sum .px-toc-title {
+    font: 700 14px/1.3 var(--px-sans) !important;
+    letter-spacing: .1em !important;
+    text-transform: uppercase;
+    color: var(--px-ink-3);
+  }
   html body main > section.lg .lg-toc .lg-toc-chev { display: none; }
   html body main > section.lg .lg-toc .lg-toc-list { border-top: 0; padding: 0 12px 14px 8px; }
   /* compact enough for the 20-entry Terms list to fit a 768px-tall laptop screen */
@@ -167,8 +196,9 @@ html body main > section.lg .lg-sec { scroll-margin-top: 24px; }
 }
 html body main > section.lg .lg-body .lg-sec h2 {
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
-  column-gap: .42em;
+  /* fixed number column: titles start at the same x for 1.–9. and 10.–15. */
+  grid-template-columns: 1.6em minmax(0, 1fr);
+  column-gap: .25em;
   margin: 2.6em 0 .7em;
   font-family: var(--px-serif);
   font-size: 22px !important;
@@ -245,12 +275,18 @@ html body main > section.lg .lg-body .lg-contact {
   background: var(--px-paper);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
-  box-shadow: var(--px-shadow);
+  box-shadow: none; /* flat, like the contents list, inset and status note */
 }
 html body main > section.lg .lg-body .lg-contact .lg-contact-title {
-  margin: 0 0 10px;
+  margin: 0 0 2px;
   font: 600 17px/1.4 var(--px-sans);
   color: var(--px-navy-950);
+}
+html body main > section.lg .lg-body .lg-contact .lg-contact-hint {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--px-ink-2);
 }
 html body main > section.lg .lg-body .lg-contact-list { margin: 0; }
 html body main > section.lg .lg-body .lg-contact-list > div {
@@ -273,7 +309,11 @@ html body main > section.lg .lg-body .lg-contact-list dd { color: var(--px-ink);
 }
 /* touch screens: full-height targets for the e-mail and telephone links */
 @media (max-width: 1099px) {
-  html body main > section.lg .lg-body .lg-contact-list > div { padding: 4px 0; align-items: center; }
+  /* labels stay on the first line of their value; the 44px height comes from the link itself */
+  html body main > section.lg .lg-body .lg-contact-list > div { padding: 0; align-items: start; }
+  html body main > section.lg .lg-body .lg-contact-list dt { padding-top: 10px; }
+  html body main > section.lg .lg-body .lg-contact-list dd { padding: 10px 0; }
+  html body main > section.lg .lg-body .lg-contact-list dd:has(> a[href]) { padding: 0; }
   html body main > section.lg .lg-body .lg-contact-list dd a[href] { display: inline-flex; align-items: center; min-height: 44px; }
 }
 

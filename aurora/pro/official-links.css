@@ -264,7 +264,7 @@ main > section.ol-sec .ol-group-foot > a[href]:not(.btn):hover {
   main > section.ol-sec .ol-links .ol-desc {
     font-size: 15px;
   }
-  /* Tighter rhythm so the 22-entry directory stays scannable */
+  /* Tighter rhythm so the 21-entry directory stays scannable */
   main > section.ol-sec .ol-intro {
     gap: 28px;
     margin-bottom: 40px;
@@ -297,5 +297,30 @@ main > section.ol-sec .ol-group-foot > a[href]:not(.btn):hover {
   main > section.ol-sec .ol-links .ol-desc {
     margin-top: 2px;
     line-height: 1.45;
+  }
+}
+
+/* ------------------------------------------------ Fix pass (critique)
+   One heading per section: the eyebrow was removed from the markup, so the
+   H2 leads; let it set on one line where the column allows. */
+main > section.ol-sec .sec-head h2 {
+  max-width: 24ch !important;
+}
+/* Jump links as a 2 x 2 grid at every width, so no item is orphaned */
+main > section.ol-sec .ol-jump ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 0 32px;
+}
+@media (max-width: 960px) {
+  /* Single column: the safety notice spans the full column like the lists */
+  main > section.ol-sec .ol-safety {
+    max-width: none;
+  }
+}
+@media (max-width: 560px) {
+  main > section.ol-sec .ol-jump ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
   }
 }

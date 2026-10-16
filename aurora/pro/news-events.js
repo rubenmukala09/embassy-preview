@@ -1,17 +1,30 @@
-/* News & Events: small page enhancement for the national calendar.
+/* News & Events: small page enhancement.
    annual-events.js (shared) renders each holiday as an <h3> under an <h3>
    month label, with the full date repeated under the name. After every render
    (first load, year change, language change) this script:
      1. turns each holiday name into an <h4>, so the outline reads
         H2 Public holidays > H3 month > H4 holiday;
      2. replaces the repeated full date with the weekday only, since the day
-        chip and the month heading already give the date.
-   The "Next observance" label is left as rendered. */
+        chip and the month heading already give the date, and prefixes past
+        dates with "Past ·" / "Passé ·" so the state is not colour-only;
+     3. labels the next row "Next public holiday" / "Prochain jour férié" and
+        capitalises the date in the navy "Next public holiday" block.
+   It also hides the lead-story figure if its image fails to load, so the card
+   never shows an empty box with a broken-image glyph. */
 (function () {
   "use strict";
 
+  var media = document.querySelector("#published-news .nw-lead-media");
+  var img = media && media.querySelector("img");
+  if (img) {
+    var fail = function () { media.hidden = true; };
+    if (img.complete && img.naturalWidth === 0 && img.currentSrc) fail();
+    img.addEventListener("error", fail);
+  }
+
   var list = document.querySelector("#annual-calendar [data-annual-calendar]");
   if (!list) return;
+  var nextDate = document.querySelector("#annual-calendar [data-next-date]");
 
   function isFr() {
     if (document.documentElement.lang === "fr") return true;
@@ -41,12 +54,25 @@
       }
 
       var state = event.querySelector(".annual-state");
-      var iso = event.getAttribute("data-date");
-      if (state && iso && !state.classList.contains("next")) {
-        var date = new Date(iso + "T00:00:00Z");
-        if (!isNaN(date.getTime())) state.textContent = capitalise(weekday.format(date));
+      if (!state) return;
+      if (state.classList.contains("next")) {
+        state.textContent = fr ? "Prochain jour férié" : "Next public holiday";
+        return;
       }
+      var iso = event.getAttribute("data-date");
+      if (!iso) return;
+      var date = new Date(iso + "T00:00:00Z");
+      if (isNaN(date.getTime())) return;
+      var day = capitalise(weekday.format(date));
+      if (event.classList.contains("is-past")) day = (fr ? "Passé · " : "Past · ") + day;
+      state.textContent = day;
     });
+
+    if (nextDate) {
+      var text = nextDate.textContent.trim();
+      var cap = capitalise(text);
+      if (cap !== text) nextDate.textContent = cap;
+    }
   }
 
   tidy();

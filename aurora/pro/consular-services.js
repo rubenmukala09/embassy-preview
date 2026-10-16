@@ -3,7 +3,8 @@
      aria-current="true". It never scrolls the page itself (no smooth-scroll
      hijacking); in-page jumps keep the browser / shared-site behaviour.
    - The third-party YouTube walkthrough loads only when the visitor asks for
-     it, from youtube-nocookie.com (allowed by the page CSP frame-src). */
+     it, from youtube-nocookie.com (allowed by the page CSP frame-src); the
+     compact media row then becomes a full-column 16:9 frame (.is-playing). */
 (function () {
   "use strict";
 
@@ -64,6 +65,7 @@
       frame.title = a.getAttribute("data-yt-title") || "Video";
       frame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
       frame.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      a.parentNode.classList.add("is-playing");
       a.parentNode.replaceChild(frame, a);
       frame.focus();
     });

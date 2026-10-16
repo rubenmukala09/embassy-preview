@@ -40,12 +40,14 @@
     cTarget: { en: "Published target", fr: "Délai publié" },
     cStatus: { en: "Status", fr: "Situation" },
     today: { en: "Today", fr: "Aujourd’hui" },
+    todayM: { en: "opened today", fr: "ouvert aujourd’hui" },
     day: { en: "day", fr: "jour" },
     days: { en: "days", fr: "jours" },
     within: { en: "Within target", fr: "Dans les délais" },
     due: { en: "Due today", fr: "Échéance aujourd’hui" },
     past: { en: "Past target", fr: "Délai dépassé" },
-    none: { en: "No fixed target", fr: "Pas de délai fixe" },
+    none: { en: "In progress", fr: "En cours" },
+    paused: { en: "Clock paused", fr: "Délai suspendu" },
     closed: { en: "Closed", fr: "Clôturé" },
     empty: { en: "No files are held by this desk.", fr: "Aucun dossier n’est détenu par ce poste." },
     checklist: { en: "Checklist", fr: "Liste des pièces" },
@@ -211,6 +213,9 @@
   }
   function status(c) {
     if (c.stage === "closed") return { key: "closed", text: t(UI.closed) };
+    // Waiting on the applicant: the published clock does not run
+    if (c.stage === "hold") return { key: "paused", text: t(UI.paused) };
+    // No day figure is published for this service, so there is nothing to measure
     var target = SERVICES[c.svc].target;
     if (target === null) return { key: "none", text: t(UI.none) };
     var left = target - c.days;
@@ -231,7 +236,7 @@
     var shown = cases.filter(visible);
     var html = "";
 
-    // Toolbar: desk filter (segmented on wide screens, select on phones) + reset
+    // Toolbar: desk filter (segmented on desktop, a select below 1024px)
     html += '<div class="cwp-toolbar">';
     html += '<div class="cwp-desks"><span class="cwp-desks-label" id="cwp-desk-label">' + esc(t(UI.deskLabel)) + "</span>";
     html += '<div class="cwp-seg" role="group" aria-labelledby="cwp-desk-label">';
@@ -244,9 +249,9 @@
       html += '<option value="' + d.id + '"' + (d.id === desk ? " selected" : "") + ">" + esc(t(d.name)) + "</option>";
     });
     html += "</select></div>";
-    html += '<button type="button" class="cwp-reset">' + esc(t(UI.reset)) + "</button>";
     html += "</div>";
-    html += '<p class="cwp-duty">' + esc(t(deskById(desk).duty)) + "</p>";
+    // Desk duty caption, with the reset action on the same line
+    html += '<p class="cwp-duty"><span>' + esc(t(deskById(desk).duty)) + '</span> <button type="button" class="cwp-reset">' + esc(t(UI.reset)) + "</button></p>";
 
     // Stage overview: one compact table (Stage | Held by | Files | Oldest file)
     html += '<div class="cwp-stages-wrap"><table class="cwp-stages"><caption>' + esc(t(UI.pipeline)) + "</caption><thead><tr>" +
@@ -305,7 +310,9 @@
       var did = "cwp-d-" + c.ref.replace(/\W/g, "");
       html += '<tr class="cwp-row' + (isOpen ? " is-open" : "") + '">' +
         '<th scope="row" data-label="' + esc(t(UI.cRef)) + '"><button type="button" class="cwp-open" data-ref="' + c.ref + '" aria-expanded="' + isOpen + '" aria-controls="' + did + '">' +
-        "<span>" + esc(c.ref) + "</span>" + icon("chevron-down") + "</button></th>" +
+        "<span>" + esc(c.ref) + "</span>" + icon("chevron-down") + "</button>" +
+        // Phone only: the row's facts on one muted line under the reference
+        '<span class="cwp-m-meta">' + esc(t(svc.name)) + " · " + esc(t(stage(c.stage).name)) + " · " + esc(c.days === 0 ? t(UI.todayM) : daysText(c.days)) + "</span></th>" +
         '<td data-label="' + esc(t(UI.cSvc)) + '">' + esc(t(svc.name)) + "</td>" +
         '<td data-label="' + esc(t(UI.cStage)) + '">' + esc(t(stage(c.stage).name)) + "</td>" +
         '<td class="cwp-num" data-label="' + esc(t(UI.cDays)) + '">' + esc(daysText(c.days)) + "</td>" +

@@ -6,15 +6,15 @@
    bar, header, notice bar, hero, quick-access dock and footer - are never
    matched. Tokens come from pro-system.css (--px-*).
 
-   Page order (task-first, one idea per band):
-     1 Leadership (Head of State + Ambassador + mission)    canvas
-     2 Practical information (four planning tools)          paper
-     3 Travel requirements + registration (#advisory)       canvas
-     4 Latest news (three items) + holidays (#annual-events) paper
-     5 Media centre (#media) - the page's one navy panel    paper
-     6 Forms and downloads                                  canvas
-     7 Discover the DRC (Kinshasa photograph)               paper
-     8 Contact, urgent assistance, office hours (#contact)  canvas
+   Page order (task-first, one idea per band; backgrounds alternate):
+     1 Leadership (Head of State + Ambassador)                     canvas
+     2 Practical information (four planning tools)                 paper
+     3 Travel: before you travel + guidance | registration         canvas
+     4 Forms and downloads (.home-split: intro | link list)        paper
+     5 News and calendar: lead release | holidays (#annual-events) canvas
+     6 Media center (#media) - the page's one navy panel           paper
+     7 Discover, visit and invest (.home-split: intro | links)     canvas
+     8 Contact, urgent assistance, office hours (#contact)         paper
    ============================================================================ */
 
 /* ----------------------------------------------------------- 0. Surfaces */
@@ -29,14 +29,14 @@ main > section.home-band :is(p, li, dt, dd, th, td, h2, h3, span, a) {
 }
 main > section.home-band.home-leadership,
 main > section.home-band.home-travel,
-main > section.home-band.home-forms,
-main > section.home-band.home-contact {
+main > section.home-band.home-news,
+main > section.home-band.home-discover {
   background: var(--px-canvas) !important;
 }
 main > section.home-band.home-plan,
-main > section.home-band.home-news,
+main > section.home-band.home-forms,
 main > section.home-band.home-media,
-main > section.home-band.home-discover {
+main > section.home-band.home-contact {
   background: var(--px-paper) !important;
 }
 /* Anchors used by the site search and assistant (index.html#advisory, #media,
@@ -74,19 +74,6 @@ main > section.home-band .sec-head h2 {
   max-width: 760px !important;
   color: var(--px-navy-950);
 }
-main > section.home-band .home-head-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px 40px;
-  margin-bottom: clamp(28px, 3vw, 44px);
-}
-main > section.home-band .home-head-row > .sec-head {
-  margin-bottom: 0 !important;
-  flex: 1 1 520px;
-}
-
 /* Tertiary text link: underlined blue, arrow icon, 44px target. */
 main > section.home-band .home-link {
   display: inline-flex;
@@ -112,9 +99,17 @@ main > section.home-band .home-link .icon {
 main > section.home-band .home-link-line {
   margin: 0;
 }
-main > section.home-band .home-more {
-  flex: none;
-  margin-bottom: 2px;
+main > section.home-band .sec-head .home-link-line {
+  margin-top: 12px !important;
+}
+/* One link token for every tertiary link on the page (a global "p a" rule
+   otherwise turns links inside paragraphs heavier and a different blue). */
+main > section.home-band :is(.home-link, .home-tool-action, .home-form-privacy, .home-contact-list a) {
+  color: var(--px-blue-700) !important;
+  font-weight: 600 !important;
+}
+main > section.home-band :is(.home-link, .home-tool-action, .home-form-privacy, .home-contact-list a):hover {
+  color: var(--px-navy-950) !important;
 }
 
 /* One card: paper, one hairline, one restrained shadow, 14px radius. */
@@ -364,6 +359,24 @@ main > section.home-band .home-travel-grid {
   gap: var(--hb-gap);
   align-items: start;
 }
+main > section.home-band .home-travel-col {
+  display: grid;
+  gap: var(--hb-gap);
+  align-content: start;
+  min-width: 0;
+}
+main > section.home-band .home-guidance > h3 {
+  margin-bottom: 8px;
+}
+main > section.home-band .home-guidance .px-links {
+  border-top: 0;
+}
+main > section.home-band .home-guidance .px-links > li:last-child {
+  border-bottom: 0;
+}
+main > section.home-band .home-guidance .px-links a {
+  padding: 14px 0;
+}
 main > section.home-band .home-travel-card .px-summary {
   margin-bottom: 18px;
 }
@@ -476,20 +489,17 @@ main > section.home-band .home-form-privacy:hover {
   color: var(--px-navy-950);
 }
 
-/* ------------------------------------------------------------------ 5. News */
-main > section.home-band .home-news-grid {
+/* ------------------------------------------------------- 5. News and calendar
+   The lead release (7) and the next public holidays (5) side by side. */
+main > section.home-band .home-news-layout {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: var(--hb-gap);
+  align-items: stretch;
 }
-main > section.home-band .home-news-card {
+main > section.home-band .home-news-lead {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-main > section.home-band .home-news-card:hover {
-  border-color: rgba(45, 112, 214, .55);
-  box-shadow: var(--px-shadow-hover);
 }
 main > section.home-band .home-news-meta {
   display: flex;
@@ -512,86 +522,50 @@ main > section.home-band .home-news-meta time {
 main > section.home-band .home-news-sep {
   color: var(--px-ink-3);
 }
-main > section.home-band .home-news-card h3 {
-  margin: 0;
-  font: 700 20px/1.35 var(--px-serif);
-}
-main > section.home-band .home-news-card h3 a {
+main > section.home-band .home-news-lead > h3 {
+  max-width: 32ch;
+  margin: 12px 0 14px;
   color: var(--px-navy-950);
-  text-decoration: none;
-}
-/* The whole card is the link target; the heading carries the name. */
-main > section.home-band .home-news-card h3 a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--px-radius);
-}
-main > section.home-band .home-news-card:hover h3 a {
-  color: var(--px-blue-700);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-}
-main > section.home-band .home-news-card h3 a:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-}
-main > section.home-band .home-news-card h3 a:focus-visible::after {
-  outline: 3px solid var(--px-gold-500);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 5px var(--px-navy-950);
-}
-main > section.home-band .home-news-card .home-ext {
-  width: 16px;
-  height: 16px;
-  margin-left: 6px;
-  vertical-align: -1px;
-  color: var(--px-ink-3);
+  font: 700 clamp(21px, .6vw + 16px, 25px)/1.3 var(--px-serif);
 }
 main > section.home-band .home-news-text {
-  margin: 0;
+  max-width: 64ch;
+  margin: 0 0 18px;
+  color: var(--px-ink-2);
+  font-size: 16.5px;
+  line-height: 1.62;
+}
+main > section.home-band .home-news-cta {
+  margin-top: auto !important;
+  padding-top: 6px;
+  border-top: 1px solid var(--px-line);
+}
+
+/* Holidays: a regular card - heading, one line of context, the dated list
+   (rendered by annual-events.js) and a link to the full calendar. */
+main > section.home-band .home-holidays {
+  display: flex;
+  flex-direction: column;
+}
+main > section.home-band .home-holidays > h3 {
+  margin-bottom: 8px;
+}
+main > section.home-band .home-holidays-text {
+  max-width: 46ch;
+  margin: 0 0 16px;
   color: var(--px-ink-2);
   font-size: 16px;
   line-height: 1.6;
 }
-
-/* ---------------------------------------------- 6. Holidays and observances
-   A sub-section of News: intro on the left, the next three dates on the right,
-   divided from the news cards by one hairline. */
-main > section.home-band .home-holidays {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: clamp(24px, 4vw, 64px);
-  align-items: start;
-  margin-top: clamp(48px, 5vw, 72px);
-  padding-top: clamp(36px, 4vw, 56px);
-  border-top: 1px solid var(--px-line);
-}
-main > section.home-band .home-holidays-intro h3 {
-  margin: 0 0 12px;
-  color: var(--px-navy-950);
-  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
-}
-main > section.home-band .home-holidays-intro p:not([class]) {
-  margin: 0;
-  max-width: 46ch;
-  color: var(--px-ink-2);
-  font-size: 16.5px;
-  line-height: 1.6;
-}
-main > section.home-band .home-holidays-intro .home-link-line {
-  margin-top: 12px;
+main > section.home-band .home-holidays .home-link-line {
+  margin-top: auto;
 }
 main > section.home-band .home-holidays-list {
   display: grid;
   gap: 0;
-  margin: 0;
-  overflow: hidden;
-  background: var(--px-paper);
-  border: 1px solid var(--px-line);
-  border-radius: var(--px-radius);
-  box-shadow: var(--px-shadow);
+  margin: 0 0 12px;
+  border-top: 1px solid var(--px-line);
+  border-bottom: 1px solid var(--px-line);
 }
 main > section.home-band .home-holidays-list:empty {
   display: none;
@@ -600,9 +574,9 @@ main > section.home-band .home-holidays-list .home-annual-event {
   display: grid;
   grid-template-columns: 64px minmax(0, 1fr);
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   margin: 0;
-  padding: 18px 24px;
+  padding: 14px 0;
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -748,7 +722,7 @@ main > section.home-band .home-anthem-title {
   font: 700 clamp(19px, .6vw + 15px, 23px)/1.3 var(--px-serif);
 }
 main > section.home-band .home-media-list {
-  align-self: center;
+  align-self: start;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -792,12 +766,6 @@ main > section.home-band .home-media-go {
   margin-left: auto;
   color: rgba(226, 236, 250, .8);
 }
-main > section.home-band .home-forms-list .px-links-name {
-  color: var(--px-navy-950);
-}
-main > section.home-band .home-forms-list a:hover .px-links-name {
-  color: var(--px-blue-700);
-}
 main > section.home-band .home-media-list a:hover .home-media-name {
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -807,74 +775,82 @@ main > section.home-band .home-media-list a:hover .home-media-go {
   color: #fff;
 }
 
-/* ---------------------------------------------------- 8. Forms and downloads */
-main > section.home-band .home-forms-grid {
+/* ------------------------------------- 8. Forms, Discover: intro | link list */
+main > section.home-band .home-split {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(28px, 4vw, 64px);
   align-items: start;
 }
-main > section.home-band .home-forms-grid > .sec-head {
+main > section.home-band .home-split > .sec-head {
   margin-bottom: 0 !important;
 }
-main > section.home-band .home-forms-grid > .sec-head .home-link-line {
-  margin-top: 14px !important;
-}
-main > section.home-band .home-forms-list {
+main > section.home-band .home-list-card {
   overflow: hidden;
   background: var(--px-paper);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
   box-shadow: var(--px-shadow);
 }
-main > section.home-band .home-forms-list > li:last-child {
+main > section.home-band .home-list-card > li:last-child {
   border-bottom: 0;
 }
-main > section.home-band .home-forms-list a {
-  text-decoration: none !important;
+main > section.home-band .home-list-card a {
   min-height: 76px;
   padding: 16px 22px;
   transition: background-color .18s var(--px-ease), color .18s var(--px-ease);
 }
-main > section.home-band .home-forms-list a:hover {
+main > section.home-band .home-list-card a:hover {
   background: #f8fbff;
 }
-main > section.home-band .home-forms-list .icon-chip .icon {
+main > section.home-band .home-list-card .icon-chip {
+  flex: none;
+  color: var(--px-blue-700);
+  background: #e4eefc;
+  border: 1px solid rgba(45, 112, 214, .22);
+}
+main > section.home-band .home-list-card .icon-chip .icon {
   margin: 0;
   color: var(--px-blue-700);
+}
+/* Link lists: only the name is underlined; the description stays plain. */
+main > section.home-band .px-links a {
+  text-decoration: none !important;
+}
+main > section.home-band .px-links .px-links-name {
+  color: var(--px-navy-950);
+  font: 600 16.5px/1.4 var(--px-sans);
+  text-decoration: underline;
+  text-decoration-color: rgba(29, 91, 184, .45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+main > section.home-band .px-links a:hover .px-links-name {
+  color: var(--px-blue-700);
+  text-decoration-color: currentColor;
+}
+main > section.home-band .px-links .px-links-meta {
+  margin-top: 3px;
+  color: var(--px-ink-3);
+  font: 400 14.5px/1.5 var(--px-sans);
+  text-decoration: none;
 }
 main > section.home-band .home-links-text {
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
-main > section.home-band .home-forms-list .home-links-go {
+main > section.home-band .px-links .home-links-go {
   flex: none;
   margin-left: auto;
-}
-
-/* --------------------------------------------------------- 9. Discover the DRC */
-main > section.home-band .home-discover-cta {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 2px;
-}
-main > section.home-band .home-discover-cta .icon {
   width: 18px;
   height: 18px;
 }
-main > section.home-band .home-discover-figure {
-  margin: 0;
-}
-main > section.home-band .home-discover-figure .px-frame {
-  aspect-ratio: 21 / 9;
-  border-radius: var(--px-radius-lg);
-}
-main > section.home-band .home-discover-figure img {
-  display: block;
-  object-position: 50% 58%;
+/* Focus ring inside the clipped list frame */
+main > section.home-band .home-list-card a:focus-visible {
+  outline-offset: -4px !important;
+  box-shadow: none !important;
+  border-radius: 12px;
 }
 
 /* ------------------------------------------- 10. Contact, urgent help, hours */
@@ -1049,24 +1025,15 @@ main > section.home-band .home-hours .home-link-line {
   }
 }
 @media (max-width: 960px) {
-  main > section.home-band :is(.home-travel-grid, .home-holidays, .home-forms-grid, .home-media-grid, .home-contact-grid) {
+  main > section.home-band :is(.home-travel-grid, .home-news-layout, .home-split, .home-media-grid, .home-contact-grid) {
     grid-template-columns: 1fr;
   }
-  main > section.home-band .home-forms-grid > .sec-head {
+  main > section.home-band .home-split > .sec-head {
     margin-bottom: 4px !important;
-  }
-  main > section.home-band .home-holidays {
-    gap: 20px;
   }
   /* Single column on tablet: keep the anthem poster from filling the screen. */
   main > section.home-band .home-anthem-media {
     aspect-ratio: 2 / 1;
-  }
-  main > section.home-band .home-news-grid {
-    grid-template-columns: 1fr;
-  }
-  main > section.home-band .home-discover-figure .px-frame {
-    aspect-ratio: 16 / 9;
   }
 }
 @media (max-width: 720px) {
@@ -1113,27 +1080,18 @@ main > section.home-band .home-hours .home-link-line {
   main > section.home-band .home-holidays-list .home-annual-event {
     grid-template-columns: 56px minmax(0, 1fr);
     gap: 16px;
-    padding: 16px 18px;
   }
   main > section.home-band .home-holidays-list .annual-date {
     width: 56px;
     height: 56px;
   }
-  main > section.home-band .home-forms-list a {
+  main > section.home-band .home-list-card a {
     padding: 14px 16px;
     gap: 14px;
   }
   main > section.home-band .home-media-panel {
     padding: 28px 20px;
     border-radius: var(--px-radius);
-  }
-  main > section.home-band .home-discover-figure .px-frame {
-    aspect-ratio: 4 / 3;
-    border-radius: var(--px-radius);
-  }
-  main > section.home-band .home-discover-cta {
-    width: 100%;
-    justify-content: center;
   }
   main > section.home-band .home-contact-links {
     flex-direction: column;
@@ -1155,9 +1113,9 @@ main > section.home-band .home-nowrap {
     align-items: start;
   }
 }
-/* Focus ring inside the clipped list frame */
-main > section.home-band .home-forms-list a:focus-visible {
-  outline-offset: -4px !important;
-  box-shadow: none !important;
-  border-radius: 12px;
+main > section.home-band .home-urgent-text {
+  min-width: 0;
+}
+main > section.home-band .home-register {
+  min-width: 0;
 }
