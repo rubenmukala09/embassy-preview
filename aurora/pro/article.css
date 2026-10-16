@@ -1,0 +1,315 @@
+/* ============================================================================
+   ARTICLE LAYOUT: shared by the long-form pages migrated from the Embassy's
+   previous website (investment sectors, laws, legislation, taxes, "Congo around
+   the world", news articles).
+
+   Builds on aurora/pro-system.css (tokens and px-* components). Every rule is
+   scoped to main > section.ar, so heroes, chrome and footer are never touched.
+
+   Markup:
+     <section class="section ar" id="content"><div class="container">
+       <div class="ar-layout">
+         <nav class="ar-toc" aria-label="On this page">…<ol><li><a href="#x">…</a></li></ol></nav>
+         <article class="ar-body">
+           <p class="px-meta">…</p>
+           <p class="ar-lead">…</p>
+           <h2 id="x">…</h2> <p>…</p> <ul>…</ul>
+           <div class="ar-table-wrap"><table class="ar-table">…</table></div>
+           <figure class="ar-figure"><img …><figcaption>…</figcaption></figure>
+           <div class="px-inset">…</div>
+         </article>
+       </div>
+     </div></section>
+     <section class="section ar ar-next">…related links / sector list…</section>
+   ============================================================================ */
+
+main > section.ar {
+  --ar-measure: 70ch;
+  background: var(--px-paper);
+}
+main > section.ar.ar-alt {
+  background: var(--px-canvas) !important;
+}
+
+/* ------------------------------------------------------------- layout */
+main > section.ar .ar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+}
+@media (min-width: 1100px) {
+  main > section.ar .ar-layout {
+    grid-template-columns: 250px minmax(0, 1fr);
+  }
+  main > section.ar .ar-layout.ar-single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+main > section.ar .ar-body {
+  max-width: var(--ar-measure);
+  min-width: 0;
+}
+main > section.ar .ar-layout.ar-single .ar-body {
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------- on this page */
+main > section.ar .ar-toc {
+  padding: 18px 20px;
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  background: #fff;
+}
+@media (min-width: 1100px) {
+  main > section.ar .ar-toc {
+    position: sticky;
+    top: 96px;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+  }
+}
+main > section.ar .ar-toc .ar-toc-title {
+  margin: 0 0 10px;
+  font: 700 13px/1.3 var(--px-sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--px-ink-3);
+}
+main > section.ar .ar-toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+main > section.ar .ar-toc li {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+main > section.ar .ar-toc a {
+  display: block;
+  padding: 7px 0 7px 12px;
+  border-left: 2px solid transparent;
+  color: var(--px-ink-2);
+  text-decoration: none;
+}
+main > section.ar .ar-toc a:hover,
+main > section.ar .ar-toc a[aria-current="true"] {
+  color: var(--px-navy-950);
+  border-left-color: var(--px-gold-600);
+}
+@media (max-width: 1099px) {
+  main > section.ar .ar-toc li { font-size: 16px; }
+  main > section.ar .ar-toc a { padding-block: 10px; }
+}
+
+/* --------------------------------------------------------- reading */
+main > section.ar .ar-body > :first-child { margin-top: 0; }
+main > section.ar .ar-lead {
+  margin: 0 0 28px;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans);
+  color: var(--px-ink);
+}
+main > section.ar .ar-body h2 {
+  margin: clamp(40px, 4vw, 56px) 0 14px;
+  font-size: clamp(25px, 1.2vw + 18px, 31px) !important;
+  line-height: 1.2;
+  color: var(--px-navy-950);
+  scroll-margin-top: 110px;
+}
+main > section.ar .ar-body h2:first-child,
+main > section.ar .ar-body .px-meta + h2,
+main > section.ar .ar-body .ar-lead + h2 {
+  margin-top: 8px;
+}
+main > section.ar .ar-body h3 {
+  margin: 30px 0 10px;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+  scroll-margin-top: 110px;
+}
+main > section.ar .ar-body h4 {
+  margin: 22px 0 8px;
+  font: 700 17px/1.4 var(--px-sans);
+  color: var(--px-navy-950);
+}
+main > section.ar .ar-body p,
+main > section.ar .ar-body li {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--px-ink);
+}
+@media (min-width: 1024px) {
+  main > section.ar .ar-body p,
+  main > section.ar .ar-body li { font-size: 17.5px; }
+}
+main > section.ar .ar-body p { margin: 0 0 16px; }
+main > section.ar .ar-body ul,
+main > section.ar .ar-body ol:not(.px-steps) {
+  margin: 0 0 18px;
+  padding-left: 24px;
+}
+main > section.ar .ar-body li { margin: 0 0 8px; }
+main > section.ar .ar-body li::marker { color: var(--px-gold-ink); }
+main > section.ar .ar-body a:not(.btn) {
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+main > section.ar .ar-body a:not(.btn):hover { color: var(--px-navy-950); }
+main > section.ar .ar-body strong { color: var(--px-navy-950); }
+
+/* ----------------------------------------------------------- tables */
+main > section.ar .ar-table-wrap {
+  margin: 8px 0 24px;
+  overflow-x: auto;
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  background: #fff;
+}
+main > section.ar .ar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+main > section.ar .ar-table caption {
+  padding: 14px 16px 0;
+  text-align: left;
+  font: 600 15px/1.4 var(--px-sans);
+  color: var(--px-ink-2);
+}
+main > section.ar .ar-table th,
+main > section.ar .ar-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--px-line);
+  text-align: left;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 1.5;
+}
+main > section.ar .ar-table thead th {
+  background: var(--px-canvas);
+  font: 700 13.5px/1.3 var(--px-sans) !important;
+  letter-spacing: .06em !important;
+  text-transform: uppercase;
+  color: var(--px-ink-2);
+}
+main > section.ar .ar-table tbody tr:last-child > * { border-bottom: 0; }
+main > section.ar .ar-table td.num,
+main > section.ar .ar-table th.num { text-align: right; white-space: nowrap; }
+
+/* ---------------------------------------------------------- figures */
+main > section.ar .ar-figure {
+  margin: 8px 0 28px;
+}
+main > section.ar .ar-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--px-radius);
+  border: 1px solid var(--px-line);
+  background: var(--px-canvas);
+}
+main > section.ar .ar-figure figcaption {
+  margin-top: 10px;
+  font-size: var(--px-t-meta);
+  line-height: 1.5;
+  color: var(--px-ink-3);
+}
+main > section.ar .ar-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 8px 0 28px;
+}
+@media (min-width: 760px) {
+  main > section.ar .ar-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+main > section.ar .ar-gallery figure { margin: 0; }
+main > section.ar .ar-gallery a { display: block; border-radius: 12px; overflow: hidden; }
+main > section.ar .ar-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--px-line);
+  border-radius: 12px;
+}
+main > section.ar .ar-gallery figcaption {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--px-ink-3);
+}
+
+/* ------------------------------------------------- key facts + docs */
+main > section.ar .ar-body .px-summary { margin: 4px 0 28px; }
+main > section.ar .ar-body .px-links { margin: 4px 0 28px; }
+main > section.ar .ar-body .px-inset { margin: 8px 0 24px; }
+main > section.ar .ar-quote {
+  margin: 8px 0 24px;
+  padding: 4px 0 4px 20px;
+  border-left: 3px solid var(--px-gold-600);
+  font: italic 400 19px/1.6 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.ar .ar-quote cite {
+  display: block;
+  margin-top: 8px;
+  font: normal 600 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+}
+
+/* ------------------------------------------- related / next section */
+main > section.ar.ar-next .sec-head { margin-bottom: 22px !important; }
+main > section.ar .ar-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+}
+main > section.ar .ar-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  color: var(--px-navy-950);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .2s var(--px-ease), box-shadow .2s var(--px-ease);
+}
+main > section.ar .ar-card:hover {
+  border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
+}
+main > section.ar .ar-card[aria-current="page"] {
+  border-color: var(--px-gold-600);
+  background: #fffbea;
+}
+main > section.ar .ar-card .icon { color: var(--px-blue-700); }
+main > section.ar .ar-card .ar-card-go { margin-left: auto; color: var(--px-ink-3); }
+
+/* ------------------------------------------------------------- video */
+main > section.ar .ar-video {
+  margin: 8px 0 28px;
+  border-radius: var(--px-radius);
+  overflow: hidden;
+  border: 1px solid var(--px-line);
+  background: #000;
+}
+main > section.ar .ar-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media print {
+  main > section.ar .ar-toc { display: none; }
+  main > section.ar .ar-layout { grid-template-columns: 1fr; }
+}
+main > section.ar .ar-back { margin-top: 28px !important; }
+main > section.ar .ar-toc a { text-decoration: none !important; }
