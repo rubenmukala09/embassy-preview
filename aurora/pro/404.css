@@ -112,11 +112,8 @@ html body main.error-main .error-actions a:focus-visible {
   html body main.error-main .err-brand { flex-direction: column; gap: 10px; text-align: center; }
   html body main.error-main .err-brand-text { justify-items: center; }
 }
-@media (min-width: 1920px) {
-  html body main.error-main > div { zoom: 1.12; }
-}
 @media (min-width: 2400px) {
-  html body main.error-main > div { zoom: 1.3; }
+  html body main.error-main > div { zoom: 1.25; }
 }
 @media (min-width: 3000px) {
   html body main.error-main > div { zoom: 1.49; }

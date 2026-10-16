@@ -147,11 +147,8 @@ main > section.cs-guide .cs-block {
 }
 /* pro-system zooms below-hero sections on large screens; the margin is
    zoomed with them, so divide by the zoom factor to keep the same landing. */
-@media (min-width: 1920px) {
-  main > section.cs-guide .cs-block { scroll-margin-top: -82px; }
-}
 @media (min-width: 2400px) {
-  main > section.cs-guide .cs-block { scroll-margin-top: -71px; }
+  main > section.cs-guide .cs-block { scroll-margin-top: -74px; }
 }
 @media (min-width: 3000px) {
   main > section.cs-guide .cs-block { scroll-margin-top: -62px; }

@@ -640,17 +640,13 @@ main > section:not(.hero, .phead, .amb-hero, .qa-band) {
 }
 
 /* -------------------------------------------- 11. Big screens (2K / 4K)
-   The header grows to 1760px from 1920px, but content stayed at 1180px and
-   looked like a small strip on large monitors. Content sections scale in calm
-   steps so type stays readable and the column lines up with the header. */
-@media (min-width: 1920px) {
-  main > section:not(.hero, .phead, .amb-hero, .qa-band) {
-    zoom: 1.12;
-  }
-}
+   Up to 2399px the content column is 1180px, exactly the quick-access dock's
+   width, so dock, content and footer share one left edge on 1920px monitors.
+   On 2K and 4K screens content sections scale in calm steps so type stays
+   readable; at 3000px+ the column (1180 x 1.49 = 1758px) matches the header. */
 @media (min-width: 2400px) {
   main > section:not(.hero, .phead, .amb-hero, .qa-band) {
-    zoom: 1.3;
+    zoom: 1.25;
   }
 }
 @media (min-width: 3000px) {

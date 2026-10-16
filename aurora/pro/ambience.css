@@ -371,7 +371,7 @@ main > section#amb-next .amb-cta-link:hover {
 /* 2K / 4K: scale the lightbox controls and caption in the same steps as the
    page content (pro-system section 11), so they stay legible. */
 @media (min-width: 2400px) {
-  .pswp.amb-pswp :is(.pswp__top-bar, .pswp__button--arrow, .amb-pswp-caption) { zoom: 1.3; }
+  .pswp.amb-pswp :is(.pswp__top-bar, .pswp__button--arrow, .amb-pswp-caption) { zoom: 1.25; }
 }
 @media (min-width: 3000px) {
   .pswp.amb-pswp :is(.pswp__top-bar, .pswp__button--arrow, .amb-pswp-caption) { zoom: 1.49; }
