@@ -1,0 +1,445 @@
+/* ============================================================================
+   DOCUMENT GUIDANCE (documents/index.html): below-hero start page.
+   Scope: only sections carrying the .sp class, which never appear in the
+   frozen zones (banner, header, notice bar, hero, quick-access dock, footer).
+   Pattern: GOV.UK "start page" (purpose, prototype inset, before you start,
+   step-by-step), a checklist by service, and a light status card that
+   holds the page's single gold action (the "Where to submit" card uses a
+   plain text link so the two never compete).
+
+   Specificity: every rule starts with `main > section.sp:not(#sp-x)`. The
+   :not(#sp-x) adds one id of weight so these page rules reliably beat the
+   older shared layers (typography-system.css forces h2/p sizes with
+   !important at 0,3,4) without touching those shared files.
+   ============================================================================ */
+
+/* ------------------------------------------------------------ Layout */
+main > section.sp:not(#sp-x) .sp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 352px);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+main > section.sp:not(#sp-x) .sp-main {
+  min-width: 0;
+  max-width: 680px;
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.sp:not(#sp-x) .sp-main {
+    max-width: none;
+  }
+}
+
+/* ------------------------------------------------------------ Type */
+main > section.sp:not(#sp-x) .sp-lead {
+  margin: 0 0 24px;
+  max-width: 680px;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans);
+  color: var(--px-ink);
+  text-wrap: pretty;
+}
+main > section.sp:not(#sp-x) .sp-notice {
+  max-width: 680px;
+  margin: 0;
+}
+/* One H2 size for every section on this page (start page, checklist band
+   and status card), overriding the larger global .sec-head h2 size. */
+main > section.sp:not(#sp-x) .sp-h2,
+main > section.sp:not(#sp-x) .sec-head h2,
+main > section.sp:not(#sp-x) .sp-panel h2 {
+  font-size: clamp(26px, 1.1vw + 17px, 32px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.012em !important;
+}
+main > section.sp:not(#sp-x) .sp-h2 {
+  margin: clamp(44px, 5vw, 64px) 0 20px;
+  letter-spacing: -.012em !important;
+  color: var(--px-navy-950);
+}
+
+/* ------------------------------------------------- Before you start */
+main > section.sp:not(#sp-x) .sp-summary > dt,
+main > section.sp:not(#sp-x) .sp-summary > dd {
+  font-size: var(--px-t-body);
+  line-height: 1.55;
+}
+main > section.sp:not(#sp-x) .sp-summary > dd {
+  color: var(--px-ink);
+}
+main > section.sp:not(#sp-x) .sp-summary a,
+main > section.sp:not(#sp-x) .sp-step-link a,
+main > section.sp:not(#sp-x) .sp-check-link a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-summary a:hover,
+main > section.sp:not(#sp-x) .sp-step-link a:hover,
+main > section.sp:not(#sp-x) .sp-check-link a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+
+/* ------------------------------------------------- Step by step */
+main > section.sp:not(#sp-x) .sp-steps > li {
+  font-size: var(--px-t-body);
+}
+main > section.sp:not(#sp-x) .sp-steps h3 {
+  font: 700 19px/1.35 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  margin: 6px 0 6px;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-steps p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: var(--px-t-body) !important;
+  line-height: 1.6;
+  color: var(--px-ink-2);
+}
+main > section.sp:not(#sp-x) .sp-steps .sp-step-link {
+  margin-top: 8px;
+}
+
+/* ------------------------------------------------- Summary card (aside) */
+main > section.sp:not(#sp-x) .sp-aside {
+  min-width: 0;
+}
+@media (min-width: 961px) {
+  main > section.sp:not(#sp-x) .sp-aside {
+    position: sticky;
+    top: 96px;
+  }
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-aside {
+    margin-top: 40px;
+  }
+}
+main > section.sp:not(#sp-x) .sp-card {
+  padding: 24px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-top: 3px solid var(--px-navy-900);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.sp:not(#sp-x) .sp-card-title {
+  margin: 0 0 4px;
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-facts {
+  margin: 0;
+}
+main > section.sp:not(#sp-x) .sp-facts > div {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--px-line);
+}
+main > section.sp:not(#sp-x) .sp-facts > div:last-child {
+  border-bottom: 0;
+}
+main > section.sp:not(#sp-x) .sp-facts dt {
+  margin: 0;
+  font: 600 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+}
+main > section.sp:not(#sp-x) .sp-facts dd {
+  margin: 2px 0 0;
+  font-size: var(--px-t-body);
+  line-height: 1.5;
+  color: var(--px-ink);
+  font-variant-numeric: tabular-nums;
+}
+/* Tablet: the card spans the column; address on its own row, the two
+   sets of hours side by side. */
+@media (min-width: 600px) and (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+  }
+  main > section.sp:not(#sp-x) .sp-facts > div:first-child {
+    grid-column: 1 / -1;
+  }
+  main > section.sp:not(#sp-x) .sp-facts > div:nth-last-child(2) {
+    border-bottom: 0;
+  }
+}
+main > section.sp:not(#sp-x) .sp-card-link {
+  margin: 4px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--px-line);
+  font-size: var(--px-t-body) !important;
+}
+main > section.sp:not(#sp-x) .sp-card-link a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-card-link a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+
+/* ------------------------------------------------- Checklist by service */
+main > section.sp:not(#sp-x) .sp-checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 760px) {
+  main > section.sp:not(#sp-x) .sp-checks {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+main > section.sp:not(#sp-x) .sp-check {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(20px, 2.2vw, 28px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.sp:not(#sp-x) .sp-check-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 16px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--px-line);
+}
+main > section.sp:not(#sp-x) .sp-check-head h3 {
+  margin: 0;
+  font: 700 20px/1.3 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-checklist {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+main > section.sp:not(#sp-x) .sp-checklist li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  color: var(--px-ink);
+}
+main > section.sp:not(#sp-x) .sp-checklist li::before,
+main > section.sp:not(#sp-x) .sp-checklist li::marker {
+  content: none;
+}
+main > section.sp:not(#sp-x) .sp-checklist .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  stroke-width: 2.25;
+  color: var(--px-blue-700);
+}
+main > section.sp:not(#sp-x) .sp-check-link {
+  margin: auto 0 0;
+  padding-top: 4px;
+  font-size: 15.5px !important;
+}
+
+/* ------------------------------------------------- Status card (light) */
+/* A secondary task, so a calm paper card (same 3px navy top rule as the
+   aside card) rather than a dark band stacked on the navy footer. */
+main > section.sp:not(#sp-x) .sp-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, .9fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-top: 3px solid var(--px-navy-900);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  color: var(--px-ink);
+}
+@media (max-width: 900px) {
+  main > section.sp:not(#sp-x) .sp-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+main > section.sp:not(#sp-x) .sp-panel h2 {
+  margin: 0 0 14px;
+  color: var(--px-navy-950) !important;
+}
+main > section.sp:not(#sp-x) .sp-panel-lead {
+  margin: 0;
+  max-width: 52ch;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans) !important;
+  color: var(--px-ink-2) !important;
+}
+main > section.sp:not(#sp-x) .sp-panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+main > section.sp:not(#sp-x) .sp-panel-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+}
+main > section.sp:not(#sp-x) .sp-panel-actions .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+main > section.sp:not(#sp-x) .sp-panel-side {
+  padding: clamp(20px, 2.4vw, 28px);
+  background: var(--px-canvas);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-ctl);
+}
+main > section.sp:not(#sp-x) .sp-panel-side h3 {
+  margin: 0 0 14px;
+  font: 700 18px/1.3 var(--px-serif) !important;
+  color: var(--px-navy-950) !important;
+}
+main > section.sp:not(#sp-x) .sp-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+main > section.sp:not(#sp-x) .sp-panel-list li,
+main > section.sp:not(#sp-x) .sp-panel-warn {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: var(--px-ink) !important;
+}
+main > section.sp:not(#sp-x) .sp-panel-list li::before,
+main > section.sp:not(#sp-x) .sp-panel-list li::marker {
+  content: none;
+}
+main > section.sp:not(#sp-x) .sp-panel-list .icon,
+main > section.sp:not(#sp-x) .sp-panel-warn .icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  color: var(--px-blue-700);
+}
+main > section.sp:not(#sp-x) .sp-panel-warn {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--px-line);
+  font-weight: 600 !important;
+  color: var(--px-navy-950) !important;
+}
+main > section.sp:not(#sp-x) .sp-panel-warn .icon {
+  color: var(--px-gold-ink);
+}
+@media (max-width: 480px) {
+  main > section.sp:not(#sp-x) .sp-panel-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------- Shared fixes */
+/* Older layers set hyphens:auto on paragraphs ("doc-uments"). */
+main > section.sp:not(#sp-x),
+main > section.sp:not(#sp-x) * {
+  hyphens: manual !important;
+}
+main > section.sp:not(#sp-x) .sp-line {
+  display: block;
+}
+
+/* Section headings: an older layer caps .sec-head h2 at 22ch, which broke
+   short headings over two lines beside an empty column. */
+main > section.sp:not(#sp-x) .sec-head h2 {
+  max-inline-size: 34ch !important;
+}
+/* Stand-alone text links: extend the hit area to 44px without moving the
+   layout (padding plus an equal negative margin). */
+main > section.sp:not(#sp-x) .sp-step-link a,
+main > section.sp:not(#sp-x) .sp-check-link a {
+  display: inline-block;
+  padding-block: 12px;
+  margin-block: -12px;
+}
+
+/* Paper surface: older layers paint a light page gradient that otherwise
+   shows behind the first section on 2K/4K screens. */
+main > section.sp:not(#sp-x):not(.bg-ivory) {
+  background-color: var(--px-paper);
+}
+
+/* Tablet and phone: the inset spans the column like the cards below it. */
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-notice {
+    max-width: none;
+  }
+}
+
+/* ------------------------------------------------- Sibling alignment
+   Same container gutter as Consular, Digital Services and Case workflow
+   (clamp(20px, 4vw, 72px)), so body content lines up across the section. */
+main > section.sp:not(#sp-x) > .container {
+  padding-inline: clamp(20px, 4vw, 72px) !important;
+}
+/* Section eyebrows: the gold-dash label used above every H2 on the sibling
+   service pages. It carries the top spacing the H2 had on its own. */
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow {
+  display: flex !important;
+  width: fit-content;
+  font: 700 var(--px-t-eyebrow, 12.5px)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  max-width: none !important;
+  margin: clamp(44px, 5vw, 64px) 0 14px !important;
+}
+main > section.sp:not(#sp-x) .sec-head > p.eyebrow.sp-eyebrow:first-child {
+  margin-top: 0 !important;
+}
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow + .sp-h2 {
+  margin-top: 0 !important;
+}
+
+/* Step titles: the same bold sans treatment as the Consular Services
+   passport steps, so the shared numbered-steps component reads as one. */
+main > section.sp:not(#sp-x) .sp-steps h3 {
+  margin: 4px 0 8px !important;
+  font: 700 18px/1.35 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Address: one line per part, so "Suite 725" never splits from its number. */
+main > section.sp:not(#sp-x) .sp-facts dd.sp-addr .sp-line {
+  display: block;
+  text-wrap: balance;
+}

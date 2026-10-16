@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
@@ -18,43 +18,17 @@
 <meta property="og:site_name" content="Embassy of the DR Congo, Washington, D.C." />
 <meta property="og:title" content="Embassy of the Democratic Republic of the Congo, Washington, D.C." />
 <meta property="og:description" content="Website preview of the Embassy of the Democratic Republic of the Congo in Washington, D.C. - consular services, visas, passports, news and contact." /><meta property="og:url" content="https://rubenmukala09.github.io/embassy-preview" />
-<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Embassy of the Democratic Republic of the Congo, Washington, D.C." />
-<meta name="twitter:description" content="Website preview of the Embassy of the Democratic Republic of the Congo in Washington, D.C. - consular services, visas, passports, news and contact." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta name="twitter:description" content="Website preview of the Embassy of the Democratic Republic of the Congo in Washington, D.C. - consular services, visas, passports, news and contact." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
 <link rel="stylesheet" href="/embassy-preview/aurora/aurora.css?v=1786161601" />
 <link rel="stylesheet" href="/embassy-preview/aurora/enrichment.css?v=1787040000" />
-<style>
-.consular-journey{padding:clamp(64px,7vw,96px) 0;background:#f7f8f8}
-.journey-shell{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(250px,315px) minmax(0,1fr);gap:clamp(28px,4vw,52px);padding:clamp(30px,4vw,54px);border:1px solid rgba(201,165,60,.2);border-radius:18px;background:linear-gradient(135deg,#071f3a,#0a3158);box-shadow:0 24px 54px -38px rgba(0,0,0,.34)}
-.journey-shell::before{content:"";position:absolute;z-index:-1;left:-66px;bottom:-86px;width:280px;height:280px;background:url('/embassy-preview/aurora/assets/img/embassy-seal.png') center/contain no-repeat;opacity:.045;pointer-events:none}
-.journey-intro{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;padding-right:clamp(20px,3vw,38px);border-right:1px solid rgba(255,255,255,.12)}
-.journey-kicker{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;color:#f1df9d;font:800 9px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase}
-.journey-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:#c9a53c}
-.journey-intro h2{max-width:280px;margin:0;color:#fff;font-size:clamp(31px,3.2vw,44px);line-height:1.06}
-.journey-intro>p{max-width:280px;margin:18px 0 0;color:#c7d4e7;font-size:14px;line-height:1.7}
-.journey-rail{display:block;width:76px;height:2px;margin:24px 0 26px;overflow:hidden;border-radius:99px;background:#c9a53c}.journey-rail i{display:none}
-.journey-intro .btn{margin-top:auto}
-.journey-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none;counter-reset:journey}
-.journey-card{position:relative;overflow:hidden;min-height:176px;padding:20px 18px 18px;border:1px solid rgba(255,255,255,.13);border-radius:10px;background:rgba(255,255,255,.055);box-shadow:none;counter-increment:journey;transition:transform .2s ease,border-color .2s ease,background .2s ease}
-.journey-card::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(201,165,60,.62)}
-.journey-card:hover{transform:translateY(-2px);border-color:rgba(241,223,157,.28);background:rgba(255,255,255,.075)}
-.journey-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
-.journey-number{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(241,223,157,.28);border-radius:8px;color:#f1df9d;background:rgba(255,255,255,.045);font:800 11px/1 var(--sans);letter-spacing:.08em}
-.journey-number::before{content:"0" counter(journey)}
-.journey-phase{color:#8fa5c1;font:800 7.5px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase}
-.journey-card h3{margin:0;color:#fff;font:700 15px/1.35 var(--sans)}
-.journey-card p{margin:8px 0 0;color:#b9c8dc;font-size:13px;line-height:1.55}
-@media(max-width:1000px){.journey-shell{grid-template-columns:1fr}.journey-intro{padding:0 0 28px;border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.journey-intro h2,.journey-intro>p{max-width:620px}.journey-intro .btn{margin-top:0}.journey-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:720px){.consular-journey{padding:52px 0}.journey-shell{padding:26px 20px;border-radius:14px}.journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.journey-card{min-height:162px}}
-@media(max-width:480px){.journey-grid{grid-template-columns:1fr}.journey-card{min-height:0}.journey-card-head{margin-bottom:15px}}
-@media(prefers-reduced-motion:reduce){.journey-card{transition:none}.journey-card:hover{transform:none}}
-</style>
 
 <link rel="stylesheet" href="/embassy-preview/aurora/responsive-control.css?v=1785853109" />
 <link rel="stylesheet" href="/embassy-preview/aurora/premium-polish.css?v=1786503000" />
@@ -62,15 +36,12 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/typography-system.css?v=1785930600" />
 <link rel="stylesheet" href="/embassy-preview/aurora/deep-build.css?v=1786560000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/annual-events.css?v=1786165200" />
-<link rel="stylesheet" href="/embassy-preview/aurora/home-service-compass.css?v=1786531800" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="DRC Embassy" />
 <link rel="manifest" href="/embassy-preview/manifest.webmanifest?v=1786018200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/faq-system.css?v=1786154400" /><link rel="stylesheet" href="/embassy-preview/aurora/mobile-os.css?v=1786500000" /><link rel="stylesheet" href="/embassy-preview/aurora/contrast-repair.css?v=1786400001" />
-<link rel="stylesheet" href="/embassy-preview/aurora/home-media-centre.css?v=1786694400" />
-<link rel="stylesheet" href="/embassy-preview/aurora/home-action-accents.css?v=1786540800" />
 <link rel="stylesheet" href="/embassy-preview/aurora/home-hero-photo-only.css?v=1786544400" />
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://rubenmukala09.github.io/embassy-preview/#website","url":"https://rubenmukala09.github.io/embassy-preview/","name":"Embassy of the DR Congo, Washington, D.C.","inLanguage":"en","description":"Unofficial demonstration prototype of a diplomatic mission website."},{"@type":"WebPage","@id":"https://rubenmukala09.github.io/embassy-preview#webpage","url":"https://rubenmukala09.github.io/embassy-preview","name":"Embassy of the Democratic Republic of the Congo, Washington, D.C.","description":"Website preview of the Embassy of the Democratic Republic of the Congo in Washington, D.C. - consular services, visas, passports, news and contact.","inLanguage":"en","isPartOf":{"@id":"https://rubenmukala09.github.io/embassy-preview/#website"}},{"@type":"BreadcrumbList","@id":"https://rubenmukala09.github.io/embassy-preview#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rubenmukala09.github.io/embassy-preview/"}]}]}</script>
 <link rel="stylesheet" href="/embassy-preview/aurora/component-standard.css?v=1787245201" />
@@ -80,6 +51,9 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/refinement.css?v=1786582000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/cinema.css?v=1786600000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/editorial.css?v=1787130000" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro-system.css?v=20261014a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/search-plus.css?v=20261015a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/home.css?v=20261016a" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -141,7 +115,7 @@
   <a class="ann-emergency" href="tel:+12022347690" aria-label="Call the Embassy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Call the Embassy</a>
 </div></div>
 
-<main id="main-content" tabindex="-1">
+<main data-pagefind-body id="main-content" tabindex="-1">
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -176,416 +150,289 @@
   </nav>
 </div></section>
 
-<!-- HEAD OF STATE (tap the portrait to flip) -->
-<section class="section tight bg-cream home-president-original"><div class="container">
-  <div class="hos">
-    <div class="hos-photo">
-      <div class="hos-flip">
-        <div class="hos-face hos-front"><img decoding="async" width="480" height="480" src="/embassy-preview/img/image/president-portrait.jpg?v=1783598939" alt="His Excellency Félix-Antoine Tshisekedi Tshilombo, President of the Democratic Republic of the Congo" /><svg class="hos-seal" aria-hidden="true" style="display:none"><use href="#crest"/></svg></div>
-        <div class="hos-face hos-back"><svg class="hos-seal" aria-hidden="true"><use href="#crest"/></svg></div>
-      </div>
-      <span class="hos-hint" aria-hidden="true">Tap to flip</span>
-    </div>
-    <div class="hos-text">
-      <p class="eyebrow">Head of State</p>
-      <h3>H.E. Félix-Antoine Tshisekedi Tshilombo</h3>
-      <p class="hos-role">President of the Democratic Republic of the Congo</p>
-      <p class="hos-note">The Embassy carries out its mission under the leadership of the President of the Republic, advancing the interests of the Democratic Republic of the Congo and its citizens, and strengthening the friendship between the DRC and the United States.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- AMBASSADOR PROFILE (leadership) -->
-<section class="section" id="ambassador"><div class="container">
-  <div class="split media-left amb-feature">
-    <div class="media"><div class="amb-portrait"><img fetchpriority="low" decoding="async" width="1920" height="1080" src="/embassy-preview/img/image/ambassador-portrait.webp" srcset="/embassy-preview/img/image/ambassador-portrait-w720.webp 720w, /embassy-preview/img/image/ambassador-portrait-w1080.webp 1080w, /embassy-preview/img/image/ambassador-portrait.webp 1920w" sizes="(max-width: 760px) 192vw, (max-width: 1024px) 93vw, 1110px" alt="Her Excellency Yvette Kapinga Ngandu, Ambassador of the Democratic Republic of the Congo" /></div></div>
-    <div>
-      <p class="eyebrow">Our Ambassador</p><div class="rule left"></div>
-      <span class="amb-first"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 8.7l5.9-.9z"/></svg> Over 25 years in international diplomacy</span>
-      <h2 style="font-size:33px;margin-top:6px">A distinguished and visionary leadership</h2>
-      <p class="lead mt16">Her Excellency Yvette Kapinga Ngandu brings more than two decades of international diplomacy to Washington as Ambassador of the Democratic Republic of the Congo - a distinguished career spanning the African Union and the Economic Community of Central African States (ECCAS), where she served as Commissioner for Gender Promotion, Human and Social Development.</p>
-      <p class="mt16">A humble, deeply committed and accomplished leader, she has devoted her career to mediation, peace and development across the continent - and now to serving every Congolese citizen in the United States with dignity and care.</p>
-      <p class="mt16">Under her guidance, the Embassy stands as a beacon of excellence - strengthening the enduring friendship between the DRC and the United States, and championing peace, opportunity and pride for all Congolese.</p>
-      <div class="amb-qualities"><span>Humble</span><span>Committed</span><span>Excellent</span><span>Visionary</span></div>
-      <div class="amb-sign"><b>H.E. Yvette Kapinga Ngandu</b><span>Ambassador Extraordinary &amp; Plenipotentiary of the DR Congo</span></div>
-      <div class="mt32"><a class="btn btn-navy" href="/embassy-preview/the-embassy.html#ambassador">Read her message →</a></div>
-    </div>
-  </div>
-</div></section>
-
-<!-- CITIZEN TOOLS / WIDGETS -->
-<section class="section" id="tools"><div class="container">
-  <header class="sec-head tools-intro">
-    <div class="tools-intro-copy">
-      <div class="tools-intro-meta" aria-label="Democratic Republic of the Congo and United States information service"><span>DRC</span><i aria-hidden="true"></i><span>USA</span></div>
-      <p class="eyebrow">Official information at a glance</p>
-      <h2>Plan with published guidance</h2>
-      <p>Useful orientation drawn from the Embassy’s current public pages. Confirm operational details before travelling.</p>
-    </div>
-    <aside class="tools-intro-verify" aria-label="Travel verification reminder">
-      <span>Before you travel</span>
-      <strong>Verify current instructions.</strong>
-      <p>Requirements, service windows and submission methods may change.</p>
-      <a href="/embassy-preview/consular-services.html">Review consular guidance <b aria-hidden="true">→</b></a>
-    </aside>
+<!-- LEADERSHIP: Head of State, Head of Mission and the Embassy's mission -->
+<section class="section home-band home-leadership" id="leadership" aria-labelledby="leadership-title"><div class="container">
+  <header class="sec-head">
+    <p class="eyebrow" data-emb-en="The Embassy" data-emb-fr="L’Ambassade">The Embassy</p>
+    <h2 id="leadership-title" data-emb-en="The Head of State and the Ambassador" data-emb-fr="Le Chef de l’État et l’Ambassadrice">The Head of State and the Ambassador</h2>
+    <p data-emb-en="The Embassy advances the interests of the Democratic Republic of the Congo and its citizens, and strengthens cooperation, peace, prosperity and sustainable development with the United States." data-emb-fr="L’Ambassade défend les intérêts de la République démocratique du Congo et de ses citoyens, et renforce la coopération, la paix, la prospérité et le développement durable avec les États-Unis.">The Embassy advances the interests of the Democratic Republic of the Congo and its citizens, and strengthens cooperation, peace, prosperity and sustainable development with the United States.</p>
   </header>
-  <div class="widgets">
-    <div class="widget widget-time">
-      <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Local time</div>
-      <div class="clock"><span class="city">Kinshasa</span><span class="time" data-tz="Africa/Kinshasa">--:--</span></div>
-      <div class="clock"><span class="city">Washington, D.C.</span><span class="time" data-tz="America/New_York">--:--</span></div>
-      <div class="widget-route" aria-hidden="true"><span>KIN</span><i></i><b>LOCAL</b><i></i><span>WDC</span></div>
-      <small>Both clocks adjust automatically for the selected cities.</small>
-      <a class="widget-action" href="/embassy-preview/contact.html"><span class="widget-action-label" data-emb-en="View Embassy hours" data-emb-fr="Voir les horaires de l’Ambassade">View Embassy hours</span><span class="widget-action-arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="widget status-w widget-status">
-      <div class="w-head"><span class="widget-code" aria-hidden="true">VISA</span> Drop-off &amp; collection</div>
-      <div class="status-main"><span class="status-dot" style="background:var(--gold)"></span><div><b>Published service windows</b><span>Drop-off Mon–Thu 10:00–15:00 · Fri 10:00–13:00</span></div></div>
-      <div class="hr"><span>Pick-up · Tuesday &amp; Thursday</span><b>14:00–15:30</b></div>
-      <div class="hr"><span>Pick-up · Friday</span><b>11:00–12:30</b></div>
-      <a class="widget-action" href="/embassy-preview/consular-services.html#visa"><span class="widget-action-label" data-emb-en="Check requirements" data-emb-fr="Vérifier les conditions">Check requirements</span><span class="widget-action-arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="widget widget-currency">
-      <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 13h2v3H9zM15 13h2v3h-2z"/></svg> Invest in the DRC</div>
-      <div class="cc" style="display:block"><b style="font-size:20px;color:var(--navy)">10 published sectors</b></div>
-      <div class="currency-telemetry" aria-hidden="true"><span>PROJECT</span><div><i></i><i></i><i></i><i></i><i></i><i></i></div><span>ANAPI</span></div>
-      <small>Sector directory, investor support, legal framework and official source links.</small>
-      <a class="widget-action" href="/embassy-preview/dr-congo.html#invest"><span class="widget-action-label" data-emb-en="Open investment guide" data-emb-fr="Consulter le guide d’investissement">Open investment guide</span><span class="widget-action-arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="widget widget-official-links">
-      <div class="w-head"><span class="widget-code" aria-hidden="true">.CD</span> Official DRC portals</div>
-      <div class="cc" style="display:block"><b style="font-size:20px;color:var(--navy)">One trusted directory</b></div>
-      <div class="currency-telemetry" aria-hidden="true"><span>GOV</span><div><i></i><i></i><i></i><i></i><i></i><i></i></div><span>DRC</span></div>
-      <small>Passport, identity, ministries, tax, customs, investment and national institutions.</small>
-      <a class="widget-action" href="/embassy-preview/official-links.html"><span class="widget-action-label" data-emb-en="Browse official .cd links" data-emb-fr="Consulter les liens officiels .cd">Browse official .cd links</span><span class="widget-action-arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="widget widget-fee">
-      <div class="w-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7h6m-6 4h6m-6 4h4"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg> Fee estimator</div>
-      <select id="feeService" aria-label="Choose a service">
-        <option data-fee="$75" data-proc=" · paid through the official passport process">Biometric passport</option>
-        <option data-fee="$185" data-proc=" · 2-year reciprocity visa">U.S. citizen visa</option>
-        <option data-fee="$100" data-proc=" · single entry, 1 month">Single-entry visa</option>
-        <option data-fee="$120" data-proc=" · multiple entry, 1 month">Multiple-entry visa</option>
-        <option data-fee="$45" data-proc=" · one-way airport transit">Airport transit visa</option>
-        <option data-fee="$50" data-proc=" · standard civil/notarial item">Civil or notarial service</option>
-      </select>
-      <div class="fee-out" id="feeOut"></div>
-      <div class="service-flow" aria-hidden="true"><span>SELECT</span><i></i><span>VERIFY</span><i></i><span>APPLY</span></div>
-      <small>Published amount · always verify before payment.</small>
-      <a class="widget-action" href="/embassy-preview/consular-services.html#fees"><span class="widget-action-label" data-emb-en="Review all consular fees" data-emb-fr="Consulter tous les frais consulaires">Review all consular fees</span><span class="widget-action-arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="widget widget-africa-map">
-      <div class="w-head"><span class="widget-code" aria-hidden="true">AFR</span> Africa &amp; the DRC</div>
-      <div class="africa-map-stage">
-        <div class="africa-map-canvas">
-          <img fetchpriority="low" decoding="async" width="1000" height="1000" src="/embassy-preview/aurora/assets/maps/africa-political.svg" alt="Political map of Africa highlighting the central position of the Democratic Republic of the Congo" />
-          <span class="africa-drc-marker"><i></i><b>DRC</b><small>Central Africa</small></span>
-        </div>
+  <div class="home-leaders">
+    <article class="home-leader">
+      <div class="home-leader-photo px-frame"><img loading="lazy" width="480" height="480" src="/embassy-preview/img/image/president-portrait.jpg?v=1783598939" alt="His Excellency Félix-Antoine Tshisekedi Tshilombo, President of the Democratic Republic of the Congo" data-emb-alt-fr="Son Excellence Félix-Antoine Tshisekedi Tshilombo, Président de la République démocratique du Congo" /></div>
+      <div class="home-leader-id">
+        <p class="home-leader-role" data-emb-en="Head of State" data-emb-fr="Chef de l’État">Head of State</p>
+        <h3 data-emb-en="H.E. Félix-Antoine Tshisekedi Tshilombo" data-emb-fr="S.E. Félix-Antoine Tshisekedi Tshilombo">H.E. Félix-Antoine Tshisekedi Tshilombo</h3>
+        <p class="home-leader-title" data-emb-en="President of the Democratic Republic of the Congo" data-emb-fr="Président de la République démocratique du Congo">President of the Democratic Republic of the Congo</p>
       </div>
-      <div class="africa-map-copy"><b>The DRC at the heart of Africa</b><span>Connect Kinshasa, the continent and the Embassy's Washington mission.</span></div>
-      <a class="widget-action" href="/embassy-preview/dr-congo.html#map"><span class="widget-action-label" data-emb-en="Explore the country map" data-emb-fr="Explorer la carte du pays">Explore the country map</span><span class="widget-action-arrow" aria-hidden="true">→</span></a>
-    </div>
-  </div>
-</div></section>
-
-<section class="home-service-compass" aria-labelledby="service-compass-title"><div class="container">
-  <div class="service-compass-shell">
-    <div class="service-compass-brief">
-      <div class="service-compass-seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4.5 6.4v5.1c0 4.7 3.2 8.1 7.5 9.5 4.3-1.4 7.5-4.8 7.5-9.5V6.4L12 3Z"/><path d="m8.6 12 2.1 2.1 4.7-4.7"/></svg></div>
-      <div>
-        <p class="service-compass-status"><span data-emb-en="Official information desk" data-emb-fr="Bureau d’information officiel">Official information desk</span><time datetime="2026-08-05" data-emb-en="Reviewed 5 August 2026" data-emb-fr="Vérifié le 5 août 2026">Reviewed 5 August 2026</time></p>
-        <h2 id="service-compass-title" data-emb-en="Begin with the right route." data-emb-fr="Commencez par la bonne démarche.">Begin with the right route.</h2>
-        <p><span data-emb-en="Use published Embassy guidance before paying, mailing original documents or travelling to Washington." data-emb-fr="Consultez les directives publiées par l’Ambassade avant tout paiement, envoi de documents originaux ou déplacement à Washington.">Use published Embassy guidance before paying, mailing original documents or travelling to Washington.</span> <a class="source-inline" href="https://www.ambadrcusa.org/consular-affairs/" target="_blank" rel="noopener" data-emb-en="View source ↗" data-emb-fr="Voir la source ↗">View source ↗</a></p>
+      <div class="home-leader-bio">
+        <p data-emb-en="In office since January 24, 2019. The Embassy carries out its mission under the authority of the President of the Republic." data-emb-fr="En fonction depuis le 24 janvier 2019. L’Ambassade accomplit sa mission sous l’autorité du Président de la République.">In office since January 24, 2019. The Embassy carries out its mission under the authority of the President of the Republic.</p>
+        <p class="home-link-line"><a class="home-link" href="https://www.presidence.cd/president/le-president" target="_blank" rel="noopener noreferrer"><span data-emb-en="Presidency of the Republic (presidence.cd)" data-emb-fr="Présidence de la République (presidence.cd)">Presidency of the Republic (presidence.cd)</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg><span class="home-sr" data-emb-en="(opens in a new tab)" data-emb-fr="(s’ouvre dans un nouvel onglet)">(opens in a new tab)</span></a></p>
       </div>
-    </div>
-    <nav class="service-compass-routes" aria-label="Primary Embassy destinations">
-      <a href="/embassy-preview/consular-services.html"><span class="service-compass-code" aria-hidden="true">01</span><span><b data-emb-en="Citizen services" data-emb-fr="Services aux citoyens">Citizen services</b><small data-emb-en="Passports · documents" data-emb-fr="Passeports · documents">Passports · documents</small></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a href="/embassy-preview/consular-services.html#visa"><span class="service-compass-code" aria-hidden="true">02</span><span><b data-emb-en="Visit the DRC" data-emb-fr="Visiter la RDC">Visit the DRC</b><small data-emb-en="Visa · travel guidance" data-emb-fr="Visa · conseils de voyage">Visa · travel guidance</small></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a href="/embassy-preview/dr-congo.html#invest"><span class="service-compass-code" aria-hidden="true">03</span><span><b data-emb-en="Invest &amp; partner" data-emb-fr="Investir &amp; collaborer">Invest &amp; partner</b><small data-emb-en="Sectors · official portals" data-emb-fr="Secteurs · portails officiels">Sectors · official portals</small></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a href="/embassy-preview/contact.html"><span class="service-compass-code" aria-hidden="true">04</span><span><b data-emb-en="Contact the Embassy" data-emb-fr="Contacter l’Ambassade">Contact the Embassy</b><small data-emb-en="Departments · office hours" data-emb-fr="Services · heures d’ouverture">Departments · office hours</small></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </nav>
-  </div>
-</div></section>
-
-<!-- TRAVEL ADVISORY & EMBASSY REGISTRATION -->
-<section class="section bg-ivory advisory-section" id="advisory"><div class="container">
-  <div class="advisory-masthead">
-    <span class="advisory-masthead-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4.5 6.4v5.1c0 4.7 3.2 8.1 7.5 9.5 4.3-1.4 7.5-4.8 7.5-9.5V6.4L12 3Z"/><path d="M9 12h6M12 9v6"/></svg></span>
-    <div><h2>Travelling to or living in the DRC?</h2><p>Check entry requirements, prepare your documents, and register for Embassy safety and consular notices.</p></div>
-    <a class="advisory-masthead-link" href="/embassy-preview/contact.html"><span>Need urgent guidance?</span><b>Contact the Embassy →</b></a>
-  </div>
-  <div class="advisory-grid">
-    <article class="advisory-card" data-severity="caution">
-      <div class="adv-status"><span class="adv-flag" aria-hidden="true"></span><div><b>Before you travel</b><span>Verify current requirements before departure</span></div></div>
-      <h3>Democratic Republic of the Congo</h3>
-      <p class="muted">Use the Embassy’s published visa checklist and consult current government travel, security and health guidance for every destination on your itinerary.</p>
-      <ul class="adv-req">
-        <li><span>Visa</span> Required for most travellers. <a href="/embassy-preview/consular-services.html#visa">Apply for a visa →</a></li>
-        <li><span>Passport</span> Valid at least six months, with two blank pages.</li>
-        <li><span>Health</span> A yellow-fever vaccination certificate is mandatory.</li>
-        <li><span>Supporting file</span> Requirements vary for tourism, business, study and official travel.</li>
-      </ul>
-      <a class="btn btn-outline btn-sm" href="/embassy-preview/consular-services.html#visa">Country &amp; travel information</a>
-      <p class="adv-feedback">Information out of date, or have something to report? <a href="/embassy-preview/contact.html">Suggest an update or request assistance →</a></p>
     </article>
-    <article class="register-card" id="register">
-      <h3>Register with the Embassy</h3>
-      <p class="muted">A free service for Congolese citizens and travellers. Receive safety alerts and consular notices, and let us reach you in an emergency.</p>
-      <form data-intake="registration" method="dialog">
-        <div class="rg-row">
-          <div class="field"><label for="rg-name">Full name</label><input id="rg-name" name="name" autocomplete="name" placeholder="Your name" /></div>
-          <div class="field"><label for="rg-email">Email</label><input id="rg-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" /></div>
-          <div class="field"><label for="rg-phone">Mobile (for SMS alerts) <span class="opt">(optional)</span></label><input id="rg-phone" name="tel" data-optional type="tel" autocomplete="tel" placeholder="+1 (202) 000-0000" /></div>
-          <div class="field"><label for="rg-type">I am a&hellip;</label><select id="rg-type"><option>Resident in the United States</option><option>Traveller to the DRC</option><option>Student</option><option>Dual national</option></select></div>
+    <article class="home-leader">
+      <div class="home-leader-photo px-frame"><img loading="lazy" width="614" height="697" src="/embassy-preview/aurora/assets/img/ambassador.jpg" alt="Her Excellency Yvette Kapinga Ngandu, Ambassador of the Democratic Republic of the Congo to the United States" data-emb-alt-fr="Son Excellence Yvette Kapinga Ngandu, Ambassadrice de la République démocratique du Congo aux États-Unis" /></div>
+      <div class="home-leader-id">
+        <p class="home-leader-role" data-emb-en="Head of Mission" data-emb-fr="Cheffe de mission">Head of Mission</p>
+        <h3 data-emb-en="H.E. Yvette Kapinga Ngandu" data-emb-fr="S.E. Yvette Kapinga Ngandu">H.E. Yvette Kapinga Ngandu</h3>
+        <p class="home-leader-title" data-emb-en="Ambassador Extraordinary and Plenipotentiary" data-emb-fr="Ambassadrice extraordinaire et plénipotentiaire">Ambassador Extraordinary and Plenipotentiary</p>
+      </div>
+      <div class="home-leader-bio">
+        <p data-emb-en="She took up her post in Washington on October 30, 2025. A career diplomat, she most recently served as Commissioner for Gender Promotion, Human and Social Development at the Economic Community of Central African States (ECCAS)." data-emb-fr="Elle a pris ses fonctions à Washington le 30 octobre 2025. Diplomate de carrière, elle a exercé en dernier lieu les fonctions de Commissaire chargée de la Promotion du genre, du Développement humain et social à la Communauté économique des États de l’Afrique centrale (CEEAC).">She took up her post in Washington on October 30, 2025. A career diplomat, she most recently served as Commissioner for Gender Promotion, Human and Social Development at the Economic Community of Central African States (ECCAS).</p>
+        <p class="home-link-line"><a class="home-link" href="/embassy-preview/the-embassy.html#ambassador"><span data-emb-en="About the Ambassador" data-emb-fr="À propos de l’Ambassadrice">About the Ambassador</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a></p>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<!-- PRACTICAL INFORMATION: four planning tools, one action each -->
+<section class="section home-band home-plan" id="plan" aria-labelledby="plan-title"><div class="container">
+  <header class="sec-head">
+    <p class="eyebrow" data-emb-en="Consular services" data-emb-fr="Services consulaires">Consular services</p>
+    <h2 id="plan-title" data-emb-en="Practical information" data-emb-fr="Informations pratiques">Practical information</h2>
+    <p data-emb-en="Published service windows, consular fees and official portals. Confirm the details with the Embassy before you travel or send documents." data-emb-fr="Horaires de service publiés, frais consulaires et portails officiels. Confirmez ces informations auprès de l’Ambassade avant de voyager ou d’envoyer des documents.">Published service windows, consular fees and official portals. Confirm the details with the Embassy before you travel or send documents.</p>
+  </header>
+  <div class="home-tools">
+    <article class="home-tool" id="visa-windows">
+      <span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-calendar-clock"/></svg></span>
+      <h3 data-emb-en="Visa drop-off and collection" data-emb-fr="Dépôt et retrait des visas">Visa drop-off and collection</h3>
+      <dl class="home-tool-rows">
+        <div><dt data-emb-en="Drop-off, Monday to Thursday" data-emb-fr="Dépôt, du lundi au jeudi">Drop-off, Monday to Thursday</dt><dd data-emb-en="10:00–15:00" data-emb-fr="10 h – 15 h">10:00–15:00</dd></div>
+        <div><dt data-emb-en="Drop-off, Friday" data-emb-fr="Dépôt, vendredi">Drop-off, Friday</dt><dd data-emb-en="10:00–13:00" data-emb-fr="10 h – 13 h">10:00–13:00</dd></div>
+        <div><dt data-emb-en="Pick-up, Tuesday and Thursday" data-emb-fr="Retrait, mardi et jeudi">Pick-up, Tuesday and Thursday</dt><dd data-emb-en="14:00–15:30" data-emb-fr="14 h – 15 h 30">14:00–15:30</dd></div>
+        <div><dt data-emb-en="Pick-up, Friday" data-emb-fr="Retrait, vendredi">Pick-up, Friday</dt><dd data-emb-en="11:00–12:30" data-emb-fr="11 h – 12 h 30">11:00–12:30</dd></div>
+      </dl>
+      <a class="home-tool-action" href="/embassy-preview/portal.html"><span data-emb-en="Appointment guidance" data-emb-fr="Préparer votre rendez-vous">Appointment guidance</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a>
+    </article>
+    <article class="home-tool">
+      <span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-receipt"/></svg></span>
+      <h3 data-emb-en="Fee estimator" data-emb-fr="Estimation des frais">Fee estimator</h3>
+      <div class="home-fee">
+        <label for="feeService" data-emb-en="Choose a service" data-emb-fr="Choisissez un service">Choose a service</label>
+        <select id="feeService">
+          <option data-fee="$75" data-proc="" data-emb-en="Biometric passport" data-emb-fr="Passeport biométrique">Biometric passport</option>
+          <option data-fee="$185" data-proc="" data-emb-en="U.S. citizen visa (two years)" data-emb-fr="Visa pour les citoyens américains (deux ans)">U.S. citizen visa (two years)</option>
+          <option data-fee="$100" data-proc="" data-emb-en="Single-entry visa (one month)" data-emb-fr="Visa à entrée unique (un mois)">Single-entry visa (one month)</option>
+          <option data-fee="$120" data-proc="" data-emb-en="Multiple-entry visa (one month)" data-emb-fr="Visa à entrées multiples (un mois)">Multiple-entry visa (one month)</option>
+          <option data-fee="$45" data-proc="" data-emb-en="Airport transit visa" data-emb-fr="Visa de transit aéroportuaire">Airport transit visa</option>
+          <option data-fee="$50" data-proc="" data-emb-en="Civil or notarial service (standard item)" data-emb-fr="Acte d’état civil ou notarié (acte standard)">Civil or notarial service (standard item)</option>
+        </select>
+        <p class="home-fee-out" id="feeOut" aria-live="polite"></p>
+        <p class="home-tool-note" data-emb-en="Published amount. Confirm before paying." data-emb-fr="Montant publié. À confirmer avant tout paiement.">Published amount. Confirm before paying.</p>
+      </div>
+      <a class="home-tool-action" href="/embassy-preview/consular-services.html#fees"><span data-emb-en="All consular fees" data-emb-fr="Tous les frais consulaires">All consular fees</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a>
+    </article>
+    <article class="home-tool">
+      <span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-clock"/></svg></span>
+      <h3 data-emb-en="Local time" data-emb-fr="Heure locale">Local time</h3>
+      <dl class="home-tool-rows home-tool-clocks">
+        <div><dt>Kinshasa</dt><dd><span class="time" data-tz="Africa/Kinshasa">--:--</span></dd></div>
+        <div><dt>Washington, D.C.</dt><dd><span class="time" data-tz="America/New_York">--:--</span></dd></div>
+      </dl>
+      <a class="home-tool-action" href="#contact"><span data-emb-en="Embassy office hours" data-emb-fr="Heures d’ouverture de l’Ambassade">Embassy office hours</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a>
+    </article>
+    <article class="home-tool">
+      <span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-globe"/></svg></span>
+      <h3 data-emb-en="Official DRC portals" data-emb-fr="Portails officiels de la RDC">Official DRC portals</h3>
+      <p class="home-tool-text" data-emb-en="A directory of official government websites for passports, identity, ministries, tax, customs and investment." data-emb-fr="Un répertoire des sites officiels de l’État : passeports, identité, ministères, impôts, douanes et investissement.">A directory of official government websites for passports, identity, ministries, tax, customs and investment.</p>
+      <a class="home-tool-action" href="/embassy-preview/official-links.html"><span data-emb-en="Browse official .cd links" data-emb-fr="Consulter les liens officiels .cd">Browse official .cd links</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a>
+    </article>
+  </div>
+</div></section>
+
+<!-- TRAVEL REQUIREMENTS, CURRENT CONSULAR GUIDANCE AND REGISTRATION -->
+<section class="section home-band home-travel" aria-labelledby="advisory"><div class="container">
+  <header class="sec-head">
+    <p class="eyebrow" data-emb-en="Travel advice" data-emb-fr="Conseils aux voyageurs">Travel advice</p>
+    <h2 id="advisory" data-emb-en="Traveling to or living in the DRC?" data-emb-fr="Vous voyagez ou résidez en RDC&#160;?">Traveling to or living in the DRC?</h2>
+    <p data-emb-en="Check the entry requirements before you travel, and register to receive Embassy safety and consular notices." data-emb-fr="Vérifiez les conditions d’entrée avant votre départ et inscrivez-vous pour recevoir les avis de sécurité et les avis consulaires de l’Ambassade.">Check the entry requirements before you travel, and register to receive Embassy safety and consular notices.</p>
+  </header>
+  <div class="home-travel-grid">
+    <div class="home-travel-col">
+      <article class="home-card home-travel-card">
+        <h3 data-emb-en="Before you travel" data-emb-fr="Avant votre départ">Before you travel</h3>
+        <dl class="px-summary">
+          <dt data-emb-en="Visa" data-emb-fr="Visa">Visa</dt>
+          <dd data-emb-en="Required for most travelers." data-emb-fr="Exigé pour la plupart des voyageurs.">Required for most travelers.</dd>
+          <dt data-emb-en="Passport" data-emb-fr="Passeport">Passport</dt>
+          <dd data-emb-en="Valid for at least six months, with two blank pages." data-emb-fr="Valide au moins six mois, avec deux pages vierges.">Valid for at least six months, with two blank pages.</dd>
+          <dt data-emb-en="Health" data-emb-fr="Santé">Health</dt>
+          <dd data-emb-en="A yellow-fever vaccination certificate is mandatory." data-emb-fr="Un certificat de vaccination contre la fièvre jaune est obligatoire.">A yellow-fever vaccination certificate is mandatory.</dd>
+          <dt data-emb-en="Supporting documents" data-emb-fr="Pièces justificatives">Supporting documents</dt>
+          <dd data-emb-en="Requirements vary for tourism, business, study and official travel." data-emb-fr="Les exigences varient selon le motif du voyage : tourisme, affaires, études ou mission officielle.">Requirements vary for tourism, business, study and official travel.</dd>
+        </dl>
+        <p class="home-card-note" data-emb-en="Also consult current government travel, security and health guidance for every destination on your itinerary." data-emb-fr="Consultez également les recommandations officielles en vigueur en matière de voyage, de sécurité et de santé pour chaque destination de votre itinéraire.">Also consult current government travel, security and health guidance for every destination on your itinerary.</p>
+        <p class="home-link-line"><a class="home-link" href="/embassy-preview/consular-services.html#visa"><span data-emb-en="Visa requirements and how to apply" data-emb-fr="Conditions de visa et demande">Visa requirements and how to apply</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a></p>
+      </article>
+      <article class="home-card home-guidance" id="consular-guidance">
+        <h3 data-emb-en="Current consular guidance" data-emb-fr="Informations consulaires en vigueur">Current consular guidance</h3>
+        <ul class="px-links">
+          <li><a href="/embassy-preview/consular-services.html#visa"><span class="home-links-text"><span class="px-links-name" data-emb-en="Two-year reciprocity visa for U.S. citizens" data-emb-fr="Visa de réciprocité de deux ans pour les citoyens américains">Two-year reciprocity visa for U.S. citizens</span><span class="px-links-meta" data-emb-en="For tourism, study or business. Supporting documents for the purpose of travel are still required." data-emb-fr="Pour le tourisme, les études ou les affaires. Les pièces justificatives liées au motif du voyage restent exigées.">For tourism, study or business. Supporting documents for the purpose of travel are still required.</span></span><svg class="icon home-links-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+          <li><a href="/embassy-preview/consular-services.html#passport"><span class="home-links-text"><span class="px-links-name" data-emb-en="Biometric passport: how to apply" data-emb-fr="Passeport biométrique : comment faire la demande">Biometric passport: how to apply</span><span class="px-links-meta" data-emb-en="Pre-register and pay online first, then attend your appointment at the Embassy with your original documents." data-emb-fr="Effectuez d’abord la préinscription et le paiement en ligne, puis présentez-vous à votre rendez-vous à l’Ambassade avec vos documents originaux.">Pre-register and pay online first, then attend your appointment at the Embassy with your original documents.</span></span><svg class="icon home-links-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+        </ul>
+      </article>
+    </div>
+    <article class="home-card home-register" id="register">
+      <h3 data-emb-en="Register with the Embassy" data-emb-fr="S’inscrire auprès de l’Ambassade">Register with the Embassy</h3>
+      <p class="home-card-text" data-emb-en="A free service for Congolese citizens and travelers. Receive safety alerts and consular notices, and let the Embassy reach you in an emergency." data-emb-fr="Un service gratuit pour les ressortissants congolais et les voyageurs. Recevez les alertes de sécurité et les avis consulaires, et permettez à l’Ambassade de vous joindre en cas d’urgence.">A free service for Congolese citizens and travelers. Receive safety alerts and consular notices, and let the Embassy reach you in an emergency.</p>
+      <div class="px-inset home-preview-note"><p data-emb-en="Preview only: this form is not yet connected. Nothing you enter is sent or stored." data-emb-fr="Aperçu uniquement : ce formulaire n’est pas encore connecté. Aucune donnée saisie n’est envoyée ni conservée.">Preview only: this form is not yet connected. Nothing you enter is sent or stored.</p></div>
+      <form class="home-form" data-intake="registration" method="dialog">
+        <div class="home-form-grid">
+          <div class="field"><label for="rg-name"><span data-emb-en="Full name" data-emb-fr="Nom complet">Full name</span></label><input id="rg-name" name="name" autocomplete="name" /></div>
+          <div class="field"><label for="rg-email"><span data-emb-en="Email address" data-emb-fr="Adresse électronique">Email address</span></label><input id="rg-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" /></div>
+          <div class="field"><label for="rg-phone"><span data-emb-en="Mobile number" data-emb-fr="Téléphone mobile">Mobile number</span> <span class="opt" data-emb-en="(optional)" data-emb-fr="(facultatif)">(optional)</span></label><input id="rg-phone" name="tel" data-optional type="tel" autocomplete="tel" placeholder="+1 (202) 000-0000" /></div>
+          <div class="field"><label for="rg-type"><span data-emb-en="Your situation" data-emb-fr="Votre situation">Your situation</span></label><select id="rg-type" name="type"><option data-emb-en="U.S. resident" data-emb-fr="Résident aux États-Unis">U.S. resident</option><option data-emb-en="Traveler to the DRC" data-emb-fr="Voyageur en RDC">Traveler to the DRC</option><option data-emb-en="Student" data-emb-fr="Étudiant">Student</option><option data-emb-en="Other" data-emb-fr="Autre">Other</option></select></div>
+          <div class="field home-form-wide"><label for="rg-loc"><span data-emb-en="State or city of residence" data-emb-fr="État ou ville de résidence">State or city of residence</span> <span class="opt" data-emb-en="(optional)" data-emb-fr="(facultatif)">(optional)</span></label><input id="rg-loc" name="region" data-optional autocomplete="address-level1" /></div>
         </div>
-        <div class="field"><label for="rg-loc">State or city of residence <span class="opt">(optional)</span></label><input id="rg-loc" name="region" data-optional autocomplete="address-level1" placeholder="e.g. Maryland" /></div>
-        <label class="adv-check"><input type="checkbox" /><span>Send me Embassy alerts and travel advisories by email and SMS.</span></label>
-        <button class="btn btn-gold btn-block" type="submit">Register for alerts</button>
-        <p class="hint" style="margin-top:10px">Your details are used only to contact you. See our <a href="/embassy-preview/privacy.html">Privacy Policy</a>.</p>
+        <label class="home-check"><input type="checkbox" name="sms" /><span data-emb-en="Also send urgent alerts to my mobile by SMS (mobile number required)." data-emb-fr="Recevoir également les alertes urgentes par SMS sur mon téléphone mobile (numéro de mobile requis).">Also send urgent alerts to my mobile by SMS (mobile number required).</span></label>
+        <div class="home-form-foot">
+          <button class="btn btn-gold" type="submit" data-emb-en="Register" data-emb-fr="S’inscrire">Register</button>
+          <a class="home-form-privacy" href="/embassy-preview/privacy.html" data-emb-en="Privacy policy" data-emb-fr="Politique de confidentialité">Privacy policy</a>
+        </div>
       </form>
     </article>
   </div>
 </div></section>
 
-
-
-<!-- DIPLOMATIC MISSION -->
-<section class="section bg-ivory mission-section"><div class="container">
-  <div class="mission-shell">
-    <div class="mission-copy">
-      <h2>Our diplomatic mission</h2>
-      <p>The Embassy advances the interests of the Democratic Republic of the Congo and its citizens while strengthening cooperation, peace, prosperity and sustainable development with the United States.</p>
-      <div class="stats mission-stats">
-        <div class="stat"><i></i><b>60+</b><span>Years of relations</span></div>
-        <div class="stat"><i></i><b>4</b><span>Consular services</span></div>
-        <div class="stat"><i></i><b>50</b><span>U.S. states served</span></div>
-        <div class="stat"><i></i><b>2</b><span>Official languages</span></div>
-      </div>
-      <div class="mission-actions"><a class="btn btn-navy" href="/embassy-preview/the-embassy.html">Explore the Embassy</a><a href="/embassy-preview/the-embassy.html#divisions">Meet our divisions →</a></div>
-    </div>
-    <figure class="mission-media"><img fetchpriority="low" decoding="async" width="1672" height="941" src="/embassy-preview/aurora/assets/img/hero/mboka-conference-community-hug-flags-2026.webp" srcset="/embassy-preview/aurora/assets/img/hero/mboka-conference-community-hug-flags-2026-w720.webp 720w, /embassy-preview/aurora/assets/img/hero/mboka-conference-community-hug-flags-2026-w1080.webp 1080w, /embassy-preview/aurora/assets/img/hero/mboka-conference-community-hug-flags-2026.webp 1672w" sizes="(max-width: 760px) 128vw, (max-width: 1024px) 91vw, 1010px" alt="DRC–U.S. diplomatic reception" /><figcaption><span>Diplomacy in action</span><b>Community, cooperation and service</b></figcaption></figure>
+<!-- FORMS AND DOWNLOADS -->
+<section class="section home-band home-forms" id="forms" aria-labelledby="forms-title"><div class="container">
+  <div class="home-split">
+    <header class="sec-head">
+      <p class="eyebrow" data-emb-en="Forms" data-emb-fr="Formulaires">Forms</p>
+      <h2 id="forms-title" data-emb-en="Forms and downloads" data-emb-fr="Formulaires et téléchargements">Forms and downloads</h2>
+      <p data-emb-en="Download and complete the consular forms before your appointment." data-emb-fr="Téléchargez et remplissez les formulaires consulaires avant votre rendez-vous.">Download and complete the consular forms before your appointment.</p>
+      <p class="home-link-line"><a class="home-link" href="/embassy-preview/consular-services.html"><span data-emb-en="All consular services" data-emb-fr="Tous les services consulaires">All consular services</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a></p>
+    </header>
+    <ul class="px-links home-list-card">
+      <li><a href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Passport_application_writable.pdf" target="_blank" rel="noopener noreferrer"><span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-file-text"/></svg></span><span class="home-links-text"><span class="px-links-name" data-emb-en="Passport application form" data-emb-fr="Formulaire de demande de passeport">Passport application form</span><span class="px-links-meta" data-emb-en="PDF · fillable form · opens in a new tab" data-emb-fr="PDF à remplir · s’ouvre dans un nouvel onglet">PDF · fillable form · opens in a new tab</span></span><svg class="icon home-links-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg></a></li>
+      <li><a href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Visas_application_writable.pdf" target="_blank" rel="noopener noreferrer"><span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-file-text"/></svg></span><span class="home-links-text"><span class="px-links-name" data-emb-en="Visa application form" data-emb-fr="Formulaire de demande de visa">Visa application form</span><span class="px-links-meta" data-emb-en="PDF · fillable form · opens in a new tab" data-emb-fr="PDF à remplir · s’ouvre dans un nouvel onglet">PDF · fillable form · opens in a new tab</span></span><svg class="icon home-links-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg></a></li>
+      <li><a href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Laissez-passer_or_tenant_lieu_de_passeport_-writable.pdf" target="_blank" rel="noopener noreferrer"><span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-file-text"/></svg></span><span class="home-links-text"><span class="px-links-name" data-emb-en="Laissez-passer or Tenant-Lieu form" data-emb-fr="Formulaire de laissez-passer ou de tenant-lieu">Laissez-passer or Tenant-Lieu form</span><span class="px-links-meta" data-emb-en="PDF · fillable form · opens in a new tab" data-emb-fr="PDF à remplir · s’ouvre dans un nouvel onglet">PDF · fillable form · opens in a new tab</span></span><svg class="icon home-links-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg></a></li>
+      <li><a href="/embassy-preview/consular-services.html#legalization"><span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-stamp"/></svg></span><span class="home-links-text"><span class="px-links-name" data-emb-en="Legalization of documents" data-emb-fr="Légalisation des documents">Legalization of documents</span><span class="px-links-meta" data-emb-en="Requirements by type of document" data-emb-fr="Conditions selon le type de document">Requirements by type of document</span></span><svg class="icon home-links-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+    </ul>
   </div>
 </div></section>
 
-<!-- HOW IT WORKS -->
-<section class="consular-journey"><div class="container">
-  <div class="journey-shell">
-    <div class="journey-intro">
-      <p class="journey-kicker">Consular protocol</p>
-      <h2>Your service, clearly guided</h2>
-      <p>A structured path from your first document check to final collection, with every stage designed to keep your request moving.</p>
-      <span class="journey-rail" aria-hidden="true"><i></i><i></i><i></i></span>
-      <a class="btn btn-gold" href="/embassy-preview/consular-services.html">Choose your service →</a>
-    </div>
-    <ol class="journey-grid" aria-label="Six stages of a consular request">
-      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Understand</span></div><h3>Check requirements</h3><p>Confirm eligibility, fees and the documents required for your service.</p></li>
-      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Prepare</span></div><h3>Prepare documents</h3><p>Gather originals, certified copies and supporting evidence.</p></li>
-      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Submit</span></div><h3>Submit application</h3><p>Follow the submission method specified for your selected service.</p></li>
-      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Schedule</span></div><h3>Appointment guidance</h3><p>Reserve a visit when an in-person verification is required.</p></li>
-      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Verify</span></div><h3>Attend appointment</h3><p>Present your file for identity checks and consular processing.</p></li>
-      <li class="journey-card"><div class="journey-card-head"><span class="journey-number" aria-hidden="true"></span><span class="journey-phase">Complete</span></div><h3>Receive service</h3><p>Collect your approved document or follow the delivery instructions.</p></li>
-    </ol>
-  </div>
-</div></section>
-
-<!-- AUTOMATED ANNUAL EVENTS -->
-<section class="section bg-ivory" id="annual-events"><div class="container">
-  <div class="home-annual" data-localized>
-    <div class="home-annual-intro"><p class="eyebrow on-navy" data-en="Automated annual calendar" data-fr="Calendrier annuel automatisé">Automated annual calendar</p><h2 data-en="DRC dates that update themselves." data-fr="Les dates de la RDC qui se mettent à jour automatiquement.">DRC dates that update themselves.</h2><p data-en="The next national observances are calculated from the legal recurring calendar. The complete year, filters and calendar download are available in News &amp; Events." data-fr="Les prochaines commémorations nationales sont calculées à partir du calendrier légal récurrent. L’année complète, les filtres et le téléchargement du calendrier sont disponibles dans Actualités et événements.">The next national observances are calculated from the legal recurring calendar. The complete year, filters and calendar download are available in News &amp; Events.</p><a class="btn btn-gold" href="/embassy-preview/news-events.html#annual-calendar" data-en="Open annual calendar →" data-fr="Ouvrir le calendrier annuel →">Open annual calendar →</a></div>
-    <div class="home-annual-list" data-annual-compact aria-live="polite"></div>
-  </div>
-</div></section>
-
-<!-- NEWS & EVENTS -->
-<section class="section"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">News &amp; Events</p><div class="rule"></div><h2>Latest from the Embassy</h2></div>
-  <div class="grid cols-3">
-<a class="card card-hover ncard" data-body="The Embassy describes the Washington Agreements as a three-part framework bringing together the DRC–Rwanda Peace Agreement, a Regional Economic Integration Framework and a strategic partnership between the DRC and the United States." href="https://www.ambadrcusa.org/2026/05/11/the-washington-agreements-a-new-era-of-peace-sovereignty-and-prosperity-for-the-drc/" target="_blank" rel="noopener noreferrer"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp')"></div><div class="bd"><div class="date">Official release · May 11, 2026</div><h3>The Washington Agreements: peace, sovereignty and prosperity for the DRC</h3><div class="read">Read the official release ↗</div></div></a>
-<a class="card card-hover ncard" data-body="The Embassy publishes a two-year US $185 reciprocity visa for U.S. citizens travelling for tourism, study or business. Applicants must still submit the supporting documents required for their purpose of travel." href="/embassy-preview/consular-services.html#visa"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/mboka-conference-handshake-flags-2026.webp')"></div><div class="bd"><div class="date">Current consular guidance</div><h3>Two-year visa reciprocity for eligible U.S. travellers</h3><div class="read">Review official-source requirements →</div></div></a>
-<a class="card card-hover ncard" data-body="Visa drop-off is published for Monday through Thursday, 10:00 to 15:00, and Friday, 10:00 to 13:00. Pick-up is Tuesday and Thursday, 14:00 to 15:30, and Friday, 11:00 to 12:30. Confirm before visiting." href="/embassy-preview/consular-services.html#visa"><div class="ph" style="background-image:url('/embassy-preview/aurora/assets/img/hero/mboka-seminar-crowd-08.webp')"></div><div class="bd"><div class="date">Service hours</div><h3>Current visa drop-off and collection windows</h3><div class="read">Plan your visit →</div></div></a>
-  </div>
-  <div class="center mt32"><a class="btn btn-outline" href="/embassy-preview/news-events.html">View all news →</a></div>
-</div></section>
-
-<!-- MEDIA CENTRE -->
-<section class="section bg-cream" id="media"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Media centre</p><div class="rule"></div>
-    <h2>Watch, listen &amp; read</h2>
-    <p>Addresses from the Ambassador, consular briefings, press releases and official notices, gathered in one place.</p>
-    <div class="announcement-formats" aria-label="Announcement formats"><span class="format-video">Video</span><span class="format-audio">Audio</span><span class="format-document">Document</span><span class="format-notice">Notice</span></div>
-  </div>
-  <div class="media-grid">
-    <button class="media-feature" type="button" data-media="video" data-yt="Il8bLbcQpTw"
-      data-title="National Anthem of the DR Congo" data-meta="Debout Congolais · Instrumental"
-      data-src="/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp"
-      style="background-image:linear-gradient(180deg,rgba(6,13,30,.05) 30%,rgba(6,13,30,.78)),url('/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp')">
-      <span class="media-badge badge-video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>National anthem</span>
-      <span class="media-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-      <span class="media-cap"><b>National Anthem of the DR Congo</b><span>Debout Congolais &middot; Instrumental</span></span>
-    </button>
-    <div class="media-list">
-      <a class="media-item" href="/embassy-preview/dr-congo.html#invest">
-        <span class="mi-ic ic-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="14" height="14" rx="1"/><path d="m22 7-6 5 6 5z"/></svg></span>
-        <span class="mi-body"><span class="media-badge badge-video2">Guide</span><b>Invest in the DRC</b><span class="mi-meta">Ten sectors · ANAPI · investment framework</span></span>
-        <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
-      </a>
-      <a class="media-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Passport_application_writable.pdf" target="_blank" rel="noopener noreferrer" data-media="doc">
-        <span class="mi-ic ic-doc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
-        <span class="mi-body"><span class="media-badge badge-doc">Document</span><b>Biometric passport application form</b><span class="mi-meta">Official Embassy-linked PDF · writable</span></span>
-        <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span>
-      </a>
-      <a class="media-item" href="https://www.ambadrcusa.org/2026/05/11/the-washington-agreements-a-new-era-of-peace-sovereignty-and-prosperity-for-the-drc/" target="_blank" rel="noopener noreferrer" data-media="notice">
-        <span class="mi-ic ic-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
-        <span class="mi-body"><span class="media-badge badge-notice">Official release</span><b>The Washington Agreements</b><span class="mi-meta">Published May 11, 2026</span></span>
-        <span class="mi-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
-      </a>
-    </div>
-  </div>
-  <nav class="media-action-dock" aria-label="Media centre next steps">
-    <span class="media-action-dock__label" data-emb-en="Continue from the press room" data-emb-fr="Continuer depuis la salle de presse">Continue from the press room</span>
-    <a href="/embassy-preview/news-events.html"><b data-emb-en="All news &amp; events" data-emb-fr="Toutes les actualités">All news &amp; events</b><span data-emb-en="Open the newsroom" data-emb-fr="Ouvrir la salle de presse">Open the newsroom</span><i aria-hidden="true">→</i></a>
-    <a href="/embassy-preview/consular-services.html"><b data-emb-en="Official forms" data-emb-fr="Formulaires officiels">Official forms</b><span data-emb-en="Prepare your file" data-emb-fr="Préparer votre dossier">Prepare your file</span><i aria-hidden="true">→</i></a>
-    <a href="/embassy-preview/contact.html#press-communication"><b data-emb-en="Press contact" data-emb-fr="Contact presse">Press contact</b><span data-emb-en="Reach the Embassy" data-emb-fr="Joindre l’Ambassade">Reach the Embassy</span><i aria-hidden="true">→</i></a>
-  </nav>
-</div></section>
-
-<!-- FORMS & DOWNLOADS + HOURS -->
-<section class="section bg-ivory"><div class="container">
-  <div class="split" style="grid-template-columns:1.4fr 1fr;align-items:start">
-    <div>
-      <p class="eyebrow">Resources</p><div class="rule left"></div>
-      <h2 style="font-size:26px;margin-top:12px">Forms &amp; downloads</h2>
-      <p class="lead mt16" style="margin-bottom:22px">Download and prepare consular forms before your appointment.</p>
-      <div class="dl-list">
-<a class="dl-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Passport_application_writable.pdf" target="_blank" rel="noopener noreferrer"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 2v20"/><circle cx="14" cy="10" r="3"/><path d="M11 10h6M14 7a5 5 0 0 0 0 6"/></svg></span><span class="meta"><b>Passport application form</b><span>Official Embassy-linked PDF · writable</span></span><span class="dlbtn">Open ↗</span></a>
-<a class="dl-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Visas_application_writable.pdf" target="_blank" rel="noopener noreferrer"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="meta"><b>Visa application form</b><span>Official Embassy-linked PDF · writable</span></span><span class="dlbtn">Open ↗</span></a>
-<a class="dl-item" href="https://www.ambardcusa.org/wp-content/uploads/2018/07/Laissez-passer_or_tenant_lieu_de_passeport_-writable.pdf" target="_blank" rel="noopener noreferrer"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="10" r="2"/><path d="M5.5 15c1.2-1.7 3.8-1.7 5 0M13 9h5M13 13h5"/></svg></span><span class="meta"><b>Laissez-Passer / Tenant-Lieu form</b><span>Official Embassy-linked PDF · writable</span></span><span class="dlbtn">Open ↗</span></a>
-<a class="dl-item" href="/embassy-preview/consular-services.html#legalization"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="meta"><b>Legalization requirements</b><span>Document-specific Embassy guidance</span></span><span class="dlbtn">View →</span></a>
-      </div>
-    </div>
-    <div class="info-card">
-      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Office hours</h4>
-      <div class="hr"><span>Monday – Thursday</span><span>9:00 – 16:00</span></div><div class="hr"><span>Friday</span><span>9:00 – 13:00</span></div>
-      <div class="hr"><span>Visa drop-off · Mon–Thu</span><span>10:00 – 15:00</span></div>
-      <div class="hr"><span>Visa drop-off · Fri</span><span>10:00 – 13:00</span></div>
-      <div class="hr"><span>Weekends</span><span>Closed</span></div>
-      <a class="btn btn-outline btn-block home-hours-link" href="/embassy-preview/contact.html" style="margin-top:20px">Confirm hours &amp; closures</a>
-    </div>
-  </div>
-</div></section>
-
-<!-- GALLERY / AMBIENCE -->
-<section class="section"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Ambience</p><div class="rule"></div><h2>Life at the Embassy</h2>
-    <p>National celebrations, diplomatic encounters and diaspora gatherings, captured in pictures.</p></div>
-  <div class="gallery">
-    <a class="g-wide g-tall" href="/embassy-preview/ambience.html" data-film="/embassy-preview/aurora/assets/media/hero-reception-1080.mp4" data-film-sm="/embassy-preview/aurora/assets/media/hero-reception-720.mp4" style="--img-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/reception-hall.webp');background-image:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/reception-hall.webp');background-image:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/reception-hall.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/reception-hall@2x.webp') 2x)"><span>Evening receptions</span></a>
-    <a href="/embassy-preview/ambience.html" style="--img-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/entrance-hall.webp');background-image:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/entrance-hall.webp');background-image:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/entrance-hall.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/entrance-hall@2x.webp') 2x)"><span>The chancery</span></a>
-    <a href="/embassy-preview/ambience.html" style="--img-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/flag-by-window.webp');background-image:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/flag-by-window.webp');background-image:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/flag-by-window.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/flag-by-window@2x.webp') 2x)"><span>The national colours</span></a>
-    <a href="/embassy-preview/ambience.html" style="--img-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/congolese-heritage.webp');background-image:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/congolese-heritage.webp');background-image:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/congolese-heritage.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/congolese-heritage@2x.webp') 2x)"><span>Cultural heritage</span></a>
-    <a href="/embassy-preview/ambience.html" style="--img-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/consular-counter.webp');background-image:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/consular-counter.webp');background-image:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/consular-counter.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/consular-counter@2x.webp') 2x)"><span>Consular service</span></a>
-    <a class="g-wide" href="/embassy-preview/ambience.html" style="background-image:url('/embassy-preview/aurora/assets/img/hero/mboka-conference-community-hug-flags-2026.webp')"><span>Community gathering</span></a>
-    <a href="/embassy-preview/ambience.html" style="--img-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/signing-desk.webp');background-image:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/signing-desk.webp');background-image:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/signing-desk.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/signing-desk@2x.webp') 2x)"><span>Diplomacy at work</span></a>
-    <a href="/embassy-preview/ambience.html" style="--img-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/embassy-library.webp');background-image:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/embassy-library.webp');background-image:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/embassy-library.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/embassy-library@2x.webp') 2x)"><span>The Embassy archive</span></a>
-  </div>
-  <div style="text-align:center;margin-top:28px">
-    <a class="btn btn-navy" href="/embassy-preview/ambience.html">Explore the full gallery &rarr;</a>
-  </div>
-</div></section>
-
-<!-- DISCOVER DR CONGO -->
-<section class="section bg-cream kinshasa-promo" id="visit-kinshasa"><div class="container">
-  <header class="kinshasa-intro">
-    <div>
-      <p class="eyebrow">Discover the Democratic Republic of the Congo</p>
-      <h2>One unforgettable capital.<br><em>Beautiful culture. Infinite energy.</em></h2>
-    </div>
-    <div class="kinshasa-intro-copy">
-      <p>Kinshasa brings beautiful culture, music, art, enterprise and unmistakable warmth together—an essential first chapter for every journey into the DRC.</p>
-      <div class="kinshasa-intro-actions">
-        <a class="kinshasa-action kinshasa-action-primary" href="/embassy-preview/dr-congo.html#tourism" data-emb-en="Discover Kinshasa →" data-emb-fr="Découvrir Kinshasa →">Discover Kinshasa →</a>
-        <a class="kinshasa-action" href="/embassy-preview/consular-services.html#visa" data-emb-en="Plan your journey" data-emb-fr="Planifier votre voyage">Plan your journey</a>
-      </div>
-    </div>
+<!-- NEWS AND CALENDAR: the latest official release, then the next public holidays (rendered by annual-events.js) -->
+<section class="section home-band home-news" id="latest-news" aria-labelledby="news-title"><div class="container">
+  <header class="sec-head">
+    <p class="eyebrow" data-emb-en="Newsroom" data-emb-fr="Actualités">Newsroom</p>
+    <h2 id="news-title" data-emb-en="News and calendar" data-emb-fr="Actualités et calendrier">News and calendar</h2>
+    <p data-emb-en="The latest official release from the Embassy and the next public holidays in the DRC." data-emb-fr="Le dernier communiqué officiel de l’Ambassade et les prochains jours fériés en RDC.">The latest official release from the Embassy and the next public holidays in the DRC.</p>
+    <p class="home-link-line"><a class="home-link" href="/embassy-preview/news-events.html"><span data-emb-en="All news and events" data-emb-fr="Toutes les actualités et tous les événements">All news and events</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a></p>
   </header>
-
-  <article class="kinshasa-stage" tabindex="0" aria-label="Interactive panoramic view of Kinshasa">
-    <img fetchpriority="low" width="2048" height="943" decoding="async" src="/embassy-preview/aurora/assets/img/generated/drc-kinshasa.webp" srcset="/embassy-preview/aurora/assets/img/generated/drc-kinshasa-w720.webp 720w, /embassy-preview/aurora/assets/img/generated/drc-kinshasa-w1080.webp 1080w, /embassy-preview/aurora/assets/img/generated/drc-kinshasa.webp 1672w" sizes="(max-width: 760px) 343vw, (max-width: 1024px) 151vw, 1200px" alt="Panoramic view across the Kinshasa skyline illuminated at sunset"/>
-    <div class="kinshasa-overlay" aria-hidden="true"></div>
-    <div class="destination-mark"><span>Visit Kinshasa</span><b>04°19′S · 15°19′E</b></div>
-
-    <div class="kinshasa-view-note" aria-hidden="true">
-      <span></span>
-      Move across the city
+  <div class="home-news-layout">
+    <article class="home-card home-news-lead">
+      <p class="home-news-meta"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-newspaper"/></svg><span data-emb-en="Official release" data-emb-fr="Communiqué officiel">Official release</span><span class="home-news-sep" aria-hidden="true">·</span><time datetime="2026-05-11" data-emb-en="May 11, 2026" data-emb-fr="11 mai 2026">May 11, 2026</time></p>
+      <h3 data-emb-en="The Washington Agreements: a new era of peace, sovereignty, and prosperity for the DRC" data-emb-fr="Les Accords de Washington : une nouvelle ère de paix, de souveraineté et de prospérité pour la RDC">The Washington Agreements: a new era of peace, sovereignty, and prosperity for the DRC</h3>
+      <p class="home-news-text" data-emb-en="The Embassy describes the Washington Agreements as a three-part framework: the DRC–Rwanda Peace Agreement, a Regional Economic Integration Framework and a strategic partnership between the DRC and the United States." data-emb-fr="L’Ambassade présente les Accords de Washington comme un cadre en trois volets : l’Accord de paix entre la RDC et le Rwanda, un Cadre d’intégration économique régionale et un partenariat stratégique entre la RDC et les États-Unis.">The Embassy describes the Washington Agreements as a three-part framework: the DRC–Rwanda Peace Agreement, a Regional Economic Integration Framework and a strategic partnership between the DRC and the United States.</p>
+      <p class="home-link-line home-news-cta"><a class="home-link" href="https://www.ambadrcusa.org/2026/05/11/the-washington-agreements-a-new-era-of-peace-sovereignty-and-prosperity-for-the-drc/" target="_blank" rel="noopener noreferrer"><span data-emb-en="Read the official release on the Embassy website" data-emb-fr="Lire le communiqué officiel sur le site de l’Ambassade">Read the official release on the Embassy website</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg><span class="home-sr" data-emb-en="(opens in a new tab)" data-emb-fr="(s’ouvre dans un nouvel onglet)">(opens in a new tab)</span></a></p>
+    </article>
+    <div class="home-card home-holidays" id="annual-events">
+      <h3 data-emb-en="Public holidays in the DRC" data-emb-fr="Jours fériés en RDC">Public holidays in the DRC</h3>
+      <p class="home-holidays-text" data-emb-en="The next three public holidays. Embassy closures in Washington are announced separately." data-emb-fr="Les trois prochains jours fériés. Les fermetures de l’Ambassade à Washington font l’objet d’annonces distinctes.">The next three public holidays. Embassy closures in Washington are announced separately.</p>
+      <div class="home-holidays-list" data-annual-compact data-localized></div>
+      <p class="home-link-line"><a class="home-link" href="/embassy-preview/news-events.html#annual-calendar"><span data-emb-en="Full calendar for the year" data-emb-fr="Calendrier complet de l’année">Full calendar for the year</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a></p>
     </div>
-
-    <button class="kinshasa-hotspot hotspot-monument" type="button" aria-expanded="false" data-label="Explore landmark">
-      <span class="hotspot-pulse" aria-hidden="true"></span>
-      <span class="hotspot-card"><small>Landmark</small><b>Monument de l'Échangeur</b><span>A defining point in Kinshasa's urban panorama.</span></span>
-    </button>
-    <button class="kinshasa-hotspot hotspot-skyline" type="button" aria-expanded="false" data-label="Explore skyline">
-      <span class="hotspot-pulse" aria-hidden="true"></span>
-      <span class="hotspot-card"><small>City experience</small><b>Kinshasa skyline</b><span>A capital shaped by enterprise, creativity and movement.</span></span>
-    </button>
-    <div class="experience-rail" aria-label="Kinshasa visitor highlights">
-      <span><i></i><b>Culture</b><small>Music · art · fashion</small></span>
-      <span><i></i><b>River capital</b><small>Congo River horizons</small></span>
-      <span><i></i><b>Enterprise</b><small>Business · innovation</small></span>
-      <span><i></i><b>Hospitality</b><small>Cuisine · community</small></span>
-    </div>
-  </article>
-</div></section>
-
-<!-- PREMIUM CTA -->
-<section class="section"><div class="container">
-  <div class="cta-premium geo-map geo-drc consular-access-cta">
-    <div class="row2">
-      <div class="consular-access-copy">
-        <p class="eyebrow on-navy">Secure access</p>
-        <h2 style="margin-top:8px">Need a consular service?</h2>
-        <p>Review consular requirements, prepare the correct documents and confirm the current submission procedure directly with the Embassy before visiting or sending materials.</p>
-      </div>
-      <div class="acts">
-        <a class="btn btn-gold" href="/embassy-preview/portal.html">Appointment guidance →</a>
-        <a class="btn btn-ghost" href="/embassy-preview/consular-services.html">View services</a>
-      </div>
-    </div>
-  </div>
-  <div class="emergency mt24">
-    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
-      <div><b>Urgent consular assistance</b><span class="em-sub">Call the Embassy for guidance. If there is immediate danger in the United States, call 911 first.</span></div>
-      <a class="em-act" href="tel:+12022347690"><span>Embassy telephone</span><strong>+1 (202) 234-7690</strong></a>
   </div>
 </div></section>
 
-
-<!-- CONTACT -->
-<section class="section" id="contact"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Contact</p><div class="rule"></div><h2>Visit or contact the Embassy</h2></div>
-  <div class="contact-grid">
-    <div class="info">
-      <h3>Embassy of the DRC</h3>
-      <div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>1100 Connecticut Avenue NW, Suite 725<br/>Washington, DC 20036</span></div>
-      <div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span>Tel +1 (202) 234-7690</span></div>
-      <div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17v4M17 19h4M3 5h13a2 2 0 0 1 2 2v2H1V7a2 2 0 0 1 2-2ZM1 9h17v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2Z"/></svg><span>Fax (202) 234-2609 &middot; (202) 223-3377</span></div>
-      <div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>info@ambadrcusa.org</span></div>
-      <div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-5h6v5"/></svg><span>Consular jurisdiction: the entire United States</span></div>
-    </div>
-    <div class="map embassy-map-panel" role="img" aria-label="Location diagram for the Embassy at 1100 Connecticut Avenue NW in Washington, D.C.">
-      <span class="embassy-map-pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-5h6v5"/></svg></span>
-      <a class="map-location-card" style="background:#03182e!important;color:#fff!important" href="https://www.google.com/maps/search/?api=1&amp;query=1100+Connecticut+Avenue+NW+Suite+725+Washington+DC+20036" target="_blank" rel="noopener noreferrer"><span>Open directions ↗</span><strong>Embassy of the DRC</strong><small>1100 Connecticut Avenue NW · Suite 725 · Washington, D.C. 20036</small></a>
-    </div>
-    <div class="hours">
-      <h4 style="font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:12px">Office hours</h4>
-      <div class="hr"><span>Monday – Thursday</span><span>9:00 – 16:00</span></div><div class="hr"><span>Friday</span><span>9:00 – 13:00</span></div>
-      <div class="hr"><span>Visa drop-off · Mon–Thu</span><span>10:00 – 15:00</span></div>
-      <div class="hr"><span>Visa drop-off · Fri</span><span>10:00 – 13:00</span></div>
-      <div class="hr"><span>Visa pick-up · Tue/Thu</span><span>14:00 – 15:30</span></div>
-      <div class="hr"><span>Visa pick-up · Fri</span><span>11:00 – 12:30</span></div>
-      <div class="hr"><span>Weekends</span><span>Closed</span></div>
+<!-- MEDIA CENTRE (the page's one dark panel) -->
+<section class="section home-band home-media" aria-labelledby="media"><div class="container">
+  <div class="home-media-panel">
+    <header class="sec-head">
+      <p class="eyebrow on-navy" data-emb-en="Media" data-emb-fr="Médias">Media</p>
+      <h2 id="media" data-emb-en="Media center" data-emb-fr="Médiathèque">Media center</h2>
+      <p data-emb-en="The national anthem, program archives, official announcements and press contacts." data-emb-fr="L’hymne national, les archives des programmes, les annonces officielles et les contacts presse.">The national anthem, program archives, official announcements and press contacts.</p>
+    </header>
+    <div class="home-media-grid">
+      <button class="home-anthem" type="button" data-media="video" data-yt="Il8bLbcQpTw" data-title="National Anthem of the DR Congo" data-meta="Debout Congolais · Instrumental">
+        <span class="home-anthem-media">
+          <img fetchpriority="low" width="1672" height="1122" src="/embassy-preview/aurora/assets/img/generated/editorial-2026/flag-by-window.webp" srcset="/embassy-preview/aurora/assets/img/generated/editorial-2026/flag-by-window.webp 1672w, /embassy-preview/aurora/assets/img/generated/editorial-2026/flag-by-window@2x.webp 2528w" sizes="(max-width: 960px) calc(100vw - 72px), 760px" alt="" />
+          <span class="home-anthem-play" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-play"/></svg></span>
+        </span>
+        <span class="home-anthem-cap">
+          <span class="home-anthem-kicker" data-emb-en="Video · plays from YouTube" data-emb-fr="Vidéo · lecture via YouTube">Video · plays from YouTube</span>
+          <span class="home-anthem-title" data-emb-en="National anthem: Debout Congolais" data-emb-fr="Hymne national : Debout Congolais">National anthem: Debout Congolais</span>
+        </span>
+      </button>
+      <ul class="home-media-list">
+        <li><a href="/embassy-preview/congo-shining.html"><span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-images"/></svg></span><span class="home-media-text"><span class="home-media-name" data-emb-en="Congo Shining 2026" data-emb-fr="Congo Shining 2026">Congo Shining 2026</span><span class="home-media-meta" data-emb-en="Program archive · Houston and Atlanta" data-emb-fr="Archives du programme · Houston et Atlanta">Program archive · Houston and Atlanta</span></span><svg class="icon home-media-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+        <li><a href="https://www.ambadrcusa.org/announcement-page/" target="_blank" rel="noopener noreferrer"><span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-newspaper"/></svg></span><span class="home-media-text"><span class="home-media-name" data-emb-en="Official announcements" data-emb-fr="Annonces officielles">Official announcements</span><span class="home-media-meta" data-emb-en="Embassy website · opens in a new tab" data-emb-fr="Site de l’Ambassade · s’ouvre dans un nouvel onglet">Embassy website · opens in a new tab</span></span><svg class="icon home-media-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg></a></li>
+        <li><a href="/embassy-preview/contact.html#press-communication"><span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-megaphone"/></svg></span><span class="home-media-text"><span class="home-media-name" data-emb-en="Press and Communication" data-emb-fr="Presse et communication">Press and Communication</span><span class="home-media-meta" data-emb-en="Contacts for media inquiries" data-emb-fr="Contacts pour les demandes des médias">Contacts for media inquiries</span></span><svg class="icon home-media-go" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+      </ul>
     </div>
   </div>
-  <p class="center muted" style="font-size:13px;margin-top:26px"><a href="/embassy-preview/contact.html#department-contacts">Department contacts</a> &middot; <a href="/embassy-preview/contact.html#consular-affairs">Consular Affairs</a> &middot; <a href="/embassy-preview/contact.html#economic-trade">Economic &amp; Trade</a> &middot; <a href="/embassy-preview/contact.html#press-communication">Press &amp; Communication</a></p>
+</div></section>
+
+<!-- DISCOVER, VISIT AND INVEST -->
+<section class="section home-band home-discover" id="visit-kinshasa" aria-labelledby="discover-title"><div class="container">
+  <header class="sec-head">
+    <p class="eyebrow" data-emb-en="The country" data-emb-fr="Le pays">The country</p>
+    <h2 id="discover-title" data-emb-en="Discover, visit and invest" data-emb-fr="Découvrir, visiter et investir">Discover, visit and invest</h2>
+    <p data-emb-en="Learn about the Democratic Republic of the Congo, plan a visit, or explore opportunities for trade and investment." data-emb-fr="Découvrez la République démocratique du Congo, préparez un séjour ou explorez les possibilités de commerce et d’investissement.">Learn about the Democratic Republic of the Congo, plan a visit, or explore opportunities for trade and investment.</p>
+  </header>
+  <div class="home-feature-grid">
+    <a class="home-feature" href="/embassy-preview/dr-congo.html">
+      <span class="home-feature-media"><img src="/embassy-preview/aurora/assets/img/generated/drc-kinshasa-w1080.webp" srcset="/embassy-preview/aurora/assets/img/generated/drc-kinshasa-w720.webp 720w, /embassy-preview/aurora/assets/img/generated/drc-kinshasa-w1080.webp 1080w, /embassy-preview/aurora/assets/img/generated/drc-kinshasa.webp 1672w" sizes="(min-width: 2400px) 900px, (min-width: 760px) 50vw, 100vw" width="1672" height="941" alt="Illustrative view of Kinshasa at dusk" data-emb-alt-fr="Vue d’illustration de Kinshasa au crépuscule" /></span>
+      <span class="home-feature-body">
+        <span class="home-feature-kicker" data-emb-en="Country guide" data-emb-fr="Guide du pays">Country guide</span>
+        <h3 class="home-feature-title" data-emb-en="Discover the Democratic Republic of the Congo" data-emb-fr="Découvrir la République démocratique du Congo">Discover the Democratic Republic of the Congo</h3>
+        <span class="home-feature-text" data-emb-en="Kinshasa, the provinces, culture, music and the Congo River." data-emb-fr="Kinshasa, les provinces, la culture, la musique et le fleuve Congo.">Kinshasa, the provinces, culture, music and the Congo River.</span>
+        <span class="home-feature-go"><span data-emb-en="Explore the country guide" data-emb-fr="Explorer le guide du pays">Explore the country guide</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></span>
+      </span>
+    </a>
+    <a class="home-feature" href="/embassy-preview/invest-in-drc.html">
+      <span class="home-feature-media"><img src="/embassy-preview/aurora/assets/img/generated/drc-river-w1080.webp" srcset="/embassy-preview/aurora/assets/img/generated/drc-river-w720.webp 720w, /embassy-preview/aurora/assets/img/generated/drc-river-w1080.webp 1080w, /embassy-preview/aurora/assets/img/generated/drc-river.webp 1672w" sizes="(min-width: 2400px) 900px, (min-width: 760px) 50vw, 100vw" width="1672" height="941" alt="Illustrative view of the Congo River" data-emb-alt-fr="Vue d’illustration du fleuve Congo" /></span>
+      <span class="home-feature-body">
+        <span class="home-feature-kicker" data-emb-en="Investment guide" data-emb-fr="Guide de l’investissement">Investment guide</span>
+        <h3 class="home-feature-title" data-emb-en="Trade and investment" data-emb-fr="Commerce et investissement">Trade and investment</h3>
+        <span class="home-feature-text" data-emb-en="Priority sectors, the investment code and next steps with ANAPI." data-emb-fr="Secteurs prioritaires, code des investissements et prochaines étapes avec l’ANAPI.">Priority sectors, the investment code and next steps with ANAPI.</span>
+        <span class="home-feature-go"><span data-emb-en="Read the investment guide" data-emb-fr="Lire le guide de l’investissement">Read the investment guide</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></span>
+      </span>
+    </a>
+  </div>
+  <p class="px-caption home-feature-note" data-emb-en="Illustrative images." data-emb-fr="Images d’illustration.">Illustrative images.</p>
+</div></section>
+
+<!-- CONTACT, URGENT ASSISTANCE AND OFFICE HOURS (the page's canonical hours table) -->
+<section class="section home-band home-contact" id="contact" aria-labelledby="contact-title"><div class="container">
+  <header class="sec-head">
+    <p class="eyebrow" data-emb-en="Contact" data-emb-fr="Contact">Contact</p>
+    <h2 id="contact-title" data-emb-en="Visit or contact the Embassy" data-emb-fr="Se rendre à l’Ambassade ou la contacter">Visit or contact the Embassy</h2>
+  </header>
+  <div class="home-urgent">
+    <span class="home-urgent-icon" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-alert-triangle"/></svg></span>
+    <div class="home-urgent-text">
+      <h3 data-emb-en="Urgent consular assistance" data-emb-fr="Assistance consulaire urgente">Urgent consular assistance</h3>
+      <p data-emb-en="Call the Embassy for guidance. If there is immediate danger in the United States, call 911 first." data-emb-fr="Appelez l’Ambassade pour obtenir des conseils. En cas de danger immédiat aux États-Unis, composez d’abord le 911.">Call the Embassy for guidance. If there is immediate danger in the United States, call 911 first.</p>
+    </div>
+    <a class="home-urgent-call" href="tel:+12022347690"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-phone"/></svg><span data-emb-en="Call +1 (202) 234-7690" data-emb-fr="Appeler le +1 (202) 234-7690">Call +1 (202) 234-7690</span></a>
+  </div>
+  <div class="home-contact-grid">
+    <article class="home-card home-contact-card">
+      <h3 data-emb-en="Embassy of the Democratic Republic of the Congo" data-emb-fr="Ambassade de la République démocratique du Congo">Embassy of the Democratic Republic of the Congo</h3>
+      <ul class="home-contact-list">
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-map-pin"/></svg><span>1100 Connecticut Avenue NW, Suite 725<br />Washington, DC 20036</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-phone"/></svg><span><span data-emb-en="Telephone" data-emb-fr="Téléphone">Telephone</span> <a href="tel:+12022347690">+1 (202) 234-7690</a></span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-printer"/></svg><span><span data-emb-en="Fax" data-emb-fr="Télécopie">Fax</span> <span class="home-nowrap">(202) 234-2609</span> · <span class="home-nowrap">(202) 223-3377</span></span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-mail"/></svg><span><span data-emb-en="Email" data-emb-fr="Courriel">Email</span> <a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a></span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-landmark"/></svg><span data-emb-en="Consular jurisdiction: the entire United States" data-emb-fr="Circonscription consulaire : l’ensemble des États-Unis">Consular jurisdiction: the entire United States</span></li>
+      </ul>
+      <p class="home-contact-links"><a class="home-link" href="https://www.google.com/maps/search/?api=1&amp;query=1100+Connecticut+Avenue+NW+Suite+725+Washington+DC+20036" target="_blank" rel="noopener noreferrer"><span data-emb-en="Get directions" data-emb-fr="Obtenir l’itinéraire">Get directions</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg></a><a class="home-link" href="/embassy-preview/contact.html#department-contacts"><span data-emb-en="Department contacts" data-emb-fr="Contacts des services">Department contacts</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a></p>
+    </article>
+    <article class="home-card home-hours">
+      <h3 id="office-hours" data-emb-en="Office hours" data-emb-fr="Heures d’ouverture">Office hours</h3>
+      <table class="home-hours-table" aria-labelledby="office-hours">
+        <tbody>
+          <tr><th scope="row" data-emb-en="Monday to Thursday" data-emb-fr="Du lundi au jeudi">Monday to Thursday</th><td data-emb-en="9:00–16:00" data-emb-fr="9 h – 16 h">9:00–16:00</td></tr>
+          <tr><th scope="row" data-emb-en="Friday" data-emb-fr="Vendredi">Friday</th><td data-emb-en="9:00–13:00" data-emb-fr="9 h – 13 h">9:00–13:00</td></tr>
+          <tr><th scope="row" data-emb-en="Weekends and public holidays" data-emb-fr="Week-ends et jours fériés">Weekends and public holidays</th><td data-emb-en="Closed" data-emb-fr="Fermé">Closed</td></tr>
+        </tbody>
+      </table>
+      <p class="home-hours-note" data-emb-en="Times are Eastern Time (Washington, D.C.)." data-emb-fr="Heures de Washington (heure de l’Est).">Times are Eastern Time (Washington, D.C.).</p>
+      <p class="home-link-line"><a class="home-link" href="#visa-windows"><span data-emb-en="Visa drop-off and collection windows" data-emb-fr="Horaires de dépôt et de retrait des visas">Visa drop-off and collection windows</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a></p>
+    </article>
+  </div>
 </div></section>
 
 </main>
@@ -628,5 +475,8 @@
 <script src="/embassy-preview/aurora/cinema.js?v=1787120000" defer></script>
 <script src="/embassy-preview/aurora/annual-events.js?v=1786165200" defer></script>
 <script src="/embassy-preview/aurora/form-notice.js?v=1786540000" defer></script>
+<script src="/embassy-preview/aurora/pro/search-plus.js?v=20261016a" defer></script>
+<script src="/embassy-preview/aurora/pro/i18n-attrs.js?v=20261016a" defer></script>
+<script src="/embassy-preview/aurora/pro/home.js?v=20261016a" defer></script>
 </body>
 </html>

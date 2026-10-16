@@ -1,0 +1,531 @@
+/* ============================================================================
+   invest-in-drc.html: below-the-hero presentation.
+   Loaded after aurora/pro-system.css. Every selector is scoped to a content
+   section id/class that sits after the hero; frozen zones are never matched.
+   ============================================================================ */
+
+/* ---------------------------------------------------------- shared on page */
+/* Global layer fix: `.sec-head p` (lead font, !important) out-specifies
+   `.eyebrow`, so eyebrows inside .sec-head grew to 19px. Restore the label. */
+main > section:not(.hero, .phead, .amb-hero, .qa-band) .sec-head p.eyebrow {
+  font: 700 var(--px-t-eyebrow)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  max-width: none !important;
+  margin: 0 0 14px !important;
+}
+/* Legacy CSS caps .sec-head h2 at ~395px, which broke short headings. */
+main > section:not(.hero, .phead, .amb-hero, .qa-band) .sec-head h2 {
+  max-width: 30ch !important;
+}
+
+/* Global layer gaps: legacy CSS paints a faint grid on every section
+   .container and a tricolour border-image on every section's top edge.
+   Both are decoration the brand rules out; remove them on this page. */
+main > section:is(.inv-intro, .inv-sectors-sec, .inv-anapi, .inv-framework, .inv-portals, .inv-contact-sec) > .container {
+  background-image: none !important;
+}
+main > section:is(.inv-intro, .inv-sectors-sec, .inv-anapi, .inv-framework, .inv-portals, .inv-contact-sec) {
+  border-image: none !important;
+}
+
+main > section:is(.inv-intro, .inv-sectors-sec, .inv-anapi, .inv-framework, .inv-portals) h2,
+main > section:is(.inv-intro, .inv-sectors-sec, .inv-anapi, .inv-framework, .inv-portals) .sec-head h2 {
+  color: var(--px-navy-950) !important;
+}
+main > section:is(.inv-sectors-sec, .inv-framework, .inv-portals) .sec-head p:not(.eyebrow) {
+  color: var(--px-ink-2) !important;
+}
+main > section:is(.inv-intro, .inv-anapi) h2 {
+  font-size: var(--px-t-h2) !important;
+  line-height: 1.16 !important;
+  margin: 0 0 16px !important;
+  max-width: 22ch;
+}
+main > section:is(.inv-intro, .inv-anapi) .inv-lead {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans);
+  color: var(--px-ink-2);
+}
+main > section:is(.inv-intro, .inv-anapi, .inv-portals) .inv-textlink {
+  margin: 22px 0 0;
+  font-size: var(--px-t-body);
+}
+main > section:is(.inv-intro, .inv-anapi, .inv-portals) .inv-textlink a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color .18s var(--px-ease);
+}
+main > section:is(.inv-intro, .inv-anapi, .inv-portals) .inv-textlink a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+
+/* ------------------------------------------------------- 1. Why the DRC */
+main > section.inv-intro .inv-intro-grid {
+  display: grid;
+  gap: 36px;
+  align-items: start;
+}
+@media (min-width: 960px) {
+  main > section.inv-intro .inv-intro-grid {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    gap: clamp(40px, 5vw, 80px);
+  }
+}
+main > section.inv-intro .inv-glance {
+  margin: 0;
+  padding: clamp(22px, 2.4vw, 30px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.inv-intro .inv-glance-title {
+  margin: 0 0 14px;
+  font: 700 13px/1.3 var(--px-sans) !important;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--px-ink-3);
+}
+main > section.inv-intro .inv-glance .px-summary {
+  grid-template-columns: 11em minmax(0, 1fr);
+}
+main > section.inv-intro .inv-glance .px-summary > dt,
+main > section.inv-intro .inv-glance .px-summary > dd {
+  font-size: 16px;
+}
+@media (min-width: 561px) {
+  main > section.inv-intro .inv-glance .px-summary > dt,
+  main > section.inv-intro .inv-glance .px-summary > dd {
+    padding: 13px 0;
+  }
+}
+main > section.inv-intro .inv-glance .px-summary > :is(dt, dd):nth-last-child(-n + 2) {
+  border-bottom: 0;
+  padding-bottom: 2px;
+}
+@media (max-width: 560px) {
+  main > section.inv-intro .inv-glance .px-summary {
+    grid-template-columns: 1fr;
+  }
+  main > section.inv-intro .inv-glance .px-summary > dt {
+    padding: 13px 0 2px;
+  }
+  main > section.inv-intro .inv-glance .px-summary > dd {
+    padding: 0 0 13px;
+  }
+  main > section.inv-intro .inv-glance .px-summary > dd:last-child {
+    padding-bottom: 2px;
+  }
+}
+
+/* Illustrative photography row */
+main > section.inv-intro .inv-photos {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(40px, 5vw, 64px);
+}
+main > section.inv-intro .inv-photo {
+  margin: 0;
+  min-width: 0;
+}
+main > section.inv-intro .inv-photo:first-child {
+  grid-column: 1 / -1;
+}
+main > section.inv-intro .inv-photo .px-frame {
+  aspect-ratio: 3 / 2;
+}
+main > section.inv-intro .inv-photo:first-child .px-frame {
+  aspect-ratio: 16 / 9;
+}
+main > section.inv-intro .inv-photo img {
+  display: block;
+}
+main > section.inv-intro .inv-photo figcaption {
+  margin-top: 10px;
+  font: 600 15px/1.4 var(--px-sans);
+  color: var(--px-ink);
+}
+@media (min-width: 761px) {
+  main > section.inv-intro .inv-photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  main > section.inv-intro .inv-photo:first-child {
+    grid-column: auto;
+  }
+  main > section.inv-intro .inv-photo:first-child .px-frame {
+    aspect-ratio: 3 / 2;
+  }
+}
+main > section.inv-intro .inv-photo-note {
+  margin: 16px 0 0;
+}
+
+/* ------------------------------------------------ 2. Priority sectors */
+main > section.inv-sectors-sec .inv-sectors {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  main > section.inv-sectors-sec .inv-sectors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 20px;
+  }
+}
+main > section.inv-sectors-sec .inv-sectors > .inv-sector {
+  position: relative;
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px;
+  gap: 16px;
+  align-items: start;
+  padding: 22px 22px 24px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  transition: border-color .18s var(--px-ease), box-shadow .18s var(--px-ease);
+}
+main > section.inv-sectors-sec .inv-sector:is(:hover, :focus-within) {
+  border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
+}
+main > section.inv-sectors-sec .inv-sector h3 {
+  margin: 0 0 6px;
+  font: 700 19px/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.inv-sectors-sec .inv-sector h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+main > section.inv-sectors-sec .inv-sector h3 a::after {
+  /* the whole card is the link target */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--px-radius);
+}
+main > section.inv-sectors-sec .inv-sector:hover h3 a span {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+main > section.inv-sectors-sec .inv-sector p {
+  margin: 0;
+  color: var(--px-ink-2);
+  line-height: 1.58;
+}
+main > section.inv-sectors-sec .inv-sector-go {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--px-ink-3);
+  transition: color .18s var(--px-ease);
+}
+main > section.inv-sectors-sec .inv-sector:hover .inv-sector-go {
+  color: var(--px-blue-700);
+}
+@media (max-width: 479px) {
+  main > section.inv-sectors-sec .inv-sectors > .inv-sector {
+    gap: 12px;
+    padding: 18px 18px 20px;
+  }
+}
+
+/* --------------------------------------------- 3. ANAPI and the pathway */
+main > section.inv-anapi .inv-anapi-grid {
+  display: grid;
+  gap: 40px;
+  align-items: start;
+}
+@media (min-width: 980px) {
+  main > section.inv-anapi .inv-anapi-grid {
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    gap: clamp(48px, 6vw, 96px);
+  }
+}
+main > section.inv-anapi .inv-checks {
+  list-style: none;
+  margin: 22px 0 14px;
+  padding: 0;
+  border-top: 1px solid var(--px-line);
+  max-width: 560px;
+}
+main > section.inv-anapi .inv-checks > li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--px-line);
+  font-size: var(--px-t-body);
+  line-height: 1.5;
+  color: var(--px-ink);
+}
+main > section.inv-anapi .inv-checks .icon {
+  margin-top: 2px;
+  color: var(--px-blue-700);
+  stroke-width: 2.2;
+}
+/* ANAPI is a tertiary link here (the hero and the portal list also point
+   to it); the inquiry email in the contact panel is the one gold action. */
+main > section.inv-anapi .inv-textlink {
+  margin: 0;
+}
+main > section.inv-anapi .inv-textlink a {
+  gap: 8px;
+}
+main > section.inv-anapi .inv-textlink .icon {
+  width: 16px;
+  height: 16px;
+}
+main > section.inv-anapi .inv-steps {
+  padding: clamp(24px, 3.2vw, 44px);
+  background: var(--px-canvas);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-lg);
+}
+main > section.inv-anapi .inv-steps-label {
+  margin: 0 0 26px;
+  font: 700 13px/1.35 var(--px-sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--px-ink-3);
+}
+main > section.inv-anapi .px-steps > li {
+  margin: 0;
+}
+main > section.inv-anapi .px-steps p {
+  margin: 0;
+  max-width: 58ch;
+}
+
+/* -------------------------------------------------------- 4. Framework */
+main > section.inv-framework .inv-framework-grid {
+  display: grid;
+  gap: 20px;
+}
+@media (min-width: 760px) {
+  main > section.inv-framework .inv-framework-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+main > section.inv-framework .inv-card {
+  padding: clamp(22px, 2.6vw, 34px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.inv-framework .inv-card h3 {
+  margin: 0 0 14px;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.inv-framework .inv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+main > section.inv-framework .inv-list > li {
+  position: relative;
+  margin: 0;
+  padding: 11px 0 11px 22px;
+  border-top: 1px solid var(--px-line);
+  font-size: var(--px-t-body);
+  line-height: 1.5;
+  color: var(--px-ink);
+}
+main > section.inv-framework .inv-list > li:last-child {
+  padding-bottom: 0;
+}
+main > section.inv-framework .inv-list > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 21px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--px-blue-600);
+}
+main > section.inv-framework .inv-details-group {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+main > section.inv-framework .inv-details {
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  transition: border-color .18s var(--px-ease);
+}
+main > section.inv-framework .inv-details:hover {
+  border-color: rgba(45, 112, 214, .55);
+}
+main > section.inv-framework .inv-details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  padding: 16px 22px;
+  cursor: pointer;
+  list-style: none;
+  font: 600 17px/1.4 var(--px-sans);
+  color: var(--px-navy-950);
+  border-radius: var(--px-radius);
+}
+main > section.inv-framework .inv-details > summary::-webkit-details-marker {
+  display: none;
+}
+main > section.inv-framework .inv-details > summary::before,
+main > section.inv-framework .inv-details > summary::after {
+  content: none !important;
+}
+main > section.inv-framework .inv-details > summary .icon {
+  color: var(--px-ink-3);
+  transition: transform .18s var(--px-ease);
+}
+main > section.inv-framework .inv-details[open] > summary .icon {
+  transform: rotate(180deg);
+}
+main > section.inv-framework .inv-details-body {
+  padding: 0 22px 22px;
+}
+main > section.inv-framework .inv-details-body p {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--px-ink-2);
+}
+main > section.inv-framework .inv-details-body .inv-details-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  margin-top: 12px;
+}
+main > section.inv-framework .inv-details-links a {
+  display: block;
+  padding: 10px 0;
+  font-size: var(--px-t-body);
+  font-weight: 600;
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+main > section.inv-framework .inv-details-links a:hover {
+  color: var(--px-navy-950);
+}
+main > section.inv-framework .inv-details-links .icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  vertical-align: -2px;
+}
+
+/* ------------------------------------------------------ 5. Portals */
+main > section.inv-portals .inv-portals-grid {
+  display: grid;
+  gap: 8px;
+  align-items: start;
+}
+@media (min-width: 980px) {
+  main > section.inv-portals .inv-portals-grid {
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: clamp(48px, 6vw, 96px);
+  }
+  #business-portals .inv-portals-grid > .sec-head {
+    margin-bottom: 0 !important;
+  }
+}
+#business-portals .px-links a {
+  padding: 16px 4px;
+  min-height: 76px;
+  color: var(--px-navy-950) !important;
+  text-decoration: none !important;
+}
+#business-portals .px-links a:hover .px-links-name {
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+#business-portals .px-links a:hover > .icon {
+  color: var(--px-blue-700);
+}
+main > section.inv-portals .px-links .icon-chip .icon {
+  margin: 0;
+  color: inherit;
+}
+main > section.inv-portals .px-links .inv-links-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+main > section.inv-portals .px-links a > .icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ------------------------------------------------------ 6. Contact */
+main > section.inv-contact-sec .inv-contact {
+  display: grid;
+  gap: 28px;
+  align-items: end;
+  padding: clamp(28px, 4.4vw, 56px);
+  background: var(--px-navy-950);
+  border-radius: var(--px-radius-lg);
+  color: #fff;
+}
+@media (min-width: 960px) {
+  main > section.inv-contact-sec .inv-contact {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 48px;
+  }
+}
+#investment-contact .inv-contact .eyebrow {
+  color: var(--px-gold-500) !important;
+}
+#investment-contact .inv-contact .eyebrow::before {
+  background: var(--px-gold-500) !important;
+}
+main > section.inv-contact-sec .inv-contact h2 {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 1.6vw + 14px, 36px);
+  line-height: 1.18;
+  color: #fff !important;
+  max-width: 24ch;
+}
+main > section.inv-contact-sec .inv-contact-copy p:not(.eyebrow) {
+  margin: 0;
+  max-width: 62ch;
+  color: rgba(226, 236, 250, .88);
+}
+main > section.inv-contact-sec .inv-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media (max-width: 560px) {
+  main > section.inv-contact-sec .inv-contact-actions {
+    flex-direction: column;
+  }
+  main > section.inv-contact-sec .inv-contact-actions .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+}

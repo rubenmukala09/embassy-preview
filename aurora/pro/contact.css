@@ -1,0 +1,509 @@
+/* ============================================================================
+   contact.html - page layer for the content BELOW the hero and quick-access
+   dock. Every rule is scoped to main > section.ct-sec, a class that only the
+   page's own content sections carry, so nothing here can reach the frozen
+   zones (preview banner, top bar, header, notice bar, hero, dock, footer).
+   Builds on aurora/pro-system.css tokens (--px-*) and components
+   (.px-summary, .px-meta, .icon).
+   Sections: 1 contact details + hours (department emails live in the
+   summary list), 2 visiting + map, 3 FAQ + website feedback.
+   Section heads carry no eyebrow: one H2 per section.
+   ============================================================================ */
+
+main > section.ct-sec {
+  --ct-gap: clamp(16px, 2vw, 24px);
+}
+
+/* --------------------------------------------- Legacy decoration cleanup
+   Older stylesheets still paint a faint grid on section containers and a
+   soft glow under headings; neither belongs in the calm register. */
+main > section.ct-sec > .container {
+  background-image: none !important;
+}
+main > section.ct-sec :is(h2, h3) {
+  text-shadow: none !important;
+}
+
+/* ------------------------------------------------------------ Shared card */
+main > section.ct-sec .ct-card {
+  min-width: 0;
+  padding: clamp(22px, 2.4vw, 32px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  color: var(--px-ink);
+}
+main > section.ct-sec .ct-card h3 {
+  margin: 0 0 18px;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+  letter-spacing: -.005em;
+  color: var(--px-navy-950);
+}
+main > section.ct-sec .ct-note {
+  display: block;
+  margin: 6px 0 0;
+  font: 400 var(--px-t-meta)/1.5 var(--px-sans) !important;
+  color: var(--px-ink-3);
+}
+main > section.ct-sec dd a[href]:not(.btn),
+main > section.ct-sec .ct-more > a[href]:not(.btn),
+main > section.ct-sec .ct-link[href]:not(.btn),
+main > section.ct-sec .acc-a a[href]:not(.btn) {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease), text-decoration-thickness .18s var(--px-ease);
+}
+main > section.ct-sec dd a[href]:not(.btn):hover,
+main > section.ct-sec .ct-more > a[href]:not(.btn):hover,
+main > section.ct-sec .ct-link[href]:not(.btn):hover,
+main > section.ct-sec .acc-a a[href]:not(.btn):hover {
+  color: var(--px-navy-900);
+  text-decoration-thickness: 2px;
+}
+
+/* ------------------------------------------- 1. Contact details + hours */
+/* The meta hairline spans the full content column, like the cards below. */
+main > section.ct-details .px-meta {
+  max-width: none;
+}
+main > section.ct-details .ct-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--ct-gap);
+  align-items: start;
+}
+main > section.ct-details .ct-summary {
+  grid-template-columns: minmax(150px, 34%) 1fr;
+}
+main > section.ct-details .ct-summary > dt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+main > section.ct-details .ct-summary > dt .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--px-ink-3);
+}
+main > section.ct-details .ct-summary > dd {
+  color: var(--px-ink);
+  overflow-wrap: anywhere;
+}
+/* 44px tap area for phone, email and web links without changing the row height */
+main > section.ct-details .ct-summary > dd a[href]:not(.btn) {
+  display: inline-block;
+  padding-block: 10px;
+  margin-block: -10px;
+}
+main > section.ct-details .ct-summary address {
+  font-style: normal;
+}
+main > section.ct-details .ct-tel,
+main > section.ct-details .ct-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* Secondary numbers: one per line at every width (no dangling separators) */
+main > section.ct-details .ct-summary > dd.ct-multi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+main > section.ct-details .ct-summary > dd.ct-multi .ct-note {
+  margin-top: 2px;
+}
+/* Email by department: three mailto links (anchors kept for inbound links) */
+main > section.ct-details .ct-summary > dd.ct-depts {
+  gap: 8px;
+}
+main > section.ct-details .ct-depts > a[href] {
+  scroll-margin-top: 140px;
+  border-radius: 4px;
+}
+main > section.ct-details .ct-depts > a[href]:target {
+  outline: 3px solid rgba(45, 112, 214, .35);
+  outline-offset: 2px;
+}
+main > section.ct-details .ct-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+main > section.ct-details .ct-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+main > section.ct-details .ct-actions .btn .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+main > section.ct-details .ct-caution {
+  margin: 16px 0 0;
+  max-width: 60ch;
+  font: 400 var(--px-t-meta)/1.55 var(--px-sans);
+  color: var(--px-ink-2);
+}
+
+/* Office hours: one canonical table */
+main > section.ct-details .ct-hours h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+main > section.ct-details .ct-hours h3 .icon {
+  width: 22px;
+  height: 22px;
+  color: var(--px-blue-700);
+}
+main > section.ct-details .ct-hours-table {
+  display: table !important;
+  width: 100%;
+  margin: 0;
+  overflow: visible !important;
+  white-space: normal !important;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+main > section.ct-details .ct-hours-table tr,
+main > section.ct-details .ct-hours-table tbody tr:nth-child(even) {
+  background: transparent !important;
+}
+main > section.ct-details .ct-hours-table th,
+main > section.ct-details .ct-hours-table td {
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid var(--px-line);
+  vertical-align: baseline;
+  background: transparent !important;
+}
+main > section.ct-details .ct-hours-table th[scope="row"] {
+  padding-right: 16px;
+  text-align: left;
+  font: 400 16px/1.45 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+  color: var(--px-ink-2);
+}
+main > section.ct-details .ct-hours-table td {
+  text-align: right;
+  white-space: nowrap;
+  font: 600 16px/1.45 var(--px-sans) !important;
+  color: var(--px-navy-950);
+}
+main > section.ct-details .ct-hours-table .ct-group th {
+  padding: 22px 0 6px;
+  border-bottom: 1px solid var(--px-line-strong);
+  text-align: left;
+  font: 700 14px/1.3 var(--px-sans) !important;
+  letter-spacing: .02em !important;
+  color: var(--px-navy-900);
+}
+main > section.ct-details .ct-hours-table tbody:first-child .ct-group th {
+  padding-top: 0;
+}
+main > section.ct-details .ct-hours-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+main > section.ct-details .ct-hours .ct-note {
+  max-width: none;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--px-line);
+}
+
+/* ---------------------------------------------------- 2. Visiting + map */
+main > section.ct-visit .ct-visit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+main > section.ct-visit .ct-visit-copy .sec-head {
+  margin-bottom: 24px !important;
+}
+main > section.ct-visit .ct-visit-list {
+  grid-template-columns: minmax(130px, 32%) 1fr;
+}
+main > section.ct-visit .ct-visit-list > dd {
+  color: var(--px-ink);
+}
+main > section.ct-visit .ct-more {
+  margin: 16px 0 0;
+}
+main > section.ct-sec .ct-more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 16.5px;
+}
+main > section.ct-sec .ct-more a .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+
+main > section.ct-visit .ct-map {
+  margin: 0;
+  min-width: 0;
+  overflow: clip;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-lg);
+  box-shadow: var(--px-shadow);
+}
+main > section.ct-visit .ct-map-frame {
+  position: relative;
+  background: var(--px-sky);
+}
+/* Shown only until the OpenStreetMap frame paints over it (or if it is blocked). */
+main > section.ct-visit .ct-map-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  font: 400 var(--px-t-meta)/1.5 var(--px-sans);
+  color: var(--px-ink-2);
+}
+main > section.ct-visit .ct-map-fallback .icon {
+  width: 28px;
+  height: 28px;
+  color: var(--px-blue-700);
+}
+main > section.ct-visit .ct-map iframe {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(300px, 30vw, 420px);
+  border: 0;
+}
+main > section.ct-visit .ct-map-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+  padding: 16px clamp(18px, 2vw, 24px);
+  border-top: 1px solid var(--px-line);
+}
+main > section.ct-visit .ct-map-addr {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+main > section.ct-visit .ct-map-addr strong {
+  font: 700 16px/1.35 var(--px-sans);
+  color: var(--px-navy-950);
+}
+main > section.ct-visit .ct-map-addr span {
+  font: 400 var(--px-t-meta)/1.45 var(--px-sans);
+  color: var(--px-ink-2);
+}
+main > section.ct-visit .ct-map-bar .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+main > section.ct-visit .ct-map-bar .btn .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+
+/* ------------------------------------------------ Website feedback link */
+main > section.ct-sec .ct-feedback h3 {
+  margin: 0 0 8px;
+}
+main > section.ct-sec .ct-feedback p {
+  margin: 0 0 10px;
+  color: var(--px-ink-2);
+}
+main > section.ct-sec .ct-link {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  padding-block: 11px;
+  font-size: 16px;
+}
+main > section.ct-sec .ct-link .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  vertical-align: 0;
+}
+
+/* ------------------------------------------- 3. FAQ + website feedback */
+main > section.ct-faq .ct-faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+main > section.ct-faq .ct-feedback {
+  margin-top: 8px;
+}
+
+/* Accordion: hairline rows, 17px questions, one chevron (USWDS pattern).
+   The section id is needed: the shared card rule in pro-system.css carries
+   ID-level specificity (its :not(:is(... #media ...)) guard), so a class-only
+   override cannot remove the per-item card frame. */
+main > section#contact-faq.ct-sec .ct-accordion {
+  display: block !important;
+  max-width: 820px;
+  margin: 0 !important;
+  border-top: 1px solid var(--px-line-strong) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  counter-reset: none;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-item {
+  margin: 0 !important;
+  overflow: visible;
+  border: 0 !important;
+  border-bottom: 1px solid var(--px-line-strong) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-item::before,
+main > section#contact-faq.ct-sec .ct-accordion .acc-item::after,
+main > section#contact-faq.ct-sec .ct-accordion .acc-q::before,
+main > section#contact-faq.ct-sec .ct-accordion .acc-q::after,
+main > section#contact-faq.ct-sec .ct-accordion .acc-a .inner::before {
+  content: none !important;
+  display: none !important;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-q {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 64px;
+  margin: 0;
+  padding: 18px 4px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-align: left;
+  text-transform: none !important;
+  font: 600 17px/1.45 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+  color: var(--px-navy-950) !important;
+  cursor: pointer;
+  transition: color .18s var(--px-ease) !important;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-q:hover {
+  padding-left: 4px !important;
+  color: var(--px-blue-700) !important;
+  background: transparent !important;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-q-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-chev {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  color: var(--px-ink-3);
+  transition: transform .2s var(--px-ease);
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-item.open .acc-chev {
+  transform: rotate(180deg);
+  color: var(--px-navy-900);
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-a {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-a .inner {
+  max-width: 68ch;
+  padding: 0 4px !important;
+  font: 400 16.5px/1.65 var(--px-sans) !important;
+  color: var(--px-ink-2) !important;
+}
+main > section#contact-faq.ct-sec .ct-accordion .acc-a .inner > p {
+  margin: 0;
+  font: inherit !important;
+  color: inherit;
+}
+/* inline padding enlarges the tap area without moving the line */
+main > section#contact-faq.ct-sec .ct-accordion .acc-a a[href] {
+  padding-block: 12px;
+}
+
+/* Bottom padding only on the open row, so collapsed rows stay compact
+   (faq-system.css collapses with grid 0fr, which keeps inner padding). */
+main > section#contact-faq.ct-sec .ct-accordion .acc-item.open .acc-a .inner {
+  padding-bottom: 22px !important;
+}
+
+/* ------------------------------------------------------------ Responsive */
+@media (max-width: 960px) {
+  main > section.ct-details .ct-grid,
+  main > section.ct-visit .ct-visit-grid,
+  main > section.ct-faq .ct-faq-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.ct-faq .ct-feedback {
+    margin-top: 0;
+    max-width: none;
+  }
+}
+@media (max-width: 640px) {
+  main > section.ct-details .ct-actions .btn {
+    flex: 1 1 100%;
+    min-height: 48px;
+  }
+  main > section.ct-visit .ct-map-bar .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+  main > section.ct-visit .ct-map iframe {
+    height: 280px;
+  }
+  main > section#contact-faq.ct-sec .ct-accordion .acc-q {
+    font-size: 16.5px !important;
+  }
+}
+@media (max-width: 560px) {
+  /* px-summary stacks to one column here (label above value) */
+  main > section.ct-details .ct-summary,
+  main > section.ct-visit .ct-visit-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.ct-details .ct-summary > dd {
+    padding-left: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main > section#contact-faq.ct-sec .ct-accordion .acc-chev {
+    transition: none;
+  }
+}

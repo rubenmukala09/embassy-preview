@@ -1,0 +1,455 @@
+/* ============================================================================
+   congo-shining.html: below-the-hero presentation.
+   Loaded after aurora/pro-system.css. Every selector is scoped to a content
+   section that sits after the hero; frozen zones are never matched.
+   ============================================================================ */
+
+/* ---------------------------------------------------------- shared on page */
+/* Global layer fix: `.sec-head p` (lead font, !important) out-specifies
+   `.eyebrow`, so eyebrows inside .sec-head grew to 19px. Restore the label. */
+main > section:not(.hero, .phead, .amb-hero, .qa-band) .sec-head p.eyebrow {
+  font: 700 var(--px-t-eyebrow)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  max-width: none !important;
+  margin: 0 0 14px !important;
+}
+/* Legacy CSS caps .sec-head h2 at ~395px, which broke short headings. */
+main > section:not(.hero, .phead, .amb-hero, .qa-band) .sec-head h2 {
+  max-width: 30ch !important;
+}
+/* Global layer gaps: legacy CSS paints a faint grid on every section
+   .container and a tricolour border-image on every section's top edge.
+   Both are decoration the brand rules out; remove them on this page. */
+main > section:is(.cs-overview, .cs-cities, .cs-purpose, .cs-program, .cs-village, .cs-organizers, .cs-related, .cs-next) > .container {
+  background-image: none !important;
+}
+main > section:is(.cs-overview, .cs-cities, .cs-purpose, .cs-program, .cs-village, .cs-organizers, .cs-related, .cs-next) {
+  border-image: none !important;
+}
+
+main > section:is(.cs-cities, .cs-program, .cs-village, .cs-organizers, .cs-related, .cs-next) h2,
+main > section:is(.cs-cities, .cs-program, .cs-village, .cs-organizers, .cs-related, .cs-next) .sec-head h2 {
+  color: var(--px-navy-950) !important;
+}
+main > section:is(.cs-cities, .cs-program, .cs-village, .cs-organizers, .cs-related) .sec-head p:not(.eyebrow) {
+  color: var(--px-ink-2) !important;
+}
+/* Global layer fix: on a dark surface `.sec-head p` (light lede colour)
+   out-specifies the gold eyebrow rule, so the eyebrow turned pale blue. */
+body main > section.section.dark-surface.cs-purpose > .container > .sec-head > p.eyebrow.on-navy {
+  color: var(--px-gold-500) !important;
+}
+main > section.cs-purpose .sec-head p.eyebrow::before {
+  background: var(--px-gold-500) !important;
+}
+
+/* Shared card (the one card spec from the system) */
+main > section:is(.cs-cities, .cs-village) .cs-card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 2.6vw, 32px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section:is(.cs-cities, .cs-village) .cs-card h3 {
+  margin: 0 0 10px;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section:is(.cs-cities, .cs-village) .cs-card p {
+  margin: 0;
+  color: var(--px-ink-2);
+}
+
+/* ------------------------------------------------- 1. On this page */
+/* GOV.UK-style contents list: plain underlined links, no card boxes, so the
+   block cannot be mistaken for collapsed accordions. */
+main > section.cs-overview .cs-toc {
+  padding: 0 0 4px;
+  border: 0;
+  border-bottom: 1px solid var(--px-line);
+  border-radius: 0;
+  background: none;
+}
+main > section.cs-overview .cs-toc .px-toc-title {
+  margin: 0 0 6px !important;
+}
+main > section.cs-overview .cs-toc ul {
+  display: grid;
+  gap: 0;
+}
+main > section.cs-overview .cs-toc li {
+  font-size: var(--px-t-body);
+}
+main > section.cs-overview .cs-toc a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 0;
+  border: 0;
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color .18s var(--px-ease);
+}
+main > section.cs-overview .cs-toc a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+main > section.cs-overview .cs-toc a .icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  transform: rotate(90deg);
+}
+@media (min-width: 768px) {
+  main > section.cs-overview .cs-toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 32px;
+  }
+}
+
+/* ------------------------------------------------------ 2. Host cities */
+main > section.cs-cities .cs-city-grid {
+  display: grid;
+  gap: 20px;
+}
+@media (min-width: 760px) {
+  main > section.cs-cities .cs-city-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+main > section.cs-cities .cs-city .cs-fact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  font: 600 16px/1.4 var(--px-sans);
+  color: var(--px-navy-900);
+}
+main > section.cs-cities .cs-city .cs-fact .icon {
+  color: var(--px-blue-700);
+}
+main > section.cs-cities .cs-city .cs-fact-match {
+  margin: auto 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--px-line);
+  font-weight: 500;
+  color: var(--px-ink);
+}
+main > section.cs-cities .cs-city p:not(.cs-fact) {
+  margin-bottom: 18px;
+}
+main > section.cs-cities .cs-inset {
+  max-width: 820px;
+  margin: 24px 0 0;
+}
+main > section.cs-cities .cs-inset p {
+  color: var(--px-ink);
+}
+
+/* --------------------------------------------- 3. Purpose (navy panel) */
+main > section.cs-purpose {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+main > section.cs-purpose .cs-pillars {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 820px) {
+  main > section.cs-purpose .cs-pillars {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+main > section.cs-purpose .cs-pillar {
+  padding: clamp(22px, 2.4vw, 30px);
+  background: rgba(255, 255, 255, .045);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: var(--px-radius);
+}
+main > section.cs-purpose .cs-pillar h3 {
+  margin: 0 0 8px;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+  color: #fff;
+}
+main > section.cs-purpose .cs-pillar p {
+  margin: 0;
+  max-width: 56ch;
+  color: rgba(226, 236, 250, .88);
+}
+
+/* ------------------------------------------------- 4. Programme themes */
+main > section.cs-program .cs-days {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px 28px;
+}
+@media (min-width: 640px) {
+  main > section.cs-program .cs-days {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 28px;
+  }
+}
+@media (min-width: 1100px) {
+  main > section.cs-program .cs-days {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+main > section.cs-program .cs-days > .cs-day {
+  margin: 0;
+  padding: 18px 0 8px;
+  border-top: 2px solid var(--px-navy-900);
+}
+main > section.cs-program .cs-day-label {
+  margin: 0 0 10px;
+  font: 700 13px/1.3 var(--px-sans);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--px-gold-ink);
+}
+main > section.cs-program .cs-day h3 {
+  margin: 0 0 8px;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.cs-program .cs-day p:not(.cs-day-label) {
+  margin: 0;
+  color: var(--px-ink-2);
+  max-width: 46ch;
+}
+
+/* --------------------------------------------------- 5. Shining Village */
+/* A calm 2 x 2 grid: four narrow columns squeezed the copy to ~190px. */
+main > section.cs-village .cs-zones {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  main > section.cs-village .cs-zones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+main > section.cs-village .cs-zone p {
+  max-width: 56ch;
+}
+
+/* -------------------------------------------------------- 6. Organisers */
+main > section.cs-organizers .cs-split {
+  display: grid;
+  gap: 8px;
+  align-items: start;
+}
+@media (min-width: 980px) {
+  main > section.cs-organizers .cs-split {
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+    gap: clamp(48px, 6vw, 96px);
+  }
+  #organizers .cs-split > .sec-head {
+    margin-bottom: 0 !important;
+  }
+}
+main > section.cs-organizers .cs-organizer-list {
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+}
+main > section.cs-organizers .cs-organizer-list > dt {
+  font-family: var(--px-serif);
+  font-weight: 700;
+  color: var(--px-navy-950);
+}
+@media (max-width: 560px) {
+  main > section.cs-organizers .cs-organizer-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------------------------ 7. Related pages */
+main > section.cs-related .cs-stories {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+main > section.cs-related .cs-stories > .cs-story {
+  position: relative;
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  overflow: hidden;
+  transition: border-color .18s var(--px-ease), box-shadow .18s var(--px-ease);
+}
+main > section.cs-related .cs-story:is(:hover, :focus-within) {
+  border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
+}
+/* Phone: the photo sits on top at full card width (16:9), so the 2:1
+   source keeps its subject instead of being cropped to a portrait strip. */
+main > section.cs-related .cs-story .px-frame {
+  grid-column: 1 / -1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 0;
+}
+main > section.cs-related .cs-story .px-frame img {
+  display: block;
+}
+main > section.cs-related .cs-story-body {
+  padding: 18px 0 20px 18px;
+}
+main > section.cs-related .cs-story-label {
+  margin: 0 0 4px;
+  font: 700 12.5px/1.3 var(--px-sans);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--px-ink-3);
+}
+main > section.cs-related .cs-story h3 {
+  margin: 0 0 6px;
+  font: 700 18px/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.cs-related .cs-story h3 a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+main > section.cs-related .cs-story h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--px-radius);
+}
+main > section.cs-related .cs-story:hover h3 a span {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+main > section.cs-related .cs-story-body p:not(.cs-story-label) {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--px-ink-2);
+}
+main > section.cs-related .cs-story-go {
+  width: 18px;
+  height: 18px;
+  margin: 18px 16px 0 10px;
+  color: var(--px-ink-3);
+  transition: color .18s var(--px-ease);
+}
+main > section.cs-related .cs-story:hover .cs-story-go {
+  color: var(--px-blue-700);
+}
+@media (min-width: 600px) and (max-width: 999px) {
+  main > section.cs-related .cs-stories > .cs-story {
+    grid-template-columns: 220px minmax(0, 1fr) auto;
+    grid-template-rows: none;
+    align-items: start;
+  }
+  main > section.cs-related .cs-story .px-frame {
+    grid-column: auto;
+    align-self: stretch;
+    width: auto;
+    aspect-ratio: auto;
+    min-height: 140px;
+  }
+  main > section.cs-related .cs-story-body {
+    padding: 20px 0 22px 22px;
+  }
+  main > section.cs-related .cs-story-go {
+    margin: 22px 20px 0 12px;
+  }
+}
+@media (min-width: 1000px) {
+  main > section.cs-related .cs-stories {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  main > section.cs-related .cs-stories > .cs-story {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+  }
+  /* Size the photo from the card width: with align-self:stretch the row
+     height drove the width through aspect-ratio, so a card with a longer
+     description got a narrower photo. */
+  main > section.cs-related .cs-story .px-frame {
+    grid-column: 1 / -1;
+    align-self: start;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+  main > section.cs-related .cs-story-body {
+    padding: 20px 0 24px 22px;
+  }
+  main > section.cs-related .cs-story h3 {
+    font-size: 19px;
+  }
+  main > section.cs-related .cs-story-go {
+    margin: 22px 20px 0 12px;
+  }
+}
+main > section.cs-related .cs-photo-note {
+  margin: 16px 0 0;
+}
+
+/* ------------------------------------------------------ 8. Archive status */
+main > section.cs-next .cs-next-panel {
+  display: grid;
+  gap: 28px;
+  align-items: end;
+  padding: clamp(26px, 4vw, 52px);
+  background: var(--px-canvas);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-lg);
+}
+@media (min-width: 960px) {
+  main > section.cs-next .cs-next-panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 48px;
+  }
+}
+main > section.cs-next .cs-next-copy h2 {
+  margin: 0 0 12px;
+  font-size: clamp(25px, 1.5vw + 14px, 34px);
+  line-height: 1.2;
+  max-width: 26ch;
+}
+main > section.cs-next .cs-next-copy p:not(.eyebrow) {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--px-ink-2);
+}
+main > section.cs-next .cs-next-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media (max-width: 560px) {
+  main > section.cs-next .cs-next-actions {
+    flex-direction: column;
+  }
+  main > section.cs-next .cs-next-actions .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+}

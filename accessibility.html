@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
@@ -18,11 +18,11 @@
 <meta property="og:site_name" content="Embassy of the DR Congo, Washington, D.C." />
 <meta property="og:title" content="Accessibility Statement, Embassy of the Democratic Republic of the Congo, Washington, D.C." />
 <meta property="og:description" content="The Embassy of the Democratic Republic of the Congo is committed to ensuring its website is accessible to all members of the public." /><meta property="og:url" content="https://rubenmukala09.github.io/embassy-preview/accessibility.html" />
-<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Accessibility Statement, Embassy of the Democratic Republic of the Congo, Washington, D.C." />
-<meta name="twitter:description" content="The Embassy of the Democratic Republic of the Congo is committed to ensuring its website is accessible to all members of the public." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta name="twitter:description" content="The Embassy of the Democratic Republic of the Congo is committed to ensuring its website is accessible to all members of the public." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
@@ -46,6 +46,9 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/accent-system.css?v=1786560000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/refinement.css?v=1786582000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/editorial.css?v=1787130000" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro-system.css?v=20261014a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/search-plus.css?v=20261015a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/legal.css?v=20261014a" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -107,7 +110,7 @@
   <a class="ann-emergency" href="tel:+12022347690" aria-label="Call the Embassy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Call the Embassy</a>
 </div></div>
 
-<main id="main-content" tabindex="-1">
+<main data-pagefind-body id="main-content" tabindex="-1">
 
 <!-- PAGE HEAD -->
 <section class="phead" style="background-image:url('/embassy-preview/aurora/assets/img/generated/hero-library-2026/28-accessible-service.webp')"><div class="container">
@@ -115,14 +118,6 @@
   <p class="eyebrow">Legal &amp; policies</p>
   <h1>Accessibility Statement</h1>
   <p>The Embassy of the Democratic Republic of the Congo is committed to ensuring its website is accessible to all members of the public.</p>
-</div></section>
-<!-- PLAIN-LANGUAGE SUMMARY -->
-<section class="section ed-band" style="--ed-photo-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/legal-charter.webp');--ed-photo:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/legal-charter.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/legal-charter@2x.webp') 2x)"><div class="container">
-    <div class="ed-band-copy">
-      <p class="eyebrow">In plain language</p><div class="rule"></div>
-      <h2>What this page commits to.</h2>
-      <p>This Embassy preview is built to be used with a keyboard, a screen reader or a magnifier, and it is measured against WCAG 2.1 AA. Where something falls short, the gap is named on this page rather than hidden, and there is a direct route to report a barrier.</p>
-    </div>
 </div></section>
 
 
@@ -139,100 +134,104 @@
 </div></section>
 
 <!-- LEGAL DOCUMENT -->
-<section class="section"><div class="container">
-  <div class="legal-doc">
-    <aside class="legal-toc">
-      <p class="eyebrow">On this page</p>
-      <nav>
-        <a href="#s1">1. Our commitment</a>
-        <a href="#s2">2. Conformance status</a>
-        <a href="#s3">3. Measures we take</a>
-        <a href="#s4">4. Assistive technology</a>
-        <a href="#s5">5. Known limitations</a>
-        <a href="#s6">6. Alternative access</a>
-        <a href="#s7">7. Feedback &amp; reporting</a>
-        <a href="#s8">8. Enforcement &amp; contact</a>
-        <a href="#s9">9. Ongoing improvement</a>
-      </nav>
-      <p class="legal-updated">Last updated<br><b>24 June 2026</b></p>
-    </aside>
+<section class="section lg"><div class="container">
+  <div class="lg-grid">
+    <nav class="px-toc lg-toc" aria-labelledby="lg-toc-title">
+      <details class="lg-toc-fold">
+        <summary class="lg-toc-sum"><span class="px-toc-title" id="lg-toc-title" data-emb-en="Contents" data-emb-fr="Sommaire">Contents</span><svg class="icon lg-toc-chev" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-down"/></svg></summary>
+        <ol class="lg-toc-list">
+          <li><a href="#s1"><span class="lg-n">1.</span> <span class="lg-t" data-emb-en="Conformance status" data-emb-fr="État de conformité">Conformance status</span></a></li>
+          <li><a href="#s2"><span class="lg-n">2.</span> <span class="lg-t" data-emb-en="Measures we take" data-emb-fr="Mesures que nous prenons">Measures we take</span></a></li>
+          <li><a href="#s3"><span class="lg-n">3.</span> <span class="lg-t" data-emb-en="Assistive technology" data-emb-fr="Technologie d’assistance">Assistive technology</span></a></li>
+          <li><a href="#s4"><span class="lg-n">4.</span> <span class="lg-t" data-emb-en="Known limitations" data-emb-fr="Limitations connues">Known limitations</span></a></li>
+          <li><a href="#s5"><span class="lg-n">5.</span> <span class="lg-t" data-emb-en="Alternative access" data-emb-fr="Accès alternatif">Alternative access</span></a></li>
+          <li><a href="#s6"><span class="lg-n">6.</span> <span class="lg-t" data-emb-en="Feedback &amp; reporting" data-emb-fr="Retour d’information et signalement">Feedback &amp; reporting</span></a></li>
+          <li><a href="#s7"><span class="lg-n">7.</span> <span class="lg-t" data-emb-en="If you are not satisfied" data-emb-fr="Si la réponse ne vous satisfait pas">If you are not satisfied</span></a></li>
+          <li><a href="#s8"><span class="lg-n">8.</span> <span class="lg-t" data-emb-en="Ongoing improvement" data-emb-fr="Amélioration continue">Ongoing improvement</span></a></li>
+        </ol>
+      </details>
+    </nav>
+    <article class="lg-body">
+      <p class="px-meta lg-meta"><span data-emb-en="Last updated" data-emb-fr="Dernière mise à jour">Last updated</span> <b data-emb-en="16 October 2026" data-emb-fr="16 octobre 2026">16 October 2026</b></p>
+      <div class="px-inset lg-summary">
+        <p class="lg-summary-label" data-emb-en="In plain language" data-emb-fr="En termes simples">In plain language</p>
+        <p class="lg-summary-text" data-emb-en="This Embassy preview is designed to be used with a keyboard, a screen reader or a magnifier, and it aims to meet WCAG 2.1 Level AA. Known limitations are listed on this page, together with a direct route to report a barrier." data-emb-fr="Ce site de prévisualisation de l’Ambassade est conçu pour être utilisé au clavier, avec un lecteur d’écran ou un logiciel d’agrandissement, et vise la conformité aux WCAG 2.1, niveau AA. Les limitations connues sont indiquées sur cette page, ainsi qu’un moyen direct de signaler un obstacle.">This Embassy preview is designed to be used with a keyboard, a screen reader or a magnifier, and it aims to meet WCAG 2.1 Level AA. Known limitations are listed on this page, together with a direct route to report a barrier.</p>
+      </div>
 
-    <article class="legal-body">
-      <p class="legal-lead">The Embassy of the Democratic Republic of the Congo believes that the services of a diplomatic mission should be within reach of everyone. We are committed to providing a website that is accessible to the widest possible audience, regardless of ability or technology.</p>
-
-      <section id="s1"><h2>1. Our commitment to accessibility</h2>
-        <p>We are committed to ensuring digital accessibility for people with disabilities. We continually work to improve the user experience for everyone and to apply the relevant accessibility standards, so that all members of the public can access information and services with dignity and independence.</p>
-      </section>
-
-      <section id="s2"><h2>2. Conformance status</h2>
+      <section id="s1" class="lg-sec"><h2><span class="lg-n">1.</span> <span class="lg-t" data-emb-en="Conformance status" data-emb-fr="État de conformité">Conformance status</span></h2>
         <p>This website aims to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA</strong>, published by the World Wide Web Consortium (W3C). These guidelines explain how to make web content more accessible to people with a wide range of disabilities, including visual, auditory, physical, speech, cognitive and neurological disabilities.</p>
-        <p>The Site is currently <strong>partially conformant</strong> with WCAG 2.1 AA, meaning that most, but not all, parts of the content meet the standard. We are actively working to achieve full conformance.</p>
+        <p data-emb-en="The Site is currently partially conformant with WCAG 2.1 AA: most of its content meets the standard, but the items listed in section 4 do not yet. This is a self-assessment made in October 2026 by the team preparing the preview; the Site has not been independently audited." data-emb-fr="Le Site est actuellement partiellement conforme aux WCAG 2.1 AA : la plupart de ses contenus respectent la norme, mais les éléments énumérés à la section 4 ne la respectent pas encore. Il s’agit d’une auto-évaluation réalisée en octobre 2026 par l’équipe qui prépare la prévisualisation ; le Site n’a pas fait l’objet d’un audit indépendant.">The Site is currently partially conformant with WCAG 2.1 AA: most of its content meets the standard, but the items listed in section 4 do not yet. This is a self-assessment made in October 2026 by the team preparing the preview; the Site has not been independently audited.</p>
       </section>
 
-      <section id="s3"><h2>3. Measures we take to support accessibility</h2>
+      <section id="s2" class="lg-sec"><h2><span class="lg-n">2.</span> <span class="lg-t" data-emb-en="Measures we take to support accessibility" data-emb-fr="Mesures que nous prenons pour favoriser l’accessibilité">Measures we take to support accessibility</span></h2>
         <p>To make this Site accessible, we have implemented and continue to apply the following measures:</p>
-        <ul>
-          <li><strong>Semantic markup</strong>, meaningful HTML structure with headings, landmarks and lists that assistive technologies can interpret.</li>
-          <li><strong>Keyboard navigation</strong>, interactive elements are operable using a keyboard, with a visible focus indicator.</li>
-          <li><strong>Colour contrast</strong>, text and interface colours are chosen to provide sufficient contrast against their backgrounds.</li>
-          <li><strong>Text alternatives</strong>, informative images are given descriptive alternative text, and decorative images are marked so they are skipped by screen readers.</li>
-          <li><strong>Scalable text</strong>, content remains legible and usable when text is enlarged or the page is zoomed.</li>
-          <li><strong>Consistent navigation</strong>, predictable, consistent layout and navigation across pages.</li>
-        </ul>
+        <dl class="px-summary lg-dl">
+          <dt data-emb-en="Semantic markup" data-emb-fr="Balisage sémantique">Semantic markup</dt>
+          <dd data-emb-en="Meaningful HTML structure with headings, landmarks and lists that assistive technologies can interpret." data-emb-fr="Une structure HTML cohérente comportant des titres, des repères et des listes que les technologies d’assistance peuvent interpréter.">Meaningful HTML structure with headings, landmarks and lists that assistive technologies can interpret.</dd>
+          <dt data-emb-en="Keyboard navigation" data-emb-fr="Navigation au clavier">Keyboard navigation</dt>
+          <dd data-emb-en="Interactive elements are operable using a keyboard, with a visible focus indicator." data-emb-fr="Les éléments interactifs sont utilisables au clavier, avec un indicateur de focus visible.">Interactive elements are operable using a keyboard, with a visible focus indicator.</dd>
+          <dt data-emb-en="Colour contrast" data-emb-fr="Contraste des couleurs">Colour contrast</dt>
+          <dd data-emb-en="Text and interface colours are chosen to provide sufficient contrast against their backgrounds." data-emb-fr="Les couleurs du texte et de l’interface sont choisies pour offrir un contraste suffisant avec leur arrière-plan.">Text and interface colours are chosen to provide sufficient contrast against their backgrounds.</dd>
+          <dt data-emb-en="Text alternatives" data-emb-fr="Alternatives textuelles">Text alternatives</dt>
+          <dd data-emb-en="Informative images are given descriptive alternative text, and decorative images are marked so they are skipped by screen readers." data-emb-fr="Les images informatives sont dotées d’un texte alternatif descriptif, et les images décoratives sont signalées afin d’être ignorées par les lecteurs d’écran.">Informative images are given descriptive alternative text, and decorative images are marked so they are skipped by screen readers.</dd>
+          <dt data-emb-en="Scalable text" data-emb-fr="Texte redimensionnable">Scalable text</dt>
+          <dd data-emb-en="Content remains legible and usable when text is enlarged or the page is zoomed." data-emb-fr="Le contenu reste lisible et utilisable lorsque le texte est agrandi ou que la page est zoomée.">Content remains legible and usable when text is enlarged or the page is zoomed.</dd>
+          <dt data-emb-en="Consistent navigation" data-emb-fr="Navigation cohérente">Consistent navigation</dt>
+          <dd data-emb-en="Predictable, consistent layout and navigation across pages." data-emb-fr="Une mise en page et une navigation prévisibles et cohérentes d’une page à l’autre.">Predictable, consistent layout and navigation across pages.</dd>
+        </dl>
       </section>
 
-      <section id="s4"><h2>4. Assistive-technology compatibility</h2>
+      <section id="s3" class="lg-sec"><h2><span class="lg-n">3.</span> <span class="lg-t" data-emb-en="Assistive-technology compatibility" data-emb-fr="Compatibilité avec les technologies d’assistance">Assistive-technology compatibility</span></h2>
         <p>This Site is designed to be compatible with recent versions of widely used assistive technologies and browsers, including screen readers and screen magnification software, used on current operating systems. Because technology and browsers evolve, some combinations may produce different results; we welcome reports of any difficulty you experience.</p>
       </section>
 
-      <section id="s5"><h2>5. Known limitations</h2>
-        <p>Despite our efforts, some limitations may remain. We are aware that:</p>
-        <ul>
-          <li>certain third-party content or embedded components may not fully meet our accessibility standards;</li>
-          <li>some older documents may not yet be available in a fully accessible format; and</li>
-          <li>maps and other graphical components may have limited text alternatives.</li>
-        </ul>
-        <p>Where you encounter such a limitation, please contact us using the details below and we will provide the information in an alternative format.</p>
+      <section id="s4" class="lg-sec"><h2><span class="lg-n">4.</span> <span class="lg-t" data-emb-en="Known limitations" data-emb-fr="Limitations connues">Known limitations</span></h2>
+        <p data-emb-en="The following parts of the Site do not yet fully meet the standard. Each has an alternative:" data-emb-fr="Les éléments suivants du Site ne respectent pas encore pleinement la norme. Chacun dispose d’une solution de remplacement :">The following parts of the Site do not yet fully meet the standard. Each has an alternative:</p>
+        <dl class="px-summary lg-dl">
+          <dt data-emb-en="Application forms (PDF)" data-emb-fr="Formulaires de demande (PDF)">Application forms (PDF)</dt>
+          <dd data-emb-en="The passport, visa and Tenant-Lieu forms are PDF files hosted on the Embassy’s current website and may not work well with screen readers. The Consular Section can help you complete a form or provide it in another format." data-emb-fr="Les formulaires de passeport, de visa et de tenant lieu sont des fichiers PDF hébergés sur le site actuel de l’Ambassade et peuvent être difficiles à utiliser avec un lecteur d’écran. La Section consulaire peut vous aider à remplir un formulaire ou vous le fournir dans un autre format.">The passport, visa and Tenant-Lieu forms are PDF files hosted on the Embassy’s current website and may not work well with screen readers. The Consular Section can help you complete a form or provide it in another format.</dd>
+          <dt data-emb-en="Map on the Contact page" data-emb-fr="Carte de la page Contact">Map on the Contact page</dt>
+          <dd data-emb-en="The map is embedded from OpenStreetMap and can be hard to use with a keyboard or a screen reader. The Embassy’s full address is given as text on the same page." data-emb-fr="La carte est intégrée depuis OpenStreetMap et peut être difficile à utiliser au clavier ou avec un lecteur d’écran. L’adresse complète de l’Ambassade figure en texte sur la même page.">The map is embedded from OpenStreetMap and can be hard to use with a keyboard or a screen reader. The Embassy’s full address is given as text on the same page.</dd>
+          <dt data-emb-en="Videos" data-emb-fr="Vidéos">Videos</dt>
+          <dd data-emb-en="Videos play from YouTube. Captions depend on the original recording and may be missing. The Embassy can provide a written summary on request." data-emb-fr="Les vidéos sont lues depuis YouTube. Les sous-titres dépendent de l’enregistrement d’origine et peuvent être absents. L’Ambassade peut fournir un résumé écrit sur demande.">Videos play from YouTube. Captions depend on the original recording and may be missing. The Embassy can provide a written summary on request.</dd>
+        </dl>
       </section>
 
-      <section id="s6"><h2>6. Alternative ways to access our services</h2>
-        <p>If any part of this Site is not accessible to you, the Embassy will be pleased to assist you through alternative channels:</p>
-        <ul>
-          <li><strong>By telephone</strong>, call +1 (202) 234-7690 during office hours.</li>
-          <li><strong>By email</strong>, write to <a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a>.</li>
-          <li><strong>In person</strong>, visit the Consular Section at 1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036 during consular hours.</li>
-        </ul>
+      <section id="s5" class="lg-sec"><h2><span class="lg-n">5.</span> <span class="lg-t" data-emb-en="Alternative ways to access our services" data-emb-fr="Autres moyens d’accéder à nos services">Alternative ways to access our services</span></h2>
+        <p data-emb-en="If any part of this Site is not accessible to you, the Embassy will provide the information or service in another way: by telephone during office hours, by email, or in person at the Consular Section during consular hours. The contact details are set out in section 6." data-emb-fr="Si une partie de ce Site ne vous est pas accessible, l’Ambassade vous fournira l’information ou le service par un autre moyen&#160;: par téléphone pendant les heures de bureau, par courriel, ou en personne auprès de la Section consulaire pendant les heures consulaires. Les coordonnées figurent à la section 6.">If any part of this Site is not accessible to you, the Embassy will provide the information or service in another way: by telephone during office hours, by email, or in person at the Consular Section during consular hours. The contact details are set out in section 6.</p>
       </section>
 
-      <section id="s7"><h2>7. Feedback &amp; reporting accessibility barriers</h2>
+      <section id="s6" class="lg-sec"><h2><span class="lg-n">6.</span> <span class="lg-t" data-emb-en="Feedback &amp; reporting accessibility barriers" data-emb-fr="Retour d’information et signalement des obstacles à l’accessibilité">Feedback &amp; reporting accessibility barriers</span></h2>
         <p>We welcome your feedback on the accessibility of this Site. If you encounter an accessibility barrier, please let us know. To help us respond effectively, please include the web address (URL) of the page concerned, a description of the problem, and the browser and assistive technology you were using. We aim to acknowledge accessibility feedback promptly.</p>
-        <div class="legal-note">
-          <b>Accessibility feedback</b><br>
-          Email: <a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a><br>
-          Telephone: +1 (202) 234-7690<br>
-          Post: 1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036
+        <div class="lg-contact">
+          <p class="lg-contact-title" data-emb-en="Contact the Embassy" data-emb-fr="Contacter l’Ambassade">Contact the Embassy</p>
+          <p class="lg-contact-hint" data-emb-en="Please use the subject line “Accessibility”." data-emb-fr="Veuillez indiquer l’objet « Accessibilité ».">Please use the subject line “Accessibility”.</p>
+          <dl class="lg-contact-list">
+            <div><dt data-emb-en="Email" data-emb-fr="Courriel">Email</dt><dd><a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a></dd></div>
+            <div><dt data-emb-en="Telephone" data-emb-fr="Téléphone">Telephone</dt><dd><a href="tel:+12022347690">+1 (202) 234-7690</a></dd></div>
+            <div><dt data-emb-en="Address" data-emb-fr="Adresse">Address</dt><dd>1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036</dd></div>
+          </dl>
         </div>
       </section>
 
-      <section id="s8"><h2>8. Enforcement &amp; contact</h2>
-        <p>If you are not satisfied with our response to your accessibility feedback, you may escalate the matter to the office of the Head of Mission via <a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a>. The Embassy takes accessibility concerns seriously and will make every reasonable effort to resolve them.</p>
+      <section id="s7" class="lg-sec"><h2><span class="lg-n">7.</span> <span class="lg-t" data-emb-en="If you are not satisfied with our response" data-emb-fr="Si notre réponse ne vous satisfait pas">If you are not satisfied with our response</span></h2>
+        <p data-emb-en="You can ask for our response to be reviewed. Escalation uses the same contact details as section 6: write to the Embassy with “Accessibility escalation” in the subject line, or by post for the attention of the Head of Mission." data-emb-fr="Vous pouvez demander le réexamen de notre réponse. Le recours utilise les mêmes coordonnées qu’à la section 6 : écrivez à l’Ambassade en indiquant l’objet « Recours accessibilité », ou par courrier à l’attention du Chef de mission.">You can ask for our response to be reviewed. Escalation uses the same contact details as section 6: write to the Embassy with “Accessibility escalation” in the subject line, or by post for the attention of the Head of Mission.</p>
       </section>
 
-      <section id="s9"><h2>9. Ongoing improvement</h2>
-        <p>Accessibility is an ongoing commitment rather than a one-time effort. We review this Site regularly, incorporate accessibility into our development practices, and update this Statement as improvements are made. This Statement was last reviewed on the date shown above.</p>
-        <p class="hint">Unofficial demo, this website is a demonstration prototype. This Accessibility Statement illustrates the design of a diplomatic mission's website and does not constitute a live legal instrument of any government.</p>
+      <section id="s8" class="lg-sec"><h2><span class="lg-n">8.</span> <span class="lg-t" data-emb-en="Ongoing improvement" data-emb-fr="Amélioration continue">Ongoing improvement</span></h2>
+        <p data-emb-en="Accessibility is ongoing work. The Site is reviewed as it changes, and this Statement is updated when improvements are made. It was last updated on the date shown at the top of this page." data-emb-fr="L’accessibilité est un travail continu. Le Site est réexaminé au fil de ses évolutions, et la présente Déclaration est mise à jour à mesure que des améliorations sont apportées. Elle a été mise à jour pour la dernière fois à la date indiquée en haut de cette page.">Accessibility is ongoing work. The Site is reviewed as it changes, and this Statement is updated when improvements are made. It was last updated on the date shown at the top of this page.</p>
       </section>
 
-      <div class="legal-related">
-        <h2>Related legal documents</h2>
-        <div class="links">
-          <a href="/embassy-preview/terms.html">Terms &amp; Conditions</a>
-          <a href="/embassy-preview/privacy.html">Privacy Policy</a>
-          <a href="/embassy-preview/cookies.html">Cookie Policy</a>
-          <a href="/embassy-preview/disclaimer.html">Legal Disclaimer &amp; Notices</a>
-        </div>
-        <p class="ask">Questions about this document? Contact <a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a>.</p>
-      </div>
+      <div class="lg-status"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-info"/></svg><p><b data-emb-en="Preview document." data-emb-fr="Document de prévisualisation.">Preview document.</b> <span data-emb-en="This statement shows how the Embassy’s accessibility commitments would be published. It is not an official statement of the Embassy or of any government." data-emb-fr="Cette déclaration montre comment les engagements de l’Ambassade en matière d’accessibilité seraient publiés. Elle ne constitue pas une déclaration officielle de l’Ambassade ni d’un quelconque gouvernement.">This statement shows how the Embassy’s accessibility commitments would be published. It is not an official statement of the Embassy or of any government.</span></p></div>
+      <section class="lg-related" aria-labelledby="lg-related-title">
+        <h2 id="lg-related-title">Related legal documents</h2>
+        <ul class="px-links">
+          <li><a href="/embassy-preview/terms.html"><span class="lg-link-text"><span class="px-links-name" data-emb-en="Terms &amp; Conditions" data-emb-fr="Conditions générales">Terms &amp; Conditions</span><span class="px-links-meta" data-emb-en="The conditions for using this website" data-emb-fr="Les conditions d’utilisation de ce site">The conditions for using this website</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+          <li><a href="/embassy-preview/privacy.html"><span class="lg-link-text"><span class="px-links-name" data-emb-en="Privacy Policy" data-emb-fr="Politique de confidentialité">Privacy Policy</span><span class="px-links-meta" data-emb-en="How personal data is collected, used and protected" data-emb-fr="Comment les données personnelles sont collectées, utilisées et protégées">How personal data is collected, used and protected</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+          <li><a href="/embassy-preview/cookies.html"><span class="lg-link-text"><span class="px-links-name" data-emb-en="Cookie Policy" data-emb-fr="Politique des cookies">Cookie Policy</span><span class="px-links-meta" data-emb-en="The browser storage this website uses and how to control it" data-emb-fr="Le stockage du navigateur utilisé par ce site et comment le contrôler">The browser storage this website uses and how to control it</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+          <li><a href="/embassy-preview/disclaimer.html"><span class="lg-link-text"><span class="px-links-name" data-emb-en="Legal Disclaimer &amp; Notices" data-emb-fr="Avertissement juridique et mentions">Legal Disclaimer &amp; Notices</span><span class="px-links-meta" data-emb-en="How to treat the information published on this website" data-emb-fr="Comment interpréter les informations publiées sur ce site">How to treat the information published on this website</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+        </ul>
+      </section>
     </article>
   </div>
 </div></section>
@@ -276,5 +275,7 @@
 <script src="/embassy-preview/aurora/aurora.js?v=1787120000" defer></script>
 <script src="/embassy-preview/aurora/cinema.js?v=1787120000" defer></script>
 <script src="/embassy-preview/aurora/form-notice.js?v=1786540000" defer></script>
+<script src="/embassy-preview/aurora/pro/legal.js?v=20261014a" defer></script>
+<script src="/embassy-preview/aurora/pro/search-plus.js?v=20261016a" defer></script>
 </body>
 </html>

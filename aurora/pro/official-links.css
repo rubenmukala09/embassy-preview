@@ -1,0 +1,334 @@
+/* ============================================================================
+   official-links.html - page layer for the directory BELOW the hero.
+   Every rule is scoped to main > section.ol-sec, a class only the page's own
+   content section carries, so nothing here can reach the frozen zones
+   (preview banner, top bar, header, notice bar, hero, dock, footer).
+   Builds on aurora/pro-system.css tokens (--px-*) and components
+   (.sec-head, .px-inset, .px-links, .icon).
+   ============================================================================ */
+
+/* --------------------------------------------- Legacy decoration cleanup
+   Older stylesheets still paint a faint grid on section containers and a
+   soft glow under headings; neither belongs in the calm register. */
+main > section.ol-sec > .container {
+  background-image: none !important;
+}
+main > section.ol-sec :is(h2, h3) {
+  text-shadow: none !important;
+}
+
+/* ------------------------------------------------- Intro + safety notice */
+main > section.ol-sec .ol-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+  margin-bottom: clamp(40px, 4.5vw, 64px);
+}
+main > section.ol-sec .ol-intro .sec-head {
+  margin-bottom: 28px !important;
+}
+
+/* In-page jump links (USWDS in-page navigation, laid out inline) */
+main > section.ol-sec .ol-jump {
+  padding-top: 16px;
+  border-top: 1px solid var(--px-line);
+}
+main > section.ol-sec .ol-jump-label {
+  margin: 0 0 4px;
+  font: 600 var(--px-t-meta)/1.4 var(--px-sans) !important;
+  color: var(--px-ink-3);
+}
+main > section.ol-sec .ol-jump ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+main > section.ol-sec .ol-jump li {
+  margin: 0;
+  font-size: 16px;
+}
+main > section.ol-sec .ol-jump li > a[href]:not(.btn) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease), text-decoration-thickness .18s var(--px-ease);
+}
+main > section.ol-sec .ol-jump li > a[href]:not(.btn):hover {
+  color: var(--px-navy-900);
+  text-decoration-thickness: 2px;
+}
+
+/* Anti-phishing notice: the shared inset component, given a heading and list */
+main > section.ol-sec .ol-safety {
+  margin: 0;
+  padding: 22px 24px;
+}
+main > section.ol-sec .ol-safety h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font: 700 19px/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.ol-sec .ol-safety h3 .icon {
+  width: 22px;
+  height: 22px;
+  color: var(--px-blue-700);
+}
+main > section.ol-sec .ol-safety ul {
+  margin: 0;
+  padding-left: 20px;
+}
+main > section.ol-sec .ol-safety li {
+  margin: 0 0 8px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--px-ink);
+}
+main > section.ol-sec .ol-safety li:last-child {
+  margin-bottom: 0;
+}
+main > section.ol-sec .ol-safety li::marker {
+  color: var(--px-blue-700);
+}
+main > section.ol-sec .ol-safety .ol-reviewed {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(45, 112, 214, .2);
+  font: 400 var(--px-t-meta)/1.5 var(--px-sans);
+  color: var(--px-ink-2);
+}
+
+/* ------------------------------------------------------ Directory groups */
+main > section.ol-sec .ol-group {
+  scroll-margin-top: 120px;
+}
+main > section.ol-sec .ol-group + .ol-group {
+  margin-top: clamp(44px, 5vw, 72px);
+}
+main > section.ol-sec .ol-group-head {
+  max-width: 760px;
+  margin-bottom: 16px;
+}
+main > section.ol-sec .ol-group-head h3 {
+  margin: 0 0 6px;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.ol-sec .ol-group-head p {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--px-ink-2);
+}
+
+/* Two-column link list built on the shared .px-links component.
+   a[href]:not(.btn) outranks enrichment.css's generic "li > a[href]" underline
+   rule, which otherwise beats the shared .px-links style. */
+main > section.ol-sec .ol-links > li > a[href]:not(.btn) {
+  color: var(--px-navy-950);
+  font-weight: 600;
+  text-decoration: none;
+}
+main > section.ol-sec .ol-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(28px, 3.5vw, 56px);
+  border-top: 1px solid var(--px-line-strong);
+}
+main > section.ol-sec .ol-links > li {
+  min-width: 0;
+}
+main > section.ol-sec .ol-links a {
+  align-items: flex-start;
+  gap: 16px;
+  height: 100%;
+  padding: 18px 4px;
+  transition: color .18s var(--px-ease);
+}
+main > section.ol-sec .ol-text {
+  display: grid;
+  gap: 3px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+main > section.ol-sec .ol-links .px-links-name {
+  font: 600 18px/1.35 var(--px-sans);
+  color: var(--px-navy-950);
+  text-decoration: none;
+}
+main > section.ol-sec .ol-links a:hover .px-links-name {
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+main > section.ol-sec .ol-links .ol-domain {
+  margin: 0;
+  font: 500 var(--px-t-meta)/1.4 var(--px-sans);
+  color: var(--px-blue-700);
+  overflow-wrap: anywhere;
+}
+main > section.ol-sec .ol-links .ol-desc {
+  margin-top: 3px;
+  font: 400 15.5px/1.5 var(--px-sans);
+  color: var(--px-ink-2);
+}
+main > section.ol-sec .ol-links .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  color: var(--px-ink-3);
+  transition: color .18s var(--px-ease);
+}
+main > section.ol-sec .ol-links a:hover .icon {
+  color: var(--px-blue-700);
+}
+main > section.ol-sec .ol-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+main > section.ol-sec .ol-group-foot {
+  margin: 18px 0 0;
+  font-size: 16px;
+  color: var(--px-ink-2);
+}
+main > section.ol-sec .ol-group-foot > a[href]:not(.btn) {
+  /* inline padding enlarges the tap area without moving the line */
+  padding-block: 14px;
+  font-weight: 600;
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+main > section.ol-sec .ol-group-foot > a[href]:not(.btn):hover {
+  color: var(--px-navy-900);
+  text-decoration-thickness: 2px;
+}
+
+/* ------------------------------------------------------------ Responsive */
+@media (max-width: 960px) {
+  main > section.ol-sec .ol-intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.ol-sec .ol-safety {
+    max-width: 680px;
+  }
+}
+@media (max-width: 760px) {
+  main > section.ol-sec .ol-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.ol-sec .ol-links a {
+    padding: 16px 2px;
+  }
+  main > section.ol-sec .ol-links .px-links-name {
+    font-size: 17.5px;
+  }
+  main > section.ol-sec .ol-jump ul {
+    gap: 0 20px;
+  }
+}
+@media (max-width: 560px) {
+  /* Jump links as a compact two-column grid on phones */
+  main > section.ol-sec .ol-jump ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+  main > section.ol-sec .ol-jump li > a[href]:not(.btn) {
+    align-items: flex-start;
+    padding: 6px 0;
+    line-height: 1.35;
+  }
+  main > section.ol-sec .ol-safety {
+    padding: 18px 18px 18px 20px;
+  }
+  main > section.ol-sec .ol-links .ol-desc {
+    font-size: 15px;
+  }
+  /* Tighter rhythm so the 21-entry directory stays scannable */
+  main > section.ol-sec .ol-intro {
+    gap: 28px;
+    margin-bottom: 40px;
+  }
+  main > section.ol-sec .ol-group + .ol-group {
+    margin-top: 36px;
+  }
+  main > section.ol-sec .ol-group-head {
+    margin-bottom: 12px;
+  }
+  main > section.ol-sec .ol-links a {
+    padding: 11px 2px;
+  }
+  main > section.ol-sec .ol-safety h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  main > section.ol-sec .ol-safety li {
+    margin-bottom: 6px;
+    font-size: 15.5px;
+    line-height: 1.5;
+  }
+  main > section.ol-sec .ol-safety .ol-reviewed {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+  main > section.ol-sec .ol-text {
+    gap: 2px;
+  }
+  main > section.ol-sec .ol-links .ol-desc {
+    margin-top: 2px;
+    line-height: 1.45;
+  }
+}
+
+/* ------------------------------------------------ Fix pass (critique)
+   One heading per section: the eyebrow was removed from the markup, so the
+   H2 leads; let it set on one line where the column allows. */
+main > section.ol-sec .sec-head h2 {
+  max-width: 24ch !important;
+}
+/* Jump links as a 2 x 2 grid at every width, so no item is orphaned */
+main > section.ol-sec .ol-jump ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 0 32px;
+}
+@media (max-width: 960px) {
+  /* Single column: the safety notice spans the full column like the lists */
+  main > section.ol-sec .ol-safety {
+    max-width: none;
+  }
+}
+@media (max-width: 560px) {
+  main > section.ol-sec .ol-jump ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+}
+
+/* Footnote links: no automatic mid-word hyphenation inside links */
+main > section .ol-group-foot,
+main > section .ol-group-foot a,
+main > section .ol-group-foot a * {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}

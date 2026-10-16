@@ -1,0 +1,303 @@
+/* ============================================================================
+   digital-services.html: below-the-hero content only.
+   "Digital services: what is proposed": three scoped proposed services in one
+   light card style, each with a small "Proposed, not available" tag and a
+   stacked "Until then" link, a scannable list of what works online today,
+   and one flat navy help panel with a single gold action. Section H2s share
+   the .sec-head h2 size used on the sibling service pages.
+   Every selector is scoped to .ds-plan / .ds-now / .ds-help sections.
+   ============================================================================ */
+
+main > section:is(.ds-plan, .ds-now, .ds-help):not(.hero):not(.phead):not(.qa-band) {
+  --ds-navy: var(--px-navy-950, #011a35);
+  --ds-navy-9: var(--px-navy-900, #052f57);
+  --ds-ink: var(--px-ink, #0b2440);
+  --ds-ink-2: var(--px-ink-2, #3b5571);
+  --ds-ink-3: var(--px-ink-3, #5a7189);
+  --ds-line: var(--px-line, rgba(5, 47, 87, .14));
+  --ds-blue: var(--px-blue-700, #1d5bb8);
+  --ds-ease: var(--px-ease, cubic-bezier(.2, .75, .25, 1));
+  hyphens: manual;
+}
+main > section:is(.ds-plan, .ds-now, .ds-help):not(.hero):not(.phead):not(.qa-band) :is(p, li, dd, dt, h2, h3, span, a) {
+  hyphens: manual !important;
+  -webkit-hyphens: manual !important;
+}
+/* The shared ".sec-head p" lede rule outranks ".eyebrow" and turns every
+   eyebrow inside a section head into 19px body text; restore the label. */
+main > section:is(.ds-plan, .ds-now, .ds-help):not(.hero):not(.phead):not(.qa-band) .sec-head p.eyebrow {
+  font: 700 var(--px-t-eyebrow, 12.5px)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 14px !important;
+}
+
+/* ----------------------------------------------------------- Proposals */
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-cards {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0 !important;
+  padding: 26px 24px 22px !important;
+  border: 1px solid var(--ds-line);
+  border-radius: var(--px-radius, 14px);
+  background: #fff;
+  box-shadow: var(--px-shadow);
+  transition: border-color .2s var(--ds-ease), box-shadow .2s var(--ds-ease);
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card::before,
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card::after {
+  content: none !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card:hover,
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card:focus-within {
+  border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin: 0 0 18px;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card-top .icon-chip {
+  margin: 0;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--ds-line);
+  border-radius: 999px;
+  background: var(--px-canvas, #f4f7fb);
+  font: 600 14px/1.35 var(--px-sans);
+  color: var(--ds-ink-2);
+  white-space: nowrap;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card h3 {
+  margin: 0 0 8px !important;
+  font: 700 var(--px-t-h3, 21px)/1.3 var(--px-serif) !important;
+  color: var(--ds-navy) !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card-text {
+  margin: 0 0 20px !important;
+  font-size: 16.5px !important;
+  line-height: 1.6 !important;
+  color: var(--ds-ink-2) !important;
+  max-width: none !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-until {
+  margin: auto 0 0 !important;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--ds-line);
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-until-label {
+  margin: 0 0 2px !important;
+  max-width: none !important;
+  font: 400 14px/1.4 var(--px-sans) !important;
+  color: var(--ds-ink-3) !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-until-link {
+  margin: 0 !important;
+  max-width: none !important;
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-until a {
+  font-weight: 600;
+  color: var(--ds-blue) !important;
+  text-decoration: underline !important;
+  text-decoration-color: currentColor !important;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-until a:hover {
+  color: var(--ds-navy) !important;
+  text-decoration-thickness: 2px !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-proto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  margin: 26px 0 0 !important;
+  max-width: none !important;
+  font-size: 15.5px !important;
+  line-height: 1.5 !important;
+  color: var(--ds-ink-2) !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-proto a {
+  font-weight: 600;
+  color: var(--ds-blue) !important;
+  text-decoration: underline !important;
+  text-decoration-color: currentColor !important;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-proto a:hover {
+  color: var(--ds-navy) !important;
+}
+main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-sep {
+  color: var(--ds-ink-3);
+}
+
+/* -------------------------------------------------------- Available now */
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-now-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-now-grid .sec-head {
+  margin-bottom: 0 !important;
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links {
+  background: #fff;
+  border: 1px solid var(--ds-line) !important;
+  border-radius: var(--px-radius, 14px);
+  padding: 4px 22px !important;
+  box-shadow: var(--px-shadow);
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links > li:last-child {
+  border-bottom: 0 !important;
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links a {
+  padding: 17px 0 !important;
+  color: var(--ds-navy) !important;
+  text-decoration: none !important;
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links .ds-link-txt {
+  min-width: 0;
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links .px-links-name {
+  display: block;
+  font: 600 17px/1.35 var(--px-sans);
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links .px-links-meta {
+  font-size: 14.5px !important;
+  line-height: 1.45;
+  color: var(--ds-ink-3);
+  margin-top: 3px;
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links a:hover .px-links-name {
+  color: var(--ds-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links a:hover .icon {
+  color: var(--ds-blue);
+}
+
+/* ------------------------------------------------------------- Help */
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band).section {
+  padding-top: clamp(48px, 5vw, 80px) !important;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px 48px;
+  align-items: center;
+  padding: clamp(28px, 4vw, 48px);
+  border-radius: var(--px-radius-lg, 20px);
+  background: var(--ds-navy-9);
+  color: #fff;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-copy h2 {
+  margin: 0 0 10px !important;
+  font: 700 clamp(27px, 1.2vw + 15px, 34px)/1.2 var(--px-serif) !important;
+  color: #fff !important;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-copy p {
+  margin: 0 !important;
+  max-width: 62ch !important;
+  font-size: 16.5px !important;
+  line-height: 1.6 !important;
+  color: rgba(226, 236, 250, .9) !important;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-actions .btn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px !important;
+  font-size: 16px !important;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-actions .btn .icon {
+  vertical-align: 0;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-tel {
+  display: inline-block;
+  padding: 11px 0;
+  font: 600 16px/1.3 var(--px-sans);
+  color: #fff !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(255, 255, 255, .55) !important;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-tel:hover {
+  text-decoration-color: #fff !important;
+  text-decoration-thickness: 2px !important;
+}
+
+/* ---------------------------------------------------------- Responsive */
+@media (max-width: 1023px) {
+  main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-cards {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 720px;
+  }
+  main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-now-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links {
+    max-width: 720px;
+  }
+  main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card {
+    padding: 22px 18px 18px !important;
+  }
+  main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-card-top {
+    margin-bottom: 14px;
+  }
+  main > section.ds-now:not(.hero):not(.phead):not(.qa-band) .ds-links {
+    padding: 2px 16px !important;
+  }
+  main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-proto {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  main > section.ds-plan:not(.hero):not(.phead):not(.qa-band) .ds-sep {
+    display: none;
+  }
+  main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-actions,
+  main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-actions .btn {
+    width: 100%;
+  }
+  main > section.ds-help:not(.hero):not(.phead):not(.qa-band) .ds-help-actions .btn {
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  main > section:is(.ds-plan, .ds-now, .ds-help):not(.hero):not(.phead):not(.qa-band) * {
+    transition: none !important;
+  }
+}

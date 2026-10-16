@@ -1,0 +1,287 @@
+/* ============================================================================
+   ACCOUNT SUPPORT (account/index.html): below-hero start page.
+   Scope: only sections carrying the .sp class, which never appear in the
+   frozen zones (banner, header, notice bar, hero, quick-access dock, footer).
+   Pattern: GOV.UK "start page": purpose and one prototype inset (.sp-intro),
+   a Consular Section contact card with the page's single gold action
+   (.sp-aside), then working help links and a collapsed note on what a
+   future account could include (.sp-body).
+
+   Grid areas: on wide screens intro and body share the reading column and
+   the contact card sits beside both; on phones and tablets the card comes
+   straight after the purpose so the primary action is not buried.
+
+   Specificity: every rule starts with `main > section.sp:not(#sp-x)`. The
+   :not(#sp-x) adds one id of weight so these page rules reliably beat the
+   older shared layers (typography-system.css forces h2/p sizes with
+   !important at 0,3,4) without touching those shared files.
+   ============================================================================ */
+
+/* ------------------------------------------------------------ Layout */
+main > section.sp:not(#sp-x) .sp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 352px);
+  grid-template-areas:
+    "intro aside"
+    "body  aside";
+  grid-template-rows: auto 1fr;
+  column-gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+main > section.sp:not(#sp-x) .sp-intro { grid-area: intro; min-width: 0; max-width: 680px; }
+main > section.sp:not(#sp-x) .sp-body  { grid-area: body;  min-width: 0; max-width: 680px; }
+main > section.sp:not(#sp-x) .sp-aside { grid-area: aside; min-width: 0; align-self: start; }
+@media (min-width: 961px) {
+  main > section.sp:not(#sp-x) .sp-aside {
+    position: sticky;
+    top: 96px;
+  }
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "intro" "aside" "body";
+    grid-template-rows: auto;
+  }
+  main > section.sp:not(#sp-x) .sp-intro,
+  main > section.sp:not(#sp-x) .sp-body {
+    max-width: none;
+  }
+  main > section.sp:not(#sp-x) .sp-aside {
+    margin-top: 32px;
+  }
+}
+
+/* ------------------------------------------------------------ Type */
+main > section.sp:not(#sp-x) .sp-lead {
+  margin: 0 0 24px;
+  max-width: 680px;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans);
+  color: var(--px-ink);
+  text-wrap: pretty;
+}
+main > section.sp:not(#sp-x) .sp-notice {
+  max-width: 680px;
+  margin: 0;
+}
+/* One H2 size for every section on this page. */
+main > section.sp:not(#sp-x) .sp-h2 {
+  margin: clamp(44px, 5vw, 64px) 0 16px;
+  font-size: clamp(26px, 1.1vw + 17px, 32px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.012em !important;
+  color: var(--px-navy-950);
+}
+
+/* ------------------------------------------------- Help links (px-links) */
+main > section.sp:not(#sp-x) .sp-links a {
+  min-height: 44px;
+  padding: 16px 4px;
+}
+main > section.sp:not(#sp-x) .sp-links .sp-link-text {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+main > section.sp:not(#sp-x) .sp-links .icon-chip .icon {
+  margin: 0;
+  color: inherit;
+}
+main > section.sp:not(#sp-x) .sp-links .px-links-meta {
+  overflow-wrap: anywhere;
+}
+main > section.sp:not(#sp-x) .sp-links a > .icon:last-child {
+  transition: color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-links a:hover > .icon:last-child {
+  color: var(--px-blue-700);
+}
+
+/* ------------------------------------------------- Future account note */
+main > section.sp:not(#sp-x) .sp-future {
+  margin: 40px 0 0;
+  border-top: 1px solid var(--px-line);
+  border-bottom: 1px solid var(--px-line);
+}
+main > section.sp:not(#sp-x) .sp-future summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 56px;
+  padding: 14px 4px;
+  list-style: none;
+  cursor: pointer;
+  color: var(--px-blue-700);
+  font: 600 var(--px-t-body)/1.4 var(--px-sans);
+  transition: color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-future summary::-webkit-details-marker { display: none; }
+main > section.sp:not(#sp-x) .sp-future summary::marker { content: ""; }
+main > section.sp:not(#sp-x) .sp-future-label {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+main > section.sp:not(#sp-x) .sp-future summary:hover { color: var(--px-navy-950); }
+main > section.sp:not(#sp-x) .sp-future summary .icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  transition: transform .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-future[open] summary .icon { transform: rotate(180deg); }
+main > section.sp:not(#sp-x) .sp-future-body {
+  padding: 0 4px 20px;
+}
+main > section.sp:not(#sp-x) .sp-future-body p {
+  margin: 0 0 12px;
+  max-width: 62ch;
+  font-size: var(--px-t-body) !important;
+  line-height: 1.6 !important;
+  color: var(--px-ink-2);
+}
+main > section.sp:not(#sp-x) .sp-future-body ul {
+  margin: 0;
+  padding-left: 1.25em;
+  list-style: disc;
+}
+main > section.sp:not(#sp-x) .sp-future-body li {
+  margin: 0 0 6px;
+  padding: 0;
+  font-size: var(--px-t-body) !important;
+  line-height: 1.55 !important;
+  color: var(--px-ink);
+}
+main > section.sp:not(#sp-x) .sp-future-body li::before { content: none; }
+
+/* ------------------------------------------------- Consular Section card */
+main > section.sp:not(#sp-x) .sp-card {
+  padding: 24px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-top: 3px solid var(--px-navy-900);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.sp:not(#sp-x) .sp-card-title {
+  margin: 0 0 4px;
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-facts {
+  margin: 0;
+}
+main > section.sp:not(#sp-x) .sp-facts > div {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--px-line);
+}
+main > section.sp:not(#sp-x) .sp-facts > div:last-child {
+  border-bottom: 0;
+}
+main > section.sp:not(#sp-x) .sp-facts dt {
+  margin: 0;
+  font: 600 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+}
+main > section.sp:not(#sp-x) .sp-facts dd {
+  margin: 2px 0 0;
+  font-size: var(--px-t-body);
+  line-height: 1.5;
+  color: var(--px-ink);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+main > section.sp:not(#sp-x) .sp-facts dd a {
+  color: var(--px-blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+main > section.sp:not(#sp-x) .sp-facts dd a:hover {
+  color: var(--px-navy-950);
+}
+/* Tablet: the card spans the column, so lay the facts out two by two. */
+@media (min-width: 600px) and (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+  }
+  main > section.sp:not(#sp-x) .sp-facts > div:nth-last-child(2) {
+    border-bottom: 0;
+  }
+  main > section.sp:not(#sp-x) .sp-action {
+    width: auto !important;
+    display: inline-flex !important;
+    padding-inline: 28px;
+  }
+}
+main > section.sp:not(#sp-x) .sp-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 16px;
+}
+main > section.sp:not(#sp-x) .sp-action .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+
+/* ------------------------------------------------- Shared fixes */
+/* Older layers set hyphens:auto on paragraphs ("doc-uments"). */
+main > section.sp:not(#sp-x),
+main > section.sp:not(#sp-x) * {
+  hyphens: manual !important;
+}
+main > section.sp:not(#sp-x) .sp-line {
+  display: block;
+}
+
+/* Paper surface: older layers paint a light page gradient that otherwise
+   shows behind the first section on 2K/4K screens. */
+main > section.sp:not(#sp-x):not(.bg-ivory) {
+  background-color: var(--px-paper);
+}
+
+/* Tablet and phone: the inset spans the column like the cards below it. */
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-notice {
+    max-width: none;
+  }
+}
+
+/* ------------------------------------------------- Sibling alignment
+   Same container gutter as Consular, Digital Services and Case workflow
+   (clamp(20px, 4vw, 72px)), so body content lines up across the section. */
+main > section.sp:not(#sp-x) > .container {
+  padding-inline: clamp(20px, 4vw, 72px) !important;
+}
+/* Section eyebrows: the gold-dash label used above every H2 on the sibling
+   service pages. It carries the top spacing the H2 had on its own. */
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow {
+  display: flex !important;
+  width: fit-content;
+  font: 700 var(--px-t-eyebrow, 12.5px)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  max-width: none !important;
+  margin: clamp(44px, 5vw, 64px) 0 14px !important;
+}
+main > section.sp:not(#sp-x) .sec-head > p.eyebrow.sp-eyebrow:first-child {
+  margin-top: 0 !important;
+}
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow + .sp-h2 {
+  margin-top: 0 !important;
+}
+
+/* Address: one line per part, so "Suite 725" never splits from its number. */
+main > section.sp:not(#sp-x) .sp-facts dd.sp-addr .sp-line {
+  display: block;
+  text-wrap: balance;
+}

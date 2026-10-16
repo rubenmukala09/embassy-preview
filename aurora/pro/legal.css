@@ -1,0 +1,476 @@
+/* ==========================================================================
+   Legal & policy documents
+   accessibility.html · privacy.html · terms.html · cookies.html · disclaimer.html
+
+   One reading column (~68 characters), a sticky "Contents" list on wide screens and a
+   collapsible one on phones, a "Last updated" line, a plain-language inset,
+   numbered section headings and the related documents as a link list.
+   Everything is scoped to the document section below the hero
+   (html body main > section.lg); the hero, quick-access dock and chrome are untouched.
+   ========================================================================== */
+
+html body main > section.lg {
+  --lg-body: 17px;
+  --lg-measure: 34em; /* about 68 characters of Public Sans */
+  background-color: var(--px-paper) !important;
+  background-image: none !important;
+}
+@media (min-width: 1024px) {
+  html body main > section.lg { --lg-body: 18px; }
+}
+/* the shared .section > .container carries a faint 48px grid; a reading page should be plain paper */
+html body main > section.lg > .container { background-image: none !important; }
+
+/* ---------------------------------------------------------------- layout */
+html body main > section.lg .lg-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+@media (min-width: 1100px) {
+  html body main > section.lg .lg-grid {
+    grid-template-columns: 264px minmax(0, 1fr);
+    column-gap: clamp(48px, 5vw, 80px);
+  }
+}
+
+/* Large screens: the document grid takes the width of the footer's content grid
+   (1240px on screen), so the contents list and the footer share one left edge.
+   The shared layer zooms below-hero sections, so the width is divided by that zoom. */
+@media (min-width: 1920px) {
+  html body main > section.lg > .container { width: auto; max-width: none; }
+  html body main > section.lg .lg-grid { max-width: 1240px; margin-inline: auto; }
+}
+@media (min-width: 2400px) {
+  html body main > section.lg .lg-grid {
+    max-width: calc(1240px / 1.25);
+    grid-template-columns: 252px minmax(0, 1fr);
+    column-gap: 40px;
+  }
+}
+@media (min-width: 3000px) {
+  html body main > section.lg .lg-grid { max-width: calc(1240px / 1.49); }
+}
+
+/* ------------------------------------------------------------- contents */
+html body main > section.lg .lg-toc {
+  padding: 0;
+  box-shadow: none;
+  max-width: calc(34 * var(--lg-body)); /* same width as the reading column below it */
+}
+html body main > section.lg .lg-toc .lg-toc-sum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 4px 18px;
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--px-radius);
+}
+html body main > section.lg .lg-toc .lg-toc-sum::-webkit-details-marker { display: none; }
+html body main > section.lg .lg-toc .lg-toc-sum::marker { content: ""; }
+/* on phones and tablets the title is the label of a control, so it reads as one:
+   sentence case at body size rather than the 13px capitals of the shared eyebrow */
+html body main > section.lg .lg-toc .lg-toc-sum .px-toc-title {
+  margin: 0 !important;
+  font: 600 16.5px/1.3 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+  text-transform: none;
+  color: var(--px-navy-950);
+}
+html body main > section.lg .lg-toc .lg-toc-chev {
+  color: var(--px-ink-3);
+  transition: transform .18s var(--px-ease);
+}
+html body main > section.lg .lg-toc .lg-toc-fold[open] .lg-toc-chev { transform: rotate(180deg); }
+html body main > section.lg .lg-toc .lg-toc-list {
+  margin: 0;
+  padding: 2px 10px 12px 8px;
+  border-top: 1px solid var(--px-line);
+  padding-top: 8px;
+}
+html body main > section.lg .lg-toc .lg-toc-list li { font-size: 15.5px; line-height: 1.4; }
+html body main > section.lg .lg-toc .lg-toc-list li > a[href] {
+  display: grid;
+  text-decoration: none;
+  grid-template-columns: 2.1em minmax(0, 1fr);
+  align-items: baseline;
+  font-weight: 400;
+  min-height: 44px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 0 8px 8px 0;
+  color: var(--px-ink-2);
+  transition: color .18s var(--px-ease), border-color .18s var(--px-ease), background-color .18s var(--px-ease);
+}
+html body main > section.lg .lg-toc .lg-toc-list li > a[href] .lg-n {
+  color: var(--px-ink-3);
+  font-variant-numeric: tabular-nums;
+}
+html body main > section.lg .lg-toc .lg-toc-list li > a[href]:hover,
+html body main > section.lg .lg-toc .lg-toc-list li > a[href][aria-current] {
+  color: var(--px-navy-950);
+  background-color: var(--px-canvas);
+}
+html body main > section.lg .lg-toc .lg-toc-list li > a[href][aria-current] { font-weight: 600; }
+html body main > section.lg .lg-toc .lg-toc-list li > a[href]:hover .lg-t { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+@media (min-width: 1100px) {
+  html body main > section.lg .lg-toc {
+    max-width: none;
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto; /* only scrolls on short screens; the wheel then passes on to the page */
+    scrollbar-width: thin;
+  }
+  html body main > section.lg .lg-toc .lg-toc-sum {
+    min-height: 0;
+    padding: 18px 20px 12px;
+    cursor: default;
+  }
+  /* the list stays visible on wide screens even before legal.js opens it */
+  html body main > section.lg .lg-toc .lg-toc-fold::details-content { content-visibility: visible; }
+  /* wide screens: the shared "On this page" label, at the 14px meta floor */
+  html body main > section.lg .lg-toc .lg-toc-sum .px-toc-title {
+    font: 700 14px/1.3 var(--px-sans) !important;
+    letter-spacing: .1em !important;
+    text-transform: uppercase;
+    color: var(--px-ink-3);
+  }
+  html body main > section.lg .lg-toc .lg-toc-chev { display: none; }
+  html body main > section.lg .lg-toc .lg-toc-list { border-top: 0; padding: 0 12px 14px 8px; }
+  /* compact enough for the 20-entry Terms list to fit a 768px-tall laptop screen */
+  html body main > section.lg .lg-toc .lg-toc-list li { font-size: 15px; line-height: 1.38; }
+  html body main > section.lg .lg-toc .lg-toc-list li > a[href] { min-height: 0; padding: 4px 8px 4px 12px; }
+}
+
+/* ------------------------------------------------------------ the reading column */
+html body main > section.lg .lg-body {
+  max-width: var(--lg-measure);
+  font-family: var(--px-sans);
+  font-size: var(--lg-body);
+  line-height: 1.7;
+  color: var(--px-ink);
+  min-width: 0;
+}
+html body main > section.lg .lg-body :is(p, li, dd, dt) {
+  max-width: none;
+  -webkit-hyphens: manual !important;
+  hyphens: manual !important;
+  text-wrap: pretty;
+}
+html body main > section.lg .lg-body .lg-sec > p,
+html body main > section.lg .lg-body .lg-intro,
+html body main > section.lg .lg-body .lg-sec li {
+  font-size: var(--lg-body);
+  line-height: 1.7;
+  color: var(--px-ink);
+}
+html body main > section.lg .lg-body .lg-sec > p { margin: 0 0 1em; }
+html body main > section.lg .lg-body .lg-sec > p:last-child { margin-bottom: 0; }
+html body main > section.lg .lg-body .lg-intro { margin: 28px 0 8px; }
+html body main > section.lg .lg-body strong { color: var(--px-navy-950); font-weight: 700; }
+
+html body main > section.lg .lg-body a[href]:not([class]) {
+  color: var(--px-blue-700);
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  border: 0;
+  overflow-wrap: anywhere;
+  transition: color .18s var(--px-ease), text-decoration-thickness .18s var(--px-ease);
+}
+html body main > section.lg .lg-body a[href]:not([class]):hover {
+  color: var(--px-navy-900);
+  text-decoration-thickness: 2px;
+}
+
+/* sections and numbered headings */
+html body main > section.lg .lg-sec { scroll-margin-top: 24px; }
+@media (max-width: 1099px) {
+  html body main > section.lg .lg-sec { scroll-margin-top: 88px; }
+}
+html body main > section.lg .lg-body .lg-sec h2 {
+  display: grid;
+  /* fixed number column: titles start at the same x for 1.–9. and 10.–15. */
+  grid-template-columns: 1.6em minmax(0, 1fr);
+  column-gap: .25em;
+  margin: 2.6em 0 .7em;
+  font-family: var(--px-serif);
+  font-size: 22px !important;
+  line-height: 1.32 !important;
+  color: var(--px-navy-950);
+}
+@media (min-width: 768px) {
+  html body main > section.lg .lg-body .lg-sec h2 { font-size: 24px !important; }
+}
+html body main > section.lg .lg-body .lg-summary + .lg-sec h2,
+html body main > section.lg .lg-body .lg-intro + .lg-sec h2 { margin-top: 1.9em; }
+html body main > section.lg .lg-body .lg-sec h2 .lg-n {
+  color: var(--px-gold-ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* lists */
+html body main > section.lg .lg-body .lg-sec ul {
+  margin: 0 0 1em;
+  padding-left: 1.35em;
+  list-style: disc;
+}
+html body main > section.lg .lg-body .lg-sec ul > li {
+  margin: 0 0 .5em;
+  padding-left: .25em;
+}
+html body main > section.lg .lg-body .lg-sec ul > li::before { content: none !important; }
+html body main > section.lg .lg-body .lg-sec ul > li::marker { color: var(--px-ink-3); }
+
+/* summary lists (measures, data categories, definitions) */
+html body main > section.lg .lg-body .lg-dl {
+  margin: .4em 0 1.2em;
+}
+html body main > section.lg .lg-body .lg-dl > dt,
+html body main > section.lg .lg-body .lg-dl > dd {
+  font-size: calc(var(--lg-body) - 1px);
+  line-height: 1.6;
+  padding: 14px 0;
+}
+html body main > section.lg .lg-body .lg-dl > dt { color: var(--px-navy-950); padding-right: 20px; }
+html body main > section.lg .lg-body .lg-dl > dd { color: var(--px-ink-2); }
+@media (max-width: 560px) {
+  html body main > section.lg .lg-body .lg-dl > dt { padding: 14px 0 2px; }
+  html body main > section.lg .lg-body .lg-dl > dd { padding: 0 0 14px; }
+}
+
+/* "Last updated" line */
+html body main > section.lg .lg-body .lg-meta {
+  gap: 4px 6px;
+  margin-bottom: 28px;
+}
+
+/* plain-language inset */
+html body main > section.lg .lg-body .lg-summary {
+  margin: 0;
+  padding: 18px 22px 20px;
+}
+html body main > section.lg .lg-body .lg-summary .lg-summary-label {
+  margin: 0 0 6px;
+  font: 700 15px/1.4 var(--px-sans);
+  color: var(--px-navy-950);
+}
+html body main > section.lg .lg-body .lg-summary .lg-summary-text {
+  margin: 0;
+  font-size: var(--lg-body);
+  line-height: 1.65;
+  color: var(--px-ink);
+}
+
+/* contact card */
+html body main > section.lg .lg-body .lg-contact {
+  margin: 1.4em 0 0;
+  padding: 20px 22px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: none; /* flat, like the contents list, inset and status note */
+}
+html body main > section.lg .lg-body .lg-contact .lg-contact-title {
+  margin: 0 0 2px;
+  font: 600 17px/1.4 var(--px-sans);
+  color: var(--px-navy-950);
+}
+html body main > section.lg .lg-body .lg-contact .lg-contact-hint {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--px-ink-2);
+}
+html body main > section.lg .lg-body .lg-contact-list { margin: 0; }
+html body main > section.lg .lg-body .lg-contact-list > div {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr);
+  gap: 2px 16px;
+  padding: 8px 0;
+  border-top: 1px solid var(--px-line);
+}
+html body main > section.lg .lg-body .lg-contact-list :is(dt, dd) {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+html body main > section.lg .lg-body .lg-contact-list dt { color: var(--px-ink-3); font-weight: 600; }
+html body main > section.lg .lg-body .lg-contact-list dd { color: var(--px-ink); }
+@media (max-width: 420px) {
+  html body main > section.lg .lg-body .lg-contact-list > div { grid-template-columns: minmax(0, 1fr); }
+}
+/* touch screens: full-height targets for the e-mail and telephone links */
+@media (max-width: 1099px) {
+  /* labels stay on the first line of their value; the 44px height comes from the link itself */
+  html body main > section.lg .lg-body .lg-contact-list > div { padding: 0; align-items: start; }
+  html body main > section.lg .lg-body .lg-contact-list dt { padding-top: 10px; }
+  html body main > section.lg .lg-body .lg-contact-list dd { padding: 10px 0; }
+  html body main > section.lg .lg-body .lg-contact-list dd:has(> a[href]) { padding: 0; }
+  html body main > section.lg .lg-body .lg-contact-list dd a[href] { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
+/* cookies: storage table (stacks on phones) */
+html body main > section.lg .lg-body .lg-table-wrap {
+  margin: .4em 0 1em;
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  overflow: hidden;
+}
+html body main > section.lg .lg-body .lg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+html body main > section.lg .lg-body .lg-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 14px 18px;
+  font: 600 15px/1.4 var(--px-sans);
+  color: var(--px-navy-950);
+  border-bottom: 1px solid var(--px-line);
+}
+html body main > section.lg .lg-body .lg-table th {
+  text-align: left;
+  padding: 11px 18px;
+  background: var(--px-canvas);
+  color: var(--px-ink-2);
+  font-weight: 600;
+  border-bottom: 1px solid var(--px-line);
+}
+html body main > section.lg .lg-body .lg-table td {
+  padding: 14px 18px;
+  vertical-align: top;
+  color: var(--px-ink);
+  border: 0;
+  border-bottom: 1px solid var(--px-line);
+  background: var(--px-paper);
+}
+html body main > section.lg .lg-body .lg-table tr:last-child td { border-bottom: 0; }
+html body main > section.lg .lg-body .lg-table code {
+  font: 600 14.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--px-navy-950);
+  background: var(--px-sky);
+  padding: 2px 6px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+html body main > section.lg .lg-body .lg-table .lg-cell-label { display: none; }
+@media (min-width: 641px) {
+  html body main > section.lg .lg-body .lg-table { table-layout: fixed; font-size: 15.5px; }
+  html body main > section.lg .lg-body .lg-table :is(th, td) { padding-inline: 14px; }
+  /* fixed layout: the Name column fits "emb-news-seen" and the Type column fits the French "Stockage" */
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(1) { width: 25%; }
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(2) { width: 33%; }
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(3) { width: 18%; }
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(4) { width: 24%; }
+}
+html body main > section.lg .lg-body .lg-table :is(th, td, span) {
+  word-break: normal;
+  overflow-wrap: normal;
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}
+@media (max-width: 640px) {
+  html body main > section.lg .lg-body .lg-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  html body main > section.lg .lg-body .lg-table,
+  html body main > section.lg .lg-body .lg-table tbody,
+  html body main > section.lg .lg-body .lg-table tr,
+  html body main > section.lg .lg-body .lg-table td { display: block; width: 100%; }
+  /* the shared phone rule turns section tables into nowrap scrollers; this one stacks instead */
+  html body main > section.lg .lg-body .lg-table { white-space: normal; overflow: visible; }
+  html body main > section.lg .lg-body .lg-table caption { display: block; }
+  html body main > section.lg .lg-body .lg-table tr { padding: 6px 0; border-bottom: 1px solid var(--px-line); }
+  html body main > section.lg .lg-body .lg-table tr:last-child { border-bottom: 0; }
+  html body main > section.lg .lg-body .lg-table td {
+    display: grid;
+    grid-template-columns: 6.2em minmax(0, 1fr);
+    gap: 12px;
+    padding: 7px 16px;
+    border: 0;
+  }
+  html body main > section.lg .lg-body .lg-table .lg-cell-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--px-ink-3);
+    padding-top: 1px;
+  }
+}
+
+/* preview status note */
+html body main > section.lg .lg-body .lg-status {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 3.2em 0 0;
+  padding: 16px 18px;
+  background: var(--px-canvas);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-ctl);
+  color: var(--px-ink-2);
+}
+html body main > section.lg .lg-body .lg-status .icon { margin-top: 2px; color: var(--px-ink-3); }
+html body main > section.lg .lg-body .lg-status p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--px-ink-2);
+}
+html body main > section.lg .lg-body .lg-status p b {
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
+
+/* related documents */
+html body main > section.lg .lg-body .lg-related { margin: 3.2em 0 0; }
+html body main > section.lg .lg-body .lg-related h2 {
+  margin: 0 0 14px;
+  font: 700 20px/1.3 var(--px-serif) !important;
+  color: var(--px-navy-950);
+}
+html body main > section.lg .lg-body .lg-related .px-links li > a[href] {
+  min-height: 64px;
+  text-decoration: none;
+  padding: 14px 6px 14px 2px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--px-navy-950);
+  font-weight: 600;
+}
+html body main > section.lg .lg-body .lg-related .px-links li > a[href]:hover { color: var(--px-blue-700); }
+html body main > section.lg .lg-body .lg-related .px-links li > a[href]:hover .px-links-name {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+html body main > section.lg .lg-body .lg-related .lg-link-text { display: block; min-width: 0; }
+html body main > section.lg .lg-body .lg-related .px-links-name { font-size: 17px; line-height: 1.35; }
+html body main > section.lg .lg-body .lg-related .px-links .icon { transition: transform .18s var(--px-ease), color .18s var(--px-ease); }
+html body main > section.lg .lg-body .lg-related .px-links a:hover .icon { color: var(--px-blue-700); transform: translateX(2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html body main > section.lg .lg-body .lg-related .px-links a:hover .icon { transform: none; }
+}
+
+@media print {
+  html body main > section.lg .lg-toc { display: none; }
+  html body main > section.lg .lg-grid { display: block; }
+  html body main > section.lg .lg-body { max-width: none; }
+}
+
+/* headings receive focus when chosen from the contents list; no ring on a non-interactive target */
+html body main > section.lg .lg-body .lg-sec h2[tabindex="-1"]:is(:focus, :focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
@@ -18,12 +18,12 @@
 <meta property="og:site_name" content="Embassy of the DR Congo, Washington, D.C." />
 <meta property="og:title" content="Account support preview - Embassy of the DR Congo" />
 <meta property="og:description" content="Online accounts and sign-in are reserved for a later approved service." /><meta property="og:url" content="https://rubenmukala09.github.io/embassy-preview/account/" />
-<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Account support preview - Embassy of the DR Congo" />
-<meta name="twitter:description" content="Online accounts and sign-in are reserved for a later approved service." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta name="twitter:description" content="Online accounts and sign-in are reserved for a later approved service." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
@@ -43,6 +43,9 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/component-standard.css?v=1787245200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900003" />
 <link rel="stylesheet" href="/embassy-preview/aurora/universal-footer.css?v=1787248800" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro-system.css?v=20261014a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/search-plus.css?v=20261015a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/account.css?v=20261014a" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -62,6 +65,7 @@
   <div class="gov-col"><span class="gov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-5h6v5"/></svg></span><div><b>Preview environment</b><p>This website is being reviewed before official publication. Verify urgent or operational information directly with the Embassy.</p></div></div>
   <div class="gov-col"><span class="gov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Secure browsing</b><p>This preview uses HTTPS. Do not submit identity documents, payment details or other sensitive information until an approved service is announced.</p></div></div>
 </div></div>
+</div>
 
 <!-- TOP BAR -->
 <div class="topbar"><div class="container">
@@ -103,7 +107,7 @@
   <a class="ann-emergency" href="tel:+12022347690" aria-label="Call the Embassy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Call the Embassy</a>
 </div></div>
 
-<main id="main-content" tabindex="-1">
+<main data-pagefind-body id="main-content" tabindex="-1">
 
 <!-- PAGE HEAD -->
 <section class="phead" data-hero-static style="background-image:url('/embassy-preview/aurora/assets/img/generated/hero-library-2026/26-account-support.webp');background-position:center right"><div class="container">
@@ -113,30 +117,59 @@
   <p>Online account access is reserved for a later, Embassy-approved service.</p>
 </div></section>
 
-<section class="section"><div class="container" style="max-width:480px">
-  <div class="card pad">
-    <h2 style="font-size:22px">Account service reserved</h2>
-    <div class="service-notice" role="status"><div><b>Account access is not active in this preview.</b><br>No credentials are accepted or stored. Use the verified support pathway for account or application assistance.</div></div>
+<!-- ACCOUNT SUPPORT: start page -->
+<section class="section sp sp-start" aria-labelledby="sp-help-title"><div class="container">
+  <div class="sp-layout">
+    <div class="sp-intro">
+      <p class="sp-lead" data-emb-en="Online Embassy accounts are not available yet. Consular requests are handled in person, by post, by telephone or by email." data-emb-fr="Les comptes en ligne de l’Ambassade ne sont pas encore disponibles. Les demandes consulaires sont traitées en personne, par courrier, par téléphone ou par courriel.">Online Embassy accounts are not available yet. Consular requests are handled in person, by post, by telephone or by email.</p>
 
-    
-    
-    <div aria-describedby="account-disabled">
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" value="" autocomplete="email" disabled aria-describedby="account-disabled">
+      <div class="px-inset sp-notice" role="note">
+        <p><strong data-emb-en="Prototype service." data-emb-fr="Service en prototype.">Prototype service.</strong> <span data-emb-en="There is no sign-in on this website. Never enter a password, identity document or payment details here." data-emb-fr="Ce site ne comporte aucun espace de connexion. Ne saisissez jamais de mot de passe, de pièce d’identité ni de coordonnées de paiement sur ce site.">There is no sign-in on this website. Never enter a password, identity document or payment details here.</span></p>
       </div>
-      <div class="field">
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" autocomplete="current-password" disabled aria-describedby="account-disabled">
+    </div>
+
+    <aside class="sp-aside" aria-labelledby="sp-contact-title">
+      <div class="sp-card">
+        <h2 class="sp-card-title" id="sp-contact-title" data-emb-en="Consular Section" data-emb-fr="Section consulaire">Consular Section</h2>
+        <dl class="sp-facts">
+          <div><dt data-emb-en="Address" data-emb-fr="Adresse">Address</dt>
+          <dd class="sp-addr"><span class="sp-line" data-emb-en="1100 Connecticut Avenue NW," data-emb-fr="1100 Connecticut Avenue NW,">1100 Connecticut Avenue NW,</span><span class="sp-line" data-emb-en="Suite 725, Washington, DC 20036" data-emb-fr="Suite 725, Washington, DC 20036">Suite 725, Washington, DC 20036</span></dd></div>
+          <div><dt data-emb-en="Telephone" data-emb-fr="Téléphone">Telephone</dt>
+          <dd><a href="tel:+12022347690">+1 (202) 234-7690</a></dd></div>
+          <div><dt data-emb-en="Email" data-emb-fr="Courriel">Email</dt>
+          <dd><a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a></dd></div>
+          <div><dt data-emb-en="Office hours" data-emb-fr="Heures d’ouverture">Office hours</dt>
+          <dd><span class="sp-line" data-emb-en="Monday–Thursday 9:00–16:00" data-emb-fr="Du lundi au jeudi, 9 h–16 h">Monday–Thursday 9:00–16:00</span><span class="sp-line" data-emb-en="Friday 9:00–13:00" data-emb-fr="Le vendredi, 9 h–13 h">Friday 9:00–13:00</span></dd></div>
+        </dl>
+        <a class="btn btn-gold sp-action" href="/embassy-preview/contact.html"><span data-emb-en="Contact the Embassy" data-emb-fr="Contacter l’Ambassade">Contact the Embassy</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a>
       </div>
-      <label style="display:flex;align-items:center;gap:8px;font-size:13.5px;margin:2px 0 18px">
-        <input type="checkbox" name="remember" value="1" disabled> Keep me signed in on this device
-      </label>
-      <a class="btn btn-gold btn-block" id="account-disabled" href="/embassy-preview/digital-services.html#account-support">Get account support</a>
+    </aside>
+
+    <div class="sp-body">
+<p class="eyebrow sp-eyebrow" data-emb-en="Consular help" data-emb-fr="Aide consulaire">Consular help</p>
+      <h2 class="sp-h2" id="sp-help-title" data-emb-en="Get help now" data-emb-fr="Obtenir de l’aide dès maintenant">Get help now</h2>
+      <ul class="px-links sp-links">
+        <li><a href="/embassy-preview/consular-services.html#status"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-search"/></svg></span><span class="sp-link-text"><span class="px-links-name" data-emb-en="Ask about an existing application" data-emb-fr="Se renseigner sur une demande en cours">Ask about an existing application</span><span class="px-links-meta" data-emb-en="What to include when you contact the Embassy" data-emb-fr="Les informations à indiquer lorsque vous contactez l’Ambassade">What to include when you contact the Embassy</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+        <li><a href="/embassy-preview/portal.html"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-calendar-check"/></svg></span><span class="sp-link-text"><span class="px-links-name" data-emb-en="Plan a visit to the Consular Section" data-emb-fr="Préparer une visite à la Section consulaire">Plan a visit to the Consular Section</span><span class="px-links-meta" data-emb-en="Appointment guidance and what to bring" data-emb-fr="Rendez-vous et documents à apporter">Appointment guidance and what to bring</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+        <li><a href="/embassy-preview/documents/"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-folder-open"/></svg></span><span class="sp-link-text"><span class="px-links-name" data-emb-en="Prepare your documents" data-emb-fr="Préparer vos documents">Prepare your documents</span><span class="px-links-meta" data-emb-en="Checklists for passports, visas, Tenant‑Lieu and civil-status documents" data-emb-fr="Listes des pièces pour les passeports, les visas, le Tenant‑Lieu et l’état civil">Checklists for passports, visas, Tenant‑Lieu and civil-status documents</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+        <li><a href="/embassy-preview/pay/"><span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-receipt"/></svg></span><span class="sp-link-text"><span class="px-links-name" data-emb-en="Fees and payment" data-emb-fr="Frais et paiement">Fees and payment</span><span class="px-links-meta" data-emb-en="The schedule of fees and how to pay" data-emb-fr="Le barème des frais et les modes de paiement">The schedule of fees and how to pay</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+      </ul>
+
+      <details class="sp-future">
+        <summary><span class="sp-future-label" data-emb-en="What a future online account could include" data-emb-fr="Ce qu’un futur compte en ligne pourrait comprendre">What a future online account could include</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="sp-future-body">
+          <p data-emb-en="These are proposals only. Any online account depends on Embassy approval, and its features may change." data-emb-fr="Il s’agit uniquement de propositions. Tout compte en ligne est soumis à l’approbation de l’Ambassade et ses fonctionnalités peuvent évoluer.">These are proposals only. Any online account depends on Embassy approval, and its features may change.</p>
+          <ul>
+            <li data-emb-en="Follow a passport, visa or document request using the reference on your official receipt" data-emb-fr="Suivre une demande de passeport, de visa ou de document à l’aide de la référence figurant sur votre reçu officiel">Follow a passport, visa or document request using the reference on your official receipt</li>
+            <li data-emb-en="Receive appointment confirmations and collection notices" data-emb-fr="Recevoir les confirmations de rendez-vous et les avis de retrait">Receive appointment confirmations and collection notices</li>
+            <li data-emb-en="Keep copies of submitted forms and the receipts issued by the Embassy" data-emb-fr="Conserver une copie des formulaires déposés et des reçus délivrés par l’Ambassade">Keep copies of submitted forms and the receipts issued by the Embassy</li>
+            <li data-emb-en="Keep your contact details up to date on your consular file" data-emb-fr="Tenir à jour vos coordonnées dans votre dossier consulaire">Keep your contact details up to date on your consular file</li>
+          </ul>
+        </div>
+      </details>
     </div>
   </div>
 </div></section>
-
 </main>
 
 <!-- FOOTER -->
@@ -174,5 +207,6 @@
 
 <script src="/embassy-preview/aurora/aurora.js?v=1787241600" defer></script>
 <script src="/embassy-preview/aurora/mobile-os.js?v=1786161601" defer></script>
+<script src="/embassy-preview/aurora/pro/search-plus.js?v=20261016a" defer></script>
 </body>
 </html>

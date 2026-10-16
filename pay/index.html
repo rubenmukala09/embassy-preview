@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
@@ -18,12 +18,12 @@
 <meta property="og:site_name" content="Embassy of the DR Congo, Washington, D.C." />
 <meta property="og:title" content="Consular payment guidance preview - Embassy of the DR Congo" />
 <meta property="og:description" content="Online payments are reserved for a later approved service and no financial information is collected." /><meta property="og:url" content="https://rubenmukala09.github.io/embassy-preview/pay/" />
-<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Consular payment guidance preview - Embassy of the DR Congo" />
-<meta name="twitter:description" content="Online payments are reserved for a later approved service and no financial information is collected." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta name="twitter:description" content="Online payments are reserved for a later approved service and no financial information is collected." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
@@ -43,6 +43,9 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/component-standard.css?v=1787245200" />
 <link rel="stylesheet" href="/embassy-preview/aurora/palette-clean.css?v=1786900003" />
 <link rel="stylesheet" href="/embassy-preview/aurora/universal-footer.css?v=1787248800" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro-system.css?v=20261014a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/search-plus.css?v=20261015a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/pay.css?v=20261014a" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -62,6 +65,7 @@
   <div class="gov-col"><span class="gov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-5h6v5"/></svg></span><div><b>Preview environment</b><p>This website is being reviewed before official publication. Verify urgent or operational information directly with the Embassy.</p></div></div>
   <div class="gov-col"><span class="gov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Secure browsing</b><p>This preview uses HTTPS. Do not submit identity documents, payment details or other sensitive information until an approved service is announced.</p></div></div>
 </div></div>
+</div>
 
 <!-- TOP BAR -->
 <div class="topbar"><div class="container">
@@ -103,7 +107,7 @@
   <a class="ann-emergency" href="tel:+12022347690" aria-label="Call the Embassy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Call the Embassy</a>
 </div></div>
 
-<main id="main-content" tabindex="-1">
+<main data-pagefind-body id="main-content" tabindex="-1">
 <section class="phead" data-hero-static style="background-image:url('/embassy-preview/aurora/assets/img/generated/hero-library-2026/27-payment-guidance.webp');background-position:center right"><div class="container">
   <p class="eyebrow">Payment guidance</p>
   <div class="rule"></div>
@@ -122,99 +126,143 @@
   </nav>
 </div></section>
 
-<section class="section"><div class="container">
+<!-- PAYMENT GUIDANCE: start page -->
+<section class="section sp sp-start" aria-labelledby="sp-before-title"><div class="container">
+  <div class="sp-layout">
+    <div class="sp-main">
+      <p class="sp-lead" data-emb-en="Find the published fee for your consular service and how to pay it." data-emb-fr="Trouvez le montant publié des frais de votre service consulaire et la manière de les régler.">Find the published fee for your consular service and how to pay it.</p>
 
-  
-  <div class="card pad note" style="margin-bottom:26px">
-      <p style="margin:0"><b>Payment service unavailable.</b> This preview does not accept payments, create receipts or collect card and bank details. Confirm the current approved payment method on the
-      <a href="/embassy-preview/consular-services.html#fees">Consular Services</a> page.</p>
+      <div class="px-inset sp-notice" role="note">
+        <p><strong data-emb-en="Prototype service." data-emb-fr="Service en prototype.">Prototype service.</strong> <span data-emb-en="This website does not accept payments or collect card or bank details." data-emb-fr="Ce site n’accepte aucun paiement et ne recueille aucune coordonnée bancaire ni de carte.">This website does not accept payments or collect card or bank details.</span></p>
+      </div>
+
+<p class="eyebrow sp-eyebrow" data-emb-en="Payments" data-emb-fr="Paiements">Payments</p>
+      <h2 class="sp-h2" id="sp-before-title" data-emb-en="Before you start" data-emb-fr="Avant de commencer">Before you start</h2>
+      <dl class="px-summary sp-summary">
+        <dt data-emb-en="Payment method" data-emb-fr="Mode de paiement">Payment method</dt>
+        <dd data-emb-en="A money order, for every service except passports" data-emb-fr="Un mandat (money order), pour tous les services sauf les passeports">A money order, for every service except passports</dd>
+        <dt data-emb-en="Passports" data-emb-fr="Passeports">Passports</dt>
+        <dd><span data-emb-en="Paid online after pre-registration." data-emb-fr="Paiement en ligne après la préinscription.">Paid online after pre-registration.</span> <a href="#passport-payment" data-emb-en="How passport fees are paid" data-emb-fr="Comment régler les frais de passeport">How passport fees are paid</a></dd>
+        <dt data-emb-en="Refunds" data-emb-fr="Remboursement">Refunds</dt>
+        <dd data-emb-en="Fees are non-refundable." data-emb-fr="Les frais ne sont pas remboursables.">Fees are non-refundable.</dd>
+        <dt data-emb-en="Changes" data-emb-fr="Mises à jour">Changes</dt>
+        <dd data-emb-en="Fees may change. Confirm the amount for your service before you pay." data-emb-fr="Les montants peuvent changer. Vérifiez le montant applicable à votre service avant de payer.">Fees may change. Confirm the amount for your service before you pay.</dd>
+      </dl>
+
+      <div class="sp-route" id="passport-payment" aria-labelledby="sp-route-title">
+        <span class="icon-chip"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-globe"/></svg></span>
+        <div>
+          <h3 id="sp-route-title" data-emb-en="Passports are paid online" data-emb-fr="Les passeports se paient en ligne">Passports are paid online</h3>
+          <p data-emb-en="Obtain your tax number (NIF), pre-register on passeport.gouv.cd, then pay the US $75 fee through the Equity BCDC link sent to you by email. Allow 72 hours for the payment to be recorded." data-emb-fr="Obtenez votre numéro d’identification fiscale (NIF), effectuez votre préinscription sur passeport.gouv.cd, puis réglez les frais de 75 USD au moyen du lien Equity BCDC reçu par courriel. Comptez 72 heures pour l’enregistrement du paiement.">Obtain your tax number (NIF), pre-register on passeport.gouv.cd, then pay the US $75 fee through the Equity BCDC link sent to you by email. Allow 72 hours for the payment to be recorded.</p>
+          <p class="sp-route-links"><a href="/embassy-preview/consular-services.html#passport" data-emb-en="Passport guidance" data-emb-fr="Informations sur le passeport">Passport guidance</a> <a href="https://www.passeport.gouv.cd/" target="_blank" rel="noopener noreferrer"><span data-emb-en="passeport.gouv.cd" data-emb-fr="passeport.gouv.cd">passeport.gouv.cd</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg><span class="sp-sr" data-emb-en="(opens in a new tab)" data-emb-fr="(s’ouvre dans un nouvel onglet)">(opens in a new tab)</span></a></p>
+        </div>
+      </div>
+
+<p class="eyebrow sp-eyebrow" data-emb-en="Step by step" data-emb-fr="Étape par étape">Step by step</p>
+      <h2 class="sp-h2" data-emb-en="How to pay" data-emb-fr="Comment payer">How to pay</h2>
+      <p class="sp-sub" data-emb-en="For visas, civil-status documents and notarial services." data-emb-fr="Pour les visas, les actes d’état civil et les services notariaux.">For visas, civil-status documents and notarial services.</p>
+      <ol class="px-steps sp-steps">
+        <li>
+          <h3 data-emb-en="Find the fee for your service" data-emb-fr="Trouvez le montant de votre service">Find the fee for your service</h3>
+          <p data-emb-en="Use the schedule of fees on this page. If your service is not listed, ask the Embassy before you pay." data-emb-fr="Consultez le barème des frais sur cette page. Si votre service n’y figure pas, renseignez-vous auprès de l’Ambassade avant de payer.">Use the schedule of fees on this page. If your service is not listed, ask the Embassy before you pay.</p>
+          <p class="sp-step-link"><a href="#fee-schedule" data-emb-en="Go to the schedule of fees" data-emb-fr="Accéder au barème des frais">Go to the schedule of fees</a></p>
+        </li>
+        <li>
+          <h3 data-emb-en="Buy a money order for the exact amount" data-emb-fr="Procurez-vous un mandat du montant exact">Buy a money order for the exact amount</h3>
+          <p data-emb-en="Use a blank money order for the exact amount in the schedule of fees, as the Embassy instructs. If you are unsure how to complete it, ask the Embassy before you pay." data-emb-fr="Utilisez un mandat non rempli du montant exact indiqué dans le barème des frais, conformément aux consignes de l’Ambassade. En cas de doute sur la manière de le remplir, renseignez-vous auprès de l’Ambassade avant de payer.">Use a blank money order for the exact amount in the schedule of fees, as the Embassy instructs. If you are unsure how to complete it, ask the Embassy before you pay.</p>
+        </li>
+        <li>
+          <h3 data-emb-en="Include it with your application" data-emb-fr="Joignez-le à votre demande">Include it with your application</h3>
+          <p data-emb-en="Hand it in with your file at the Consular Section, or enclose it with a postal application and a prepaid, tracked return envelope." data-emb-fr="Remettez-le avec votre dossier à la Section consulaire, ou joignez-le à une demande envoyée par courrier, accompagnée d’une enveloppe de retour prépayée avec suivi.">Hand it in with your file at the Consular Section, or enclose it with a postal application and a prepaid, tracked return envelope.</p>
+        </li>
+        <li>
+          <h3 data-emb-en="Keep your receipt" data-emb-fr="Conservez votre reçu">Keep your receipt</h3>
+          <p data-emb-en="Keep the official receipt or reference. You will need it for any question about your application." data-emb-fr="Conservez le reçu ou la référence officielle : ils vous seront demandés pour toute question relative à votre demande.">Keep the official receipt or reference. You will need it for any question about your application.</p>
+        </li>
+      </ol>
+
+    </div>
+
+    <aside class="sp-aside" aria-labelledby="sp-finder-title">
+      <div class="sp-card sp-finder" data-fee-finder>
+        <h2 class="sp-card-title" id="sp-finder-title" data-emb-en="Check a fee" data-emb-fr="Vérifier un montant">Check a fee</h2>
+        <p class="sp-finder-fallback"><a href="#fee-schedule" data-emb-en="See the schedule of fees" data-emb-fr="Consulter le barème des frais">See the schedule of fees</a></p>
+        <div class="sp-finder-tool" hidden>
+          <p class="sp-finder-intro" data-emb-en="Choose a service to see its published fee." data-emb-fr="Choisissez un service pour afficher le montant publié.">Choose a service to see its published fee.</p>
+          <div class="sp-field">
+            <label for="sp-fee-service" data-emb-en="Consular service" data-emb-fr="Service consulaire">Consular service</label>
+            <select id="sp-fee-service" name="service"></select>
+          </div>
+          <output class="sp-fee-result" for="sp-fee-service" aria-live="polite">
+            <span class="sp-fee-label" data-fee-label></span>
+            <span class="sp-fee-amount" data-fee-amount>—</span>
+            <span class="sp-fee-detail" data-fee-detail></span>
+          </output>
+        </div>
+        <a class="btn btn-gold sp-action" href="mailto:info@ambadrcusa.org?subject=Consular%20fee%20enquiry"><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-mail"/></svg><span data-emb-en="Ask about a fee" data-emb-fr="Se renseigner sur un montant">Ask about a fee</span></a>
+      </div>
+    </aside>
+  </div>
+</div></section>
+
+<!-- SCHEDULE OF FEES -->
+<section class="section bg-ivory sp sp-band" id="fee-schedule" aria-labelledby="sp-fees-title"><div class="container">
+  <div class="sec-head">
+    <p class="eyebrow sp-eyebrow" data-emb-en="Fee schedule" data-emb-fr="Barème des frais">Fee schedule</p>
+    <h2 id="sp-fees-title" data-emb-en="Consular fees" data-emb-fr="Frais consulaires">Consular fees</h2>
+    <p data-emb-en="Amounts in U.S. dollars, as published by the Embassy." data-emb-fr="Montants en dollars américains, tels que publiés par l’Ambassade.">Amounts in U.S. dollars, as published by the Embassy.</p>
   </div>
 
-  <div class="grid-2" style="display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start">
-
-    
-    <div class="card pad">
-      <div class="sec-head"><p class="eyebrow">Reserved service</p><h2 style="margin-top:6px;font-size:24px">Payment workflow preview</h2></div>
-
-      
-      <div aria-describedby="payment-preview-notice">
-        <fieldset class="preview-disabled-fields" disabled>
-
-        <div class="field">
-          <label for="p-fee">Consular service or ticket</label>
-          <select id="p-fee" name="fee" required>
-            <option value="" disabled selected>Select a service…</option>
-                          <option value="visa-single-1m">Single-entry visa - 1 month - US $100.00</option>
-                          <option value="visa-single-2m">Single-entry visa - 2 months - US $135.00</option>
-                          <option value="visa-single-6m">Single-entry visa - 6 months - US $400.00</option>
-                          <option value="visa-multi-1m">Multiple-entry visa - 1 month - US $120.00</option>
-                          <option value="visa-multi-2m">Multiple-entry visa - 2 months - US $150.00</option>
-                          <option value="visa-multi-3m">Multiple-entry visa - 3 months - US $160.00</option>
-                          <option value="visa-multi-6m">Multiple-entry visa - 6 months - US $450.00</option>
-                          <option value="visa-transit-oneway">Airport transit visa - one way - US $45.00</option>
-                          <option value="visa-transit-return">Airport transit visa - round trip - US $75.00</option>
-                          <option value="visa-us-reciprocity">Visa - U.S. citizens (2 years, reciprocity) - US $185.00</option>
-                          <option value="birth-certificate">Birth certificate - US $50.00</option>
-                          <option value="marriage-certificate">Marriage certificate - US $100.00</option>
-                          <option value="inheritance">Certificate of inheritance - US $50.00</option>
-                          <option value="notarial-property">Notarial services (real property) - US $50.00</option>
-                          <option value="poa-ngo-adoption">Power of attorney (NGO / adoption) - US $300.00</option>
-                          <option value="poa-corporate">Power of attorney (corporation ownership sale) - US $600.00</option>
-                          <option value="legalization">Legalization / other certificates - US $50.00</option>
-                          <option value="passport">Passport (issuance / renewal) - US $75.00</option>
-                          <option value="laissez-passer">Travel document (Laissez-Passer) - US $80.00</option>
-                          <option value="event-cultural-evening">Congolese cultural evening - admission - US $35.00</option>
-                          <option value="event-independence-gala">Independence Day gala - seat - US $125.00</option>
-                      </select>
-        </div>
-
-        <div class="field">
-          <label for="p-qty">Quantity <span class="opt">(e.g. number of documents or tickets)</span></label>
-          <input id="p-qty" name="quantity" type="number" min="1" max="50" value="1" />
-        </div>
-
-        <div class="field"><label for="p-name">Full name</label><input id="p-name" name="name" placeholder="Your full name" /></div>
-        <div class="field"><label for="p-email">Email <span class="opt">(for your receipt)</span></label><input id="p-email" name="email" type="email" required placeholder="you@example.com" /></div>
-        <div class="field"><label for="p-ref">Related application reference <span class="opt">(optional)</span></label><input id="p-ref" name="reference" placeholder="e.g. APT-2026-0481" /></div>
-        </fieldset>
-
-        <div class="service-notice" id="payment-preview-notice"><div><b>Online payment is not available in this preview.</b><br>No charge, receipt or payment reference can be created here.</div></div>
-        <a class="btn btn-gold btn-block" href="/embassy-preview/consular-services.html#fees" style="margin-top:8px">Review current payment guidance</a>
-      </div>
-    </div>
-
-    
-    <div class="card" style="overflow:hidden">
-      <div class="pad" style="padding-bottom:0"><div class="sec-head"><p class="eyebrow">Schedule of fees</p><h2 style="margin-top:6px;font-size:24px">Consular fees</h2></div></div>
-      <table class="table">
-        <thead><tr><th>Service</th><th>Fee (USD)</th></tr></thead>
+  <div class="sp-fees-layout">
+    <div class="sp-fees-card">
+    <div class="sp-table-wrap" role="region" aria-labelledby="sp-fees-title" tabindex="0">
+      <table class="sp-fees" data-fee-table>
+        <thead>
+          <tr><th scope="col" data-emb-en="Service" data-emb-fr="Service">Service</th><th scope="col" class="sp-num" data-emb-en="Fee (USD)" data-emb-fr="Frais (USD)">Fee (USD)</th></tr>
+        </thead>
         <tbody>
-                      <tr><td>Single-entry visa - 1 month</td><td>US $100.00</td></tr>
-                      <tr><td>Single-entry visa - 2 months</td><td>US $135.00</td></tr>
-                      <tr><td>Single-entry visa - 6 months</td><td>US $400.00</td></tr>
-                      <tr><td>Multiple-entry visa - 1 month</td><td>US $120.00</td></tr>
-                      <tr><td>Multiple-entry visa - 2 months</td><td>US $150.00</td></tr>
-                      <tr><td>Multiple-entry visa - 3 months</td><td>US $160.00</td></tr>
-                      <tr><td>Multiple-entry visa - 6 months</td><td>US $450.00</td></tr>
-                      <tr><td>Airport transit visa - one way</td><td>US $45.00</td></tr>
-                      <tr><td>Airport transit visa - round trip</td><td>US $75.00</td></tr>
-                      <tr><td>Visa - U.S. citizens (2 years, reciprocity)</td><td>US $185.00</td></tr>
-                      <tr><td>Birth certificate</td><td>US $50.00</td></tr>
-                      <tr><td>Marriage certificate</td><td>US $100.00</td></tr>
-                      <tr><td>Certificate of inheritance</td><td>US $50.00</td></tr>
-                      <tr><td>Notarial services (real property)</td><td>US $50.00</td></tr>
-                      <tr><td>Power of attorney (NGO / adoption)</td><td>US $300.00</td></tr>
-                      <tr><td>Power of attorney (corporation ownership sale)</td><td>US $600.00</td></tr>
-                      <tr><td>Legalization / other certificates</td><td>US $50.00</td></tr>
-                      <tr><td>Passport (issuance / renewal)</td><td>US $75.00</td></tr>
-                      <tr><td>Travel document (Laissez-Passer)</td><td>US $80.00</td></tr>
-                      <tr><td>Congolese cultural evening - admission</td><td>US $35.00</td></tr>
-                      <tr><td>Independence Day gala - seat</td><td>US $125.00</td></tr>
-                  </tbody>
+          <tr class="sp-group"><th scope="rowgroup" colspan="2" data-group data-emb-en="Visas" data-emb-fr="Visas">Visas</th></tr>
+          <tr id="fee-visa-s1" data-fee="100"><td data-emb-en="Single-entry visa, 1 month" data-emb-fr="Visa à entrée unique, 1 mois">Single-entry visa, 1 month</td><td class="sp-num" data-emb-en="$100" data-emb-fr="100 USD">$100</td></tr>
+          <tr id="fee-visa-s2" data-fee="135"><td data-emb-en="Single-entry visa, 2 months" data-emb-fr="Visa à entrée unique, 2 mois">Single-entry visa, 2 months</td><td class="sp-num" data-emb-en="$135" data-emb-fr="135 USD">$135</td></tr>
+          <tr id="fee-visa-s6" data-fee="400"><td data-emb-en="Single-entry visa, 6 months" data-emb-fr="Visa à entrée unique, 6 mois">Single-entry visa, 6 months</td><td class="sp-num" data-emb-en="$400" data-emb-fr="400 USD">$400</td></tr>
+          <tr id="fee-visa-m1" data-fee="120"><td data-emb-en="Multiple-entry visa, 1 month" data-emb-fr="Visa à entrées multiples, 1 mois">Multiple-entry visa, 1 month</td><td class="sp-num" data-emb-en="$120" data-emb-fr="120 USD">$120</td></tr>
+          <tr id="fee-visa-m2" data-fee="150"><td data-emb-en="Multiple-entry visa, 2 months" data-emb-fr="Visa à entrées multiples, 2 mois">Multiple-entry visa, 2 months</td><td class="sp-num" data-emb-en="$150" data-emb-fr="150 USD">$150</td></tr>
+          <tr id="fee-visa-m3" data-fee="160"><td data-emb-en="Multiple-entry visa, 3 months" data-emb-fr="Visa à entrées multiples, 3 mois">Multiple-entry visa, 3 months</td><td class="sp-num" data-emb-en="$160" data-emb-fr="160 USD">$160</td></tr>
+          <tr id="fee-visa-m6" data-fee="450"><td data-emb-en="Multiple-entry visa, 6 months" data-emb-fr="Visa à entrées multiples, 6 mois">Multiple-entry visa, 6 months</td><td class="sp-num" data-emb-en="$450" data-emb-fr="450 USD">$450</td></tr>
+          <tr id="fee-visa-t1" data-fee="45"><td data-emb-en="Airport transit visa, one way" data-emb-fr="Visa de transit aéroportuaire, aller simple">Airport transit visa, one way</td><td class="sp-num" data-emb-en="$45" data-emb-fr="45 USD">$45</td></tr>
+          <tr id="fee-visa-t2" data-fee="75"><td data-emb-en="Airport transit visa, round trip" data-emb-fr="Visa de transit aéroportuaire, aller-retour">Airport transit visa, round trip</td><td class="sp-num" data-emb-en="$75" data-emb-fr="75 USD">$75</td></tr>
+          <tr id="fee-visa-us" data-fee="185"><td data-emb-en="Visa for U.S. citizens, 2-year reciprocity" data-emb-fr="Visa de réciprocité de 2 ans pour les citoyens américains">Visa for U.S. citizens, 2-year reciprocity</td><td class="sp-num" data-emb-en="$185" data-emb-fr="185 USD">$185</td></tr>
+        </tbody>
+        <tbody>
+          <tr class="sp-group"><th scope="rowgroup" colspan="2" data-group data-emb-en="Passports and travel documents" data-emb-fr="Passeports et documents de voyage">Passports and travel documents</th></tr>
+          <tr id="fee-passport" data-fee="75" data-route="online"><td data-emb-en="Passport, issuance or renewal (paid online)" data-emb-fr="Passeport, délivrance ou renouvellement (paiement en ligne)">Passport, issuance or renewal (paid online)</td><td class="sp-num" data-emb-en="$75" data-emb-fr="75 USD">$75</td></tr>
+          <tr id="fee-deportation" data-fee="300"><td data-emb-en="Travel document for deportation (escort not included)" data-emb-fr="Document de voyage en cas d’expulsion (escorte non comprise)">Travel document for deportation (escort not included)</td><td class="sp-num" data-emb-en="$300" data-emb-fr="300 USD">$300</td></tr>
+        </tbody>
+        <tbody>
+          <tr class="sp-group"><th scope="rowgroup" colspan="2" data-group data-emb-en="Civil status" data-emb-fr="État civil">Civil status</th></tr>
+          <tr id="fee-birth" data-fee="50"><td data-emb-en="Birth certificate" data-emb-fr="Acte de naissance">Birth certificate</td><td class="sp-num" data-emb-en="$50" data-emb-fr="50 USD">$50</td></tr>
+          <tr id="fee-marriage" data-fee="100"><td data-emb-en="Marriage certificate" data-emb-fr="Acte de mariage">Marriage certificate</td><td class="sp-num" data-emb-en="$100" data-emb-fr="100 USD">$100</td></tr>
+          <tr id="fee-inheritance" data-fee="50"><td data-emb-en="Certificate of inheritance" data-emb-fr="Certificat d’hérédité">Certificate of inheritance</td><td class="sp-num" data-emb-en="$50" data-emb-fr="50 USD">$50</td></tr>
+          <tr id="fee-corpse-pp" data-fee="100"><td data-emb-en="Permit for transport of remains, deceased held a valid passport" data-emb-fr="Permis de transfert de dépouille mortelle, défunt titulaire d’un passeport valide">Permit for transport of remains, deceased held a valid passport</td><td class="sp-num" data-emb-en="$100" data-emb-fr="100 USD">$100</td></tr>
+          <tr id="fee-corpse-tl" data-fee="150"><td data-emb-en="Permit for transport of remains, a Tenant‑Lieu must be issued" data-emb-fr="Permis de transfert de dépouille mortelle, avec établissement d’un Tenant‑Lieu">Permit for transport of remains, a Tenant‑Lieu must be issued</td><td class="sp-num" data-emb-en="$150" data-emb-fr="150 USD">$150</td></tr>
+        </tbody>
+        <tbody>
+          <tr class="sp-group"><th scope="rowgroup" colspan="2" data-group data-emb-en="Notarial services and legalization" data-emb-fr="Services notariaux et légalisation">Notarial services and legalization</th></tr>
+          <tr id="fee-notarial" data-fee="50"><td data-emb-en="Notarial services, real property transactions" data-emb-fr="Services notariaux, transactions immobilières">Notarial services, real property transactions</td><td class="sp-num" data-emb-en="$50" data-emb-fr="50 USD">$50</td></tr>
+          <tr id="fee-poa-ngo" data-fee="300"><td data-emb-en="Power of attorney, NGO establishment" data-emb-fr="Procuration, création d’une ONG">Power of attorney, NGO establishment</td><td class="sp-num" data-emb-en="$300" data-emb-fr="300 USD">$300</td></tr>
+          <tr id="fee-poa-adoption" data-fee="300"><td data-emb-en="Power of attorney, adoption" data-emb-fr="Procuration, adoption">Power of attorney, adoption</td><td class="sp-num" data-emb-en="$300" data-emb-fr="300 USD">$300</td></tr>
+          <tr id="fee-poa-corp" data-fee="600"><td data-emb-en="Power of attorney, sale of corporate ownership" data-emb-fr="Procuration, cession de parts de société">Power of attorney, sale of corporate ownership</td><td class="sp-num" data-emb-en="$600" data-emb-fr="600 USD">$600</td></tr>
+          <tr id="fee-legal" data-fee="50"><td data-emb-en="Legalization and all other certificates" data-emb-fr="Légalisation et tous autres certificats">Legalization and all other certificates</td><td class="sp-num" data-emb-en="$50" data-emb-fr="50 USD">$50</td></tr>
+        </tbody>
       </table>
-      <p class="muted" style="padding:14px 18px;font-size:12.5px;margin:0">Fees follow the Embassy's published consular schedule. Unofficial demonstration prototype.</p>
     </div>
-
+    </div>
+    <aside class="sp-source" aria-labelledby="sp-source-title">
+      <h3 id="sp-source-title" data-emb-en="About these amounts" data-emb-fr="À propos de ces montants">About these amounts</h3>
+      <p><span data-emb-en="Source: the Embassy’s published consular fee schedule, visa guidance and 2025 passport notice." data-emb-fr="Source : barème consulaire publié par l’Ambassade, instructions relatives aux visas et avis de 2025 sur les passeports.">Source: the Embassy’s published consular fee schedule, visa guidance and 2025 passport notice.</span></p>
+      <p><span data-emb-en="The Tenant‑Lieu (Laissez-Passer) fee is not listed in the published schedule. Confirm it with the Embassy." data-emb-fr="Le montant du Tenant‑Lieu (laissez-passer) ne figure pas dans le barème publié. Vérifiez-le auprès de l’Ambassade.">The Tenant‑Lieu (Laissez-Passer) fee is not listed in the published schedule. Confirm it with the Embassy.</span></p>
+      <p><a href="https://www.ambadrcusa.org/consular-affairs/all-consular-affairs-related-fees/" target="_blank" rel="noopener noreferrer"><span data-emb-en="Verify the official fee page" data-emb-fr="Consulter la page officielle des frais">Verify the official fee page</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-external-link"/></svg><span class="sp-sr" data-emb-en="(opens in a new tab)" data-emb-fr="(s’ouvre dans un nouvel onglet)">(opens in a new tab)</span></a></p>
+    </aside>
   </div>
 </div></section>
 </main>
@@ -254,5 +302,7 @@
 
 <script src="/embassy-preview/aurora/aurora.js?v=1787241600" defer></script>
 <script src="/embassy-preview/aurora/mobile-os.js?v=1786161601" defer></script>
+<script src="/embassy-preview/aurora/pro/pay.js?v=20261016a" defer></script>
+<script src="/embassy-preview/aurora/pro/search-plus.js?v=20261016a" defer></script>
 </body>
 </html>

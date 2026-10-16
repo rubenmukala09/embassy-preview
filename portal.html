@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
@@ -18,11 +18,11 @@
 <meta property="og:site_name" content="Embassy of the DR Congo, Washington, D.C." />
 <meta property="og:title" content="Appointment guidance preview, Embassy of the Democratic Republic of the Congo" />
 <meta property="og:description" content="Online appointment requests are not connected in this preview. Confirm the current procedure directly with the Embassy." /><meta property="og:url" content="https://rubenmukala09.github.io/embassy-preview/portal.html" />
-<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta property="og:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Appointment guidance preview, Embassy of the Democratic Republic of the Congo" />
-<meta name="twitter:description" content="Online appointment requests are not connected in this preview. Confirm the current procedure directly with the Embassy." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/hero/ambassador-podium-flags-2026.webp" />
+<meta name="twitter:description" content="Online appointment requests are not connected in this preview. Confirm the current procedure directly with the Embassy." /><meta name="twitter:image" content="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/og-embassy-1200x630.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
@@ -46,6 +46,9 @@
 <link rel="stylesheet" href="/embassy-preview/aurora/accent-system.css?v=1786560000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/refinement.css?v=1786582000" />
 <link rel="stylesheet" href="/embassy-preview/aurora/editorial.css?v=1787130000" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro-system.css?v=20261014a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/search-plus.css?v=20261015a" />
+<link rel="stylesheet" href="/embassy-preview/aurora/pro/portal.css?v=20261014a" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -107,7 +110,7 @@
   <a class="ann-emergency" href="tel:+12022347690" aria-label="Call the Embassy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Call the Embassy</a>
 </div></div>
 
-<main id="main-content" tabindex="-1">
+<main data-pagefind-body id="main-content" tabindex="-1">
 
 <!-- PAGE HEAD -->
 <section class="phead" data-hero-static style="background-image:url('/embassy-preview/aurora/assets/img/generated/hero-library-2026/24-appointment-guidance.webp');background-position:center right"><div class="container">
@@ -129,132 +132,250 @@
   </nav>
 </div></section>
 
-<!-- BOOK AN APPOINTMENT -->
-<section class="section"><div class="container">
-  <div class="booking">
-    <!-- context panel -->
-    <aside class="booking-aside geo-map geo-africa">
-      <svg class="crest" style="width:52px;height:52px"><use href="#crest"/></svg>
-      <h2 style="color:#fff;font-size:24px;margin-top:16px">Plan your visit</h2>
-      <p style="color:#c2cde0;font-size:13.5px;margin-top:10px;line-height:1.55">Review the information a future appointment service may request. Do not enter personal information in this preview.</p>
-      <div class="bk-info">
-        <h5>What to bring</h5>
+<!-- PLAN YOUR VISIT: start page (GOV.UK start-page pattern) -->
+<section class="section ps-start" id="plan-your-visit"><div class="container">
+  <div class="ps-layout">
+    <div class="ps-main">
+      <p class="ps-lead" data-emb-en="Use this page to prepare a visit to the Consular Section: how each service is arranged, what to bring, what it costs and when the counters are open." data-emb-fr="Cette page vous aide à préparer votre visite à la Section consulaire&nbsp;: modalités propres à chaque service, pièces à apporter, frais et horaires des guichets.">Use this page to prepare a visit to the Consular Section: how each service is arranged, what to bring, what it costs and when the counters are open.</p>
+      <p class="px-meta"><span data-emb-en="Based on the Embassy’s published consular guidance" data-emb-fr="Établi d’après les consignes consulaires publiées par l’Ambassade">Based on the Embassy’s published consular guidance</span><span data-emb-en="Confirm current arrangements before you travel" data-emb-fr="Vérifiez les modalités en vigueur avant de vous déplacer">Confirm current arrangements before you travel</span></p>
+      <a class="btn btn-gold ps-start-btn" href="/embassy-preview/consular-services.html"><span data-emb-en="Check service requirements" data-emb-fr="Conditions par service">Check service requirements</span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-arrow-right"/></svg></a>
+      <nav class="ps-contents" aria-labelledby="ps-contents-title">
+        <h2 class="ps-contents-title" id="ps-contents-title" data-emb-en="On this page" data-emb-fr="Sur cette page">On this page</h2>
         <ul>
-          <li>Your printed appointment confirmation</li>
-          <li>Original documents and clear photocopies</li>
-          <li>Valid ID and proof of nationality</li>
-<li>Payment using the current Embassy-published method (blank money order only)</li>
+          <li><a href="#before-you-start" data-emb-en="Before you start" data-emb-fr="Avant de commencer">Before you start</a></li>
+          <li><a href="#how-to-arrange" data-emb-en="How to arrange your visit" data-emb-fr="Organiser votre visite">How to arrange your visit</a></li>
+          <li><a href="#opening-hours" data-emb-en="Opening hours" data-emb-fr="Heures d’ouverture">Opening hours</a></li>
+          <li><a href="#online-preview" data-emb-en="Online request prototype" data-emb-fr="Prototype de demande en ligne">Online request prototype</a></li>
+        </ul>
+      </nav>
+
+<p class="eyebrow ps-eyebrow" data-emb-en="Plan your visit" data-emb-fr="Préparer votre visite">Plan your visit</p>
+      <h2 class="ps-h2" id="before-you-start" data-emb-en="Before you start" data-emb-fr="Avant de commencer">Before you start</h2>
+      <dl class="px-summary ps-summary">
+        <dt data-emb-en="What you need" data-emb-fr="Pièces nécessaires">What you need</dt>
+        <dd data-emb-en="Your completed application form, the original documents with clear photocopies, and valid identification with proof of nationality where your service requires it." data-emb-fr="Votre formulaire de demande dûment rempli, les documents originaux accompagnés de photocopies lisibles, ainsi qu’une pièce d’identité valide et un justificatif de nationalité lorsque le service l’exige.">Your completed application form, the original documents with clear photocopies, and valid identification with proof of nationality where your service requires it.</dd>
+        <dt data-emb-en="Cost" data-emb-fr="Frais">Cost</dt>
+        <dd><span data-emb-en="Set by service and non-refundable. See the" data-emb-fr="Fixés selon le service et non remboursables. Consultez le">Set by service and non-refundable. See the</span> <a href="/embassy-preview/consular-services.html#fees" data-emb-en="published fee schedule" data-emb-fr="barème officiel des frais">published fee schedule</a>.</dd>
+        <dt data-emb-en="How to pay" data-emb-fr="Mode de paiement">How to pay</dt>
+        <dd data-emb-en="Passports: US&nbsp;$75, paid online through the Equity BCDC link emailed after pre-registration. Other services: blank money order only." data-emb-fr="Passeports&nbsp;: 75&nbsp;USD, réglés en ligne au moyen du lien Equity BCDC envoyé par courriel après la préinscription. Autres services&nbsp;: uniquement par mandat (money order) en blanc.">Passports: US&nbsp;$75, paid online through the Equity BCDC link emailed after pre-registration. Other services: blank money order only.</dd>
+        <dt data-emb-en="Processing time" data-emb-fr="Délais de traitement">Processing time</dt>
+        <dd data-emb-en="Passports take about 90 days, as they are produced in Kinshasa. Visas take from 24 hours to 2 business days, depending on the traveller, once a complete file and payment are received." data-emb-fr="Environ 90 jours pour un passeport, celui-ci étant produit à Kinshasa. De 24 heures à 2 jours ouvrables pour un visa, selon le voyageur, à compter de la réception d’un dossier complet et du paiement.">Passports take about 90 days, as they are produced in Kinshasa. Visas take from 24 hours to 2 business days, depending on the traveller, once a complete file and payment are received.</dd>
+        <dt data-emb-en="Children under 18" data-emb-fr="Enfants mineurs">Children under 18</dt>
+        <dd data-emb-en="A child’s passport application also needs the child’s original birth certificate, a legalized parental authorization and the Congolese parent’s passport." data-emb-fr="La demande de passeport d’un enfant exige en outre l’acte de naissance original de l’enfant, une autorisation parentale légalisée et le passeport du parent congolais.">A child’s passport application also needs the child’s original birth certificate, a legalized parental authorization and the Congolese parent’s passport.</dd>
+      </dl>
+
+<p class="eyebrow ps-eyebrow" data-emb-en="Appointments" data-emb-fr="Rendez-vous">Appointments</p>
+      <h2 class="ps-h2" id="how-to-arrange" data-emb-en="How to arrange your visit" data-emb-fr="Organiser votre visite">How to arrange your visit</h2>
+      <p class="ps-intro" data-emb-en="How you arrange a visit depends on the service." data-emb-fr="Les modalités de visite dépendent du service demandé.">How you arrange a visit depends on the service.</p>
+      <ul class="ps-routes">
+        <li class="ps-route">
+          <span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-id-card"/></svg></span>
+          <div class="ps-route-body">
+            <h3 data-emb-en="Passports" data-emb-fr="Passeports">Passports</h3>
+            <p class="ps-route-how" data-emb-en="By appointment, after online pre-registration" data-emb-fr="Sur rendez-vous, après la préinscription en ligne">By appointment, after online pre-registration</p>
+            <p data-emb-en="Obtain your tax identification number (NIF), pre-register on passeport.gouv.cd, pay the US&nbsp;$75 fee through the Equity BCDC link emailed to you, then email your documents to the Embassy. Come in person only once you have received the Embassy’s appointment-confirmation email." data-emb-fr="Obtenez votre numéro d’identification fiscale (NIF), préinscrivez-vous sur passeport.gouv.cd, réglez les frais de 75&nbsp;USD au moyen du lien Equity BCDC reçu par courriel, puis transmettez vos documents à l’Ambassade par courriel. Présentez-vous en personne uniquement après avoir reçu le courriel de confirmation du rendez-vous.">Obtain your tax identification number (NIF), pre-register on passeport.gouv.cd, pay the US&nbsp;$75 fee through the Equity BCDC link emailed to you, then email your documents to the Embassy. Come in person only once you have received the Embassy’s appointment-confirmation email.</p>
+            <p class="ps-route-link"><a href="/embassy-preview/consular-services.html#passport" data-emb-en="Passport steps and documents" data-emb-fr="Étapes et pièces pour le passeport">Passport steps and documents</a></p>
+          </div>
+        </li>
+        <li class="ps-route">
+          <span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-stamp"/></svg></span>
+          <div class="ps-route-body">
+            <h3 data-emb-en="Visas" data-emb-fr="Visas">Visas</h3>
+            <p class="ps-route-how" data-emb-en="At the counter, or by post" data-emb-fr="Au guichet ou par courrier">At the counter, or by post</p>
+            <p data-emb-en="Hand in your complete file during visa drop-off hours, or post it with a prepaid, tracked return envelope. Collect your passport during visa pick-up hours." data-emb-fr="Déposez votre dossier complet pendant les heures de dépôt des visas, ou envoyez-le par courrier avec une enveloppe retour prépayée et suivie. Retirez votre passeport pendant les heures de retrait des visas.">Hand in your complete file during visa drop-off hours, or post it with a prepaid, tracked return envelope. Collect your passport during visa pick-up hours.</p>
+            <p class="ps-route-link"><a href="/embassy-preview/consular-services.html#visa" data-emb-en="Visa requirements" data-emb-fr="Conditions d’obtention du visa">Visa requirements</a></p>
+          </div>
+        </li>
+        <li class="ps-route">
+          <span class="icon-chip" aria-hidden="true"><svg class="icon"><use href="/embassy-preview/aurora/icons.svg#i-file-signature"/></svg></span>
+          <div class="ps-route-body">
+            <h3 data-emb-en="Legalization, Tenant&#8209;Lieu and other services" data-emb-fr="Légalisation, Tenant&#8209;Lieu et autres services">Legalization, Tenant&#8209;Lieu and other services</h3>
+            <p class="ps-route-how" data-emb-en="Contact the Embassy first" data-emb-fr="Contactez d’abord l’Ambassade">Contact the Embassy first</p>
+            <p data-emb-en="Requirements differ by document. Confirm what to bring by email or telephone before you visit or post any original." data-emb-fr="Les exigences varient selon le document. Vérifiez les pièces à fournir par courriel ou par téléphone avant de vous déplacer ou d’envoyer un original.">Requirements differ by document. Confirm what to bring by email or telephone before you visit or post any original.</p>
+            <p class="ps-route-link"><a href="mailto:info@ambadrcusa.org?subject=Consular%20visit%20requirements" data-emb-en="Email info@ambadrcusa.org" data-emb-fr="Écrire à info@ambadrcusa.org">Email info@ambadrcusa.org</a></p>
+          </div>
+        </li>
+      </ul>
+
+<p class="eyebrow ps-eyebrow" data-emb-en="Consular Section" data-emb-fr="Section consulaire">Consular Section</p>
+      <h2 class="ps-h2" id="opening-hours" data-emb-en="Opening hours" data-emb-fr="Heures d’ouverture">Opening hours</h2>
+      <div class="ps-table-wrap">
+        <table class="ps-hours">
+          <caption class="ps-sr" data-emb-en="Embassy office and visa counter hours" data-emb-fr="Horaires de l’Ambassade et des guichets visas">Embassy office and visa counter hours</caption>
+          <thead><tr><th scope="col" data-emb-en="Counter" data-emb-fr="Guichet">Counter</th><th scope="col" data-emb-en="Days" data-emb-fr="Jours">Days</th><th scope="col" class="ps-num" data-emb-en="Hours" data-emb-fr="Horaires">Hours</th></tr></thead>
+          <tbody>
+            <tr><th scope="rowgroup" rowspan="2" data-emb-en="Embassy office" data-emb-fr="Bureaux de l’Ambassade">Embassy office</th><td class="ps-day" data-emb-en="Monday to Thursday" data-emb-fr="Du lundi au jeudi">Monday to Thursday</td><td class="ps-num" data-emb-en="9:00–16:00" data-emb-fr="9 h – 16 h">9:00–16:00</td></tr>
+            <tr><td class="ps-day" data-emb-en="Friday" data-emb-fr="Vendredi">Friday</td><td class="ps-num" data-emb-en="9:00–13:00" data-emb-fr="9 h – 13 h">9:00–13:00</td></tr>
+          </tbody>
+          <tbody>
+            <tr><th scope="rowgroup" rowspan="2" data-emb-en="Visa drop-off" data-emb-fr="Dépôt des visas">Visa drop-off</th><td class="ps-day" data-emb-en="Monday to Thursday" data-emb-fr="Du lundi au jeudi">Monday to Thursday</td><td class="ps-num" data-emb-en="10:00–15:00" data-emb-fr="10 h – 15 h">10:00–15:00</td></tr>
+            <tr><td class="ps-day" data-emb-en="Friday" data-emb-fr="Vendredi">Friday</td><td class="ps-num" data-emb-en="10:00–13:00" data-emb-fr="10 h – 13 h">10:00–13:00</td></tr>
+          </tbody>
+          <tbody>
+            <tr><th scope="rowgroup" rowspan="2" data-emb-en="Visa pick-up" data-emb-fr="Retrait des visas">Visa pick-up</th><td class="ps-day" data-emb-en="Tuesday and Thursday" data-emb-fr="Mardi et jeudi">Tuesday and Thursday</td><td class="ps-num" data-emb-en="14:00–15:30" data-emb-fr="14 h – 15 h 30">14:00–15:30</td></tr>
+            <tr><td class="ps-day" data-emb-en="Friday" data-emb-fr="Vendredi">Friday</td><td class="ps-num" data-emb-en="11:00–12:30" data-emb-fr="11 h – 12 h 30">11:00–12:30</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="ps-source" data-emb-en="Hours as published by the Embassy. Closed on Saturdays, Sundays and public holidays." data-emb-fr="Horaires publiés par l’Ambassade. Fermé le samedi, le dimanche et les jours fériés.">Hours as published by the Embassy. Closed on Saturdays, Sundays and public holidays.</p>
+    </div>
+
+    <aside class="ps-aside" aria-labelledby="ps-contact-title">
+      <div class="ps-panel">
+        <h2 class="ps-aside-title" id="ps-contact-title" data-emb-en="Contact the Consular Section" data-emb-fr="Contacter la Section consulaire">Contact the Consular Section</h2>
+        <ul class="ps-contact">
+          <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-phone"/></svg><div><span class="ps-k" data-emb-en="Telephone" data-emb-fr="Téléphone">Telephone</span><a href="tel:+12022347690">+1 (202) 234-7690</a></div></li>
+          <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-mail"/></svg><div><span class="ps-k" data-emb-en="Email" data-emb-fr="Courriel">Email</span><a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a></div></li>
+          <li><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-map-pin"/></svg><div><span class="ps-k" data-emb-en="Address" data-emb-fr="Adresse">Address</span><a href="https://www.google.com/maps/search/?api=1&amp;query=1100+Connecticut+Avenue+NW%2C+Suite+725%2C+Washington%2C+DC+20036" target="_blank" rel="noopener">1100 Connecticut Avenue NW, Suite 725, Washington, DC 20036</a></div></li>
         </ul>
       </div>
-      <div class="bk-info">
-        <h5>Office &amp; consular hours</h5>
-<p>Office: Mon&ndash;Thu 9:00&ndash;16:00, Fri 9:00&ndash;13:00.<br>Visa drop-off: Mon&ndash;Thu 10:00&ndash;15:00, Fri 10:00&ndash;13:00.<br>Visa pick-up: Tue/Thu 14:00&ndash;15:30, Fri 11:00&ndash;12:30.</p>
-      </div>
-      <div class="bk-info">
-        <h5>Need help?</h5>
-        <p><a href="tel:+12022347690">+1 (202) 234-7690</a><br><a href="mailto:info@ambadrcusa.org">info@ambadrcusa.org</a></p>
-      </div>
-      <div class="flagbar"><i class="b"></i><i class="y"></i><i class="r"></i></div>
+      <nav class="ps-related" aria-labelledby="ps-related-title">
+        <h2 class="ps-aside-title" id="ps-related-title" data-emb-en="Related guidance" data-emb-fr="Informations connexes">Related guidance</h2>
+        <ul class="px-links">
+          <li><a href="/embassy-preview/consular-services.html#fees"><span class="ps-link-txt"><span class="px-links-name" data-emb-en="Consular fee schedule" data-emb-fr="Barème des frais consulaires">Consular fee schedule</span><span class="px-links-meta" data-emb-en="Published amounts in U.S. dollars" data-emb-fr="Montants publiés en dollars américains">Published amounts in U.S. dollars</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+          <li><a href="/embassy-preview/pay/"><span class="ps-link-txt"><span class="px-links-name" data-emb-en="Payment guidance" data-emb-fr="Modalités de paiement">Payment guidance</span><span class="px-links-meta" data-emb-en="How each service is paid" data-emb-fr="Mode de paiement de chaque service">How each service is paid</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+          <li><a href="/embassy-preview/official-links.html"><span class="ps-link-txt"><span class="px-links-name" data-emb-en="Official DRC portals" data-emb-fr="Portails officiels de la RDC">Official DRC portals</span><span class="px-links-meta" data-emb-en="Passport, tax ID and government websites" data-emb-fr="Passeport, numéro fiscal et sites gouvernementaux">Passport, tax ID and government websites</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+          <li><a href="/embassy-preview/contact.html"><span class="ps-link-txt"><span class="px-links-name" data-emb-en="Contact the Embassy" data-emb-fr="Contacter l’Ambassade">Contact the Embassy</span><span class="px-links-meta" data-emb-en="Departments, address and map" data-emb-fr="Services, adresse et plan d’accès">Departments, address and map</span></span><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-chevron-right"/></svg></a></li>
+        </ul>
+      </nav>
     </aside>
+  </div>
+</div></section>
 
-    <!-- comprehensive form -->
-    <div class="booking-form-wrap">
-      <div aria-describedby="appointment-preview-notice">
-        <ol class="bk-stepper">
-          <li class="bk-st active"><span class="bk-st-dot">1</span><span class="bk-st-label">Service</span></li>
-          <li class="bk-st"><span class="bk-st-dot">2</span><span class="bk-st-label">Applicant</span></li>
-          <li class="bk-st"><span class="bk-st-dot">3</span><span class="bk-st-label">Time</span></li>
-          <li class="bk-st"><span class="bk-st-dot">4</span><span class="bk-st-label">Reason</span></li>
-        </ol>
-        <fieldset class="bk-step" disabled>
-          <legend><span class="bk-num">1</span> Service</legend>
-          <div class="field"><label for="b-service">Consular service</label>
-            <select id="b-service">
-              <option>Passport, new application</option>
-              <option>Passport renewal</option>
-              <option>Visa for travel to the DRC</option>
-              <option>Document legalization</option>
-              <option>Tenant-Lieu (travel document)</option>
-              <option>Civil registration (birth, marriage, death)</option>
-              <option>Notarial act or power of attorney</option>
-              <option>Other consular matter</option>
-            </select></div>
-          <div class="rg-row">
-            <div class="field"><label for="b-detail">Specific request <span class="opt">(optional)</span></label><input id="b-detail" data-optional placeholder="e.g. single-entry visa, lost passport" /></div>
-            <div class="field"><label for="b-ref">Existing reference <span class="opt">(optional)</span></label><input id="b-ref" data-optional placeholder="e.g. PA-2026-0481" /></div>
+<!-- PROPOSED ONLINE SERVICE: clickable prototype, one question per screen, nothing is sent -->
+<section class="section bg-cream ps-proto" id="online-preview" aria-labelledby="ps-proto-title"><div class="container">
+  <div class="ps-proto-grid">
+    <div class="ps-proto-intro">
+      <p class="eyebrow" data-emb-en="Proposed online service" data-emb-fr="Service en ligne proposé">Proposed online service</p>
+      <h2 id="ps-proto-title" data-emb-en="Preview: request an appointment online" data-emb-fr="Aperçu&nbsp;: demander un rendez-vous en ligne">Preview: request an appointment online</h2>
+      <p class="ps-proto-lede" data-emb-en="How an online request could work: one short question per screen, ending with the requirements for your service." data-emb-fr="Fonctionnement envisagé d’une demande en ligne&nbsp;: une question courte par écran, puis les conditions propres à votre service.">How an online request could work: one short question per screen, ending with the requirements for your service.</p>
+      <div class="px-inset"><p><strong data-emb-en="Prototype:" data-emb-fr="Prototype&nbsp;:">Prototype:</strong> <span data-emb-en="the Embassy has not approved an online version. Nothing you choose here is sent or stored." data-emb-fr="l’Ambassade n’a pas approuvé de version en ligne. Aucun choix effectué ici n’est transmis ni enregistré.">the Embassy has not approved an online version. Nothing you choose here is sent or stored.</span></p></div>
+    </div>
+
+    <div class="ps-flow" data-ps-flow>
+      <div class="ps-flow-bar">
+        <span class="ps-flow-count" data-ps-count="1" data-emb-en="Question 1 of 2" data-emb-fr="Question 1 sur 2">Question 1 of 2</span>
+        <span class="ps-flow-count" data-ps-count="2" hidden data-emb-en="Question 2 of 2" data-emb-fr="Question 2 sur 2">Question 2 of 2</span>
+        <span class="ps-flow-count" data-ps-count="3" hidden data-emb-en="Your visit plan" data-emb-fr="Votre plan de visite">Your visit plan</span>
+      </div>
+
+      <fieldset class="ps-q" data-ps-step="1" aria-describedby="ps-err-1">
+        <legend class="ps-legend" tabindex="-1" data-emb-en="Which service is your visit for?" data-emb-fr="Pour quel service venez-vous&nbsp;?">Which service is your visit for?</legend>
+        <p class="ps-error" id="ps-err-1" hidden><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-info"/></svg><span data-emb-en="Select the service for your visit." data-emb-fr="Sélectionnez le service concerné par votre visite.">Select the service for your visit.</span></p>
+        <div class="ps-options">
+          <label class="ps-opt"><input type="radio" name="ps-service" value="passport" /><span class="ps-opt-txt"><span class="ps-opt-t" data-ps-label="passport" data-emb-en="Passport" data-emb-fr="Passeport">Passport</span><span class="ps-opt-h" data-emb-en="Biometric capture after online pre-registration" data-emb-fr="Prise des données biométriques après la préinscription en ligne">Biometric capture after online pre-registration</span></span></label>
+          <label class="ps-opt"><input type="radio" name="ps-service" value="visa" /><span class="ps-opt-txt"><span class="ps-opt-t" data-ps-label="visa" data-emb-en="Visa: hand in an application" data-emb-fr="Visa&nbsp;: déposer une demande">Visa: hand in an application</span><span class="ps-opt-h" data-emb-en="For travel to the Democratic Republic of the Congo" data-emb-fr="Pour un voyage en République démocratique du Congo">For travel to the Democratic Republic of the Congo</span></span></label>
+          <label class="ps-opt"><input type="radio" name="ps-service" value="collect" /><span class="ps-opt-txt"><span class="ps-opt-t" data-ps-label="collect" data-emb-en="Visa: collect a passport" data-emb-fr="Visa&nbsp;: retirer un passeport">Visa: collect a passport</span><span class="ps-opt-h" data-emb-en="After your visa application has been processed" data-emb-fr="Après le traitement de votre demande de visa">After your visa application has been processed</span></span></label>
+          <label class="ps-opt"><input type="radio" name="ps-service" value="legal" /><span class="ps-opt-txt"><span class="ps-opt-t" data-ps-label="legal" data-emb-en="Legalization or civil document" data-emb-fr="Légalisation ou acte d’état civil">Legalization or civil document</span><span class="ps-opt-h" data-emb-en="Birth, marriage and inheritance records, notarial acts" data-emb-fr="Actes de naissance, de mariage et d’hérédité, actes notariés">Birth, marriage and inheritance records, notarial acts</span></span></label>
+          <label class="ps-opt"><input type="radio" name="ps-service" value="tenant" /><span class="ps-opt-txt"><span class="ps-opt-t" data-ps-label="tenant" data-emb-en="Tenant-Lieu (Laissez-Passer)" data-emb-fr="Tenant-Lieu (Laissez-Passer)">Tenant-Lieu (Laissez-Passer)</span><span class="ps-opt-h" data-emb-en="One-way travel document to the DRC" data-emb-fr="Document de voyage aller simple vers la RDC">One-way travel document to the DRC</span></span></label>
+        </div>
+        <div class="ps-actions"><button class="btn btn-navy" type="button" data-ps-next="1" data-emb-en="Continue" data-emb-fr="Continuer">Continue</button></div>
+      </fieldset>
+
+      <fieldset class="ps-q" data-ps-step="2" aria-describedby="ps-err-2" hidden>
+        <legend class="ps-legend" tabindex="-1" data-emb-en="Does the request include a child under 18?" data-emb-fr="La demande concerne-t-elle un enfant de moins de 18 ans&nbsp;?">Does the request include a child under 18?</legend>
+        <p class="ps-error" id="ps-err-2" hidden><svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-info"/></svg><span data-emb-en="Select yes or no." data-emb-fr="Sélectionnez oui ou non.">Select yes or no.</span></p>
+        <div class="ps-options ps-options-inline">
+          <label class="ps-opt"><input type="radio" name="ps-child" value="yes" /><span class="ps-opt-txt"><span class="ps-opt-t" data-ps-label="yes" data-emb-en="Yes" data-emb-fr="Oui">Yes</span></span></label>
+          <label class="ps-opt"><input type="radio" name="ps-child" value="no" /><span class="ps-opt-txt"><span class="ps-opt-t" data-ps-label="no" data-emb-en="No" data-emb-fr="Non">No</span></span></label>
+        </div>
+        <div class="ps-actions"><button class="btn btn-navy" type="button" data-ps-next="2" data-emb-en="Continue" data-emb-fr="Continuer">Continue</button><button class="ps-textbtn" type="button" data-ps-back="1" data-emb-en="Back" data-emb-fr="Retour">Back</button></div>
+      </fieldset>
+
+      <div class="ps-result" data-ps-step="3" hidden>
+        <h3 class="ps-result-title" tabindex="-1" data-emb-en="Check your answers" data-emb-fr="Vérifiez vos réponses">Check your answers</h3>
+        <dl class="ps-answers">
+          <div><dt data-emb-en="Service" data-emb-fr="Service">Service</dt><dd data-ps-answer="service"></dd><dd class="ps-change"><button class="ps-textbtn" type="button" data-ps-back="1"><span data-emb-en="Change" data-emb-fr="Modifier">Change</span><span class="ps-sr" data-emb-en=" service" data-emb-fr=" le service"> service</span></button></dd></div>
+          <div><dt data-emb-en="Child under 18" data-emb-fr="Enfant mineur">Child under 18</dt><dd data-ps-answer="child"></dd><dd class="ps-change"><button class="ps-textbtn" type="button" data-ps-back="2"><span data-emb-en="Change" data-emb-fr="Modifier">Change</span><span class="ps-sr" data-emb-en=" answer about a child" data-emb-fr=" la réponse concernant un enfant"> answer about a child</span></button></dd></div>
+        </dl>
+
+        <div class="ps-plan" data-ps-for="passport" hidden>
+          <h4 data-emb-en="When to come" data-emb-fr="Quand venir">When to come</h4>
+          <p data-emb-en="Only after the Embassy has emailed your appointment confirmation. Before that, pre-register on passeport.gouv.cd, pay through the Equity BCDC link and email your documents." data-emb-fr="Uniquement après réception du courriel de confirmation de rendez-vous de l’Ambassade. Au préalable, préinscrivez-vous sur passeport.gouv.cd, payez au moyen du lien Equity BCDC et transmettez vos documents par courriel.">Only after the Embassy has emailed your appointment confirmation. Before that, pre-register on passeport.gouv.cd, pay through the Equity BCDC link and email your documents.</p>
+          <h4 data-emb-en="What to bring" data-emb-fr="Pièces à apporter">What to bring</h4>
+          <ul class="ps-bring">
+            <li data-emb-en="The documents you emailed: biometric information sheet, Note de Perception, proof of payment and passport copy" data-emb-fr="Les pièces transmises par courriel&nbsp;: fiche de renseignements biométriques, note de perception, justificatif de paiement et copie du passeport">The documents you emailed: biometric information sheet, Note de Perception, proof of payment and passport copy</li>
+            <li data-emb-en="Your current passport, valid, full or expired, or a police report if it was lost or stolen" data-emb-fr="Votre passeport actuel, valide, rempli ou expiré, ou une déclaration de police en cas de perte ou de vol">Your current passport, valid, full or expired, or a police report if it was lost or stolen</li>
+            <li data-emb-en="Proof of Congolese nationality" data-emb-fr="Un justificatif de nationalité congolaise">Proof of Congolese nationality</li>
+            <li data-emb-en="A valid U.S. residence document, such as a Green Card, work permit or I&#8209;20" data-emb-fr="Un titre de séjour américain valide&nbsp;: carte verte, permis de travail ou formulaire I&#8209;20">A valid U.S. residence document, such as a Green Card, work permit or I&#8209;20</li>
+            <li data-emb-en="A prepaid, tracked return envelope" data-emb-fr="Une enveloppe retour prépayée et suivie">A prepaid, tracked return envelope</li>
+          </ul>
+          <div class="ps-child-note" data-ps-child hidden>
+            <h4 data-emb-en="For the child, also bring" data-emb-fr="Pour l’enfant, apportez également">For the child, also bring</h4>
+            <ul class="ps-bring">
+              <li data-emb-en="The child’s original birth certificate" data-emb-fr="L’acte de naissance original de l’enfant">The child’s original birth certificate</li>
+              <li data-emb-en="A legalized parental authorization" data-emb-fr="Une autorisation parentale légalisée">A legalized parental authorization</li>
+              <li data-emb-en="The child’s original Green Card and passport, valid or expired" data-emb-fr="La carte verte originale et le passeport de l’enfant, valide ou expiré">The child’s original Green Card and passport, valid or expired</li>
+              <li data-emb-en="The Congolese parent’s passport" data-emb-fr="Le passeport du parent congolais">The Congolese parent’s passport</li>
+            </ul>
           </div>
-        </fieldset>
+        </div>
 
-        <fieldset class="bk-step" disabled>
-          <legend><span class="bk-num">2</span> Applicant</legend>
-          <div class="field"><label for="b-name">Full name</label><input id="b-name" placeholder="Your full name" /></div>
-          <div class="rg-row">
-            <div class="field"><label for="b-email">Email</label><input id="b-email" type="email" placeholder="you@example.com" /></div>
-            <div class="field"><label for="b-phone">Mobile (for SMS)</label><input id="b-phone" type="tel" placeholder="+1 (202) 000-0000" /></div>
+        <div class="ps-plan" data-ps-for="visa" hidden>
+          <h4 data-emb-en="When to come" data-emb-fr="Quand venir">When to come</h4>
+          <p data-emb-en="Visa drop-off: Monday to Thursday 10:00–15:00, Friday 10:00–13:00. You can also send the file by post." data-emb-fr="Dépôt des visas&nbsp;: du lundi au jeudi de 10 h 00 à 15 h 00, le vendredi de 10 h 00 à 13 h 00. Le dossier peut également être envoyé par courrier.">Visa drop-off: Monday to Thursday 10:00–15:00, Friday 10:00–13:00. You can also send the file by post.</p>
+          <h4 data-emb-en="What to bring" data-emb-fr="Pièces à apporter">What to bring</h4>
+          <ul class="ps-bring">
+            <li data-emb-en="One application form, completed, dated and signed" data-emb-fr="Un formulaire de demande rempli, daté et signé">One application form, completed, dated and signed</li>
+            <li data-emb-en="One recent 2 × 2 inch passport photograph" data-emb-fr="Une photo d’identité récente de 2 × 2 pouces">One recent 2 × 2 inch passport photograph</li>
+            <li data-emb-en="Copies of your yellow-fever vaccination card and flight itinerary" data-emb-fr="Une copie du carnet de vaccination contre la fièvre jaune et de l’itinéraire de vol">Copies of your yellow-fever vaccination card and flight itinerary</li>
+            <li data-emb-en="Your signed passport, valid for at least six months, with two adjacent blank visa pages" data-emb-fr="Votre passeport signé, valide au moins six mois, comportant deux pages visa vierges et contiguës">Your signed passport, valid for at least six months, with two adjacent blank visa pages</li>
+            <li data-emb-en="The fee by blank money order, and a prepaid, tracked return envelope" data-emb-fr="Les frais par mandat (money order) en blanc, et une enveloppe retour prépayée et suivie">The fee by blank money order, and a prepaid, tracked return envelope</li>
+          </ul>
+          <div class="ps-child-note" data-ps-child hidden>
+            <h4 data-emb-en="For a child under 10, also include" data-emb-fr="Pour un enfant de moins de 10 ans, joignez également">For a child under 10, also include</h4>
+            <ul class="ps-bring">
+              <li data-emb-en="The application form completed and signed by a parent" data-emb-fr="Le formulaire de demande rempli et signé par un parent">The application form completed and signed by a parent</li>
+              <li data-emb-en="A copy of the child’s birth certificate and of the parent’s passport" data-emb-fr="Une copie de l’acte de naissance de l’enfant et du passeport du parent">A copy of the child’s birth certificate and of the parent’s passport</li>
+              <li data-emb-en="A parental authorization" data-emb-fr="Une autorisation parentale">A parental authorization</li>
+            </ul>
           </div>
-          <div class="rg-row">
-            <div class="field"><label for="b-status">I am a&hellip;</label><select id="b-status"><option>Congolese citizen</option><option>Foreign national</option><option>Dual national</option><option>Student</option></select></div>
-            <div class="field"><label for="b-count">Number of applicants</label><select id="b-count"><option>1 person</option><option>2 people</option><option>3 people</option><option>4 people</option><option>5 or more</option></select></div>
-          </div>
-          <label class="bk-consent" style="margin-top:6px"><input type="checkbox" id="b-minor" /><span>This request is for, or includes, a minor under 18. Minors require an original birth certificate, a legalized parental authorization and a parent&rsquo;s passport.</span></label>
-        </fieldset>
+        </div>
 
-        <fieldset class="bk-step" disabled>
-          <legend><span class="bk-num">3</span> Preferred time</legend>
-          <div class="rg-row">
-            <div class="field"><label for="b-date">Preferred date</label><input id="b-date" type="date" /></div>
-            <div class="field"><label for="b-time">Preferred time</label><select id="b-time"><option>Morning (10:00 to 11:30)</option><option>Late morning (11:30 to 13:00)</option></select></div>
-          </div>
-          <div class="field"><label for="b-alt">Alternative date <span class="opt">(optional)</span></label><input id="b-alt" data-optional type="date" /></div>
-        </fieldset>
+        <div class="ps-plan" data-ps-for="collect" hidden>
+          <h4 data-emb-en="When to come" data-emb-fr="Quand venir">When to come</h4>
+          <p data-emb-en="Visa pick-up: Tuesday and Thursday 14:00–15:30, Friday 11:00–12:30." data-emb-fr="Retrait des visas&nbsp;: le mardi et le jeudi de 14 h 00 à 15 h 30, le vendredi de 11 h 00 à 12 h 30.">Visa pick-up: Tuesday and Thursday 14:00–15:30, Friday 11:00–12:30.</p>
+          <h4 data-emb-en="What to bring" data-emb-fr="Pièces à apporter">What to bring</h4>
+          <ul class="ps-bring">
+            <li data-emb-en="Photo identification" data-emb-fr="Une pièce d’identité avec photo">Photo identification</li>
+            <li data-emb-en="Any receipt or reference the Embassy gave you when you handed in the file" data-emb-fr="Tout récépissé ou numéro de référence remis par l’Ambassade lors du dépôt">Any receipt or reference the Embassy gave you when you handed in the file</li>
+          </ul>
+        </div>
 
-        <fieldset class="bk-step" disabled>
-          <legend><span class="bk-num">4</span> Reason for your visit</legend>
-          <div class="field"><label for="b-reason">In your own words, why are you coming, and anything that helps us prepare <span class="opt">(optional)</span></label>
-            <textarea id="b-reason" data-optional rows="4" placeholder="Describe your request, any special or personal circumstances, accessibility needs, or details that will help our officers prepare your file before you arrive."></textarea></div>
-        </fieldset>
+        <div class="ps-plan" data-ps-for="legal" hidden>
+          <h4 data-emb-en="When to come" data-emb-fr="Quand venir">When to come</h4>
+          <p data-emb-en="Contact the Embassy before you visit or post anything: requirements differ by document." data-emb-fr="Contactez l’Ambassade avant tout déplacement ou envoi&nbsp;: les exigences varient selon le document.">Contact the Embassy before you visit or post anything: requirements differ by document.</p>
+          <h4 data-emb-en="What to bring" data-emb-fr="Pièces à apporter">What to bring</h4>
+          <ul class="ps-bring">
+            <li data-emb-en="The completed and signed form" data-emb-fr="Le formulaire rempli et signé">The completed and signed form</li>
+            <li data-emb-en="A copy of your passport" data-emb-fr="Une copie de votre passeport">A copy of your passport</li>
+            <li data-emb-en="The original document issued in the DRC" data-emb-fr="Le document original délivré en RDC">The original document issued in the DRC</li>
+            <li data-emb-en="The fee by blank money order" data-emb-fr="Les frais par mandat (money order) en blanc">The fee by blank money order</li>
+          </ul>
+        </div>
 
-        <label class="bk-consent"><input type="checkbox" disabled /><span>This consent control is inactive until an Embassy-approved appointment service and privacy process are configured.</span></label>
+        <div class="ps-plan" data-ps-for="tenant" hidden>
+          <h4 data-emb-en="When to come" data-emb-fr="Quand venir">When to come</h4>
+          <p data-emb-en="Confirm the arrangements with the Embassy first. Office hours: Monday to Thursday 9:00–16:00, Friday 9:00–13:00." data-emb-fr="Confirmez d’abord les modalités auprès de l’Ambassade. Heures de bureau&nbsp;: du lundi au jeudi de 9 h 00 à 16 h 00, le vendredi de 9 h 00 à 13 h 00.">Confirm the arrangements with the Embassy first. Office hours: Monday to Thursday 9:00–16:00, Friday 9:00–13:00.</p>
+          <h4 data-emb-en="What to bring" data-emb-fr="Pièces à apporter">What to bring</h4>
+          <ul class="ps-bring">
+            <li data-emb-en="The completed Tenant-Lieu application form" data-emb-fr="Le formulaire de demande de Tenant-Lieu rempli">The completed Tenant-Lieu application form</li>
+            <li data-emb-en="A copy of your current or previous Congolese passport, or a police report if it was lost or stolen" data-emb-fr="Une copie de votre passeport congolais actuel ou précédent, ou une déclaration de police en cas de perte ou de vol">A copy of your current or previous Congolese passport, or a police report if it was lost or stolen</li>
+            <li data-emb-en="Two recent 2 × 2 inch passport photographs" data-emb-fr="Deux photos d’identité récentes de 2 × 2 pouces">Two recent 2 × 2 inch passport photographs</li>
+            <li data-emb-en="Proof of valid U.S. residence" data-emb-fr="Un justificatif de résidence valide aux États-Unis">Proof of valid U.S. residence</li>
+            <li data-emb-en="A prepaid, tracked return envelope" data-emb-fr="Une enveloppe retour prépayée et suivie">A prepaid, tracked return envelope</li>
+          </ul>
+        </div>
 
-        <a class="btn btn-gold btn-block" href="/embassy-preview/consular-services.html">Review current appointment guidance</a>
-        <p class="hint" id="appointment-preview-notice" style="text-align:center;margin-top:10px">No appointment or reference number can be created here.</p>
+        <p class="ps-child-generic" data-ps-child-generic hidden data-emb-en="For a child, contact the Embassy to confirm which additional documents are needed." data-emb-fr="Pour un enfant, contactez l’Ambassade afin de connaître les pièces supplémentaires à fournir.">For a child, contact the Embassy to confirm which additional documents are needed.</p>
+
+        <div class="ps-next">
+          <svg class="icon" aria-hidden="true"><use href="/embassy-preview/aurora/icons.svg#i-calendar-clock"/></svg>
+          <p data-emb-en="If an online service were introduced, you would choose a date at this point and receive a confirmation by email." data-emb-fr="Si un service en ligne était mis en place, vous choisiriez ici une date et recevriez une confirmation par courriel.">If an online service were introduced, you would choose a date at this point and receive a confirmation by email.</p>
+        </div>
+        <div class="ps-actions"><button class="ps-textbtn" type="button" data-ps-restart data-emb-en="Start again" data-emb-fr="Recommencer">Start again</button></div>
       </div>
     </div>
-  </div>
-  <p class="hint" style="text-align:center;max-width:920px;margin:18px auto 0">Preview notice: online appointment submission is not connected. Nothing entered here is sent or stored, and no appointment or reference number is created. Confirm the current procedure directly with the Embassy.</p>
-</div></section>
-<!-- EDITORIAL BAND -->
-<section class="section ed-band" style="--ed-photo-1x:url('/embassy-preview/aurora/assets/img/generated/editorial-2026/appointment-waiting.webp');--ed-photo:image-set(url('/embassy-preview/aurora/assets/img/generated/editorial-2026/appointment-waiting.webp') 1x, url('/embassy-preview/aurora/assets/img/generated/editorial-2026/appointment-waiting@2x.webp') 2x)"><div class="container">
-    <div class="ed-band-copy">
-      <p class="eyebrow">Before you travel</p><div class="rule"></div>
-      <h2>Arrive prepared, and the visit is short.</h2>
-      <p>Most delays at the counter come from a missing copy or an unconfirmed service window. Check the published requirements for your service, bring the originals and the copies, and confirm the current procedure with the Consular Section before you set out.</p>
-    </div>
-</div></section>
-
-
-<!-- QUICK ACTIONS -->
-<section class="section bg-ivory"><div class="container">
-  <div class="sec-head center"><p class="eyebrow">Quick actions</p><div class="rule"></div><h2>What would you like to do?</h2><p>Jump straight to the most common citizen services.</p></div>
-  <div class="grid cols-3">
-    <a class="card card-hover pad" href="/embassy-preview/account">
-      <div class="qbadge" style="margin:0 0 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-      <h3 style="font-size:17px">My Embassy account</h3>
-      <p class="muted" style="font-size:13.5px;margin-top:6px">See your appointments, applications and messages in one place.</p>
-      <div class="read mt8">Open account support →</div>
-    </a>
-    <a class="card card-hover pad" href="/embassy-preview/consular-services.html#status">
-      <div class="qbadge" style="margin:0 0 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.2-8.6"/><path d="m9 11 3 3L22 4"/></svg></div>
-      <h3 style="font-size:17px">Track Application</h3>
-      <p class="muted" style="font-size:13.5px;margin-top:6px">Follow the status of your passport, visa or legalization.</p>
-      <div class="read mt8">Track status →</div>
-    </a>
-    <a class="card card-hover pad" href="/embassy-preview/documents">
-      <div class="qbadge" style="margin:0 0 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg></div>
-      <h3 style="font-size:17px">Upload Documents</h3>
-      <p class="muted" style="font-size:13.5px;margin-top:6px">Submit the required papers for your application, securely.</p>
-      <div class="read mt8">Upload →</div>
-    </a>
   </div>
 </div></section>
 
@@ -297,5 +418,7 @@
 <script src="/embassy-preview/aurora/aurora.js?v=1787120000" defer></script>
 <script src="/embassy-preview/aurora/cinema.js?v=1787120000" defer></script>
 <script src="/embassy-preview/aurora/form-notice.js?v=1786540000" defer></script>
+<script src="/embassy-preview/aurora/pro/portal.js?v=20261014a" defer></script>
+<script src="/embassy-preview/aurora/pro/search-plus.js?v=20261016a" defer></script>
 </body>
 </html>

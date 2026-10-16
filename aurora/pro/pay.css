@@ -1,0 +1,554 @@
+/* ============================================================================
+   PAYMENT GUIDANCE (pay/index.html): below-hero start page.
+   Scope: only sections carrying the .sp class, which never appear in the
+   frozen zones (banner, header, notice bar, hero, quick-access dock, footer).
+   Pattern: GOV.UK "start page" (purpose, prototype inset, before you start,
+   passport route, step-by-step), a "Check a fee" helper (aurora/pro/pay.js,
+   wide screens only: on phones and tablets the table follows directly, so
+   the card keeps just a link and the gold action) and the grouped schedule
+   of fees in a scrollable table, aligned to the same two-column grid as the
+   start page with the source note in the right-hand column.
+
+   Specificity: every rule starts with `main > section.sp:not(#sp-x)`. The
+   :not(#sp-x) adds one id of weight so these page rules reliably beat the
+   older shared layers (typography-system.css forces h2/p sizes with
+   !important at 0,3,4) without touching those shared files.
+   ============================================================================ */
+
+/* ------------------------------------------------------------ Layout */
+main > section.sp:not(#sp-x) .sp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 352px);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+main > section.sp:not(#sp-x) .sp-main {
+  min-width: 0;
+  max-width: 680px;
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  main > section.sp:not(#sp-x) .sp-main {
+    max-width: none;
+  }
+}
+
+/* ------------------------------------------------------------ Type */
+main > section.sp:not(#sp-x) .sp-lead {
+  margin: 0 0 24px;
+  max-width: 680px;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans);
+  color: var(--px-ink);
+  text-wrap: pretty;
+}
+main > section.sp:not(#sp-x) .sp-notice {
+  max-width: 680px;
+  margin: 0;
+}
+/* One H2 size for every section on this page, overriding the larger
+   global .sec-head h2 size. */
+main > section.sp:not(#sp-x) .sp-h2,
+main > section.sp:not(#sp-x) .sec-head h2 {
+  font-size: clamp(26px, 1.1vw + 17px, 32px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.012em !important;
+}
+main > section.sp:not(#sp-x) .sp-h2 {
+  margin: clamp(44px, 5vw, 64px) 0 20px;
+  letter-spacing: -.012em !important;
+  color: var(--px-navy-950);
+}
+
+/* ------------------------------------------------- Before you start */
+main > section.sp:not(#sp-x) .sp-summary > dt,
+main > section.sp:not(#sp-x) .sp-summary > dd {
+  font-size: var(--px-t-body);
+  line-height: 1.55;
+}
+main > section.sp:not(#sp-x) .sp-summary > dd {
+  color: var(--px-ink);
+}
+main > section.sp:not(#sp-x) .sp-summary a,
+main > section.sp:not(#sp-x) .sp-step-link a,
+main > section.sp:not(#sp-x) .sp-check-link a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-summary a:hover,
+main > section.sp:not(#sp-x) .sp-step-link a:hover,
+main > section.sp:not(#sp-x) .sp-check-link a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+
+/* ------------------------------------------------- Step by step */
+main > section.sp:not(#sp-x) .sp-steps > li {
+  font-size: var(--px-t-body);
+}
+main > section.sp:not(#sp-x) .sp-steps h3 {
+  font: 700 19px/1.35 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  margin: 6px 0 6px;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-steps p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: var(--px-t-body) !important;
+  line-height: 1.6;
+  color: var(--px-ink-2);
+}
+main > section.sp:not(#sp-x) .sp-steps .sp-step-link {
+  margin-top: 8px;
+}
+
+/* ------------------------------------------------- Summary card (aside) */
+main > section.sp:not(#sp-x) .sp-aside {
+  min-width: 0;
+}
+@media (min-width: 961px) {
+  main > section.sp:not(#sp-x) .sp-aside {
+    position: sticky;
+    top: 96px;
+  }
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-aside {
+    margin-top: 40px;
+  }
+  /* The table follows directly below, so the helper would only repeat it. */
+  main > section.sp:not(#sp-x) .sp-finder .sp-finder-tool {
+    display: none !important;
+  }
+  main > section.sp:not(#sp-x) .sp-finder .sp-finder-fallback {
+    display: block !important;
+  }
+}
+@media (min-width: 600px) and (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-finder .sp-action {
+    width: auto;
+    display: inline-flex;
+    padding-inline: 28px;
+  }
+}
+main > section.sp:not(#sp-x) .sp-card {
+  padding: 24px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-top: 3px solid var(--px-navy-900);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.sp:not(#sp-x) .sp-card-title {
+  margin: 0 0 4px;
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-facts {
+  margin: 0;
+}
+main > section.sp:not(#sp-x) .sp-facts dt {
+  margin: 0;
+  padding-top: 14px;
+  font: 600 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+}
+main > section.sp:not(#sp-x) .sp-facts dd {
+  margin: 2px 0 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--px-line);
+  font-size: var(--px-t-body);
+  line-height: 1.5;
+  color: var(--px-ink);
+  font-variant-numeric: tabular-nums;
+}
+main > section.sp:not(#sp-x) .sp-facts dd:last-child {
+  border-bottom: 0;
+}
+main > section.sp:not(#sp-x) .sp-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 20px;
+}
+main > section.sp:not(#sp-x) .sp-action .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+
+/* ------------------------------------------------- Shared fixes */
+/* Older layers set hyphens:auto on paragraphs ("doc-uments"). */
+main > section.sp:not(#sp-x),
+main > section.sp:not(#sp-x) * {
+  hyphens: manual !important;
+}
+main > section.sp:not(#sp-x) .sp-line {
+  display: block;
+}
+
+main > section.sp:not(#sp-x) .sp-h2 + .sp-sub {
+  margin: -12px 0 24px;
+  max-width: 62ch;
+  font: 400 var(--px-t-body)/1.6 var(--px-sans) !important;
+  color: var(--px-ink-2);
+}
+main > section.sp:not(#sp-x) .sp-sr {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ------------------------------------------------- Passport route */
+main > section.sp:not(#sp-x) .sp-route {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-left: 4px solid var(--px-gold-600);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+}
+main > section.sp:not(#sp-x) .sp-route h3 {
+  margin: 2px 0 8px;
+  font: 700 19px/1.35 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-route p {
+  margin: 0;
+  max-width: 60ch;
+  font-size: var(--px-t-body) !important;
+  line-height: 1.6 !important;
+  color: var(--px-ink-2);
+}
+main > section.sp:not(#sp-x) .sp-route .sp-route-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  margin-top: 8px;
+}
+main > section.sp:not(#sp-x) .sp-route-links a,
+main > section.sp:not(#sp-x) .sp-finder-fallback a,
+main > section.sp:not(#sp-x) .sp-source a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-route-links a:hover,
+main > section.sp:not(#sp-x) .sp-finder-fallback a:hover,
+main > section.sp:not(#sp-x) .sp-source a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+main > section.sp:not(#sp-x) .sp-route-links .icon,
+main > section.sp:not(#sp-x) .sp-source .icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: 0;
+}
+@media (max-width: 480px) {
+  main > section.sp:not(#sp-x) .sp-route {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+/* ------------------------------------------------- Check a fee */
+main > section.sp:not(#sp-x) .sp-finder-intro {
+  margin: 0 0 16px;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  color: var(--px-ink-2);
+}
+main > section.sp:not(#sp-x) .sp-finder-fallback {
+  margin: 4px 0 0;
+  font-size: 16px !important;
+}
+main > section.sp:not(#sp-x) .sp-field {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 16px;
+}
+main > section.sp:not(#sp-x) .sp-field label {
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-field select,
+main > section.sp:not(#sp-x) .sp-field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  color: var(--px-ink);
+  transition: border-color .18s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-field select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 42px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23052f57' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 14px center !important;
+  background-size: 18px 18px !important;
+  text-overflow: ellipsis;
+}
+main > section.sp:not(#sp-x) .sp-field select:hover,
+main > section.sp:not(#sp-x) .sp-field input:hover {
+  border-color: var(--px-navy-900) !important;
+}
+main > section.sp:not(#sp-x) .sp-fee-result {
+  display: grid;
+  gap: 2px;
+  margin: 4px 0 0;
+  padding: 16px 18px;
+  background: var(--px-canvas);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-ctl);
+}
+main > section.sp:not(#sp-x) .sp-fee-label {
+  font: 600 14px/1.4 var(--px-sans);
+  color: var(--px-ink-3);
+}
+main > section.sp:not(#sp-x) .sp-fee-amount {
+  font: 700 30px/1.2 var(--px-serif);
+  color: var(--px-navy-950);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+main > section.sp:not(#sp-x) .sp-finder:not(.has-fee) .sp-fee-amount {
+  color: var(--px-ink-3);
+}
+main > section.sp:not(#sp-x) .sp-fee-detail {
+  margin-top: 4px;
+  font: 400 15px/1.5 var(--px-sans);
+  color: var(--px-ink-2);
+}
+
+/* ------------------------------------------------- Schedule of fees */
+main > section.sp:not(#sp-x) .sp-fees-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 352px);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-fees-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+}
+main > section.sp:not(#sp-x) .sp-fees-card {
+  min-width: 0;
+  max-width: 680px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  overflow: clip;
+}
+main > section.sp:not(#sp-x) .sp-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+main > section.sp:not(#sp-x) .sp-table-wrap:focus-visible {
+  outline: 3px solid var(--px-gold-500) !important;
+  outline-offset: -3px !important;
+  box-shadow: none !important;
+}
+main > section.sp:not(#sp-x) .sp-fees {
+  width: 100%;
+  min-width: 320px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+main > section.sp:not(#sp-x) .sp-fees th,
+main > section.sp:not(#sp-x) .sp-fees td {
+  padding: 13px clamp(16px, 2.4vw, 28px);
+  border: 0;
+  border-bottom: 1px solid var(--px-line);
+  background: none;
+  text-align: left;
+  vertical-align: baseline;
+}
+main > section.sp:not(#sp-x) .sp-fees thead th {
+  padding-top: 14px;
+  padding-bottom: 12px;
+  font: 600 14px/1.3 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+  text-transform: none;
+  color: var(--px-ink-2);
+  border-bottom: 1px solid var(--px-line-strong);
+}
+main > section.sp:not(#sp-x) .sp-fees td {
+  font-size: var(--px-t-body) !important;
+  line-height: 1.45 !important;
+  color: var(--px-ink);
+}
+main > section.sp:not(#sp-x) .sp-fees .sp-num {
+  width: 7.5em;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+main > section.sp:not(#sp-x) .sp-fees td.sp-num {
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-fees .sp-group th {
+  padding-top: 22px;
+  padding-bottom: 10px;
+  font: 700 17px/1.3 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  text-transform: none;
+  color: var(--px-navy-950);
+  background: var(--px-sky);
+  border-bottom: 1px solid var(--px-line);
+}
+/* Calm zebra rows restart under each group heading; header row stays paper
+   so the group bands are the only tinted rows. */
+main > section.sp:not(#sp-x) .sp-fees thead,
+main > section.sp:not(#sp-x) .sp-fees tr {
+  background: none !important;
+}
+main > section.sp:not(#sp-x) .sp-fees th,
+main > section.sp:not(#sp-x) .sp-fees td {
+  background-image: none !important;
+}
+main > section.sp:not(#sp-x) .sp-fees thead th {
+  background-color: var(--px-canvas) !important;
+}
+main > section.sp:not(#sp-x) .sp-fees tbody td {
+  background-color: var(--px-paper) !important;
+  transition: background-color .15s var(--px-ease);
+}
+main > section.sp:not(#sp-x) .sp-fees tbody tr:nth-child(odd) td {
+  background-color: #f8fafc !important;
+}
+main > section.sp:not(#sp-x) .sp-fees tbody tr:hover td {
+  background-color: #eef4fc !important;
+}
+main > section.sp:not(#sp-x) .sp-fees .sp-group th {
+  background-color: var(--px-sky) !important;
+}
+main > section.sp:not(#sp-x) .sp-fees tbody:last-child tr:last-child td {
+  border-bottom: 0;
+}
+main > section.sp:not(#sp-x) .sp-source {
+  min-width: 0;
+  padding-top: 16px;
+  border-top: 3px solid var(--px-navy-900);
+}
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-fees-card { max-width: none; }
+  main > section.sp:not(#sp-x) .sp-source { max-width: none; }
+}
+main > section.sp:not(#sp-x) .sp-source h3 {
+  margin: 0 0 10px;
+  font: 700 18px/1.3 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  color: var(--px-navy-950);
+}
+main > section.sp:not(#sp-x) .sp-source p {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 15px/1.55 var(--px-sans) !important;
+  color: var(--px-ink-2);
+}
+main > section.sp:not(#sp-x) .sp-source p + p {
+  margin-top: 10px;
+}
+@media (max-width: 560px) {
+  main > section.sp:not(#sp-x) .sp-fees th,
+  main > section.sp:not(#sp-x) .sp-fees td {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  main > section.sp:not(#sp-x) .sp-fees .sp-num {
+    width: 5.5em;
+    padding-left: 8px;
+  }
+}
+
+/* Section headings: an older layer caps .sec-head h2 at 22ch, which broke
+   short headings over two lines beside an empty column. */
+main > section.sp:not(#sp-x) .sec-head h2 {
+  max-inline-size: 34ch !important;
+}
+/* Stand-alone text links: extend the hit area to 44px without moving the
+   layout (padding plus an equal negative margin). */
+main > section.sp:not(#sp-x) .sp-step-link a,
+main > section.sp:not(#sp-x) .sp-check-link a {
+  display: inline-block;
+  padding-block: 12px;
+  margin-block: -12px;
+}
+
+/* Paper surface: older layers paint a light page gradient that otherwise
+   shows behind the first section on 2K/4K screens. */
+main > section.sp:not(#sp-x):not(.bg-ivory) {
+  background-color: var(--px-paper);
+}
+
+/* Tablet and phone: the inset spans the column like the cards below it. */
+@media (max-width: 960px) {
+  main > section.sp:not(#sp-x) .sp-notice {
+    max-width: none;
+  }
+}
+
+/* ------------------------------------------------- Sibling alignment
+   Same container gutter as Consular, Digital Services and Case workflow
+   (clamp(20px, 4vw, 72px)), so body content lines up across the section. */
+main > section.sp:not(#sp-x) > .container {
+  padding-inline: clamp(20px, 4vw, 72px) !important;
+}
+/* Section eyebrows: the gold-dash label used above every H2 on the sibling
+   service pages. It carries the top spacing the H2 had on its own. */
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow {
+  display: flex !important;
+  width: fit-content;
+  font: 700 var(--px-t-eyebrow, 12.5px)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  max-width: none !important;
+  margin: clamp(44px, 5vw, 64px) 0 14px !important;
+}
+main > section.sp:not(#sp-x) .sec-head > p.eyebrow.sp-eyebrow:first-child {
+  margin-top: 0 !important;
+}
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow + .sp-h2 {
+  margin-top: 0 !important;
+}
+
+/* Step titles: the same bold sans treatment as the Consular Services
+   passport steps, so the shared numbered-steps component reads as one. */
+main > section.sp:not(#sp-x) .sp-steps h3 {
+  margin: 4px 0 8px !important;
+  font: 700 18px/1.35 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+}
