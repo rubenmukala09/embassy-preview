@@ -48,6 +48,25 @@
     return loading;
   }
 
+  // Pagefind pads weak queries with highlights on tiny words ("a"). A result is
+  // kept only if a highlighted word really matches the start of a query word.
+  function fold(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+  function relevant(excerpt, q) {
+    var marks = (String(excerpt || "").match(/<mark>([^<]*)<\/mark>/gi) || []).map(function (m) {
+      return fold(m.replace(/<\/?mark>/gi, ""));
+    });
+    var terms = fold(q).split(/[^a-z0-9]+/).filter(function (w) { return w.length >= 2; });
+    return marks.some(function (m) {
+      if (m.length < 2) return false;
+      return terms.some(function (w) {
+        var n = Math.min(4, w.length, m.length);
+        return m.slice(0, n) === w.slice(0, n) && (m.length >= 3 || w.length <= 3);
+      });
+    });
+  }
+
   // Pagefind excerpts are already-escaped page text plus bare <mark> tags.
   // Drop any other tag outright (defence in depth; entities stay as they are).
   function safeExcerpt(x) {
@@ -106,7 +125,11 @@
       }).then(function (data) {
         if (!data || my !== token || input.value.trim() !== q) return;
         var curatedHrefs = Array.prototype.map.call(box.querySelectorAll(".sr-item:not(.sr-pf)"), function (a) { return a.getAttribute("href"); });
-        var fresh = data.filter(function (d) { return curatedHrefs.indexOf(d.url) === -1; });
+        // Keep only pages where the query actually appears (Pagefind highlights it);
+        // loose stem/prefix matches with nothing highlighted are noise.
+        var fresh = data.filter(function (d) {
+          return curatedHrefs.indexOf(d.url) === -1 && relevant(d.excerpt, q);
+        });
         lastQuery = q;
         lastHtml = fresh.length ? group(fresh, q) : "";
         paint(lastHtml);
