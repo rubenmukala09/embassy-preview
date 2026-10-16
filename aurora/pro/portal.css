@@ -757,3 +757,18 @@ main > section.ps-proto:not(.hero):not(.phead):not(.qa-band) .ps-result .ps-acti
     transition: none !important;
   }
 }
+
+/* Section eyebrows: the gold-dash label used above every H2 on the sibling
+   service pages; it takes over the top spacing the H2 had on its own. */
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) p.eyebrow.ps-eyebrow {
+  display: flex !important;
+  width: fit-content;
+  font: 700 var(--px-t-eyebrow, 12.5px)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  max-width: none !important;
+  margin: clamp(48px, 5vw, 64px) 0 14px !important;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) p.eyebrow.ps-eyebrow + .ps-h2 {
+  margin-top: 0 !important;
+}

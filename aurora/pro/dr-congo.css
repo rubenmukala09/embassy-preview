@@ -468,13 +468,19 @@
   color: var(--px-ink-2);
 }
 #main-content > section.dz .dz-sector-go {
+  /* labelled like the leadership links; the card's heading link is the target */
   align-self: end;
-  margin-top: 4px;
-  color: var(--px-blue-700);
-  transition: transform .2s var(--px-ease);
+  justify-self: start;
+  margin: 4px 0 -10px;
+  padding-block: 10px;
+  font-size: 15.5px;
+  line-height: 24px;
 }
 #main-content > section.dz .dz-sector:hover .dz-sector-go {
-  transform: translateX(3px);
+  color: var(--px-navy-900);
+}
+#main-content > section.dz .dz-sector:hover .dz-sector-go > span {
+  text-decoration-thickness: 2px;
 }
 
 /* ===================================================== 6 · Natural heritage */
@@ -691,11 +697,7 @@
     padding: 20px;
   }
   #main-content > section.dz .dz-sector-go {
-    /* beside the icon chip instead of on a row of its own */
-    position: absolute;
-    top: 32px;
-    right: 20px;
-    margin: 0;
+    margin-top: 2px;
   }
   #main-content > section.dz .dz-tile figcaption {
     padding: 32px 12px 10px;
@@ -746,11 +748,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #main-content > section.dz .dz-sector,
-  #main-content > section.dz .dz-sector-go {
+  #main-content > section.dz .dz-sector {
     transition: none;
-  }
-  #main-content > section.dz .dz-sector:hover .dz-sector-go {
-    transform: none;
   }
 }

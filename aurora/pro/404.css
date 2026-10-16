@@ -1,7 +1,8 @@
 /* ==========================================================================
    404 / page not available
-   The page has no site header, so the seal and the Embassy's name sit above
-   the message. Scoped to main.error-main; the footer is untouched.
+   The page carries the standard banner, top bar and header (copied from the
+   legal pages), so the message below needs no brand block of its own.
+   Scoped to main.error-main; the shared chrome and footer are untouched.
    ========================================================================== */
 
 /* 404.html does not load the Google Fonts stylesheet that every other page
@@ -29,36 +30,13 @@ html body main.error-main {
   --e404-serif: "Merriweather", "Emb404 Serif", Georgia, serif;
   --e404-sans: "Public Sans", "Emb404 Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-family: var(--e404-sans);
-  min-height: 64vh;
+  min-height: clamp(420px, 60vh, 720px);
   padding: clamp(56px, 9vw, 112px) 16px;
   background: var(--px-canvas, #f4f7fb);
   background-image: none;
 }
 html body main.error-main > div {
   width: min(100%, 640px);
-}
-html body main.error-main .err-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0 0 32px;
-  text-align: left;
-}
-html body main.error-main .err-crest {
-  flex: none;
-  width: 56px;
-  height: 56px;
-}
-html body main.error-main .err-brand-text { display: grid; gap: 2px; }
-html body main.error-main .err-brand-name {
-  font: 700 15px/1.3 var(--e404-sans);
-  color: var(--px-navy-950, #011a35);
-}
-html body main.error-main .err-brand-sub {
-  font: 600 14px/1.3 var(--e404-sans);
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  color: var(--px-gold-ink, #7a5a00);
 }
 html body main.error-main h1 {
   margin: 0 0 14px;
@@ -108,9 +86,6 @@ html body main.error-main .error-actions a:focus-visible {
 @media (max-width: 520px) {
   html body main.error-main .error-actions { flex-direction: column; align-items: stretch; }
   html body main.error-main .error-actions a { justify-content: center; }
-  /* the seal sits above the name so the whole block stays centred with the heading */
-  html body main.error-main .err-brand { flex-direction: column; gap: 10px; text-align: center; }
-  html body main.error-main .err-brand-text { justify-items: center; }
 }
 @media (min-width: 2400px) {
   html body main.error-main > div { zoom: 1.25; }
@@ -119,14 +94,17 @@ html body main.error-main .error-actions a:focus-visible {
   html body main.error-main > div { zoom: 1.49; }
 }
 
-/* Tall screens: keep the footer at the bottom of the window instead of leaving
-   a white band under it. Only the 404's body becomes a column; the footer's
-   own styles are untouched. */
-html body:has(> main.error-main) {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  min-height: 100dvh;
+/* Very wide/tall screens: keep the message band to a sensible height instead
+   of letting it stretch into an empty field above the footer. */
+@media (min-width: 2400px) {
+  html body main.error-main { min-height: clamp(560px, 50vh, 960px); }
 }
-html body:has(> main.error-main) > main.error-main { flex: 1 0 auto; }
-html body:has(> main.error-main) > footer.foot { flex: none; }
+
+/* Short page on a tall screen: the space left under the footer takes the
+   footer's own deepest navy, so the page ends in the footer instead of a
+   white strip. Only the 404 (the page whose body holds main.error-main) is
+   affected; the footer's own styles are untouched. */
+html:has(> body > main.error-main),
+html body:has(> main.error-main) {
+  background: #031a33;
+}

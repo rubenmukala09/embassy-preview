@@ -188,8 +188,19 @@ main > section#gallery .amb-cap-ttl {
   transition: color .18s var(--px-ease);
 }
 @media (max-width: 599px) {
-  main > section#gallery .amb-cap { padding: 12px 16px 14px; }
-  main > section#gallery .amb-cap-ttl { font-size: 16.5px; }
+  /* Phones: a lead image across both columns, then a two-column contact
+     sheet of square thumbnails, so the gallery reads as curated rather than
+     as a long single-file list. */
+  main > section#gallery .amb-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  main > section#gallery .amb-tile:first-child { grid-column: 1 / -1; }
+  main > section#gallery .amb-tile:not(:first-child) .amb-link { aspect-ratio: 1 / 1; }
+  main > section#gallery .amb-cap { padding: 10px 12px 12px; }
+  main > section#gallery .amb-cap-ttl { font-size: 14px; line-height: 1.35; }
+  main > section#gallery .amb-tile:first-child .amb-cap { padding: 12px 16px 14px; }
+  main > section#gallery .amb-tile:first-child .amb-cap-ttl { font-size: 16px; }
 }
 
 main > section#gallery .amb-tile:hover {

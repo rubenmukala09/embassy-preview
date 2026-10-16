@@ -405,3 +405,41 @@ main > section.sp:not(#sp-x):not(.bg-ivory) {
     max-width: none;
   }
 }
+
+/* ------------------------------------------------- Sibling alignment
+   Same container gutter as Consular, Digital Services and Case workflow
+   (clamp(20px, 4vw, 72px)), so body content lines up across the section. */
+main > section.sp:not(#sp-x) > .container {
+  padding-inline: clamp(20px, 4vw, 72px) !important;
+}
+/* Section eyebrows: the gold-dash label used above every H2 on the sibling
+   service pages. It carries the top spacing the H2 had on its own. */
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow {
+  display: flex !important;
+  width: fit-content;
+  font: 700 var(--px-t-eyebrow, 12.5px)/1.3 var(--px-sans) !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  max-width: none !important;
+  margin: clamp(44px, 5vw, 64px) 0 14px !important;
+}
+main > section.sp:not(#sp-x) .sec-head > p.eyebrow.sp-eyebrow:first-child {
+  margin-top: 0 !important;
+}
+main > section.sp:not(#sp-x) p.eyebrow.sp-eyebrow + .sp-h2 {
+  margin-top: 0 !important;
+}
+
+/* Step titles: the same bold sans treatment as the Consular Services
+   passport steps, so the shared numbered-steps component reads as one. */
+main > section.sp:not(#sp-x) .sp-steps h3 {
+  margin: 4px 0 8px !important;
+  font: 700 18px/1.35 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Address: one line per part, so "Suite 725" never splits from its number. */
+main > section.sp:not(#sp-x) .sp-facts dd.sp-addr .sp-line {
+  display: block;
+  text-wrap: balance;
+}

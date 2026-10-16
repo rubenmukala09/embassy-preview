@@ -21,6 +21,7 @@
   var loading = null;
   var lastQuery = "";
   var lastHtml = "";
+  var lastData = null;
   var token = 0;
 
   function isFR() {
@@ -78,20 +79,60 @@
     return String(t || "").split(/\s[|,·-]\s|, Embassy of/)[0].trim() || t;
   }
 
+  // The Pagefind index is built from the English pages. In French, show the
+  // French page name and no English sub-heading or excerpt.
+  var FR_TITLES = {
+    "": "Accueil",
+    "index.html": "Accueil",
+    "the-embassy.html": "L’Ambassade",
+    "consular-services.html": "Services consulaires",
+    "case-workflow.html": "Suivi des dossiers consulaires",
+    "portal.html": "Informations sur les rendez-vous",
+    "pay/": "Modalités de paiement consulaire",
+    "documents/": "Dépôt de documents",
+    "account/": "Assistance compte",
+    "digital-services.html": "Services numériques",
+    "news-events.html": "Actualités et événements",
+    "dr-congo.html": "La République démocratique du Congo",
+    "invest-in-drc.html": "Investir en RDC",
+    "congo-shining.html": "Congo Shining 2026",
+    "ambience.html": "Ambiance et galerie",
+    "official-links.html": "Portails officiels de la RDC",
+    "contact.html": "Contacter l’Ambassade",
+    "accessibility.html": "Déclaration d’accessibilité",
+    "cookies.html": "Politique relative aux cookies",
+    "privacy.html": "Politique de confidentialité",
+    "terms.html": "Conditions d’utilisation",
+    "disclaimer.html": "Avertissement juridique et mentions légales"
+  };
+  function frTitle(url) {
+    var path = String(url || "").split("#")[0].split("?")[0];
+    if (path.indexOf(BASE) === 0) path = path.slice(BASE.length);
+    path = path.replace(/index\.html$/, "").replace(/^\//, "");
+    return FR_TITLES[path] || null;
+  }
+
   function group(results, q) {
-    var label = isFR() ? "Sur le site" : "From the website";
+    var fr = isFR();
+    var label = fr ? "Sur le site" : "From the website";
     var html = '<div class="sr-pf-head" aria-hidden="true">' + label + "</div>";
     html += results.map(function (r, i) {
       var url = r.url || BASE;
-      var title = esc(cleanTitle(r.meta && r.meta.title));
       var sub = r.sub_results && r.sub_results[0];
-      if (sub && sub.url && sub.title && sub.url.indexOf("#") > -1) {
-        url = sub.url;
-        title += ' <span class="sr-pf-sub">› ' + esc(sub.title) + "</span>";
+      var hasSub = sub && sub.url && sub.title && sub.url.indexOf("#") > -1;
+      if (hasSub) url = sub.url;
+      var title, desc;
+      if (fr) {
+        title = esc(frTitle(r.url) || cleanTitle(r.meta && r.meta.title));
+        desc = "Extrait disponible en anglais";
+      } else {
+        title = esc(cleanTitle(r.meta && r.meta.title));
+        if (hasSub) title += ' <span class="sr-pf-sub">› ' + esc(sub.title) + "</span>";
+        desc = safeExcerpt(r.excerpt);
       }
       return '<a class="sr-item sr-pf" id="sr-pf-' + i + '" role="option" aria-selected="false" href="' + esc(url) + '">' +
         '<span class="sr-t">' + title + "</span>" +
-        '<span class="sr-d">' + safeExcerpt(r.excerpt) + "</span></a>";
+        '<span class="sr-d">' + desc + "</span></a>";
     }).join("");
     return html;
   }
@@ -115,7 +156,7 @@
     function run() {
       var q = input.value.trim();
       var my = ++token;
-      if (q.length < 2) { lastQuery = ""; lastHtml = ""; return; }
+      if (q.length < 2) { lastQuery = ""; lastHtml = ""; lastData = null; return; }
       load().then(function (pf) {
         if (!pf || my !== token) return null;
         return pf.debouncedSearch(q, {}, 180);
@@ -131,6 +172,7 @@
           return curatedHrefs.indexOf(d.url) === -1 && relevant(d.excerpt, q);
         });
         lastQuery = q;
+        lastData = fresh;
         lastHtml = fresh.length ? group(fresh, q) : "";
         paint(lastHtml);
       });
@@ -139,7 +181,10 @@
     // aurora.js re-renders the list on every keystroke and after a language
     // switch; put our group back whenever the list is rebuilt for the same query.
     new MutationObserver(function () {
-      if (lastHtml && input.value.trim() === lastQuery && !box.querySelector(".sr-pf")) paint(lastHtml);
+      if (lastHtml && input.value.trim() === lastQuery && !box.querySelector(".sr-pf")) {
+        if (lastData) lastHtml = group(lastData, lastQuery); // follows a language switch
+        paint(lastHtml);
+      }
     }).observe(box, { childList: true });
 
     input.addEventListener("input", run);

@@ -1210,3 +1210,14 @@ main > section.home-band .home-feature-note {
   main > section.home-band .home-feature-media img { transition: none; }
   main > section.home-band .home-feature:hover .home-feature-media img { transform: none; }
 }
+
+/* Section eyebrows (gold rule + small caps), matching the inner pages. */
+main > section.home-band .sec-head p.eyebrow {
+  color: var(--px-navy-900) !important;
+}
+main > section.home-band .home-media-panel .sec-head p.eyebrow {
+  color: var(--px-gold-500) !important;
+}
+main > section.home-band .home-media-panel .sec-head p.eyebrow::before {
+  background: var(--px-gold-500) !important;
+}

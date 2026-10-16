@@ -42,8 +42,9 @@
     return (document.documentElement.getAttribute('lang') || 'en').slice(0, 2) === 'fr' ? 'fr' : 'en';
   }
 
-  function money(n) {
-    return '$' + n.toLocaleString('en-US');
+  // English: $185. French: 185 USD, as in the French body copy.
+  function money(n, L) {
+    return L === 'fr' ? n.toLocaleString('fr-FR') + ' USD' : '$' + n.toLocaleString('en-US');
   }
 
   function rowName(tr, L) {
@@ -97,7 +98,7 @@
     var online = row.getAttribute('data-route') === 'online';
     finder.classList.add('has-fee');
     if (labelEl) labelEl.textContent = t.label;
-    amountEl.textContent = money(fee);
+    amountEl.textContent = money(fee, L);
     detailEl.textContent = online ? t.online : t.money;
   }
 

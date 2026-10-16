@@ -324,3 +324,11 @@ main > section.ol-sec .ol-jump ul {
     gap: 0 16px;
   }
 }
+
+/* Footnote links: no automatic mid-word hyphenation inside links */
+main > section .ol-group-foot,
+main > section .ol-group-foot a,
+main > section .ol-group-foot a * {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}
