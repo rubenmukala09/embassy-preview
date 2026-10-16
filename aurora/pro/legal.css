@@ -328,10 +328,11 @@ html body main > section.lg .lg-body .lg-table .lg-cell-label { display: none; }
 @media (min-width: 641px) {
   html body main > section.lg .lg-body .lg-table { table-layout: fixed; font-size: 15.5px; }
   html body main > section.lg .lg-body .lg-table :is(th, td) { padding-inline: 14px; }
-  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(1) { width: 27%; }
-  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(2) { width: 36%; }
-  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(3) { width: 16%; }
-  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(4) { width: 21%; }
+  /* fixed layout: the Name column fits "emb-news-seen" and the Type column fits the French "Stockage" */
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(1) { width: 25%; }
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(2) { width: 33%; }
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(3) { width: 18%; }
+  html body main > section.lg .lg-body .lg-table :is(th, td):nth-child(4) { width: 24%; }
 }
 html body main > section.lg .lg-body .lg-table :is(th, td, span) {
   word-break: normal;
