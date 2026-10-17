@@ -26,15 +26,17 @@
       choose: 'Choose a service',
       label: 'Published fee',
       empty: 'Choose a service to see its fee.',
-      money: 'Pay by money order, included with your application.',
-      online: 'Paid online through the Equity BCDC link sent after pre-registration on passeport.gouv.cd.'
+      money: 'Money order, cashier’s check or certified check addressed to the Embassy; the Embassy also asks for a blank money order only. Confirm the method before you pay.',
+      legal: 'Money order, certified check or company-issued check, payable in U.S. dollars to the Embassy.',
+      online: 'Paid online through the Equity BCDC link sent after pre-registration on passeport.gouv.cd. The total may vary with bank charges.'
     },
     fr: {
       choose: 'Choisissez un service',
       label: 'Montant publié',
       empty: 'Choisissez un service pour afficher son montant.',
-      money: 'Paiement par mandat, joint à votre demande.',
-      online: 'Paiement en ligne au moyen du lien Equity BCDC reçu après la préinscription sur passeport.gouv.cd.'
+      money: 'Mandat, chèque de banque ou chèque certifié à l’ordre de l’Ambassade ; l’Ambassade demande aussi un mandat en blanc uniquement. Vérifiez le mode de paiement avant de payer.',
+      legal: 'Mandat, chèque certifié ou chèque d’entreprise, libellé en dollars américains à l’ordre de l’Ambassade.',
+      online: 'Paiement en ligne au moyen du lien Equity BCDC reçu après la préinscription sur passeport.gouv.cd. Le total peut varier selon les frais bancaires.'
     }
   };
 
@@ -95,11 +97,11 @@
     }
 
     var fee = parseFloat(row.getAttribute('data-fee')) || 0;
-    var online = row.getAttribute('data-route') === 'online';
+    var route = row.getAttribute('data-route');
     finder.classList.add('has-fee');
     if (labelEl) labelEl.textContent = t.label;
     amountEl.textContent = money(fee, L);
-    detailEl.textContent = online ? t.online : t.money;
+    detailEl.textContent = route === 'online' ? t.online : (route === 'legal' ? t.legal : t.money);
   }
 
   select.addEventListener('change', update);

@@ -772,3 +772,91 @@ main > section.ps-start:not(.hero):not(.phead):not(.qa-band) p.eyebrow.ps-eyebro
 main > section.ps-start:not(.hero):not(.phead):not(.qa-band) p.eyebrow.ps-eyebrow + .ps-h2 {
   margin-top: 0 !important;
 }
+
+/* ------------------------------------------------- Migrated content (October 2026)
+   "No online bookings" notice, passport contact lines and the holiday list
+   from the former Embassy website, in the same tokens as the hours table. */
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-notice {
+  margin: 0 0 24px !important;
+  max-width: 720px;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-notice strong {
+  color: var(--ps-navy);
+  font-weight: 700;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-contact .ps-block {
+  display: block;
+  margin-top: 2px;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-contact .ps-or {
+  color: var(--ps-ink-2);
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-h3 {
+  margin: 36px 0 8px !important;
+  font: 700 clamp(19px, .4vw + 16px, 21px)/1.3 var(--px-serif) !important;
+  letter-spacing: -.005em !important;
+  color: var(--ps-navy) !important;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-holidays {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+  margin-top: 16px;
+}
+@media (max-width: 640px) {
+  main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-holidays { grid-template-columns: minmax(0, 1fr); }
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol {
+  min-width: 0;
+  padding: 16px 20px;
+  border: 1px solid var(--ps-line);
+  border-top: 3px solid var(--px-navy-900, #052f57);
+  border-radius: var(--px-radius, 14px);
+  background: #fff;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol h4 {
+  margin: 0 0 6px !important;
+  font: 700 16px/1.35 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+  color: var(--ps-navy) !important;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol-list > li {
+  display: grid;
+  grid-template-columns: 6.8em minmax(0, 1fr);
+  gap: 12px;
+  margin: 0 !important;
+  padding: 8px 0 !important;
+  border-bottom: 1px solid var(--ps-line);
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+  color: var(--ps-ink);
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol-list.ps-hol-names > li {
+  display: block;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol-list > li:last-child {
+  border-bottom: 0;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol-list > li::before {
+  content: none !important;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol-date {
+  font-weight: 600;
+  color: var(--ps-navy);
+  font-variant-numeric: tabular-nums;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-hol-note {
+  margin: 8px 0 0 !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: var(--ps-ink-3) !important;
+}
+main > section.ps-start:not(.hero):not(.phead):not(.qa-band) .ps-contact a[href^="tel:"] {
+  white-space: nowrap;
+}

@@ -70,4 +70,22 @@
       frame.focus();
     });
   });
+
+  /* ---- 3. Deep links into a closed category ---------------------------- */
+  /* Links such as #visa-diplomatic or #repatriation may point into (or at) a
+     closed <details>; open it so the target is visible, then bring it into
+     view. Runs on load and on every in-page jump. */
+  var openFromHash = function () {
+    var id = decodeURIComponent((window.location.hash || "").slice(1));
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    var box = el.tagName === "DETAILS" ? el : el.closest("details");
+    if (box && !box.open) {
+      box.open = true;
+      el.scrollIntoView({ block: "start" });
+    }
+  };
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
 })();

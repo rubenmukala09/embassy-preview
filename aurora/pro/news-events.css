@@ -696,3 +696,156 @@ main > section#resources .px-links a:hover .icon {
     gap: clamp(24px, 4vw, 32px);
   }
 }
+
+/* ------------------------------------------------------------------------
+   4. Migration additions (October 2026)
+   a) Lead story: the release's own photograph (two people side by side), so
+      the crop keeps both faces in frame at every card height.
+   b) Campaign notice (GENOCOST 2026): one quiet, dated row under the news,
+      with a navy action (the page keeps a single gold button).
+   c) Embassy closures in Washington: the DRC and U.S. holidays the Embassy
+      observes, under the national calendar.
+   ------------------------------------------------------------------------ */
+main > section#published-news .nw-lead-media img {
+  object-position: 50% 28%;
+}
+/* The credit now names the people shown: read it as a caption (left). */
+main > section#published-news .nw-credit {
+  text-align: left;
+}
+main > section#published-news .nw-cta .icon {
+  width: 18px;
+  height: 18px;
+}
+
+main > section#published-news .nw-campaign {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: clamp(28px, 3.4vw, 48px);
+  padding: 22px clamp(20px, 2.4vw, 32px);
+  background: var(--px-canvas);
+  border: 1px solid var(--px-line);
+  border-left: 4px solid var(--px-gold-600);
+  border-radius: var(--px-radius);
+}
+main > section#published-news .nw-campaign-ic {
+  align-self: start;
+}
+main > section#published-news .nw-campaign-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+main > section#published-news .nw-campaign h3 {
+  margin: 0;
+  font: 700 clamp(19px, .4vw + 16px, 22px)/1.3 var(--px-serif);
+  letter-spacing: -.005em;
+  color: var(--px-navy-950);
+  text-wrap: balance;
+}
+main > section#published-news .nw-campaign .nw-summary {
+  max-width: 70ch;
+  font-size: 16px;
+  line-height: 1.58;
+}
+main > section#published-news .nw-campaign-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  white-space: nowrap;
+}
+main > section#published-news .nw-campaign-btn .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+@media (max-width: 760px) {
+  main > section#published-news .nw-campaign {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 20px;
+  }
+  main > section#published-news .nw-campaign-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+main > section#annual-calendar .nw-closures {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: 24px var(--nw-gap);
+  align-items: start;
+  margin-top: clamp(36px, 4vw, 56px);
+  padding-top: clamp(28px, 3vw, 40px);
+  border-top: 1px solid var(--px-line-strong);
+}
+main > section#annual-calendar .nw-closures-head h3 {
+  margin: 0 0 10px;
+  font: 700 clamp(21px, .5vw + 17px, 26px)/1.25 var(--px-serif);
+  letter-spacing: -.012em;
+  color: var(--px-navy-950);
+}
+main > section#annual-calendar .nw-closures-head p {
+  max-width: 52ch;
+  margin: 0;
+  font: 400 16px/1.62 var(--px-sans);
+  color: var(--px-ink-2);
+}
+main > section#annual-calendar .nw-closures-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px var(--nw-gap);
+}
+main > section#annual-calendar .nw-closures-col h4 {
+  margin: 0;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--px-line-strong);
+  font: 700 13px/1.3 var(--px-sans);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--px-navy-900);
+}
+main > section#annual-calendar .nw-closures-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+main > section#annual-calendar .nw-closures-list li {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--px-line);
+  font: 400 16px/1.45 var(--px-sans);
+  color: var(--px-ink);
+}
+main > section#annual-calendar .nw-closures-us li {
+  display: block;
+}
+main > section#annual-calendar .nw-cl-date {
+  font-weight: 600;
+  color: var(--px-navy-950);
+  font-variant-numeric: tabular-nums;
+}
+main > section#annual-calendar .nw-cl-note {
+  margin: 12px 0 0;
+  font: 400 14px/1.5 var(--px-sans);
+  color: var(--px-ink-3);
+}
+@media (max-width: 980px) {
+  main > section#annual-calendar .nw-closures {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  main > section#annual-calendar .nw-closures-cols {
+    grid-template-columns: 1fr;
+  }
+}

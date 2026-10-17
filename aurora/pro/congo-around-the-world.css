@@ -1,0 +1,121 @@
+/* ============================================================================
+   CONGO AROUND THE WORLD: directory of DRC missions and institutions.
+   Loaded after aurora/pro/article.css. Every rule is scoped to
+   main > section.ar.catw, so the chrome, hero and footer are never touched.
+   ============================================================================ */
+
+/* The directory grid uses the full column; running text keeps the measure. */
+main > section.ar.catw .ar-body {
+  max-width: none;
+}
+main > section.ar.catw .ar-body > :is(p, .px-inset, .px-meta),
+main > section.ar.catw .ar-body > h2 {
+  max-width: var(--ar-measure);
+}
+main > section.ar.catw .ar-body > .px-meta {
+  max-width: none;
+}
+main > section.ar.catw .catw-about {
+  margin: 4px 0 16px;
+}
+main > section.ar.catw .ar-body > p.catw-count {
+  margin: -6px 0 18px;
+  font: 600 var(--px-t-meta)/1.4 var(--px-sans);
+  letter-spacing: .02em;
+  color: var(--px-ink-3);
+}
+main > section.ar.catw .ar-body > p.catw-intro {
+  margin-bottom: 10px;
+}
+
+/* ------------------------------------------------------------ cards */
+main > section.ar.catw .catw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: 16px;
+  margin: 0 0 8px;
+}
+main > section.ar.catw .catw-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 20px 20px 18px;
+  background: #fff;
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  scroll-margin-top: 110px;
+}
+main > section.ar.catw .catw-card h3 {
+  margin: 0 0 10px;
+  font: 700 18px/1.35 var(--px-serif);
+  color: var(--px-navy-950);
+}
+main > section.ar.catw .catw-addr {
+  margin: 0 0 14px;
+  font-style: normal;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--px-ink-2);
+}
+main > section.ar.catw .catw-dl {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 6px 14px;
+  margin: 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--px-line);
+}
+main > section.ar.catw .catw-dl > dt {
+  grid-column: 1;
+  margin: 0;
+  font: 600 13px/1.6 var(--px-sans);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--px-ink-3);
+}
+main > section.ar.catw .catw-dl > dd {
+  grid-column: 2;
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.45;
+  color: var(--px-ink);
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+main > section.ar.catw .catw-dl a {
+  color: var(--px-blue-700);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+main > section.ar.catw .catw-dl a:hover {
+  color: var(--px-navy-950);
+}
+main > section.ar.catw .catw-dl > .catw-prev {
+  color: var(--px-ink-3);
+}
+main > section.ar.catw .catw-dl > dd.catw-prev {
+  font-style: italic;
+}
+main > section.ar.catw .catw-note {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+main > section.ar.catw .catw-note a {
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  main > section.ar.catw .catw-dl {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  main > section.ar.catw .catw-dl > :is(dt, dd) {
+    grid-column: 1;
+  }
+  main > section.ar.catw .catw-dl > dt:not(:first-child) {
+    margin-top: 8px;
+  }
+}
