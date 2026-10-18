@@ -56,7 +56,8 @@
   }
   function relevant(excerpt, q) {
     var marks = (String(excerpt || "").match(/<mark>([^<]*)<\/mark>/gi) || []).map(function (m) {
-      return fold(m.replace(/<\/?mark>/gi, ""));
+      // Pagefind can include punctuation in the highlight ("(Bafwasende,").
+      return fold(m.replace(/<\/?mark>/gi, "")).replace(/[^a-z0-9]+/g, "");
     });
     var terms = fold(q).split(/[^a-z0-9]+/).filter(function (w) { return w.length >= 2; });
     return marks.some(function (m) {
