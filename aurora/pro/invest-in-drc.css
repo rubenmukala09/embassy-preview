@@ -47,6 +47,13 @@ main > section:is(.inv-intro, .inv-anapi) .inv-lead {
   font: 400 var(--px-t-lead)/1.6 var(--px-sans);
   color: var(--px-ink-2);
 }
+main > section.inv-intro .inv-body {
+  margin: 16px 0 0;
+  max-width: 62ch;
+  font-size: var(--px-t-body);
+  line-height: 1.62;
+  color: var(--px-ink-2);
+}
 main > section:is(.inv-intro, .inv-anapi, .inv-portals) .inv-textlink {
   margin: 22px 0 0;
   font-size: var(--px-t-body);
@@ -177,7 +184,7 @@ main > section.inv-sectors-sec .inv-sectors {
   display: grid;
   gap: 16px;
 }
-@media (min-width: 640px) {
+@media (min-width: 960px) {
   main > section.inv-sectors-sec .inv-sectors {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px 20px;
@@ -187,7 +194,7 @@ main > section.inv-sectors-sec .inv-sectors > .inv-sector {
   position: relative;
   margin: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 20px;
+  grid-template-columns: 44px minmax(0, 1fr) 20px;
   gap: 16px;
   align-items: start;
   padding: 22px 22px 24px;
@@ -237,10 +244,23 @@ main > section.inv-sectors-sec .inv-sector-go {
 main > section.inv-sectors-sec .inv-sector:hover .inv-sector-go {
   color: var(--px-blue-700);
 }
+main > section.inv-sectors-sec .inv-sector .icon-chip {
+  margin-top: -2px;
+}
 @media (max-width: 479px) {
+  /* phone: icon and arrow share the first row, the text gets the full width */
   main > section.inv-sectors-sec .inv-sectors > .inv-sector {
     gap: 12px;
     padding: 18px 18px 20px;
+  }
+  main > section.inv-sectors-sec .inv-sector .inv-sector-body {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  main > section.inv-sectors-sec .inv-sector .inv-sector-go {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
   }
 }
 
@@ -286,6 +306,15 @@ main > section.inv-anapi .inv-textlink {
 }
 main > section.inv-anapi .inv-textlink a {
   gap: 8px;
+}
+main > section.inv-anapi .inv-steps > .inv-textlink {
+  margin-top: 22px;
+  padding-left: 58px;
+}
+@media (max-width: 479px) {
+  main > section.inv-anapi .inv-steps > .inv-textlink {
+    padding-left: 0;
+  }
 }
 main > section.inv-anapi .inv-textlink .icon {
   width: 16px;
@@ -361,80 +390,98 @@ main > section.inv-framework .inv-list > li::before {
   border-radius: 50%;
   background: var(--px-blue-600);
 }
-main > section.inv-framework .inv-details-group {
-  display: grid;
-  gap: 12px;
-  margin-top: 24px;
+main > section.inv-framework .inv-list a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
-main > section.inv-framework .inv-details {
+main > section.inv-framework .inv-list a:hover {
+  color: var(--px-navy-950);
+}
+@media (min-width: 1040px) {
+  main > section.inv-framework .inv-framework-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 760px) and (max-width: 1039px) {
+  main > section.inv-framework .inv-framework-grid > .inv-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Laws, legislation and taxes: the three guide pages */
+main > section.inv-framework .inv-guides {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 960px) {
+  main > section.inv-framework .inv-guides {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+main > section.inv-framework .inv-guides > .inv-guide {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: clamp(22px, 2.4vw, 30px);
   background: var(--px-paper);
   border: 1px solid var(--px-line);
   border-radius: var(--px-radius);
   box-shadow: var(--px-shadow);
-  transition: border-color .18s var(--px-ease);
+  transition: border-color .18s var(--px-ease), box-shadow .18s var(--px-ease);
 }
-main > section.inv-framework .inv-details:hover {
+main > section.inv-framework .inv-guide:is(:hover, :focus-within) {
   border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
 }
-main > section.inv-framework .inv-details > summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 60px;
-  padding: 16px 22px;
-  cursor: pointer;
-  list-style: none;
-  font: 600 17px/1.4 var(--px-sans);
+main > section.inv-framework .inv-guide h3 {
+  margin: 4px 0 0;
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
   color: var(--px-navy-950);
+}
+main > section.inv-framework .inv-guide h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+main > section.inv-framework .inv-guide h3 a::after {
+  /* the whole card is the link target */
+  content: "";
+  position: absolute;
+  inset: 0;
   border-radius: var(--px-radius);
 }
-main > section.inv-framework .inv-details > summary::-webkit-details-marker {
-  display: none;
-}
-main > section.inv-framework .inv-details > summary::before,
-main > section.inv-framework .inv-details > summary::after {
-  content: none !important;
-}
-main > section.inv-framework .inv-details > summary .icon {
-  color: var(--px-ink-3);
-  transition: transform .18s var(--px-ease);
-}
-main > section.inv-framework .inv-details[open] > summary .icon {
-  transform: rotate(180deg);
-}
-main > section.inv-framework .inv-details-body {
-  padding: 0 22px 22px;
-}
-main > section.inv-framework .inv-details-body p {
-  margin: 0;
-  max-width: 70ch;
-  color: var(--px-ink-2);
-}
-main > section.inv-framework .inv-details-body .inv-details-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 28px;
-  margin-top: 12px;
-}
-main > section.inv-framework .inv-details-links a {
-  display: block;
-  padding: 10px 0;
-  font-size: var(--px-t-body);
-  font-weight: 600;
-  color: var(--px-blue-700);
+main > section.inv-framework .inv-guide:hover h3 a span {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
-main > section.inv-framework .inv-details-links a:hover {
-  color: var(--px-navy-950);
+main > section.inv-framework .inv-guide p {
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--px-ink-2);
+  line-height: 1.6;
 }
-main > section.inv-framework .inv-details-links .icon {
-  width: 16px;
-  height: 16px;
-  margin-left: 6px;
-  vertical-align: -2px;
+main > section.inv-framework .inv-guide-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font: 600 var(--px-t-body)/1.4 var(--px-sans);
+  color: var(--px-blue-700);
+}
+main > section.inv-framework .inv-guide-more .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
 }
 
 /* ------------------------------------------------------ 5. Portals */
@@ -483,8 +530,8 @@ main > section.inv-portals .px-links a > .icon {
 /* ------------------------------------------------------ 6. Contact */
 main > section.inv-contact-sec .inv-contact {
   display: grid;
-  gap: 28px;
-  align-items: end;
+  gap: 32px;
+  align-items: center;
   padding: clamp(28px, 4.4vw, 56px);
   background: var(--px-navy-950);
   border-radius: var(--px-radius-lg);
@@ -492,8 +539,8 @@ main > section.inv-contact-sec .inv-contact {
 }
 @media (min-width: 960px) {
   main > section.inv-contact-sec .inv-contact {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 48px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    gap: clamp(40px, 5vw, 80px);
   }
 }
 #investment-contact .inv-contact .eyebrow {
@@ -514,10 +561,53 @@ main > section.inv-contact-sec .inv-contact-copy p:not(.eyebrow) {
   max-width: 62ch;
   color: rgba(226, 236, 250, .88);
 }
+main > section.inv-contact-sec .inv-contact-list {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr);
+  gap: 0 20px;
+  margin: 0;
+  border-top: 1px solid rgba(226, 236, 250, .18);
+}
+main > section.inv-contact-sec .inv-contact-list > :is(dt, dd) {
+  margin: 0;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(226, 236, 250, .18);
+  font-size: var(--px-t-body);
+  line-height: 1.5;
+}
+main > section.inv-contact-sec .inv-contact-list > dt {
+  font-weight: 600;
+  color: rgba(226, 236, 250, .78);
+}
+main > section.inv-contact-sec .inv-contact-list > dd {
+  color: #fff;
+}
+#investment-contact .inv-contact-list a {
+  color: #fff !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+#investment-contact .inv-contact-list a:hover {
+  color: var(--px-gold-500) !important;
+}
+@media (max-width: 479px) {
+  main > section.inv-contact-sec .inv-contact-list {
+    grid-template-columns: 1fr;
+  }
+  main > section.inv-contact-sec .inv-contact-list > dt {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  main > section.inv-contact-sec .inv-contact-list > dd {
+    padding-top: 2px;
+  }
+}
 main > section.inv-contact-sec .inv-contact-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  margin-top: 28px;
 }
 @media (max-width: 560px) {
   main > section.inv-contact-sec .inv-contact-actions {

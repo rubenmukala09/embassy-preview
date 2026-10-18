@@ -443,3 +443,28 @@ main > section.sp:not(#sp-x) .sp-facts dd.sp-addr .sp-line {
   display: block;
   text-wrap: balance;
 }
+
+/* ------------------------------------------------- Migrated content (October 2026)
+   Second card link (holiday closures) and the passport contact line in the
+   status panel. */
+main > section.sp:not(#sp-x) .sp-card-link + .sp-card-link {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+main > section.sp:not(#sp-x) .sp-panel-note {
+  margin: 14px 0 0;
+  max-width: 56ch;
+  font: 400 var(--px-t-body)/1.6 var(--px-sans) !important;
+  color: var(--px-ink-2) !important;
+}
+main > section.sp:not(#sp-x) .sp-panel-note a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+main > section.sp:not(#sp-x) .sp-panel-note a:hover {
+  color: var(--px-navy-950);
+}

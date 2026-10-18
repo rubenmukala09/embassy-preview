@@ -8,8 +8,9 @@
    Page JS (aurora/pro/the-embassy.js) only localises portrait alt text.
 
    Structure (UK FCDO worldwide-organisation model):
-   About -> Head of State -> The Ambassador -> Embassy offices -> History ->
-   Contact & before-you-visit -> Official websites -> Last updated.
+   About (+ real Embassy sign photo) -> Message from the Ambassador ->
+   Head of State -> The Ambassador (full biography) -> Embassy divisions ->
+   History -> Contact & before-you-visit -> Official websites -> Last updated.
    ============================================================================ */
 
 main > section.te-sec {
@@ -94,6 +95,14 @@ main > section.te-sec .te-sub {
   color: var(--px-ink-3);
   font-size: var(--px-t-meta);
   margin-top: 2px;
+}
+/* Small run-in label above a group of lines (e.g. "Drop-off", "Pick-up"). */
+main > section.te-sec .te-label {
+  font-weight: 600;
+  margin-top: 0;
+}
+main > section.te-sec .te-line + .te-label {
+  margin-top: 8px;
 }
 /* One text-link treatment for the whole page: Congo blue, weight 600, 1px
    underline that thickens on hover. Only .px-links rows (Official websites)
@@ -665,10 +674,203 @@ main > section.te-links p.te-updated {
   max-width: none !important;
 }
 
+/* ------------------------------------------- 1b. About: the Embassy sign
+   The real photograph of the Embassy's sign (migrated from the old site)
+   sits above "At a glance". The frame crops to the sharp band of the photo. */
+main > section.te-about .te-about-side {
+  display: grid;
+  gap: var(--te-gap);
+  min-width: 0;
+}
+main > section.te-about .te-sign {
+  margin: 0;
+  min-width: 0;
+}
+main > section.te-about .te-sign-frame {
+  aspect-ratio: 5 / 2;
+  overflow: hidden;
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  background: var(--px-canvas);
+}
+main > section.te-about .te-sign-frame img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover;
+  object-position: 50% 46%;
+  border-radius: 0;
+}
+main > section.te-about .te-sign figcaption {
+  position: static !important;
+  margin: 8px 0 0;
+  padding: 0;
+  background: none;
+  font: 400 var(--px-t-meta)/1.5 var(--px-sans) !important;
+  color: var(--px-ink-3) !important;
+}
+
+/* ------------------------------------ 1c. Message from the Ambassador
+   Split band like History: heading column beside a plain letter card. */
+main > section.te-message .te-message-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--te-col-gap);
+  align-items: start;
+}
+main > section.te-sec.te-message .sec-head {
+  margin-bottom: 0 !important;
+}
+main > section.te-message .te-letter {
+  margin: 0 !important;
+  padding: clamp(24px, 3vw, 40px) !important;
+  max-width: none !important;
+  background: var(--px-paper) !important;
+  border: 1px solid var(--px-line) !important;
+  border-radius: var(--px-radius) !important;
+  box-shadow: var(--px-shadow) !important;
+  font: 400 17px/1.7 var(--px-sans) !important;
+  font-style: normal !important;
+  color: var(--px-ink) !important;
+  quotes: none;
+  text-align: left !important;
+}
+main > section.te-message .te-letter::before,
+main > section.te-message .te-letter::after {
+  content: none !important;
+}
+main > section.te-message .te-letter p {
+  font: 400 17px/1.7 var(--px-sans) !important;
+  color: var(--px-ink) !important;
+  margin: 0 0 16px !important;
+  max-width: 66ch !important;
+}
+main > section.te-message .te-letter-sign {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--px-line);
+}
+main > section.te-message .te-letter-sign p {
+  margin: 0 !important;
+}
+main > section.te-message .te-letter .te-letter-close {
+  color: var(--px-ink-2) !important;
+  margin-bottom: 6px !important;
+}
+main > section.te-message .te-letter .te-letter-name {
+  font: 700 19px/1.4 var(--px-serif) !important;
+}
+main > section.te-message .te-letter-name a {
+  color: var(--px-navy-950) !important;
+  text-decoration-color: var(--px-gold-600) !important;
+}
+main > section.te-message .te-letter .te-letter-role {
+  font: 400 15px/1.5 var(--px-sans) !important;
+  color: var(--px-ink-3) !important;
+  margin-top: 4px !important;
+}
+
+/* ------------------------------------- 3b. Ambassador: full biography */
+main > section.te-amb .te-facts {
+  grid-template-columns: minmax(120px, 28%) 1fr;
+  margin: 22px 0 8px;
+}
+main > section.te-amb .te-facts > dt {
+  font-size: 15px !important;
+}
+main > section.te-amb .te-subhead {
+  font-size: var(--px-t-h3) !important;
+  line-height: 1.3 !important;
+  margin: 36px 0 12px !important;
+}
+main > section.te-amb .te-acc {
+  margin-bottom: 8px;
+}
+main > section.te-amb .te-affil {
+  margin-bottom: 4px;
+}
+main > section.te-amb .te-affil li {
+  margin-bottom: 10px;
+}
+main > section.te-sec .te-pubs > li {
+  margin-bottom: 16px;
+}
+main > section.te-sec .te-pubs > li > span {
+  display: block;
+}
+main > section.te-sec .te-pubs .te-pub-title {
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
+main > section.te-sec .te-pubs .te-pub-alt {
+  font-size: 14.5px;
+  color: var(--px-ink-3);
+  margin-top: 2px;
+}
+main > section.te-sec .te-pubs .te-pub-meta {
+  font-size: 15px;
+  color: var(--px-ink-2);
+  margin-top: 2px;
+}
+main > section.te-sec .te-pubs .te-ext {
+  font-size: 15px;
+  padding: 6px 0;
+}
+
+/* --------------------------------------- 4b. Divisions: remit + actions */
+main > section.te-offices .te-office-head {
+  min-width: 0;
+}
+main > section.te-offices .te-office-tag {
+  display: block;
+  margin-top: 6px;
+  font: 600 13px/1.4 var(--px-sans);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--px-ink-3);
+}
+main > section.te-offices .te-office-body {
+  min-width: 0;
+}
+main > section.te-offices .te-office-body > p + p {
+  margin-top: 12px !important;
+}
+main > section.te-offices .te-office-body .te-runin {
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
+main > section.te-offices .te-office-body > p.te-office-note {
+  padding: 12px 16px;
+  color: var(--px-ink) !important;
+  font-size: 16px !important;
+}
+main > section.te-offices .te-office-body > p.te-office-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 26px;
+  margin-top: 8px !important;
+  max-width: none !important;
+}
+main > section.te-sec a.te-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+main > section.te-sec a.te-go .icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+}
+
 /* Split bands: the short heading column stays in view beside the long list,
    matching the sticky Ambassador portrait. */
 @media (min-width: 1024px) {
   main > section.te-sec.te-history .te-history-grid > .sec-head,
+  main > section.te-sec.te-message .te-message-grid > .sec-head,
   main > section.te-sec.te-links .te-links-grid > .sec-head {
     position: sticky !important;
     top: 24px;
@@ -679,6 +881,7 @@ main > section.te-links p.te-updated {
 /* ------------------------------------------------------- Responsive */
 @media (max-width: 1023px) {
   main > section.te-history .te-history-grid,
+  main > section.te-message .te-message-grid,
   main > section.te-links .te-links-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -760,8 +963,12 @@ main > section.te-links p.te-updated {
   }
 }
 @media (max-width: 560px) {
-  main > section.te-sec .px-summary {
+  main > section.te-sec .px-summary,
+  main > section.te-amb .te-facts {
     grid-template-columns: 1fr;
+  }
+  main > section.te-message .te-letter p {
+    font-size: 16.5px !important;
   }
 }
 

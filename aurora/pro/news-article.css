@@ -1,0 +1,83 @@
+/* ============================================================================
+   NEWS ARTICLE: page layer for single releases under /news/ (loaded after
+   aurora/pro/article.css). Every rule is scoped to main > section.ar, so the
+   frozen chrome (banner, header, notice bar, hero, quick-access dock, footer)
+   is never matched.
+   ============================================================================ */
+
+/* Publication line: kind · date · publisher */
+main > section.ar .na-meta {
+  align-items: baseline;
+}
+main > section.ar .na-meta .na-kind {
+  color: var(--px-gold-ink);
+  font-weight: 700;
+}
+main > section.ar .na-meta time {
+  color: var(--px-ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Lead photograph of the release */
+main > section.ar .na-figure {
+  margin: 0 0 28px;
+}
+main > section.ar .na-figure img {
+  aspect-ratio: 1024 / 682;
+  object-fit: cover;
+}
+
+/* Source note under the at-a-glance summary */
+main > section.ar .ar-body p.na-source {
+  margin: -14px 0 0;
+  font-size: var(--px-t-meta);
+  line-height: 1.5;
+  color: var(--px-ink-3);
+}
+
+/* Quotation from the official document: the paragraph inherits the quote type,
+   not the article's body paragraph type. */
+main > section.ar .ar-quote p.na-quote {
+  margin: 0;
+  font: italic 400 19px/1.6 var(--px-serif);
+  color: var(--px-navy-950);
+}
+
+/* The official document link */
+main > section.ar .na-doc a {
+  gap: 16px;
+  padding: 16px 4px;
+  text-decoration: none !important;
+}
+main > section.ar .na-doc .na-doc-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+main > section.ar .na-doc .px-links-name {
+  font: 600 17px/1.4 var(--px-sans);
+  color: var(--px-navy-950);
+  text-decoration: underline;
+  text-decoration-color: rgba(29, 91, 184, .45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+main > section.ar .na-doc a:hover .px-links-name {
+  color: var(--px-blue-700);
+  text-decoration-color: currentColor;
+}
+main > section.ar .na-doc .px-links-meta {
+  font: 400 14.5px/1.5 var(--px-sans);
+  color: var(--px-ink-3);
+}
+main > section.ar .na-doc .icon-chip .icon {
+  margin: 0;
+  color: var(--px-blue-700);
+}
+
+/* No automatic hyphenation in the release (EN or FR). */
+main > section.ar .na-body :is(p, li, dt, dd, h2, span, cite) {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}

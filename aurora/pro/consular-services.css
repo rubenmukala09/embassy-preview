@@ -753,3 +753,382 @@ main > section.cs-guide .cs-block > .cs-disclosures:last-child > .cs-details:las
     display: none !important;
   }
 }
+
+/* ============================================================================
+   13. Migrated content (October 2026): the former site's Passport and Visa,
+   Legalization and Fees pages folded into the blocks above. Same tokens,
+   same rhythm; new pieces only: intro + notice, numbered requirement lists,
+   fee tables, payment note, holidays.
+   ============================================================================ */
+
+/* ---- Intro and "no online bookings" notice */
+main > section.cs-guide .cs-body p.cs-intro {
+  margin: 0 0 18px;
+  max-width: 66ch;
+  font: 400 var(--px-t-lead)/1.6 var(--px-sans);
+  color: var(--px-ink);
+  text-wrap: pretty;
+}
+main > section.cs-guide .cs-body p.cs-meta {
+  margin-bottom: 20px;
+}
+main > section.cs-guide .cs-notice {
+  margin: 0 0 clamp(36px, 4.5vw, 56px);
+}
+main > section.cs-guide .cs-notice strong {
+  color: var(--px-navy-950);
+  font-weight: 700;
+}
+main > section.cs-guide .px-inset a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  white-space: nowrap;
+}
+main > section.cs-guide .px-inset a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+
+/* ---- Numbered requirement lists (official numbering kept) */
+main > section.cs-guide ol.cs-olist,
+main > section.cs-guide ol.cs-sublist {
+  list-style: decimal;
+  margin: 10px 0 0;
+  padding: 0 0 0 1.6em;
+  max-width: 68ch;
+}
+main > section.cs-guide ol.cs-olist.cs-alpha {
+  list-style: lower-alpha;
+}
+main > section.cs-guide :is(ol.cs-olist, ol.cs-sublist) > li {
+  margin: 8px 0;
+  padding: 0 0 0 4px;
+  font-size: var(--px-t-body);
+  line-height: 1.6;
+  color: var(--px-ink);
+  background: none;
+}
+main > section.cs-guide :is(ol.cs-olist, ol.cs-sublist) > li::before {
+  content: none;
+}
+main > section.cs-guide :is(ol.cs-olist, ol.cs-sublist) > li::marker {
+  color: var(--px-navy-900);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+main > section.cs-guide ol.cs-sublist > li {
+  color: var(--px-ink-2);
+}
+main > section.cs-guide ol.cs-sublist b {
+  color: var(--px-navy-950);
+  font-weight: 700;
+}
+main > section.cs-guide .cs-steps ol.cs-sublist {
+  margin: 6px 0 10px;
+}
+main > section.cs-guide .cs-subnote {
+  margin-top: 4px;
+  color: var(--px-ink-2);
+  font-size: var(--px-t-meta);
+  line-height: 1.5;
+}
+main > section.cs-guide :is(ol.cs-olist, ol.cs-sublist) a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+main > section.cs-guide :is(ol.cs-olist, ol.cs-sublist) a:hover {
+  color: var(--px-navy-950);
+  text-decoration-thickness: 2px;
+}
+main > section.cs-guide p.cs-after-steps {
+  margin: 22px 0 0;
+  padding-left: 58px;
+  color: var(--px-ink-2);
+  font-size: var(--px-t-body);
+  line-height: 1.6;
+}
+@media (max-width: 560px) {
+  main > section.cs-guide p.cs-after-steps { padding-left: 0; }
+}
+
+/* ---- Visa categories inside the disclosures */
+main > section.cs-guide .cs-details-body > p.cs-cat-lead {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
+main > section.cs-guide .cs-details-body > p.cs-cat-time {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--px-line-strong);
+  font-size: var(--px-t-meta);
+  line-height: 1.5;
+  color: var(--px-ink-2);
+}
+main > section.cs-guide .cs-details-body ol.cs-olist {
+  margin-top: 6px;
+}
+main > section.cs-guide .cs-details {
+  scroll-margin-top: 24px;
+}
+main > section.cs-guide p.cs-note {
+  max-width: 68ch;
+}
+main > section.cs-guide p.cs-after-list {
+  margin: 16px 0 0;
+}
+main > section.cs-guide .cs-extra > dd .cs-line + .cs-line {
+  margin-top: 8px;
+}
+main > section.cs-guide .cs-extra > dd a.cs-ext {
+  white-space: nowrap;
+}
+
+/* ---- Fee tables (same look as the schedule on pay/) */
+main > section.cs-guide .cs-table-card {
+  max-width: 820px;
+  margin-top: 6px;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  overflow: clip;
+}
+main > section.cs-guide .cs-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+main > section.cs-guide .cs-table-wrap:focus-visible {
+  outline: 3px solid var(--px-gold-500) !important;
+  outline-offset: -3px !important;
+  box-shadow: none !important;
+}
+main > section.cs-guide table.cs-table {
+  /* aurora.css turns every .section table into a nowrap scroll block on
+     small screens; these tables wrap inside their own scroll region. */
+  display: table !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  width: 100%;
+  min-width: 300px;
+  margin: 0;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+main > section.cs-guide table.cs-table :is(th, td) {
+  padding: 13px clamp(16px, 2.4vw, 28px) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--px-line) !important;
+  background: none;
+  background-image: none !important;
+  text-align: left;
+  vertical-align: baseline;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+main > section.cs-guide table.cs-table thead th {
+  padding-top: 14px !important;
+  padding-bottom: 12px !important;
+  font: 600 14px/1.3 var(--px-sans) !important;
+  color: var(--px-ink-2) !important;
+  background-color: var(--px-canvas) !important;
+  border-bottom: 1px solid var(--px-line-strong) !important;
+}
+main > section.cs-guide table.cs-table td {
+  font-size: var(--px-t-body) !important;
+  line-height: 1.45 !important;
+  color: var(--px-ink);
+}
+main > section.cs-guide table.cs-table thead,
+main > section.cs-guide table.cs-table tr {
+  background: none !important;
+}
+main > section.cs-guide table.cs-table tbody td {
+  background-color: var(--px-paper) !important;
+}
+main > section.cs-guide table.cs-table tbody tr:nth-child(even) td {
+  background-color: #f8fafc !important;
+}
+main > section.cs-guide table.cs-table .cs-num {
+  width: 7em;
+  text-align: right !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+main > section.cs-guide table.cs-table td.cs-num {
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
+main > section.cs-guide table.cs-table .cs-group th {
+  padding-top: 18px !important;
+  padding-bottom: 8px !important;
+  font: 700 16.5px/1.3 var(--px-serif) !important;
+  color: var(--px-navy-950) !important;
+  background-color: var(--px-sky) !important;
+}
+main > section.cs-guide table.cs-table tbody:last-child tr:last-child td {
+  border-bottom: 0 !important;
+}
+/* Civil affairs: document name, then what to provide, in one cell */
+main > section.cs-guide table.cs-doc-table td {
+  vertical-align: top;
+}
+main > section.cs-guide table.cs-doc-table td.cs-num {
+  padding-top: 15px !important;
+}
+main > section.cs-guide .cs-doc {
+  display: block;
+  font-weight: 600;
+  color: var(--px-navy-950);
+}
+main > section.cs-guide ul.cs-reqs {
+  list-style: disc;
+  margin: 6px 0 0;
+  padding: 0 0 0 1.15em;
+}
+main > section.cs-guide ul.cs-reqs > li {
+  margin: 3px 0;
+  padding: 0;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--px-ink-2);
+  background: none;
+}
+main > section.cs-guide ul.cs-reqs > li::before {
+  content: none;
+}
+main > section.cs-guide ul.cs-reqs a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+main > section.cs-guide ul.cs-fee-notes {
+  margin-top: 18px;
+}
+@media (max-width: 560px) {
+  main > section.cs-guide table.cs-table :is(th, td) {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  main > section.cs-guide table.cs-table .cs-num {
+    width: 5.2em;
+    padding-left: 6px !important;
+  }
+}
+
+/* ---- Payment note */
+main > section.cs-guide .cs-pay > dd .cs-line + .cs-line {
+  margin-top: 10px;
+}
+main > section.cs-guide .cs-pay .cs-strong {
+  font-weight: 700;
+  color: var(--px-navy-950);
+}
+main > section.cs-guide .cs-pay-inset {
+  margin-top: 28px;
+}
+main > section.cs-guide .cs-pay-inset strong {
+  color: var(--px-navy-950);
+}
+
+/* ---- Status: contacts line */
+main > section.cs-guide p.cs-status-contact {
+  margin: 22px 0 0;
+}
+main > section.cs-guide p.cs-status-contact a {
+  white-space: nowrap;
+}
+
+/* ---- Forms: one small heading per document type */
+main > section.cs-guide .cs-h3.cs-forms-h {
+  margin: 28px 0 6px;
+  font: 700 13px/1.3 var(--px-sans) !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+  color: var(--px-ink-3);
+}
+main > section.cs-guide .sec-head + .cs-h3.cs-forms-h {
+  margin-top: 0;
+}
+main > section.cs-guide .cs-forms + .cs-h3.cs-forms-h {
+  margin-top: 30px;
+}
+main > section.cs-guide .cs-forms a > .icon:last-child {
+  color: var(--px-blue-700);
+}
+
+/* ---- Holidays */
+main > section.cs-guide .cs-holidays {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px clamp(24px, 3vw, 40px);
+  max-width: 820px;
+  margin-top: 18px;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  main > section.cs-guide .cs-holidays { grid-template-columns: minmax(0, 1fr); }
+}
+main > section.cs-guide .cs-hol {
+  min-width: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--px-line);
+  border-top: 3px solid var(--px-navy-900);
+  border-radius: var(--px-radius);
+  background: var(--px-paper);
+}
+main > section.cs-guide .cs-hol h4 {
+  margin: 0 0 8px;
+  font: 700 16px/1.35 var(--px-sans) !important;
+  letter-spacing: 0 !important;
+  color: var(--px-navy-950);
+}
+main > section.cs-guide ul.cs-hol-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+main > section.cs-guide ul.cs-hol-list > li {
+  display: grid;
+  grid-template-columns: 7.2em minmax(0, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--px-line);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--px-ink);
+  background: none;
+}
+main > section.cs-guide ul.cs-hol-list.cs-hol-names > li {
+  display: block;
+}
+main > section.cs-guide ul.cs-hol-list > li:last-child {
+  border-bottom: 0;
+}
+main > section.cs-guide ul.cs-hol-list > li::before {
+  content: none;
+}
+main > section.cs-guide .cs-hol-date {
+  font-weight: 600;
+  color: var(--px-navy-950);
+  font-variant-numeric: tabular-nums;
+}
+main > section.cs-guide p.cs-hol-note {
+  margin: 8px 0 0;
+  font-size: var(--px-t-meta);
+  line-height: 1.5;
+  color: var(--px-ink-3);
+}
+
+/* A summary list that follows a numbered list keeps its distance. */
+main > section.cs-guide .cs-olist + .px-summary {
+  margin-top: 28px;
+}

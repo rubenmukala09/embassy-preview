@@ -5,12 +5,15 @@
    The gallery markup carries no [data-zoom] attributes, so the older shared
    lightbox in aurora.js never binds to it. Without JavaScript each card is a
    plain link to the full-size photograph.
+   The section holds two lists (photographs published by the Embassy, then
+   the illustrative set); one lightbox runs through both, and each slide's
+   label says which kind of photograph it is (figure[data-amb-kind]).
    ============================================================================ */
 (function () {
   "use strict";
 
-  var gallery = document.getElementById("amb-gallery");
-  if (!gallery) return;
+  var gallery = document.getElementById("gallery");
+  if (!gallery || !gallery.querySelector("a.amb-link")) return;
 
   var root = document.documentElement;
   function isFr() {
@@ -48,7 +51,8 @@
       prev: "Previous photograph",
       next: "Next photograph",
       error: "The photograph could not be loaded.",
-      label: "Illustrative photography"
+      label: "Illustrative photography",
+      labelEmbassy: "Photograph published by the Embassy"
     },
     fr: {
       close: "Fermer",
@@ -56,7 +60,8 @@
       prev: "Photographie précédente",
       next: "Photographie suivante",
       error: "La photographie n’a pas pu être chargée.",
-      label: "Photographie d’illustration"
+      label: "Photographie d’illustration",
+      labelEmbassy: "Photographie publiée par l’Ambassade"
     }
   };
   function strings() { return STR[isFr() ? "fr" : "en"]; }
@@ -71,7 +76,7 @@
   }
 
   var lightbox = new Lightbox({
-    gallery: "#amb-gallery",
+    gallery: "#gallery",
     children: "a.amb-link",
     pswpModule: Core,
     mainClass: "amb-pswp",
@@ -140,7 +145,8 @@
           var img = link && link.querySelector("img");
           var fig = link && link.closest("figure");
           var ttl = fig && fig.querySelector(".amb-cap-ttl");
-          label.textContent = strings().label;
+          var embassy = fig && fig.getAttribute("data-amb-kind") === "embassy";
+          label.textContent = embassy ? strings().labelEmbassy : strings().label;
           title.textContent = ttl ? ttl.textContent.trim() : "";
           desc.textContent = img ? (img.getAttribute("alt") || "") : "";
         }

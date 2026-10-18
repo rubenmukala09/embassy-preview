@@ -1221,3 +1221,340 @@ main > section.home-band .home-media-panel .sec-head p.eyebrow {
 main > section.home-band .home-media-panel .sec-head p.eyebrow::before {
   background: var(--px-gold-500) !important;
 }
+
+/* ---------------------------------------------------------------------------
+   Migration additions (October 2026): content carried over from the
+   Embassy's previous home page.
+   0 Welcome (#welcome): the welcome message, a real Embassy photograph and
+     four service pathways. It opens the page on paper, so the existing
+     canvas/paper alternation of the bands below is unchanged.
+   5 News: the release's own photograph and a compact, dated campaign notice.
+   7 Invest: the investment paragraph and the Embassy's published key figures.
+   --------------------------------------------------------------------------- */
+main > section.home-band.home-welcome {
+  background: var(--px-paper) !important;
+}
+main > section.home-band .home-welcome-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+main > section.home-band .home-welcome-copy .sec-head {
+  margin-bottom: 18px !important;
+}
+main > section.home-band .home-welcome-text {
+  max-width: 66ch;
+  margin: 0 0 14px;
+  color: var(--px-ink);
+  font: 400 17px/1.66 var(--px-sans);
+}
+main > section.home-band .home-welcome-text:last-child {
+  margin-bottom: 0;
+}
+main > section.home-band .home-welcome-photo {
+  margin: 0;
+}
+main > section.home-band .home-welcome-photo .px-frame {
+  aspect-ratio: 3 / 2;
+}
+main > section.home-band .home-welcome-photo img {
+  display: block;
+  object-position: 30% 50%;
+}
+main > section.home-band .home-paths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--hb-gap);
+  margin: clamp(32px, 4vw, 52px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+main > section.home-band .home-paths > li {
+  display: flex;
+  margin: 0;
+  min-width: 0;
+}
+/* Icon beside the text, so each pathway reads as one short line of intent. */
+main > section.home-band .home-path {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 18px;
+  align-items: start;
+  width: 100%;
+  padding: clamp(20px, 2vw, 26px);
+  color: inherit;
+  text-decoration: none !important;
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius);
+  box-shadow: var(--px-shadow);
+  transition: border-color .2s var(--px-ease), box-shadow .2s var(--px-ease);
+}
+main > section.home-band .home-path:hover {
+  border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
+}
+main > section.home-band .home-path > .icon-chip {
+  margin: 0;
+}
+main > section.home-band .home-path-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+main > section.home-band .home-path-title {
+  margin: 9px 0 8px;
+  color: var(--px-navy-950);
+  font: 700 19px/1.3 var(--px-serif);
+  text-wrap: balance;
+}
+main > section.home-band .home-path-text {
+  color: var(--px-ink-2);
+  font: 400 15.5px/1.58 var(--px-sans);
+}
+main > section.home-band .home-path-go {
+  display: block;
+  margin-top: auto;
+  padding-top: 16px;
+  color: var(--px-blue-700);
+  font: 600 15.5px/1.35 var(--px-sans);
+}
+main > section.home-band .home-path-go > span {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+main > section.home-band .home-path:hover .home-path-go {
+  color: var(--px-navy-950);
+}
+main > section.home-band .home-path-go .icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: -3px;
+}
+main > section.home-band .home-path:focus-visible {
+  border-radius: var(--px-radius) !important;
+}
+
+/* Practical information: the visa windows note sits under its rows. */
+main > section.home-band .home-tool-block .home-tool-rows {
+  margin-bottom: 10px;
+}
+main > section.home-band .home-tool-block .home-tool-note {
+  margin: 0 0 18px;
+}
+
+/* News: the release photograph runs to the card's edges; the title link
+   covers the whole card (one link, one tap target). */
+main > section.home-band .home-news-media {
+  margin: calc(-1 * clamp(20px, 2vw, 28px)) calc(-1 * clamp(20px, 2vw, 28px)) 18px;
+}
+main > section.home-band .home-news-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: 50% 26%;
+  border-radius: calc(var(--px-radius) - 1px) calc(var(--px-radius) - 1px) 0 0;
+  background: var(--px-canvas);
+}
+main > section.home-band .home-news-media figcaption {
+  margin: 8px 0 0;
+  padding: 0 clamp(20px, 2vw, 28px);
+  color: var(--px-ink-3);
+  font: 400 13.5px/1.45 var(--px-sans);
+}
+main > section.home-band .home-news-link {
+  color: inherit;
+  text-decoration: none;
+}
+main > section.home-band .home-news-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--px-radius);
+}
+main > section.home-band .home-news-link:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+main > section.home-band .home-news-link:focus-visible::after {
+  outline: 3px solid var(--px-gold-500);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--px-navy-950);
+}
+main > section.home-band .home-news-lead:hover {
+  border-color: rgba(45, 112, 214, .55);
+  box-shadow: var(--px-shadow-hover);
+}
+main > section.home-band .home-news-lead:hover .home-news-link > span {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+/* Right column: the holidays card, then the campaign notice. On wide screens
+   the release card matches the column's height and its photograph takes the
+   extra space, so neither card shows an empty gap. */
+main > section.home-band .home-news-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hb-gap);
+  min-width: 0;
+}
+main > section.home-band .home-news-side .home-holidays {
+  flex: 1 1 auto;
+}
+@media (min-width: 961px) {
+  main > section.home-band .home-news-lead .home-news-media {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+  main > section.home-band .home-news-lead .home-news-media img {
+    flex: 1 1 auto;
+    height: 0;
+    min-height: 240px;
+    aspect-ratio: auto;
+  }
+}
+
+/* Campaign notice: quiet, dated, one external link. */
+main > section.home-band .home-campaign {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 10px 18px;
+  padding: 18px clamp(20px, 2vw, 24px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-left: 4px solid var(--px-gold-600);
+  border-radius: var(--px-radius);
+}
+main > section.home-band .home-campaign-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0 0 2px;
+  color: var(--px-gold-ink);
+  font: 600 14px/1.4 var(--px-sans);
+}
+main > section.home-band .home-campaign-kicker time {
+  color: var(--px-ink-2);
+  font-weight: 500;
+}
+main > section.home-band .home-campaign h3 {
+  margin: 0;
+  color: var(--px-navy-950);
+  font: 700 19px/1.3 var(--px-serif);
+}
+main > section.home-band .home-campaign-desc {
+  margin: 4px 0 0;
+  color: var(--px-ink-2);
+  font: 400 15.5px/1.5 var(--px-sans);
+}
+main > section.home-band .home-campaign-link {
+  grid-column: 2;
+  min-height: 40px;
+}
+
+/* Invest: paragraph + key figures, one quiet panel under the two features. */
+main > section.home-band .home-invest {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 3.4vw, 56px);
+  margin-top: clamp(28px, 3vw, 40px);
+  padding: clamp(22px, 2.6vw, 36px);
+  background: var(--px-paper);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-lg);
+}
+main > section.home-band .home-invest h3 {
+  margin: 0 0 10px;
+  color: var(--px-navy-950);
+  font: 700 var(--px-t-h3)/1.3 var(--px-serif);
+}
+main > section.home-band .home-invest-text {
+  max-width: 62ch;
+  margin: 0 0 8px;
+  color: var(--px-ink-2);
+  font: 400 16.5px/1.62 var(--px-sans);
+}
+main > section.home-band .home-invest-label {
+  margin: 0 0 6px;
+  color: var(--px-navy-900);
+  font: 700 13px/1.3 var(--px-sans);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+main > section.home-band .home-figures {
+  margin: 0 0 12px;
+  padding: 0;
+}
+main > section.home-band .home-figures > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 16px;
+  padding: 11px 0;
+  border-top: 1px solid var(--px-line);
+}
+main > section.home-band .home-figures > div:last-child {
+  border-bottom: 1px solid var(--px-line);
+}
+main > section.home-band .home-figures dt {
+  grid-column: 1;
+  margin: 0;
+  color: var(--px-ink);
+  font: 500 15.5px/1.45 var(--px-sans);
+}
+main > section.home-band .home-figures .home-fig-value {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  max-width: 22ch;
+  margin: 0;
+  color: var(--px-navy-950);
+  font: 700 16.5px/1.35 var(--px-sans);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+main > section.home-band .home-figures .home-fig-year {
+  grid-column: 1;
+  margin: 2px 0 0;
+  color: var(--px-ink-3);
+  font: 400 14px/1.4 var(--px-sans);
+}
+
+@media (max-width: 960px) {
+  main > section.home-band :is(.home-welcome-grid, .home-invest) {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 620px) {
+  main > section.home-band .home-paths {
+    grid-template-columns: 1fr;
+  }
+  main > section.home-band .home-path {
+    column-gap: 14px;
+  }
+  main > section.home-band .home-news-media img {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* Office hours: link to the list of holiday closures (News & Events). */
+main > section.home-band .home-hours-note a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+main > section.home-band .home-hours-note a:hover {
+  color: var(--px-navy-950);
+}
