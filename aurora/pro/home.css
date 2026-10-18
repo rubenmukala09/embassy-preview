@@ -1546,3 +1546,15 @@ main > section.home-band .home-figures .home-fig-year {
     aspect-ratio: 3 / 2;
   }
 }
+
+/* Office hours: link to the list of holiday closures (News & Events). */
+main > section.home-band .home-hours-note a {
+  color: var(--px-blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+main > section.home-band .home-hours-note a:hover {
+  color: var(--px-navy-950);
+}
