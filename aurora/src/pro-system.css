@@ -47,9 +47,25 @@
   --px-radius: 14px;
   --px-radius-lg: 20px;
   --px-radius-ctl: 10px;
-  --px-shadow: 0 1px 2px rgba(1, 26, 53, .05), 0 1px 1px rgba(1, 26, 53, .03);
-  --px-shadow-hover: 0 1px 2px rgba(1, 26, 53, .06), 0 12px 28px -18px rgba(1, 26, 53, .35);
+
+  /* Elevation — explicit 3-step scale.
+     The audit found 31 unique shadow values on the live site; this ladder
+     is what pro-system commits to. --px-shadow / --px-shadow-hover are kept
+     as aliases of --px-sh-sm / --px-sh-md for the existing call sites. */
+  --px-sh-sm: 0 1px 2px rgba(1, 26, 53, .05), 0 1px 1px rgba(1, 26, 53, .03);
+  --px-sh-md: 0 1px 2px rgba(1, 26, 53, .06), 0 12px 28px -18px rgba(1, 26, 53, .35);
+  --px-sh-lg: 0 2px 4px rgba(1, 26, 53, .08), 0 32px 64px -24px rgba(1, 26, 53, .40);
+  --px-shadow: var(--px-sh-sm);
+  --px-shadow-hover: var(--px-sh-md);
+
+  /* Motion — Emil Kowalski tokens; one easing, four durations.
+     Micro UI (icon nudges, color swaps): xs.  Buttons: sm.  Layout swaps
+     (dropdowns, modal entrances, strip crossfades): md.  Hero fades: lg. */
   --px-ease: cubic-bezier(.2, .75, .25, 1);
+  --px-d-xs: 120ms;
+  --px-d-sm: 200ms;
+  --px-d-md: 320ms;
+  --px-d-lg: 600ms;
 }
 
 main > section:not(.hero, .phead, .amb-hero, .qa-band) {
