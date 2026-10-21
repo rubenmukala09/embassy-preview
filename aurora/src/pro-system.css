@@ -37,9 +37,9 @@
   --px-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
   --px-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
-  --px-t-h2: clamp(28px, 2.4vw + 10px, 40px);
-  --px-t-h3: clamp(19px, .6vw + 15px, 23px);
-  --px-t-lead: clamp(17px, .3vw + 15.5px, 19px);
+  --px-t-h2: clamp(32px, 2.8vw + 12px, 52px);
+  --px-t-h3: clamp(20px, .7vw + 16px, 25px);
+  --px-t-lead: clamp(18px, .35vw + 16.5px, 21px);
   --px-t-body: 16.5px;
   --px-t-meta: 14px;
   --px-t-eyebrow: 12.5px;
@@ -744,6 +744,102 @@ main > section:not(.hero, .phead, .amb-hero, .qa-band) {
     & .px-card:hover .px-frame img,
     & .px-link-card:hover .px-frame img {
       transform: scale(1.03);
+    }
+  }
+
+  /* -------------------------------------------- 15. Editorial headers (visible)
+     H2s commit to the Merriweather serif register. A gold-and-navy
+     hairline sits above each section title — brand richness without
+     watermarks. The first paragraph after a .sec-head reads as a lead:
+     bigger, darker, measured to 62ch for comfortable scanning. */
+  & .sec-head > h2 {
+    font-family: var(--px-serif) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.015em !important;
+    line-height: 1.08 !important;
+    position: relative;
+    padding-top: 20px;
+    margin-top: 0 !important;
+  }
+  & .sec-head > h2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--px-gold-500) 0 55%, var(--px-navy-900) 55% 100%);
+    border-radius: 2px;
+  }
+  /* Lead paragraph — first body <p> immediately after a .sec-head */
+  & .sec-head + p:not(.eyebrow, .px-caption, .home-leader-role, .home-leader-title),
+  & .sec-head ~ .lead,
+  & .sec-head ~ .px-lead,
+  & .sec-head ~ p.px-lead,
+  & p.px-lead {
+    font-size: var(--px-t-lead) !important;
+    color: var(--px-ink) !important;
+    max-width: 62ch;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  /* H3 inside cards gets the serif too, slightly tighter leading */
+  & .home-leader h3,
+  & .home-leader-id h3,
+  & .px-card > h3,
+  & .px-link-card > h3,
+  & .px-cta-card > h3,
+  & .home-path h3,
+  & .home-path-title {
+    font-family: var(--px-serif) !important;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+  }
+
+  /* -------------------------------------------- 16. Card gold top-accent (visible)
+     Persistent hairline gradient at the top of every below-hero card —
+     half-opacity at rest, full on hover. The gold token carries the DRC
+     flag reference without being literal; reads as brand rhythm. */
+  & .px-card,
+  & .home-path,
+  & .home-leader,
+  & .plan-card,
+  & .px-link-card,
+  & .px-cta-card,
+  & article.card {
+    position: relative;
+  }
+  & .px-card::before,
+  & .home-path::before,
+  & .home-leader::before,
+  & .plan-card::before,
+  & .px-link-card::before,
+  & .px-cta-card::before,
+  & article.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--px-gold-500) 50%, transparent 100%);
+    opacity: .55;
+    transition: opacity var(--px-d-sm) var(--px-ease);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    & .px-card:hover::before,
+    & .home-path:hover::before,
+    & .home-leader:hover::before,
+    & .plan-card:hover::before,
+    & .px-link-card:hover::before,
+    & .px-cta-card:hover::before,
+    & article.card:hover::before {
+      opacity: 1;
     }
   }
 
