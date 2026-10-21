@@ -640,6 +640,113 @@ main > section:not(.hero, .phead, .amb-hero, .qa-band) {
   & table {
     font-variant-numeric: tabular-nums;
   }
+
+  /* -------------------------------------------- 11. Card lift (visible)
+     Universal hover for below-hero cards: 2px lift, shadow goes from sm
+     to md over 200ms with --px-ease. Touch devices skip the hover rule
+     entirely (hover: hover + pointer: fine). Scope-guarded so frozen
+     cards in .hero/.phead/.amb-hero/.qa-band never match. */
+  & .px-card,
+  & .home-path,
+  & .home-leader,
+  & .plan-card,
+  & article.card,
+  & .px-link-card,
+  & .px-cta-card {
+    transition: box-shadow var(--px-d-sm) var(--px-ease),
+                transform  var(--px-d-sm) var(--px-ease),
+                border-color var(--px-d-sm) var(--px-ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    & .px-card:hover,
+    & .home-path:hover,
+    & .home-leader:hover,
+    & .plan-card:hover,
+    & article.card:hover,
+    & .px-link-card:hover,
+    & .px-cta-card:hover {
+      box-shadow: var(--px-sh-md) !important;
+      transform: translateY(-2px);
+      border-color: var(--px-line-strong) !important;
+    }
+    & .home-path:hover svg,
+    & .px-card:hover svg[class*="arrow"],
+    & .px-link-card:hover svg[class*="arrow"] { transform: translateX(3px); }
+  }
+  & .home-path svg,
+  & .px-card svg[class*="arrow"],
+  & .px-link-card svg[class*="arrow"] {
+    transition: transform var(--px-d-sm) var(--px-ease);
+  }
+
+  /* -------------------------------------------- 12. Button polish (visible)
+     Below-hero buttons: subtle lift on hover, decisive press. Keeps the
+     diplomatic register — no bounce, no color flash. */
+  & button, & .btn, & .px-btn, & .pill-btn {
+    transition: box-shadow var(--px-d-sm) var(--px-ease),
+                transform  var(--px-d-sm) var(--px-ease),
+                background-color var(--px-d-sm) var(--px-ease),
+                color var(--px-d-sm) var(--px-ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    & button:not(:disabled):hover,
+    & .btn:not(:disabled):hover,
+    & .px-btn:not(:disabled):hover,
+    & .pill-btn:not(:disabled):hover {
+      transform: translateY(-1px);
+      box-shadow: var(--px-sh-sm);
+    }
+  }
+  & button:not(:disabled):active,
+  & .btn:not(:disabled):active,
+  & .px-btn:not(:disabled):active,
+  & .pill-btn:not(:disabled):active {
+    transform: translateY(0) scale(.98);
+    transition-duration: var(--px-d-xs);
+  }
+
+  /* -------------------------------------------- 13. Inline link animation
+     Paragraph and list links get an animated underline — 0% → 100% width
+     from the left in 200ms. Skips buttons, home dock links, and CTA
+     cards that have their own treatment. */
+  & p a:not(.px-btn, .btn, .pill-btn, .home-link, [class*="-cta"]),
+  & li a:not(.px-btn, .btn, .pill-btn, .home-link, .home-path, [class*="-cta"]) {
+    color: var(--px-blue-700);
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size var(--px-d-sm) var(--px-ease),
+                color var(--px-d-sm) var(--px-ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    & p a:not(.px-btn, .btn, .pill-btn, .home-link, [class*="-cta"]):hover,
+    & li a:not(.px-btn, .btn, .pill-btn, .home-link, .home-path, [class*="-cta"]):hover {
+      background-size: 100% 1px;
+      color: var(--px-navy-900);
+    }
+  }
+
+  /* -------------------------------------------- 14. Image frame polish
+     Photos in .px-frame get a soft scale-in on hover of their parent card
+     — the frame itself stays put so no layout shift, the img transforms. */
+  & .home-leader .px-frame,
+  & .px-card .px-frame,
+  & .px-link-card .px-frame { overflow: hidden; }
+  & .home-leader .px-frame img,
+  & .px-card .px-frame img,
+  & .px-link-card .px-frame img {
+    transition: transform var(--px-d-md) var(--px-ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    & .home-leader:hover .px-frame img,
+    & .px-card:hover .px-frame img,
+    & .px-link-card:hover .px-frame img {
+      transform: scale(1.03);
+    }
+  }
+
 }
 
 /* Visually hidden, still announced by screen readers. */
