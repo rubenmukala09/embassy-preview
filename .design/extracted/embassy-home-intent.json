@@ -1,0 +1,728 @@
+{
+  "pageIntent": {
+    "type": "pricing",
+    "confidence": 0.48,
+    "path": "/embassy-preview",
+    "title": "Embassy of the Democratic Republic of the Congo, Washington, D.C.",
+    "description": "Website preview of the Embassy of the Democratic Republic of the Congo in Washington, D.C. - consular services, visas, passports, news and contact.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "pricing",
+        "weight": 0.6,
+        "detail": "currency+card-grid"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "landing",
+        "score": 0.3
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 28,
+          "w": 1280,
+          "h": 63
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "EMBASSY OF THE DRC\nWASHINGTON, D.C."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 1116,
+          "y": 39,
+          "w": 40,
+          "h": 40
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Welcome to the Embassy of the Democratic Republic of the Congo.",
+        "bounds": {
+          "x": 0,
+          "y": 122,
+          "w": 1280,
+          "h": 9539.796875
+        },
+        "buttonCount": 4,
+        "cardCount": 38,
+        "slots": {
+          "heading": "Welcome to the Embassy of the Democratic Republic of the Congo.",
+          "subheadings": [
+            "Information for visitors, investors and the Congolese diaspora",
+            "Visas, passports and travel documents",
+            "Civil affairs for the Congolese diaspora",
+            "The Embassy"
+          ],
+          "ctaCount": 4,
+          "lede": "RÉPUBLIQUE DÉMOCRATIQUE DU CONGO"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Welcome to the Embassy of the Democratic Republic of the Congo.",
+        "bounds": {
+          "x": 0,
+          "y": 122,
+          "w": 1280,
+          "h": 660
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Welcome to the Embassy of the Democratic Republic of the Congo.",
+          "ctaCount": 2,
+          "lede": "RÉPUBLIQUE DÉMOCRATIQUE DU CONGO"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 760,
+          "w": 1280,
+          "h": 166
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Passports\nRenew or apply\nVisas\nTravel to the DRC\nTenant-Lieu\nLaissez-Passer\nLegalization\nAuthenticate documents\nAppointment guidance\nPlan your visit\nStatus guidance\nContact support"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 101.1875,
+          "y": 782,
+          "w": 1077.625,
+          "h": 114
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Passports\nRenew or apply\nVisas\nTravel to the DRC\nTenant-Lieu\nLaissez-Passer\nLegalization\nAuthenticate documents\nAppointment guidance\nPlan your visit\nStatus guidance\nContact support"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Information for visitors, investors and the Congolese diaspora",
+        "bounds": {
+          "x": 0,
+          "y": 926,
+          "w": 1280,
+          "h": 1162.0625
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Information for visitors, investors and the Congolese diaspora",
+          "subheadings": [
+            "Visas, passports and travel documents",
+            "Civil affairs for the Congolese diaspora",
+            "The Embassy",
+            "DRC representations worldwide"
+          ],
+          "lede": "WELCOME"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Information for visitors, investors and the Congolese diaspora",
+        "bounds": {
+          "x": 101.1875,
+          "y": 1002.796875,
+          "w": 598.75,
+          "h": 106.71875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Information for visitors, investors and the Congolese diaspora",
+          "lede": "WELCOME"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "The Head of State and the Ambassador",
+        "bounds": {
+          "x": 0,
+          "y": 2088.0625,
+          "w": 1280,
+          "h": 836.15625
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "heading": "The Head of State and the Ambassador",
+          "subheadings": [
+            "H.E. Félix-Antoine Tshisekedi Tshilombo",
+            "H.E. Yvette Kapinga Ngandu"
+          ],
+          "lede": "THE EMBASSY"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "header",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "The Head of State and the Ambassador",
+        "bounds": {
+          "x": 101.1875,
+          "y": 2165.859375,
+          "w": 760,
+          "h": 177.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "The Head of State and the Ambassador",
+          "lede": "THE EMBASSY"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Practical information",
+        "bounds": {
+          "x": 0,
+          "y": 2924.21875,
+          "w": 1280,
+          "h": 985
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Practical information",
+          "subheadings": [
+            "Visa drop-off and collection",
+            "Fee estimator",
+            "Local time",
+            "Official DRC portals"
+          ],
+          "lede": "CONSULAR SERVICES"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Practical information",
+        "bounds": {
+          "x": 101.1875,
+          "y": 3002.015625,
+          "w": 760,
+          "h": 147.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Practical information",
+          "lede": "CONSULAR SERVICES"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Traveling to or living in the DRC?",
+        "bounds": {
+          "x": 0,
+          "y": 3909.21875,
+          "w": 1280,
+          "h": 1167.3125
+        },
+        "buttonCount": 1,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Traveling to or living in the DRC?",
+          "subheadings": [
+            "Before you travel",
+            "Current consular guidance",
+            "Register with the Embassy"
+          ],
+          "ctaCount": 1,
+          "lede": "TRAVEL ADVICE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Traveling to or living in the DRC?",
+        "bounds": {
+          "x": 101.1875,
+          "y": 3987.015625,
+          "w": 760,
+          "h": 147.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Traveling to or living in the DRC?",
+          "lede": "TRAVEL ADVICE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Forms and downloads",
+        "bounds": {
+          "x": 0,
+          "y": 5076.53125,
+          "w": 1280,
+          "h": 478.96875
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Forms and downloads",
+          "lede": "FORMS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 15,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Forms and downloads",
+        "bounds": {
+          "x": 101.1875,
+          "y": 5154.328125,
+          "w": 427.671875,
+          "h": 191.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Forms and downloads",
+          "lede": "FORMS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 16,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "News and calendar",
+        "bounds": {
+          "x": 0,
+          "y": 5555.5,
+          "w": 1280,
+          "h": 1055.25
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "News and calendar",
+          "subheadings": [
+            "The Washington Agreements: A New Era of Peace, Sovereignty, and Prosperity for the DRC",
+            "Public holidays in the DRC",
+            "Christmas Day",
+            "New Year’s Day"
+          ],
+          "lede": "NEWSROOM"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 17,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "News and calendar",
+        "bounds": {
+          "x": 101.1875,
+          "y": 5633.296875,
+          "w": 760,
+          "h": 160.8125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "News and calendar",
+          "lede": "NEWSROOM"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 18,
+        "tag": "aside",
+        "role": "sidebar",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "GENOCOST 2026: sign the petition",
+        "bounds": {
+          "x": 738.328125,
+          "y": 6372.421875,
+          "w": 440.46875,
+          "h": 161.53125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "GENOCOST 2026: sign the petition",
+          "lede": "Campaign notice\n·\n2026"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 19,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Media center",
+        "bounds": {
+          "x": 0,
+          "y": 6610.75,
+          "w": 1280,
+          "h": 817.375
+        },
+        "buttonCount": 1,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Media center",
+          "ctaCount": 1,
+          "lede": "MEDIA"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 20,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Media center",
+        "bounds": {
+          "x": 152.375,
+          "y": 6739.734375,
+          "w": 760,
+          "h": 147.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Media center",
+          "lede": "MEDIA"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 21,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Discover, visit and invest",
+        "bounds": {
+          "x": 0,
+          "y": 7428.125,
+          "w": 1280,
+          "h": 1426.984375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Discover, visit and invest",
+          "subheadings": [
+            "Discover the Democratic Republic of the Congo",
+            "Trade and investment",
+            "Invest in the DRC"
+          ],
+          "lede": "THE COUNTRY"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 22,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Discover, visit and invest",
+        "bounds": {
+          "x": 101.1875,
+          "y": 7505.921875,
+          "w": 760,
+          "h": 147.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Discover, visit and invest",
+          "lede": "THE COUNTRY"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 23,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Visit or contact the Embassy",
+        "bounds": {
+          "x": 0,
+          "y": 8855.109375,
+          "w": 1280,
+          "h": 806.6875
+        },
+        "buttonCount": 0,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Visit or contact the Embassy",
+          "subheadings": [
+            "Urgent consular assistance",
+            "Embassy of the Democratic Republic of the Congo",
+            "Office hours"
+          ],
+          "lede": "CONTACT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 24,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Visit or contact the Embassy",
+        "bounds": {
+          "x": 101.1875,
+          "y": 8932.90625,
+          "w": 760,
+          "h": 72.421875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Visit or contact the Embassy",
+          "lede": "CONTACT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 25,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 9661.796875,
+          "w": 1280,
+          "h": 495.3125
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "EMBASSY OF THE DRC\nWASHINGTON, D.C."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 26,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "HomeEmbassyServicesDR CongoNewsContact"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 27,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 8,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 8,
+          "lede": "Embassy AI GuideVerified guidance · English + Français×Homepage conciergeRenew my passportVisas & feesOfficial DRC portalsAnnual DRC calendarContact the EmbassyNever share passport numbers, banking details or documents.Information preview: no application, payment or appointment is submitted here. Contact an officer."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 28,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Embassy AI GuideVerified guidance · English + Français×"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 13,
+      "content": 7,
+      "hero": 2,
+      "testimonial": 2,
+      "pricing-table": 1,
+      "pricing": 1,
+      "sidebar": 1,
+      "footer": 1,
+      "testimonials": 1
+    },
+    "readingOrder": [
+      "nav",
+      "testimonials",
+      "nav",
+      "nav",
+      "nav",
+      "content",
+      "hero",
+      "content",
+      "nav",
+      "content",
+      "nav",
+      "testimonial",
+      "testimonial",
+      "pricing-table",
+      "nav",
+      "pricing",
+      "nav",
+      "content",
+      "nav",
+      "content",
+      "nav",
+      "sidebar",
+      "hero",
+      "nav",
+      "content",
+      "nav",
+      "content",
+      "nav",
+      "footer"
+    ]
+  }
+}

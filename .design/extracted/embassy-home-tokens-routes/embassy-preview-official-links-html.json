@@ -1,0 +1,393 @@
+{
+  "url": "https://rubenmukala09.github.io/embassy-preview/official-links.html",
+  "path": "/embassy-preview/official-links.html",
+  "added": {
+    "primitive": {
+      "fontSize": {
+        "sm-16": {
+          "$value": "9px"
+        },
+        "sm-17": {
+          "$value": "8px"
+        }
+      }
+    }
+  },
+  "changed": {
+    "primitive": {
+      "color": {
+        "brand": {
+          "primary": {
+            "$value": "#092744"
+          },
+          "secondary": {
+            "$value": "#f3d34a"
+          }
+        },
+        "neutral": {
+          "n400": {
+            "$value": "#91a4bb"
+          },
+          "n500": {
+            "$value": "#52637a"
+          }
+        },
+        "background": {
+          "bg1": {
+            "$value": "#eaf2fd"
+          },
+          "bg2": {
+            "$value": "#060d1e"
+          }
+        },
+        "text": {
+          "text8": {
+            "$value": "#eaf7fd"
+          },
+          "text9": {
+            "$value": "#fff0a2"
+          }
+        },
+        "ramp": {
+          "primary": {
+            "50": {
+              "$value": "#e3f8ff"
+            },
+            "100": {
+              "$value": "#d6edff"
+            },
+            "200": {
+              "$value": "#c2dcf8"
+            },
+            "300": {
+              "$value": "#a7c3e3"
+            },
+            "400": {
+              "$value": "#83a3c6"
+            },
+            "500": {
+              "$value": "#6585a8"
+            },
+            "600": {
+              "$value": "#516f8f"
+            },
+            "700": {
+              "$value": "#3f5975"
+            },
+            "800": {
+              "$value": "#314962"
+            },
+            "900": {
+              "$value": "#263a50"
+            },
+            "950": {
+              "$value": "#092744"
+            }
+          },
+          "secondary": {
+            "50": {
+              "$value": "#fff6ae"
+            },
+            "100": {
+              "$value": "#feea9a"
+            },
+            "200": {
+              "$value": "#f3d34a"
+            },
+            "300": {
+              "$value": "#dabf52"
+            },
+            "400": {
+              "$value": "#bc9e00"
+            },
+            "500": {
+              "$value": "#9e7f00"
+            },
+            "600": {
+              "$value": "#866900"
+            },
+            "700": {
+              "$value": "#6e5300"
+            },
+            "800": {
+              "$value": "#5b4400"
+            },
+            "900": {
+              "$value": "#4b3600"
+            },
+            "950": {
+              "$value": "#2b1d00"
+            }
+          },
+          "accent": {
+            "50": {
+              "$value": "#bdf9ff"
+            },
+            "100": {
+              "$value": "#abedff"
+            },
+            "200": {
+              "$value": "#92dcff"
+            },
+            "300": {
+              "$value": "#6dc1ff"
+            },
+            "400": {
+              "$value": "#3b9eff"
+            },
+            "500": {
+              "$value": "#007fff"
+            },
+            "600": {
+              "$value": "#0066dd"
+            },
+            "700": {
+              "$value": "#0050bb"
+            },
+            "800": {
+              "$value": "#003f9f"
+            },
+            "900": {
+              "$value": "#003285"
+            },
+            "950": {
+              "$value": "#001953"
+            }
+          }
+        }
+      },
+      "spacing": {
+        "s1": {
+          "$value": "34px"
+        },
+        "s2": {
+          "$value": "38px"
+        },
+        "s3": {
+          "$value": "46px"
+        },
+        "s4": {
+          "$value": "58px"
+        },
+        "s5": {
+          "$value": "64px"
+        },
+        "s6": {
+          "$value": "72px"
+        },
+        "s7": {
+          "$value": "77px"
+        },
+        "s8": {
+          "$value": "96px"
+        },
+        "s9": {
+          "$value": "100px"
+        },
+        "s10": {
+          "$value": "104px"
+        },
+        "s11": {
+          "$value": "112px"
+        }
+      },
+      "radius": {
+        "r1": {
+          "$value": "5px"
+        },
+        "r2": {
+          "$value": "8px"
+        },
+        "r3": {
+          "$value": "11px"
+        },
+        "r5": {
+          "$value": "22px"
+        }
+      },
+      "shadow": {
+        "sh2": {
+          "$value": "rgba(239, 218, 164, 0.78) 0px 0px 0px 2px"
+        },
+        "sh3": {
+          "$value": "rgba(196, 162, 89, 0.16) 0px 0px 0px 3px"
+        },
+        "sh4": {
+          "$value": "rgba(23, 143, 212, 0.12) 0px 0px 0px 4px"
+        },
+        "sh5": {
+          "$value": "rgba(255, 255, 255, 0.09) 0px 1px 0px 0px inset"
+        },
+        "sh6": {
+          "$value": "rgba(0, 42, 82, 0.055) 0px 1px 0px 0px inset"
+        },
+        "sh7": {
+          "$value": "rgb(45, 112, 214) 0px -2px 0px 0px inset"
+        },
+        "sh8": {
+          "$value": "rgb(243, 211, 74) 3px 0px 0px 0px inset"
+        },
+        "sh9": {
+          "$value": "rgba(4, 29, 57, 0.035) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.6) 0px 1px 0px 0px"
+        },
+        "sh10": {
+          "$value": "rgba(200, 164, 77, 0.6) 0px 0px 8px 0px"
+        },
+        "sh11": {
+          "$value": "rgba(8, 32, 62, 0.7) 0px 4px 12px -10px"
+        },
+        "sh12": {
+          "$value": "rgba(132, 91, 0, 0.65) 0px 8px 18px -12px"
+        },
+        "sh13": {
+          "$value": "rgba(7, 31, 58, 0.055) 0px 8px 24px 0px"
+        },
+        "sh14": {
+          "$value": "rgba(3, 24, 46, 0.5) 0px 10px 24px -18px, rgba(255, 255, 255, 0.6) 0px 1px 0px 0px inset"
+        },
+        "sh15": {
+          "$value": "rgba(5, 29, 58, 0.62) 0px 10px 26px -24px"
+        },
+        "sh16": {
+          "$value": "rgba(255, 255, 255, 0.07) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.8) 0px 18px 42px -30px"
+        },
+        "sh17": {
+          "$value": "rgba(1, 26, 53, 0.82) 0px 22px 44px -30px, rgba(255, 255, 255, 0.12) 0px 1px 0px 0px inset"
+        },
+        "sh18": {
+          "$value": "rgba(4, 14, 32, 0.88) 0px 20px 48px -22px, rgba(255, 255, 255, 0.12) 0px 1px 0px 0px inset"
+        },
+        "sh19": {
+          "$value": "rgba(0, 8, 22, 0.7) 0px 22px 50px -18px"
+        },
+        "sh20": {
+          "$value": "rgba(6, 13, 30, 0.45) -26px 0px 60px 0px, rgba(239, 218, 164, 0.14) 1px 0px 0px 0px inset"
+        },
+        "sh21": {
+          "$value": "rgba(6, 13, 30, 0.6) 0px 32px 66px -30px, rgba(6, 13, 30, 0.08) 0px 4px 12px 0px"
+        },
+        "sh22": {
+          "$value": "rgba(6, 13, 30, 0.55) 0px 32px 72px -30px"
+        },
+        "sh23": {
+          "$value": "rgba(6, 13, 30, 0.65) 0px 36px 80px -30px, rgba(6, 13, 30, 0.18) 0px 8px 22px 0px"
+        },
+        "sh24": {
+          "$value": "rgba(3, 15, 34, 0.82) 0px 36px 90px -34px, rgba(3, 15, 34, 0.52) 0px 12px 34px -20px"
+        },
+        "sh25": {
+          "$value": "rgba(2, 17, 34, 0.18) 0px -90px 120px 0px inset"
+        }
+      },
+      "fontSize": {
+        "h2": {
+          "$value": "30.36px"
+        },
+        "title-1": {
+          "$value": "24px"
+        },
+        "title-2": {
+          "$value": "23px"
+        },
+        "h3": {
+          "$value": "22.68px"
+        },
+        "title-3": {
+          "$value": "19px"
+        },
+        "title-4": {
+          "$value": "18px"
+        },
+        "body": {
+          "$value": "17px"
+        },
+        "body-sm": {
+          "$value": "16.84px"
+        },
+        "micro": {
+          "$value": "16.5px"
+        },
+        "sm-3": {
+          "$value": "16px"
+        },
+        "sm-4": {
+          "$value": "15.5px"
+        },
+        "sm-5": {
+          "$value": "15px"
+        },
+        "sm-6": {
+          "$value": "14px"
+        },
+        "sm-7": {
+          "$value": "13.5px"
+        },
+        "sm-8": {
+          "$value": "13.3333px"
+        },
+        "sm-9": {
+          "$value": "13px"
+        },
+        "sm-10": {
+          "$value": "12.5px"
+        },
+        "sm-11": {
+          "$value": "12px"
+        },
+        "sm-12": {
+          "$value": "11.5px"
+        },
+        "sm-13": {
+          "$value": "10.5px"
+        },
+        "sm-14": {
+          "$value": "10px"
+        },
+        "sm-15": {
+          "$value": "9.5px"
+        }
+      }
+    },
+    "semantic": {
+      "color": {
+        "action": {
+          "onPrimary": {
+            "$value": "#ffffff"
+          },
+          "onSecondary": {
+            "$value": "#000000"
+          },
+          "accent": {
+            "$value": "#007fff"
+          },
+          "onAccent": {
+            "$value": "#000000"
+          }
+        },
+        "surface": {
+          "raised": {
+            "$value": "#eaf2fd"
+          },
+          "onRaised": {
+            "$value": "#000000"
+          }
+        }
+      },
+      "typography": {
+        "body": {
+          "$value": {
+            "fontFamily": "Public Sans",
+            "fontSize": "17px",
+            "fontWeight": "600",
+            "lineHeight": "27.54px"
+          }
+        }
+      },
+      "shadow": {
+        "elevated": {
+          "$value": "{primitive.shadow.sh13}"
+        }
+      }
+    }
+  }
+}

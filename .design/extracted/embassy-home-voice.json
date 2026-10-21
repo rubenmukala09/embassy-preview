@@ -1,0 +1,86 @@
+{
+  "tone": "friendly",
+  "pronoun": "you-only",
+  "headingStyle": "Title Case",
+  "headingLengthClass": "balanced",
+  "ctaVerbs": [
+    {
+      "value": "about",
+      "count": 1
+    },
+    {
+      "value": "consular",
+      "count": 1
+    },
+    {
+      "value": "appointment",
+      "count": 1
+    },
+    {
+      "value": "register",
+      "count": 1
+    },
+    {
+      "value": "video",
+      "count": 1
+    },
+    {
+      "value": "subscribe",
+      "count": 1
+    },
+    {
+      "value": "ask",
+      "count": 1
+    }
+  ],
+  "buttonPatterns": [
+    {
+      "value": "about this preview",
+      "count": 1
+    },
+    {
+      "value": "ⅱ",
+      "count": 1
+    },
+    {
+      "value": "consular services →",
+      "count": 1
+    },
+    {
+      "value": "appointment guidance",
+      "count": 1
+    },
+    {
+      "value": "register",
+      "count": 1
+    },
+    {
+      "value": "video · plays from youtube\nnational anthem: debout congolais",
+      "count": 1
+    },
+    {
+      "value": "subscribe",
+      "count": 1
+    },
+    {
+      "value": "ask the embassyai guide · verified information",
+      "count": 1
+    }
+  ],
+  "sampleHeadings": [
+    "Welcome to the Embassy of the Democratic Republic of the Congo.",
+    "Information for visitors, investors and the Congolese diaspora",
+    "Visas, passports and travel documents",
+    "Civil affairs for the Congolese diaspora",
+    "The Embassy",
+    "Welcome to the Embassy of the Democratic Republic of the Congo.",
+    "Information for visitors, investors and the Congolese diaspora",
+    "Visas, passports and travel documents",
+    "Civil affairs for the Congolese diaspora",
+    "The Embassy"
+  ],
+  "stats": {
+    "buttons": 8,
+    "headings": 48
+  }
+}

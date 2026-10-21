@@ -1,0 +1,40 @@
+{
+  "flags": [
+    "modal",
+    "forms"
+  ],
+  "forms": {
+    "count": 2,
+    "families": [
+      1,
+      1
+    ]
+  },
+  "inputTypesSeen": {
+    "select": 2,
+    "input": 26
+  },
+  "modals": [
+    {
+      "role": "dialog",
+      "className": "asst-panel",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  ],
+  "toastLibraries": [],
+  "loading": {
+    "skeleton": 0,
+    "spinner": 0
+  },
+  "empty": {
+    "count": 0
+  },
+  "error": {
+    "count": 0
+  }
+}

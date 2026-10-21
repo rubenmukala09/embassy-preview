@@ -1,0 +1,406 @@
+{
+  "url": "https://rubenmukala09.github.io/embassy-preview/consular-services.html",
+  "path": "/embassy-preview/consular-services.html",
+  "added": {},
+  "changed": {
+    "primitive": {
+      "color": {
+        "brand": {
+          "primary": {
+            "$value": "#f3d34a"
+          },
+          "secondary": {
+            "$value": "#0b2440"
+          }
+        },
+        "neutral": {
+          "n400": {
+            "$value": "#91a4bb"
+          },
+          "n500": {
+            "$value": "#52637a"
+          }
+        },
+        "background": {
+          "bg1": {
+            "$value": "#0b1f3a"
+          },
+          "bg2": {
+            "$value": "#eaf2fd"
+          },
+          "bg3": {
+            "$value": "#f8fafc"
+          },
+          "bg4": {
+            "$value": "#060d1e"
+          }
+        },
+        "text": {
+          "text8": {
+            "$value": "#f3d34a"
+          },
+          "text9": {
+            "$value": "#eaf7fd"
+          }
+        },
+        "ramp": {
+          "primary": {
+            "50": {
+              "$value": "#fff6ae"
+            },
+            "100": {
+              "$value": "#feea9a"
+            },
+            "200": {
+              "$value": "#f3d34a"
+            },
+            "300": {
+              "$value": "#dabf52"
+            },
+            "400": {
+              "$value": "#bc9e00"
+            },
+            "500": {
+              "$value": "#9e7f00"
+            },
+            "600": {
+              "$value": "#866900"
+            },
+            "700": {
+              "$value": "#6e5300"
+            },
+            "800": {
+              "$value": "#5b4400"
+            },
+            "900": {
+              "$value": "#4b3600"
+            },
+            "950": {
+              "$value": "#2b1d00"
+            }
+          },
+          "secondary": {
+            "50": {
+              "$value": "#e5f8ff"
+            },
+            "100": {
+              "$value": "#d8ecff"
+            },
+            "200": {
+              "$value": "#c5dcf7"
+            },
+            "300": {
+              "$value": "#a9c3e2"
+            },
+            "400": {
+              "$value": "#86a2c4"
+            },
+            "500": {
+              "$value": "#6884a6"
+            },
+            "600": {
+              "$value": "#546e8e"
+            },
+            "700": {
+              "$value": "#415874"
+            },
+            "800": {
+              "$value": "#344861"
+            },
+            "900": {
+              "$value": "#283a4f"
+            },
+            "950": {
+              "$value": "#0b2440"
+            }
+          },
+          "accent": {
+            "50": {
+              "$value": "#bdf9ff"
+            },
+            "100": {
+              "$value": "#abedff"
+            },
+            "200": {
+              "$value": "#92dcff"
+            },
+            "300": {
+              "$value": "#6dc1ff"
+            },
+            "400": {
+              "$value": "#3b9eff"
+            },
+            "500": {
+              "$value": "#007fff"
+            },
+            "600": {
+              "$value": "#0066dd"
+            },
+            "700": {
+              "$value": "#0050bb"
+            },
+            "800": {
+              "$value": "#003f9f"
+            },
+            "900": {
+              "$value": "#003285"
+            },
+            "950": {
+              "$value": "#001953"
+            }
+          }
+        }
+      },
+      "spacing": {
+        "s1": {
+          "$value": "36px"
+        },
+        "s2": {
+          "$value": "44px"
+        },
+        "s3": {
+          "$value": "56px"
+        },
+        "s4": {
+          "$value": "64px"
+        },
+        "s5": {
+          "$value": "77px"
+        },
+        "s6": {
+          "$value": "86px"
+        },
+        "s7": {
+          "$value": "96px"
+        },
+        "s8": {
+          "$value": "104px"
+        },
+        "s9": {
+          "$value": "112px"
+        },
+        "s10": {
+          "$value": "147px"
+        },
+        "s11": {
+          "$value": "163px"
+        },
+        "s12": {
+          "$value": "381px"
+        },
+        "s13": {
+          "$value": "390px"
+        },
+        "s14": {
+          "$value": "442px"
+        }
+      },
+      "radius": {
+        "r1": {
+          "$value": "5px"
+        },
+        "r2": {
+          "$value": "8px"
+        },
+        "r3": {
+          "$value": "11px"
+        },
+        "r5": {
+          "$value": "22px"
+        }
+      },
+      "shadow": {
+        "sh2": {
+          "$value": "rgba(239, 218, 164, 0.78) 0px 0px 0px 2px"
+        },
+        "sh3": {
+          "$value": "rgba(196, 162, 89, 0.16) 0px 0px 0px 3px"
+        },
+        "sh4": {
+          "$value": "rgba(23, 143, 212, 0.12) 0px 0px 0px 4px"
+        },
+        "sh5": {
+          "$value": "rgba(255, 255, 255, 0.09) 0px 1px 0px 0px inset"
+        },
+        "sh6": {
+          "$value": "rgba(0, 42, 82, 0.055) 0px 1px 0px 0px inset"
+        },
+        "sh7": {
+          "$value": "rgb(45, 112, 214) 0px -2px 0px 0px inset"
+        },
+        "sh8": {
+          "$value": "rgba(1, 26, 53, 0.05) 0px 1px 2px 0px, rgba(1, 26, 53, 0.03) 0px 1px 1px 0px"
+        },
+        "sh9": {
+          "$value": "rgb(243, 211, 74) 3px 0px 0px 0px inset"
+        },
+        "sh10": {
+          "$value": "rgba(4, 29, 57, 0.035) 0px 1px 2px 0px inset, rgba(255, 255, 255, 0.6) 0px 1px 0px 0px"
+        },
+        "sh11": {
+          "$value": "rgba(200, 164, 77, 0.6) 0px 0px 8px 0px"
+        },
+        "sh12": {
+          "$value": "rgba(8, 32, 62, 0.7) 0px 4px 12px -10px"
+        },
+        "sh13": {
+          "$value": "rgba(132, 91, 0, 0.65) 0px 8px 18px -12px"
+        },
+        "sh14": {
+          "$value": "rgba(7, 31, 58, 0.055) 0px 8px 24px 0px"
+        },
+        "sh15": {
+          "$value": "rgba(3, 24, 46, 0.5) 0px 10px 24px -18px, rgba(255, 255, 255, 0.6) 0px 1px 0px 0px inset"
+        },
+        "sh16": {
+          "$value": "rgba(5, 29, 58, 0.62) 0px 10px 26px -24px"
+        },
+        "sh17": {
+          "$value": "rgba(255, 255, 255, 0.07) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.8) 0px 18px 42px -30px"
+        },
+        "sh18": {
+          "$value": "rgba(1, 26, 53, 0.82) 0px 22px 44px -30px, rgba(255, 255, 255, 0.12) 0px 1px 0px 0px inset"
+        },
+        "sh19": {
+          "$value": "rgba(4, 14, 32, 0.88) 0px 20px 48px -22px, rgba(255, 255, 255, 0.12) 0px 1px 0px 0px inset"
+        },
+        "sh20": {
+          "$value": "rgba(0, 8, 22, 0.7) 0px 22px 50px -18px"
+        },
+        "sh21": {
+          "$value": "rgba(6, 13, 30, 0.45) -26px 0px 60px 0px, rgba(239, 218, 164, 0.14) 1px 0px 0px 0px inset"
+        },
+        "sh22": {
+          "$value": "rgba(6, 13, 30, 0.6) 0px 32px 66px -30px, rgba(6, 13, 30, 0.08) 0px 4px 12px 0px"
+        },
+        "sh23": {
+          "$value": "rgba(6, 13, 30, 0.55) 0px 32px 72px -30px"
+        },
+        "sh24": {
+          "$value": "rgba(6, 13, 30, 0.65) 0px 36px 80px -30px, rgba(6, 13, 30, 0.18) 0px 8px 22px 0px"
+        },
+        "sh25": {
+          "$value": "rgba(3, 15, 34, 0.82) 0px 36px 90px -34px, rgba(3, 15, 34, 0.52) 0px 12px 34px -20px"
+        },
+        "sh26": {
+          "$value": "rgba(2, 17, 34, 0.18) 0px -90px 120px 0px inset"
+        }
+      },
+      "fontSize": {
+        "h2": {
+          "$value": "30.36px"
+        },
+        "title-1": {
+          "$value": "24px"
+        },
+        "title-2": {
+          "$value": "23px"
+        },
+        "h3": {
+          "$value": "22.68px"
+        },
+        "title-3": {
+          "$value": "19px"
+        },
+        "h4": {
+          "$value": "18px"
+        },
+        "title-4": {
+          "$value": "17px"
+        },
+        "title-5": {
+          "$value": "16.84px"
+        },
+        "body": {
+          "$value": "16.5px"
+        },
+        "body-sm": {
+          "$value": "16px"
+        },
+        "micro": {
+          "$value": "15.5px"
+        },
+        "sm-3": {
+          "$value": "15px"
+        },
+        "sm-4": {
+          "$value": "14px"
+        },
+        "sm-5": {
+          "$value": "13.5px"
+        },
+        "sm-6": {
+          "$value": "13.3333px"
+        },
+        "sm-7": {
+          "$value": "13px"
+        },
+        "sm-8": {
+          "$value": "12.5px"
+        },
+        "sm-9": {
+          "$value": "12px"
+        },
+        "sm-10": {
+          "$value": "11.5px"
+        },
+        "sm-11": {
+          "$value": "10.5px"
+        },
+        "sm-12": {
+          "$value": "10px"
+        },
+        "sm-13": {
+          "$value": "9.5px"
+        },
+        "sm-14": {
+          "$value": "9px"
+        },
+        "sm-15": {
+          "$value": "8px"
+        }
+      }
+    },
+    "semantic": {
+      "color": {
+        "action": {
+          "onPrimary": {
+            "$value": "#000000"
+          },
+          "onSecondary": {
+            "$value": "#ffffff"
+          },
+          "accent": {
+            "$value": "#007fff"
+          },
+          "onAccent": {
+            "$value": "#000000"
+          }
+        },
+        "surface": {
+          "raised": {
+            "$value": "#0b1f3a"
+          },
+          "onRaised": {
+            "$value": "#ffffff"
+          }
+        }
+      },
+      "typography": {
+        "body": {
+          "$value": {
+            "fontFamily": "Public Sans",
+            "fontSize": "16.5px",
+            "fontWeight": "400",
+            "lineHeight": "26.4px"
+          }
+        }
+      },
+      "shadow": {
+        "elevated": {
+          "$value": "{primitive.shadow.sh13}"
+        }
+      }
+    }
+  }
+}

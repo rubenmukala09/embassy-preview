@@ -1,0 +1,16 @@
+Clone the design language of this pricing page and build a fresh equivalent.
+Visual feel: mixed. Tone: friendly · Headings: Title Case · CTA verbs: [object Object], [object Object], [object Object], [object Object], [object Object], [object Object]
+Primary palette: #0b2440, #d5e2f0, #011a35, #ffffff, #334763.
+Typography: [object Object], [object Object], [object Object].
+Corner radius vocabulary: 1, 4, 7, 10, 13, 16.
+Shadow vocabulary: rgba(10, 27, 61, 0.18) 0px 0px 0px 1px | rgba(244, 194, 91, 0.2) 0px 0px 0px 3px | rgba(1, 26, 53, 0.28) 0px 0px 0px 6px.
+Page structure:
+- hero — heading: "Welcome to the Embassy of the Democratic Republic of the Congo."
+- testimonial — heading: "The Head of State and the Ambassador"
+- testimonial — heading: "The Head of State and the Ambassador"
+- pricing-table — heading: "Practical information"
+- pricing — heading: "Traveling to or living in the DRC?"
+- sidebar — heading: "GENOCOST 2026: sign the petition"
+- hero — heading: "Media center"
+- footer
+- testimonials

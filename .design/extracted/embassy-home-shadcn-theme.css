@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://rubenmukala09.github.io/embassy-preview/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 49 88% 62%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 212 71% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 355 61% 39%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 211 25% 36%;
+    --muted-foreground: 0 0% 100%;
+    --border: 215 20% 40%;
+    --radius: 7px;
+  }
+}

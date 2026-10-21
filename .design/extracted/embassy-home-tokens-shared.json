@@ -1,0 +1,180 @@
+{
+  "primitive": {
+    "color": {
+      "neutral": {
+        "n100": {
+          "$value": "#ffffff"
+        },
+        "n200": {
+          "$value": "#000000"
+        },
+        "n300": {
+          "$value": "#5a7189"
+        },
+        "n600": {
+          "$value": "#465c74"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#ffffff"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000"
+        },
+        "text1": {
+          "$value": "#092744"
+        },
+        "text2": {
+          "$value": "#ffffff"
+        },
+        "text3": {
+          "$value": "#46506a"
+        },
+        "text4": {
+          "$value": "#163457"
+        },
+        "text5": {
+          "$value": "#0b1f3a"
+        },
+        "text6": {
+          "$value": "#34455e"
+        },
+        "text7": {
+          "$value": "#d9ecf7"
+        }
+      },
+      "ramp": {
+        "neutral": {
+          "50": {
+            "$value": "#e8f7ff"
+          },
+          "100": {
+            "$value": "#dbecfe"
+          },
+          "200": {
+            "$value": "#c8dcf0"
+          },
+          "300": {
+            "$value": "#adc3da"
+          },
+          "400": {
+            "$value": "#8ba2bb"
+          },
+          "500": {
+            "$value": "#6d859d"
+          },
+          "600": {
+            "$value": "#5a7189"
+          },
+          "700": {
+            "$value": "#45596d"
+          },
+          "800": {
+            "$value": "#37485a"
+          },
+          "900": {
+            "$value": "#2b3a4a"
+          },
+          "950": {
+            "$value": "#16202a"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "1px"
+      },
+      "r4": {
+        "$value": "14px"
+      },
+      "r6": {
+        "$value": "50px"
+      },
+      "r7": {
+        "$value": "99px"
+      },
+      "r8": {
+        "$value": "999px"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgba(10, 27, 61, 0.18) 0px 0px 0px 1px"
+      },
+      "sh1": {
+        "$value": "rgba(244, 194, 91, 0.2) 0px 0px 0px 3px"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "Public Sans"
+      },
+      "f1": {
+        "$value": "Merriweather"
+      },
+      "f2": {
+        "$value": "Arial"
+      }
+    },
+    "fontSize": {
+      "h1": {
+        "$value": "38.48px"
+      },
+      "h5": {
+        "$value": "11px"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}"
+        },
+        "page": {
+          "$value": "#ffffff"
+        },
+        "onPage": {
+          "$value": "#000000"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}"
+        }
+      }
+    },
+    "typography": {
+      "heading": {
+        "$value": {
+          "fontFamily": "Public Sans",
+          "fontSize": "38.48px",
+          "fontWeight": "700",
+          "lineHeight": "41.5584px"
+        }
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}"
+      }
+    }
+  }
+}

@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DRC Embassy — Home below-hero concept</title>
+<meta name="description" content="Design concept for the below-hero region of ambadrcusa.org. Not production code — a shareable preview showing a tighter type scale, 3-level elevation, and curated motion." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ─── TOKENS — the whole system in 60 lines ───────────────────────── */
+  :root {
+    /* Color — 3 roles + neutrals, down from 47 */
+    --navy-950: #011a35;
+    --navy-900: #052f57;
+    --navy-700: #0b2440;
+    --navy-500: #2d70d6;
+    --gold-500: #f3d34a;
+    --gold-ink: #7a5a00;
+    --red-600:  #c4333e;
+    --ink:      #0b2440;
+    --ink-2:    #3b5571;
+    --ink-3:    #5a7189;
+    --line:     rgba(5, 47, 87, .14);
+    --line-strong: rgba(5, 47, 87, .24);
+    --canvas:   #f4f7fb;
+    --paper:    #ffffff;
+    --sky:      #eaf2fd;
+
+    /* Type — 6 roles, down from 40 */
+    --serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+    --sans:  'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    --t-eyebrow: 12.5px;
+    --t-meta:    14px;
+    --t-body:    16.5px;
+    --t-lead:    clamp(17px, .3vw + 15.5px, 19px);
+    --t-h3:      clamp(19px, .6vw + 15px, 23px);
+    --t-h2:      clamp(28px, 2.4vw + 10px, 40px);
+
+    /* Space — 2px base, 8-step scale */
+    --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+    --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 80px;
+
+    /* Shape — 3 radii */
+    --r-ctl: 10px;
+    --r-md:  14px;
+    --r-lg:  20px;
+
+    /* Elevation — 3 steps, down from 31 */
+    --sh-sm: 0 1px 2px rgba(1,26,53,.05), 0 1px 1px rgba(1,26,53,.03);
+    --sh-md: 0 1px 2px rgba(1,26,53,.06), 0 12px 28px -18px rgba(1,26,53,.35);
+    --sh-lg: 0 2px 4px rgba(1,26,53,.08), 0 32px 64px -24px rgba(1,26,53,.4);
+
+    /* Motion — Emil Kowalski tokens */
+    --ease:    cubic-bezier(.2, .75, .25, 1);
+    --d-xs:    120ms;
+    --d-sm:    200ms;
+    --d-md:    320ms;
+    --d-lg:    600ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ─── BASE ─────────────────────────────────────────────────────────── */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    margin: 0;
+    font: 400 var(--t-body)/1.62 var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    font-feature-settings: "ss01", "cv02";
+  }
+  :focus-visible { outline: none; box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--navy-500); border-radius: 6px; }
+
+  /* ─── LAYOUT PRIMITIVES ───────────────────────────────────────────── */
+  .shell { max-width: 1200px; margin-inline: auto; padding-inline: var(--s-5); }
+  @media (min-width: 1024px) { .shell { padding-inline: var(--s-7); } }
+
+  .section { padding-block: var(--s-8); position: relative; }
+  .section + .section { border-top: 1px solid var(--line); }
+  .section.canvas { background: var(--canvas); }
+  .section.navy   { background: var(--navy-950); color: #e8f0fa; }
+  .section.navy .eyebrow { color: var(--gold-500); }
+  .section.navy h2, .section.navy h3 { color: #fff; }
+
+  .eyebrow {
+    font: 700 var(--t-eyebrow)/1.3 var(--sans);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--navy-700);
+    margin: 0 0 var(--s-3);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+  }
+  .eyebrow::before {
+    content: ""; width: 20px; height: 1px; background: var(--gold-500);
+  }
+
+  h2 {
+    font: 700 var(--t-h2)/1.15 var(--serif);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 var(--s-4);
+    max-width: 24ch;
+  }
+  h3 {
+    font: 600 var(--t-h3)/1.3 var(--sans);
+    color: var(--navy-700);
+    margin: 0 0 var(--s-2);
+  }
+  .lead { font-size: var(--t-lead); color: var(--ink-2); max-width: 60ch; margin: 0 0 var(--s-4); }
+  .meta { font-size: var(--t-meta); color: var(--ink-3); }
+
+  /* ─── WELCOME ─────────────────────────────────────────────────────── */
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-7);
+    align-items: start;
+  }
+  @media (min-width: 960px) {
+    .welcome-grid { grid-template-columns: 7fr 5fr; gap: var(--s-7) var(--s-8); }
+  }
+  .welcome-copy p { margin: 0 0 var(--s-4); color: var(--ink-2); }
+  .welcome-copy p:first-of-type { font-size: var(--t-lead); color: var(--ink); }
+  .welcome-photo { position: relative; margin: 0; }
+  .welcome-photo img {
+    display: block; width: 100%; height: auto;
+    border-radius: var(--r-md);
+    box-shadow: var(--sh-md);
+    aspect-ratio: 3/2; object-fit: cover;
+  }
+  .welcome-photo figcaption {
+    margin-top: var(--s-3);
+    font-size: var(--t-meta); color: var(--ink-3); font-style: italic;
+  }
+
+  .paths {
+    list-style: none; padding: 0; margin: var(--s-7) 0 0;
+    display: grid; gap: var(--s-3);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px)  { .paths { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1100px) { .paths { grid-template-columns: repeat(4, 1fr); } }
+
+  .path {
+    display: block;
+    padding: var(--s-5);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    box-shadow: var(--sh-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow var(--d-sm) var(--ease),
+                transform  var(--d-sm) var(--ease),
+                border-color var(--d-sm) var(--ease);
+  }
+  @media (hover: hover) {
+    .path:hover {
+      box-shadow: var(--sh-md);
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+    }
+    .path:hover .path-arrow { transform: translateX(3px); color: var(--navy-500); }
+  }
+  .path-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--sky); color: var(--navy-700);
+    margin-bottom: var(--s-4);
+  }
+  .path-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .path h3 { margin-bottom: var(--s-2); font-size: 17px; }
+  .path-text { color: var(--ink-2); font-size: var(--t-meta); line-height: 1.55; margin: 0 0 var(--s-4); }
+  .path-go { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: var(--t-meta); color: var(--navy-700); }
+  .path-arrow { transition: transform var(--d-sm) var(--ease), color var(--d-sm) var(--ease); display: inline-block; }
+
+  /* ─── LEADERSHIP ─────────────────────────────────────────────────── */
+  .leaders {
+    display: grid; gap: var(--s-6);
+    grid-template-columns: 1fr;
+    margin-top: var(--s-7);
+  }
+  @media (min-width: 820px) { .leaders { grid-template-columns: 1fr 1fr; gap: var(--s-7); } }
+
+  .leader {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: clip;
+    display: grid;
+    grid-template-columns: 1fr;
+    box-shadow: var(--sh-sm);
+    transition: box-shadow var(--d-sm) var(--ease), transform var(--d-sm) var(--ease);
+  }
+  @media (min-width: 540px) { .leader { grid-template-columns: 180px 1fr; } }
+  @media (hover: hover) { .leader:hover { box-shadow: var(--sh-md); transform: translateY(-1px); } }
+  .leader-photo { background: var(--canvas); aspect-ratio: 1; overflow: clip; }
+  .leader-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .leader-body { padding: var(--s-5) var(--s-5) var(--s-5) var(--s-5); }
+  .leader-role { font-size: var(--t-eyebrow); letter-spacing: .12em; text-transform: uppercase; color: var(--gold-ink); font-weight: 700; margin: 0 0 var(--s-2); }
+  .leader-name { font: 700 var(--t-h3)/1.25 var(--serif); margin: 0 0 var(--s-1); color: var(--ink); }
+  .leader-title { color: var(--ink-2); font-size: var(--t-meta); margin: 0 0 var(--s-3); }
+  .leader-bio { font-size: 15px; color: var(--ink-2); margin: 0 0 var(--s-3); line-height: 1.6; }
+  .leader-link { color: var(--navy-500); font-weight: 600; font-size: var(--t-meta); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+  .leader-link:hover { color: var(--navy-700); text-decoration: underline; }
+
+  /* ─── PLAN YOUR VISIT (navy band) ────────────────────────────────── */
+  .plan-grid {
+    display: grid; gap: var(--s-4);
+    grid-template-columns: 1fr;
+    margin-top: var(--s-6);
+  }
+  @media (min-width: 720px) { .plan-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .plan-grid { grid-template-columns: repeat(4, 1fr); gap: var(--s-5); } }
+
+  .plan-item {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--r-md);
+    padding: var(--s-5);
+    transition: background var(--d-sm) var(--ease), border-color var(--d-sm) var(--ease);
+  }
+  @media (hover: hover) { .plan-item:hover { background: rgba(255,255,255,.06); border-color: rgba(243,211,74,.3); } }
+  .plan-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(243,211,74,.14); color: var(--gold-500);
+    margin-bottom: var(--s-3);
+  }
+  .plan-icon svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .plan-item h3 { color: #fff; font-size: 16px; margin-bottom: var(--s-2); font-weight: 600; }
+  .plan-item p { color: rgba(232,240,250,.72); font-size: var(--t-meta); margin: 0; line-height: 1.55; }
+
+  /* ─── SCROLL REVEAL ───────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity var(--d-md) var(--ease), transform var(--d-md) var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-stagger > * { opacity: 0; transform: translateY(14px); transition: opacity var(--d-md) var(--ease), transform var(--d-md) var(--ease); }
+    .reveal-stagger.in > * { opacity: 1; transform: none; }
+    .reveal-stagger.in > *:nth-child(1) { transition-delay: 0ms; }
+    .reveal-stagger.in > *:nth-child(2) { transition-delay: 60ms; }
+    .reveal-stagger.in > *:nth-child(3) { transition-delay: 120ms; }
+    .reveal-stagger.in > *:nth-child(4) { transition-delay: 180ms; }
+  }
+
+  /* ─── MOCKUP CHROME (demo-only, not part of the design) ────────── */
+  .demo-note {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--gold-500); color: var(--gold-ink);
+    padding: var(--s-2) var(--s-5);
+    font: 700 var(--t-meta)/1.4 var(--sans);
+    text-align: center;
+  }
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-950), var(--navy-900));
+    color: #fff; padding: var(--s-7) 0; text-align: center;
+  }
+  .demo-hero p { opacity: .7; margin: var(--s-2) 0 0; font-size: var(--t-meta); }
+  .demo-hero h1 { font: 700 var(--t-h2)/1.1 var(--serif); margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="demo-note">
+  Mockup concept — not production code. Fonts via CDN for preview only; the real system self-hosts them per CSP.
+</div>
+
+<section class="demo-hero">
+  <div class="shell">
+    <h1>Welcome to the Embassy of the DRC</h1>
+    <p>↓ Below-hero redesign starts here · 6 type sizes, 3 elevation steps, 3 motion durations</p>
+  </div>
+</section>
+
+<!-- ═══ WELCOME ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="shell">
+    <p class="eyebrow reveal">Welcome</p>
+    <h2 class="reveal">Information for visitors, investors and the Congolese diaspora</h2>
+    <div class="welcome-grid">
+      <div class="welcome-copy reveal">
+        <p>Welcome to the official website of the Embassy of the Democratic Republic of the Congo (DRC) in the United States. We extend a warm invitation to explore all the essential information for your visit to our beautiful country.</p>
+        <p>The DRC boasts the world's second-largest river basin and is home to five natural UNESCO World Heritage sites: four national parks and the Okapi Wildlife Reserve. Whether you are a tourist seeking adventure or an investor looking to engage with the DRC, we believe your visit will contribute significantly to our country's vision.</p>
+      </div>
+      <figure class="welcome-photo reveal">
+        <img src="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/migrated/embassy-sign.webp" alt="Embassy of the DRC signage next to the portrait of the President" />
+        <figcaption>The Embassy's sign beside the portrait of the President of the Republic.</figcaption>
+      </figure>
+    </div>
+
+    <ul class="paths reveal-stagger">
+      <li>
+        <a href="#" class="path">
+          <span class="path-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><polyline points="9,15 11,17 15,13"/></svg></span>
+          <h3>Visas, passports and travel documents</h3>
+          <p class="path-text">Visas for all travelers, passports and travel documents for Congolese nationals, legalizations and powers of attorney.</p>
+          <span class="path-go">Application information <span class="path-arrow">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="path">
+          <span class="path-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg></span>
+          <h3>Civil affairs for the diaspora</h3>
+          <p class="path-text">DRC passport issuance and renewal, Tenant-Lieu, and family-record services for Congolese nationals living abroad.</p>
+          <span class="path-go">We are here to serve you <span class="path-arrow">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="path">
+          <span class="path-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M10 21v-6h4v6"/></svg></span>
+          <h3>The Embassy</h3>
+          <p class="path-text">Diplomatic engagement, consular services, and support for Congolese nationals, visitors, investors and the diaspora.</p>
+          <span class="path-go">About the Embassy <span class="path-arrow">→</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="path">
+          <span class="path-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+          <h3>DRC representations worldwide</h3>
+          <p class="path-text">DRC consulates and embassies around the world — visas for travelers, services for the Congolese diaspora.</p>
+          <span class="path-go">Find out where we are <span class="path-arrow">→</span></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ LEADERSHIP ═══════════════════════════════════════════════════ -->
+<section class="section canvas">
+  <div class="shell">
+    <p class="eyebrow reveal">The Embassy</p>
+    <h2 class="reveal">The Head of State and the Ambassador</h2>
+    <p class="lead reveal">The Embassy advances the interests of the Democratic Republic of the Congo and its citizens, and strengthens cooperation, peace, prosperity and sustainable development with the United States.</p>
+
+    <div class="leaders reveal-stagger">
+      <article class="leader">
+        <div class="leader-photo"><img src="https://rubenmukala09.github.io/embassy-preview/img/image/president-portrait.jpg" alt="President Félix-Antoine Tshisekedi Tshilombo" /></div>
+        <div class="leader-body">
+          <p class="leader-role">Head of State</p>
+          <h3 class="leader-name">H.E. Félix-Antoine Tshisekedi Tshilombo</h3>
+          <p class="leader-title">President of the Democratic Republic of the Congo</p>
+          <p class="leader-bio">In office since January 24, 2019. The Embassy carries out its mission under the authority of the President of the Republic.</p>
+          <a href="https://www.presidence.cd/" class="leader-link" target="_blank" rel="noopener">Presidency of the Republic ↗</a>
+        </div>
+      </article>
+      <article class="leader">
+        <div class="leader-photo"><img src="https://rubenmukala09.github.io/embassy-preview/aurora/assets/img/ambassador.jpg" alt="Ambassador Yvette Kapinga Ngandu" /></div>
+        <div class="leader-body">
+          <p class="leader-role">Head of Mission</p>
+          <h3 class="leader-name">H.E. Yvette Kapinga Ngandu</h3>
+          <p class="leader-title">Ambassador Extraordinary and Plenipotentiary</p>
+          <p class="leader-bio">Appointed in June 2025, she took up her post in Washington on October 30, 2025. A career diplomat, she most recently served as Commissioner for Gender Promotion at ECCAS.</p>
+          <a href="#" class="leader-link">About the Ambassador →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PLAN YOUR VISIT (navy band) ═══════════════════════════════════ -->
+<section class="section navy">
+  <div class="shell">
+    <p class="eyebrow reveal">Plan your visit</p>
+    <h2 class="reveal" style="color:#fff;">Four tools before you travel</h2>
+    <div class="plan-grid reveal-stagger">
+      <div class="plan-item">
+        <span class="plan-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg></span>
+        <h3>Appointment</h3>
+        <p>Book a consular appointment online — visas, passports, legalizations.</p>
+      </div>
+      <div class="plan-item">
+        <span class="plan-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
+        <h3>Travel advisory</h3>
+        <p>Current entry requirements, health notices, and in-country guidance.</p>
+      </div>
+      <div class="plan-item">
+        <span class="plan-icon"><svg viewBox="0 0 24 24"><path d="M3 21v-4a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v4"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <h3>Investor services</h3>
+        <p>Introductions to ANAPI and sector-level teams across mining, energy, agriculture and tourism.</p>
+      </div>
+      <div class="plan-item">
+        <span class="plan-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1 0 2 1 2 2v12c0 1-1 2-2 2H4c-1 0-2-1-2-2V6c0-1 1-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg></span>
+        <h3>Contact</h3>
+        <p>Direct lines to consular, investment, press, and the diaspora desk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll reveal — IntersectionObserver, honors prefers-reduced-motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
