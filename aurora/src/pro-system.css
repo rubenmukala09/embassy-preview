@@ -843,7 +843,88 @@ main > section:not(.hero, .phead, .amb-hero, .qa-band) {
     }
   }
 
+  /* -------------------------------------------- 17. Numbered sections (visible)
+     Editorial rhythm — each below-hero section earns a muted serif number
+     (01, 02, 03…) rendered inside its .sec-head via a CSS counter. The
+     counter resets at the top of main. Only sections that actually have a
+     .sec-head get a number — content strips without a header stay quiet. */
+  counter-increment: px-sec;
+  & .sec-head {
+    position: relative;
+  }
+  & .sec-head > h2::after {
+    content: counter(px-sec, decimal-leading-zero);
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: var(--px-serif);
+    font-size: clamp(14px, .6vw + 11px, 18px);
+    font-weight: 400;
+    color: var(--px-gold-ink);
+    letter-spacing: .1em;
+    line-height: 1;
+    padding-top: 2px;
+    opacity: .75;
+    pointer-events: none;
+  }
+
+  /* -------------------------------------------- 18. Pull-quote block (visible)
+     Any <blockquote> or .px-quote below-hero becomes a decisive editorial
+     mark — oversized serif, left orange rule, open-quote glyph. Keeps the
+     diplomatic voice, drops the generic card look. */
+  & blockquote,
+  & .px-quote {
+    margin: clamp(24px, 3vw, 48px) 0;
+    padding: 8px 0 8px 28px;
+    border-left: 3px solid var(--px-gold-500);
+    position: relative;
+    font-family: var(--px-serif);
+    font-size: clamp(19px, 1vw + 15px, 26px);
+    line-height: 1.4;
+    color: var(--px-ink);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    max-width: 56ch;
+  }
+  & blockquote::before,
+  & .px-quote::before {
+    content: "\201C"; /* curly left double quote */
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    font-family: var(--px-serif);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--px-gold-500);
+    opacity: .4;
+    pointer-events: none;
+  }
+  & blockquote > cite,
+  & blockquote > footer,
+  & .px-quote > cite,
+  & .px-quote > footer {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--px-sans) !important;
+    font-size: var(--px-t-meta);
+    font-style: normal;
+    font-weight: 600;
+    color: var(--px-ink-2);
+    letter-spacing: 0;
+  }
+  & blockquote > cite::before,
+  & blockquote > footer::before,
+  & .px-quote > cite::before,
+  & .px-quote > footer::before {
+    content: "— ";
+    color: var(--px-ink-3);
+  }
+
 }
+
+/* Counter root — resets at the top of main so numbering restarts per page. */
+main { counter-reset: px-sec; }
 
 /* Visually hidden, still announced by screen readers. */
 .px-sr {
