@@ -619,3 +619,191 @@ main > section.inv-contact-sec .inv-contact-actions {
     min-height: 48px;
   }
 }
+
+/* ============================================================
+   EDITORIAL PASS 2026-10-23 — bolder below-hero treatment.
+   Scoped per-page. Everything selectors through specific .inv-*
+   classes so it never leaks to other pages or frozen zones.
+   ============================================================ */
+
+/* ─── Sector cards: numbered, serif, decisive hover ─────── */
+main > section .inv-sectors { counter-reset: inv-sect; }
+main > section .inv-sector {
+  counter-increment: inv-sect;
+  position: relative;
+  padding-top: 44px !important;
+  transition: box-shadow var(--px-d-sm) var(--px-ease),
+              transform  var(--px-d-sm) var(--px-ease),
+              border-color var(--px-d-sm) var(--px-ease);
+}
+main > section .inv-sector::after {
+  content: counter(inv-sect, decimal-leading-zero);
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-family: var(--px-serif);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: var(--px-gold-ink);
+  opacity: .7;
+  line-height: 1;
+  pointer-events: none;
+}
+main > section .inv-sector h3,
+main > section .inv-sector .inv-sector-title {
+  font-family: var(--px-serif) !important;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  font-size: clamp(19px, .5vw + 17px, 23px) !important;
+}
+main > section .inv-sector .inv-sector-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--px-ink-2);
+}
+@media (hover: hover) and (pointer: fine) {
+  main > section .inv-sector:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--px-sh-md) !important;
+    border-color: var(--px-gold-500) !important;
+  }
+  main > section .inv-sector:hover .inv-sector-go { transform: translateX(4px); color: var(--px-blue-700); }
+}
+main > section .inv-sector .inv-sector-go { transition: transform var(--px-d-sm) var(--px-ease), color var(--px-d-sm) var(--px-ease); }
+
+/* ─── At-a-glance: oversized serif display numbers ───── */
+main > section .inv-glance {
+  padding: 32px !important;
+  background: linear-gradient(180deg, var(--px-paper) 0%, var(--px-canvas) 100%);
+  border: 1px solid var(--px-line);
+  border-radius: var(--px-radius-lg);
+  position: relative;
+}
+main > section .inv-glance::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--px-blue-700) 0 33%, var(--px-gold-500) 33% 66%, var(--px-red-600) 66% 100%);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+main > section .inv-glance-title {
+  font-family: var(--px-serif) !important;
+  font-size: clamp(22px, 1vw + 18px, 28px) !important;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 8px 0 20px !important;
+}
+main > section .inv-glance .inv-list,
+main > section .inv-glance .inv-checks {
+  font-variant-numeric: tabular-nums;
+}
+main > section .inv-glance .inv-list > li,
+main > section .inv-glance .inv-checks > li {
+  padding: 10px 0 !important;
+  border-bottom: 1px solid var(--px-line);
+  font-size: 15px;
+}
+main > section .inv-glance .inv-list > li:last-child,
+main > section .inv-glance .inv-checks > li:last-child { border-bottom: 0; }
+
+/* ─── ANAPI block: letterhead feel ──────────────────────── */
+main > section .inv-anapi .inv-anapi-grid {
+  position: relative;
+}
+main > section .inv-anapi .inv-anapi-intro::before {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--px-gold-500) 0 55%, var(--px-navy-900) 55% 100%);
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+main > section .inv-anapi .inv-anapi-intro h3 {
+  font-family: var(--px-serif) !important;
+  font-size: clamp(24px, 1.1vw + 18px, 32px) !important;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 12px !important;
+}
+
+/* ─── Framework steps: numbered chain, gold connectors ───── */
+main > section .inv-framework .inv-steps { counter-reset: inv-step; position: relative; }
+main > section .inv-framework .inv-steps > li {
+  counter-increment: inv-step;
+  position: relative;
+  padding-left: 56px !important;
+}
+main > section .inv-framework .inv-steps > li::before {
+  content: counter(inv-step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--px-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--px-navy-900);
+  background: var(--px-sky);
+  border: 1.5px solid var(--px-gold-500);
+  border-radius: 50%;
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+main > section .inv-framework .inv-steps > li + li::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: -24px;
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(180deg, var(--px-gold-500), transparent);
+}
+
+/* ─── Portal links: external-link treatment ─────────────── */
+main > section .inv-portals .inv-portals-grid > a,
+main > section .inv-portals .inv-portals-grid > .inv-card {
+  position: relative;
+  overflow: hidden;
+}
+main > section .inv-portals .inv-portals-grid > a::after,
+main > section .inv-portals .inv-portals-grid > .inv-card::after {
+  content: "↗";
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 18px;
+  color: var(--px-gold-ink);
+  opacity: .55;
+  transition: opacity var(--px-d-sm) var(--px-ease),
+              transform var(--px-d-sm) var(--px-ease);
+  line-height: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  main > section .inv-portals .inv-portals-grid > a:hover::after,
+  main > section .inv-portals .inv-portals-grid > .inv-card:hover::after {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+}
+
+/* ─── Lead paragraph on this page specifically ──────────── */
+main > section.inv-intro .inv-lead,
+main > section .inv-intro-grid .inv-lead {
+  font-family: var(--px-serif) !important;
+  font-weight: 400 !important;
+  font-style: italic;
+  font-size: clamp(20px, 1vw + 16px, 26px) !important;
+  line-height: 1.4 !important;
+  color: var(--px-ink) !important;
+  max-width: 48ch;
+  letter-spacing: -0.005em;
+}
